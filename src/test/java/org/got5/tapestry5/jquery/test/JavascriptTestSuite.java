@@ -1,0 +1,238 @@
+//
+// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// 	http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package org.got5.tapestry5.jquery.test;
+
+import org.apache.tapestry5.test.AbstractIntegrationTestSuite;
+import org.testng.annotations.Test;
+
+import com.thoughtworks.selenium.Wait;
+
+public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
+{
+
+    public JavascriptTestSuite(String webAppRoot, String browserCommand, String... virtualHosts)
+    {
+        super(webAppRoot, browserCommand, virtualHosts);
+    }
+
+    /**
+     * Zone
+     */
+    @Test
+    public void testZone()
+    {
+        open("/zone");
+        waitForPageToLoad();
+        assertEquals(getText("identifier=myZone"), "Counting via AJAX : 0");
+
+        click("identifier=myActionLink");
+        new Wait()
+        {
+            public boolean until()
+            {
+                return isTextPresent("Counting via AJAX : 1");
+            }
+        }.wait("element not found");
+        assertEquals(getText("identifier=myZone"), "Counting via AJAX : 1");
+    }
+
+    @Test
+    public void testFormZone()
+    {
+        open("/zone");
+        waitForPageToLoad();
+        assertEquals(getText("identifier=myZone2"), "Dummy value is :");
+
+        type("identifier=textfield", "dummy");
+        click("identifier=submit");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return isTextPresent("Dummy value is : dummy");
+            }
+        }.wait("element not found");
+
+        assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n Dummy component");
+    }
+
+    /**
+     * Validation
+     */
+    @Test
+    public void testValidation()
+    {
+        open("/validation");
+        waitForPageToLoad();
+
+        assertValidationWorking("field", "a", true, "submit");
+        assertValidationWorking("field", "abcdefghijklmnopq", true, "submit");
+        assertValidationWorking("field", "abcd", false, "submit");
+
+        assertValidationWorking("field2", "0", true, "submit");
+        assertValidationWorking("field2", "10", true, "submit");
+        assertValidationWorking("field2", "3", false, "submit");
+
+        additionalValidationTest();
+
+        // can't test regular expressions and email, because jquery validate plugin does not support
+        // it, or prototype does not support it
+    }
+
+    protected void assertValidationWorking(final String fieldId, String value, boolean validationVisible, String submitId)
+    {
+        focus("identifier=" + fieldId);
+        type("identifier=" + fieldId, value);
+        focus("identifier=" + submitId);
+
+        if (validationVisible)
+        {
+            new Wait()
+            {
+                public boolean until()
+                {
+                    return isVisible(getValidationElementLocator(fieldId));
+                }
+            }.wait("element not found");
+        }
+
+        assertEquals(validationVisible, isVisible(getValidationElementLocator(fieldId)));
+
+    }
+
+    protected abstract String getValidationElementLocator(String fieldId);
+
+    public abstract void additionalValidationTest();
+
+    /**
+     * Calendar
+     */
+    @Test
+    public void testCalendar()
+    {
+        open(getCalendarPage());
+        waitForPageToLoad();
+
+        click(getCalendarField());
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return isElementPresent(getCalendarDivSelector()) && isVisible(getCalendarDivSelector());
+            }
+        }.wait("element not found!");
+
+        assertEquals(true, isVisible(getCalendarDivSelector()));
+    }
+
+    public abstract String getCalendarField();
+
+    public abstract String getCalendarDivSelector();
+
+    public abstract String getCalendarPage();
+
+    /**
+     * Autocomplete
+     */
+    @Test
+    public void testAutoComplete()
+    {
+        open(getAutocompletePage());
+        waitForPageToLoad();
+
+        focus(getAutocompleteField());
+        type(getAutocompleteField(), "abcdeff");
+        keyDown(getAutocompleteField(), "e");
+        keyUp(getAutocompleteField(), "e");
+        fireEvent(getAutocompleteField(), "keydown");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return isElementPresent(getAutocompleteDivSelector()) && isVisible(getAutocompleteDivSelector());
+            }
+        }.wait("element not found!");
+
+        assertEquals(true, isVisible(getAutocompleteDivSelector()));
+    }
+
+    public abstract String getAutocompletePage();
+
+    public abstract String getAutocompleteField();
+
+    public abstract String getAutocompleteDivSelector();
+
+    @Test
+    public void testGridInPlace()
+    {
+        open("/grid");
+
+        assertEquals(getText("css=tr.t-first td.firstName"), "lala010");
+
+        click("css=th.firstName a");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return getText("css=tr.t-first td.firstName").equals("lala010");
+            }
+        }.wait("element not found!", 5000l);
+
+        assertEquals(getText("css=tr.t-first td.firstName"), "lala010");
+
+        click("css=th.firstName a");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return getText("css=tr.t-first td.firstName").equals("lala910");
+            }
+        }.wait("element not found!", 5000l);
+
+        assertEquals(getText("css=tr.t-first td.firstName"), "lala910");
+
+        click("css=th.age a");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return getText("css=tr.t-first td.age").equals("0");
+            }
+        }.wait("element not found!", 5000l);
+
+        assertEquals(getText("css=tr.t-first td.age"), "0");
+
+        click("css=th.age a");
+
+        new Wait()
+        {
+            public boolean until()
+            {
+                return getText("css=tr.t-first td.age").equals("0");
+            }
+        }.wait("element not found!", 5000l);
+
+        assertEquals(getText("css=tr.t-first td.age"), "0");
+    }
+
+}

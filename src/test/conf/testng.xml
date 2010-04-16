@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="tapestry5-jquery Application Test Suite" annotations="1.5">
+    <test name="Unit Tests">
+        <packages>
+            <package name="org.got5.tapestry5.jquery.test"/>
+        </packages>
+    </test>
+</suite>

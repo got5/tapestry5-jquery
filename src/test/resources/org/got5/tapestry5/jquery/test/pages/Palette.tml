@@ -1,0 +1,7 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+        <t:palette t:id="handling" encoder="encoder" model="model"/>
+        <br/>
+        <input type="submit" value="Continue"/>
+    </t:form>
+</html>

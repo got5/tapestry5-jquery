@@ -1,0 +1,14 @@
+.springBeans
+test-output/
+.settings/
+.project
+.classpath
+temp-testng-customsuite.xml
+target/
+*.tmp_*
+tidyErrors.txt
+*.origin
+*.orig
+.svn
+bin/
+pom-internal.xml

@@ -1,0 +1,29 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <h3>Triggered by action link</h3>
+    <p>
+        <t:actionlink t:id="myActionLink" t:zone="myZone">
+            Refresh
+        </t:actionlink>
+    </p>
+    <t:zone t:id="myZone">
+        <t:delegate t:to="theBlockActionLink" />
+    </t:zone>
+    <t:block t:id="myBlockActionLink">
+        Counting via AJAX : ${count}
+    </t:block>
+    <h3>Triggered by external form</h3>
+    <t:zone t:id="myZone2">
+        <t:delegate t:to="theBlockForm" />
+    </t:zone>
+    <t:form t:zone="myZone2" t:id="myForm">
+        <t:textfield t:value="dummy"/><t:submit t:id="submit"/>
+    </t:form>
+    <t:block t:id="myBlockForm">
+        <p>
+            Dummy value is : ${dummy}
+        </p>
+        <t:ifNotNull t:test="dummy">
+            <t:DummyScriptAndCSSAdder/>
+        </t:ifNotNull>
+    </t:block>
+</html>
