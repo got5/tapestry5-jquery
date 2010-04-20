@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +17,9 @@
 package org.got5.tapestry5.jquery.test;
 
 import org.apache.tapestry5.test.AbstractIntegrationTestSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
@@ -27,6 +30,14 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     public JavascriptTestSuite(String webAppRoot, String browserCommand, String... virtualHosts)
     {
         super(webAppRoot, browserCommand, virtualHosts);
+
+    }
+
+    @BeforeMethod
+    public void adjustSpeed()
+    {
+        // it seems that integration test are unstable when speed is set to 0
+        setSpeed("200");
     }
 
     /**
@@ -228,11 +239,11 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         {
             public boolean until()
             {
-                return getText("css=tr.t-first td.age").equals("0");
+                return getText("css=tr.t-first td.age").equals("49");
             }
-        }.wait("element not found!", 5000l);
+        }.wait("element not found", 5000l);
 
-        assertEquals(getText("css=tr.t-first td.age"), "0");
+        assertEquals(getText("css=tr.t-first td.age"), "49");
     }
 
 }

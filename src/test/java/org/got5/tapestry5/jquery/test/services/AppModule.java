@@ -19,6 +19,8 @@ package org.got5.tapestry5.jquery.test.services;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.got5.tapestry5.clientresources.ClientResourcesConstants;
+import org.got5.tapestry5.jquery.JQueryClientResourcesConstants;
 import org.got5.tapestry5.jquery.services.JQueryModule;
 
 @SubModule(JQueryModule.class)
@@ -27,7 +29,7 @@ public class AppModule
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
     {
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-        //configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY);
+        configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY);
         configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     }
