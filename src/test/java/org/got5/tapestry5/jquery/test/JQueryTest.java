@@ -68,4 +68,11 @@ public class JQueryTest extends JavascriptTestSuite
     {
         return "/jqueryautocomplete";
     }
+
+
+    @Override
+    public String getPalettePage()
+    {
+        return "/jquerypalette";
+    }
 }

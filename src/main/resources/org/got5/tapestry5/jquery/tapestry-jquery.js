@@ -227,7 +227,7 @@
                         var assetURL = $.tapestry.utils.rebuildURL(s);
                         var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
                         
-                        if (virtualScripts === undefined) {
+                        if (virtualScripts == undefined) {
                             virtualScripts = [];
                             
                             $('script[src]').each(function(i, script) {
@@ -301,8 +301,10 @@
                 $.tapestry.utils.addStylesheets(reply.stylesheets);
                 
                 $.tapestry.utils.addScripts(reply.scripts, function() {
-                    // TODO : reimplement callback
-                    callback.call(this);
+                    
+					// TODO : reimplement callback					
+					if (callback != undefined)
+                    	callback.call(this);
                     
                     if (reply.script) 
                         eval(reply.script);

@@ -43,7 +43,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Zone
      */
-    @Test
+    // @Test
     public void testZone()
     {
         open("/zone");
@@ -61,7 +61,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         assertEquals(getText("identifier=myZone"), "Counting via AJAX : 1");
     }
 
-    @Test
+    // @Test
     public void testFormZone()
     {
         open("/zone");
@@ -85,7 +85,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Validation
      */
-    @Test
+    // @Test
     public void testValidation()
     {
         open("/validation");
@@ -133,7 +133,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Calendar
      */
-    @Test
+    // @Test
     public void testCalendar()
     {
         open(getCalendarPage());
@@ -161,7 +161,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Autocomplete
      */
-    @Test
+    // @Test
     public void testAutoComplete()
     {
         open(getAutocompletePage());
@@ -190,7 +190,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
     public abstract String getAutocompleteDivSelector();
 
-    @Test
+    // @Test
     public void testGridInPlace()
     {
         open("/grid");
@@ -245,5 +245,42 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         assertEquals(getText("css=tr.t-first td.age"), "49");
     }
+
+    /**
+     * Palette
+     */
+    @Test
+    public void testPalette()
+    {
+        open(getPalettePage());
+        waitForPageToLoad();
+
+        final String avail = "identifier=handling-avail";
+        final String select = "identifier=handling-select";
+        final String deselect = "identifier=handling-deselect";
+        final String selected = "identifier=handling-selected";
+
+        assertFalse(isEditable(select), select + " should not be clickable");
+        assertFalse(isEditable(deselect), deselect + " should not be clickable");
+
+        focus(avail);
+        select(avail, "index=2");
+        select(avail, "index=4");
+
+        assertTrue(isEditable(select), select + " should be clickable");
+        assertFalse(isEditable(deselect), deselect + " should not be clickable");
+
+        click(select);
+
+        assertFalse(isEditable(select), select + " should not be clickable");
+        assertTrue(isEditable(deselect), deselect + " should be clickable");
+        
+        click(deselect);
+
+        assertTrue(isEditable(select), select + " should be clickable");
+        assertFalse(isEditable(deselect), deselect + " should not be clickable");
+    }
+
+    public abstract String getPalettePage();
 
 }

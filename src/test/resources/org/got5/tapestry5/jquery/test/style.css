@@ -59,3 +59,5 @@ ol { list-style-type:decimal; }
 ul { list-style-type:upper-roman; }
 li {padding:0.5em;}
 
+.nojquery { text-decoration:line-through;;}
+

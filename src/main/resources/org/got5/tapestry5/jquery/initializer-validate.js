@@ -1,5 +1,7 @@
 (function($) {
-    /** Container of functions that may be invoked by the Tapestry.init() function. */
+    /** 
+     * Container of functions that may be invoked by the Tapestry.init() function.
+     */
     $.extend(Tapestry.Initializer, {
         validate: function(field, specs) {
         

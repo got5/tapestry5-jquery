@@ -32,7 +32,7 @@ public class JQueryModule
     public static void contributeContribuableClientInfrastructure(MappedConfiguration<String, AssetPathStack> configuration)
     {
         configuration.add(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY, new AssetPathStack("org/got5/tapestry5/tapestry.js",
-                "org/got5/tapestry5/jquery/jquery-1.4.2.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
+                "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
                 "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js",
                 "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.highlight.min.js",
                 "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.blind.min.js", "org/got5/tapestry5/jquery/tapestry-jquery.js"));
@@ -60,6 +60,9 @@ public class JQueryModule
     {
         configuration.add("tapestry.jquery.path", "classpath:org/got5/tapestry5/jquery");
         configuration.override(ClientResourcesConstants.DISABLED_FORM_AUTOFOCUS, "true");
+
+        
+        configuration.override(ClientResourcesConstants.CSS_STACK, ClientResourcesConstants.CSS_STACK_DEFAULT_WITHOUT_BLACKBIRD);
     }
 
 }

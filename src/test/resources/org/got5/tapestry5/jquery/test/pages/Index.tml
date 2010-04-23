@@ -2,15 +2,16 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
 	xmlns:p="tapestry:parameter">
 
+<h3>Components and features : </h3>
 <ul>
 	<li><t:pagelink t:page="helloworld">Hello world</t:pagelink></li>
 	<li><t:pagelink t:page="zone">Zone</t:pagelink></li>
 	<li><t:pagelink t:page="validation">Validation</t:pagelink></li>
-	<li><t:pagelink t:page="calendar">Calendar</t:pagelink>  (<t:pagelink t:page="jquerycalendar">jQueryCalendar</t:pagelink>)</li>
+	<li><t:pagelink t:page="calendar" class="nojquery">Calendar</t:pagelink>  (<t:pagelink t:page="jquerycalendar">jQuery/Calendar</t:pagelink>)</li>
 	<li><t:pagelink t:page="grid">Grid</t:pagelink></li>
-	<li><t:pagelink t:page="autocomplete">Autocomplete</t:pagelink>  (<t:pagelink t:page="jqueryautocomplete">jQueryAutocomplete</t:pagelink>)</li>
+	<li><t:pagelink t:page="autocomplete" class="nojquery">Autocomplete</t:pagelink>  (<t:pagelink t:page="jqueryautocomplete">jQuery/Autocomplete</t:pagelink>)</li>
 	<li><t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink></li>
-	<li><t:pagelink t:page="palette">Palette</t:pagelink></li>
+	<li><t:pagelink t:page="palette" class="nojquery">Palette</t:pagelink> (<t:pagelink t:page="jquerypalette">jQuery/Palette</t:pagelink>)</li>
 </ul>
 
 

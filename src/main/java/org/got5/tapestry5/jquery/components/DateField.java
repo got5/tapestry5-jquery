@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -49,8 +49,7 @@ import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
 
 @IncludeJavaScriptLibrary(
-{ "${tapestry.jquery.path}/ui_1_8/jquery.ui.core.js", "${tapestry.jquery.path}/ui_1_8/jquery.ui.datepicker.js",
-        "${tapestry.jquery.path}/initializer-datefield.js" })
+{ "${tapestry.jquery.path}/ui_1_8/jquery.ui.datepicker.js", "${tapestry.jquery.path}/components/datefield.js" })
 @IncludeStylesheet("${tapestry.jquery.path}/themes/base/jquery.ui.all.css")
 @Events(EventConstants.VALIDATE)
 public class DateField extends AbstractField
