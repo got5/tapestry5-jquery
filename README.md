@@ -1,22 +1,38 @@
 # Tapestry 5 jQuery integration Module
 
-## How to
 
-This module provides jQuery integration for Tapestry.
+## Features
 
-Actually, theses components are integrated as it
+This module provides jQuery integration for Tapestry and drop out Prototype and Scriptaculous
+
+Actually, theses components and features can still be used as it
 
 - Zone
 - Form Validation
 - Ajax Form Loop
 - Grid (in place mode)
 
+Due to some extensibility issues of core components, theses need to be used using a new namespace : jquery
 
-Theses components need to be used using a new namespace:
+- Autocomplete
+- Datefield 
+- Palette
 
-- jquery/autocomplete
-- jquery/datefield 
 
+## How to use it
+
+Add the following in your application module class to enable JQuery:
+
+    public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
+    {
+        configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY);
+    }
+
+
+## Important notice
+
+Please be aware that not every core components are working correctly at the moment. There is still lot of developments to do.
+ 
 
 ## Maven dependency
 
