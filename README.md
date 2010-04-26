@@ -3,9 +3,12 @@
 
 ## Features
 
-This module provides jQuery integration for Tapestry and drop out Prototype and Scriptaculous
+This module provides jQuery integration for Tapestry and completely drop out Prototype, Scriptaculous and the base tapestry.js script. 
+This project is based on [Tapestry5-ClientResources](http://github.com/got5/tapestry5-clientresources) project.
 
-Actually, theses components and features can still be used as it
+It also relies on jQuery 1.4.2 and jQuery UI 1.8. 
+
+Theses components and features can still be used as it :
 
 - Zone
 - Form Validation
@@ -23,7 +26,7 @@ Due to some extensibility issues of core components, theses need to be used usin
 
 ## How to use it
 
-Add the following in your application module class to enable JQuery:
+Add the following lines in your application module class to enable JQuery:
 
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
     {
@@ -33,7 +36,8 @@ Add the following in your application module class to enable JQuery:
 
 ## Important notice
 
-Please be aware that not every core components are working correctly at the moment. There is still lot of developments to do.
+Please be aware that not every core components are working correctly at the moment. There is still lot of developments to do. 
+All kind of feedback is very welcome. Please use Github issues system for that.
  
 
 ## Maven dependency
@@ -75,7 +79,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 
 ## More Informations & contacts
 
-* Twitter: http://twitter.com/robinkomiwes
+* Twitter: [http://twitter.com/robinkomiwes]
 
 
 ## License
