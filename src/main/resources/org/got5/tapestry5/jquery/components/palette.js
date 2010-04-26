@@ -10,7 +10,7 @@ $.widget( "ui.palette", {
 		
 		var id = "#" + this.element.attr("id"),
 			element = this.element,
-			obj = this;
+			that = this;
 			
 		this.selected = element;
         this.avail = $(id + "-avail");
@@ -27,7 +27,7 @@ $.widget( "ui.palette", {
             this.reorder = this.options.reorder;
 
 		$.each(this.options.naturalOrder, function(i, value) {
-            obj.valueToOrderIndex[value] = i;
+            that.valueToOrderIndex[value] = i;
         });
 
         this.avail.bind({
@@ -159,7 +159,6 @@ $.widget( "ui.palette", {
         // from: SELECT to move option(s) from (those that are selected)
         // to: SELECT to add option(s) to
         // atEnd : if true, add at end, otherwise by natural sort order
-        
         $.each(to.get(0).options, function(i, option) {
             option.selected = false;
         });
@@ -205,10 +204,10 @@ $.widget( "ui.palette", {
     },
         
     moveOptions: function (movers, to, atEnd) {
-		var obj = this;
+		var that = this;
 		
         $.each(movers, function(i, option) {
-            obj.moveOption(option, to, atEnd);
+            that.moveOption(option, to, atEnd);
         });
 
         this.updateHidden();
@@ -217,14 +216,14 @@ $.widget( "ui.palette", {
         
     moveOption: function (option, to, atEnd) {
         var before,
-			obj=this;
+			that=this;
 
         if (!atEnd) {
             var optionOrder = this.valueToOrderIndex[option.value],
 				candidate;
 				
             $.each(to.options, function(i, o) {
-                if (obj.valueToOrderIndex[o.value] > optionOrder) {
+                if (that.valueToOrderIndex[o.value] > optionOrder) {
                     candidate = o;
                     return false;
                 }
@@ -265,15 +264,16 @@ $.widget( "ui.palette", {
         var before = selected.options[lastPos + 2];
         
         // TODO: needs to be "reorder options"
-        this.reorderSelected(removeSelectedOptions(selected), before);*/
+        this.reorderSelected(removeSelectedOptions(selected), before);
+        */
         
     },
         
     reorderSelected: function (movers, before) {
-		var obj=this;
+		var that=this;
 		
         $.each(movers, function(i, option) {
-            obj.addOption(obj.selected, option, before);
+            that.addOption(that.selected, option, before);
         });
         
         this.updateHidden();
