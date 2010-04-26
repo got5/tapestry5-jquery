@@ -68,7 +68,7 @@ import org.apache.tapestry5.services.Request;
  * Option groups within the {@link SelectModel} will be rendered, but are not supported by many
  * browsers, and are not fully handled on the client side.
  */
-@IncludeJavaScriptLibrary("palette.js")
+@IncludeJavaScriptLibrary({"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js", "palette.js"})
 public class Palette extends AbstractField
 {
     // These all started as anonymous inner classes, and were refactored out to here.

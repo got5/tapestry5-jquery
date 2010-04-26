@@ -37,11 +37,11 @@ public class IncludeFormFragmentResources
     private Asset script;
     
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js")
+    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js")
     private Asset widget;
     
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/jquery.effects.blind.js")
+    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.blind.min.js")
     private Asset effect;
 
     @SetupRender

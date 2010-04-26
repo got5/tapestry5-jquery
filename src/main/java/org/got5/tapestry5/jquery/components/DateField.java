@@ -49,7 +49,7 @@ import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
 
 @IncludeJavaScriptLibrary(
-{ "${tapestry.jquery.path}/ui_1_8/jquery.ui.datepicker.js", "${tapestry.jquery.path}/components/datefield.js" })
+{ "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.datepicker.min.js", "${tapestry.jquery.path}/components/datefield.js" })
 @IncludeStylesheet("${tapestry.jquery.path}/themes/base/jquery.ui.all.css")
 @Events(EventConstants.VALIDATE)
 public class DateField extends AbstractField
