@@ -9,7 +9,9 @@ Actually, theses components and features can still be used as it
 
 - Zone
 - Form Validation
-- Ajax Form Loop
+- AjaxFormLoop
+- FormFragment
+- TriggerFragment
 - Grid (in place mode)
 
 Due to some extensibility issues of core components, theses need to be used using a new namespace : jquery
