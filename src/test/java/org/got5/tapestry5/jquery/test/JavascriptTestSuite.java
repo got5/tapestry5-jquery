@@ -18,8 +18,6 @@ package org.got5.tapestry5.jquery.test;
 
 import org.apache.tapestry5.test.AbstractIntegrationTestSuite;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
@@ -43,7 +41,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Zone
      */
-    // @Test
+    @Test
     public void testZone()
     {
         open("/zone");
@@ -61,7 +59,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         assertEquals(getText("identifier=myZone"), "Counting via AJAX : 1");
     }
 
-    // @Test
+    @Test
     public void testFormZone()
     {
         open("/zone");
@@ -85,7 +83,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Validation
      */
-    // @Test
+    @Test
     public void testValidation()
     {
         open("/validation");
@@ -133,7 +131,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Calendar
      */
-    // @Test
+    @Test
     public void testCalendar()
     {
         open(getCalendarPage());
@@ -161,7 +159,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     /**
      * Autocomplete
      */
-    // @Test
+    @Test
     public void testAutoComplete()
     {
         open(getAutocompletePage());
@@ -190,7 +188,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
     public abstract String getAutocompleteDivSelector();
 
-    // @Test
+    @Test
     public void testGridInPlace()
     {
         open("/grid");
@@ -274,7 +272,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         assertFalse(isEditable(select), select + " should not be clickable");
         assertTrue(isEditable(deselect), deselect + " should be clickable");
-        
+
         click(deselect);
 
         assertTrue(isEditable(select), select + " should be clickable");
@@ -282,5 +280,42 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
     }
 
     public abstract String getPalettePage();
+
+    @Test
+    public void testFormFragment()
+    {
+        open("/formfragment");
+        waitForPageToLoad();
+
+        String trigger = "identifier=separateShipTo";
+        final String fragment = "identifier=seperateShippingAddress";
+
+        assertFalse(isVisible(fragment), fragment + " should not be visible");
+
+        click(trigger);
+        
+        new Wait()
+        {
+            public boolean until()
+            {
+                return isVisible(fragment);
+            }
+        }.wait(fragment + " should  be visible");
+
+
+        assertTrue(isVisible(fragment), fragment + " should  be visible");
+
+        click(trigger);
+        
+        new Wait()
+        {
+            public boolean until()
+            {
+                return !isVisible(fragment);
+            }
+        }.wait(fragment + " should not be visible");
+
+        assertFalse(isVisible(fragment), fragment + " should not be visible");
+    }
 
 }

@@ -45,6 +45,7 @@ public class JQueryModule
         if (javaScriptStack.equals(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY))
         {
             configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+            configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
         }
 
     }

@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,32 +23,30 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
 
-
 /**
  * This mixin is automatically added by {@link FormResourcesInclusionWorker}. It
- * adds JS & CSS for form elements
+ * adds JS & CSS for FormFragments elements
  */
-public class IncludeFormResources
+public class IncludeFormFragmentResources
 {
     @Inject
     private RenderSupport support;
 
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/jquery.validate.min.js")
-    private Asset validationScript;
-
+    @Path("classpath:org/got5/tapestry5/jquery/components/formfragment.js")
+    private Asset script;
+    
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/validation.js")
-    private Asset scriptInitializer;
-
+    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js")
+    private Asset widget;
+    
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/form.css")
-    private Asset formCSS;
+    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/jquery.effects.blind.js")
+    private Asset effect;
 
     @SetupRender
-    public void addJSValidationScripts()
+    public void addScripts()
     {
-        support.addScriptLink(validationScript, scriptInitializer);
-        support.addStylesheetLink(formCSS, null);
+        support.addScriptLink(widget, effect, script);
     }
 }
