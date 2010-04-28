@@ -1,0 +1,10 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form t:id="form">
+		<t:textfield t:value="name" t:validate="required" /><!-- validation is required to avoid this bug: https://issues.apache.org/jira/browse/TAP5-719 -->
+		<div>
+			<a href="#" t:type="linkSubmit">submit</a>
+		</div>
+    </t:form>
+	
+	<div id="result">${name}</div>
+</html>

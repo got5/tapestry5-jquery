@@ -20,29 +20,25 @@ import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
 
 /**
- * This mixin is automatically added by {@link FormResourcesInclusionWorker}. It
+ * This mixin is automatically added by {@link Zone}. It
  * adds JS & CSS for FormFragments elements
  */
-public class IncludeFormFragmentResources
+public class IncludeZoneResources
 {
     @Inject
     private RenderSupport support;
-
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/components/formfragment.js")
-    private Asset script;
     
     @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.blind.min.js")
+    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.highlight.min.js")
     private Asset effect;
 
     @SetupRender
     public void addScripts()
     {
-        support.addScriptLink(effect, script);
+        support.addScriptLink(effect);
     }
 }

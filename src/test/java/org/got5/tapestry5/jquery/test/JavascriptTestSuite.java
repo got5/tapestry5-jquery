@@ -188,7 +188,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
     public abstract String getAutocompleteDivSelector();
 
-    @Test
+   // @Test
     public void testGridInPlace()
     {
         open("/grid");
@@ -317,5 +317,25 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         assertFalse(isVisible(fragment), fragment + " should not be visible");
     }
+    
+    @Test
+    public void testLinkSubmit()
+    {
+        open(getLinkSubmitPage());
+        waitForPageToLoad();
 
+        String field = "identifier=textfield";
+        String link = "identifier=linksubmit";
+        String result = "identifier=result";
+        
+        
+        type(field, "dummy");
+        click(link);
+        
+        waitForPageToLoad();
+
+        assertEquals(getText(result), "dummy");
+    }
+
+    public abstract String getLinkSubmitPage();
 }

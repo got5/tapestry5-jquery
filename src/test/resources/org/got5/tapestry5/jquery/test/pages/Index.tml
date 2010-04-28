@@ -13,6 +13,7 @@
 	<li><t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink></li>
 	<li><t:pagelink t:page="palette" class="nojquery">Palette</t:pagelink> (<t:pagelink t:page="jquerypalette">jQuery/Palette</t:pagelink>)</li>
 	<li><t:pagelink t:page="formfragment">FormFragment</t:pagelink></li>
+	<li><t:pagelink t:page="linksubmit" class="nojquery">LinkSubmit</t:pagelink> (<t:pagelink t:page="jquerylinksubmit">jQuery/LinkSubmit</t:pagelink>)</li>
 </ul>
 
 

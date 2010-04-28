@@ -96,7 +96,6 @@ $.extend(Tapestry.Initializer, {
         {
             $("#" + element).formFragment({"setVisible" : trigger.attr("checked")});
         });
-
     }
 });
 

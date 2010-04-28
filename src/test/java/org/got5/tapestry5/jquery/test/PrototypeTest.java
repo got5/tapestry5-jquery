@@ -77,4 +77,10 @@ public class PrototypeTest extends JavascriptTestSuite
     {
         return "/palette";
     }
+
+    @Override
+    public String getLinkSubmitPage()
+    {
+        return "/linksubmit";
+    }
 }

@@ -75,4 +75,10 @@ public class JQueryTest extends JavascriptTestSuite
     {
         return "/jquerypalette";
     }
+
+    @Override
+    public String getLinkSubmitPage()
+    {
+        return "/jquerylinksubmit";
+    }
 }
