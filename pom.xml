@@ -60,6 +60,20 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<tapestry-module-classes>
+								org.got5.tapestry5.jquery.services.JQueryModule
+							</tapestry-module-classes>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.5</source>
@@ -80,7 +94,7 @@
 					<webAppSourceDirectory>src/test/jquery/webapp</webAppSourceDirectory>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
