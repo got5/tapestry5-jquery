@@ -10,30 +10,22 @@ It also relies on [jQuery](http://jquery.com) 1.4.2 and [jQuery UI](http://jquer
 
 Theses components and features can still be used as it :
 
-- Zone
-
-- Form Validation 
+- **Zone**
+- **Form Validation** 
 	- based on: [http://docs.jquery.com/Plugins/Validation](http://docs.jquery.com/Plugins/Validation)
-
-- AjaxFormLoop
-
-- FormFragment
-
-- TriggerFragment
-
-- Grid (in place mode)
+- **AjaxFormLoop**
+- **FormFragment**
+- **TriggerFragment**
+- **Grid (in place mode)**
 
 Due to some extensibility issues of core components, theses need to be used using the "jquery" namespace
 
-- Autocomplete
+- **Autocomplete**
 	- based on: [http://jqueryui.com/demos/autocomplete/](http://jqueryui.com/demos/autocomplete/)
-
-- Datefield 
+- **Datefield**
 	- based on: [http://jqueryui.com/demos/datepicker/](http://jqueryui.com/demos/datepicker/)
-
-- Palette
-
-- LinkSubmit
+- **Palette**
+- **LinkSubmit**
 
 ## How to use it
 
@@ -56,7 +48,7 @@ Then use components like you would normally do. For Autocomplete, Datefield, Pal
 ## Important notice
 
 Please be aware that not every core components are working correctly at the moment. There is still lot of developments to do. 
-All kind of feedback is very welcome. Please use Github issues system for that.
+All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery/issues) for that.
  
 
 ## Maven dependency
@@ -97,7 +89,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 
 ## More Informations & contacts
 
-* Twitter: [http://twitter.com/robinkomiwes]
+* Twitter: [http://twitter.com/robinkomiwes](http://twitter.com/robinkomiwes)
 
 
 ## License
