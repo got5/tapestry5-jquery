@@ -37,7 +37,6 @@ import org.apache.tapestry5.ValidationTracker;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.corelib.base.AbstractField;
 import org.apache.tapestry5.ioc.Messages;
@@ -50,7 +49,6 @@ import org.apache.tapestry5.services.Request;
 
 @IncludeJavaScriptLibrary(
 { "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.datepicker.min.js", "${tapestry.jquery.path}/components/datefield.js" })
-@IncludeStylesheet("${tapestry.jquery.path}/themes/base/jquery.ui.all.css")
 @Events(EventConstants.VALIDATE)
 public class DateField extends AbstractField
 {

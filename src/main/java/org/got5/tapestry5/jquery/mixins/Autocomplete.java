@@ -31,7 +31,6 @@ import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
@@ -72,7 +71,6 @@ import org.apache.tapestry5.util.TextStreamResponse;
 @IncludeJavaScriptLibrary(
 { "${tapestry.jquery.path}/ui_1_8/jquery.ui.widget.js", "${tapestry.jquery.path}/ui_1_8/jquery.ui.position.js",
         "${tapestry.jquery.path}/ui_1_8/jquery.ui.autocomplete.js", "${tapestry.jquery.path}/mixins/autocomplete.js" })
-@IncludeStylesheet("${tapestry.jquery.path}/themes/base/jquery.ui.all.css")
 @Events(EventConstants.PROVIDE_COMPLETIONS)
 public class Autocomplete
 {

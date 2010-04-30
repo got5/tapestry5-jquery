@@ -32,7 +32,7 @@ public class AppModule
         configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
         
-        configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY);
+        configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY_DEV);
     }
 
 }

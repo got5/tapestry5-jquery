@@ -31,17 +31,25 @@ public class JQueryModule
 {
     public static void contributeContribuableClientInfrastructure(MappedConfiguration<String, AssetPathStack> configuration)
     {
+        configuration.add(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY_DEV, new AssetPathStack("org/got5/tapestry5/tapestry.js",
+                "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
+                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.position.min.js",
+                "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js",
+                "org/got5/tapestry5/jquery/tapestry-jquery.js"));
+
         configuration.add(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY, new AssetPathStack("org/got5/tapestry5/tapestry.js",
                 "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
-                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js",
+                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.position.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js",
                 "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js", "org/got5/tapestry5/jquery/tapestry-jquery.js"));
-        configuration.add(JQueryClientResourcesConstants.CSS_STACK_JQUERY, new AssetPathStack("${tapestry.default-stylesheet}"));
+
+        configuration.add(JQueryClientResourcesConstants.CSS_STACK_JQUERY, new AssetPathStack("${tapestry.default-stylesheet}",
+                "org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css"));
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration,
             @Inject @Symbol(ClientResourcesConstants.JAVASCRIPT_STACK) String javaScriptStack)
     {
-        if (javaScriptStack.equals(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY))
+        if (javaScriptStack.startsWith(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY))
         {
             configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
             configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
@@ -53,7 +61,7 @@ public class JQueryModule
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration,
             @Inject @Symbol(ClientResourcesConstants.JAVASCRIPT_STACK) String javaScriptStack)
     {
-        if (javaScriptStack.equals(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY))
+        if (javaScriptStack.startsWith(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY))
             configuration.add(new LibraryMapping("jquery", "org.got5.tapestry5.jquery"));
     }
 
@@ -62,7 +70,7 @@ public class JQueryModule
         configuration.add("tapestry.jquery.path", "classpath:org/got5/tapestry5/jquery");
         configuration.override(ClientResourcesConstants.DISABLED_FORM_AUTOFOCUS, "true");
 
-        configuration.override(ClientResourcesConstants.CSS_STACK, ClientResourcesConstants.CSS_STACK_DEFAULT_WITHOUT_BLACKBIRD);
+        configuration.override(ClientResourcesConstants.CSS_STACK, JQueryClientResourcesConstants.CSS_STACK_JQUERY);
     }
 
 }

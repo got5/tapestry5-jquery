@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,13 +14,10 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery;
+package org.got5.tapestry5.jquery.test.pages;
 
-public interface JQueryClientResourcesConstants
+
+public class JQueryDialog
 {
-    public static final String JAVASCRIPT_STACK_JQUERY = "js-jquery";
-    
-    public static final String JAVASCRIPT_STACK_JQUERY_DEV = "js-jquery-dev";
-    
-    public static final String CSS_STACK_JQUERY = "css-jquery";
+
 }
