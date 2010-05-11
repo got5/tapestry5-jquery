@@ -16,8 +16,39 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 
 public class JQueryDialog
 {
+    @Persist 
+    private Integer count;
 
+    @Component
+    private org.apache.tapestry5.corelib.components.Zone myZone;
+
+    @Inject
+    private Request request;
+
+    @OnEvent("activate")
+    void init()
+    {
+        if (count == null)
+            count = 0;
+    }
+
+    public Integer getCount()
+    {
+        return count++;
+    }
+
+    @OnEvent(value = "action")
+    Object updateCount()
+    {
+        if (!request.isXHR()) { return this; }
+        return myZone;
+    }
 }

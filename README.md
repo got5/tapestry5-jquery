@@ -14,7 +14,7 @@ It also relies on [jQuery](http://jquery.com) 1.4.2 and [jQuery UI](http://jquer
 
 Exclusives jQuery components : 
 
-- **Dialog**
+- **Dialog** with **DialogLink** and **DialogAjaxLink**
 	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :

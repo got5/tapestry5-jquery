@@ -1,25 +1,79 @@
-<html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-	xmlns:p="tapestry:parameter">
-
-<h3>Exclusives jQuery components</h3>
-<ul>
-	<li><t:pagelink t:page="jquerydialog">Dialog</t:pagelink></li>
-</ul>
-
-<h3>Core Components and features : </h3>
-<ul>
-	<li><t:pagelink t:page="helloworld">Hello world</t:pagelink></li>
-	<li><t:pagelink t:page="zone">Zone</t:pagelink></li>
-	<li><t:pagelink t:page="validation">Validation</t:pagelink></li>
-	<li><t:pagelink t:page="calendar" class="nojquery">Calendar</t:pagelink>  (<t:pagelink t:page="jquerycalendar">jQuery/Calendar</t:pagelink>)</li>
-	<li><t:pagelink t:page="grid">Grid</t:pagelink></li>
-	<li><t:pagelink t:page="autocomplete" class="nojquery">Autocomplete</t:pagelink>  (<t:pagelink t:page="jqueryautocomplete">jQuery/Autocomplete</t:pagelink>)</li>
-	<li><t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink></li>
-	<li><t:pagelink t:page="palette" class="nojquery">Palette</t:pagelink> (<t:pagelink t:page="jquerypalette">jQuery/Palette</t:pagelink>)</li>
-	<li><t:pagelink t:page="formfragment">FormFragment</t:pagelink></li>
-	<li><t:pagelink t:page="linksubmit" class="nojquery">LinkSubmit</t:pagelink> (<t:pagelink t:page="jquerylinksubmit">jQuery/LinkSubmit</t:pagelink>)</li>
-</ul>
-
-
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <h3>Exclusives jQuery components</h3>
+    <ul>
+        <li>
+            <t:pagelink t:page="jquerydialog">
+                Dialog
+            </t:pagelink>
+        </li>
+    </ul>
+    <h3>Core Components and features : </h3>
+    <ul>
+        <li>
+            <t:pagelink t:page="helloworld">
+                Hello world
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="zone">
+                Zone
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="validation">
+                Validation
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="calendar" class="nojquery">
+                Calendar
+            </t:pagelink>
+            (
+            <t:pagelink t:page="jquerycalendar">
+                jQuery/Calendar
+            </t:pagelink>)
+        </li>
+        <li>
+            <t:pagelink t:page="grid">
+                Grid
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="autocomplete" class="nojquery">
+                Autocomplete
+            </t:pagelink>
+            (
+            <t:pagelink t:page="jqueryautocomplete">
+                jQuery/Autocomplete
+            </t:pagelink>)
+        </li>
+        <li>
+            <t:pagelink t:page="ajaxformloop">
+                AjaxFormLoop
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="palette" class="nojquery">
+                Palette
+            </t:pagelink>
+            (
+            <t:pagelink t:page="jquerypalette">
+                jQuery/Palette
+            </t:pagelink>)
+        </li>
+        <li>
+            <t:pagelink t:page="formfragment">
+                FormFragment
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="linksubmit" class="nojquery">
+                LinkSubmit
+            </t:pagelink>
+            (
+            <t:pagelink t:page="jquerylinksubmit">
+                jQuery/LinkSubmit
+            </t:pagelink>)
+        </li>
+    </ul>
 </html>

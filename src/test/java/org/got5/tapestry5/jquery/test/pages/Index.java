@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,17 +16,7 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
-import java.util.List;
-
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.def.ModuleDef;
-import org.apache.tapestry5.ioc.def.ServiceDef;
-import org.apache.tapestry5.ioc.internal.InternalRegistry;
-
-import org.got5.tapestry5.clientresources.services.AssetPathStack;
 
 public class Index
 {
-
 }

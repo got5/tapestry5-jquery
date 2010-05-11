@@ -33,9 +33,8 @@ public class JQueryModule
     {
         configuration.add(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY_DEV, new AssetPathStack("org/got5/tapestry5/tapestry.js",
                 "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
-                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.position.min.js",
-                "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js",
-                "org/got5/tapestry5/jquery/tapestry-jquery.js"));
+                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.position.min.js", "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js",
+                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js", "org/got5/tapestry5/jquery/tapestry-jquery.js"));
 
         configuration.add(JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY, new AssetPathStack("org/got5/tapestry5/tapestry.js",
                 "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",

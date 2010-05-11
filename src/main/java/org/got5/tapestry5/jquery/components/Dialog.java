@@ -33,7 +33,6 @@ public class Dialog implements ClientElement
     void startDiv(MarkupWriter writer)
     {
         writer.element("div", "id", getClientId());
-
     }
 
     @AfterRender

@@ -17,8 +17,6 @@
 package org.got5.tapestry5.jquery.test.entities;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
-import org.apache.tapestry5.beaneditor.Width;
 
 public class ShippingAddress
 {
