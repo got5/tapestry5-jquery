@@ -24,6 +24,12 @@
 			<artifactId>tapestry-core</artifactId>
 			<version>${tapestry-release-version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-upload</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -163,17 +169,6 @@
 			</releases>
 			<snapshots>
 				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>apache</id>
-			<url>http://repository.apache.org/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 
