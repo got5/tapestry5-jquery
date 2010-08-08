@@ -185,6 +185,11 @@
 		</repository>
 
 		<repository>
+			<id>apache-snapshots2</id>
+			<url>https://repository.apache.org/content/repositories/orgapachetapestry-063/</url>
+		</repository>
+
+		<repository>
 			<id>codehaus.snapshots</id>
 			<url>http://snapshots.repository.codehaus.org</url>
 		</repository>
@@ -196,6 +201,6 @@
 	</repositories>
 
 	<properties>
-		<tapestry-release-version>5.1.0.5</tapestry-release-version>
+		<tapestry-release-version>5.2.0</tapestry-release-version>
 	</properties>
 </project>
