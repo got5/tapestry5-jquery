@@ -3,11 +3,11 @@ package org.got5.tapestry5.jquery.base;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 public class AbstractExtendableComponent implements ClientElement
 {
@@ -20,7 +20,7 @@ public class AbstractExtendableComponent implements ClientElement
     private String defaultInitMethod;
 
     @Inject
-    private RenderSupport support;
+    private JavaScriptSupport support;
 
     @Inject
     private ComponentResources resources;

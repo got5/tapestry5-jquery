@@ -40,6 +40,7 @@ $.widget( "ui.tapestryLinkSubmit", {
 
 $.extend(Tapestry.Initializer, {
 	linkSubmit: function (formId, clientId ) {
+		console.debug(arguments);
 		$("#" + clientId).tapestryLinkSubmit({
 			form: formId
 		});

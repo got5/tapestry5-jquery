@@ -31,12 +31,11 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.FieldValidationSupport;
 import org.apache.tapestry5.FieldValidator;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.ValidationTracker;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.corelib.base.AbstractField;
 import org.apache.tapestry5.ioc.Messages;
@@ -46,8 +45,9 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@IncludeJavaScriptLibrary(
+@Import(library =
 { "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.datepicker.min.js", "${tapestry.jquery.path}/components/datefield.js" })
 @Events(EventConstants.VALIDATE)
 public class DateField extends AbstractField
@@ -89,11 +89,10 @@ public class DateField extends AbstractField
      * generally used to provide this object in a declarative fashion.
      */
     @Parameter(defaultPrefix = BindingConstants.VALIDATE)
-    @SuppressWarnings("unchecked")
     private FieldValidator<Object> validate;
 
     @Environmental
-    private RenderSupport support;
+    private JavaScriptSupport support;
 
     @Environmental
     private ValidationTracker tracker;
@@ -211,8 +210,7 @@ public class DateField extends AbstractField
         if (value == null)
             value = formatCurrentValue();
 
-        String clientId = getClientId();
-        String triggerId = clientId + "-trigger";
+        String clientId = getClientId();        
 
         writer.element("input",
 
@@ -235,6 +233,7 @@ public class DateField extends AbstractField
         writer.end();
 
         // // Now the trigger icon.
+        // String triggerId = clientId + "-trigger";
         //
         // writer.element("img",
         //
@@ -291,7 +290,7 @@ public class DateField extends AbstractField
             request.setAttribute(LOCALIZATION_CONFIGURED_FLAG, true);
         }
 
-        support.addInit("dateField", setup);
+        support.addInitializerCall("dateField", setup);
     }
 
     private void writeDisabled(MarkupWriter writer)

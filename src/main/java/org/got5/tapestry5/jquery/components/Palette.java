@@ -14,13 +14,12 @@ import org.apache.tapestry5.Block;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.OptionGroupModel;
 import org.apache.tapestry5.OptionModel;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.Renderable;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.SelectModelVisitor;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Environmental;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.base.AbstractField;
@@ -30,6 +29,7 @@ import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * Multiple selection component. Generates a UI consisting of two &lt;select&gt; elements configured
@@ -68,7 +68,8 @@ import org.apache.tapestry5.services.Request;
  * Option groups within the {@link SelectModel} will be rendered, but are not supported by many
  * browsers, and are not fully handled on the client side.
  */
-@IncludeJavaScriptLibrary({"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js", "palette.js"})
+@Import(library=
+	{"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js", "palette.js"})
 public class Palette extends AbstractField
 {
     // These all started as anonymous inner classes, and were refactored out to here.
@@ -160,8 +161,8 @@ public class Palette extends AbstractField
 
     /**
      * The image to use for the deselect button (the default is a left pointing arrow).
-     */
-    @Parameter(value = "asset:deselect.png")
+     */    
+	@Parameter(value = "asset:deselect.png")
     @Property(write = false)
     private Asset deselect;
 
@@ -213,7 +214,7 @@ public class Palette extends AbstractField
      * Used to include scripting code in the rendered page.
      */
     @Environmental
-    private RenderSupport renderSupport;
+    private JavaScriptSupport javaScriptSupport;
 
     /**
      * Needed to access query parameters when processing form submission.
@@ -294,7 +295,7 @@ public class Palette extends AbstractField
         else
             selected.clear();
 
-        ValueEncoder encoder = this.encoder;
+        ValueEncoder<Object> encoder = this.encoder;
 
         int count = values.length();
         for (int i = 0; i < count; i++)
@@ -347,7 +348,7 @@ public class Palette extends AbstractField
         
 
 
-        renderSupport.addInit("palette", options);
+        javaScriptSupport.addInitializerCall("palette", options);
 
         writer.element("input", "type", "hidden", "id", clientId + "-values", "name", getControlName() + "-values", "value", selectedValues);
         writer.end();
@@ -361,7 +362,6 @@ public class Palette extends AbstractField
         return false;
     }
 
-    @SuppressWarnings("unchecked")
     void setupRender(MarkupWriter writer)
     {
         valueToOptionModel = CollectionFactory.newMap();
@@ -370,7 +370,8 @@ public class Palette extends AbstractField
         naturalOrder = CollectionFactory.newList();
         renderer = new SelectModelRenderer(writer, encoder);
 
-        final Set selectedSet = newSet(getSelected());
+        @SuppressWarnings("rawtypes")
+		final Set selectedSet = newSet(getSelected());
 
         SelectModelVisitor visitor = new SelectModelVisitor()
         {

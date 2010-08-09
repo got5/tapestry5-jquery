@@ -7,17 +7,18 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.MarkupConstants;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.corelib.components.Submit;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.FormSupport;
 import org.apache.tapestry5.services.Heartbeat;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * Generates a client-side hyperlink that submits the enclosing form. If the link is clicked in the browser, the
@@ -25,7 +26,7 @@ import org.apache.tapestry5.services.Request;
  * Submit}.
  */
 @SupportsInformalParameters
-@IncludeJavaScriptLibrary("linksubmit.js")
+@Import(library = "linksubmit.js")
 @Events(EventConstants.SELECTED + " by default, may be overridden")
 public class LinkSubmit implements ClientElement
 {
@@ -51,9 +52,9 @@ public class LinkSubmit implements ClientElement
 
     @Inject
     private ComponentResources resources;
-
+    
     @Inject
-    private RenderSupport renderSupport;
+    private JavaScriptSupport javaScriptSupport;    
 
     @Environmental
     private FormSupport formSupport;
@@ -68,7 +69,8 @@ public class LinkSubmit implements ClientElement
 
     private static class ProcessSubmission implements ComponentAction<LinkSubmit>
     {
-        private final String clientId;
+		private static final long serialVersionUID = 7957273412914260741L;
+		private final String clientId;
 
         public ProcessSubmission(String clientId)
         {
@@ -108,7 +110,7 @@ public class LinkSubmit implements ClientElement
     {
         if (!disabled)
         {
-            clientId = renderSupport.allocateClientId(resources);
+            clientId = javaScriptSupport.allocateClientId(resources);
 
             formSupport.store(this, new ProcessSubmission(clientId));
 
@@ -130,8 +132,12 @@ public class LinkSubmit implements ClientElement
         if (!disabled)
         {
             writer.end();
-
-            renderSupport.addInit("linkSubmit", formSupport.getClientId(), clientId);
+            
+            JSONObject params = new JSONObject();
+            params.put("formId", formSupport.getClientId());
+            params.put("clientId", clientId);
+            
+            javaScriptSupport.addInitializerCall("linkSubmit", params);
         }
     }
 

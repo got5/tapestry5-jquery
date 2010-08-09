@@ -71,5 +71,10 @@ public class JQueryModule
 
         configuration.override(ClientResourcesConstants.CSS_STACK, JQueryClientResourcesConstants.CSS_STACK_JQUERY);
     }
+    
+    public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
+    {
+        configuration.add("tap-jquery", "org/got5/tapestry5");
+    }
 
 }
