@@ -3,13 +3,13 @@ package org.got5.tapestry5.jquery.components;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 public class Dialog implements ClientElement
@@ -27,7 +27,7 @@ public class Dialog implements ClientElement
     private AssetSource source;
 
     @Inject
-    private RenderSupport support;
+    private JavaScriptSupport support;
 
     @BeginRender
     void startDiv(MarkupWriter writer)
@@ -58,7 +58,7 @@ public class Dialog implements ClientElement
 
         configure(data);
 
-        support.addInit(initMethod, data);
+        support.addInitializerCall(initMethod, data);
     }
 
     @AfterRender
@@ -71,7 +71,7 @@ public class Dialog implements ClientElement
 
         for (String path : scripts)
         {
-            support.addScriptLink(source.getClasspathAsset(path));
+            support.importJavaScriptLibrary(source.getClasspathAsset(path));
         }
     }
 

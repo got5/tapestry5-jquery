@@ -2,6 +2,7 @@
 
 $.extend(Tapestry.Initializer, {
     dialogAjaxLink: function(element, zoneId, dialogId, url) {
+    	console.debug(arguments);
         var onOpen = function(event, ui) {
             $("#" + zoneId).tapestryZone("update", {
                 url: url

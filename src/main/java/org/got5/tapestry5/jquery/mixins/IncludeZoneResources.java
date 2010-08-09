@@ -17,11 +17,11 @@
 package org.got5.tapestry5.jquery.mixins;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * This mixin is automatically added by {@link Zone}. It
@@ -30,7 +30,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class IncludeZoneResources
 {
     @Inject
-    private RenderSupport support;
+    private JavaScriptSupport support;
     
     @Inject
     @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.highlight.min.js")
@@ -39,6 +39,6 @@ public class IncludeZoneResources
     @SetupRender
     public void addScripts()
     {
-        support.addScriptLink(effect);
+        support.importJavaScriptLibrary(effect);
     }
 }

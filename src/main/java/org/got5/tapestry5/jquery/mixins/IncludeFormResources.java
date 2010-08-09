@@ -17,10 +17,10 @@
 package org.got5.tapestry5.jquery.mixins;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
 
 
@@ -31,7 +31,7 @@ import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
 public class IncludeFormResources
 {
     @Inject
-    private RenderSupport support;
+    private JavaScriptSupport support;
 
     @Inject
     @Path("classpath:org/got5/tapestry5/jquery/jquery.validate.min.js")
@@ -48,7 +48,8 @@ public class IncludeFormResources
     @SetupRender
     public void addJSValidationScripts()
     {
-        support.addScriptLink(validationScript, scriptInitializer);
-        support.addStylesheetLink(formCSS, null);
+        support.importJavaScriptLibrary(validationScript);
+        support.importJavaScriptLibrary(scriptInitializer);
+        support.importStylesheet(formCSS);
     }
 }
