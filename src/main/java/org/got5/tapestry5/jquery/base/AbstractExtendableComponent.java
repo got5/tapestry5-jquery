@@ -25,7 +25,6 @@ public class AbstractExtendableComponent implements ClientElement
     @Inject
     private ComponentResources resources;
 
-    @SetupRender
     protected final void setDefaultMethod(String methodName)
     {
         this.defaultInitMethod = methodName;
