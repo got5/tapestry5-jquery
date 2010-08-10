@@ -3,18 +3,20 @@
  * Container of functions that may be invoked by the Tapestry.init() function.
  */
 $.extend(Tapestry.Initializer, {
-    validate: function(field, specs) {
-    
-        $('#' + field).closest('form').validate({
-            errorClass: "t-error"
-        });
+    validate: function(/*field, */specs) {    	
         
         $.each(specs, function(i, ruleSpecs) {
-            jsRule = $.tapestry.validate.toJSRule(ruleSpecs[0])
+            var field = i;
+            $('#' + field).closest('form').validate({
+                errorClass: "t-error"
+            });
             
-            ruleAsString = '{"' + jsRule + '" :' + ((ruleSpecs[2] === undefined) ? 'true' : '"' + ruleSpecs[2] + '"') + ', "messages": {"' + jsRule + '":"' + ruleSpecs[1] + '"}}';
+            $.each(ruleSpecs, function(j, ruleSpec) {
+                var jsRule = $.tapestry.validate.toJSRule(ruleSpec[0]);
+                var ruleAsString = '{"' + jsRule + '" :' + ((ruleSpec[2] === undefined) ? 'true' : '"' + ruleSpec[2] + '"') + ', "messages": {"' + jsRule + '":"' + ruleSpec[1] + '"}}';
+                $('#' + field).rules("add", $.parseJSON(ruleAsString));
+            });
             
-            $('#' + field).rules("add", $.parseJSON(ruleAsString));
         });
     }
 });
