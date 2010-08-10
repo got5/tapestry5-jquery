@@ -16,19 +16,24 @@
 
 package org.got5.tapestry5.jquery.mixins;
 
+
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.apache.tapestry5.annotations.Import;
 import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
+import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 
 /**
  * This mixin is automatically added by {@link FormResourcesInclusionWorker}. It
  * adds JS & CSS for FormFragments elements
  */
+@Import(stack = FormFragmentSupportStack.STACK_ID)
 public class IncludeFormFragmentResources
 {
+
     @Inject
     private JavaScriptSupport support;
 
@@ -46,4 +51,5 @@ public class IncludeFormFragmentResources
     	support.importJavaScriptLibrary(effect);
     	support.importJavaScriptLibrary(script);
     }
+
 }

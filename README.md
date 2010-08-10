@@ -26,32 +26,39 @@ Theses components were originally present in Tapestry 5 Core and can still be us
 - **FormFragment**
 - **TriggerFragment**
 - **Grid (in place mode)**
+- **DateField**
+    - based on: [http://jqueryui.com/demos/datepicker/](http://jqueryui.com/demos/datepicker/)
 
 Due to some extensibility issues of Core components, theses are originals components need to be used using the "jquery" namespace
 
 - **Autocomplete**
 	- based on: [http://jqueryui.com/demos/autocomplete/](http://jqueryui.com/demos/autocomplete/)
-- **Datefield**
-	- based on: [http://jqueryui.com/demos/datepicker/](http://jqueryui.com/demos/datepicker/)
 - **Palette**
 - **LinkSubmit**
 
 ## How to use it
 
-Add the following lines in your application module class to enable JQuery:
+Just add tapestry5-jquery to your classpath (see Maven dependency snippet below)!
 
-    public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
-    {
-        configuration.add(ClientResourcesConstants.JAVASCRIPT_STACK, JQueryClientResourcesConstants.JAVASCRIPT_STACK_JQUERY);
-    }
-
-
-Then use components like you would normally do. For Autocomplete, Datefield, Palette and LinkSubmit use "jquery" namespace:
+Then use components like you would normally do. For Autocomplete, Palette and LinkSubmit use "jquery" namespace:
  
 	<t:form>
-        <t:jquery.datefield t:value="date" />
+        <t:jquery.autocomplete />
 		<t:submit />
     </t:form>
+
+Or add jquery to the tapestry-library namespace:
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+    <t:form>
+        <j:autocomplete />
+        <t:submit />
+    </t:form>
+
+</html>
 
 
 ## Important notice
@@ -69,7 +76,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>2.1.0-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>

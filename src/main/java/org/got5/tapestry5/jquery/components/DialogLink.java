@@ -51,6 +51,7 @@ public class DialogLink extends AbstractExtendableComponent
         javaScriptSupport.addInitializerCall(getInitMethod(), params);
     }
 
+    @Override
     @AfterRender
     protected void addJSResources()
     {

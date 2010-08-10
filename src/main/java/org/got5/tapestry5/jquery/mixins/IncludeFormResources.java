@@ -15,19 +15,22 @@
 //
 
 package org.got5.tapestry5.jquery.mixins;
-
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+
+import org.apache.tapestry5.annotations.Import;
 import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
+import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 
 
 /**
  * This mixin is automatically added by {@link FormResourcesInclusionWorker}. It
  * adds JS & CSS for form elements
  */
+@Import(stack = FormSupportStack.STACK_ID)
 public class IncludeFormResources
 {
     @Inject
@@ -52,4 +55,5 @@ public class IncludeFormResources
         support.importJavaScriptLibrary(scriptInitializer);
         support.importStylesheet(formCSS);
     }
+
 }

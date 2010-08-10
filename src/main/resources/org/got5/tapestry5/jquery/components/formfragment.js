@@ -80,15 +80,26 @@ $.widget( "ui.formFragment", {
 
 $.extend(Tapestry.Initializer, {
 	
-	formFragment: function ( specs ) {
-		$("#" + specs ).formFragment();
+	formFragment: function ( spec ) {
+		$("#" + spec.element ).formFragment();
 	},
 	
-	linkTriggerToFormFragment : function(trigger, element) {
+	linkTriggerToFormFragment : function(spec) {
+		var trigger = spec.triggerId;
+		var element = spec.fragmentId;
+		var invert = spec.invert;
+		
         trigger = $("#" + trigger);
+        
+        var update = function() {
+        	var checked = trigger.attr('checked');
+        	var makeVisible = checked == !spec.invert;
+            $("#" + element).formFragment({"setVisible" : makeVisible});
+        };
 
-
+        /* Let the event bubble up to the form level. */
         if (trigger.attr("type") == "radio") {
+
             $(trigger).closest("form").click(function() {
                 $("#" + element).formFragment("setVisible", trigger.attr("checked"));
                 //jQuery validator rules are not apply to input disabled
@@ -111,6 +122,14 @@ $.extend(Tapestry.Initializer, {
             else
             	$("#" + element).find("input").removeAttr("disabled");
         });
+
+            $(trigger).closest("form").click(update);
+            return;
+        }
+
+        /* Normal trigger is a checkbox; listen just to it. */
+        trigger.click(update);
+
     }
 });
 

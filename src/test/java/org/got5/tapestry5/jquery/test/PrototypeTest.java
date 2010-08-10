@@ -18,11 +18,6 @@ package org.got5.tapestry5.jquery.test;
 
 public class PrototypeTest extends JavascriptTestSuite
 {
-    public PrototypeTest()
-    {
-        super("src/test/prototype/webapp", "*googlechrome");
-    }
-
     @Override
     protected String getValidationElementLocator(String fieldId)
     {

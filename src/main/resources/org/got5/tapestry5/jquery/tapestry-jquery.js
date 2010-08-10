@@ -47,6 +47,11 @@ $.extend(Tapestry, {
 
 /** Container of functions that may be invoked by the Tapestry.init() function. */
 $.extend(Tapestry.Initializer, {
+	
+	/** Make the given field the active field (focus on the field). */
+	activate : function(id) {
+		$("#" + id).focus();
+	},
 
     ajaxFormLoop: function(spec) {
     
@@ -58,6 +63,27 @@ $.extend(Tapestry.Initializer, {
             })
         });
     },
+
+	/**
+	 * evalScript is a synonym for the JavaScript eval function. It is used in
+	 * Ajax requests to handle any setup code that does not fit into a standard
+	 * Tapestry.Initializer call.
+	 */
+	evalScript : function(spec) {
+
+		eval(spec);
+	},
+    
+	formEventManager : function(spec) {
+		$("#" + spec.formId).formEventManager({
+	       
+            'form' : $('#' + spec.formId),
+            'validateOnBlur' : spec.validate.blur,
+            'validateOnSubmit' : spec.validate.submit
+
+	    });
+		
+	},
     
     formInjector: function(spec) {
         $("#" + spec.element).tapestryFormInjector(spec);
@@ -99,7 +125,13 @@ $.extend(Tapestry.Initializer, {
             return false;
         });
     },
-    
+
+    linkSubmit: function (spec) {
+        $("#" + spec.clientId).tapestryLinkSubmit({
+            form: spec.form
+        });
+    },
+
     /**
      * Convert a form or link into a trigger of an Ajax update that
      * updates the indicated Zone.
@@ -112,7 +144,9 @@ $.extend(Tapestry.Initializer, {
         var zoneId = spec.zoneId;
         var url = spec.url;
         var el = $('#' + element);
-        
+		
+        var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
+
         if (el.is('form')) {
             el.submit(function() {
 				var specs = {
@@ -120,17 +154,48 @@ $.extend(Tapestry.Initializer, {
 					params: el.serialize()
 				};
 
-				$("#" + zoneId).tapestryZone("update", specs);
+				zoneElement.tapestryZone("update", specs);
 
                 return false;
             });
-        }
-        else {
+			
+        } else if (el.is('select')) {
+			
+            el.change(function() {
+                var parameters = {};
+                var selectValue = $('#' + element + ' :selected').text();
+
+                if (selectValue) {
+                    parameters["t:selectvalue"] = selectValue;
+                }
+
+                zoneElement.tapestryZone("update" , {url : url, params : parameters});
+                return false;
+            });
+
+		} else {
             el.click(function() {
-                $("#" + zoneId).tapestryZone("update" , {url : url});
+                zoneElement.tapestryZone("update" , {url : url});
                 return false;
             });
         }
+    },
+	
+   /**
+     * Converts a link into an Ajax update of a Zone. The url includes the
+     * information to reconnect with the server-side Form.
+     * 
+     * @param spec.selectId
+     *            id or instance of <select>
+     * @param spec.zoneId
+     *            id of element to update when select is changed
+     * @param spec.url
+     *            component event request URL
+     */
+    linkSelectToZone : function(spec) {
+        Tapestry.Initializer.linkZone({ linkId : spec.selectId,
+                                        zoneId : spec.zoneId,      
+								        url : spec.url });
     },
     
     zone: function(spec) {
@@ -157,7 +222,7 @@ $.extend(Tapestry.Initializer, {
 $.widget( "ui.tapestryZone", {
 	options: {
     	show: "highlight",
-    	update: "hightlight"
+    	update: "highlight"
 	},
 
 	_create: function() {
@@ -179,29 +244,151 @@ $.widget( "ui.tapestryZone", {
      * @params optional, can contain data. Request will switch from GET to POST
      */
     update: function(specs) {
-		var el = this.element;
+        
+		var that = this;
 		
-        ajaxRequest = {
+        var ajaxRequest = {
             url: specs.url,
             success: function(data) {
-                el.html(data.content).effect(effect);
+                
+				if (data.content) {
+
+	                that.applyContentUpdate(data.content);
+
+				} else if (data.zones) {
+
+                    // perform multi zone update
+					$.each(data.zones, function(zoneId){
+
+						$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
+					});
+					
+				}
+
                 $.tapestry.utils.loadScriptsInReply(data);
                 el.trigger(Tapestry.ZONE_UPDATED_EVENT);
 
             }
         };
         
-        if (specs.params != undefined) {
+        if (specs.params) {
             ajaxRequest = $.extend(ajaxRequest, {
                 type: 'post',
                 data: specs.params
-            })
+            });
         }
         
-        effect = el.is(":visible") ? this.options.show : this.options.update;
-        
         $.ajax(ajaxRequest);
+    }, 
+	
+	/**
+	 * Updates the element's content and triggers the appropriate effect on the
+	 * zone.
+	 * 
+	 * @param {Object} content the new content for this zone's body
+	 */
+	applyContentUpdate: function(content) {
+
+		if (content === undefined) {
+
+			console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
+			return;
+		}
+
+		var el = this.element;
+		var effect = el.is(":visible") ? this.options.update : this.options.show;
+
+		el.html(content).effect(effect);
+	}
+	
+});
+
+$.widget( "ui.tapestryLinkSubmit", {
+    options: {
+    },
+
+    _create: function() {
+        this.form = $("#" + this.options.form);
+        
+        this.element.click(function() {
+            $(this).tapestryLinkSubmit("clicked");
+
+            return false;
+        });
+    },
+
+    destroy: function() {
+        this.element
+            .removeClass( "tapestry-palette");
+        
+        $.Widget.prototype.destroy.apply( this, arguments );
+    },
+        
+    _createHidden: function () {    
+        var hidden = $("<input></input>").attr({ "type":"hidden",
+            "name": this.element.id + ":hidden",
+            "value": this.element.id});
+    
+        this.element.after(hidden);
+    },
+    
+    clicked: function() {
+        var onsubmit = this.form.get(0).onsubmit;
+
+        this._createHidden();
+
+        this.form.get(0).submit();  
     }
+});
+
+$.widget("ui.formEventManager", {
+    options: { },
+
+    _create: function() { 
+	
+	},
+
+    /**
+     * Identifies in the form what is the cause of the submission. The element's
+     * id is stored into the t:submit hidden field (created as needed).
+     * 
+     * @param element
+     *            id or element that is the cause of the submit (a Submit or
+     *            LinkSubmit)
+     */
+    setSubmittingElement : function(element) {
+
+        var form = this.options.form;
+
+		if (!form.submitHidden) {
+
+            // skip if this is not a tapestry controlled form
+			var hasNoFormData = true;
+			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
+                hasNoFormData = $.isEmptyObject( $(this).attr('value'));
+			});
+
+            if (hasNoFormData) {
+				return;
+			}
+
+            var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
+
+            if (hiddens.size() === 0) {
+
+                /**
+                 * Create a new hidden field directly after the first hidden
+                 * field in the form.
+                 */
+                $(hiddens[0]).after('<input type="hidden" name="t:submit"');
+
+            } else
+                form.submitHidden = hiddens.first();
+        }
+
+        this.submitHidden.value = element == null ? null : $(element).id;
+    }
+	
 });
 
 /**
@@ -378,23 +565,41 @@ $.tapestry = {
             
             $.tapestry.utils.addScripts(reply.scripts, function() {
                 
-				// TODO : reimplement callback					
-				if (callback != undefined)
-                	callback.call(this);
-                
-                if (reply.script) 
-                    eval(reply.script);
+				/* Let the caller do its thing first (i.e., modify the DOM). */
+				if (callback) {
+					callback.call(this);
+				}
+
+	            /* And handle the scripts after the DOM is updated. */
+                if (reply.inits) {
+	               $.tapestry.utils.executeInits(reply.inits);
+				}					
                 
             });
-        }
+        },
+		
+	    /**
+	     * Called from Tapestry.loadScriptsInReply to load any initializations from
+	     * the Ajax partial page render response. Calls
+	     * Tapestry.onDomLoadedCallback() last. This logic must be deferred until
+	     * after the DOM is fully updated, as initialization often refer to DOM
+	     * elements.
+	     * 
+	     * @param initializations
+	     *            array of parameters to pass to Tapestry.init(), one invocation
+	     *            per element (may be null)
+	     */
+	    executeInits : function(initializations) {
+
+	        var initArray = $(initializations).toArray();
+
+	        $(initArray).each(function(index) {
+
+	            Tapestry.init(initArray[index]);
+	        });
+	    }
+
     }
 };
     
 })(jQuery);
-
-
-
-
-
-
-

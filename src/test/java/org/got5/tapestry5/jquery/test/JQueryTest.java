@@ -22,11 +22,12 @@ import com.thoughtworks.selenium.Wait;
 
 public class JQueryTest extends JavascriptTestSuite
 {
+
     public JQueryTest()
     {
     	//chrome on macosx
         //super("src/test/jquery/webapp", "*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
-        super("src/test/jquery/webapp", "*googlechrome");
+        //super("src/test/jquery/webapp", "*googlechrome");
     	//safari on macosx
     	//super("src/test/jquery/webapp", "*safari /Applications/Safari.app/Contents/MacOS/Safari");
     	//super("src/test/jquery/webapp", "*safari");
@@ -35,6 +36,7 @@ public class JQueryTest extends JavascriptTestSuite
     	//super("src/test/jquery/webapp", "*firefox");
     	//super("src/test/jquery/webapp", "*iehta");
     }
+
 
     protected String getValidationElementLocator(String fieldId)
     {

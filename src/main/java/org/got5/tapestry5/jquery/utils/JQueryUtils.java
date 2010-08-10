@@ -1,6 +1,9 @@
 package org.got5.tapestry5.jquery.utils;
 
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.javascript.StylesheetLink;
 
 public class JQueryUtils
 {
@@ -24,5 +27,14 @@ public class JQueryUtils
         
         return null;
     }
-    
+
+    public static Mapper<Asset, StylesheetLink> assetToStylesheetLink = new Mapper<Asset, StylesheetLink>()
+    {
+        @Override
+        public StylesheetLink map(Asset input)
+        {
+            return new StylesheetLink(input);
+        };
+    };
+
 }

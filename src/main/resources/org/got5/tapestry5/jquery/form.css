@@ -1,3 +1,6 @@
 t.error {
 	font-style: normal
 }
+
+/* temporarily disabling the trigger icon of the dateField component */
+img.t-calendar-trigger { display: none; }

@@ -16,20 +16,14 @@
 
 package org.got5.tapestry5.jquery.test;
 
-import org.apache.tapestry5.test.AbstractIntegrationTestSuite;
+import org.apache.tapestry5.test.SeleniumTestCase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
+public abstract class JavascriptTestSuite extends SeleniumTestCase
 {
-
-    public JavascriptTestSuite(String webAppRoot, String browserCommand, String... virtualHosts)
-    {
-        super(webAppRoot, browserCommand, virtualHosts);
-
-    }
 
     @BeforeMethod
     public void adjustSpeed()
@@ -51,6 +45,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         click("identifier=myActionLink");
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isTextPresent("Counting via AJAX : 1");
@@ -71,6 +66,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isTextPresent("Dummy value is : dummy");
@@ -80,6 +76,29 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n Dummy component");
     }
 
+    @Test
+    public void testFormMultiZoneUpdate() 
+    {
+        open("/zone");
+        waitForPageToLoad();
+        assertEquals(getText("identifier=multiZone1"), "default zone content");
+        assertEquals(getText("identifier=multiZone2"), "default zone content");
+        
+        click("identifier=multiSubmit");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isTextPresent("rendering block");
+            }
+        }.wait("element not found");
+
+        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update");
+        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update");
+    }
+    
     /**
      * Validation
      */
@@ -113,6 +132,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         {
             new Wait()
             {
+                @Override
                 public boolean until()
                 {
                     return isVisible(getValidationElementLocator(fieldId));
@@ -141,6 +161,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isElementPresent(getCalendarDivSelector()) && isVisible(getCalendarDivSelector());
@@ -173,6 +194,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isElementPresent(getAutocompleteDivSelector()) && isVisible(getAutocompleteDivSelector());
@@ -199,6 +221,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.firstName").equals("lala010");
@@ -211,6 +234,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.firstName").equals("lala910");
@@ -223,6 +247,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.age").equals("0");
@@ -235,6 +260,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.age").equals("49");
@@ -296,6 +322,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isVisible(fragment);
@@ -309,6 +336,7 @@ public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
         
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return !isVisible(fragment);
