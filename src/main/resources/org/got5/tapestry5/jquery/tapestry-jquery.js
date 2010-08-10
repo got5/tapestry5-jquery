@@ -106,7 +106,10 @@ $.extend(Tapestry.Initializer, {
      * @param zoneId id of the element to update when link clicked or form submitted
      * @param url absolute component event request URL
      */
-    linkZone: function(element, zoneId, url) {
+    linkZone: function(spec) {
+        var element = spec.linkId;
+        var zoneId = spec.zoneId;
+        var url = spec.url;
         var el = $('#' + element);
         
         if (el.is('form')) {
