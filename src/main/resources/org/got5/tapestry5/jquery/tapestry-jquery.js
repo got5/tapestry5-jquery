@@ -64,7 +64,7 @@ $.extend(Tapestry.Initializer, {
     
     formLoopRemoveLink: function(spec) {
         defaults = {
-            effect: "blind",
+            effect: "blind"
         };
         
         spec = $.extend(defaults, spec);
