@@ -39,12 +39,41 @@ Tapestry = {
      *  to identify that the field is in error (and decorate the field and show a popup error message).
      */
     FIELD_VALIDATE_EVENT: "tapestry:fieldvalidate",
+
+    /**
+     * Event notification, on a form object, that is used to trigger validation
+     * on all fields within the form (observed by each field's
+     * Tapestry.FieldEventManager).
+     */
+    FORM_VALIDATE_FIELDS_EVENT : "tapestry:validatefields",
     
     /** Event, fired on the document object, which identifies the current focus input element. */
     FOCUS_CHANGE_EVENT: "tapestry:focuschange",
     
     /** Event, fired on a zone element when the zone is updated with new content. */
     ZONE_UPDATED_EVENT: "tapestry:zoneupdated",
+
+    /**
+     * Event fired on a form fragment element to change the visibility of the
+     * fragment. The event memo object includes a key, visible, that should be
+     * true or false.
+     */
+    CHANGE_VISIBILITY_EVENT : "tapestry:changevisibility",
+
+    /**
+     * Event fired on a form fragment element to hide the element and remove it
+     * from the DOM.
+     */
+    HIDE_AND_REMOVE_EVENT : "tapestry:hideandremove",
+
+    /**
+     * Event fired on a link or submit to request that it request that the
+     * correct ZoneManager update from a provided URL.
+     */
+    TRIGGER_ZONE_UPDATE_EVENT : "tapestry:triggerzoneupdate",
+
+    /** Event used when intercepting and canceling the normal click event. */
+    ACTION_EVENT : "tapestry:action",
     
     /** When false, the default, the Tapestry.debug() function will be a no-op. */
     DEBUG_ENABLED: false,
