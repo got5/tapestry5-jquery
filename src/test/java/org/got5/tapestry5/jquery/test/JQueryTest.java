@@ -24,7 +24,16 @@ public class JQueryTest extends JavascriptTestSuite
 {
     public JQueryTest()
     {
+    	//chrome on macosx
+        //super("src/test/jquery/webapp", "*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
         super("src/test/jquery/webapp", "*googlechrome");
+    	//safari on macosx
+    	//super("src/test/jquery/webapp", "*safari /Applications/Safari.app/Contents/MacOS/Safari");
+    	//super("src/test/jquery/webapp", "*safari");
+    	//firefox on macosx
+    	//super("src/test/jquery/webapp", "*firefox /Applications/Firefox.app/Contents/MacOS/firefox-bin");
+    	//super("src/test/jquery/webapp", "*firefox");
+    	//super("src/test/jquery/webapp", "*iehta");
     }
 
     protected String getValidationElementLocator(String fieldId)
