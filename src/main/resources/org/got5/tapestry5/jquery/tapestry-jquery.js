@@ -177,6 +177,8 @@ $.widget( "ui.tapestryZone", {
             success: function(data) {
                 el.html(data.content).effect(effect);
                 $.tapestry.utils.loadScriptsInReply(data);
+                el.trigger(Tapestry.ZONE_UPDATED_EVENT);
+
             }
         };
         
