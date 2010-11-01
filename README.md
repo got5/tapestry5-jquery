@@ -98,7 +98,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 
 ## More Informations & contacts
 
-* Twitter: [http://twitter.com/robinkomiwes](http://twitter.com/robinkomiwes)
+* Twitter: [http://twitter.com/GangOfTapestry5](http://twitter.com/GangOfTapestry5)
 
 
 ## License
