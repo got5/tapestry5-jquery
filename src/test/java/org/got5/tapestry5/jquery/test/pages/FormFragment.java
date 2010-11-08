@@ -17,6 +17,7 @@
 package org.got5.tapestry5.jquery.test.pages;
 
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.got5.tapestry5.jquery.test.entities.ShippingAddress;
 
 public class FormFragment
@@ -29,6 +30,13 @@ public class FormFragment
 
     @Persist
     private boolean _separateShipTo;
+    
+    @Persist
+    @Property
+    private int code;
+    
+    @Property
+    private boolean codeVisible = true;
 
     public ShippingAddress getBillingAddress()
     {
