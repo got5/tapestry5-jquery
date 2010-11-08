@@ -86,7 +86,7 @@ $.extend(Tapestry.Initializer, {
 
         if (trigger.attr("type") == "radio") {
             $(trigger).closest("form").click(function() {
-                $("#" + element).formFragment("setVisible", "trigger.checked");
+                $("#" + element).formFragment("setVisible", trigger.attr("checked"));
             });
 
             return;
