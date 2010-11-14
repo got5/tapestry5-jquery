@@ -11,16 +11,20 @@ $.widget( "ui.formFragment", {
 		this.element
 			.addClass( "tapestry-formfragment" )
 
-		this.hidden = $("#" + this.element.id + ":hidden");
+		// : used by jQuery so need to escape 
+		this.hidden = $("#" + this.element.attr("id") + "\:hidden");
 		
-		var form = $(this.hidden).closest('form');
+		var form = $(this.element).closest('form');
+		
 
-		form.bind(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function()
+		// use to be iform.bind(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function()
+		form.bind("submit", {element: this.element, hidden: this.hidden}, function(event)
 		{
 			// On a submission, if the fragment is not visible, then wipe out its
 			// form submission data, so that no processing or validation occurs on the server.
-			if (this.element.is(":visible") != undefined)
-				this.hidden.get(0).value = "";
+			if (!event.data.element.is(":visible"))
+				event.data.hidden.value = "";
+			
 		});
 	},
 
@@ -87,6 +91,12 @@ $.extend(Tapestry.Initializer, {
         if (trigger.attr("type") == "radio") {
             $(trigger).closest("form").click(function() {
                 $("#" + element).formFragment("setVisible", trigger.attr("checked"));
+                //jQuery validator rules are not apply to input disabled
+                if(!trigger.attr("checked"))
+                	$("#" + element).find("input").attr("disabled", true);
+                else
+                	$("#" + element).find("input").removeAttr("disabled");
+
             });
 
             return;
@@ -94,7 +104,12 @@ $.extend(Tapestry.Initializer, {
 
         trigger.click(function()
         {
-            $("#" + element).formFragment({"setVisible" : trigger.attr("checked")});
+            $("#" + element).formFragment("setVisible" , trigger.attr("checked"));
+            //jQuery validator rules are not apply to input disabled
+            if(!trigger.attr("checked"))
+            	$("#" + element).find("input").attr("disabled", true);
+            else
+            	$("#" + element).find("input").removeAttr("disabled");
         });
     }
 });
