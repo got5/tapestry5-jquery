@@ -35,8 +35,9 @@ public class FormFragment
     @Property
     private int code;
     
+    @Persist
     @Property
-    private boolean codeVisible = true;
+    private boolean codeVisible;
 
     public ShippingAddress getBillingAddress()
     {
