@@ -99,3 +99,5 @@ Tapestry.Initializer = {
     linkTriggerToFormFragment: function(trigger, element){
     }
 };
+
+
