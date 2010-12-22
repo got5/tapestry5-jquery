@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>2.0.3-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<parent>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-clientresources</artifactId>
-			<version>2.0.3-SNAPSHOT</version>
+			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -202,6 +202,6 @@
 	</repositories>
 
 	<properties>
-		<tapestry-release-version>5.2.0</tapestry-release-version>
+		<tapestry-release-version>5.2.4</tapestry-release-version>
 	</properties>
 </project>
