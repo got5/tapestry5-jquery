@@ -39,9 +39,9 @@ $.widget( "ui.tapestryLinkSubmit", {
 });
 
 $.extend(Tapestry.Initializer, {
-	linkSubmit: function (formId, clientId ) {
-		$("#" + clientId).tapestryLinkSubmit({
-			form: formId
+	linkSubmit: function (spec) {
+		$("#" + spec.clientId).tapestryLinkSubmit({
+			form: spec.formId
 		});
 	}
 });

@@ -27,19 +27,18 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Field;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ResponseRenderer;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
 
 /**
@@ -68,7 +67,7 @@ import org.apache.tapestry5.util.TextStreamResponse;
  * }
  * </pre>
  */
-@IncludeJavaScriptLibrary(
+@Import(library = 
 { "${tapestry.jquery.path}/ui_1_8/jquery.ui.widget.js", "${tapestry.jquery.path}/ui_1_8/jquery.ui.position.js",
         "${tapestry.jquery.path}/ui_1_8/jquery.ui.autocomplete.js", "${tapestry.jquery.path}/mixins/autocomplete.js" })
 @Events(EventConstants.PROVIDE_COMPLETIONS)
@@ -86,15 +85,12 @@ public class Autocomplete
 
     @Inject
     private ComponentResources resources;
-
+    
     @Environmental
-    private RenderSupport renderSupport;
+    private JavaScriptSupport javaScriptSupport;    
 
     @Inject
     private Request request;
-
-    @Inject
-    private TypeCoercer coercer;
 
     /**
      * Overwrites the default minimum characters to trigger a server round trip (the default is 1).
@@ -141,7 +137,7 @@ public class Autocomplete
         // Let subclasses do more.
         configure(config);
 
-        renderSupport.addInit("autocomplete", config);
+        javaScriptSupport.addInitializerCall("autocomplete", config);
     }
 
     Object onAutocomplete()
@@ -154,13 +150,11 @@ public class Autocomplete
 
         matchesHolder.put(Collections.emptyList());
 
-        ComponentEventCallback callback = new ComponentEventCallback()
+        ComponentEventCallback<List> callback = new ComponentEventCallback<List>()
         {
-            public boolean handleResult(Object result)
+            public boolean handleResult(List result)
             {
-                List matches = coercer.coerce(result, List.class);
-
-                matchesHolder.put(matches);
+                matchesHolder.put(result);
 
                 return true;
             }

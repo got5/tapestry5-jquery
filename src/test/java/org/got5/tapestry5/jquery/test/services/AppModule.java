@@ -20,10 +20,11 @@ import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.got5.tapestry5.clientresources.ClientResourcesConstants;
+import org.got5.tapestry5.clientresources.services.ClientResourcesModule;
 import org.got5.tapestry5.jquery.JQueryClientResourcesConstants;
 import org.got5.tapestry5.jquery.services.JQueryModule;
 
-@SubModule(JQueryModule.class)
+@SubModule(value = {ClientResourcesModule.class, JQueryModule.class})
 public class AppModule
 {
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)

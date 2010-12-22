@@ -5,12 +5,13 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 public class DialogAjaxLink extends DialogLink
 {
@@ -23,9 +24,9 @@ public class DialogAjaxLink extends DialogLink
 
     @Inject
     private ComponentResources resources;
-
+    
     @Inject
-    private RenderSupport support;
+    private JavaScriptSupport javaScriptSupport;    
 
     @Inject
     private AssetSource source;
@@ -45,8 +46,14 @@ public class DialogAjaxLink extends DialogLink
         writer.end();
         
         Link link = resources.createEventLink(EventConstants.ACTION, context);
+        
+        JSONObject params = new JSONObject();
+        params.put("element", getClientId());
+        params.put("zoneId", zone);
+        params.put("dialogId", getDialog());
+        params.put("url", link.toAbsoluteURI());
 
-        support.addInit(getInitMethod(), getClientId(), zone, getDialog(), link.toAbsoluteURI());
+        javaScriptSupport.addInitializerCall(getInitMethod(), params);
     }
 
     @AfterRender
@@ -54,7 +61,7 @@ public class DialogAjaxLink extends DialogLink
     {
         for (String path : scripts)
         {
-            support.addScriptLink(source.getClasspathAsset(path));
+        	javaScriptSupport.importJavaScriptLibrary(source.getClasspathAsset(path));
         }
     }
 
