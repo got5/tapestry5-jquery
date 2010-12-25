@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>2.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<parent>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-clientresources</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
+			<version>2.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -24,7 +24,7 @@
 			<artifactId>tapestry-core</artifactId>
 			<version>${tapestry-release-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-upload</artifactId>
@@ -34,8 +34,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>5.8</version>
-			<classifier>jdk15</classifier>
+			<version>5.14.6</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -84,7 +83,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -137,6 +136,15 @@
 					</mapping>
 					<useDefaultMapping>true</useDefaultMapping>
 					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/conf/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
 				</configuration>
 			</plugin>
 		</plugins>

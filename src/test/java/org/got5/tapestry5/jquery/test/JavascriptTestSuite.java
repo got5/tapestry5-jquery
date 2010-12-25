@@ -16,20 +16,14 @@
 
 package org.got5.tapestry5.jquery.test;
 
-import org.apache.tapestry5.test.AbstractIntegrationTestSuite;
+import org.apache.tapestry5.test.SeleniumTestCase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public abstract class JavascriptTestSuite extends AbstractIntegrationTestSuite
+public abstract class JavascriptTestSuite extends SeleniumTestCase
 {
-
-    public JavascriptTestSuite(String webAppRoot, String browserCommand, String... virtualHosts)
-    {
-        super(webAppRoot, browserCommand, virtualHosts);
-
-    }
 
     @BeforeMethod
     public void adjustSpeed()

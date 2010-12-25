@@ -22,11 +22,6 @@ import com.thoughtworks.selenium.Wait;
 
 public class JQueryTest extends JavascriptTestSuite
 {
-    public JQueryTest()
-    {
-        super("src/test/jquery/webapp", "*googlechrome");
-    }
-
     protected String getValidationElementLocator(String fieldId)
     {
         return "css=label[for=\"" + fieldId + "\"][generated=\"true\"]";

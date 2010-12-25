@@ -1,9 +1,24 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tapestry5-jquery Application Test Suite" annotations="1.5">
-	<test name="Integration Tests">
-		<packages>
-			<package name="org.got5.tapestry5.jquery.test" />
-		</packages>
+    <test name="JQuery Integration Tests"  enabled="true">
+    
+        <parameter name="tapestry.web-app-folder" value="src/test/jquery/webapp"/>
+        <parameter name="browserStartCommand" value="*googlechrome" />
 
-	</test>
+        <classes>
+            <class name="org.got5.tapestry5.jquery.test.JQueryTest"></class>
+        </classes>
+
+    </test>
+
+    <test name="Prototype Integration Tests"  enabled="true">
+    
+        <parameter name="tapestry.web-app-folder" value="src/test/prototype/webapp"/>
+        <parameter name="browserStartCommand" value="*googlechrome" />
+
+        <classes>
+            <class name="org.got5.tapestry5.jquery.test.PrototypeTest"></class>
+        </classes>
+
+    </test>
 </suite>

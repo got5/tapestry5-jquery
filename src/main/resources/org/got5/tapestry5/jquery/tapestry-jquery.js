@@ -46,6 +46,11 @@ $.extend(Tapestry, {
 
 /** Container of functions that may be invoked by the Tapestry.init() function. */
 $.extend(Tapestry.Initializer, {
+	
+	/** Make the given field the active field (focus on the field). */
+	activate : function(id) {
+		$("#" + id).focus();
+	},
 
     ajaxFormLoop: function(spec) {
     
@@ -57,6 +62,10 @@ $.extend(Tapestry.Initializer, {
             })
         });
     },
+    
+	formEventManager : function(spec) {
+		$("#" + spec.formId).formEventManager(spec);
+	},
     
     formInjector: function(spec) {
         $("#" + spec.element).tapestryFormInjector(spec);
@@ -194,6 +203,16 @@ $.widget( "ui.tapestryZone", {
         
         $.ajax(ajaxRequest);
     }
+});
+
+$.widget("ui.formEventManager", {
+	
+	options: {},
+	
+	_create: function() {
+
+		// TODO make the event manager work again
+	}
 });
 
 /**
