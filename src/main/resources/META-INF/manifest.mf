@@ -1,0 +1,2 @@
+Tapestry-Module-Classes: org.got5.tapestry5.jquery.services.JQueryModule
+
