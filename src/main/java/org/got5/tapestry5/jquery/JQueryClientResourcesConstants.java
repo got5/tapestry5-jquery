@@ -18,6 +18,8 @@ package org.got5.tapestry5.jquery;
 
 public interface JQueryClientResourcesConstants
 {
+    public static final String JAVASCRIPT_STACK = "js-stack";
+
     public static final String JAVASCRIPT_STACK_JQUERY = "js-jquery";
     
     public static final String JAVASCRIPT_STACK_JQUERY_DEV = "js-jquery-dev";

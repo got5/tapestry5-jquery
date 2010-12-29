@@ -34,12 +34,14 @@ public class DialogAjaxLink extends DialogLink
     private static final String[] scripts =
     { "org/got5/tapestry5/jquery/components/dialogajaxlink.js" };
 
+    @Override
     @SetupRender
     void setJSInit()
     {
         setDefaultMethod("dialogAjaxLink");
     }
 
+    @Override
     @AfterRender
     void initJS(MarkupWriter writer)
     {
@@ -56,6 +58,7 @@ public class DialogAjaxLink extends DialogLink
         javaScriptSupport.addInitializerCall(getInitMethod(), params);
     }
 
+    @Override
     @AfterRender
     protected void addJSResources()
     {

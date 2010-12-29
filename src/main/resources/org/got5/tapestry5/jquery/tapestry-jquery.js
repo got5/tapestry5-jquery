@@ -62,6 +62,13 @@ $.extend(Tapestry.Initializer, {
             })
         });
     },
+
+	/**
+	 * evalScript is a synonym for the JavaScript eval function. It is used in
+	 * Ajax requests to handle any setup code that does not fit into a standard
+	 * Tapestry.Initializer call.
+	 */
+	evalScript : eval,
     
 	formEventManager : function(spec) {
 		$("#" + spec.formId).formEventManager(spec);
@@ -120,7 +127,7 @@ $.extend(Tapestry.Initializer, {
         var zoneId = spec.zoneId;
         var url = spec.url;
         var el = $('#' + element);
-        
+
         if (el.is('form')) {
             el.submit(function() {
 				var specs = {
@@ -402,10 +409,3 @@ $.tapestry = {
 };
     
 })(jQuery);
-
-
-
-
-
-
-

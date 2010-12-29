@@ -45,6 +45,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         click("identifier=myActionLink");
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isTextPresent("Counting via AJAX : 1");
@@ -65,6 +66,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isTextPresent("Dummy value is : dummy");
@@ -107,6 +109,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         {
             new Wait()
             {
+                @Override
                 public boolean until()
                 {
                     return isVisible(getValidationElementLocator(fieldId));
@@ -135,6 +138,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isElementPresent(getCalendarDivSelector()) && isVisible(getCalendarDivSelector());
@@ -167,6 +171,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isElementPresent(getAutocompleteDivSelector()) && isVisible(getAutocompleteDivSelector());
@@ -193,6 +198,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.firstName").equals("lala010");
@@ -205,6 +211,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.firstName").equals("lala910");
@@ -217,6 +224,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.age").equals("0");
@@ -229,6 +237,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return getText("css=tr.t-first td.age").equals("49");
@@ -290,6 +299,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return isVisible(fragment);
@@ -303,6 +313,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return !isVisible(fragment);

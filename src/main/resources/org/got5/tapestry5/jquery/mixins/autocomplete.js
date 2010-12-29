@@ -15,10 +15,10 @@
                 }
             }
             
-            if (specs.delay != undefined) 
+            if (specs.delay) 
                 conf.delay = specs.delay;
             
-            if (specs.minLength != undefined) 
+            if (specs.minLength) 
                 conf.minLength = specs.minLength
             
             $("#" + specs.id).autocomplete(conf);
