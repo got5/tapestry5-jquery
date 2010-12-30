@@ -24,12 +24,14 @@ import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.utils.JQueryDateFieldStack;
 
 public class JQueryModule
 {
     public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration)
     {
         configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
+        configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration)
