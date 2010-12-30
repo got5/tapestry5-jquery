@@ -10,7 +10,7 @@
         </classes>
 
     </test>
-
+<!--
     <test name="Prototype Integration Tests"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/prototype/webapp"/>
@@ -21,4 +21,5 @@
         </classes>
 
     </test>
+	-->
 </suite>

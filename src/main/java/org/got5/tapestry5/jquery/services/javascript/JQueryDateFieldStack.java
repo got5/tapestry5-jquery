@@ -1,7 +1,6 @@
-package org.got5.tapestry5.jquery.utils;
+package org.got5.tapestry5.jquery.services.javascript;
 
 import java.text.DateFormatSymbols;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +10,6 @@ import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
-import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.json.JSONArray;
@@ -35,16 +33,14 @@ public class JQueryDateFieldStack implements JavaScriptStack
         this.threadLocale = threadLocale;
         this.compactJSON = compactJSON;
 
-        Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
+        final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
+            @Override
             public Asset map(String path)
             {
                 return assetSource.getExpandedAsset(path);
             }
         };
-
-        Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset
-                .combine(TapestryInternalUtils.assetToStylesheetLink);
 
         javaScriptStack = F
                 .flow("${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.datepicker.min.js", 

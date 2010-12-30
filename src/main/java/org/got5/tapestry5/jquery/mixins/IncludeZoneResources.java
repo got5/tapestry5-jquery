@@ -16,29 +16,15 @@
 
 package org.got5.tapestry5.jquery.mixins;
 
-import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.corelib.components.Zone;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.services.javascript.ZoneSupportStack;
 
 /**
  * This mixin is automatically added by {@link Zone}. It
  * adds JS & CSS for FormFragments elements
  */
+@Import(stack = ZoneSupportStack.STACK_ID)
 public class IncludeZoneResources
 {
-    @Inject
-    private JavaScriptSupport support;
-    
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.highlight.min.js")
-    private Asset effect;
-
-    @SetupRender
-    public void addScripts()
-    {
-        support.importJavaScriptLibrary(effect);
-    }
 }

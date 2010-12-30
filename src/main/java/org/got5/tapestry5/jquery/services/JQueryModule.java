@@ -23,8 +23,11 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
+import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
+import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
-import org.got5.tapestry5.jquery.utils.JQueryDateFieldStack;
+import org.got5.tapestry5.jquery.services.javascript.ZoneSupportStack;
 
 public class JQueryModule
 {
@@ -32,6 +35,9 @@ public class JQueryModule
     {
         configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
         configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
+        configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
+        configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
+        configuration.addInstance(ZoneSupportStack.STACK_ID, ZoneSupportStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration)

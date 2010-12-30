@@ -12,6 +12,7 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * Replacement for {@link CoreJavaScriptStack}.
@@ -40,16 +41,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
             }
         };
 
-        Mapper<Asset, StylesheetLink> assetToStylesheetLink = new Mapper<Asset, StylesheetLink>()
-        {
-            @Override
-            public StylesheetLink map(Asset input)
-            {
-                return new StylesheetLink(input);
-            };
-        };
-        
-        Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(assetToStylesheetLink);
+        Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
 
         stylesheetStack = F.flow("${tapestry.default-stylesheet}",
                                  "org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css")
