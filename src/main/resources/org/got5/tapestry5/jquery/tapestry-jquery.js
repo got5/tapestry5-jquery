@@ -203,7 +203,9 @@ $.widget( "ui.tapestryZone", {
      */
     update: function(specs) {
 		var el = this.element;
-		
+        
+        var effect = el.is(":visible") ? this.options.show : this.options.update;
+
         ajaxRequest = {
             url: specs.url,
             success: function(data) {
@@ -230,8 +232,6 @@ $.widget( "ui.tapestryZone", {
                 data: specs.params
             })
         }
-        
-        effect = el.is(":visible") ? this.options.show : this.options.update;
         
         $.ajax(ajaxRequest);
     }
