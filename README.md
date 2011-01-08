@@ -40,10 +40,10 @@ Due to some extensibility issues of Core components, theses are originals compon
 
 Just add tapestry5-jquery to your classpath (see Maven dependency snippet below)!
 
-Then use components like you would normally do. For Autocomplete, Datefield, Palette and LinkSubmit use "jquery" namespace:
+Then use components like you would normally do. For Autocomplete, Palette and LinkSubmit use "jquery" namespace:
  
 	<t:form>
-        <t:jquery.datefield t:value="date" />
+        <t:jquery.autocomplete />
 		<t:submit />
     </t:form>
 

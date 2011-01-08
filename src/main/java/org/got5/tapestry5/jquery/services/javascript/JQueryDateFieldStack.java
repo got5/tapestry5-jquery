@@ -10,6 +10,7 @@ import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
+import org.apache.tapestry5.internal.services.javascript.DateFieldStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.json.JSONArray;
@@ -18,7 +19,11 @@ import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 
-
+/**
+ * Replacement for the core stack {@link DateFieldStack}.
+ *  
+ * @author criedel
+ */
 public class JQueryDateFieldStack implements JavaScriptStack
 {
     private final ThreadLocale threadLocale;
@@ -56,7 +61,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
         DateFormatSymbols symbols = new DateFormatSymbols(locale);
 
-        spec.put("months", new JSONArray(symbols.getMonths()));
+        spec.put("months", new JSONArray((Object[]) symbols.getMonths()));
 
         StringBuilder days = new StringBuilder();
 

@@ -71,7 +71,14 @@ $.extend(Tapestry.Initializer, {
 	evalScript : eval,
     
 	formEventManager : function(spec) {
-		$("#" + spec.formId).formEventManager(spec);
+		$("#" + spec.formId).formEventManager({
+	       
+            'form' : $('#' + spec.formId),
+            'validateOnBlur' : spec.validate.blur,
+            'validateOnSubmit' : spec.validate.submit
+
+	    });
+		
 	},
     
     formInjector: function(spec) {
@@ -114,7 +121,13 @@ $.extend(Tapestry.Initializer, {
             return false;
         });
     },
-    
+
+    linkSubmit: function (spec) {
+        $("#" + spec.clientId).tapestryLinkSubmit({
+            form: spec.form
+        });
+    },
+
     /**
      * Convert a form or link into a trigger of an Ajax update that
      * updates the indicated Zone.
@@ -194,7 +207,19 @@ $.widget( "ui.tapestryZone", {
         ajaxRequest = {
             url: specs.url,
             success: function(data) {
-                el.html(data.content).effect(effect);
+                
+				if (data.content) {
+
+	                el.html(data.content).effect(effect);
+				} else if (data.zones) {
+					
+					$.each(data.zones, function(zoneId){
+						
+						$('#' + zoneId).html(data.zones[zoneId]).effect(effect);
+					});
+					
+				}
+
                 $.tapestry.utils.loadScriptsInReply(data);
             }
         };
@@ -212,14 +237,154 @@ $.widget( "ui.tapestryZone", {
     }
 });
 
-$.widget("ui.formEventManager", {
-	
-	options: {},
-	
-	_create: function() {
+$.widget( "ui.tapestryLinkSubmit", {
+    options: {
+    },
 
-		// TODO make the event manager work again
-	}
+    _create: function() {
+        this.form = $("#" + this.options.form);
+        
+        this.element.click(function() {
+            $(this).tapestryLinkSubmit("clicked");
+
+            return false;
+        });
+    },
+
+    destroy: function() {
+        this.element
+            .removeClass( "tapestry-palette");
+        
+        $.Widget.prototype.destroy.apply( this, arguments );
+    },
+        
+    _createHidden: function () {    
+        var hidden = $("<input></input>").attr({ "type":"hidden",
+            "name": this.element.id + ":hidden",
+            "value": this.element.id});
+    
+        this.element.after(hidden);
+    },
+    
+    clicked: function() {
+        var onsubmit = this.form.get(0).onsubmit;
+
+        this._createHidden();
+
+        this.form.get(0).submit();  
+    }
+});
+
+$.widget("ui.formEventManager", {
+    options: { },
+
+    _create: function() { 
+	
+        var options = this.options;
+		var form = $(options.form);
+	
+        form.submit(function() {
+
+	        options.validationError = false;
+	
+	        if (!options.skipValidation) {
+	
+	            options.skipValidation = false;
+	
+	            /* Let all the fields do their validations first. */
+	
+	            this.form.fire(Tapestry.FORM_VALIDATE_FIELDS_EVENT, this.form);
+	
+	            /*
+	             * Allow observers to validate the form as a whole. The FormEvent
+	             * will be visible as event.memo. The Form will not be submitted if
+	             * event.result is set to false (it defaults to true). Still trying
+	             * to figure out what should get focus from this kind of event.
+	             */
+	            if (!t.validationError)
+	                this.form.fire(Tapestry.FORM_VALIDATE_EVENT, this.form);
+	
+	            if (t.validationError) {
+	                domevent.stop();
+	
+	                /*
+	                 * Because the submission failed, the last submit element is
+	                 * cleared, since the form may be submitted for some other
+	                 * reason later.
+	                 */
+	                this.setSubmittingElement(null);
+	
+	                return false;
+	            }
+	        }
+	
+	        this.form.fire(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, this.form);
+	
+	        /*
+	         * This flag can be set to prevent the form from submitting normally.
+	         * This is used for some Ajax cases where the form submission must run
+	         * via Ajax.Request.
+	         */
+	
+	        if (this.form.hasClassName(Tapestry.PREVENT_SUBMISSION)) {
+	            domevent.stop();
+	
+	            /*
+	             * Instead fire the event (a listener will then trigger the Ajax
+	             * submission). This is really a hook for the ZoneManager.
+	             */
+	            this.form.fire(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
+	
+	            return false;
+	        }
+	
+	        /* Validation is OK, not doing Ajax, continue as planned. */
+	
+	        return true;
+	    });
+	},
+
+    /**
+     * Identifies in the form what is the cause of the submission. The element's
+     * id is stored into the t:submit hidden field (created as needed).
+     * 
+     * @param element
+     *            id or element that is the cause of the submit (a Submit or
+     *            LinkSubmit)
+     */
+    setSubmittingElement : function(element) {
+
+        var form = this.options.form;
+
+		if (!form.submitHidden) {
+
+            // skip if this is not a tapestry controlled form
+			var hasNoFormData = true;
+			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
+                hasNoFormData = $.isEmptyObject( $(this).attr('value'));
+			});
+
+            if (hasNoFormData) {
+				return;
+			}
+
+            var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
+
+            if (hiddens.size() === 0) {
+
+                /**
+                 * Create a new hidden field directly after the first hidden
+                 * field in the form.
+                 */
+                $(hiddens[0]).after('<input type="hidden" name="t:submit"');
+
+            } else
+                form.submitHidden = hiddens.first();
+        }
+
+        this.submitHidden.value = element == null ? null : $(element).id;
+    }
+	
 });
 
 /**
@@ -402,9 +567,33 @@ $.tapestry = {
                 
                 if (reply.script) 
                     eval(reply.script);
+
+	            /* And handle the scripts after the DOM is updated. */
+                if (reply.inits) {
+	               $.tapestry.executeInits(reply.inits);
+				}					
                 
             });
-        }
+        },
+		
+	    /**
+	     * Called from Tapestry.loadScriptsInReply to load any initializations from
+	     * the Ajax partial page render response. Calls
+	     * Tapestry.onDomLoadedCallback() last. This logic must be deferred until
+	     * after the DOM is fully updated, as initialization often refer to DOM
+	     * elements.
+	     * 
+	     * @param initializations
+	     *            array of parameters to pass to Tapestry.init(), one invocation
+	     *            per element (may be null)
+	     */
+	    executeInits : function(initializations) {
+	
+	        $(initializations).toArray().each(function(spec) {
+	            Tapestry.init(spec);
+	        });
+	    }
+
     }
 };
     

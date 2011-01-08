@@ -85,6 +85,7 @@
 	    
 	    /** Container of functions that may be invoked by the Tapestry.init() function. */
 		Initializer: { }
+		
 	};
 
 	window.Tapestry = Tapestry;
