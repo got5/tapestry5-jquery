@@ -68,7 +68,10 @@ $.extend(Tapestry.Initializer, {
 	 * Ajax requests to handle any setup code that does not fit into a standard
 	 * Tapestry.Initializer call.
 	 */
-	evalScript : eval,
+	evalScript : function(spec) {
+
+		eval(spec);
+	},
     
 	formEventManager : function(spec) {
 		$("#" + spec.formId).formEventManager({
@@ -180,7 +183,7 @@ $.extend(Tapestry.Initializer, {
 $.widget( "ui.tapestryZone", {
 	options: {
     	show: "highlight",
-    	update: "hightlight"
+    	update: "highlight"
 	},
 
 	_create: function() {
@@ -202,22 +205,21 @@ $.widget( "ui.tapestryZone", {
      * @params optional, can contain data. Request will switch from GET to POST
      */
     update: function(specs) {
-		var el = this.element;
         
-        var effect = el.is(":visible") ? this.options.show : this.options.update;
-
-        ajaxRequest = {
+        var ajaxRequest = {
             url: specs.url,
             success: function(data) {
                 
 				if (data.content) {
 
-	                el.html(data.content).effect(effect);
+	                applyContentUpdate(data.content);
+
 				} else if (data.zones) {
-					
+
+                    // perform multi zone update
 					$.each(data.zones, function(zoneId){
-						
-						$('#' + zoneId).html(data.zones[zoneId]).effect(effect);
+
+						$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
 					});
 					
 				}
@@ -226,15 +228,36 @@ $.widget( "ui.tapestryZone", {
             }
         };
         
-        if (specs.params != undefined) {
+        if (specs.params) {
             ajaxRequest = $.extend(ajaxRequest, {
                 type: 'post',
                 data: specs.params
-            })
+            });
         }
         
         $.ajax(ajaxRequest);
-    }
+    }, 
+	
+	/**
+	 * Updates the element's content and triggers the appropriate effect on the
+	 * zone.
+	 * 
+	 * @param {Object} content the new content for this zone's body
+	 */
+	applyContentUpdate: function(content) {
+
+		if (content === undefined) {
+
+			console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
+			return;
+		}
+
+		var el = this.element;
+		var effect = el.is(":visible") ? this.options.update : this.options.show;
+
+		el.html(content).effect(effect);
+	}
+	
 });
 
 $.widget( "ui.tapestryLinkSubmit", {
@@ -561,16 +584,14 @@ $.tapestry = {
             
             $.tapestry.utils.addScripts(reply.scripts, function() {
                 
-				// TODO : reimplement callback					
-				if (callback != undefined)
-                	callback.call(this);
-                
-                if (reply.script) 
-                    eval(reply.script);
+				/* Let the caller do its thing first (i.e., modify the DOM). */
+				if (callback) {
+					callback.call(this);
+				}
 
 	            /* And handle the scripts after the DOM is updated. */
                 if (reply.inits) {
-	               $.tapestry.executeInits(reply.inits);
+	               $.tapestry.utils.executeInits(reply.inits);
 				}					
                 
             });
@@ -588,9 +609,12 @@ $.tapestry = {
 	     *            per element (may be null)
 	     */
 	    executeInits : function(initializations) {
-	
-	        $(initializations).toArray().each(function(spec) {
-	            Tapestry.init(spec);
+
+	        var initArray = $(initializations).toArray();
+
+	        $(initArray).each(function(index) {
+
+	            Tapestry.init(initArray[index]);
 	        });
 	    }
 
