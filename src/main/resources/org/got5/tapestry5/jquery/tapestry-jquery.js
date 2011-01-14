@@ -206,13 +206,15 @@ $.widget( "ui.tapestryZone", {
      */
     update: function(specs) {
         
+		var that = this;
+		
         var ajaxRequest = {
             url: specs.url,
             success: function(data) {
                 
 				if (data.content) {
 
-	                applyContentUpdate(data.content);
+	                that.applyContentUpdate(data.content);
 
 				} else if (data.zones) {
 
@@ -303,68 +305,6 @@ $.widget("ui.formEventManager", {
 
     _create: function() { 
 	
-        var options = this.options;
-		var form = $(options.form);
-	
-        form.submit(function() {
-
-	        options.validationError = false;
-	
-	        if (!options.skipValidation) {
-	
-	            options.skipValidation = false;
-	
-	            /* Let all the fields do their validations first. */
-	
-	            this.form.fire(Tapestry.FORM_VALIDATE_FIELDS_EVENT, this.form);
-	
-	            /*
-	             * Allow observers to validate the form as a whole. The FormEvent
-	             * will be visible as event.memo. The Form will not be submitted if
-	             * event.result is set to false (it defaults to true). Still trying
-	             * to figure out what should get focus from this kind of event.
-	             */
-	            if (!t.validationError)
-	                this.form.fire(Tapestry.FORM_VALIDATE_EVENT, this.form);
-	
-	            if (t.validationError) {
-	                domevent.stop();
-	
-	                /*
-	                 * Because the submission failed, the last submit element is
-	                 * cleared, since the form may be submitted for some other
-	                 * reason later.
-	                 */
-	                this.setSubmittingElement(null);
-	
-	                return false;
-	            }
-	        }
-	
-	        this.form.fire(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, this.form);
-	
-	        /*
-	         * This flag can be set to prevent the form from submitting normally.
-	         * This is used for some Ajax cases where the form submission must run
-	         * via Ajax.Request.
-	         */
-	
-	        if (this.form.hasClassName(Tapestry.PREVENT_SUBMISSION)) {
-	            domevent.stop();
-	
-	            /*
-	             * Instead fire the event (a listener will then trigger the Ajax
-	             * submission). This is really a hook for the ZoneManager.
-	             */
-	            this.form.fire(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
-	
-	            return false;
-	        }
-	
-	        /* Validation is OK, not doing Ajax, continue as planned. */
-	
-	        return true;
-	    });
 	},
 
     /**
