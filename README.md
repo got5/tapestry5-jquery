@@ -47,6 +47,19 @@ Then use components like you would normally do. For Autocomplete, Palette and Li
 		<t:submit />
     </t:form>
 
+Or add jquery to the tapestry-library namespace:
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+    <t:form>
+        <j:autocomplete />
+        <t:submit />
+    </t:form>
+
+</html>
+
 
 ## Important notice
 

@@ -26,4 +26,20 @@
             <t:DummyScriptAndCSSAdder/>
         </t:ifNotNull>
     </t:block>
+    
+    <t:form t:zone="multiZone1" t:id="myMultiZoneUpdateForm">
+        <t:submit t:id="multiSubmit" />
+    </t:form>
+    <t:zone t:id="multiZone1">
+        <t:delegate to="multiUpdateBlock1" />
+    </t:zone>
+    <t:zone t:id="multiZone2">
+        <t:delegate to="multiUpdateBlock2" />
+    </t:zone>
+    <t:block t:id="defaultBlock">
+        <p>default zone content</p>
+    </t:block>
+    <t:block t:id="multiUpdateBlock">
+        <p>rendering block-${blockId} after multi zone update</p>
+    </t:block>
 </html>

@@ -76,6 +76,29 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n Dummy component");
     }
 
+    @Test
+    public void testFormMultiZoneUpdate() 
+    {
+        open("/zone");
+        waitForPageToLoad();
+        assertEquals(getText("identifier=multiZone1"), "default zone content");
+        assertEquals(getText("identifier=multiZone2"), "default zone content");
+        
+        click("identifier=multiSubmit");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isTextPresent("rendering block");
+            }
+        }.wait("element not found");
+
+        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update");
+        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update");
+    }
+    
     /**
      * Validation
      */

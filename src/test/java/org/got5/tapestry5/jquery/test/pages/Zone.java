@@ -18,6 +18,8 @@ package org.got5.tapestry5.jquery.test.pages;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.ajax.MultiZoneUpdate;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -38,10 +40,22 @@ public class Zone
 
     @Inject
     private Block myBlockForm;
+    
+    @Inject
+    private Block defaultBlock, multiUpdateBlock;
 
+    @InjectComponent
+    private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
+    
     @Property
     @Persist
     private String dummy;
+    
+    @Persist
+    private boolean afterFormSubmit;
+    
+    @Property
+    private int blockId;
 
     public Block getTheBlockActionLink()
     {
@@ -73,5 +87,27 @@ public class Zone
 	}
 
 	return myBlockForm;
+    }
+    
+    @OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
+    Object performMultiZoneUpdate() 
+    {
+        afterFormSubmit = true;
+
+        return new MultiZoneUpdate("multiZone1", multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
+    }
+    
+    public Block getMultiUpdateBlock1() {
+
+        blockId = 1;
+        
+        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+    }
+    
+    public Block getMultiUpdateBlock2() {
+
+        blockId = 2;
+        
+        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
     }
 }
