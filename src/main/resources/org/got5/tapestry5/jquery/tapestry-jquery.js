@@ -155,13 +155,44 @@ $.extend(Tapestry.Initializer, {
 
                 return false;
             });
-        }
-        else {
+			
+        } else if (el.is('select')) {
+			
+            el.change(function() {
+                var parameters = {};
+                var selectValue = $('#' + element + ' :selected').text();
+
+                if (selectValue) {
+                    parameters["t:selectvalue"] = selectValue;
+                }
+
+                $("#" + zoneId).tapestryZone("update" , {url : url, params : parameters});
+                return false;
+            });
+
+		} else {
             el.click(function() {
                 $("#" + zoneId).tapestryZone("update" , {url : url});
                 return false;
             });
         }
+    },
+	
+   /**
+     * Converts a link into an Ajax update of a Zone. The url includes the
+     * information to reconnect with the server-side Form.
+     * 
+     * @param spec.selectId
+     *            id or instance of <select>
+     * @param spec.zoneId
+     *            id of element to update when select is changed
+     * @param spec.url
+     *            component event request URL
+     */
+    linkSelectToZone : function(spec) {
+        Tapestry.Initializer.linkZone({ linkId : spec.selectId,
+                                        zoneId : spec.zoneId,      
+								        url : spec.url });
     },
     
     zone: function(spec) {

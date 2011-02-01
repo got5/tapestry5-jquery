@@ -44,7 +44,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
 
         stylesheetStack = F.flow("${tapestry.default-stylesheet}",
-                                 "org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css")
+                                 "${tapestry.jquery.path}/themes/ui-lightness/jquery-ui-1.8.custom.css")
                            .map(pathToStylesheetLink)
                            .toList();
         
@@ -52,24 +52,24 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
             javaScriptStack = F
                 .flow(  "org/got5/tapestry5/tapestry.js",
-                        "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.min.js", 
-                        "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
-                        "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.position.min.js", 
-                        "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js",
-                        "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.core.min.js", 
-                        "org/got5/tapestry5/jquery/tapestry-jquery.js")
+                        "${tapestry.jquery.path}/jquery_1_4_2/jquery-1.4.2.min.js", 
+                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.core.min.js",
+                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.position.min.js", 
+                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.widget.min.js",
+                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.effects.core.min.js", 
+                        "${tapestry.jquery.path}/tapestry-jquery.js")
             .map(pathToAsset).toList();
 
         } else {
             
             javaScriptStack = F
                 .flow(  "org/got5/tapestry5/tapestry.js",
-                        "org/got5/tapestry5/jquery/jquery_1_4_2/jquery-1.4.2.js", 
-                        "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.core.js",
-                        "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.position.js", 
-                        "org/got5/tapestry5/jquery/ui_1_8/jquery.ui.widget.js",
-                        "org/got5/tapestry5/jquery/ui_1_8/jquery.effects.core.js", 
-                        "org/got5/tapestry5/jquery/tapestry-jquery.js")
+                        "${tapestry.jquery.path}/jquery_1_4_2/jquery-1.4.2.js", 
+                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.core.js",
+                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.position.js", 
+                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.widget.js",
+                        "${tapestry.jquery.path}/ui_1_8/jquery.effects.core.js", 
+                        "${tapestry.jquery.path}/tapestry-jquery.js")
             .map(pathToAsset).toList();
 
         }
