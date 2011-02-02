@@ -143,6 +143,8 @@ $.extend(Tapestry.Initializer, {
         var zoneId = spec.zoneId;
         var url = spec.url;
         var el = $('#' + element);
+		
+        var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
 
         if (el.is('form')) {
             el.submit(function() {
@@ -151,7 +153,7 @@ $.extend(Tapestry.Initializer, {
 					params: el.serialize()
 				};
 
-				$("#" + zoneId).tapestryZone("update", specs);
+				zoneElement.tapestryZone("update", specs);
 
                 return false;
             });
@@ -166,13 +168,13 @@ $.extend(Tapestry.Initializer, {
                     parameters["t:selectvalue"] = selectValue;
                 }
 
-                $("#" + zoneId).tapestryZone("update" , {url : url, params : parameters});
+                zoneElement.tapestryZone("update" , {url : url, params : parameters});
                 return false;
             });
 
 		} else {
             el.click(function() {
-                $("#" + zoneId).tapestryZone("update" , {url : url});
+                zoneElement.tapestryZone("update" , {url : url});
                 return false;
             });
         }
