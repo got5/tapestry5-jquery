@@ -16,9 +16,13 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 
@@ -51,4 +55,22 @@ public class JQueryDialog
         if (!request.isXHR()) { return this; }
         return myZone;
     }
+    
+    @Property
+    private String goalName;
+    
+    List<String> onProvideCompletionsFromGoalName(String partial)
+    {
+        List<String> strings = new ArrayList<String>();
+        if (partial != null && partial.startsWith("abc"))
+        {
+            strings.add("abdcdke");
+            strings.add("hgfdhgfhgf");
+            strings.add("jklhjkhl");
+            strings.add("vcxcvcx");
+        }
+
+        return strings;
+    }
+
 }

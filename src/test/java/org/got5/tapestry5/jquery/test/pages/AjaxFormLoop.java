@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,11 +71,17 @@ public class AjaxFormLoop
     public Object onAddRowFromPhones()
     {
         Phone phone = new Phone();
+        phone.setNumber("");
 
         person.getPhones().add(phone);
         phone.setPerson(person);
 
         return phone;
     }
+    
+    void onRemoveRow(Phone phoneToDelete) 
+    {
+    	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
+	}
 
 }
