@@ -16,6 +16,8 @@
 
 package org.got5.tapestry5.jquery.test.entities;
 
+import java.util.Date;
+
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.beaneditor.Width;
@@ -29,8 +31,11 @@ public class Phone
     private Person person;
 
     private PhoneType type;
+    
+    private Date startDate;
 
-    @Width(20)
+
+	@Width(20)
     @Validate("required,maxlength=20")
     private String number;
 
@@ -73,4 +78,12 @@ public class Phone
     {
 	this.number = number;
     }
+    
+    public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 }
