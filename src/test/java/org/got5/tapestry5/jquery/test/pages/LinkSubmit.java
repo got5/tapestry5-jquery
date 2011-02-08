@@ -18,10 +18,34 @@ package org.got5.tapestry5.jquery.test.pages;
 
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.beaneditor.Validate;
 
 public class LinkSubmit
 {
+	@Property
+    @Persist
+    @Validate("required,minlength=5")
+    private String name;
+
     @Property
     @Persist
-    private String name;
+    private String lastClicked;
+    
+    @Persist
+    @Property
+    private Double result;
+    
+    public Object[] getFormContext()
+    {
+        return new Object[]{new Integer(7), new Double(3.14159)};
+     }
+
+    void onSelectedFromFred(Integer first, Double second) 
+    { 
+        lastClicked = "Fred"; 
+        
+        result = first + second;
+    }
+
+    void onNeighbor() { lastClicked = "Barney"; }
 }
