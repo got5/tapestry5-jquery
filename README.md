@@ -1,7 +1,8 @@
-# Tapestry 5 jQuery integration Module - 1.1-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 2.1-SNAPSHOT
 
 ## Changelog
 
+- 2.1-SNAPSHOT : switch to Tapestry 5.2.4
 - 1.1-SNAPSHOT : exclusives jQuery components
 - 1.0-SNAPSHOT : initial releases
 
@@ -105,7 +106,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 
 ## More Informations & contacts
 
-* Twitter: [http://twitter.com/robinkomiwes](http://twitter.com/robinkomiwes)
+* Twitter: [http://twitter.com/GangOfTapestry5](http://twitter.com/GangOfTapestry5)
 
 
 ## License

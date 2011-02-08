@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -26,6 +29,8 @@ import org.got5.tapestry5.jquery.test.entities.Phone;
 
 public class AjaxFormLoop
 {
+
+	
     @Property
     @Persist
     private Person person;
@@ -71,11 +76,19 @@ public class AjaxFormLoop
     public Object onAddRowFromPhones()
     {
         Phone phone = new Phone();
+        phone.setNumber("");
+        phone.setStartDate(new Date());
 
         person.getPhones().add(phone);
         phone.setPerson(person);
-
+    
         return phone;
     }
+    
+    void onRemoveRow(Phone phoneToDelete) 
+    {
+    	person.getPhones().remove(phoneToDelete);
+    	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
+	}
 
 }

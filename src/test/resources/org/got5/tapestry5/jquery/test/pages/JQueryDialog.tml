@@ -1,7 +1,13 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <t:jquery.dialog t:clientId="myDialog">
     	Dialog test!
-		<t:zone t:id="myZone">${count}</t:zone>
+		<t:zone t:id="myZone">${count}
+		
+		<t:form>
+			Try "abcd" :<input t:type="TextField" type="text" t:id="goalName" t:value="goalName" t:mixins="jquery/Autocomplete"/>
+		</t:form>
+		</t:zone>
+		
     </t:jquery.dialog>
 	
 	<h3>Dialog Link</h3>

@@ -21,10 +21,11 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.got5.tapestry5.jquery.services.javascript.ZoneSupportStack;
 
 /**
- * This mixin is automatically added by {@link Zone}. It
- * adds JS & CSS for FormFragments elements
+ * This mixin is automatically added by {@link Zone}. It adds JS & CSS for
+ * FormFragments elements
  */
 @Import(stack = ZoneSupportStack.STACK_ID)
-public class IncludeZoneResources
+public class IncludeZoneResources 
 {
+
 }

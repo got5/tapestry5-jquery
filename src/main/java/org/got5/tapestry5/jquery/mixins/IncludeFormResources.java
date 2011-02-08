@@ -20,7 +20,6 @@ import org.apache.tapestry5.annotations.Import;
 import org.got5.tapestry5.jquery.services.FormResourcesInclusionWorker;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 
-
 /**
  * This mixin is automatically added by {@link FormResourcesInclusionWorker}. It
  * adds JS & CSS for form elements

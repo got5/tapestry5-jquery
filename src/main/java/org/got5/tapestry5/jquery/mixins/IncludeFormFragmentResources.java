@@ -25,6 +25,6 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
  * adds JS & CSS for FormFragments elements
  */
 @Import(stack = FormFragmentSupportStack.STACK_ID)
-public class IncludeFormFragmentResources
+public class IncludeFormFragmentResources 
 {
 }

@@ -61,5 +61,7 @@ public class JQueryModule
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
+    
+   
 
 }
