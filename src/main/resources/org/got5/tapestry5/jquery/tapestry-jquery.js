@@ -266,7 +266,6 @@ $.widget( "ui.tapestryZone", {
 				}
 
                 $.tapestry.utils.loadScriptsInReply(data);
-                el.trigger(Tapestry.ZONE_UPDATED_EVENT);
 
             }
         };
