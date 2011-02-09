@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,17 +37,6 @@ import org.got5.tapestry5.jquery.services.javascript.ZoneSupportStack;
 public class IncludeZoneResources
 {
 
-    @Inject
-    private JavaScriptSupport support;
-    
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.highlight.min.js")
-    private Asset effect;
-
-    @SetupRender
-    public void addScripts()
-    {
-        support.importJavaScriptLibrary(effect);
-    }
+   
 
 }

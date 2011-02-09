@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,27 +33,6 @@ import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 @Import(stack = FormSupportStack.STACK_ID)
 public class IncludeFormResources
 {
-    @Inject
-    private JavaScriptSupport support;
-
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/jquery.validate.min.js")
-    private Asset validationScript;
-
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/validation.js")
-    private Asset scriptInitializer;
-
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/form.css")
-    private Asset formCSS;
-
-    @SetupRender
-    public void addJSValidationScripts()
-    {
-        support.importJavaScriptLibrary(validationScript);
-        support.importJavaScriptLibrary(scriptInitializer);
-        support.importStylesheet(formCSS);
-    }
+   
 
 }

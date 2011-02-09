@@ -33,23 +33,6 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 @Import(stack = FormFragmentSupportStack.STACK_ID)
 public class IncludeFormFragmentResources
 {
-
-    @Inject
-    private JavaScriptSupport support;
-
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/components/formfragment.js")
-    private Asset script;
-    
-    @Inject
-    @Path("classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.effects.blind.min.js")
-    private Asset effect;
-
-    @SetupRender
-    public void addScripts()
-    {
-    	support.importJavaScriptLibrary(effect);
-    	support.importJavaScriptLibrary(script);
-    }
+ 
 
 }
