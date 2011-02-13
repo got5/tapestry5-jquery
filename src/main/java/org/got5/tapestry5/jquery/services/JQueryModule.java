@@ -23,6 +23,7 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
@@ -38,6 +39,7 @@ public class JQueryModule
         configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
         configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
         configuration.addInstance(ZoneSupportStack.STACK_ID, ZoneSupportStack.class);
+        configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration)
@@ -56,12 +58,12 @@ public class JQueryModule
     {
         configuration.add("tapestry.jquery.path", "classpath:org/got5/tapestry5/jquery");
     }
-    
+
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
-    
-   
+
+
 
 }

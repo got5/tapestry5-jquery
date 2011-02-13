@@ -206,6 +206,46 @@ $.extend(Tapestry.Initializer, {
         }
         
         $('#' + spec.element).tapestryZone(spec);
+    }, 
+	
+	/**
+	 * 
+	 * @param spec.action 
+	 *             the event-link-url
+	 * @param spec.params
+	 *             
+	 * @param spec.button
+	 * 
+	 * @param spec.multiple 
+	 *             enables multiple file upload if possible. (default: true)            
+	 * 
+	 * @param spec.maxConnections
+	 *             maximum number of parallel connections. (default: 3)
+	 * 
+	 * @param spec.allowedExtensions
+	 *             Array of file allowed extensions. Accept all files if emtpy (default)
+     * 
+     * @param spec.sizeLimit
+     *              
+     * @param spec.minSizeLimit
+     * 
+     * @param spec.showMessagesDialog
+     *              The id of the error message dialog.
+	 */
+	uploadable: function(spec) {
+        
+		var el = $('#' + spec.elementId);
+		
+		$.extend(spec, {
+			showMessage: function(message) {
+
+				$('#' + spec.showMessagesDialog).text(message).dialog('open');
+				
+			}
+		});
+		
+        el.fileuploader(spec);
+        
     }
     
 });
