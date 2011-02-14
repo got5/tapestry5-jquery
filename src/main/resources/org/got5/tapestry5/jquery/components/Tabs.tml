@@ -1,0 +1,17 @@
+
+<div id="${clientId}"  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+	<ul>
+		<t:loop source="prop:listTabData" value="currentTabData" index="currentPanelId">
+            <li><a href="#" t:type="eventLink" t:event="selectTab" t:zone="contentZone" context="${currentTabData.blockName}">${currentTabData.title}</a></li>        
+        </t:loop>
+	</ul>
+        
+		<div t:type="zone" t:id="contentZone" >
+			<t:delegate to="ActiveBlock"/>
+       </div>
+		
+       
+        
+	
+</div>
