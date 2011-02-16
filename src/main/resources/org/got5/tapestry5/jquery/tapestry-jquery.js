@@ -214,7 +214,8 @@ $.extend(Tapestry.Initializer, {
 	 *             the event-link-url
 	 * @param spec.params
 	 *             
-	 * @param spec.button
+	 * @param spec.messages
+     *             localized messages
 	 * 
 	 * @param spec.multiple 
 	 *             enables multiple file upload if possible. (default: true)            
@@ -240,8 +241,39 @@ $.extend(Tapestry.Initializer, {
 			showMessage: function(message) {
 
 				$('#' + spec.showMessagesDialog).text(message).dialog('open');
+
+			},
+
+			onComplete: function(id, fileName, responseJSON){
 				
-			}
+				if (responseJSON.zones) {
+
+                    // perform multi zone update
+                    $.each(responseJSON.zones, function(zoneId){
+
+                        $('#' + zoneId).tapestryZone("applyContentUpdate", responseJSON.zones[zoneId]);
+                    });
+
+                    $.tapestry.utils.loadScriptsInReply(responseJSON);
+                }
+
+			}, 
+			
+            template: '<div class="qq-uploader">' +
+                '<div class="qq-upload-drop-area"><span>' + spec.messages.dropAreaLabel + ' </span></div>' +
+                '<a class="qq-upload-button btn">' + spec.messages.uploadLabel + '</a>' +
+                '<ul class="qq-upload-list"></ul>' +
+                '</div>',
+
+            // template for one item in file list
+            fileTemplate: '<li>' +
+                    '<span class="qq-upload-file"></span>' +
+                    '<span class="qq-upload-spinner"></span>' +
+                    '<span class="qq-upload-size"></span>' +
+                    '<a class="qq-upload-cancel" href="#">' + spec.messages.cancelLabel + ' </a>' +
+                    '<span class="qq-upload-failed-text">' + spec.messages.failedLabel + '</span>' +
+                    '</li>',
+			
 		});
 		
         el.fileuploader(spec);
@@ -306,7 +338,6 @@ $.widget( "ui.tapestryZone", {
 				}
 
                 $.tapestry.utils.loadScriptsInReply(data);
-
             }
         };
         
@@ -338,6 +369,7 @@ $.widget( "ui.tapestryZone", {
 		var effect = el.is(":visible") ? this.options.update : this.options.show;
 
 		el.html(content).effect(effect);
+        el.trigger(Tapestry.ZONE_UPDATED_EVENT); 
 	}
 	
 });

@@ -37,11 +37,13 @@ public class JQueryTest extends JavascriptTestSuite
     	//super("src/test/jquery/webapp", "*iehta");
     }
 
+    @Override
     protected String getValidationElementLocator(String fieldId)
     {
         return "css=label[for=\"" + fieldId + "\"][generated=\"true\"]";
     }
 
+    @Override
     public void additionalValidationTest()
     {
         // nothing to do
@@ -134,6 +136,7 @@ public class JQueryTest extends JavascriptTestSuite
 
         new Wait()
         {
+            @Override
             public boolean until()
             {
                 return (isVisible(dialogLocator) == state);
@@ -141,5 +144,25 @@ public class JQueryTest extends JavascriptTestSuite
         }.wait(dialogLocator + " visibility should be " + state);
 
         assertEquals(isVisible(dialogLocator), state, dialogLocator + " visibility should be " + state);
+    }
+
+    @Test
+    public void testAjaxUpload()
+    {
+        open("/AjaxUploadTest");
+
+        final long start = System.currentTimeMillis();
+
+        /*
+         * As long as seleniums waits here you can test the component manually :)
+         */
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return start + 60000 < System.currentTimeMillis();
+            };
+        }.wait("waited for a long time...", 120000);
     }
 }

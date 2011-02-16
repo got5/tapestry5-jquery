@@ -518,7 +518,7 @@ qq.FileUploaderBasic.prototype = {
 
 				template: '<div class="qq-uploader">' +
 						'<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-						'<a class="qq-upload-button btn"></a>' +
+						'<a class="qq-upload-button btn">upload</a>' +
 						'<ul class="qq-upload-list"></ul>' +
 						'</div>',
 

@@ -16,7 +16,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * Resource stack for {@link AjaxUpload}.
- * 
+ *
  * @author criedel
  */
 public class AjaxUploadStack implements JavaScriptStack

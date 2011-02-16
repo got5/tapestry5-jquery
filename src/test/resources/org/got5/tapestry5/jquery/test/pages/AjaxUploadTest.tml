@@ -1,0 +1,31 @@
+<html t:type="layout" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+	<j:ajaxUpload t:id="uploadImage" 
+	              t:multiple="true" 
+	              t:allowedExtensions="[jpg, png, gif]" 
+	              t:sizeLimit="1M"> <!-- The units K, M and G are valid for size limits. Anything else will be treated as 0 -->
+		<noscript>
+	       	<p>JavaScript must be activated!</p>
+		</noscript>
+	</j:ajaxUpload>
+
+	<t:zone t:id="uploadResult">
+		<div>
+			<h4>result</h4>
+
+			<t:if test="message">
+			    <p>
+			        <strong>${message}</strong>
+			    </p>
+			</t:if>
+
+			<t:if test="uploadedFiles">
+				<t:grid source="uploadedFiles"></t:grid>
+			</t:if>
+		</div>
+	</t:zone>
+
+</html>
