@@ -78,4 +78,10 @@ public class PrototypeTest extends JavascriptTestSuite
     {
         return "/linksubmit";
     }
+    
+    @Override
+    public String getTabsPage()
+    {
+        return "/jquerytabs";
+    }
 }
