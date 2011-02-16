@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2011 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -366,4 +366,52 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     }
 
     public abstract String getLinkSubmitPage();
+    
+    @Test
+    public void testTabs()
+    {
+        open(getTabsPage());
+        // active tab must be second
+        assertEquals(getText("css=div#contentZone.t-zone h3"), "Panel 2");
+
+        //click on first tab
+        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=div#contentZone.t-zone h3").equals("Panel 1");
+            }
+        }.wait("element not found!", 5000l);
+
+        //click on third tab
+        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_1");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=div#contentZone.t-zone h3").equals("Panel 3");
+            }
+        }.wait("element not found!", 5000l);
+
+        //click on last tab
+        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_2");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=div#contentZone.t-zone h3").equals("Panel 4");
+            }
+        }.wait("element not found!", 5000l);
+
+       
+    }
+    
+    public abstract String getTabsPage();
 }

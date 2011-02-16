@@ -96,6 +96,13 @@ public class JQueryTest extends JavascriptTestSuite
         return "/jquerylinksubmit";
     }
 
+    @Override
+    public String getTabsPage()
+    {
+        return "/jquerytabs";
+    }
+    
+    
     /**
      * jQuery exclusives components
      */
