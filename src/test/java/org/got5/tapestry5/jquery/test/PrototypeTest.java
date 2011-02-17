@@ -84,4 +84,6 @@ public class PrototypeTest extends JavascriptTestSuite
     {
         return "/jquerytabs";
     }
+    
+   
 }

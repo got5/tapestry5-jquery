@@ -17,6 +17,13 @@ Exclusives jQuery components :
 
 - **Dialog** with **DialogLink** and **DialogAjaxLink**
 	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
+- **Tabs** 
+	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
+- **Accordion** 
+	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
+
+- **AjaxUpload** 
+	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 

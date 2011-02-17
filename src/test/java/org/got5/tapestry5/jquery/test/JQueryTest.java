@@ -168,8 +168,37 @@ public class JQueryTest extends JavascriptTestSuite
             @Override
             public boolean until()
             {
-                return start + 60000 < System.currentTimeMillis();
+                return start + 2000 < System.currentTimeMillis();
             };
-        }.wait("waited for a long time...", 120000);
+        }.wait("waited for a long time...", 3000);
+    }
+    
+    @Test
+    public void testAccordion()
+    {
+        open("/jqueryaccordion");
+        // active tab must be second
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 2");
+            }
+        }.wait("element not found!", 5000l);
+       
+          //click on first tab
+        click("xpath=/html/body/div/div/div/h3/a");
+
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 1");
+            }
+        }.wait("element not found!", 5000l);
+
+       
     }
 }

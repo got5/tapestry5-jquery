@@ -6,6 +6,21 @@
                 Dialog
             </t:pagelink>
         </li>
+        <li>
+            <t:pagelink t:page="jquerytabs">
+                Tabs
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="jqueryaccordion">
+                Accordion
+            </t:pagelink>
+        </li>
+        <li>
+            <t:pagelink t:page="ajaxuploadtest">
+                AjaxUpload
+            </t:pagelink>
+        </li>
     </ul>
     <h3>Core Components and features : </h3>
     <ul>
@@ -75,5 +90,6 @@
                 jQuery/LinkSubmit
             </t:pagelink>)
         </li>
+        
     </ul>
 </html>
