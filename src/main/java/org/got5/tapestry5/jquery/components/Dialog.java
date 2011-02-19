@@ -10,8 +10,10 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
+@ImportJQueryUI(value = { "jquery.ui.mouse", "jquery.ui.draggable", "jquery.ui.resizable", "jquery.ui.dialog" })
 public class Dialog implements ClientElement
 {
     @Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
@@ -64,10 +66,7 @@ public class Dialog implements ClientElement
     @AfterRender
     protected void addJSResources()
     {
-        String[] scripts =
-        { "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.mouse.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.draggable.min.js",
-                "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.resizable.min.js", "org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.dialog.min.js",
-                "org/got5/tapestry5/jquery/components/dialog.js" };
+        String[] scripts = { "org/got5/tapestry5/jquery/components/dialog.js" };
 
         for (String path : scripts)
         {

@@ -21,7 +21,7 @@ import org.apache.tapestry5.services.javascript.StylesheetLink;
 
 /**
  * Replacement for the core stack {@link DateFieldStack}.
- *  
+ *
  * @author criedel
  */
 public class JQueryDateFieldStack implements JavaScriptStack
@@ -32,8 +32,15 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     private final List<Asset> javaScriptStack;
 
-    public JQueryDateFieldStack(ThreadLocale threadLocale, @Symbol(SymbolConstants.COMPACT_JSON)
-    boolean compactJSON, final AssetSource assetSource)
+    public JQueryDateFieldStack(final ThreadLocale threadLocale,
+
+                                @Symbol(SymbolConstants.COMPACT_JSON)
+                                final boolean compactJSON,
+
+                                @Symbol(SymbolConstants.PRODUCTION_MODE)
+                                final boolean productionMode,
+
+                                final AssetSource assetSource)
     {
         this.threadLocale = threadLocale;
         this.compactJSON = compactJSON;
@@ -47,10 +54,21 @@ public class JQueryDateFieldStack implements JavaScriptStack
             }
         };
 
-        javaScriptStack = F
-                .flow("${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.datepicker.min.js", 
-                      "${tapestry.jquery.path}/components/datefield.js")
-                .map(pathToAsset).toList();
+        if (productionMode) {
+
+            javaScriptStack = F
+                    .flow("${jquery.ui.path}/minified/jquery.ui.datepicker.min.js",
+                          "${tapestry.jquery.path}/components/datefield.js")
+                    .map(pathToAsset).toList();
+
+        } else {
+
+            javaScriptStack = F
+                    .flow("${jquery.ui.path}/jquery.ui.datepicker.js",
+                          "${tapestry.jquery.path}/components/datefield.js")
+                    .map(pathToAsset).toList();
+        }
+
     }
 
     public String getInitialization()

@@ -28,41 +28,37 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
-@Import(library= {
-		"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.core.min.js",
-		"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js",
-		"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.accordion.min.js",
-		"accordion.js"})
+@ImportJQueryUI( value = { "jquery.ui.core",
+                           "jquery.ui.widget",
+                           "jquery.ui.accordion" })
+@Import(library =          "accordion.js")
 public class Accordion extends AbstractExtendableComponent
 {
 	@Inject
 	private ComponentResources resources;
-	
+
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
-    @Inject
-    private AssetSource source;
-	
 	@Property
 	@Parameter(required=true)
 	private ArrayList<JQueryAccordionData> listOfElements;
-	
+
 	@Parameter(required=true)
-	private int activeElementId;	
-	
+	private int activeElementId;
+
 	@Parameter
     private JSONObject params;
-	
+
 	@Property
 	private JQueryAccordionData currentElement;
-	
+
 
 	@SetupRender
     void setJSInit()
@@ -73,14 +69,14 @@ public class Accordion extends AbstractExtendableComponent
     @BeginRender
     void startDiv(MarkupWriter writer)
     {
-    	
-    		
+
+
     }
 
     @AfterRender
     void declareDialog(MarkupWriter writer)
     {
-    
+
         JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
@@ -95,18 +91,13 @@ public class Accordion extends AbstractExtendableComponent
 
 
         javaScriptSupport.addInitializerCall(getInitMethod(), data);
-    
-    }
-  
 
-	
-	
+    }
+
 	public Block getCurrentBlock()
 	{
 		String blockName=currentElement.getBlockName();
 		return resources.getContainer().getComponentResources().getBlock(blockName);
 	}
-
-
 
 }

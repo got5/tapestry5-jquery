@@ -16,6 +16,14 @@
 
 package org.got5.tapestry5.jquery.services;
 
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_CORE_PATH;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_UI_PATH;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_VALIDATE_PATH;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_VERSION;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.TAPESTRY_JQUERY_PATH;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.TAPESTRY_JS_PATH;
+
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -28,7 +36,6 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
-import org.got5.tapestry5.jquery.services.javascript.ZoneSupportStack;
 
 public class JQueryModule
 {
@@ -38,15 +45,14 @@ public class JQueryModule
         configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
         configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
         configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
-        configuration.addInstance(ZoneSupportStack.STACK_ID, ZoneSupportStack.class);
         configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration)
     {
-        configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
         configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
-        configuration.addInstance("ZoneResourcesInclusionWorker", ZoneResourcesInclusionWorker.class);
+        configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+        configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -56,14 +62,21 @@ public class JQueryModule
 
     public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
     {
-        configuration.add("tapestry.jquery.path", "classpath:org/got5/tapestry5/jquery");
+        configuration.add(TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
+        configuration.add(TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
+
+        configuration.add(JQUERY_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jquery_core");
+        configuration.add(JQUERY_VERSION, "1.5");
+
+        configuration.add(JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8");
+        configuration.add(JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css");
+
+        configuration.add(JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
-
-
 
 }

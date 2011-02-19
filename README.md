@@ -8,10 +8,9 @@
 
 ## Features
 
-This module provides jQuery integration for Tapestry and completely drop out Prototype, Scriptaculous and the base tapestry.js script. 
-This project is based on [Tapestry5-ClientResources](http://github.com/got5/tapestry5-clientresources) project.
+This module provides jQuery integration for Tapestry 5 and completely drop out Prototype, Scriptaculous and the base tapestry.js script. 
 
-It also relies on [jQuery](http://jquery.com) 1.4.2 and [jQuery UI](http://jqueryui.com/) 1.8.
+It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
 
 Exclusives jQuery components : 
 
@@ -21,7 +20,6 @@ Exclusives jQuery components :
 	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
 - **Accordion** 
 	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
-
 - **AjaxUpload** 
 	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
 
@@ -113,7 +111,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 
 ## More Informations & contacts
 
-* Twitter: [http://twitter.com/GangOfTapestry5](http://twitter.com/GangOfTapestry5)
+* Twitter: [http://twitter.com/GOTapestry5](http://twitter.com/GOTapestry5)
 
 
 ## License

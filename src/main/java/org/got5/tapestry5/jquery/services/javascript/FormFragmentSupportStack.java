@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
@@ -17,7 +19,11 @@ public class FormFragmentSupportStack implements JavaScriptStack {
 
     private final List<Asset> javaScriptStack;
 
-    public FormFragmentSupportStack(final AssetSource assetSource) {
+    public FormFragmentSupportStack(final AssetSource assetSource,
+
+            @Symbol(SymbolConstants.PRODUCTION_MODE)
+            final boolean productionMode)
+    {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
 
@@ -28,9 +34,17 @@ public class FormFragmentSupportStack implements JavaScriptStack {
             }
         };
 
-        javaScriptStack = F.flow("${tapestry.jquery.path}/components/formfragment.js", 
-                                 "${tapestry.jquery.path}/ui_1_8/minified/jquery.effects.blind.min.js")
-                           .map(pathToAsset).toList();
+        if (productionMode) {
+
+            javaScriptStack = F.flow("${tapestry.jquery.path}/components/formfragment.js",
+                                     "${jquery.ui.path}/minified/jquery.effects.blind.min.js")
+                               .map(pathToAsset).toList();
+        } else {
+
+            javaScriptStack = F.flow("${tapestry.jquery.path}/components/formfragment.js",
+                                     "${jquery.ui.path}/jquery.effects.blind.js")
+                               .map(pathToAsset).toList();
+        }
 
     }
 

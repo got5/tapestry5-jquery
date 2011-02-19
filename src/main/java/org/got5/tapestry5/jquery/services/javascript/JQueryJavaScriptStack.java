@@ -16,7 +16,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * Replacement for {@link CoreJavaScriptStack}.
- * 
+ *
  * @author criedel
  */
 public class JQueryJavaScriptStack implements JavaScriptStack {
@@ -27,12 +27,14 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     private final List<StylesheetLink> stylesheetStack;
 
-    public JQueryJavaScriptStack(@Symbol(SymbolConstants.PRODUCTION_MODE) boolean productionMode,
-                                 final AssetSource assetSource) {
+    public JQueryJavaScriptStack(@Symbol(SymbolConstants.PRODUCTION_MODE)
+                                 final boolean productionMode,
 
+                                 final AssetSource assetSource)
+    {
         this.productionMode = productionMode;
 
-        Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
+        final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
             @Override
             public Asset map(String path)
@@ -41,34 +43,36 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
             }
         };
 
-        Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
+        final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
 
         stylesheetStack = F.flow("${tapestry.default-stylesheet}",
-                                 "${tapestry.jquery.path}/themes/ui-lightness/jquery-ui-1.8.custom.css")
+                                 "${jquery.ui.default-theme.path}")
                            .map(pathToStylesheetLink)
                            .toList();
-        
+
         if (productionMode) {
 
             javaScriptStack = F
-                .flow(  "org/got5/tapestry5/tapestry.js",
-                        "${tapestry.jquery.path}/jquery_1_4_2/jquery-1.4.2.min.js", 
-                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.core.min.js",
-                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.position.min.js", 
-                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.ui.widget.min.js",
-                        "${tapestry.jquery.path}/ui_1_8/minified/jquery.effects.core.min.js", 
+                .flow(  "${tapestry.js.path}",
+                        "${jquery.core.path}/jquery-${jquery.version}.min.js",
+                        "${jquery.ui.path}/minified/jquery.ui.core.min.js",
+                        "${jquery.ui.path}/minified/jquery.ui.position.min.js",
+                        "${jquery.ui.path}/minified/jquery.ui.widget.min.js",
+                        "${jquery.ui.path}/minified/jquery.effects.core.min.js",
+                        "${jquery.ui.path}/minified/jquery.effects.highlight.min.js",
                         "${tapestry.jquery.path}/tapestry-jquery.js")
             .map(pathToAsset).toList();
 
         } else {
-            
+
             javaScriptStack = F
-                .flow(  "org/got5/tapestry5/tapestry.js",
-                        "${tapestry.jquery.path}/jquery_1_4_2/jquery-1.4.2.js", 
-                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.core.js",
-                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.position.js", 
-                        "${tapestry.jquery.path}/ui_1_8/jquery.ui.widget.js",
-                        "${tapestry.jquery.path}/ui_1_8/jquery.effects.core.js", 
+                .flow(  "${tapestry.js.path}",
+                        "${jquery.core.path}/jquery-${jquery.version}.js",
+                        "${jquery.ui.path}/jquery.ui.core.js",
+                        "${jquery.ui.path}/jquery.ui.position.js",
+                        "${jquery.ui.path}/jquery.ui.widget.js",
+                        "${jquery.ui.path}/jquery.effects.core.js",
+                        "${jquery.ui.path}/jquery.effects.highlight.js",
                         "${tapestry.jquery.path}/tapestry-jquery.js")
             .map(pathToAsset).toList();
 
@@ -95,5 +99,5 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     {
         return Collections.emptyList();
     }
-    
+
 }
