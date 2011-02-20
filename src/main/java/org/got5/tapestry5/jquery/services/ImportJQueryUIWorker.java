@@ -70,7 +70,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
         public Asset map(String path)
         {
 
-            if (!productionMode)
+            if (productionMode)
             {
                 String minPath = path + ".min.js";
 

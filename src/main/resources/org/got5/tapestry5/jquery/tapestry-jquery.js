@@ -19,7 +19,7 @@ $.extend(Tapestry, {
         $.each(specs, function(functionName, params) {
             var initf = Tapestry.Initializer[functionName];
             
-            if (initf == undefined) {
+            if (!initf) {
                 $().log("No Tapestry.Initializer function for : " + functionName);
             }
             
@@ -36,9 +36,18 @@ $.extend(Tapestry, {
     
     markScriptLibrariesLoaded: function(scripts) {
         var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
+
+        if (!virtualScripts) {
+            virtualScripts = [];
+        }
+
         $.each(scripts, function(i, script) {
             var complete = $.tapestry.utils.rebuildURL(script);
-            virtualScripts.push(complete);
+
+	        if ($.inArray(complete, virtualScripts) === -1) {
+
+	            virtualScripts.push(complete);
+	        }
         });
         
         $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
@@ -106,7 +115,7 @@ $.extend(Tapestry.Initializer, {
                 var container = $("#" + fragmentId),
 					fragment = container.data("tapestry.formFragment");
                 
-                if (fragment != undefined) {
+                if (fragment) {
                     // TODO : reimplement fragment.hideAndRemove();
                 }
                 else {
@@ -359,7 +368,7 @@ $.widget( "ui.tapestryZone", {
 	 */
 	applyContentUpdate: function(content) {
 
-		if (content === undefined) {
+		if (!content) {
 
 			console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
 			return;
@@ -561,7 +570,7 @@ $.tapestry = {
                     var assetURL = $.tapestry.utils.rebuildURL(s);
                     var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
                     
-                    if (virtualScripts == undefined) {
+                    if (!virtualScripts) {
                         virtualScripts = [];
                         
                         $('script[src]').each(function(i, script) {
@@ -570,7 +579,7 @@ $.tapestry = {
                         });
                     }
                     
-                    if ($.inArray(assetURL, virtualScripts) == -1) {
+                    if ($.inArray(assetURL, virtualScripts) === -1) {
                         $('head').append('<script src="' + assetURL + '" type="text/javascript" />');
                         virtualScripts.push(assetURL);
                     }
@@ -589,11 +598,11 @@ $.tapestry = {
                 $.each(stylesheets, function(i, s) {
                     var assetURL = $.tapestry.utils.rebuildURL(s.href);
                     
-                    if ($('head link[href="' + assetURL + '"]').size() == 0) {
+                    if ($('head link[href="' + assetURL + '"]').size() === 0) {
                     
                         stylesheet = '<link href="' + assetURL + '" type="text/css" rel="stylesheet"';
                         
-                        if (s.media != undefined) 
+                        if (s.media) 
                             stylesheet += ' media="' + s.media + '" ';
                         
                         stylesheet += '/>';
