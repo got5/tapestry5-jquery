@@ -22,6 +22,12 @@ Exclusives jQuery components :
 	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
 - **AjaxUpload** 
 	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
+	
+Exclusives jQuery Mixins :
+
+- **Button** 
+	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)	
+
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 

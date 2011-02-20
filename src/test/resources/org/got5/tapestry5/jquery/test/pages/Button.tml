@@ -1,0 +1,11 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+        <t:textfield t:value="foo" t:id="foo" />
+        <t:submit t:mixins="jquery/button" />
+		<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
+				
+		
+    </t:form>
+    
+    
+</html>
