@@ -52,7 +52,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Override
     public String getCalendarPage()
     {
-        return "/jquerycalendar";
+        return "/calendar";
     }
 
     @Override
