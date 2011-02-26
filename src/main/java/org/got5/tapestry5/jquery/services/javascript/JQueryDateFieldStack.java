@@ -1,6 +1,22 @@
+//
+// Copyright 2010 GOT5 (GO Tapestry 5)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
 package org.got5.tapestry5.jquery.services.javascript;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -22,11 +38,13 @@ import org.apache.tapestry5.services.javascript.StylesheetLink;
 /**
  * Replacement for the core stack {@link DateFieldStack}.
  *
- * @author criedel
+ * @author criedel, GOT5
  */
 public class JQueryDateFieldStack implements JavaScriptStack
 {
     private final ThreadLocale threadLocale;
+    
+    private final AssetSource assetSource;
 
     private final boolean compactJSON;
 
@@ -43,6 +61,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
                                 final AssetSource assetSource)
     {
         this.threadLocale = threadLocale;
+        this.assetSource = assetSource;
         this.compactJSON = compactJSON;
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
@@ -53,7 +72,8 @@ public class JQueryDateFieldStack implements JavaScriptStack
                 return assetSource.getExpandedAsset(path);
             }
         };
-
+        
+        
         if (productionMode) {
 
             javaScriptStack = F
@@ -104,14 +124,27 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
         spec.put("firstDay", firstDay == Calendar.SUNDAY ? 6 : firstDay - 2);
 
+        // set language
+        spec.put("language", locale.getLanguage());
+        
         // TODO: Skip localization if locale is English?
 
-        return String.format("Tapestry.init({\"dateField\": %s });", spec.toString(compactJSON));
+        return String.format("Tapestry.DateField.initLocalization(%s);", spec.toString(compactJSON));
     }
 
     public List<Asset> getJavaScriptLibraries()
     {
-        return javaScriptStack;
+    	Locale locale = threadLocale.getLocale();
+        String pathToDatepickerI18nRess = "${jquery.ui.path}/i18n/jquery.ui.datepicker-"+locale.getLanguage()+".js";
+        Asset datePickerI18nAsset = this.assetSource.getExpandedAsset(pathToDatepickerI18nRess);
+     	if (datePickerI18nAsset.getResource().exists())
+     	{
+     		List<Asset> ret = new ArrayList<Asset>();
+     		ret.addAll(javaScriptStack);
+     		ret.add(datePickerI18nAsset);
+     		return ret;
+     	}
+    	return javaScriptStack;
     }
 
     public List<StylesheetLink> getStylesheets()

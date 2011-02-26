@@ -1,23 +1,39 @@
 (function($){
-    /** Container of functions that may be invoked by the Tapestry.init() function. */
+    
+	
+	/** Container of functions that may be invoked by the Tapestry.init() function. */
     $.extend(Tapestry.Initializer, {
-        dateField: function(specs) {
-			if (specs.localization && specs.localization.firstDay) {
-				$.tapestry.dateField.firstDay = specs.localization.firstDay;
-			}
+        dateField: function(specs) {	
 			
             $("#" + specs.field).datepicker({
-                firstDay: $.tapestry.dateField.firstDay,
+                firstDay: Tapestry.DateField.firstDay,
                 gotoCurrent: true
             });
         }
     });
 	
-	$.extend($.tapestry, {
-		dateField : {
-			firstDay: 0
+	$.extend(Tapestry, {
+		DateField : {
+			firstDay: 0,
+			localized:false,
+			initLocalization : function(localization) {
+			
+				this.months = localization.months;
+				this.days = localization.days;
+				this.firstDay = localization.firstDay;
+			
+				//set the locale
+				$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+				$( "#datepicker" ).datepicker( $.datepicker.regional[ localization.language ] );
+				$( "#locale" ).change(function() {
+					$( "#datepicker" ).datepicker( "option",
+													$.datepicker.regional[ $( this ).val() ] );
+				});
+			
+			}
 		}
 	});
+			
 })(jQuery);
 
 

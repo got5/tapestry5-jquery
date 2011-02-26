@@ -3,4 +3,7 @@
         <t:datefield t:value="date" />
 		<t:submit />
     </t:form>
+    <p>
+    Date value is : ${date}
+    </p>
 </html>
