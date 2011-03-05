@@ -1,0 +1,27 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+  <h1>DateField inside Ajax Form</h1>
+
+	
+	<br/><br/>
+    <t:zone t:id="formZone" id="formZone" update="show">
+			<form t:id="ajaxForm" t:type="form" t:zone="nameZone" style="background-color: eee; padding: 15px">
+			    <t:errors/>
+			
+				First Name: <input t:type="TextField" t:id="firstName"/><br/>
+				Last Name: <input t:type="TextField" t:id="lastName"/><br/><br/>
+				Birthday <input t:type="datefield" t:id="birthday"/> <br/><br/>
+		 
+				<br/><br/>	
+				<input type="submit" value="Accept"/>
+		 	</form>
+	</t:zone>
+	
+	
+ 	
+ 	<t:zone t:id="nameZone" id="nameZone">
+			Welcome ${name}.
+			Birthday ${birthday}
+	</t:zone><br/>
+	
+
+</html>

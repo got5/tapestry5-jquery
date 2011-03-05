@@ -21,20 +21,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.apache.tapestry5.corelib.components.DateField;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.PersistentLocale;
 
 
-public class JQueryCalendar extends Calendar
+
+public class CalendarLocalized extends Calendar
 {
 	@Persist
     private Date birthday;
 
     @Persist
     private Date asteroidImpact;
+    
+    @Component
+	private Form testForm;
+    
+    @Component(id = "asteroidImpact")
+	private DateField dfai;
 
     @Inject
     private PersistentLocale persistentLocale;
@@ -66,6 +79,19 @@ public class JQueryCalendar extends Calendar
         this.asteroidImpact = asteroidImpact;
     }
 
+    @OnEvent(value = EventConstants.SUCCESS, component="testForm")
+	Object onSuccess()
+	{
+		Date now = new Date(); 
+		if(asteroidImpact.before(now))
+		{
+			testForm.recordError(dfai, "must be later than now");
+			
+		}	
+		return null;
+	 }
+    
+    
     void onActionFromClear()
     {
         birthday = null;
@@ -77,5 +103,6 @@ public class JQueryCalendar extends Calendar
     void onActionFromFrench() { persistentLocale.set(Locale.FRENCH); }
     
     void onActionFromDeutsch() { persistentLocale.set(Locale.GERMAN); }
+    
     
 }

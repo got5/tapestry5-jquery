@@ -1,15 +1,15 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-  <h1>DateField Demo</h1>
+  <h1>Localized Calendar</h1>
 
-    <t:form>
+    <t:form t:id="testForm">
         <t:errors/>
 
         <div class="t-beaneditor">
 
-            <!--  >div class="t-beaneditor-row">
+            <div class="t-beaneditor-row">
                 <t:label for="birthday"/>
-                <t:datefield format="d MMM yyyy" hidetextfield="true" t:id="birthday"/>
-            </div-->
+                <t:datefield  hidetextfield="true" t:id="birthday"/>
+            </div>
 
             <div class="t-beaneditor-row">
                 <t:label for="asteroidImpact"/>
@@ -24,22 +24,23 @@
         </div>
     </t:form>
 
+
     <p>
-        <t:actionlink t:id="clear"> clear</t:actionlink>
-        <t:actionlink t:id="english"> english</t:actionlink>
-        <t:actionlink t:id="french"> french</t:actionlink>
-        <t:actionlink t:id="deutsch"> deutsch</t:actionlink>
+        <t:actionlink t:id="clear"> clear</t:actionlink><br/>
+        <t:actionlink t:id="english"> english</t:actionlink><br/>
+        <t:actionlink t:id="french"> french</t:actionlink><br/>
+        <t:actionlink t:id="deutsch"> deutsch</t:actionlink><br/>
     </p>
 
-    <!-- >t:if test="birthday">
+    <t:if test="birthday">
         <hr/>
         <p>
             Birthday: [<t:output value="birthday" format="dateFormat"/>]
-        </p-->
+        </p>
 
         <p>
             Impact: [<t:output value="asteroidImpact" format="dateFormat"/>]
         </p>
-    <!--/t:if-->
+    </t:if>
 
 </html>

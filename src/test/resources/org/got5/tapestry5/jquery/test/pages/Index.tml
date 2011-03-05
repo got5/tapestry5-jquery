@@ -1,5 +1,6 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <h3>Exclusives jQuery components</h3>
+    <br/>
     <ul>
         <li>
             <t:pagelink t:page="jquerydialog">
@@ -22,7 +23,9 @@
             </t:pagelink>
         </li>
     </ul>
+    <br/>
     <h3>Core Components and features : </h3>
+    <br/>
     <ul>
         <li>
             <t:pagelink t:page="helloworld">
@@ -39,22 +42,28 @@
                 Validation
             </t:pagelink>
         </li>
+        <br/>
         <li>
-            <t:pagelink t:page="calendar" class="nojquery">
-                Calendar
+            <t:pagelink t:page="calendar">
+            -( Calendar )-
             </t:pagelink>
-            (
-            <t:pagelink t:page="jquerycalendar">
-                jQuery/Calendar
-            </t:pagelink>)
+            <br/>
+            <t:pagelink t:page="calendarlocalized">
+            -( Calendar Localized )-
+            </t:pagelink>
+            <br/>
+            <t:pagelink t:page="calendarinajaxform">
+            -( Calendar in Ajax Form )- 
+            </t:pagelink>
         </li>
+        <br/>
         <li>
             <t:pagelink t:page="grid">
                 Grid
             </t:pagelink>
         </li>
         <li>
-            <t:pagelink t:page="autocomplete" class="nojquery">
+            <t:pagelink t:page="autocomplete">
                 Autocomplete
             </t:pagelink>
             (
@@ -71,7 +80,7 @@
             <t:pagelink t:page="palette" class="nojquery">
                 Palette
             </t:pagelink>
-            (
+            
             <t:pagelink t:page="jquerypalette">
                 jQuery/Palette
             </t:pagelink>)

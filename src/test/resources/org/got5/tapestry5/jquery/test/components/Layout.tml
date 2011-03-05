@@ -1,21 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <head>
-        <meta charset="utf-8" />
-        <title>Tapestry AWL jQuery Test Site</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<head>
+	<title>Tapestry 5 jQuery</title>
+</head>
+<body id="homepage">
+	<div class="wrapper bs">
+		<ul class="nav">
+				<li>
+					<a href="https://github.com/got5/tapestry5-jquery">Download</a>
+					
+				</li>
+				<li class="last">
+					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
+				</li>
+			
+		</ul>
 
-    </head>
-    <body>
-        <div class="wrapper">
-        	<h1><t:pagelink t:page="index">Tapestry AWL jQuery Test Site</t:pagelink></h1>
+		<div id="top">
+
+			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+
+			<div>Welcome to Tapestry 5 Jquery !</div>
 			
-			<h2 t:type="ifNotNull" t:test="title">
-				${title}
-			</h2>
-			
-			<div id="content">
-				<t:body />
+			<div id="aside">
+			Tapestry 5 jQuery integration. Fully replace Prototype and Scriptaculous with jQuery with as less as possible compatibility issues 
 			</div>
+			
+			
+			<div class="clearer"></div>
+
 		</div>
-	</body>
+		
+		<div id="bar">
+			<strong>Tapestry jQuery For Tapestry 5.2.4</strong>
+		</div>
+		
+		
+		<div id="content">
+			
+			<t:body />
+			<div class="clearer"></div>			
+
+		</div>		
+		
+		<div class="clearer"></div>
+
+		<div id="footer">Created with <a href="http://tapestry.apache.org/">Apache Tapestry 5</a>, 
+		Get the source code of Tapestry jQuery at <a href="https://github.com/got5">Github</a></div>
+
+	</div>
+</body>
 </html>

@@ -7,7 +7,9 @@
 			
             $("#" + specs.field).datepicker({
                 firstDay: Tapestry.DateField.firstDay,
-                gotoCurrent: true
+                gotoCurrent: true,
+                showOn: "button",
+        		buttonImageOnly: false
             });
         }
     });
