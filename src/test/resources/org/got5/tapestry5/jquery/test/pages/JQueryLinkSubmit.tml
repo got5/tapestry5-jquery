@@ -1,7 +1,7 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <t:form t:id="form">
 		<t:textfield t:value="name" /><br />
-		<t:jquery.linkSubmit>submit </t:jquery.linkSubmit>
+		<t:linkSubmit>submit </t:linkSubmit>
 		
     </t:form>
 	

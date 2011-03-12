@@ -136,8 +136,18 @@ $.extend(Tapestry.Initializer, {
     },
 
     linkSubmit: function (spec) {
-        $("#" + spec.clientId).tapestryLinkSubmit({
-            form: spec.form
+
+        var el = $("#" + spec.clientId);
+        var id = el.attr('id');
+
+        el.replaceWith('<a id="' + id + '">' + el.html() + '</a>');
+		// reload element
+		el = $("#" + spec.clientId);
+		el.attr('href', '#');
+
+        el.tapestryLinkSubmit({
+            form: spec.form,
+			validate: spec.validate
         });
     },
 
@@ -157,7 +167,16 @@ $.extend(Tapestry.Initializer, {
         var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
 
         if (el.is('form')) {
-            el.submit(function() {
+			
+			el.addClass(Tapestry.PREVENT_SUBMISSION);
+
+			el.submit(function() {
+				
+				el.trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
+				
+				return false;
+			});
+            el.bind(Tapestry.FORM_PROCESS_SUBMIT_EVENT, function() {
 				var specs = {
 					url : url,
 					params: el.serialize()
@@ -385,12 +404,19 @@ $.widget( "ui.tapestryZone", {
 
 $.widget( "ui.tapestryLinkSubmit", {
     options: {
+		validate : true
     },
 
     _create: function() {
-        this.form = $("#" + this.options.form);
-        
-        this.element.click(function() {
+        var form = $("#" + this.options.form);
+
+        var el = $(this.element);
+		if (!this.options.validate) {
+			// skips validation if the SubmitMode is CANCEL
+			el.addClass("cancel");
+		}
+		
+        el.click(function() {
             $(this).tapestryLinkSubmit("clicked");
 
             return false;
@@ -398,27 +424,22 @@ $.widget( "ui.tapestryLinkSubmit", {
     },
 
     destroy: function() {
-        this.element
-            .removeClass( "tapestry-palette");
-        
+
         $.Widget.prototype.destroy.apply( this, arguments );
-    },
-        
-    _createHidden: function () {    
-        var hidden = $("<input></input>").attr({ "type":"hidden",
-            "name": this.element.id + ":hidden",
-            "value": this.element.id});
-    
-        this.element.after(hidden);
     },
     
     clicked: function() {
-        var onsubmit = this.form.get(0).onsubmit;
+		var form = $("#" + this.options.form);
 
-        this._createHidden();
+		if (form.hasClass(Tapestry.PREVENT_SUBMISSION)) {
+	   
+            $(form).trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);         	
 
-        this.form.get(0).submit();  
-    }
+		} else {
+            form.submit();  
+		}
+    },
+	
 });
 
 $.widget("ui.formEventManager", {

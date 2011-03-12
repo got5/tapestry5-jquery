@@ -82,6 +82,13 @@
 	    
 	    /** Time, in seconds, that console messages are visible. */
 	    CONSOLE_DURATION: 10,
+
+		/**
+		 * CSS Class added to a <form> element that directs Tapestry to prevent
+		 * normal (HTTP POST) form submission, in favor of Ajax (XmlHttpRequest)
+		 * submission.
+		 */
+		PREVENT_SUBMISSION : "t-prevent-submission",
 	    
 	    /** Container of functions that may be invoked by the Tapestry.init() function. */
 		Initializer: { }
