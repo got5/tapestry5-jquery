@@ -170,11 +170,11 @@ $.widget( "ui.palette", {
         
     updateHidden: function() {
         // Every value in the selected list (whether enabled or not) is combined to form the value.
-        var values = this.selected.map(function(o) {
+        var values = $.map(this.selected[0].options, function(o) {
             return o.value;
         });
         
-        this.hidden.value = values;
+        this.hidden[0].value = "[" + values + "]";
     },
         
     moveUpClicked: function() {
