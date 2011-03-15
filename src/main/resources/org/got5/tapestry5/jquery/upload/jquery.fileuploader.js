@@ -1230,14 +1230,15 @@ qq.FileUploaderBasic.prototype = {
 							boundary += Math.floor(Math.random()*32768);
 							
 							var body = '--' + boundary + '\r\n' 
-							         + 'Content-Disposition: form-data; name="qqfile"; filename="' + encodeURIComponent(name) + '"\r\n\r\n'
-							         + file + '\r\n'
+							         + 'Content-Disposition: form-data; name="qqfile"; filename="' + encodeURIComponent(name) + '"\r\n'
+                       + 'Content-Type: '+file.type+'\r\n\r\n'
+							         + file.getAsBinary() + '\r\n'
 								     + '--' + boundary + '--';
 
 							xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
-							xhr.setRequestHeader('Content-length', body.length);
+							xhr.setRequestHeader('Content-Length', body.length);
 
-							xhr.send(body);
+							xhr.sendAsBinary(body);
 					},
 					_onComplete: function(id, xhr){
 						// the request was aborted/cancelled
