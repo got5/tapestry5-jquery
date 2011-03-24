@@ -46,7 +46,6 @@ Due to some extensibility issues of Core components, theses are originals compon
 - **Autocomplete**
 	- based on: [http://jqueryui.com/demos/autocomplete/](http://jqueryui.com/demos/autocomplete/)
 - **Palette**
-- **LinkSubmit**
  
 
 ## Maven dependency

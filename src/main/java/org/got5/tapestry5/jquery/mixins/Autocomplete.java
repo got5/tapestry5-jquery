@@ -40,6 +40,7 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
  * A mixin for a text field that allows for autocompletion of text fields. This is based on
@@ -59,7 +60,7 @@ import org.apache.tapestry5.util.TextStreamResponse;
  * context will be the partial input string sent from the client. The return value should be an
  * array or list of completions, in presentation order. I.e.
  * <p/>
- * 
+ *
  * <pre>
  * String[] onProvideCompletionsFromMyField(String input)
  * {
@@ -67,9 +68,8 @@ import org.apache.tapestry5.util.TextStreamResponse;
  * }
  * </pre>
  */
-@Import(library = 
-{ "${tapestry.jquery.path}/ui_1_8/jquery.ui.widget.js", "${tapestry.jquery.path}/ui_1_8/jquery.ui.position.js",
-        "${tapestry.jquery.path}/ui_1_8/jquery.ui.autocomplete.js", "${tapestry.jquery.path}/mixins/autocomplete.js" })
+@ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
+@Import(library = { "${tapestry.jquery.path}/mixins/autocomplete.js" })
 @Events(EventConstants.PROVIDE_COMPLETIONS)
 public class Autocomplete
 {
@@ -85,9 +85,9 @@ public class Autocomplete
 
     @Inject
     private ComponentResources resources;
-    
+
     @Environmental
-    private JavaScriptSupport javaScriptSupport;    
+    private JavaScriptSupport javaScriptSupport;
 
     @Inject
     private Request request;
@@ -113,7 +113,7 @@ public class Autocomplete
      * Mixin afterRender phrase occurs after the component itself. This is where we write the
      * &lt;div&gt; element and
      * the JavaScript.
-     * 
+     *
      * @param writer
      */
     void afterRender(MarkupWriter writer)
@@ -178,7 +178,7 @@ public class Autocomplete
 
     /**
      * Transforms the matches into a JSONArray
-     * 
+     *
      * @return JSONArray of available responses
      */
     protected JSONArray generateResponseJSON(List matches)

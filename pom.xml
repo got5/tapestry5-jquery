@@ -64,6 +64,19 @@
 	</dependencies>
 	<build>
 		<finalName>tapestry-jquery</finalName>
+
+		<resources>
+            <resource>
+                <directory>src/test/conf</directory>
+                <filtering>true</filtering>
+                <targetPath>${basedir}/target/test-classes/</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -99,7 +112,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.9</version>
+				<version>6.1.22</version>
 				<configuration>
 					<requestLog implementation="org.mortbay.jetty.NCSARequestLog">
 						<append>true</append>
@@ -145,7 +158,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/conf/testng.xml</suiteXmlFile>
+						<suiteXmlFile>target/test-classes/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -211,7 +224,21 @@
 		</repository>
 	</repositories>
 
+	<profiles>
+
+        <profile>
+            <id>mac-os-test</id>
+            <activation>
+                <os><family>mac</family></os>
+            </activation>
+            <properties>
+                <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>
+            </properties>
+        </profile>
+	</profiles>
+
 	<properties>
 		<tapestry-release-version>5.2.4</tapestry-release-version>
+		<browserStartCommand>*firefox</browserStartCommand>
 	</properties>
 </project>
