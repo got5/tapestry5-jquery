@@ -30,6 +30,7 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
  * Multiple selection component. Generates a UI consisting of two &lt;select&gt; elements configured
@@ -68,8 +69,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * Option groups within the {@link SelectModel} will be rendered, but are not supported by many
  * browsers, and are not fully handled on the client side.
  */
-@Import(library=
-	{"classpath:org/got5/tapestry5/jquery/ui_1_8/minified/jquery.ui.widget.min.js", "palette.js"})
+@ImportJQueryUI(value = "jquery.ui.widget")
+@Import(library= "palette.js")
 public class Palette extends AbstractField
 {
     // These all started as anonymous inner classes, and were refactored out to here.
