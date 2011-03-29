@@ -1,8 +1,8 @@
-# Tapestry 5 jQuery integration Module - 2.1-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 2.1.0
 
 ## Changelog
 
-- 2.1-SNAPSHOT : switch to Tapestry 5.2.4
+- 2.1.0 : switch to Tapestry 5.2.5
 - 1.1-SNAPSHOT : exclusives jQuery components
 - 1.0-SNAPSHOT : initial releases
 
@@ -85,11 +85,11 @@ To use this plugin, add the following dependency in your `pom.xml`.
 	</repositories>
 	
 ## List Of Contributors
-Robin Komiwes
-Andreas Andreou
-Christian Riedel
-François Facon
-Tom van Dijk
+- Robin Komiwes as robink
+- Andreas Andreou as andyhot
+- Christian Riedel as criedel
+- François Facon as got5     
+- Tom van Dijk as trolando
 
 ##Hosting
 Christophe Furmaniak 	
