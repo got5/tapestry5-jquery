@@ -1,8 +1,19 @@
 # Tapestry 5 jQuery integration Module - 2.1.0
 
+## List Of Contributors
+- Robin Komiwes as robink
+- Andreas Andreou as andyhot
+- Christian Riedel as criedel
+- François Facon as got5     
+- Tom van Dijk as trolando
+
+##Hosting
+Christophe Furmaniak 	
+
 ## Changelog
 
 - 2.1.0 : switch to Tapestry 5.2.5
+		  add (Tabs, Accordion, AjaxUpload, Button)	
 - 1.1-SNAPSHOT : exclusives jQuery components
 - 1.0-SNAPSHOT : initial releases
 
@@ -57,7 +68,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>2.1.0-SNAPSHOT</version>
+			<version>2.1.0</version>
 		</dependency>
 		...
 	</dependencies>
@@ -84,15 +95,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		...
 	</repositories>
 	
-## List Of Contributors
-- Robin Komiwes as robink
-- Andreas Andreou as andyhot
-- Christian Riedel as criedel
-- François Facon as got5     
-- Tom van Dijk as trolando
 
-##Hosting
-Christophe Furmaniak 	
 
 ## More Informations & contacts
 
