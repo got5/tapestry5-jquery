@@ -14,7 +14,7 @@ Christophe Furmaniak
 
 - 2.1.0 : switch to Tapestry 5.2.5
 		  add (Tabs, Accordion, AjaxUpload, Button)	
-- 1.1-SNAPSHOT : exclusives jQuery components
+- 1.1-SNAPSHOT : exclusive jQuery components
 - 1.0-SNAPSHOT : initial releases
 
 ## Features
@@ -23,7 +23,7 @@ This module provides jQuery integration for Tapestry 5 and completely drop out P
 
 It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
 
-Exclusives jQuery components : 
+Exclusive jQuery components : 
 
 - **Dialog** with **DialogLink** and **DialogAjaxLink**
 	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
@@ -34,7 +34,7 @@ Exclusives jQuery components :
 - **AjaxUpload** 
 	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
 	
-Exclusives jQuery Mixins :
+Exclusive jQuery Mixins :
 
 - **Button** 
 	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)	
