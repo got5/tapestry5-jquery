@@ -116,7 +116,8 @@ Or add jquery to the tapestry-library namespace:
       xmlns:j="tapestry-library:jquery">
 
     <t:form>
-        <j:autocomplete />
+        <j:palette />
+        <t:textfield t:mixins="jquery/autocomplete" ... />
         <t:submit />
     </t:form>
 
