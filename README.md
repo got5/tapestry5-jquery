@@ -6,6 +6,7 @@
 - Christian Riedel as criedel
 - François Facon as got5     
 - Tom van Dijk as trolando
+- Emmanuel DEMEY as Gillespie59
 
 ##Hosting
 Christophe Furmaniak 	
@@ -133,4 +134,4 @@ All kind of feedback is very welcome. Please use [Github issues system](http://g
 
 ## License
 
-This project is distributed under Apache 2 License. See LICENSE.txt for more information.
+This project is distributed under Apache 2 License. See LICENSE.txt for more information. 
