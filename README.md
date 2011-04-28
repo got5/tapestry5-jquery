@@ -7,6 +7,7 @@
 - François Facon as got5     
 - Tom van Dijk as trolando
 - Emmanuel DEMEY as Gillespie59
+- Clément Uster as cluster
 
 ##Hosting
 Christophe Furmaniak 	

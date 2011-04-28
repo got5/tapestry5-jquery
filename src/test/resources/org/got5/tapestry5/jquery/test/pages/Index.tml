@@ -22,6 +22,11 @@
                 AjaxUpload
             </t:pagelink>
         </li>
+		<li>
+            <t:pagelink t:page="jqueryslider">
+                Slider
+            </t:pagelink>
+        </li>
     </ul>
     <br/>
     <h3>Core Components and features : </h3>
@@ -81,9 +86,9 @@
                 Palette
             </t:pagelink>
             
-            <t:pagelink t:page="jquerypalette">
+            ( <t:pagelink t:page="jquerypalette">
                 jQuery/Palette
-            </t:pagelink>)
+            </t:pagelink> )
         </li>
         <li>
             <t:pagelink t:page="formfragment">
