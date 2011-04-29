@@ -1,14 +1,15 @@
 (function( $ ) {
 $.extend(Tapestry.Initializer, {
-    slider: function(specs) {
+    rangeSlider: function(specs) {
 		var options={
 			slide:function(e,u){
-				$("#" + specs.id+"-field").val(u.value);
+				$("#" + specs.id+"-min-field").val(u.values[0]);
+				$("#" + specs.id+"-max-field").val(u.values[1]);
 			}, 
 			change:function(e,u){
 				if(specs.url) 
 					$("#" + specs.zoneId).tapestryZone("update", {
-						url: specs.url+"?slider="+u.value
+						url: specs.url+"?min="+u.values[0]+"&max="+u.values[1]
 					});
 			}
 		};

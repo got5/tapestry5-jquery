@@ -1,8 +1,38 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <t:form>
+    	<h2>First example : the simple slider</h2>
+		This is a simple slider, the value is updated on submit, associated textfield is hidden<br/>
         <t:jquery.slider t:value="val" t:params="params"/>
         <br/>
-        <input type="submit" value="Continue"/>
-    </t:form>
-	The value is ${val}.
+		The value is ${val} (updated on submit)
+		<br/>
+		
+		<h2>Second example : the range slider</h2>
+		This is a range slider, the values are updated on submit, and the associated textfields are displayed.<br/>
+	    <t:jquery.rangeslider t:min="min" t:max="max" t:params="rangeparams" t:DisplayTextField="true"/>
+	    <br/>
+		The min value is ${min} (updated on submit)<br/>
+		The max value is ${max} (updated on submit)
+		<br/>
+		
+		<h2>Third example : the simple slider, that updates a zone</h2>
+		<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone"/>
+		<br/>
+		<t:zone t:id="myZone">
+			${slideZone}
+		</t:zone>
+		<br/>
+		
+		<h2>Fourth example : the (vertical and animated) range slider updating a zone</h2>
+		<t:jquery.rangeslider t:min="minZone" t:max="maxZone" t:params="paramsRangeZone" t:zone="myZoneRange" t:id="sliderRangeZone"/>
+		<br/>
+		<t:zone t:id="myZoneRange">
+			The min value is ${minZone}.<br/>
+			The max value is ${maxZone}.
+		</t:zone>
+		<br/>
+		
+		<input type="submit" value="Continue"/>
+	</t:form>
+	
 </html>

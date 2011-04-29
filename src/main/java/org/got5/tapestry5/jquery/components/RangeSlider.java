@@ -28,15 +28,14 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
-@Import( library={ "slider.js" })
-public class Slider  {
+@Import( library={ "range-slider.js" })
+public class RangeSlider  {
 
-    /**
-     * The value associated with this slider. This is used to determine which slider will be selected when
-     * the page is rendered, and also becomes the value assigned when the form is submitted.
-     */
-    @Parameter(required = true, principal = true)
-    private Object value;
+    @Parameter(required = true)
+    private Object min;
+    
+    @Parameter(required = true)
+    private Object max;
     
     @Parameter
     private JSONObject params;
@@ -44,6 +43,9 @@ public class Slider  {
     @Parameter(defaultPrefix="literal")
     private String zone;
 
+    @Parameter(value="false")
+    private boolean displayTextField;
+    
     private JSONObject specs;
     
     @Inject
@@ -52,9 +54,6 @@ public class Slider  {
     @Inject
     private JavaScriptSupport jsSupport;
     
-    @Parameter(value="false")
-    private boolean displayTextField;
-    
     @SetupRender
     void setupRender()
     {
@@ -62,23 +61,28 @@ public class Slider  {
     	
     	if (!resources.isBound("params"))
     		params=new JSONObject();
+    	params.put("range", true);
     	specs.put("params", params);
     	specs.put("id", resources.getId());
+    	
     	if(resources.isBound("zone")){
     		Link link = resources.createEventLink(EventConstants.ACTION);
     		specs.put("url", link.toAbsoluteURI());
     		specs.put("zoneId", zone);
     	}
-        jsSupport.addInitializerCall("slider", specs);
+    	
+        jsSupport.addInitializerCall("rangeSlider", specs);
     }
 
     public String getSliderId(){
     	return resources.getId()+"-slider";
     }
-    public String getTextFieldId(){
-    	return resources.getId()+"-field";
+    public String getMinId(){
+    	return resources.getId()+"-min-field";
     }
-
+    public String getMaxId(){
+    	return resources.getId()+"-max-field";
+    }
     public String getDisplayTextField(){
     	return displayTextField ? "" : "display:none;";
     }
