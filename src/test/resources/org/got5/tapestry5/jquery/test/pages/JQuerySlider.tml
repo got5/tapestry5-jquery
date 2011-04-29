@@ -1,0 +1,8 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+        <t:jquery.slider t:value="val" t:params="params"/>
+        <br/>
+        <input type="submit" value="Continue"/>
+    </t:form>
+	The value is ${val}.
+</html>
