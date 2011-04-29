@@ -300,7 +300,7 @@ $.extend(Tapestry.Initializer, {
                     '<span class="qq-upload-size"></span>' +
                     '<a class="qq-upload-cancel" href="#">' + spec.messages.cancelLabel + ' </a>' +
                     '<span class="qq-upload-failed-text">' + spec.messages.failedLabel + '</span>' +
-                    '</li>',
+                    '</li>'
 			
 		});
 		
@@ -438,7 +438,7 @@ $.widget( "ui.tapestryLinkSubmit", {
 		} else {
             form.submit();  
 		}
-    },
+    }
 	
 });
 
