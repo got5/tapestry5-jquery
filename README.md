@@ -40,7 +40,8 @@ Exclusive jQuery Mixins :
 
 - **Button** 
 	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)	
-
+- **Tooltip**
+        - Based on [http://access.aol.com/csun2011/]
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 
