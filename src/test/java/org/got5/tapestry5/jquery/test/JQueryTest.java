@@ -16,6 +16,8 @@
 
 package org.got5.tapestry5.jquery.test;
 
+import org.apache.tools.ant.filters.LineContains.Contains;
+import org.openqa.selenium.remote.server.handler.GetCssProperty;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
@@ -201,4 +203,38 @@ public class JQueryTest extends JavascriptTestSuite
 
        
     }
+    
+    /**
+     * Test Method for Tooltip mixin
+     */
+    @Test
+    public void testToolTip()
+    {
+    	open("/Tooltip");
+    	
+    	mouseOver("//div[@id='content']/a");
+    	
+    	
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("false");
+            }
+        }.wait("The tooltip is not visible", 5000l);
+    	
+    	mouseOut("//div[@id='content']/a");
+    	
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("true");
+            }
+        }.wait("The tooltip is visible!", 5000l);
+        
+    }
+    
 }
