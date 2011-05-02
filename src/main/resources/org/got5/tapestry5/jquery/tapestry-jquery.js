@@ -191,7 +191,7 @@ $.extend(Tapestry.Initializer, {
 			
             el.change(function() {
                 var parameters = {};
-                var selectValue = $('#' + element + ' :selected').text();
+                var selectValue = $('#' + element + ' :selected').attr("value");
 
                 if (selectValue) {
                     parameters["t:selectvalue"] = selectValue;
