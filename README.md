@@ -40,8 +40,10 @@ Exclusive jQuery Mixins :
 
 - **Button** 
 	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)	
-- **Tooltip**
-        - Based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+- **Tooltip** 
+	- based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+- **Mask** 
+	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 

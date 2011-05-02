@@ -237,4 +237,21 @@ public class JQueryTest extends JavascriptTestSuite
         
     }
     
+    /**
+     * Test Method for Mask mixin
+     */
+    @Test
+    public void testMask(){
+    	
+    	open("/mask");
+    	    	
+    	keyPress("//input[@id='monTextField']", "a");
+    	
+    	assertTrue(!getValue("//input[@id='monTextField']").contains("a"));
+    	
+    	keyPress("//input[@id='monTextField']", "0");
+    	
+    	assertTrue(getValue("//input[@id='monTextField']").contains("0"));
+    }
+    
 }
