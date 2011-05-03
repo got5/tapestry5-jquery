@@ -17,6 +17,7 @@ package org.got5.tapestry5.jquery.test.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.got5.tapestry5.jquery.services.JQueryModule;
 
@@ -26,9 +27,13 @@ public class AppModule
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
+    	
     	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+    	
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
-        configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
+        
+    	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
+    	
+    	configuration.add("demo-src-dir","");
     }
-
 }

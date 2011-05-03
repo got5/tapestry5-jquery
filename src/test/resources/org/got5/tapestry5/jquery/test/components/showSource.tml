@@ -1,0 +1,7 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+	<pre class="${lang}">
+		${srcContent}
+	</pre>
+
+</t:container>
