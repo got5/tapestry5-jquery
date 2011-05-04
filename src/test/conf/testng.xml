@@ -29,7 +29,7 @@
     <test name="CarouselTest"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/jquery/webapp"/>
-        <parameter name="tapestry.browser-start-command" value="*googlechrome" />
+        <parameter name="tapestry.browser-start-command" value="*firefox" />
 
         <classes>
             <class name="org.got5.tapestry5.jquery.test.CarouselTest"></class>
