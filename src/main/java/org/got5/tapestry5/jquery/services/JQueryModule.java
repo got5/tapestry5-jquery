@@ -16,21 +16,18 @@
 
 package org.got5.tapestry5.jquery.services;
 
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_CORE_PATH;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_UI_PATH;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_VALIDATE_PATH;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_VERSION;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.TAPESTRY_JQUERY_PATH;
-import static org.got5.tapestry5.jquery.JQuerySymbolConstants.TAPESTRY_JS_PATH;
 
+
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
@@ -39,20 +36,31 @@ import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
 
 public class JQueryModule
 {
-    public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration)
+    public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration,
+    		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
+            boolean suppressPrototype)
     {
-        configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
-        configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
-        configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
-        configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
-        configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
+    	
+    	configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
+    	if(suppressPrototype)
+    	{	
+    		configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
+    		configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
+    		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
+    	}
+    	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
     }
 
-    public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration)
+    public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration,
+    		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
+            boolean suppressPrototype)
     {
-        configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
-        configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
-        configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
+    	if(suppressPrototype)
+    	{	
+    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
+    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+    	}
+    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -62,16 +70,20 @@ public class JQueryModule
 
     public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
     {
-        configuration.add(TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
-        configuration.add(TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
+        configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
+        configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
 
-        configuration.add(JQUERY_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jquery_core");
-        configuration.add(JQUERY_VERSION, "1.5");
+        configuration.add(JQuerySymbolConstants.JQUERY_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jquery_core");
+        configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.5");
 
-        configuration.add(JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8");
-        configuration.add(JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css");
+        configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8");
+        configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css");
 
-        configuration.add(JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
+        configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
+        configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+        
+        
+    
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)

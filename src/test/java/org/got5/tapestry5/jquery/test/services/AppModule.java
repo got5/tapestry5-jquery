@@ -17,8 +17,8 @@ package org.got5.tapestry5.jquery.test.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.JQueryModule;
 
 @SubModule(value = JQueryModule.class)
@@ -33,6 +33,8 @@ public class AppModule
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
+    	
+    	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
     	
     	configuration.add("demo-src-dir","");
     }

@@ -46,4 +46,10 @@ public class JQuerySymbolConstants {
      * @see http://docs.jquery.com/Plugins/Validation
      */
     public static final String JQUERY_VALIDATE_PATH = "jquery.validate.path";
+    
+    
+    /**
+     * Indicates that we want to drop out prototype and use only jquery
+     */
+    public static final String SUPPRESS_PROTOTYPE = "suppress.prototype";
 }
