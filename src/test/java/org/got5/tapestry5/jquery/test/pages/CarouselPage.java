@@ -18,23 +18,18 @@ package org.got5.tapestry5.jquery.test.pages;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-
+@Import(library={"context:js/carouselPage.js"})
 public class CarouselPage{
 	
 	@Inject
 	private Block flowerBlock;
-	
-	@Inject
-	private JavaScriptSupport javascriptSupport;
 	
 	@Inject
 	private ComponentResources resources;
@@ -53,10 +48,7 @@ public class CarouselPage{
 		return retour;
 	}
 	
-	@AfterRender
-	public void finish(){
-		//javascriptSupport.addScript(InitializationPriority.LATE, "loadCarousel('%s')", );
-	}
+	
 	
 	public Object getTest(){
 		return "hello";
