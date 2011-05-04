@@ -1,23 +1,21 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
-	Ajax loaded:
-	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
-	<br/>
+	
 	Complex Items:
 	<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" t:page="palette" t:context="3"/>
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" t:event="zoneTest" t:zone="flowerZone"  />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" t:event="eventTest" t:context="literal:hello" />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/77/199481108_4359e6b971_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/58/199481218_264ce20da0_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/69/199481255_fdfe885f87_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg"   />
-		<j:carouselItem t:imageSource="literal:http://static.flickr.com/70/229228324_08223b70fa_s.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="palette" t:context="3"/>
+		<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
+		<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
+		<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
 	</j:carousel>
 	
-	<div>
-		Click on the big white flower of the complex carousel:
+	<div id="zoneContainer">
+		<span>Click on the big white flower of the complex carousel:</span>
 		<t:zone t:id="flowerZone">
 			
 		</t:zone>
@@ -27,6 +25,10 @@
 		</t:block>
 		
 	</div>
+	<br/><br/>
+	Ajax loaded:
+	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
+	
 	
    
 </html>
