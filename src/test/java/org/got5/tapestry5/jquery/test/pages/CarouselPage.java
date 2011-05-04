@@ -18,26 +18,25 @@ package org.got5.tapestry5.jquery.test.pages;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.apache.tapestry5.services.AssetSource;
 
-
+@Import(library={"context:js/carouselPage.js"})
 public class CarouselPage{
 	
 	@Inject
 	private Block flowerBlock;
 	
 	@Inject
-	private JavaScriptSupport javascriptSupport;
+	private ComponentResources resources;
 	
 	@Inject
-	private ComponentResources resources;
+	private AssetSource assetSource;
 	
 	public JSONObject getAjaxParams(){
 		JSONObject retour = new JSONObject();
@@ -53,10 +52,7 @@ public class CarouselPage{
 		return retour;
 	}
 	
-	@AfterRender
-	public void finish(){
-		//javascriptSupport.addScript(InitializationPriority.LATE, "loadCarousel('%s')", );
-	}
+	
 	
 	public Object getTest(){
 		return "hello";
@@ -65,16 +61,16 @@ public class CarouselPage{
 	@OnEvent("ajaxEvent")
 	public Object ajaxtTest(){
 		JSONArray retour = new JSONArray();
-		retour.put("http://static.flickr.com/57/199481087_33ae73a8de_s.jpg");
-		retour.put("http://static.flickr.com/75/199481072_b4a0d09597_s.jpg");
-		retour.put("http://static.flickr.com/77/199481108_4359e6b971_s.jpg");
-		retour.put("http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg");
-		retour.put("http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg");
-		retour.put("http://static.flickr.com/58/199481218_264ce20da0_s.jpg");
-		retour.put("http://static.flickr.com/69/199481255_fdfe885f87_s.jpg");
-		retour.put("http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg");
-		retour.put("http://static.flickr.com/70/229228324_08223b70fa_s.jpg"); 
-		
+		retour.put(assetSource.getContextAsset("img/flower_01.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_02.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_03.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_04.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_05.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_06.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_07.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_08.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_09.jpg",null).toClientURL());
+		retour.put(assetSource.getContextAsset("img/flower_10.jpg",null).toClientURL());
 		return retour;
 	}
 	
