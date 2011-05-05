@@ -78,8 +78,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
         final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
 
-        jQueryCssStack = F.flow("${tapestry.default-stylesheet}",
-                                 "${jquery.ui.default-theme.path}")
+        jQueryCssStack = F.flow("${jquery.ui.default-theme.path}")
                            .map(pathToStylesheetLink)
                            .toList();
 
@@ -139,7 +138,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		ret.addAll(clientInfrastructure.getJavascriptStack());   	
     		
     		String pathToTapestryJqueryJs = "${tapestry.jquery.path}/jquery-noconflict.js";
-    	    Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
+    		Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
     		ret.add(tapestryJqueryJs);
     	}	
  		
