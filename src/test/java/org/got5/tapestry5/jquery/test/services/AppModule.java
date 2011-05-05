@@ -34,7 +34,7 @@ public class AppModule
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     	
-    	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+    	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
     	
     	configuration.add("demo-src-dir","");
     }

@@ -2,16 +2,16 @@
     /** Container of functions that may be invoked by the Tapestry.init() function. */
     $.extend(Tapestry.Initializer, {
         autocomplete: function(specs){
-            conf = {
+            var conf = {
                 source: function(request, response){
-                    ajaxRequest = {
-                        url: specs.url + "?" + specs.paramName + "=" + request.term,
+                    var ajaxRequest = {
                         success: function(data){
                             response(eval(data));
-                        }
+                        }, 
+                        data:specs.paramName+"="+request.term, 
+                        type:"POST"
                     }
-                    
-                    $.ajax(ajaxRequest);
+                    $.ajax(specs.url, ajaxRequest);
                 }
             }
             
@@ -25,4 +25,3 @@
         }
     });
 })(jQuery);
-
