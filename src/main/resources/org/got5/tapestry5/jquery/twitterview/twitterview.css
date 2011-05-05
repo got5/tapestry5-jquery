@@ -1,0 +1,52 @@
+.jquery-twitterview{
+	width:500px;
+	font-size:85%;
+	background-color:#eee;
+	padding:5px 5px 1px 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+
+.jquery-twitterview .tweet{
+	border:1px solid #666;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	margin-bottom:5px;
+	padding:5px;
+	background-color:#FFF;
+}
+
+.jquery-twitterview .tweet span{
+	padding:0 0 8px 53px;
+	font-style:italic;
+	display:block;
+	color:#999;
+	font-size:90%;
+}
+
+.jquery-twitterview .tweet span strong{
+	padding-right:10px;
+	font-weight:bold;
+	font-style:normal;
+	color:#222;
+	font-size:120%;
+}
+
+.jquery-twitterview .tweet img{
+	float:left;
+}
+
+.jquery-twitterview .tweet div.content{
+	padding-left:53px;
+}
+
+.jquery-twitterview .tweet div.content a {
+	text-decoration:none;
+}
+
+.jquery-twitterview .tweet div.content em{
+	padding-left:20px;
+	font-size:85%;
+	color:#666;
+}
