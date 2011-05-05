@@ -52,4 +52,11 @@ public class JQuerySymbolConstants {
      * Indicates that we want to drop out prototype and use only jquery
      */
     public static final String SUPPRESS_PROTOTYPE = "suppress.prototype";
+    
+    
+    /**
+     * Indicates that we want to drop out prototype and use only jquery
+     */
+    public static final String ASSETS_PATH = "assets.path";
+    
 }

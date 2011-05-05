@@ -255,4 +255,34 @@ public class JQueryTest extends JavascriptTestSuite
     	
     }
     
+    @Test
+    public void testRevealMixin(){
+    	
+    	open("/reveal");
+    	
+    	click("//a[@id='pagelink']");
+    	
+    	 new Wait()
+         {
+             @Override
+             public boolean until()
+             {
+                 return getAttribute("//div[@class='reveal-modal']@style").contains("visible");
+             }
+         }.wait("The reveal window is not visible", 5000l);
+         
+         click("//div[@class='reveal-modal-bg']");
+         
+        
+    	 new Wait()
+         {
+             @Override
+             public boolean until()
+             {
+                 return getAttribute("//div[@class='reveal-modal']@style").contains("hidden");
+             }
+         }.wait("The reveal window visible", 5000l);
+    	
+    }
+    
 }
