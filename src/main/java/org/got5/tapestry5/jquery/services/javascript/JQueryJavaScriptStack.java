@@ -136,7 +136,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	else
     	{
     		ret.addAll(jQueryJsStack);
-    		ret.addAll(clientInfrastructure.getJavascriptStack());   		
+    		ret.addAll(clientInfrastructure.getJavascriptStack());   	
+    		
+    		String pathToTapestryJqueryJs = "${tapestry.jquery.path}/jquery-noconflict.js";
+    	    Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
+    		ret.add(tapestryJqueryJs);
     	}	
  		
  		return ret;
