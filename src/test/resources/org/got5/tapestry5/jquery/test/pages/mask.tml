@@ -27,5 +27,23 @@
     	
     </t:form>
     
+    <a id="myTestLink" style="display:none;">Test</a>
+    <a id="myTestLink2" style="display:none;">Test2</a>
     
+    <script type="text/javascript">
+    	
+    	//Add this script because some problems with the keyboard event on Selenium and Google Chrome
+    
+    	$('#myTestLink').bind('click',function(){
+    		e = jQuery.Event("keypress");
+    		e.which = 49;
+    		$('#monTextField').trigger(e);
+    	});
+    	
+    	$('#myTestLink2').bind('click',function(){
+    		e = jQuery.Event("keypress");
+    		e.which = 65;
+    		$('#monTextField').trigger(e);
+    	});
+    </script>
 </html>

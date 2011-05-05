@@ -244,14 +244,15 @@ public class JQueryTest extends JavascriptTestSuite
     public void testMask(){
     	
     	open("/mask");
-    	    	
-    	keyPress("//input[@id='monTextField']", "a");
     	
-    	assertTrue(!getValue("//input[@id='monTextField']").contains("a"));
+    	click("//a[@id='myTestLink']");
     	
-    	keyPress("//input[@id='monTextField']", "0");
+    	assertTrue(getValue("//input[@id='monTextField']").contains("1"));
     	
-    	assertTrue(getValue("//input[@id='monTextField']").contains("0"));
+    	click("//a[@id='myTestLink2']");
+    	
+    	assertFalse(getValue("//input[@id='monTextField']").contains("a"));
+    	
     }
     
 }
