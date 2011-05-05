@@ -140,7 +140,7 @@ $.extend(Tapestry.Initializer, {
         var el = $("#" + spec.clientId);
         var id = el.attr('id');
 
-        el.replaceWith('<a id="' + id + '">' + el.html() + '</a>');
+        el.wrap('<a id="' + id + '">');
 		// reload element
 		el = $("#" + spec.clientId);
 		el.attr('href', '#');
