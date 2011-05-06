@@ -44,6 +44,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     private final boolean productionMode;
     
+    private String jQueryAlias;
+    
     private final boolean suppressPrototype;
 
     private final List<Asset> jQueryJsStack;
@@ -57,6 +59,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     							 @Symbol(SymbolConstants.PRODUCTION_MODE)
                                  final boolean productionMode,
                                  
+                                 @Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
+                                 final String jQueryAlias,
+                                 
                                  @Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
                                  final boolean suppressPrototype,
 
@@ -66,6 +71,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         this.productionMode = productionMode;
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
+        this.jQueryAlias = jQueryAlias;
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
@@ -114,7 +120,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     public String getInitialization()
     {
-        return productionMode ? null : "Tapestry.DEBUG_ENABLED = true;";
+    	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
+        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true;";
     }
 
     public List<Asset> getJavaScriptLibraries()

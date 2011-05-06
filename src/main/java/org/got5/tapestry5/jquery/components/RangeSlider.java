@@ -64,6 +64,7 @@ public class RangeSlider  {
     	params.put("range", true);
     	specs.put("params", params);
     	specs.put("id", resources.getId());
+    	specs.put("displayTextField",displayTextField);
     	
     	if(resources.isBound("zone")){
     		Link link = resources.createEventLink(EventConstants.ACTION);

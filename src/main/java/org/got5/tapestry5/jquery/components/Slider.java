@@ -64,6 +64,7 @@ public class Slider  {
     		params=new JSONObject();
     	specs.put("params", params);
     	specs.put("id", resources.getId());
+    	specs.put("displayTextField", displayTextField);
     	if(resources.isBound("zone")){
     		Link link = resources.createEventLink(EventConstants.ACTION);
     		specs.put("url", link.toAbsoluteURI());
@@ -79,7 +80,4 @@ public class Slider  {
     	return resources.getId()+"-field";
     }
 
-    public String getDisplayTextField(){
-    	return displayTextField ? "" : "display:none;";
-    }
 }

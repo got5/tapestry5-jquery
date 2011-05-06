@@ -80,6 +80,7 @@ public class JQueryModule
 
         configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
         configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+        configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
         
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
         
