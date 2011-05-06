@@ -140,19 +140,19 @@ Or add jquery to the tapestry-library namespace:
 Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
 jQuery will be added to the javascript stack in every case.
 In your AppModule, contributeApplicationDefaults method, you can add
-configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
+	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
 
 ## Note about jQuery
 
-In traditional jQuery development, we are used to manipulate the '$' alias to select the elements we want to play with.
-jQuery allows us to change this default alias (for compatibility with other js frameworks also using the $ alias : like PrototypeJS, included in Tapestry, for example).
+In traditional jQuery development, we are used to manipulate the `$` alias to select the elements we want to play with.
+jQuery allows us to change this default alias (for compatibility with other js frameworks also using the `$` alias : like PrototypeJS, included in Tapestry, for example).
 The tapestry5-jquery project has an option permitting you to customize this alias : in your AppModule, contributeApplicationDefaults method, you can add
-configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "yourOwnAlias");
-The default jquery alias is '$'.
+	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "yourOwnAlias");
+The default jquery alias is `$`.
 
-By the way, if you've set the JQuerySymbolConstants.SUPPRESS_PROTOTYPE option to false, you may not use '$' to refer to jQuery, because '$' actually refers to Prototype.
+By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option to false, you may not use `$` to refer to jQuery, because `$` actually refers to Prototype.
 Thus, you may want to change jQuery's alias in that particular case.
-However, if you didn't change it, jQuery's alias will automatically be set to '$j'. 
+However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 
 ## Important notice
