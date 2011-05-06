@@ -36,6 +36,8 @@ public class AppModule
     	
     	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
     	
+    	//configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$j");
+    	
     	configuration.add("demo-src-dir","");
     }
 }
