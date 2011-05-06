@@ -58,5 +58,7 @@ public class JQuerySymbolConstants {
      * Indicates that we want to drop out prototype and use only jquery
      */
     public static final String ASSETS_PATH = "assets.path";
+
+	public static final String JQUERY_ALIAS = "jquery.alias";
     
 }

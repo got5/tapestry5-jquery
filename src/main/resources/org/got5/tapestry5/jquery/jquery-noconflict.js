@@ -1,4 +1,3 @@
-var $j = jQuery;
 (function( $ ) {
 	$.widget( "ui.tapestryZone", {
 		options: {

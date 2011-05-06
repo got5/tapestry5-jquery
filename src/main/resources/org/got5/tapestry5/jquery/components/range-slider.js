@@ -1,6 +1,10 @@
 (function( $ ) {
 $.extend(Tapestry.Initializer, {
     rangeSlider: function(specs) {
+		if(!specs.displayTextField) {
+			$("#" + specs.id+"-min-field").css("display", "none");
+			$("#" + specs.id+"-max-field").css("display", "none");
+		}
 		var options={
 			slide:function(e,u){
 				$("#" + specs.id+"-min-field").val(u.values[0]);

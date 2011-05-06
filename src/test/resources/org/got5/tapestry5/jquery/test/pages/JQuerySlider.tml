@@ -16,7 +16,7 @@
 		<br/>
 		
 		<h2>Third example : the simple slider, that updates a zone</h2>
-		<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone"/>
+		<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone" />
 		<br/>
 		<t:zone t:id="myZone">
 			${slideZone}
