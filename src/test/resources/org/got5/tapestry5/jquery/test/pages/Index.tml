@@ -1,109 +1,48 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <h3>Exclusives jQuery components</h3>
-    <br/>
-    <ul>
-        <li>
-            <t:pagelink t:page="jquerydialog">
-                Dialog
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="jquerytabs">
-                Tabs
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="jqueryaccordion">
-                Accordion
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="ajaxuploadtest">
-                AjaxUpload
-            </t:pagelink>
-        </li>
-		<li>
-            <t:pagelink t:page="jqueryslider">
-                Slider
-            </t:pagelink>
-        </li>
-    </ul>
-    <br/>
-    <h3>Core Components and features : </h3>
-    <br/>
-    <ul>
-        <li>
-            <t:pagelink t:page="helloworld">
-                Hello world
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="zone">
-                Zone
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="validation">
-                Validation
-            </t:pagelink>
-        </li>
-        <br/>
-        <li>
-            <t:pagelink t:page="calendar">
-            -( Calendar )-
-            </t:pagelink>
-            <br/>
-            <t:pagelink t:page="calendarlocalized">
-            -( Calendar Localized )-
-            </t:pagelink>
-            <br/>
-            <t:pagelink t:page="calendarinajaxform">
-            -( Calendar in Ajax Form )- 
-            </t:pagelink>
-        </li>
-        <br/>
-        <li>
-            <t:pagelink t:page="grid">
-                Grid
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="autocomplete">
-                Autocomplete
-            </t:pagelink>
-            (
-            <t:pagelink t:page="jqueryautocomplete">
-                jQuery/Autocomplete
-            </t:pagelink>)
-        </li>
-        <li>
-            <t:pagelink t:page="ajaxformloop">
-                AjaxFormLoop
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="palette" class="nojquery">
-                Palette
-            </t:pagelink>
-            
-            ( <t:pagelink t:page="jquerypalette">
-                jQuery/Palette
-            </t:pagelink> )
-        </li>
-        <li>
-            <t:pagelink t:page="formfragment">
-                FormFragment
-            </t:pagelink>
-        </li>
-        <li>
-            <t:pagelink t:page="linksubmit" class="nojquery">
-                LinkSubmit
-            </t:pagelink>
-            (
-            <t:pagelink t:page="jquerylinksubmit">
-                jQuery/LinkSubmit
-            </t:pagelink>)
-        </li>
-        
-    </ul>
+<html t:type="layoutWithAccordion" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    
+    <div id="i-component">
+    	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    </div>
+
+	<t:block id="block1">
+	<span>
+		The "tapestry5-jquery" is the first open sourced Tapestry 5 library by Atos WorldLine. 
+  		It aims to be a total replacement of the Prototype/Scriptaculous JS layer of Tapestry: all its components, mixins or any other JS interactions.
+  	</span>
+  	<br/><br/>
+  	<div>
+  		Project is hosted <a href="http://github.com/got5"> Github</a> under the got5 account.
+  		Tapestry5-jquery is based on Tapestry 5.2.5, jQuery, jQuery UI or any plugins.
+  	</div>
+  	<br/><br/>
+  		Current project version covers all Tapestry basic components and mixins and already have some exclusives features like the Dialog component.
+  		The project was built having also in mind that the integration of this library should be as much as possible transparent for end user.
+  		Whenever only JS layers of components where overriden in order to continue to use normal component declaration. 
+	<br/><br/>
+  		Tapestry 5 has a loose coupling on Prototype and Scriptaculous on a lot of points.
+  		But there are some rooms where the coupling is  very tight.
+  		This is were this library comes to fix that.
+  		The goal of this library is to get rid of Prototype, Scriptaculous on core Tapestry services.
+ 
+	</t:block>
+
+	<t:block id="block2">
+		<h3>Panel 2</h3>
+		<hr/>	
+		content from block 2
+	</t:block>
+
+	<t:block id="block3">
+		<h3>Panel 3</h3>
+		<hr/>
+		content from block 3
+	</t:block>
+
+
+	<t:block id="block4">
+		<h3>Panel 4</h3>
+		<hr/>
+	</t:block>
+   
+    
 </html>

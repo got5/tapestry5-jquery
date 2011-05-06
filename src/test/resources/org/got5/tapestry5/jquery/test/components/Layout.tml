@@ -20,10 +20,10 @@
 
 			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
 
-			<div>Welcome to Tapestry 5 Jquery !</div>
+			<div>Welcome to Tapestry 5 jQuery !</div>
 			
 			<div id="aside">
-			Tapestry 5 jQuery integration. Fully replace Prototype and Scriptaculous with jQuery with as less as possible compatibility issues 
+			Tapestry 5 jQuery provide jQueryComponents and can fully replace Prototype and Scriptaculous with jQuery
 			</div>
 			
 			

@@ -40,8 +40,41 @@ p { margin-bottom:10px; line-height:1.3em; }
 
 .light{ color:#999999; }
 
-.col { float:right; width: 290px; padding: 0px 15px; margin-right: 15px; }
-.big-col { margin-right:345px !important; }
+#wrapper { 
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#menu { 
+	float: left;
+	width: 220px;
+}
+
+#sidebar { float: right; width: 220px;}
+
+#main { 
+	position: relative;
+	width: auto;
+	}
+
+#menu + #main {margin-left: 115px;} /* If #menu is present */
+#sidebar + #main {margin-right: 220px;} /* If #sidebar is present */
+#menu + #sidebar + #main {margin-left: 115px;} /* If #menu AND #sidebar are present */
+
+#i-component { 
+	margin-bottom: 20px;
+	padding: 20px 15px; 
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	overflow:hidden;
+	}
+
+
+
+/*#col { float:left; width: 290px; padding: 0px 15px; margin-right: 15px; }
+#big-col { margin-left:345px !important; }*/
 
 #top { background: #ffffff url('bg.png') repeat-x top right; }
 #content { padding:0px 15px;  margin:0px 15px; }

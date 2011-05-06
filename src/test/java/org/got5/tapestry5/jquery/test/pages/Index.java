@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,35 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
+
 
 public class Index
 {
+	@Persist
+	@Property
+	private String activePanel;
+
+	
+	@Property
+	private List<JQueryTabData> listTabData;
+
+	@SetupRender
+	void onSetupRender()
+	{
+				
+		listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("Concept","block1"));
+        listTabData.add(new JQueryTabData("Panel2","block2"));
+        listTabData.add(new JQueryTabData("Panel3","block3"));
+        listTabData.add(new JQueryTabData("Panel4","block4"));
+        
+	}
 }
