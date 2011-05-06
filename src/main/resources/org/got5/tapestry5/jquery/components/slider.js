@@ -1,6 +1,7 @@
 (function( $ ) {
 $.extend(Tapestry.Initializer, {
     slider: function(specs) {
+		if(!specs.displayTextField) $("#" + specs.id+"-field").css("display", "none");
 		var options={
 			slide:function(e,u){
 				$("#" + specs.id+"-field").val(u.value);
