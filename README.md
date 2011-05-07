@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 2.1.0
+# Tapestry 5 jQuery integration Module - 2.1.1
 
 ## List Of Contributors
 - Robin Komiwes as robink
@@ -8,12 +8,14 @@
 - Tom van Dijk as trolando
 - Emmanuel DEMEY as Gillespie59
 - Clément Uster as cluster
+- Amaury Willemant as awillemant
 
 ##Hosting
 Christophe Furmaniak 	
 
 ## Changelog
 
+- 2.1.1 : add (Slider, Mask, Tooltip, Carousel )	
 - 2.1.0 : switch to Tapestry 5.2.5
 		  add (Tabs, Accordion, AjaxUpload, Button)	
 - 1.1-SNAPSHOT : exclusive jQuery components

@@ -1,35 +1,90 @@
 <html t:type="layoutWithAccordion" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     
-    <div id="i-component">
-    	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
-    </div>
+    
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+   
 
 	<t:block id="block1">
 	<span>
-		The "tapestry5-jquery" is the first open sourced Tapestry 5 library by Atos WorldLine. 
-  		It aims to be a total replacement of the Prototype/Scriptaculous JS layer of Tapestry: all its components, mixins or any other JS interactions.
+		The "Tapestry5-jQuery" is an open sourced Tapestry 5 library from Atos WorldLine. 
+  		It aims to make it possible to replace the Prototype/Scriptaculous JS layer of Tapestry: all its components, mixins or any other JS interactions.
+  		It also provided overdvanced UI component framework for easily integrating Ajax capabilities into business applications using Tapestry5
   	</span>
   	<br/><br/>
-  	<div>
-  		Project is hosted <a href="http://github.com/got5"> Github</a> under the got5 account.
-  		Tapestry5-jquery is based on Tapestry 5.2.5, jQuery, jQuery UI or any plugins.
-  	</div>
-  	<br/><br/>
-  		Current project version covers all Tapestry basic components and mixins and already have some exclusives features like the Dialog component.
-  		The project was built having also in mind that the integration of this library should be as much as possible transparent for end user.
-  		Whenever only JS layers of components where overriden in order to continue to use normal component declaration. 
-	<br/><br/>
   		Tapestry 5 has a loose coupling on Prototype and Scriptaculous on a lot of points.
   		But there are some rooms where the coupling is  very tight.
-  		This is were this library comes to fix that.
-  		The goal of this library is to get rid of Prototype, Scriptaculous on core Tapestry services.
- 
+  		Current project version covers all Tapestry basic components and mixins.
+  		The project was built having also in mind that the integration of this library should be as much as possible transparent for end user.
+  		Whenever only JS layers of components where overriden in order to continue to use normal component declaration. 
+  	  	
+	<br/><br/>
+  	<div>
+  		Project is hosted  Github under the <a href="http://github.com/got5">Got5</a>  account.
+  		Tapestry5-jquery is based on Tapestry 5.2.5, jQuery, jQuery UI or any plugins.
+  	</div>
+	
 	</t:block>
 
 	<t:block id="block2">
-		<h3>Panel 2</h3>
-		<hr/>	
-		content from block 2
+		## How to use it
+		<br/><br/>
+		Just add tapestry5-jquery to your classpath (see Maven dependency snippet below)!
+		
+		<br/><br/>
+		Then use components like you would normally do. For Autocomplete and Palette use "jquery" namespace:
+ 		
+ 		<br/><br/>
+ 		<!-- source content start -->
+		<div style="padding:10px;"><pre>
+		<![CDATA[
+		<t:form>
+        	<t:jquery.autocomplete />
+				<t:submit />
+    		</t:form>
+    		]]>
+    	</pre></div>
+		<!-- source content end -->
+		
+
+		<br/><br/>
+		Or add jquery to the tapestry-library namespace:
+		
+		<br/><br/>
+		<!-- source content start -->
+		<div style="padding:10px;"><pre>
+		<![CDATA[
+		<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      		xmlns:p="tapestry:parameter"
+      		xmlns:j="tapestry-library:jquery">
+		
+    	<t:form>
+        	<j:palette />
+        	<t:textfield t:mixins="jquery/autocomplete" ... />
+        	<t:submit />
+    	</t:form>
+    	</html>
+		]]>
+		</pre></div>
+		<!-- source content end -->
+		<br/><br/>
+		## You still need to have PrototypeJS and the components originally included in tapestry ?
+		<br/><br/>
+		Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
+		jQuery will be added to the javascript stack in every case.
+		In your AppModule, contributeApplicationDefaults method, you can add `configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");`
+		
+		<br/><br/>
+		## Note about jQuery
+		<br/><br/>
+		
+		In traditional jQuery development, we are used to manipulate the `$` alias to select the elements we want to play with.
+		jQuery allows us to change this default alias (for compatibility with other js frameworks also using the `$` alias : like PrototypeJS, included in Tapestry, for example).
+		The tapestry5-jquery project has an option permitting you to customize this alias : in your AppModule, contributeApplicationDefaults method, you can add `configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "yourOwnAlias");`.
+		The default jquery alias is `$`.
+
+		By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option to false, you may not use `$` to refer to jQuery, because `$` actually refers to Prototype.
+		Thus, you may want to change jQuery's alias in that particular case.
+		However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 	</t:block>
 
 	<t:block id="block3">
@@ -40,8 +95,29 @@
 
 
 	<t:block id="block4">
-		<h3>Panel 4</h3>
-		<hr/>
+
+		## List Of Contributors<br/>
+		- Robin Komiwes as robink		<br/>
+		- Andreas Andreou as andyhot	<br/>
+		- Christian Riedel as criedel	<br/>
+		- Francois Facon as got5     	<br/>
+		- Tom van Dijk as trolando		<br/>
+		- Emmanuel DEMEY as Gillespie59	<br/>
+		- Clement Uster as cluster		<br/>
+		- Amaury Willemant as awillemant<br/>
+
+		<br/><br/>
+		##Hosting<br/>
+		Christophe Furmaniak 	
+
+		<br/><br/>
+		## Changelog<br/>
+		
+		- 2.1.1 : add (Slider, Mask, Tooltip, Carousel )	<br/>
+		- 2.1.0 : switch to Tapestry 5.2.5
+		  		  add (Tabs, Accordion, AjaxUpload, Button)	<br/>
+		- 1.1-SNAPSHOT : exclusive jQuery components		<br/>
+		- 1.0-SNAPSHOT : initial releases					<br/>
 	</t:block>
    
     
