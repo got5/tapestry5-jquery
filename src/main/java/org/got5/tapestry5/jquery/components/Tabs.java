@@ -43,7 +43,7 @@ public class Tabs extends AbstractExtendableComponent
 {
 	@Inject
 	private ComponentResources resources;
-
+	
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
@@ -55,6 +55,7 @@ public class Tabs extends AbstractExtendableComponent
 	private ArrayList<JQueryTabData> listTabData;
 
 	@Parameter(required=true)
+	@Property
 	private int activePanelId;
 
 	@Parameter
@@ -76,14 +77,11 @@ public class Tabs extends AbstractExtendableComponent
     void startDiv(MarkupWriter writer)
     {
 
-
     }
 
     @AfterRender
     void declareDialog(MarkupWriter writer)
     {
-
-
         JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
@@ -98,14 +96,26 @@ public class Tabs extends AbstractExtendableComponent
 
         data.put("params", defaults);
 
-
         javaScriptSupport.addInitializerCall(getInitMethod(), data);
-
     }
 
+    public Object[] getTabContext() 
+    { 
+        return new Object[] { currentTabData.getBlockName(), currentPanelId }; 
+    } 
 
-	Object onSelectTab(String blockName)
+	Object onSelectTab(String blockName, int panelIndex)
 	{
+		try
+		{
+			if(resources.isBound("activePanelId"))
+			activePanelId =panelIndex;
+		}
+		catch(Exception ex)
+		{
+			//org.apache.tapestry5.runtime.ComponentEventException: Failure writing parameter 'activePanelId' 
+			// of component docs/Calendar:tabs: Literal values are not updateable
+		}
 		return resources.getContainer().getComponentResources().getBlock(blockName);
 	}
 

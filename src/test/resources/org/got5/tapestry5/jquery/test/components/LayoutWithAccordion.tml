@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<head>
+	<title>Tapestry 5 jQuery</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body id="homepage">
+	<div class="wrapper bs">
+		<ul class="nav">
+				<li>
+					<t:pagelink t:page="index">home</t:pagelink>
+				</li>
+				<li>
+					<a href="https://github.com/got5/tapestry5-jquery">Download</a>		
+				</li>
+				<li class="last">
+					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
+				</li>
+			
+		</ul>
+
+		<div id="top">
+
+			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+
+			<div>Welcome to Tapestry5-jQuery !</div>
+			
+			<div id="aside">
+			Tapestry 5jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
+			</div>
+			
+			
+			<div class="clearer"></div>
+
+		</div>
+		
+		<div id="bar">
+			<strong>Tapestry jQuery For Tapestry 5.2.5</strong>
+		</div>
+		
+		<div id="wrapper">
+		<div id="menu">
+			<t:jquery.accordion  t:listOfElements="prop:list" t:activeElementId="activeElement" />
+				
+			<t:block id="block1">
+			<!-- Core Components and features -->
+			<ul>
+        		<li>
+            		<t:pagelink t:page="docs/Zone">Zone</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="docs/DateField">DateField</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="validation">Validation</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="grid">Grid</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="formfragment">FormFragment</t:pagelink>
+        		</li>
+        		<li>
+            		<t:pagelink t:page="linksubmit">LinkSubmit</t:pagelink>
+        		</li>	
+        		<li>
+            		<t:pagelink t:page="jqueryautocomplete">j:Autocomplete</t:pagelink>
+        		</li>
+        	
+        		 <li>
+                     <t:pagelink t:page="jquerypalette">j:Palette</t:pagelink> 
+        		</li>
+			</ul>
+			</t:block>
+		
+			<t:block id="block2">
+			<!-- Core Components that need lib mapping -->
+			<ul>
+				 <li>
+			         <t:pagelink t:page="jquerydialog">Dialog</t:pagelink>
+			     </li>
+			     <li>
+			         <t:pagelink t:page="jquerytabs">Tabs</t:pagelink>
+			     </li>
+			     <li>
+			         <t:pagelink t:page="jqueryaccordion">Accordion</t:pagelink>
+			     </li>
+			     <li>
+			        <t:pagelink t:page="jqueryslider">Slider</t:pagelink>
+			     </li>
+			     <li>
+			     	<t:pagelink t:page="Button">Button</t:pagelink>
+			     </li>
+        	</ul>
+		
+			</t:block>
+		
+			<t:block id="block3">
+		
+				<!--  Exclusives jQuery components -->
+			   	
+			    <ul>
+			        <li>
+			            <t:pagelink t:page="twitterviewpage">Twitter View</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="ajaxuploadtest">AjaxUpload</t:pagelink>
+			        </li>			
+			        <li>
+			            <t:pagelink t:page="CarouselPage">Carousel</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="tooltip">Tooltip</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="reveal">Reveal</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="mask">Mask</t:pagelink>
+			        </li>
+			    </ul>		
+			</t:block>
+		
+		</div>
+		
+		<div id="main">
+			<div id="i-component">
+				<t:body />
+			</div>
+			<div class="clearer"></div>			
+		</div>	
+			
+		</div>
+		<div class="clearer"></div>
+
+		<div id="footer">Created with <a href="http://tapestry.apache.org/">Apache Tapestry 5</a>, 
+		Get the source code of Tapestry jQuery at <a href="https://github.com/got5">Github</a></div>
+
+	</div>
+</body>
+</html>

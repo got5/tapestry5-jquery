@@ -1,0 +1,63 @@
+/**
+ * Copyright 2010 GOT5 (Gang Of Tapestry 5)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* RESET */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}
+:focus {outline: 0;}
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+table {border-collapse: collapse;	border-spacing: 0;}
+header, section, footer,aside, nav, article, figure {display: block;}
+
+/* COMMONS */
+html { background-color:#39414A;}
+body {font-family:"MS Sans Serif", Geneva, sans-serif; font-size:12px; background-color:#39414A; }
+.wrapper { clear: both; margin: 0 auto; width: 760px; padding: 0px; text-align:left; background-color:#ffffff; padding-bottom:5px;}
+
+
+a {color:#666; }
+
+h1, h2, h3, h4, h5, h6 {font-family: Geneva, sans-serif; margin:0.25em 0; padding: 0.25em ; color:#333; font-weight:bold; text-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);  }
+h1, h1 a  { font-size:34px; margin-bottom:0; color: #0F67A1; text-decoration: none; background-color:#181C21;  }
+h2 { font-size:30px; color:#ddd; margin-top:0; background-color:#1175AE ; box-shadow: 0px 0px 10px rgba(50,50,50,0.4); -webkit-box-shadow: 0px 0px 10px rgba(50,50,50,0.4); -moz-box-shadow: 0px 0px 10px rgba(50,50,50,0.4); }
+h3 { font-size:26px; color:#0F67A1; }
+h4 { font-size:22px; }
+h5 { font-size:18px; }
+h6 { font-size:14px; }
+
+#content { padding:0.25em; margin:0.25em 0;}
+p { padding:0.25em 0; margin:0.25em 0 }
+
+ol, ul { list-style-position:outside; padding: 0.25em; margin:0 2em; line-height:1.25em;}
+ol { list-style-type:decimal; }
+ul { list-style-type:upper-roman; }
+li {padding:0.5em;}
+
+.nojquery { text-decoration:line-through;;}
+

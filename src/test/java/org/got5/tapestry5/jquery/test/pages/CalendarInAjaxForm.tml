@@ -16,8 +16,6 @@
 		 	</form>
 	</t:zone>
 	
-	
- 	
  	<t:zone t:id="nameZone" id="nameZone">
 			Welcome ${name}.
 			Birthday ${birthday}

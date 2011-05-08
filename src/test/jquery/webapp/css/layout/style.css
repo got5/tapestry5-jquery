@@ -64,7 +64,7 @@ p { margin-bottom:10px; line-height:1.3em; }
 
 #i-component { 
 	margin-bottom: 20px;
-	padding: 20px 15px; 
+	/*padding: 20px 15px;*/ 
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
