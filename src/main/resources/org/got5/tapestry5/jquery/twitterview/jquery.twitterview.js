@@ -5,7 +5,13 @@
        
         twitterView: function(options) {
  
- 
+ 			var formatDate = function(tweet){
+				var tweetDate = new Date(tweet);
+				var tweetDateTxt = tweetDate.getDate()+"/"+(tweetDate.getMonth()+1)+"/"+(tweetDate.getYear()+1900)+" ";
+				tweetDateTxt+=tweetDate.getHours()<10?"0"+tweetDate.getHours():tweetDate.getHours();
+				tweetDateTxt+=":"+(tweetDate.getMinutes()<10?"0"+tweetDate.getMinutes():tweetDate.getMinutes());
+				return tweetDateTxt;
+			};
             
             var defaults = {
                 account :"gotapestry5",
@@ -13,7 +19,9 @@
 				timelineUrl :"",
 				count :10,
 				includeRetweets:1,
-				callbackName:"twitterView"
+				callbackName:"twitterView",
+				errorMessage:"an error occured while loading Twitter timeline",
+				dateFormatCallback:formatDate
             };
                  
             var options =  $.extend(defaults, options);
@@ -35,14 +43,6 @@
 				tweetText = tweetText.replace(dashRegexp,"<a href='http://twitter.com/search?q=$1' target='_blank'>$1</a>");
 				return tweetText;
 			};
-			
-			var formatDate = function(tweet){
-				var tweetDate = new Date(tweet);
-				var tweetDateTxt = tweetDate.getDate()+"/"+(tweetDate.getMonth()+1)+"/"+(tweetDate.getYear()+1900)+" ";
-				tweetDateTxt+=tweetDate.getHours()<10?"0"+tweetDate.getHours():tweetDate.getHours();
-				tweetDateTxt+=":"+(tweetDate.getMinutes()<10?"0"+tweetDate.getMinutes():tweetDate.getMinutes());
-				return tweetDateTxt;
-			};
 	
             return this.each(function() {
 				var elt = $(this);
@@ -60,7 +60,7 @@
 					jsonpCallback:options.callbackName,
 					timeout:30000,
 					error:function(jqXHR, textStatus, errorThrown){
-						elt.html("an error occured while loading Twitter timeline");
+						elt.html(options.errorMessage);
 					},
 					success:function(data, textStatus, jqXHR){
 						elt.html("");
@@ -76,7 +76,7 @@
 							
 							var span = $("<span>");
 							span.append($("<strong>").append(tweet.user.screen_name));
-							span.append(formatDate(tweet.created_at));
+							span.append(options.dateFormatCallback(tweet.created_at));
 							div.append(span);
 							var content = $("<div>");
 							content.attr("class","content");
