@@ -124,20 +124,25 @@ public class showSource {
 			}
 		}
 		
-		langs = new HashMap<String, String>();
-		
-		langs.put("js", "javascript");
-		
-		langs.put("tml", "html");
-		
-		if(componentResources.isBound("path"))
-			extension  = path.substring((path.lastIndexOf('.')+1));
-		else extension = ext; 
+		if(componentResources.isBound("ext"))
+		{
+			lang = ext;
+		}
+		else if(componentResources.isBound("path"))
+		{
+
+			langs = new HashMap<String, String>();
 			
-		lang = extension;
-		
-		if(langs.get(extension) != null) 
-			lang = langs.get(lang);
+			langs.put("js", "javascript");
+			
+			langs.put("tml", "html");
+			
+			extension  = path.substring((path.lastIndexOf('.')+1)); 
+			
+			if(langs.get(extension) != null) 
+				lang = langs.get(extension);
+			else lang = extension;
+		}
 		
 		return true;
 	}
@@ -320,8 +325,8 @@ public class showSource {
 		
 		params.put("lang", lang);
 		
-		if(!componentResources.isBound("specs")){
-			
+		if(!componentResources.isBound("specs"))
+		{
 			specs = new JSONObject();
 			
 			specs.put("showMsg", message.get("ShowSource-showMsg"));
