@@ -53,6 +53,12 @@ public class showSource {
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String ext;
 	
+	@Parameter(value="0")
+	private Integer beginLine;
+	
+	@Parameter 
+	private Integer endLine;
+	
 	/**
 	 * Code Source Lang for the JQuery Plugin
 	 */
@@ -96,7 +102,9 @@ public class showSource {
 	@SetupRender
 	private boolean setupRender()
 	{	
-				
+		
+		
+		
 		if(componentResources.isBound("path") && 
 				componentResources.getBody().toString()
 					.equalsIgnoreCase("<PlaceholderBlock>")){
@@ -105,7 +113,16 @@ public class showSource {
 					"or a body for the showSource component");
 			
 		}
-			
+		
+		if(componentResources.isBound("endLine"))
+		{
+			if(endLine<beginLine)
+			{
+				logger.warn("The endLine parameter has to be greater than beginLine");
+				
+				return false;
+			}
+		}
 		
 		langs = new HashMap<String, String>();
 		
@@ -135,8 +152,6 @@ public class showSource {
 	
 	public String getSrcContent() 
 	{
-		
-		
 		StringBuffer buffer = new StringBuffer();
 		
 		InputStream is = null;	
@@ -166,9 +181,11 @@ public class showSource {
 		{	
 			try 
 			{
-				InputStreamReader reader = new InputStreamReader(is);
+				Integer numLine = 1;
 				
-				BufferedReader buffReader = new BufferedReader(reader);
+				int goodNumberWhiteSpace = getNumberWhiteSpace(new FileInputStream(file));
+				
+				BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
 
 				buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
 				
@@ -176,17 +193,28 @@ public class showSource {
 				
 				while (line != null) 
 				{
-					buffer.append(line);
+					if(numLine>=beginLine)
+					{
+						if(componentResources.isBound("endLine")){
+							
+							if(numLine>endLine) break;
+							
+						}
+												
+						buffer.append(deleteSpace(line,goodNumberWhiteSpace));
+						
+						buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
+						
+						
+					}
 					
-					buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
+					numLine++;
 					
 					line = buffReader.readLine();
 				}
 				
 				buffReader.close();
 				
-				reader.close();
-
 			} 
 			catch (IOException ioEx) 
 			{
@@ -211,7 +239,80 @@ public class showSource {
 		return buffer.toString();
 		
 	}
+	
+	public String deleteSpace(String line,int goodNumberWhiteSpace)
+	{
+		try
+		{
+			return line.substring(goodNumberWhiteSpace);
+		}
+		catch(Exception e)
+		{
+			return line;
+		}
+	}
+	public int getNumberWhiteSpace(InputStream is)
+	{
+		int goodNumberWhiteSpace = 0;
+		
+		int NumberWhiteSpace = 0;
+		
+		Integer numLine = 1;
+		
+		BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
+		
+		if(beginLine==0) return 0;
+		
+		try
+		{
+			String line = buffReader.readLine();
+		
 			
+			while(line!=null)
+			{	
+				
+				if(componentResources.isBound("endLine")){
+					
+					if(numLine>endLine) break;
+					
+				}
+				
+				NumberWhiteSpace = 0;
+				
+				for(int i = 0; i < line.length(); ++i)
+				{
+					if(Character.isWhitespace(line.charAt(i)))
+					{
+						NumberWhiteSpace++;
+					}
+					
+				}
+				
+				if(numLine>=beginLine)
+				{
+					
+					if(goodNumberWhiteSpace==0) 
+						goodNumberWhiteSpace=NumberWhiteSpace;
+					else goodNumberWhiteSpace = Math.min(goodNumberWhiteSpace, NumberWhiteSpace);
+					
+				}
+				
+				numLine++;
+				
+				line = buffReader.readLine();
+				
+			}
+			
+			return (goodNumberWhiteSpace);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return 0;
+	}
+		
 	@AfterRender
 	public void afterRender()
 	{
@@ -230,6 +331,8 @@ public class showSource {
 			specs.put("style", message.get("ShowSource-style"));
 			
 			specs.put("collapse", Boolean.parseBoolean(message.get("ShowSource-collapse")));
+			
+			specs.put("showNum", Boolean.parseBoolean(message.get("ShowSource-showNum")));
 		}
 		
 		JQueryUtils.merge(params, specs);

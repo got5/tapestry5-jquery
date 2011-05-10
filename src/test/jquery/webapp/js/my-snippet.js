@@ -10,7 +10,8 @@
         				style:specs.style,
         				collapse:specs.collapse,
         				showMsg:specs.showMsg,
-        				hideMsg:specs.hideMsg
+        				hideMsg:specs.hideMsg,
+        				showNum:specs.showNum
         			});
         }
     });
