@@ -1,6 +1,5 @@
 package org.got5.tapestry5.jquery.test.components;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,18 +7,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -28,29 +25,33 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 import org.slf4j.Logger;
-
 
 /**
  * Component for displaying a code source
  *
  */
 
-@Import(library = {"jquery.snippet.js","my-snippet.js"}, 
-		stylesheet = { "jquery.snippet.css"})
+@Import(library = {"context:js/jquery.snippet.js",
+				  "context:js/my-snippet.js"}, 
+		stylesheet = { "context:css/jquery.snippet.css"})
 public class showSource {
 
 	/**
 	 * Code Source path
 	 */
-	@Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String path;
 	
 	/**
 	 * Specs for the JQuery Plugin
 	 */
-	@Parameter(required=true, defaultPrefix=BindingConstants.PROP)
+	@Parameter(defaultPrefix=BindingConstants.PROP)
 	private JSONObject specs;
+	
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
+	private String ext;
 	
 	/**
 	 * Code Source Lang for the JQuery Plugin
@@ -81,17 +82,30 @@ public class showSource {
     private String srcDir;
 	
 	@Inject 
+	private ComponentResources componentResources;
+	
+	@Inject 
 	private Messages message;
+	
+	@Inject 
+	private Block fromBody;
+	
+	@Inject 
+	private Block fromFile;
 	
 	@SetupRender
 	private boolean setupRender()
 	{	
-		if(InternalUtils.isBlank(srcDir))
-		{
-			logger.warn("We have to specify the path of your project in the AppModule file");
+				
+		if(componentResources.isBound("path") && 
+				componentResources.getBody().toString()
+					.equalsIgnoreCase("<PlaceholderBlock>")){
 			
-			return false;
+			logger.warn("We have to specify a path " +
+					"or a body for the showSource component");
+			
 		}
+			
 		
 		langs = new HashMap<String, String>();
 		
@@ -99,8 +113,10 @@ public class showSource {
 		
 		langs.put("tml", "html");
 		
-		extension  = path.substring((path.lastIndexOf('.')+1));
-		
+		if(componentResources.isBound("path"))
+			extension  = path.substring((path.lastIndexOf('.')+1));
+		else extension = ext; 
+			
 		lang = extension;
 		
 		if(langs.get(extension) != null) 
@@ -109,16 +125,33 @@ public class showSource {
 		return true;
 	}
 	
+	public Block getChooseBlock(){
+		
+		if(componentResources.isBound("path")) return fromFile;
+		
+		return fromBody;
+		
+	}
+	
 	public String getSrcContent() 
 	{
+		
+		
 		StringBuffer buffer = new StringBuffer();
 		
 		InputStream is = null;	
 		
 		File file = null;
-			
-		file = new File(srcDir+"/"+path);
-		   		    
+		
+		String rootSrc; 
+		
+		if(InternalUtils.isBlank(srcDir)) 
+			rootSrc=System.getProperty("projectPath")
+				.substring(0,(System.getProperty("projectPath").length()-13));
+		else rootSrc=srcDir;  
+		
+		file = new File(rootSrc+"/"+path);
+		
 		try 
 		{
 			is = new FileInputStream(file);
@@ -186,21 +219,20 @@ public class showSource {
 		
 		params.put("lang", lang);
 		
-		if(specs.isNull("showMsg")) 
-			params.put("showMsg", message.get("ShowSource-showMsg"));
-		else params.put("showMsg", specs.get("showMsg"));
+		if(!componentResources.isBound("specs")){
+			
+			specs = new JSONObject();
+			
+			specs.put("showMsg", message.get("ShowSource-showMsg"));
+			
+			specs.put("hideMsg", message.get("ShowSource-hideMsg"));
+			
+			specs.put("style", message.get("ShowSource-style"));
+			
+			specs.put("collapse", Boolean.parseBoolean(message.get("ShowSource-collapse")));
+		}
 		
-		if(specs.isNull("hideMsg")) 
-			params.put("hideMsg", message.get("ShowSource-hideMsg"));
-		else params.put("hideMsg", specs.get("hideMsg"));
-		
-		if(specs.isNull("style")) 
-			params.put("style", message.get("ShowSource-style"));
-		else params.put("style", specs.get("style"));
-		
-		if(specs.isNull("collapse")) 
-			params.put("collapse", Boolean.parseBoolean(message.get("ShowSource-collapse")));
-		else params.put("collapse", specs.get("collapse"));
+		JQueryUtils.merge(params, specs);
 		
 		support.addInitializerCall("source", params);
 		
@@ -244,5 +276,13 @@ public class showSource {
 
 	public void setSpecs(JSONObject specs) {
 		this.specs = specs;
+	}
+
+	public String getExt() {
+		return ext;
+	}
+
+	public void setExt(String ext) {
+		this.ext = ext;
 	}
 }

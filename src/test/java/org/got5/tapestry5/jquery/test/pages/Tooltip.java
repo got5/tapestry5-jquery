@@ -16,9 +16,13 @@
 
 package org.got5.tapestry5.jquery.test.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.json.JSONObject;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
 public class Tooltip
@@ -26,12 +30,23 @@ public class Tooltip
 	 @Property
 	 private JSONObject params;
 	 
+	 
+	 @Property
+	 private List<JQueryTabData> listTabData;
+
 	 @SetupRender
-	 public void setupRender(){
-		 
-		 JSONObject params = new JSONObject();
-		 
-		 
-		 //params.put("position", );
+	 void onSetupRender()
+	 {
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Concept","concept"));
+	    listTabData.add(new JQueryTabData("Usage","usage"));
+	    
+	        
+	    JSONObject params = new JSONObject();
+	    
+	  
+	    
+	    
 	 }
+
 }

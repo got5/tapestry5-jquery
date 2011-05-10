@@ -47,6 +47,7 @@
 
 			// variable containing the style to be used
 			var useStyle = defaults.style.toLowerCase();
+			
 			if(defaults.style == "random"){
 				var randomnumber=Math.floor(Math.random()*(styleArr.length));		   
 				useStyle = styleArr[randomnumber];	
@@ -194,7 +195,7 @@
 					if(defaults.collapse){
 						var styleClass = o.parent().attr('class');
 						var collapseShow = "<div class='snippet-reveal "+styleClass+"'><pre class='sh_sourceCode'><a href='#' class='snippet-toggle'>"+defaults.showMsg+"</a></pre></div>";
-						var collapseHide = "<div class='sh_sourceCode snippet-hide'><pre><a href='#' class='snippet-revealed snippet-toggle'>"+defaults.hideMsg+"</a></pre></div>";
+						var collapseHide = "<div class='sh_sourceCode snippet-hide'><pre><a href='#' class='snippet-window snippet-toggle'>"+defaults.hideMsg+"</a></pre></div>";
 						
 						o.parents('.snippet-container').append(collapseShow);
 						o.parent().append(collapseHide);

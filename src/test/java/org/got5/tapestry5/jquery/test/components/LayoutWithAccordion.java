@@ -31,7 +31,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 
 @Import(stylesheet =
-{ "context:css/layout/style.css" }
+{ "context:css/layout/style.css" ,"context:css/demoSite.css"}
 )
 public class LayoutWithAccordion
 {

@@ -1,7 +1,18 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
-
+<div class="showSource">
 	<pre class="${lang}">
-		${srcContent}
+		
+		<t:delegate t:to="chooseBlock" />
+		
+		<t:block t:id="fromBody">
+			<t:body />
+		</t:block>
+		
+		<t:block t:id="fromFile">
+			${srcContent}
+		</t:block>
+		
+		
 	</pre>
-
+</div>
 </t:container>

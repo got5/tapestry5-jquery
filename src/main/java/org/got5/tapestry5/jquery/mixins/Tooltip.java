@@ -12,8 +12,9 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 @ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core" })
-@Import(library = { "${tapestry.jquery.path}/tooltip/jquery.ui.tooltip.js", "${tapestry.jquery.path}/mixins/tooltip.js" }, 
-		stylesheet = { "${tapestry.jquery.path}/tooltip/jquery.ui.tooltip.css" })
+@Import(library = { "${assets.path}/mixins/tooltip/jquery.ui.tooltip.js", 
+					"${assets.path}/mixins/tooltip/tooltip.js" }, 
+		stylesheet = { "${assets.path}/mixins/tooltip/jquery.ui.tooltip.css" })
 public class Tooltip {
     /**
      * The field component to which this mixin is attached.
@@ -28,10 +29,7 @@ public class Tooltip {
     private JSONObject params;
 
     /**
-     * Mixin afterRender phrase occurs after the component itself. This is where we write the
-     * &lt;div&gt; element and
-     * the JavaScript.
-     *
+     * Mixin afterRender phrase occurs after the component itself. 
      * @param writer
      */
     void afterRender(MarkupWriter writer)

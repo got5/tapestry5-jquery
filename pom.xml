@@ -143,6 +143,12 @@
 					</requestLog>
 					<useTestClasspath>true</useTestClasspath>
 					<webAppSourceDirectory>src/test/jquery/webapp</webAppSourceDirectory>
+					<systemProperties>
+			            <systemProperty>
+			              <name>projectPath</name>
+			               <value>${project.build.sourceDirectory}</value>
+			            </systemProperty>
+			         </systemProperties>
 				</configuration>
 			</plugin>
 
@@ -263,6 +269,6 @@
 
 	<properties>
 		<tapestry-release-version>5.2.5</tapestry-release-version>
-		<browserStartCommand>*firefox</browserStartCommand>
+		<browserStartCommand>*googlechrome</browserStartCommand>
 	</properties>
 </project>
