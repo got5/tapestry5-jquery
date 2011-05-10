@@ -25,9 +25,6 @@ public class Tooltip {
     @Environmental
     private JavaScriptSupport javaScriptSupport;
 
-	@Parameter
-    private JSONObject params;
-
     /**
      * Mixin afterRender phrase occurs after the component itself. 
      * @param writer

@@ -1,27 +1,10 @@
-<html t:type="layoutWithAccordion" 
+<html t:type="layout" 
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
-    
-    <t:block id="concept">
-		
-		This is a example of the Tooltip mixin. This mixin use the title attribute of your element.<br/><br/>
-		
-    </t:block>
-    
-    <t:block id="usage">
-    	
-    	<a t:type="actionLink" 
+   	<a t:type="actionLink" 
     	   t:page="Index" 
     	   t:mixins="jquery/tooltip" 
     	   title="a small tooltip">Lien vers l'Index</a>
-    	<br />
-    	<br />
-    	<div t:type="showSource" t:endLine="8" t:beginLine="4" t:path="src/main/resources/org/got5/tapestry5/jquery/assets/mixins/tooltip/tooltip.js" />
-    	
-    	<div t:type="showSource" t:beginLine="35"  t:endLine="43" t:path="src/main/java/org/got5/tapestry5/jquery/mixins/Tooltip.java"/>
-    	
-    </t:block>
     
 </html>

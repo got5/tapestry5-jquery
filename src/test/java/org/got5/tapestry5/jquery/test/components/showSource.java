@@ -206,7 +206,9 @@ public class showSource {
 							
 						}
 												
-						buffer.append(deleteSpace(line,goodNumberWhiteSpace));
+						//buffer.append(deleteSpace(line,goodNumberWhiteSpace));
+						
+						buffer.append(line);
 						
 						buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
 						
@@ -286,7 +288,9 @@ public class showSource {
 				
 				for(int i = 0; i < line.length(); ++i)
 				{
-					if(Character.isWhitespace(line.charAt(i)))
+					char c = line.charAt(i);
+			       
+					if(Character.isWhitespace(c))
 					{
 						NumberWhiteSpace++;
 					}
@@ -324,6 +328,8 @@ public class showSource {
 		JSONObject params = new JSONObject();
 		
 		params.put("lang", lang);
+		
+		params.put("beginLine", beginLine);
 		
 		if(!componentResources.isBound("specs"))
 		{

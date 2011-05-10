@@ -80,7 +80,7 @@
 						return false;
 					}
 					
-					o.addClass("sh_"+language).addClass("snippet-formatted").wrap("<div class='snippet-container' style='"+o.attr('style')+";'><div class='sh_"+useStyle+" snippet-wrap'></div></div>");
+					o.addClass("sh_"+language).addClass("snippet-formatted").wrap("<div class='snippet-container' style='"+o.attr('style')+"'><div class='sh_"+useStyle+" snippet-wrap'></div></div>");
 					o.removeAttr('style');
 					sh_highlightDocument();
 					
