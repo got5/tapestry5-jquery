@@ -121,6 +121,9 @@
 			        <li>
 			            <t:pagelink t:page="docs/docsMask">Mask</t:pagelink>
 			        </li>
+			        <li>
+			            <t:pagelink t:page="docs/docsCheckbox">Checkbox</t:pagelink>
+			        </li>
 			    </ul>		
 			</t:block>
 		

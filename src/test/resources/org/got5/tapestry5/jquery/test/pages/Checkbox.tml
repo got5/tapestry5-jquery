@@ -1,0 +1,15 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    
+
+    <t:form t:id="monForm">
+    	
+    	<fieldset>	
+	    		<t:label t:for="maBox">Phone Number : </t:label>
+	    		<input t:type="jquery/checkbox" t:id="maBox" t:value="value"/> 
+    	  
+    	</fieldset>
+    	
+    </t:form>
+    
+
+</html>
