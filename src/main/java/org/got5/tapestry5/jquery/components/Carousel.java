@@ -33,7 +33,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 
-@Import(library = {"jquery.jcarousel.min.js","carousel.js"},stylesheet={"context:css/tango/skin.css"})
+@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.min.js","${assets.path}/components/carousel/carousel.js"},stylesheet={"context:css/tango/skin.css"})
 @SupportsInformalParameters
 public class Carousel implements ClientElement {
 	 

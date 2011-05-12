@@ -78,14 +78,14 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
             javaScriptStack = F
                     .flow("${jquery.ui.path}/minified/jquery.ui.datepicker.min.js",
-                          "${tapestry.jquery.path}/components/datefield.js")
+                          "${assets.path}/components/datefield/datefield.js")
                     .map(pathToAsset).toList();
 
         } else {
 
             javaScriptStack = F
                     .flow("${jquery.ui.path}/jquery.ui.datepicker.js",
-                          "${tapestry.jquery.path}/components/datefield.js")
+                          "${assets.path}/components/datefield/datefield.js")
                     .map(pathToAsset).toList();
         }
 

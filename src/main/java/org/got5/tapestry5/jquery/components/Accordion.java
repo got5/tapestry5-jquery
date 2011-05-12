@@ -37,7 +37,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 @ImportJQueryUI( value = { "jquery.ui.core",
                            "jquery.ui.widget",
                            "jquery.ui.accordion" })
-@Import(library =          "accordion.js")
+@Import(library =          "${assets.path}/components/accordion/accordion.js")
 public class Accordion extends AbstractExtendableComponent
 {
 	@Inject

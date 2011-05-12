@@ -70,7 +70,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * browsers, and are not fully handled on the client side.
  */
 @ImportJQueryUI(value = "jquery.ui.widget")
-@Import(library= "palette.js")
+@Import(library= "${assets.path}/components/palette/palette.js")
 public class Palette extends AbstractField
 {
     // These all started as anonymous inner classes, and were refactored out to here.

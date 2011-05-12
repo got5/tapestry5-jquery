@@ -66,7 +66,7 @@ public class Dialog implements ClientElement
     @AfterRender
     protected void addJSResources()
     {
-        String[] scripts = { "org/got5/tapestry5/jquery/components/dialog.js" };
+        String[] scripts = { "org/got5/tapestry5/jquery/assets/components/dialog/dialog.js" };
 
         for (String path : scripts)
         {

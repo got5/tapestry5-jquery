@@ -52,26 +52,26 @@
             		<t:pagelink t:page="docs/DateField">DateField</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="validation">Validation</t:pagelink>
+            		<t:pagelink t:page="Validation">Validation</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="grid">Grid</t:pagelink>
+            		<t:pagelink t:page="Grid">Grid</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink>
+            		<t:pagelink t:page="Ajaxformloop">AjaxFormLoop</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="formfragment">FormFragment</t:pagelink>
+            		<t:pagelink t:page="Formfragment">FormFragment</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="linksubmit">LinkSubmit</t:pagelink>
+            		<t:pagelink t:page="Linksubmit">LinkSubmit</t:pagelink>
         		</li>	
         		<li>
-            		<t:pagelink t:page="jqueryautocomplete">j:Autocomplete</t:pagelink>
+            		<t:pagelink t:page="JQueryAutocomplete">j:Autocomplete</t:pagelink>
         		</li>
         	
         		 <li>
-                     <t:pagelink t:page="jquerypalette">j:Palette</t:pagelink> 
+                     <t:pagelink t:page="JqueryPalette">j:Palette</t:pagelink> 
         		</li>
 			</ul>
 			</t:block>
@@ -80,16 +80,16 @@
 			<!-- Core Components that need lib mapping -->
 			<ul>
 				 <li>
-			         <t:pagelink t:page="jquerydialog">Dialog</t:pagelink>
+			         <t:pagelink t:page="JqueryDialog">Dialog</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="jquerytabs">Tabs</t:pagelink>
+			         <t:pagelink t:page="JqueryTabs">Tabs</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="jqueryaccordion">Accordion</t:pagelink>
+			         <t:pagelink t:page="JqueryAccordion">Accordion</t:pagelink>
 			     </li>
 			     <li>
-			        <t:pagelink t:page="jqueryslider">Slider</t:pagelink>
+			        <t:pagelink t:page="JquerySlider">Slider</t:pagelink>
 			     </li>
 			     <li>
 			     	<t:pagelink t:page="Button">Button</t:pagelink>
@@ -104,22 +104,22 @@
 			   	
 			    <ul>
 			        <li>
-			            <t:pagelink t:page="twitterviewpage">Twitter View</t:pagelink>
+			            <t:pagelink t:page="Twitterviewpage">Twitter View</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="ajaxuploadtest">AjaxUpload</t:pagelink>
+			            <t:pagelink t:page="AjaxuploadTest">AjaxUpload</t:pagelink>
 			        </li>			
 			        <li>
 			            <t:pagelink t:page="CarouselPage">Carousel</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="tooltip">Tooltip</t:pagelink>
+			            <t:pagelink t:page="docs/docsTooltip">Tooltip</t:pagelink>
 			        </li>
 			        <li>
 			            <t:pagelink t:page="reveal">Reveal</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="mask">Mask</t:pagelink>
+			            <t:pagelink t:page="docs/docsMask">Mask</t:pagelink>
 			        </li>
 			    </ul>		
 			</t:block>

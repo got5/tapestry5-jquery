@@ -32,7 +32,7 @@ public class DialogAjaxLink extends DialogLink
     private AssetSource source;
 
     private static final String[] scripts =
-    { "org/got5/tapestry5/jquery/components/dialogajaxlink.js" };
+    { "org/got5/tapestry5/jquery/assets/components/dialogajaxlink/dialogajaxlink.js" };
 
     @Override
     @SetupRender

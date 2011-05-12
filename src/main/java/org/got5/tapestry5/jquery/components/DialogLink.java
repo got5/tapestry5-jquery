@@ -24,7 +24,7 @@ public class DialogLink extends AbstractExtendableComponent
     private AssetSource source;
 
     private static final String[] scripts =
-    { "org/got5/tapestry5/jquery/components/dialoglink.js" };
+    { "org/got5/tapestry5/jquery/assets/components/dialoglink/dialoglink.js" };
 
     @SetupRender
     void setJSInit()
