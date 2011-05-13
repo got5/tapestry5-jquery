@@ -12,7 +12,8 @@
         				collapse:specs.collapse,
         				showMsg:specs.showMsg,
         				hideMsg:specs.hideMsg,
-        				showNum:specs.showNum
+        				showNum:specs.showNum,
+        				clipboard:specs.clipboard
         			});
         	
         	if(specs.beginLine!=0)

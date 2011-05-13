@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.json.JSONObject;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
@@ -31,12 +32,13 @@ public class docsCheckbox
 	
 	@Property
 	private List<JQueryTabData> listTabData;
-
+	
 	@SetupRender
 	void onSetupRender()
 	{
 		listTabData = new ArrayList<JQueryTabData>();
 	    listTabData.add(new JQueryTabData("Checkbox","checkbox"));
+
 	}
 
 }

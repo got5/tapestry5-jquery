@@ -33,7 +33,7 @@ import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 @Import(stylesheet =
 { "context:css/layout/style.css" ,"context:css/demoSite.css"}
 )
-public class LayoutWithAccordion
+public class LayoutWithAccordion 
 {
     @Property
     private String title;

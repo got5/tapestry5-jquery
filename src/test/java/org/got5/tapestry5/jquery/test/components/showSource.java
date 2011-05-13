@@ -50,6 +50,8 @@ public class showSource {
 	@Parameter(defaultPrefix=BindingConstants.PROP)
 	private JSONObject specs;
 	
+	private JSONObject defaultSpecs;
+	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String ext;
 	
@@ -99,6 +101,7 @@ public class showSource {
 	@Inject 
 	private Block fromFile;
 	
+	
 	@SetupRender
 	private boolean setupRender()
 	{	
@@ -144,6 +147,24 @@ public class showSource {
 			else lang = extension;
 		}
 		
+		
+		/**
+		 * Init the Default parameter for the jQuery plugin
+		 */
+		defaultSpecs = new JSONObject();
+		
+		defaultSpecs.put("showMsg", message.get("ShowSource-showMsg"));
+			
+		defaultSpecs.put("hideMsg", message.get("ShowSource-hideMsg"));
+			
+		defaultSpecs.put("style", message.get("ShowSource-style"));
+			
+		defaultSpecs.put("collapse", message.get("ShowSource-collapse"));
+			
+		defaultSpecs.put("showNum", message.get("ShowSource-showNum"));
+		
+		defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("context:js/ZeroClipboard.swf").toClientURL());
+		
 		return true;
 	}
 	
@@ -188,8 +209,6 @@ public class showSource {
 			{
 				Integer numLine = 1;
 				
-				int goodNumberWhiteSpace = getNumberWhiteSpace(new FileInputStream(file));
-				
 				BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
 
 				buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
@@ -206,8 +225,6 @@ public class showSource {
 							
 						}
 												
-						//buffer.append(deleteSpace(line,goodNumberWhiteSpace));
-						
 						buffer.append(line);
 						
 						buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
@@ -247,81 +264,6 @@ public class showSource {
 		
 	}
 	
-	public String deleteSpace(String line,int goodNumberWhiteSpace)
-	{
-		try
-		{
-			return line.substring(goodNumberWhiteSpace);
-		}
-		catch(Exception e)
-		{
-			return line;
-		}
-	}
-	public int getNumberWhiteSpace(InputStream is)
-	{
-		int goodNumberWhiteSpace = 0;
-		
-		int NumberWhiteSpace = 0;
-		
-		Integer numLine = 1;
-		
-		BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
-		
-		if(beginLine==0) return 0;
-		
-		try
-		{
-			String line = buffReader.readLine();
-		
-			
-			while(line!=null)
-			{	
-				
-				if(componentResources.isBound("endLine")){
-					
-					if(numLine>endLine) break;
-					
-				}
-				
-				NumberWhiteSpace = 0;
-				
-				for(int i = 0; i < line.length(); ++i)
-				{
-					char c = line.charAt(i);
-			       
-					if(Character.isWhitespace(c))
-					{
-						NumberWhiteSpace++;
-					}
-					
-				}
-				
-				if(numLine>=beginLine)
-				{
-					
-					if(goodNumberWhiteSpace==0) 
-						goodNumberWhiteSpace=NumberWhiteSpace;
-					else goodNumberWhiteSpace = Math.min(goodNumberWhiteSpace, NumberWhiteSpace);
-					
-				}
-				
-				numLine++;
-				
-				line = buffReader.readLine();
-				
-			}
-			
-			return (goodNumberWhiteSpace);
-		}
-		catch(Exception e)
-		{
-			
-		}
-		
-		return 0;
-	}
-		
 	@AfterRender
 	public void afterRender()
 	{
@@ -331,22 +273,13 @@ public class showSource {
 		
 		params.put("beginLine", beginLine);
 		
-		if(!componentResources.isBound("specs"))
-		{
-			specs = new JSONObject();
-			
-			specs.put("showMsg", message.get("ShowSource-showMsg"));
-			
-			specs.put("hideMsg", message.get("ShowSource-hideMsg"));
-			
-			specs.put("style", message.get("ShowSource-style"));
-			
-			specs.put("collapse", Boolean.parseBoolean(message.get("ShowSource-collapse")));
-			
-			specs.put("showNum", Boolean.parseBoolean(message.get("ShowSource-showNum")));
-		}
+		JQueryUtils.merge(defaultSpecs,specs);
 		
-		JQueryUtils.merge(params, specs);
+		defaultSpecs.put("collapse", Boolean.parseBoolean(defaultSpecs.getString("collapse")));
+		
+		defaultSpecs.put("showNum", Boolean.parseBoolean(defaultSpecs.getString("showNum")));
+		
+		JQueryUtils.merge(params, defaultSpecs);
 		
 		support.addInitializerCall("source", params);
 		
@@ -382,6 +315,14 @@ public class showSource {
 
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+
+	public JSONObject getDefaultSpecs() {
+		return defaultSpecs;
+	}
+
+	public void setDefaultSpecs(JSONObject defaultSpecs) {
+		this.defaultSpecs = defaultSpecs;
 	}
 
 	public JSONObject getSpecs() {
