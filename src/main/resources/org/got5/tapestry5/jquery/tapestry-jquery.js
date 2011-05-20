@@ -122,7 +122,7 @@ $.extend(Tapestry.Initializer, {
                     var options = {};
                    
                     container.fadeOut('slow', function() {
-                    	container.detach();
+                    	$(this).remove();
                     });
                 }
             }
@@ -524,7 +524,7 @@ $.widget( "ui.tapestryFormInjector", {
                 // to create the new element, that gets inserted
                 // before or after the FormInjector's element.			
             	
-                var newElement = el.clone().attr("id", data.elementId).html(data.content);
+                var newElement = el.clone(false).attr("id", data.elementId).html(data.content);
                 
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
                 
