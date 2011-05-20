@@ -308,4 +308,44 @@ public class JQueryTest extends JavascriptTestSuite
             }
         }.wait("The checkbox should be checked", 5000l);
     }
+    
+    @Test
+    public void testAjaxFormLoop(){
+    	
+    	open("/AjaxFormLoop");
+    	
+    	click("//a[@id='addrowlink']");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+        
+        click("//a[@id='addrowlink']");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(2);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+        
+        click("//a[contains(@id,'removerowlink_')][1]");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+    	
+    }
 }
