@@ -111,7 +111,7 @@ $.extend(Tapestry.Initializer, {
         link.click(function(e) {
         
             var successHandler = function(data) {
-            
+           
                 var container = $("#" + fragmentId),
 					fragment = container.data("tapestry.formFragment");
                 
@@ -120,8 +120,9 @@ $.extend(Tapestry.Initializer, {
                 }
                 else {
                     var options = {};
-                    container.hide(spec.effect, options, "normal", function() {
-                        container.remove();
+                   
+                    container.fadeOut('slow', function() {
+                    	container.detach();
                     });
                 }
             }
@@ -521,7 +522,8 @@ $.widget( "ui.tapestryFormInjector", {
             $.tapestry.utils.loadScriptsInReply(data, function() {
                 // Clone the FormInjector element (usually a div)
                 // to create the new element, that gets inserted
-                // before or after the FormInjector's element.				
+                // before or after the FormInjector's element.			
+            	
                 var newElement = el.clone().attr("id", data.elementId).html(data.content);
                 
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
