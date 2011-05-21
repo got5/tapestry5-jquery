@@ -21,7 +21,7 @@
 
 		<div id="top">
 
-			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+			<h1><img src="${context:/css/layout/tapestry.png}" alt="Tapestry" id="tapestry" /></h1>
 
 			<div>Welcome to Tapestry5-jQuery !</div>
 			
