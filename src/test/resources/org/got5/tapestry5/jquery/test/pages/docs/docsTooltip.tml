@@ -16,9 +16,9 @@
 		   title="a small tooltip">Lien vers l'Index</a>
     	<br />
     	<br />
-    	<div t:type="showSource" t:ext="html" t:endLine="15" t:beginLine="12" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/docsTooltip.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:endLine="16" t:beginLine="13" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/docsTooltip.tml"></div>
     	
-    	<div t:type="showSource" t:path="src/main/resources/org/got5/tapestry5/jquery/assets/mixins/tooltip/tooltip.js"></div>
+    	<div t:type="jquery/showSource" t:path="src/main/resources/org/got5/tapestry5/jquery/assets/mixins/tooltip/tooltip.js"></div>
     	
     </t:block>
     
