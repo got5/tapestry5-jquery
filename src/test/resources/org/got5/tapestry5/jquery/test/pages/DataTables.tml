@@ -1,0 +1,13 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+ 
+     <t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
+        exclude="id, biography, birthDateVerified"
+		reorder="lastName,firstName,occupation,dateOfBirth"/> 
+    
+    <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
+		exclude="id, biography, birthDateVerified"
+		reorder="lastName,firstName,occupation,dateOfBirth">
+	</t:grid>
+    
+	
+</html>
