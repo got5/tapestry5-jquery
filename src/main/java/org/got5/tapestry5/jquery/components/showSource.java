@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.test.components;
+package org.got5.tapestry5.jquery.components;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.tapestry5.BindingConstants;
@@ -33,9 +34,9 @@ import org.slf4j.Logger;
  *
  */
 
-@Import(library = {"context:js/jquery.snippet.js",
-				  "context:js/my-snippet.js"}, 
-		stylesheet = { "context:css/jquery.snippet.css"})
+@Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
+				  "${assets.path}/components/showSource/my-snippet.js"}, 
+		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})
 public class showSource {
 
 	/**
@@ -101,7 +102,6 @@ public class showSource {
 	@Inject 
 	private Block fromFile;
 	
-	
 	@SetupRender
 	private boolean setupRender()
 	{	
@@ -163,7 +163,7 @@ public class showSource {
 			
 		defaultSpecs.put("showNum", message.get("ShowSource-showNum"));
 		
-		defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("context:js/ZeroClipboard.swf").toClientURL());
+		defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("org/got5/tapestry5/jquery/assets/components/showSource/my-snippet.js").toClientURL());
 		
 		return true;
 	}
@@ -187,12 +187,11 @@ public class showSource {
 		String rootSrc; 
 		
 		if(InternalUtils.isBlank(srcDir)) 
-			rootSrc=System.getProperty("projectPath")
-				.substring(0,(System.getProperty("projectPath").length()-13));
+			rootSrc=System.getProperty("user.dir");
 		else rootSrc=srcDir;  
 		
-		file = new File(rootSrc+"/"+path);
-		
+		file = new File(rootSrc+File.separator+path);
+
 		try 
 		{
 			is = new FileInputStream(file);
