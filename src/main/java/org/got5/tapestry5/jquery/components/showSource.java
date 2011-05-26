@@ -187,12 +187,11 @@ public class showSource {
 		String rootSrc; 
 		
 		if(InternalUtils.isBlank(srcDir)) 
-			rootSrc=System.getProperty("projectPath")
-				.substring(0,(System.getProperty("projectPath").length()-13));
+			rootSrc=System.getProperty("user.dir");
 		else rootSrc=srcDir;  
 		
-		file = new File(rootSrc+"/"+path);
-		
+		file = new File(rootSrc+File.separator+path);
+
 		try 
 		{
 			is = new FileInputStream(file);
