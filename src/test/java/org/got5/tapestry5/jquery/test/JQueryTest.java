@@ -310,6 +310,22 @@ public class JQueryTest extends JavascriptTestSuite
     }
     
     @Test
+    public void testSuperfishComponent(){
+    	
+    	open("/SuperFish");
+    	
+    	/*new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//ul[contains(@class,'sf-menu']");
+            }
+        }.wait("The ul element should be present", 5000l);*/
+    	
+    }
+    
+    @Test
     public void testAjaxFormLoop(){
     	
     	open("/AjaxFormLoop");

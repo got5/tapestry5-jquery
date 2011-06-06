@@ -1,0 +1,129 @@
+//
+// Copyright 2010 GOT5 (GO Tapestry 5)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+package org.got5.tapestry5.jquery.components;
+
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+
+
+
+
+@Import(library = {"${assets.path}/components/superfish/js/hoverIntent.js",
+					"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
+					"${assets.path}/components/superfish/js/superfish.js",
+					"${assets.path}/components/superfish/js/supersubs.js",
+					"${assets.path}/components/superfish/js/mySuperfish.js"})
+@SupportsInformalParameters
+public class Superfish{
+	 
+	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
+	private String clientId;
+	
+	@Parameter
+	private JSONObject params;
+	
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
+	private boolean vertical;
+	
+	@Parameter(value="sf-menu", defaultPrefix=BindingConstants.LITERAL)
+	private String classe;
+	
+	@Parameter
+	private boolean supersubs;
+	
+	@Parameter
+	private JSONObject supersubsParams;
+	
+	@Inject
+	private ComponentResources componentResources;
+	
+	@Inject
+	private JavaScriptSupport javaScriptSupport;
+	
+	@Inject
+	@Path("${assets.path}/components/superfish/css/superfish-vertical.css")
+	private Asset verticalAsset;
+	
+	@Inject
+	@Path("${assets.path}/components/superfish/css/superfish-navbar.css")
+	private Asset navBarAsset;
+	
+	@Inject
+	@Path("${assets.path}/components/superfish/css/superfish.css")
+	private Asset mainAsset;
+	
+	@SetupRender
+	public void init(MarkupWriter w){
+		
+		javaScriptSupport.importStylesheet(mainAsset);
+		
+		String css = classe;
+		
+		if(componentResources.isBound("vertical"))
+		{
+			if(vertical) css += " sf-vertical";
+			else css += " sf-navbar";
+			
+			if(vertical) javaScriptSupport.importStylesheet(verticalAsset);
+			else javaScriptSupport.importStylesheet(navBarAsset);
+		}
+				
+		w.element("ul","id",getClientId(),"class",css);
+		
+		componentResources.renderInformalParameters(w);
+				
+	}
+	
+	
+	@AfterRender()
+	public void finish(MarkupWriter w){
+		w.end();
+		
+		JSONObject jso = new JSONObject();
+		
+		jso.put("id", getClientId());
+		
+		jso.put("classe", classe);
+		
+		jso.put("params", params);
+		
+		jso.put("supersubs", supersubs);
+		
+		jso.put("supersubsParams", supersubsParams);
+		
+		javaScriptSupport.addInitializerCall("superfish", jso);
+		
+	}
+
+	public String getClientId(){
+        return this.clientId;
+    }
+	
+}
