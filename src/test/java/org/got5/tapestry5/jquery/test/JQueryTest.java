@@ -314,15 +314,36 @@ public class JQueryTest extends JavascriptTestSuite
     	
     	open("/SuperFish");
     	
-    	/*new Wait()
+    	new Wait()
         {
             @Override
             public boolean until()
             {
-                return isElementPresent("//ul[contains(@class,'sf-menu']");
+                return isElementPresent("//ul[@id='menu1'][contains(@class,'sf-menu')]");
             }
-        }.wait("The ul element should be present", 5000l);*/
+        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), 5000l);
+        
+        click("//ul[@id='menu1']/li[1]/a");
     	
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+            }
+        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
+        
+        click("//ul[@id='menu1']/li[2]/a");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return !getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+            }
+        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
     }
     
     @Test

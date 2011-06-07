@@ -8,7 +8,7 @@ $.extend(Tapestry.Initializer, {
     		$("#" + specs.id).supersubs(specs.supersubsParams);
     	}
     		
-    	$("ul." + specs.classe).superfish(specs.params);
+    	$("#" + specs.id).superfish(specs.params);
     }
 });
 

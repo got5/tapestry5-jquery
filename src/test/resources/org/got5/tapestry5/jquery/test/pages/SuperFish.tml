@@ -9,7 +9,7 @@
 								<a href="#aa">menu item</a> 
 							</li> 
 							<li class="current"> 
-								<a href="#ab">menu item quite long </a> 
+								<a href="#ab">menu item quite long</a> 
 								<ul> 
 									<li class="current"><a href="#">menu item</a></li> 
 									<li><a t:type="pageLink" t:page="Index">Index Page</a></li> 

@@ -29,7 +29,6 @@ public class SuperFish{
 
 		return retour;
 	}
-	
 
 	
 	@OnEvent(value=EventConstants.ACTION, component="action")

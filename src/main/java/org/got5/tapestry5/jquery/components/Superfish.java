@@ -43,21 +43,41 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 @SupportsInformalParameters
 public class Superfish{
 	 
+	/**
+	 * Id Client of your menu
+	 */
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
 	
+	/**
+	 * JSON Object for the Superfish Configuration
+	 */
 	@Parameter
 	private JSONObject params;
 	
+	/**
+	 * Boolean parameter : 
+	 * 		true : your menu will be vertical
+	 * 		false : your menu will have the navbar stylesheet
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private boolean vertical;
 	
+	/**
+	 * CSS class for the menu. By default sf-menu
+	 */
 	@Parameter(value="sf-menu", defaultPrefix=BindingConstants.LITERAL)
 	private String classe;
 	
+	/**
+	 * Flag : Use the supersubs plugin
+	 */
 	@Parameter
 	private boolean supersubs;
 	
+	/**
+	 * JSON Object for the Supersubs configuration
+	 */
 	@Parameter
 	private JSONObject supersubsParams;
 	
