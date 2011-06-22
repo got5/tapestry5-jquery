@@ -35,6 +35,8 @@ public class AppModule
     	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
     	
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
+    	
+    	configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     	

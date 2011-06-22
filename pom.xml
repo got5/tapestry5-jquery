@@ -264,6 +264,6 @@
 
 	<properties>
 		<tapestry-release-version>5.2.5</tapestry-release-version>
-		<browserStartCommand>*googlechrome</browserStartCommand>
+		<browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>
