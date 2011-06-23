@@ -24,7 +24,9 @@ $.extend(Tapestry.Initializer, {
  * Tapestry static functions
  */
 
-var Tapestry.Validator={};
+//for compatibility with beanvalidation
+$.extend(Tapestry, {Validator:{}});
+
 $.validator.addMethod("regexp",function( value, element, param ) {
 	var r = new RegExp(param);
     return this.optional(element) || r.test(value);
@@ -34,11 +36,13 @@ $.validator.addMethod("isnull",function( value, element ) {
     return this.optional(element) || value == null;
 },"The value is not null");
 
-$.validator.addMethod("size",function( value, element, param ) {
-	
-	if (Object.isString(value))
+//naming the method "size" leads to unexpected behaviour...
+//thus a manual mapping between sizeValidation and size is done in $.tapestry.rules
+//-> need investigation !
+$.validator.addMethod("sizeValidation",function( value, element, param ) {
+	if($.type(value) === "string")
 		return this.optional(element) || value.length > param.min || value.length < param.max;
-	else if (Object.isArray(value))
+	else if ($.isArray(value))
 	{	
 		if(element.tagName == "SELECT")
 		{
@@ -63,16 +67,10 @@ $.extend($.tapestry, {
             pattern:"regexp",
             notnull:"required",
             maxnumber:"max", 
-            minnumber:"min"
+            minnumber:"min",
+            size:"sizeValidation"
         }
     }
 });
 
 })(jQuery);
-
-
-
-
-
-
-
