@@ -328,7 +328,7 @@ $.widget( "ui.tapestryZone", {
 
 	_create: function() {
 		this.element
-			.addClass( "tapestry-zone" )
+			.addClass( "tapestry-zone" );
 	},
 
 	destroy: function() {
