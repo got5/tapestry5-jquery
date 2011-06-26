@@ -138,12 +138,20 @@ $.extend(Tapestry.Initializer, {
 
     linkSubmit: function (spec) {
 
-        var el = $("#" + spec.clientId);
-        var id = el.attr('id');
-
-        el.wrap('<a id="' + id + '">');
+        var el = $("#" + spec.clientId), 
+        	attrs = el.get(0).attributes;
+        
+        
+       
+		el.replaceWith("<a id='" + spec.clientId + "'>" + el.html() + "</a>");
+		
 		// reload element
 		el = $("#" + spec.clientId);
+		
+		$.each(attrs , function(i, attrib){
+			el.attr(attrib.name,attrib.value);
+		});
+		
 		el.attr('href', '#');
 
         el.tapestryLinkSubmit({
