@@ -153,10 +153,12 @@ $.extend(Tapestry.Initializer, {
 		});
 		
 		el.attr('href', '#');
-
+		
         el.tapestryLinkSubmit({
             form: spec.form,
-			validate: spec.validate
+			validate: spec.validate,
+			clientId: spec.clientId
+			
         });
     },
 
@@ -417,6 +419,8 @@ $.widget( "ui.tapestryLinkSubmit", {
     },
 
     _create: function() {
+    	var that=this;
+    	
         var form = $("#" + this.options.form);
 
         var el = $(this.element);
@@ -426,7 +430,10 @@ $.widget( "ui.tapestryLinkSubmit", {
 		}
 		
         el.click(function() {
-            $(this).tapestryLinkSubmit("clicked");
+        	
+        	$("#"+that.options.form).formEventManager("setSubmittingElement", that.options.clientId);
+        	
+        	$(this).tapestryLinkSubmit("clicked");
 
             return false;
         });
@@ -438,13 +445,15 @@ $.widget( "ui.tapestryLinkSubmit", {
     },
     
     clicked: function() {
+    	
 		var form = $("#" + this.options.form);
-
+		
 		if (form.hasClass(Tapestry.PREVENT_SUBMISSION)) {
 	   
             $(form).trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);         	
 
 		} else {
+			
             form.submit();  
 		}
     }
@@ -467,21 +476,32 @@ $.widget("ui.formEventManager", {
      *            LinkSubmit)
      */
     setSubmittingElement : function(element) {
-
+    	
+    	/**
+    	 * Get The Form
+    	 */
         var form = this.options.form;
 
-		if (!form.submitHidden) {
+		if (!this.options.submitHidden) {
 
-            // skip if this is not a tapestry controlled form
+            /**
+             * Check if it is a form controlled by Tapestry
+             */
 			var hasNoFormData = true;
 			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
                 hasNoFormData = $.isEmptyObject( $(this).attr('value'));
 			});
-
+			
+			/**
+			 * If it is not, we stop.
+			 */
             if (hasNoFormData) {
 				return;
 			}
 
+            /**
+             * Look for hidden input, called t:submit
+             */
             var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
 
             if (hiddens.size() === 0) {
@@ -490,13 +510,18 @@ $.widget("ui.formEventManager", {
                  * Create a new hidden field directly after the first hidden
                  * field in the form.
                  */
-                $(hiddens[0]).after('<input type="hidden" name="t:submit"');
+            	this.options.submitHidden = $('<input type="hidden" name="t:submit"/>')
+            		
+            	$(form).append(this.options.submitHidden);
+                
 
             } else
-                form.submitHidden = hiddens.first();
+            	this.options.submitHidden = hiddens.first();
         }
-
-        this.submitHidden.value = element == null ? null : $(element).id;
+		
+		var t = element == null ? null : $("#"+element).attr("id");
+		
+		this.options.submitHidden.attr("value",t);
     }
 	
 });
