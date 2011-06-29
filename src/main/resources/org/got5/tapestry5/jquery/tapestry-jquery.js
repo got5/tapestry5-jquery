@@ -170,9 +170,45 @@ $.extend(Tapestry.Initializer, {
      * @param url absolute component event request URL
      */
     linkZone: function(spec) {
-        var element = spec.linkId;
-        var zoneId = spec.zoneId;
-        var url = spec.url;
+    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+				spec.zoneId, spec.url);
+    },
+	
+   /**
+     * Converts a link into an Ajax update of a Zone. The url includes the
+     * information to reconnect with the server-side Form.
+     * 
+     * @param spec.selectId
+     *            id or instance of <select>
+     * @param spec.zoneId
+     *            id of element to update when select is changed
+     * @param spec.url
+     *            component event request URL
+     */
+    linkSelectToZone : function(spec) {
+        Tapestry.Initializer.updateZoneOnEvent("change", spec.selectId,
+				spec.zoneId, spec.url);
+    },
+    
+    /**
+	 * Used by other initializers to connect an element (either a link or a
+	 * form) to a zone.
+	 * 
+	 * @param eventName
+	 *            the event on the element to observe
+	 * @param element
+	 *            the element to observe for events
+	 * @param zoneId
+	 *            identified a Zone by its clientId. Alternately, the special
+	 *            value '^' indicates that the Zone is a container of the
+	 *            element (the first container with the 't-zone' CSS class).
+	 * @param url
+	 *            The request URL to be triggered when the event is observed.
+	 *            Ultimately, a partial page update JSON response will be passed
+	 *            to the Zone's ZoneManager.
+	 */
+    updateZoneOnEvent: function(eventName, element, zoneId, url) {
+
         var el = $('#' + element);
 		
         var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
@@ -213,28 +249,20 @@ $.extend(Tapestry.Initializer, {
             });
 
 		} else {
-            el.click(function() {
-                zoneElement.tapestryZone("update" , {url : url});
+            el.bind(eventName, function() {
+            	el.trigger(Tapestry.TRIGGER_ZONE_UPDATE_EVENT); 
                 return false;
             });
+            
+            el.bind(Tapestry.TRIGGER_ZONE_UPDATE_EVENT, function() {
+            	var parameters = {};
+            	if (el.is('select') && element.value) {
+    				parameters["t:selectvalue"] = element.value;
+    			}
+            	zoneElement.tapestryZone("update" , {url : url, parameters:parameters});
+
+    		});
         }
-    },
-	
-   /**
-     * Converts a link into an Ajax update of a Zone. The url includes the
-     * information to reconnect with the server-side Form.
-     * 
-     * @param spec.selectId
-     *            id or instance of <select>
-     * @param spec.zoneId
-     *            id of element to update when select is changed
-     * @param spec.url
-     *            component event request URL
-     */
-    linkSelectToZone : function(spec) {
-        Tapestry.Initializer.linkZone({ linkId : spec.selectId,
-                                        zoneId : spec.zoneId,      
-								        url : spec.url });
     },
     
     zone: function(spec) {

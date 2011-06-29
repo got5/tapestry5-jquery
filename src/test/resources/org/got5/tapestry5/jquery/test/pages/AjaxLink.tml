@@ -1,0 +1,12 @@
+<html t:type="layout" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+<t:actionlink t:zone="myZone">Increment it</t:actionlink>
+
+	<t:zone t:id="myZone">
+Hello - ${count}
+	</t:zone>
+
+</html>
