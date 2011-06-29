@@ -149,7 +149,7 @@ $.extend(Tapestry.Initializer, {
 		el = $("#" + spec.clientId);
 		
 		$.each(attrs , function(i, attrib){
-			el.attr(attrib.name,attrib.value);
+			if(attrib.value) el.attr(attrib.name,attrib.value);
 		});
 		
 		el.attr('href', '#');
@@ -517,7 +517,7 @@ $.widget("ui.formEventManager", {
              */
 			var hasNoFormData = true;
 			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
-                hasNoFormData = $.isEmptyObject( $(this).attr('value'));
+				hasNoFormData = ( $(this).attr('value') == '' );
 			});
 			
 			/**
