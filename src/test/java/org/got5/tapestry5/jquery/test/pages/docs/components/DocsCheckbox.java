@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages.docs;
+package org.got5.tapestry5.jquery.test.pages.docs.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
-public class docsCheckbox
+public class DocsCheckbox
 {
 	@Property
 	private boolean value;

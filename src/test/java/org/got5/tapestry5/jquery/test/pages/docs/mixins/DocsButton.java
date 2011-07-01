@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (GO Tapestry 5)
+// Copyright 2010 GOT5 (Gang Of Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,28 +14,31 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages.docs;
+package org.got5.tapestry5.jquery.test.pages.docs.mixins;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
-import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-
-public class docsMask
+public class DocsButton
 {
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	@Property
-	private String value;
-	
-	@SetupRender
-	void onSetupRender()
-	{
-		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Mask","Mask"));
-	}   
+    @Property
+    private String foo;
+
+    @OnEvent(component = "foo", value = "provideCompletions")
+    public List<String> autoComplete(String start)
+    {
+        List<String> strings = new ArrayList<String>();
+        if (start != null && start.startsWith("abc"))
+        {
+            strings.add("abdcdke");
+            strings.add("hgfdhgfhgf");
+            strings.add("jklhjkhl");
+            strings.add("vcxcvcx");
+        }
+        
+        return strings;
+    }
 }

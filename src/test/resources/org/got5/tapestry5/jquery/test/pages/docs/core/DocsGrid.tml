@@ -1,0 +1,18 @@
+<html t:type="layoutWithAccordion" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+ 
+    <t:grid source="users" row="user" model="myModel" t:inplace="true" rowIndex="currentIndex">
+        <p:actionCell>
+        	<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone" t:context="${currentIndex}" >Detail</t:jquery.dialogajaxlink>
+		</p:actionCell>
+    </t:grid>
+    
+    <t:jquery.dialog t:clientId="myDialog" t:params="dialogParam">
+    	Detail Dialog
+		<t:zone t:id="detailZone">
+		<div>
+			<t:beandisplay object="user"/>
+		</div>
+		<br/></t:zone>
+    </t:jquery.dialog>
+	
+</html>

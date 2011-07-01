@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages.docs;
+package org.got5.tapestry5.jquery.test.pages.docs.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-public class docsZone
+public class DocsZone
 {
     @Property
     @Persist

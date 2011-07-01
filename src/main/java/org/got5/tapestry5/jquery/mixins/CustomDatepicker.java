@@ -7,27 +7,22 @@ import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-
-@Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
-					 "${assets.path}/mixins/mask/mask.js" })
-public class Mask {
-
+@Import(library = { "${assets.path}/mixins/customDatepicker/customDatepicker.js" })
+public class CustomDatepicker {
+	
 	@Parameter
-	private String format;
+	private JSONObject params;
 	
-    /**
-     * The field component to which this mixin is attached.
-     */
-    @InjectContainer
+	@InjectContainer
     private ClientElement element;
-
-    @Environmental
-    private JavaScriptSupport javaScriptSupport;
-
 	
-    /**
+	@Environmental
+    private JavaScriptSupport javaScriptSupport;
+	
+	 /**
      * Mixin afterRender phrase occurs after the component itself. 
      * @param writer
      */
@@ -40,8 +35,9 @@ public class Mask {
     
         data.put("id", id);
         
-        data.put("format", format);
+        data.put("params", params);
     
-        javaScriptSupport.addInitializerCall("mask", data);
+        javaScriptSupport.addInitializerCall(InitializationPriority.LATE,"customDatepicker", data);
     }
+	
 }

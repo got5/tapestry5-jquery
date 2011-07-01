@@ -46,32 +46,31 @@
 			<!-- Core Components and features -->
 			<ul>
         		<li>
-            		<t:pagelink t:page="docs/Zone">Zone</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsZone">Zone</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="docs/DateField">DateField</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsDateField">DateField</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="Validation">Validation</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsValidation">Validation</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="Grid">Grid</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsGrid">Grid</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="Ajaxformloop">AjaxFormLoop</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsAjaxformloop">AjaxFormLoop</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="Formfragment">FormFragment</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsFormfragment">FormFragment</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="Linksubmit">LinkSubmit</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsLinksubmit">LinkSubmit</t:pagelink>
         		</li>	
         		<li>
-            		<t:pagelink t:page="JQueryAutocomplete">j:Autocomplete</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsJQueryAutocomplete">j:Autocomplete</t:pagelink>
         		</li>
-        	
-        		 <li>
-                     <t:pagelink t:page="JqueryPalette">j:Palette</t:pagelink> 
+        		<li>
+                    <t:pagelink t:page="docs/core/DocsJqueryPalette">j:Palette</t:pagelink> 
         		</li>
 			</ul>
 			</t:block>
@@ -80,21 +79,33 @@
 			<!-- Core Components that need lib mapping -->
 			<ul>
 				 <li>
-			         <t:pagelink t:page="JqueryDialog">Dialog</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryDialog">Dialog</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="JqueryTabs">Tabs</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryTabs">Tabs</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="JqueryAccordion">Accordion</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryAccordion">Accordion</t:pagelink>
 			     </li>
 			     <li>
-			        <t:pagelink t:page="JquerySlider">Slider</t:pagelink>
+			        <t:pagelink t:page="docs/components/DocsJquerySlider">Slider</t:pagelink>
 			     </li>
 			     <li>
-			     	<t:pagelink t:page="Button">Button</t:pagelink>
+			     	<t:pagelink t:page="docs/components/DocsTwitterviewpage">Twitter View</t:pagelink>
 			     </li>
-        	</ul>
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload</t:pagelink>
+			     </li>			
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsCarouselPage">Carousel</t:pagelink>
+			     </li>
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsCheckbox">Checkbox</t:pagelink>
+			     </li>
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsSuperfish">Superfish Menu</t:pagelink>
+			     </li>
+			</ul>
 		
 			</t:block>
 		
@@ -103,27 +114,22 @@
 				<!--  Exclusives jQuery components -->
 			   	
 			    <ul>
-			        <li>
-			            <t:pagelink t:page="Twitterviewpage">Twitter View</t:pagelink>
+			    	<li>
+			     		<t:pagelink t:page="docs/mixins/DocsButton">Button</t:pagelink>
+			     	</li>
+			     	<li>
+			     		<t:pagelink t:page="docs/mixins/DocsCustomDatepicker">CustomDatepicker</t:pagelink>
+			     	</li>
+			       	<li>
+			            <t:pagelink t:page="docs/mixins/DocsMask">Mask</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="AjaxuploadTest">AjaxUpload</t:pagelink>
-			        </li>			
-			        <li>
-			            <t:pagelink t:page="CarouselPage">Carousel</t:pagelink>
+			            <t:pagelink t:page="docs/mixins/Docsreveal">Reveal</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="docs/docsTooltip">Tooltip</t:pagelink>
+			            <t:pagelink t:page="docs/mixins/DocsTooltip">Tooltip</t:pagelink>
 			        </li>
-			        <li>
-			            <t:pagelink t:page="reveal">Reveal</t:pagelink>
-			        </li>
-			        <li>
-			            <t:pagelink t:page="docs/docsMask">Mask</t:pagelink>
-			        </li>
-			        <li>
-			            <t:pagelink t:page="docs/docsCheckbox">Checkbox</t:pagelink>
-			        </li>
+			        
 			    </ul>		
 			</t:block>
 		
