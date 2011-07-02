@@ -33,7 +33,6 @@ import org.slf4j.Logger;
  * Component for displaying a code source
  *
  */
-
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
 		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})

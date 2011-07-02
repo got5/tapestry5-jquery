@@ -10,6 +10,10 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
+/**
+ * 
+ * 
+ */
 @Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
 					 "${assets.path}/mixins/mask/mask.js" })
 public class Mask {
