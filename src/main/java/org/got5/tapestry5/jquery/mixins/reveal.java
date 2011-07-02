@@ -19,7 +19,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  */
 @Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
-public class Reveal{
+public class reveal{
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String div;
