@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
 		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})
-public class showSource {
+public class ShowSource {
 
 	/**
 	 * Code Source path

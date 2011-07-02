@@ -16,7 +16,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  */
 @Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
 					 "${assets.path}/mixins/mask/mask.js" })
-public class mask {
+public class Mask {
 
 	@Parameter
 	private String format;
