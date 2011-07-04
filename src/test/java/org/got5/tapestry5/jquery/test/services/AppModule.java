@@ -32,9 +32,9 @@ public class AppModule
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
     	
-    	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+    	configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
     	
-    	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
+    	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "true");
     	
     	configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
         

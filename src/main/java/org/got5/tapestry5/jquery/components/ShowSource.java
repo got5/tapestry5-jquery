@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.tapestry5.BindingConstants;
@@ -104,12 +103,10 @@ public class ShowSource {
 	@SetupRender
 	private boolean setupRender()
 	{	
-		if(componentResources.isBound("path") && 
-				componentResources.getBody().toString()
-					.equalsIgnoreCase("<PlaceholderBlock>")){
+		if(!componentResources.isBound("path")){
 			
 			logger.warn("We have to specify a path " +
-					"or a body for the showSource component");
+					"for the showSource component");
 		}
 		
 		if(componentResources.isBound("endLine"))
@@ -163,14 +160,6 @@ public class ShowSource {
 		return true;
 	}
 	
-	public Block getChooseBlock(){
-		
-		if(componentResources.isBound("path")) return fromFile;
-		
-		return fromBody;
-		
-	}
-	
 	public String getSrcContent() 
 	{
 		StringBuffer buffer = new StringBuffer();
@@ -196,7 +185,6 @@ public class ShowSource {
 			logger.error("Error file.");
 		}
 		
-		
 		if (is != null) 
 		{	
 			try 
@@ -204,25 +192,21 @@ public class ShowSource {
 				Integer numLine = 1;
 				
 				BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
-
-				buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
 				
 				String line = buffReader.readLine();
 				
-				while (line != null) 
+				while (line!=null) 
 				{
 					if(numLine>=beginLine)
 					{
-						if(componentResources.isBound("endLine")){
 							
-							if(numLine>endLine) break;
-							
+						if(componentResources.isBound("endLine") && numLine>endLine){
+							break;
 						}
-												
+						else {
+							buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
+						}
 						buffer.append(line);
-						
-						buffer.append(new String(new byte[] { Character.LINE_SEPARATOR }));
-						
 						
 					}
 					
