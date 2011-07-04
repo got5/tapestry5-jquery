@@ -107,7 +107,7 @@ public class Tabs extends AbstractExtendableComponent
     	this.clientZoneId = getClientId()+"-zone";
     	return this.clientZoneId;
     }
-    public void setClientZoneId(String d){
+    public void setClientZoneId(String id){
     	this.clientZoneId = id;
     }
     public Object[] getTabContext() 
