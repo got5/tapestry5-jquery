@@ -40,11 +40,15 @@ public class AppModule
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     	
-    	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
-    		
-    	//configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$j");
+    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui-1.8.14.custom.css");
     	
     	configuration.add("demo-src-dir","");
+    	
+    }
+    
+    public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
+    {
+        configuration.add("demo-jquery", "static/css");
     }
     
     public void contributeApplicationStateManager(
