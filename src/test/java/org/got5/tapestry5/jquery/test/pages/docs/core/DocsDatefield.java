@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages.docs;
+package org.got5.tapestry5.jquery.test.pages.docs.core;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,26 +23,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.DateField;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.Request;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-public class docsDatefield
+public class DocsDatefield
 {
     @Property
     @Persist
@@ -78,6 +76,7 @@ public class docsDatefield
 		useMultiTabs=true;		
 		listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("DateField","TabsBlock1"));
+        listTabData.add(new JQueryTabData("Mixins","TabsBlock4"));
         if(useMultiTabs)
         {	
         	listTabData.add(new JQueryTabData("I18N","TabsBlock2"));
@@ -224,6 +223,8 @@ public class docsDatefield
 		return _firstName + " " + _lastName;
 	}
     
-    
+    public JSONObject getParams(){
+    	return new JSONObject("nextText","Next Month","prevText","Previous Month");
+    }
     
 }

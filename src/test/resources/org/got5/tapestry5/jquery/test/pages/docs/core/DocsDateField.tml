@@ -26,6 +26,19 @@
 	  	<br/>
 	  	
     </t:block>
+    <t:block id="TabsBlock4">
+		
+	  	<h3>Simple Calendar with the CustomDatePicker mixin</h3>
+	  	 	<t:form>
+        	<t:datefield t:value="date" t:mixins="jquery/CustomDatepicker" t:params="params"/>
+			<t:submit />
+    		</t:form>
+    		<p>
+    		Date value is : ${date}
+    		</p>
+	  	<br/>
+	  	
+    </t:block>
 	<t:block id="TabsBlock2">
 		<br/>
 	    <h3>Localized Calendar</h3>

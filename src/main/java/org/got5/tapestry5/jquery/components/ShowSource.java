@@ -33,11 +33,10 @@ import org.slf4j.Logger;
  * Component for displaying a code source
  *
  */
-
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
 		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})
-public class showSource {
+public class ShowSource {
 
 	/**
 	 * Code Source path
@@ -105,16 +104,12 @@ public class showSource {
 	@SetupRender
 	private boolean setupRender()
 	{	
-		
-		
-		
 		if(componentResources.isBound("path") && 
 				componentResources.getBody().toString()
 					.equalsIgnoreCase("<PlaceholderBlock>")){
 			
 			logger.warn("We have to specify a path " +
 					"or a body for the showSource component");
-			
 		}
 		
 		if(componentResources.isBound("endLine"))

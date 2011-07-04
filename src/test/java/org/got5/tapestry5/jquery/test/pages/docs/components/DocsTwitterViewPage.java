@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages;
+package org.got5.tapestry5.jquery.test.pages.docs.components;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +30,7 @@ import org.apache.tapestry5.util.TextStreamResponse;
 
 
 
-public class TwitterViewPage{
+public class DocsTwitterViewPage{
 	
 	
 	@Inject
