@@ -1,38 +1,78 @@
 <html t:type="layoutWithAccordion" 
 t:title="Carousel" 
 t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
-	
-	Complex Items:
-	<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
-		<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="docs/core/DocsJQueryPalette" t:context="3"/>
-		<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
-		<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
-		<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
-		<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
-	</j:carousel>
-	
-	<div id="zoneContainer">
-		<span>Click on the big white flower of the complex carousel:</span>
-		<t:zone t:id="flowerZone">
+
+
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+
+	<t:block id="docs">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> This component allows you create a jcarousel. 
+					</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://sorgalla.com/jcarousel/">http://sorgalla.com/jcarousel/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					Parameters marked with * are "required".
+		  				<ul>
+		  					<li>
+		  						<span class="title">clientId (String)</span> : A list of JQueryAccordionData (object containing the title of the tab and the name of the block that has the content).
+							</li>
+		  					<li>
+		  						<span class="title">className (String)</span> : The class attribute is added to the carousel 
+							</li>
+		  					<li>
+		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  	</table>
+		
+
+	  </t:block>
+    	
+      <t:block id="example">
+			Complex Items:
+				<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
+					<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="docs/core/DocsJQueryPalette" t:context="3"/>
+					<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
+					<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
+					<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
+					<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
+				</j:carousel>
+				
+				<div id="zoneContainer">
+					<span>Click on the big white flower of the complex carousel:</span>
+					<t:zone t:id="flowerZone" id="flowerZone">
+						
+					</t:zone>
+					
+					<t:block id="flowerBlock">
+						You just clicked on the big white flower !
+					</t:block>
+					
+				</div>
+				<br/><br/>
+				Ajax loaded:
+				<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
 			
-		</t:zone>
-		
-		<t:block id="flowerBlock">
-			You just clicked on the big white flower !
-		</t:block>
-		
-	</div>
-	<br/><br/>
-	Ajax loaded:
-	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
-	
-	
-   
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
+	  </t:block>
 </html>
 
   
