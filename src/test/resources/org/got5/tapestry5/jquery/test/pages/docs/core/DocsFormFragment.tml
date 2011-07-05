@@ -1,4 +1,6 @@
-<html t:type="layoutWithAccordion" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" 
+t:title="FormFragment" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <h1>Order Address</h1>
     <t:form id="form">
     <t:errors/>

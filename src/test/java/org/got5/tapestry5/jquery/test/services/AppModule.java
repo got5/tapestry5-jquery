@@ -20,10 +20,9 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
-import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.services.JQueryModule;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
 import org.got5.tapestry5.jquery.test.data.MockDataSource;
-import org.got5.tapestry5.jquery.services.JQueryModule;
 
 @SubModule(value = JQueryModule.class)
 public class AppModule
@@ -32,7 +31,7 @@ public class AppModule
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
     	
-    	configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
+    	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
     	
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
     	

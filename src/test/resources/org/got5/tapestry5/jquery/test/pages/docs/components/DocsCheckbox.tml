@@ -1,4 +1,6 @@
-<html t:type="layoutWithAccordion" t:activeElement="1"
+<html t:type="layoutWithAccordion"
+t:title="Checkbox"  
+t:activeElement="1"
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     

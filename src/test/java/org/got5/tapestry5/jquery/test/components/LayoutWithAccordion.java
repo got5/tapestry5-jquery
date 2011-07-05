@@ -35,6 +35,7 @@ import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 )
 public class LayoutWithAccordion 
 {
+    @Parameter(required=true,defaultPrefix="literal")
     @Property
     private String title;
 
@@ -53,7 +54,7 @@ public class LayoutWithAccordion
 	@SetupRender
 	void onSetupRender()
 	{
-		title = resources.getPageName();
+		//title = resources.getPageName();
 				
 		list = new ArrayList<JQueryAccordionData>();
         list.add(new JQueryAccordionData("Core Components","block1"));

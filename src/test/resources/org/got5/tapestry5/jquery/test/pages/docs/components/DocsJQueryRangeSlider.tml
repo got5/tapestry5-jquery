@@ -1,6 +1,7 @@
-<html t:type="layoutWithAccordion" t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" 
+t:title="jQuery Range Slider" 
+t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
 
-<h2>jQuery Range Slider</h2>
 <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
 
 
@@ -8,7 +9,7 @@
 	  		<table class="documentation">
 	  			<tr>
 	  				<td class="title">Description</td>
-	  				<td class="content"> This mixin allows you create a range slider in a form. 
+	  				<td class="content"> This component allows you create a range slider in a form. 
 					A range slider is a slider that has a min and a max value.
 					This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider.
 					These 2 fields are hidden by default.

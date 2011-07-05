@@ -1,4 +1,5 @@
 <html t:type="layoutWithAccordion" t:activeElement="1" 
+	t:title="AJAX Upload" 
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">

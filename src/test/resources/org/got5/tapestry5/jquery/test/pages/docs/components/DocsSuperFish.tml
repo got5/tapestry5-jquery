@@ -1,4 +1,6 @@
-<html t:type="layoutWithAccordion" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
+<html t:type="layoutWithAccordion" 
+t:title="jQuery SuperFish" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
 	<div>
 	<ul t:type="jquery/superfish" t:params="complexParams" t:clientId="menu1">
