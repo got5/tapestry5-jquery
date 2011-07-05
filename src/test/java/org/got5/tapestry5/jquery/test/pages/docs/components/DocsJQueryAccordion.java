@@ -20,15 +20,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
 public class DocsJQueryAccordion
 {
+
+	@Property
+	private List<JQueryTabData> listTabData;
+	
+	@SetupRender
+	private void setupRender(){
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    listTabData.add(new JQueryTabData("Example","example"));
+	}
+	
 	@Persist
 	@Property
 	private String activeElement;
@@ -40,7 +53,7 @@ public class DocsJQueryAccordion
 	@Property
 	private List<JQueryAccordionData> list;
 
-	@SetupRender
+	@OnEvent(EventConstants.ACTIVATE)
 	void onSetupRender()
 	{
 				
