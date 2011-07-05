@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.got5.tapestry5.jquery.test.entities.ShippingAddress;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsJQueryTabs
@@ -37,19 +37,29 @@ public class DocsJQueryTabs
 	@Property
 	private Date sysDate;
 
+	
 	@Property
 	private List<JQueryTabData> listTabData;
-
+	
 	@SetupRender
+	private void setupRender(){
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    listTabData.add(new JQueryTabData("Example","example"));
+	}
+	
+	
+	@Property
+	private List<JQueryTabData> listTabDataDemo;
+
+	@OnEvent(EventConstants.ACTIVATE)
 	void onSetupRender()
 	{
-				
-		listTabData = new ArrayList<JQueryTabData>();
-        listTabData.add(new JQueryTabData("Panel1","block1"));
-        listTabData.add(new JQueryTabData("Panel2","block2"));
-        listTabData.add(new JQueryTabData("Panel3","block3"));
-        listTabData.add(new JQueryTabData("Panel4","block4"));
-        
+		listTabDataDemo = new ArrayList<JQueryTabData>();
+        listTabDataDemo.add(new JQueryTabData("Panel1","block1"));
+        listTabDataDemo.add(new JQueryTabData("Panel2","block2"));
+        listTabDataDemo.add(new JQueryTabData("Panel3","block3"));
+        listTabDataDemo.add(new JQueryTabData("Panel4","block4"));
 	}
 
 }
