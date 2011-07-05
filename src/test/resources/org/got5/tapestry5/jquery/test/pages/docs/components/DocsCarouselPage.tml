@@ -24,7 +24,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  					Parameters marked with * are "required".
 		  				<ul>
 		  					<li>
-		  						<span class="title">clientId (String)</span> : A list of JQueryAccordionData (object containing the title of the tab and the name of the block that has the content).
+		  						<span class="title">clientId (String)</span> : The client id of the carousel
 							</li>
 		  					<li>
 		  						<span class="title">className (String)</span> : The class attribute is added to the carousel 
