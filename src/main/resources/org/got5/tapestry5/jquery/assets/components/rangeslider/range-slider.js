@@ -2,13 +2,13 @@
 $.extend(Tapestry.Initializer, {
     rangeSlider: function(specs) {
 		if(!specs.displayTextField) {
-			$("#" + specs.id+"-min-field").css("display", "none");
-			$("#" + specs.id+"-max-field").css("display", "none");
+			$("#" + specs.idMinField).css("display", "none");
+			$("#" + specs.idMaxField).css("display", "none");
 		}
 		var options={
 			slide:function(e,u){
-				$("#" + specs.id+"-min-field").val(u.values[0]);
-				$("#" + specs.id+"-max-field").val(u.values[1]);
+				$("#" + specs.idMinField).val(u.values[0]);
+				$("#" + specs.idMaxField).val(u.values[1]);
 			}, 
 			change:function(e,u){
 				if(specs.url) 
@@ -17,7 +17,7 @@ $.extend(Tapestry.Initializer, {
 					});
 			}
 		};
-        $("#" + specs.id+"-slider").slider(specs.params).slider("option", options);	
+        $("#" + specs.sliderId).slider(specs.params).slider("option", options);	
     }
 });
 }) ( jQuery );

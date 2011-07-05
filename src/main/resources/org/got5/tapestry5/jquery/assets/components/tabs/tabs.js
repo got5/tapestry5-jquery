@@ -2,7 +2,6 @@
 	$.extend(Tapestry.Initializer, {
 	    tabs: function(specs) {
 			var p = specs.params;
-			console.log(p);
 			if(!p.ajaxOptions)
 				p.ajaxOptions={};
 			if(!p.ajaxOptions.beforeSend)
