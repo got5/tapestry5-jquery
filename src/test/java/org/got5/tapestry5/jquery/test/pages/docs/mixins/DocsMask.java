@@ -36,6 +36,7 @@ public class DocsMask
 	void onSetupRender()
 	{
 		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Mask","Mask"));
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    listTabData.add(new JQueryTabData("Example","example"));
 	}   
 }
