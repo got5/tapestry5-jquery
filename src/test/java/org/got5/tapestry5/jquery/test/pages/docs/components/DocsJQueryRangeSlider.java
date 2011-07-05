@@ -27,11 +27,12 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-public class DocsJQuerySlider {
+public class DocsJQueryRangeSlider {
 
 	@Inject
 	private Request request;
@@ -47,59 +48,70 @@ public class DocsJQuerySlider {
 	}
 		
 	
-
+	
 	/*
-	 * First example : the simple slider
+	 * First example : the range slider
 	 */
-	@Property
-	@Persist
-	private int min, max;	
 	
 	@Property
 	@Persist
-	private int val;
+	private int min, max;
 	
 	@Property
-	private JSONObject params;
+	private JSONObject rangeParams;
+	
 	
 	@OnEvent(EventConstants.ACTIVATE)
-	public void initSlider(){
-		if(min==0 && max==0) {
-			max=150;
-			min=10;
-		}
-		params=new JSONObject();
-		params.put("value", val);
+	public void initRangeSlider(){
+		rangeParams = new JSONObject();
+		JSONArray values = new JSONArray();
+		values.put(min);
+		values.put(max);
+		rangeParams.put("values", values);
+		rangeParams.put("min", 0);
+		rangeParams.put("max", 500);
 	}
 	
+	
 
+	
 	/*
-	 * Second example : the simple slider updating a zone
+	 * Second example : the range slider updating a zone
 	 */
 	
 	@Property
 	@Persist
-	private int slideZone;
-
+	private int minZone, maxZone;
+	
 	@Property
-	private JSONObject paramsZone;
+	private JSONObject paramsRangeZone;
 	
 	@OnEvent(EventConstants.ACTIVATE)
-	public void initSliderZone(){
-		paramsZone=new JSONObject();
-		paramsZone.put("value", slideZone);
+	public void initRangeZoneSlider(){
+		if(minZone==0 && maxZone==0) {
+			maxZone=150;
+			minZone=10;
+		}
+		
+		paramsRangeZone=new JSONObject();
+		JSONArray valuesZone = new JSONArray();
+		valuesZone.put(minZone);
+		valuesZone.put(maxZone);
+		paramsRangeZone.put("values", valuesZone);
+		paramsRangeZone.put("min", 0);
+		paramsRangeZone.put("max", 200);
+		paramsRangeZone.put("orientation", "vertical");
+		paramsRangeZone.put("animate", "true");
 	}
 	
 	@Component
-	private Zone myZone;
+	private Zone myZoneRange;
 	
-	@OnEvent(value=EventConstants.ACTION, component="sliderZone")
-	public Object returnZone(){
-		String input = request.getParameter("slider");
-		slideZone=Integer.parseInt(input);
-		return myZone.getBody();
+	@OnEvent(value=EventConstants.ACTION, component="sliderRangeZone")
+	public Object returnZoneRange(){
+		minZone= Integer.parseInt(request.getParameter("min"));
+		maxZone= Integer.parseInt(request.getParameter("max"));		
+		return myZoneRange.getBody();
 	}
-	
-
 	
 }

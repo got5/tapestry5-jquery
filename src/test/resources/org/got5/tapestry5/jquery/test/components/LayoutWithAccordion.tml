@@ -90,6 +90,9 @@
 			     <li>
 			        <t:pagelink t:page="docs/components/DocsJquerySlider">Slider</t:pagelink>
 			     </li>
+				 <li>
+			        <t:pagelink t:page="docs/components/DocsJqueryRangeSlider">Range Slider</t:pagelink>
+			     </li>
 			     <li>
 			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload</t:pagelink>
 			     </li>			
