@@ -226,11 +226,8 @@ $.extend(Tapestry.Initializer, {
             el.bind(Tapestry.FORM_PROCESS_SUBMIT_EVENT, function() {
 				var specs = {
 					url : url,
-					params: {
-						"t:zoneid" : zoneId
-					}
+					params: el.serialize()
 				};
-
 				zoneElement.tapestryZone("update", specs);
 
                 return false;
