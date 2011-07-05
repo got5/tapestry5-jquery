@@ -16,12 +16,21 @@
 
 package org.got5.tapestry5.jquery.test.pages.docs.components;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.json.JSONObject;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
 public class DocsSuperFish{
+	
+	@Property
+	private List<JQueryTabData> listTabData;
 	
 	public JSONObject getComplexParams(){
 		
@@ -36,7 +45,13 @@ public class DocsSuperFish{
 		System.out.println("test Action Link");
 	}
 	
-	
+	@SetupRender
+	void onSetupRender()
+	{
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    listTabData.add(new JQueryTabData("Example","example"));
+	} 
 	
 	
 }
