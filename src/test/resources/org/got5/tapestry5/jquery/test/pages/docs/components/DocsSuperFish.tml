@@ -2,7 +2,36 @@
 t:title="jQuery SuperFish" 
 t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
-	<div>
+	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    
+     <t:block id="docs">
+    	<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content">The Component allows you to create a CSS drop-down menu</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+		  				<ul class="parameters">
+		  					<li><b>params</b> (JSONObject) : JSON Object for the Superfish Configuration</li>
+		  					<li><b>vertical</b> (Boolean) : your menu will be vertical (vertical=true) or your menu will have the navbar stylesheet (vertical=false)</li>
+		  					<li><b>classe</b> (String) : CSS class for the menu. By default sf-menu</li>
+		  					<li><b>supersubs</b> (Boolean) : Use the supersubs plugin</li>
+		  					<li><b>supersubsParams</b> (JSONObject) : JSON Object for the Supersubs configuration</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  	</table>
+    </t:block>
+    
+    <t:block id="example">
 	<ul t:type="jquery/superfish" t:params="complexParams" t:clientId="menu1">
 		<li class="current"> 
 						<a href="#a">menu item</a> 
@@ -104,7 +133,14 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 						<a href="#">menu item</a> 
 					</li>	
 	</ul>
-	</div>
+	<br />
+	<br />
+	<br /><br />
+	<div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="135" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
+    	
+    <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.java"></div>
+    
+	</t:block>
 </html>
 
   

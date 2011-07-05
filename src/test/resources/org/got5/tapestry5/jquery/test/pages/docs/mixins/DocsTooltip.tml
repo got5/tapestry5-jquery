@@ -1,5 +1,6 @@
 <html t:type="layoutWithAccordion" 
 	  t:activeElement="literal:2"
+	  t:title="Tooltip"
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     

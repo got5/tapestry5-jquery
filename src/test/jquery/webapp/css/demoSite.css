@@ -32,3 +32,7 @@
 .content .parameters li{
 	margin: 0px 0px 15px 0px;
 }
+
+#main #i-component{
+	padding-bottom: 500px;
+}
