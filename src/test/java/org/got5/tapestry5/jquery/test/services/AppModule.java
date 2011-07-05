@@ -20,6 +20,7 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.JQueryModule;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
 import org.got5.tapestry5.jquery.test.data.MockDataSource;
