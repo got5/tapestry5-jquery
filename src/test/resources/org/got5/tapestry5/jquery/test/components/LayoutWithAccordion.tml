@@ -8,13 +8,13 @@
 	<div class="wrapper bs">
 		<ul class="nav">
 				<li>
-					<t:pagelink t:page="index">home</t:pagelink>
+					<t:pagelink t:page="index">Home</t:pagelink>
 				</li>
 				<li>
 					<a href="https://github.com/got5/tapestry5-jquery">Download</a>		
 				</li>
 				<li class="last">
-					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
+					<a href="http://twitter.com/#!/GOTapestry5">Twitter</a>
 				</li>
 			
 		</ul>
@@ -92,9 +92,6 @@
 			     </li>
 				 <li>
 			        <t:pagelink t:page="docs/components/DocsJqueryRangeSlider">Range Slider</t:pagelink>
-			     </li>
-			     <li>
-			     	<t:pagelink t:page="docs/components/DocsTwitterviewpage">Twitter View</t:pagelink>
 			     </li>
 			     <li>
 			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload</t:pagelink>

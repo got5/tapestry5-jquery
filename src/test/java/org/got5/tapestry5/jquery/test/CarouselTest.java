@@ -32,7 +32,7 @@ public class CarouselTest extends SeleniumTestCase {
 
 	@Test
 	public void testCarousel() {
-		open("/carouselpage");
+		open("/test/carouselpage");
 		waitForPageToLoad();
 		//Content test
 		assertEquals(getText("css=#zoneContainer span"), "Click on the big white flower of the complex carousel:", "The page does not seem to be fully loaded");

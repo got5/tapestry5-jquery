@@ -38,13 +38,10 @@ public class DocsTooltip
 	 void onSetupRender()
 	 {
 		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Tooltip","tooltip"));
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    listTabData.add(new JQueryTabData("Example","example"));
 	    
 	    JSONObject params = new JSONObject();
-	    
-	  
-	    
-	    
 	 }
 
 }

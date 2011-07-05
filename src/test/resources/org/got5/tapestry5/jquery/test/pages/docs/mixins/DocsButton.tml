@@ -1,11 +1,42 @@
 <html t:type="layoutWithAccordion" t:activeElement="2" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <t:form>
-        <t:textfield t:value="foo" t:id="foo" />
-        <t:submit t:mixins="jquery/button" />
-		<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
-				
-		
-    </t:form>
     
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
+    <t:block id="docs">
+    	<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content">The Button mixin improve the form of traditional elements like button, submit, reset ...</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://jqueryui.com/demos/button/">http://jqueryui.com/demos/button/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+		  				<ul class="parameters">
+		  					<li><b>type</b> (String) : The type parameter indicates wich constructor you want to use. Available Parameter values : button or buttonset</li>
+		  					<li><b>params</b> (JSONObject) : The Button parameters you want to override.</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  	</table>
+    </t:block>
+    
+    <t:block id="example">
+    	<t:form>
+	        <t:textfield t:value="foo" t:id="foo" />
+	        <t:submit t:mixins="jquery/button" />
+			<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
+		</t:form>
+		<br />
+    	<br />
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="30" t:endLine="34" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.java"></div>
+    	
+    </t:block>
 </html>

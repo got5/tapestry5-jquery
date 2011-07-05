@@ -52,7 +52,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Override
     public String getCalendarPage()
     {
-        return "/calendar";
+        return "/test/calendar";
     }
 
     @Override
@@ -82,25 +82,25 @@ public class JQueryTest extends JavascriptTestSuite
     @Override
     public String getAutocompletePage()
     {
-        return "/jqueryautocomplete";
+        return "/test/jqueryautocomplete";
     }
 
     @Override
     public String getPalettePage()
     {
-        return "/jquerypalette";
+        return "/test/jquerypalette";
     }
 
     @Override
     public String getLinkSubmitPage()
     {
-        return "/jquerylinksubmit";
+        return "/test/jquerylinksubmit";
     }
 
     @Override
     public String getTabsPage()
     {
-        return "/jquerytabs";
+        return "/test/jquerytabs";
     }
     
     
@@ -110,7 +110,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testDialog()
     {
-        open("/jquerydialog");
+        open("/test/jquerydialog");
 
         String dialogLink = "identifier=dialoglink";
         String dialogAjaxLink = "identifier=dialogajaxlink";
@@ -156,7 +156,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testAjaxUpload()
     {
-        open("/AjaxUploadTest");
+        open("/test/AjaxUploadTest");
 
         final long start = System.currentTimeMillis();
 
@@ -176,7 +176,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testAccordion()
     {
-        open("/jqueryaccordion");
+        open("/test/jqueryaccordion");
         // active tab must be second
         new Wait()
         {
@@ -208,7 +208,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testToolTip()
     {
-    	open("/Tooltip");
+    	open("/test/Tooltip");
     	
     	mouseOver("//div[@id='content']/a");
     	
@@ -241,7 +241,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testMask(){
     	
-    	open("/mask");
+    	open("/test/mask");
     	
     	click("//a[@id='myTestLink']");
     	
@@ -256,7 +256,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testRevealMixin(){
     	
-    	open("/reveal");
+    	open("/test/reveal");
     	
     	click("//a[@id='pagelink']");
     	
@@ -286,7 +286,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testCheckboxComponent(){
     	
-    	open("/Checkbox");
+    	open("/test/Checkbox");
     	
     	new Wait()
         {
@@ -312,7 +312,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testSuperfishComponent(){
     	
-    	open("/SuperFish");
+    	open("/test/SuperFish");
     	
     	new Wait()
         {
@@ -349,7 +349,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testAjaxFormLoop(){
     	
-    	open("/AjaxFormLoop");
+    	open("/test/AjaxFormLoop");
     	
     	click("//a[@id='addrowlink']");
     	

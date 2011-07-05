@@ -19,8 +19,8 @@
 	  			<tr>
 	  				<td class="title">Parameters</td>
 	  				<td class="content">
-		  				<ul>
-		  					<li>params (JSONObject) : The DatePicker parameters you want to override.</li>
+		  				<ul class="parameters">
+		  					<li><b>params</b> (JSONObject) : The DatePicker parameters you want to override.</li>
 		  				</ul>
 		  			</td>
 	  			</tr>

@@ -28,3 +28,7 @@
 .documentation .content{
 	width: 80%;
 }
+
+.content .parameters li{
+	margin: 0px 0px 15px 0px;
+}

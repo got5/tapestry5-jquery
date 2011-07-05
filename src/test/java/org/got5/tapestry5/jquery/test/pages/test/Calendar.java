@@ -14,29 +14,16 @@
 // limitations under the License.
 //
 
-package org.got5.tapestry5.jquery.test.pages.docs.mixins;
+package org.got5.tapestry5.jquery.test.pages.test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
-import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-
-public class DocsMask
+public class Calendar
 {
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	@Property
-	private String value;
-	
-	@SetupRender
-	void onSetupRender()
-	{
-		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Documentation","docs"));
-	    listTabData.add(new JQueryTabData("Example","example"));
-	}   
+	@Persist
+    @Property
+    private Date date;
 }
