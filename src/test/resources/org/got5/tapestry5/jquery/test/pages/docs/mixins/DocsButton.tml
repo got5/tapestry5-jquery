@@ -18,8 +18,8 @@
 	  				<td class="title">Parameters</td>
 	  				<td class="content">
 		  				<ul class="parameters">
-		  					<li><b>type</b> (String) : The type parameter indicates wich constructor you want to use. Available Parameter values : button or buttonset</li>
-		  					<li><b>params</b> (JSONObject) : The Button parameters you want to override.</li>
+		  					<li><span class="title">type (String)</span> : The type parameter indicates wich constructor you want to use. Available Parameter values : button or buttonset</li>
+		  					<li><span class="title">params (JSONObject)</span> : The Button parameters you want to override.</li>
 		  				</ul>
 		  			</td>
 	  			</tr>

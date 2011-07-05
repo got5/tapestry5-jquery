@@ -20,11 +20,11 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  				<td class="title">Parameters</td>
 	  				<td class="content">
 		  				<ul class="parameters">
-		  					<li><b>params</b> (JSONObject) : JSON Object for the Superfish Configuration</li>
-		  					<li><b>vertical</b> (Boolean) : your menu will be vertical (vertical=true) or your menu will have the navbar stylesheet (vertical=false)</li>
-		  					<li><b>classe</b> (String) : CSS class for the menu. By default sf-menu</li>
-		  					<li><b>supersubs</b> (Boolean) : Use the supersubs plugin</li>
-		  					<li><b>supersubsParams</b> (JSONObject) : JSON Object for the Supersubs configuration</li>
+		  					<li><span class="title">params (JSONObject)</span> : JSON Object for the Superfish Configuration</li>
+		  					<li><span class="title">vertical (Boolean)</span> : your menu will be vertical (vertical=true) or your menu will have the navbar stylesheet (vertical=false)</li>
+		  					<li><span class="title">classe (String)</span> : CSS class for the menu. By default sf-menu</li>
+		  					<li><span class="title">supersubs (Boolean)</span> : Use the supersubs plugin</li>
+		  					<li><span class="title">supersubsParams (JSONObject)</span> : JSON Object for the Supersubs configuration</li>
 		  				</ul>
 		  			</td>
 	  			</tr>

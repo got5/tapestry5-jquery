@@ -24,7 +24,7 @@
 	  				<td class="title">Parameters</td>
 	  				<td class="content">
 		  				<ul class="parameters">
-		  					<li><b>format</b> (String) : The format you want to use for your input.</li>
+		  					<li><span class="title">format (String)</span> : The format you want to use for your input.</li>
 		  				</ul>
 		  			</td>
 	  			</tr>
