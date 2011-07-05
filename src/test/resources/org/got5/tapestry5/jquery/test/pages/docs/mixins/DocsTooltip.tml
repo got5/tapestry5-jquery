@@ -10,7 +10,7 @@
     	<table class="documentation">
 	  			<tr>
 	  				<td class="title">Description</td>
-	  				<td class="content">This is a example of the Tooltip mixin. This mixin use the title attribute of your element</td>
+	  				<td class="content">This mixin allows you to display a tooltip for all your inputs. This mixin use the title attribute of your element</td>
 	  			</tr>
 	  			
 	  			<tr>

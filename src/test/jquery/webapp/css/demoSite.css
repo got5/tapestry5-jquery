@@ -1,8 +1,6 @@
 .showSource{
-	
 	margin-top:10px;
 	margin-bottom:10px;
-	
 }
 
 .documentation {
@@ -36,3 +34,11 @@
 #main #i-component{
 	padding-bottom: 500px;
 }
+
+#myDiv.reveal-div{
+	top:-100px;
+}
+
+#myDiv.reveal-hidden{
+	visibility: hidden;
+}	
