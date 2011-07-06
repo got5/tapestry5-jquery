@@ -386,6 +386,7 @@ $.widget( "ui.tapestryZone", {
 		var that = this;
 		
         var ajaxRequest = {
+        	type:"POST",
             url: specs.url,
             success: function(data) {
                 
@@ -409,11 +410,9 @@ $.widget( "ui.tapestryZone", {
         
         if (specs.params) {
             ajaxRequest = $.extend(ajaxRequest, {
-                type: 'post',
                 data: specs.params
             });
         }
-        
         $.ajax(ajaxRequest);
     }, 
 	
