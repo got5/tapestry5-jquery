@@ -36,12 +36,12 @@ public class FormFragmentSupportStack implements JavaScriptStack {
 
         if (productionMode) {
 
-            javaScriptStack = F.flow("${tapestry.jquery.path}/components/formfragment.js",
+            javaScriptStack = F.flow("${assets.path}/components/formfragment/formfragment.js",
                                      "${jquery.ui.path}/minified/jquery.effects.blind.min.js")
                                .map(pathToAsset).toList();
         } else {
 
-            javaScriptStack = F.flow("${tapestry.jquery.path}/components/formfragment.js",
+            javaScriptStack = F.flow("${assets.path}/components/formfragment/formfragment.js",
                                      "${jquery.ui.path}/jquery.effects.blind.js")
                                .map(pathToAsset).toList();
         }

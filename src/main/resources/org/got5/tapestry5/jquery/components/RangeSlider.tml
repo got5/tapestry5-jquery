@@ -1,5 +1,5 @@
 <div  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 <div id="${SliderId}"/>
-<input t:type="textfield" t:value="inherit:min" clientId="prop:MinId" />
-<input t:type="textfield" t:value="inherit:max" clientId="prop:MaxId" />
+<input t:type="textfield" t:id="minField" t:value="inherit:min" />
+<input t:type="textfield" t:id="maxField" t:value ="inherit:max" />
 </div>

@@ -12,4 +12,5 @@ tidyErrors.txt
 .svn
 bin/
 pom-internal.xml
-
+.DS_Store
+"/var/*

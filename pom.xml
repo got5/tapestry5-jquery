@@ -180,6 +180,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.8.1</version>
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>target/test-classes/testng.xml</suiteXmlFile>
@@ -263,6 +264,6 @@
 
 	<properties>
 		<tapestry-release-version>5.2.5</tapestry-release-version>
-		<browserStartCommand>*firefox</browserStartCommand>
+		<browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>

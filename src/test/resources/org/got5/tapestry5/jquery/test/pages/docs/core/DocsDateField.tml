@@ -1,0 +1,112 @@
+<html t:type="layoutWithAccordion" 
+t:title="DateField" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="prop:activeTabIndex" />
+	<t:block id="TabsBlock1">
+		<p>
+		The JS layers of the <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/DateField.html">DateField</a>
+		component where overriden in order to continue to use normal component declaration. 
+	  	<br/><br/>
+	  	In RemovePrototype mode we use the jQuery implementation provided by Tapestry-jquery.js 
+	  	and we override <a href="http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/internal/services/javascript/DateFieldStack.html">
+	  	datefieldStack </a>. 
+	  	<br/><br/>
+	  	Tapestry's DateField component is a wrapper around WebFX DatePicker.
+	  	The new jQueryDatefieldStack add all the scripts files required by <a href="http://jqueryui.com/demos/datepicker/">jQuery-UI Calendar</a>. 
+	  	</p>
+	  	<br/><br/>
+	  	<hr/>
+	  	<br/>
+	    <h3>Simple Calendar</h3>
+	  	 	<t:form>
+        	<t:datefield t:value="date" />
+			<t:submit />
+    		</t:form>
+    		<p>
+    		Date value is : ${date}
+    		</p>
+	  	<br/>
+	  	
+    </t:block>
+    <t:block id="TabsBlock4">
+		
+	  	<h3>Simple Calendar with the CustomDatePicker mixin</h3>
+	  	 	<t:form>
+        	<t:datefield t:value="date" t:mixins="jquery/CustomDatepicker" t:params="params"/>
+			<t:submit />
+    		</t:form>
+    		<p>
+    		Date value is : ${date}
+    		</p>
+	  	<br/>
+	  	
+    </t:block>
+	<t:block id="TabsBlock2">
+		<br/>
+	    <h3>Localized Calendar</h3>
+
+	    <t:form t:id="testForm">
+	        <t:errors/>
+	        <div class="t-beaneditor">
+				<div class="t-beaneditor-row">
+	                <t:label for="birthday"/>
+	                <t:datefield  hidetextfield="true" t:id="birthday"/>
+	            </div>
+	            <div class="t-beaneditor-row">
+	                <t:label for="asteroidImpact"/>
+	                <t:datefield t:id="asteroidImpact"/>
+	            </div>
+	            <div class="t-beaneditor-row">
+	                <input type="submit" value="Go"/>
+	            </div>
+	        </div>
+	    </t:form>
+	    <p>
+	        <t:actionlink t:id="clear"> clear</t:actionlink><br/>
+	        <t:actionlink t:id="english"> english</t:actionlink><br/>
+	        <t:actionlink t:id="french"> french</t:actionlink><br/>
+	        <t:actionlink t:id="deutsch"> deutsch</t:actionlink><br/>
+	    </p>
+	
+	    <t:if test="birthday">
+	        <hr/>
+	        <p>Birthday: [<t:output value="birthday" format="dateFormat"/>]</p>
+	        <p>Impact: [<t:output value="asteroidImpact" format="dateFormat"/>]</p>
+	    </t:if>
+	
+	</t:block>   
+	<t:block id="TabsBlock3">
+		<h3>DateField inside Ajax Form</h3>
+		<br/><br/>
+	    <t:zone t:id="formZone" id="formZone" update="show">
+				<form t:id="ajaxForm" t:type="form" t:zone="nameZone" style="background-color: eee; padding: 15px">
+				    <t:errors/>
+				
+					First Name: <input t:type="TextField" t:id="firstName"/><br/>
+					Last Name: <input t:type="TextField" t:id="lastName"/><br/><br/>
+					Birthday <input t:type="datefield" t:id="birthdayAjax"/> <br/><br/>
+			 
+					<br/><br/>	
+					<input type="submit" value="Accept"/>
+			 	</form>
+		</t:zone>
+		
+	 	
+	 	<t:zone t:id="nameZone" id="nameZone">
+				Welcome ${name}.
+				Birthday ${birthdayAjax}
+		</t:zone><br/>
+	
+	</t:block> 
+	<t:block id="TabsBlockLast">
+		<p>	
+	    Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
+	    <br/><br/>
+	    In your AppModule inside contributeApplicationDefaults method, 
+	    you just have to set the JQuerySymbolConstants.SUPPRESS_PROTOTYPE to "false" in order to force the use of
+	    default prototype implementation of the Tapestry Core components.
+		<br/><br/>
+		jQuery will be added to the javascript stack in every case.
+		</p> 
+    </t:block>
+</html>

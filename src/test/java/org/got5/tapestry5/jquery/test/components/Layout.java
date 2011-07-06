@@ -23,9 +23,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
-@Import(stylesheet =
-{ "context:css/layout/style.css" }
-)
+@Import(stylesheet ={ "context:css/layout/style.css"})
 public class Layout
 {
     @Property

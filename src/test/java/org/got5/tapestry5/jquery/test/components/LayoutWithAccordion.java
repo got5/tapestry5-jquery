@@ -31,10 +31,11 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 
 @Import(stylesheet =
-{ "context:css/layout/style.css" }
+{ "context:css/layout/style.css" ,"context:css/demoSite.css"}
 )
-public class LayoutWithAccordion
+public class LayoutWithAccordion 
 {
+    @Parameter(required=true,defaultPrefix="literal")
     @Property
     private String title;
 
@@ -53,12 +54,12 @@ public class LayoutWithAccordion
 	@SetupRender
 	void onSetupRender()
 	{
-		title = resources.getPageName();
+		//title = resources.getPageName();
 				
 		list = new ArrayList<JQueryAccordionData>();
         list.add(new JQueryAccordionData("Core Components","block1"));
-        list.add(new JQueryAccordionData("jQuery UI Components ","block2"));
-        list.add(new JQueryAccordionData("Others jQuery components","block3"));
+        list.add(new JQueryAccordionData("jQuery Components ","block2"));
+        list.add(new JQueryAccordionData("jQuery Mixins","block3"));
         
 	}
 }

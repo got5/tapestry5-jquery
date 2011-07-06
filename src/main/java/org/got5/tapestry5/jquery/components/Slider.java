@@ -19,16 +19,19 @@ package org.got5.tapestry5.jquery.components;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
-@Import( library={ "slider.js" })
+@Import( library={ "${assets.path}/components/slider/slider.js" })
 public class Slider  {
 
     /**
@@ -55,15 +58,27 @@ public class Slider  {
     @Parameter(value="false")
     private boolean displayTextField;
     
-    @SetupRender
-    void setupRender()
+    @Component
+    private TextField textfieldSlider;
+    
+    private String clientId;
+    private String getClientId(){
+    	if(clientId==null)
+    		clientId = resources.getId();
+    	return clientId;
+    }
+    
+    @AfterRender
+    void afterRender()
     {
     	specs = new JSONObject();
     	
     	if (!resources.isBound("params"))
     		params=new JSONObject();
     	specs.put("params", params);
-    	specs.put("id", resources.getId());
+    	//specs.put("textFieldId", getTextFieldId());
+    	specs.put("textFieldId", textfieldSlider.getClientId());
+    	specs.put("sliderId", getSliderId());
     	specs.put("displayTextField", displayTextField);
     	if(resources.isBound("zone")){
     		Link link = resources.createEventLink(EventConstants.ACTION);
@@ -74,10 +89,7 @@ public class Slider  {
     }
 
     public String getSliderId(){
-    	return resources.getId()+"-slider";
+    	return getClientId()+"-slider";
     }
-    public String getTextFieldId(){
-    	return resources.getId()+"-field";
-    }
-
+  
 }

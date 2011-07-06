@@ -69,7 +69,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * </pre>
  */
 @ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
-@Import(library = { "${tapestry.jquery.path}/mixins/autocomplete.js" })
+@Import(library = { "${assets.path}/mixins/autocomplete/autocomplete.js" })
 @Events(EventConstants.PROVIDE_COMPLETIONS)
 public class Autocomplete
 {

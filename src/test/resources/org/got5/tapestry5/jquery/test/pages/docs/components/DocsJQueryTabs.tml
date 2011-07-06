@@ -1,0 +1,78 @@
+<html t:type="layoutWithAccordion" 
+t:title="jQuery Tabs" 
+t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+   
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+
+
+<t:block id="docs">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> This component allows you create a jquery ui tab. 
+					</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://jqueryui.com/demos/tabs/">http://jqueryui.com/demos/tabs/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					Parameters marked with * are "required".
+		  				<ul>
+		  					<li>
+		  						<span class="title">*listTabData (ArrayList of JQueryTabData)</span> : A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
+							</li>
+		  					<li>
+		  						<span class="title">activePanelId (int)</span> : The number of the tab to activate when the page is displayed on the client. 
+							</li>
+		  					<li>
+		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  	</table>
+	  	
+	  </t:block>
+    	
+      <t:block id="example">
+			<t:jquery.tabs  t:listTabData="prop:listTabDataDemo" t:activePanelId="1" />
+
+			<t:block id="block1">
+				<h3>Panel 1</h3>
+				<hr/>
+				content from block 1
+			</t:block>
+		
+			<t:block id="block2">
+				<h3>Panel 2</h3>
+				<hr/>	
+				content from block 2
+			</t:block>
+		
+			<t:block id="block3">
+				<h3>Panel 3</h3>
+				<hr/>
+				content from block 3
+			</t:block>
+			
+			<t:block id="block4">
+				<h3>Panel 4</h3>
+				<hr/>
+				content from block 4
+				<t:form>
+					<t:datefield value="sysDate"/>
+					<input type="submit"/>
+				</t:form>
+			</t:block>
+
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="43" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.java"></div>
+			
+	  </t:block>
+
+</html>

@@ -57,27 +57,13 @@
 			if(modalBG.length == 0) {
 				modalBG = $('<div class="reveal-modal-bg" />').insertAfter(modal);
 			}		    
-        	
-/*---------------------------
- Open and add Closing Listeners
-----------------------------*/
-        	//Open Modal Immediately
-    		openModal();
-			
-			//Close Modal Listeners
-			var closeButton = $('.' + options.dismissmodalclass).bind('click.modalEvent',closeModal)
-			if(options.closeonbackgroundclick) {
-				modalBG.css({"cursor":"pointer"})
-				modalBG.bind('click.modalEvent',closeModal)
-			}
-			
-    		
+     
 /*---------------------------
  Open & Close Animations
 ----------------------------*/
 			//Entrance Animations
-			function openModal() {
-				modalBG.unbind('click.modalEvent');
+			function openAnimation() {
+			  modalBG.unbind('click.modalEvent');
 				$('.' + options.dismissmodalclass).unbind('click.modalEvent');
 				if(!locked) {
 					lockModal();
@@ -85,7 +71,7 @@
 						modal.css({'top': $(document).scrollTop()-topOffset, 'opacity' : 0, 'visibility' : 'visible'});
 						modalBG.fadeIn(options.animationspeed/2);
 						modal.delay(options.animationspeed/2).animate({
-							"top": $(document).scrollTop()+topMeasure,
+							"top": $(document).scrollTop()+topMeasure + 'px',
 							"opacity" : 1
 						}, options.animationspeed,unlockModal());					
 					}
@@ -100,18 +86,20 @@
 						modal.css({'visibility' : 'visible', 'top':$(document).scrollTop()+topMeasure});
 						modalBG.css({"display":"block"});	
 						unlockModal()				
-					}   
+					}
 				}
-			}    	
-			
+				modal.unbind('reveal:open', openAnimation);
+			}
+			modal.bind('reveal:open', openAnimation); 	
+
 			//Closing Animation
-			function closeModal() {
-				if(!locked) {
+			function closeAnimation() {
+			  if(!locked) {
 					lockModal();
 					if(options.animation == "fadeAndPop") {
 						modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
 						modal.animate({
-							"top":  $(document).scrollTop()-topOffset,
+							"top":  $(document).scrollTop()-topOffset + 'px',
 							"opacity" : 0
 						}, options.animationspeed/2, function() {
 							modal.css({'top':topMeasure, 'opacity' : 1, 'visibility' : 'hidden'});
@@ -130,9 +118,33 @@
 					if(options.animation == "none") {
 						modal.css({'visibility' : 'hidden', 'top' : topMeasure});
 						modalBG.css({'display' : 'none'});	
-					}   			
+					}		
 				}
+				modal.unbind('reveal:close', closeAnimation);
 			}
+			modal.bind('reveal:close', closeAnimation);     
+   	
+/*---------------------------
+ Open and add Closing Listeners
+----------------------------*/
+        	//Open Modal Immediately
+    	modal.trigger('reveal:open')
+			
+			//Close Modal Listeners
+			var closeButton = $('.' + options.dismissmodalclass).bind('click.modalEvent', function () {
+			  modal.trigger('reveal:close')
+			});
+			
+			if(options.closeonbackgroundclick) {
+				modalBG.css({"cursor":"pointer"})
+				modalBG.bind('click.modalEvent', function () {
+				  modal.trigger('reveal:close')
+				});
+			}
+			$('body').keyup(function(e) {
+        		if(e.which===27){ modal.trigger('reveal:close'); } // 27 is the keycode for the Escape key
+			});
+			
 			
 /*---------------------------
  Animations Locks

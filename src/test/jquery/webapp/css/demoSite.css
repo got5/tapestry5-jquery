@@ -1,0 +1,44 @@
+.showSource{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.documentation {
+	margin: 10px 10px 10px 10px;
+    border: medium solid #569D2F;
+    border-collapse: collapse
+}
+    	
+.documentation td{
+	font-family: sans-serif;
+    border: thin solid #569D2F;
+    text-align: left;
+    background-color: #ffffff;
+    padding: 15px 5px 15px 5px;
+}
+    	
+.documentation .title{
+	width: 20%;
+    font-weight:bold; 
+    background-color:#E7F7DF;
+}
+    	
+.documentation .content{
+	width: 80%;
+}
+
+.content .parameters li{
+	margin: 0px 0px 15px 0px;
+}
+
+#main #i-component{
+	padding-bottom: 500px;
+}
+
+#myDiv.reveal-div{
+	top:-100px;
+}
+
+#myDiv.reveal-hidden{
+	visibility: hidden;
+}	

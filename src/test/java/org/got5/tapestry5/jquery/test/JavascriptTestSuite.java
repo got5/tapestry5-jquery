@@ -38,7 +38,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     @Test
     public void testZone()
     {
-        open("/zone");
+        open("/test/zone");
         waitForPageToLoad();
         assertEquals(getText("identifier=myZone"), "Counting via AJAX : 0");
 
@@ -57,7 +57,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     @Test
     public void testFormZone()
     {
-        open("/zone");
+        open("/test/zone");
         waitForPageToLoad();
         assertEquals(getText("identifier=myZone2"), "Dummy value is :");
 
@@ -73,13 +73,13 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             }
         }.wait("element not found");
 
-        assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n Dummy component");
+        assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n I am a Component inside the block which is visible after the zone update");
     }
 
     @Test
     public void testFormMultiZoneUpdate() 
     {
-        open("/zone");
+        open("/test/zone");
         waitForPageToLoad();
         assertEquals(getText("identifier=multiZone1"), "default zone content");
         assertEquals(getText("identifier=multiZone2"), "default zone content");
@@ -105,7 +105,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     @Test
     public void testValidation()
     {
-        open("/validation");
+        open("/test/validation");
         waitForPageToLoad();
 
         assertValidationWorking("field", "a", true, "submit");
@@ -213,7 +213,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
    // @Test
     public void testGridInPlace()
     {
-        open("/grid");
+        open("/test/grid");
 
         assertEquals(getText("css=tr.t-first td.firstName"), "lala010");
 
@@ -288,14 +288,10 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         assertFalse(isEditable(deselect), deselect + " should not be clickable");
 
         focus(avail);
-        select(avail, "index=2");
-        select(avail, "index=4");
-
-        assertTrue(isEditable(select), select + " should be clickable");
-        assertFalse(isEditable(deselect), deselect + " should not be clickable");
-
-        click(select);
-
+        
+        addSelection(avail, "label=Gift Basket");
+        doubleClick(avail);
+        
         assertFalse(isEditable(select), select + " should not be clickable");
         assertTrue(isEditable(deselect), deselect + " should be clickable");
 
@@ -303,6 +299,8 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         assertTrue(isEditable(select), select + " should be clickable");
         assertFalse(isEditable(deselect), deselect + " should not be clickable");
+
+        
     }
 
     public abstract String getPalettePage();
@@ -310,7 +308,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     @Test
     public void testFormFragment()
     {
-        open("/formfragment");
+        open("/test/formfragment");
         waitForPageToLoad();
 
         String trigger = "identifier=separateShipTo";
@@ -372,7 +370,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     {
         open(getTabsPage());
         // active tab must be second
-        assertEquals(getText("css=div#contentZone.t-zone h3"), "Panel 2");
+        assertEquals(getText("css=div#tabs-zone.t-zone h3"), "Panel 2");
 
         //click on first tab
         click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink");
@@ -382,7 +380,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             @Override
             public boolean until()
             {
-                return getText("css=div#contentZone.t-zone h3").equals("Panel 1");
+                return getText("css=div#tabs-zone.t-zone h3").equals("Panel 1");
             }
         }.wait("element not found!", 5000l);
 
@@ -394,7 +392,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             @Override
             public boolean until()
             {
-                return getText("css=div#contentZone.t-zone h3").equals("Panel 3");
+                return getText("css=div#tabs-zone.t-zone h3").equals("Panel 3");
             }
         }.wait("element not found!", 5000l);
 
@@ -406,7 +404,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             @Override
             public boolean until()
             {
-                return getText("css=div#contentZone.t-zone h3").equals("Panel 4");
+                return getText("css=div#tabs-zone.t-zone h3").equals("Panel 4");
             }
         }.wait("element not found!", 5000l);
 

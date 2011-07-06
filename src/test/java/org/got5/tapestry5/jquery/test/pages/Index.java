@@ -17,7 +17,6 @@
 package org.got5.tapestry5.jquery.test.pages;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.tapestry5.annotations.Persist;
@@ -36,6 +35,7 @@ public class Index
 	@Property
 	private List<JQueryTabData> listTabData;
 
+	
 	@SetupRender
 	void onSetupRender()
 	{

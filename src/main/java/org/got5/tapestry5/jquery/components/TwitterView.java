@@ -35,11 +35,11 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 @Import(library = {
-			"${tapestry.jquery.path}/twitterview/jquery.twitterview.js",
-			"${tapestry.jquery.path}/twitterview/twitterview.js"
+			"${assets.path}/components/twitterview/jquery.twitterview.js",
+			"${assets.path}/components/twitterview/twitterview.js"
 		},
 		stylesheet = {
-			"${tapestry.jquery.path}/twitterview/twitterview.css"
+			"${assets.path}/components/twitterview/twitterview.css"
 		}
 )
 @SupportsInformalParameters
@@ -65,7 +65,7 @@ public class TwitterView implements ClientElement {
 	private String className;
 	
 	@Inject
-	@Path("${tapestry.jquery.path}/twitterview/loader.gif")
+	@Path("${assets.path}/components/twitterview/loader.gif")
 	private Asset loaderImage;
 	
 	

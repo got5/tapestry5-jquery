@@ -1,0 +1,86 @@
+<html t:type="layoutWithAccordion" 
+t:title="Zone" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+   
+   	<t:if test="useTabs">
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    </t:if>
+	<t:block id="TabsBlock1">
+		<p>
+		The JS layers of the <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Zone.html">Zone</a>
+		component where overriden in order to continue to use normal component declaration. 
+	  	<br/><br/>
+	  	By default we use the jQuery implementation provided by Tapestry-jquery.js. 
+	  	</p>
+	  	<br/><br/>
+	  	<hr/>
+	  	<br/>
+	  	<h3>jQuery Zone Triggered by an action link</h3>
+	  	<br/>
+	    <p>
+	        <t:actionlink t:id="myActionLink" t:zone="myZone">
+	            Click on me to increment the count and refresh a zone
+	        </t:actionlink>
+	    </p>
+	    <t:zone t:id="myZone">
+	        <t:delegate t:to="theBlockActionLink" />
+	    </t:zone>
+	    <t:block t:id="myBlockActionLink">
+	        Counting via AJAX : ${count}
+	    </t:block>
+	<!--  >    
+    </t:block>
+	<t:block id="TabsBlock2">
+	<  -->
+		<hr/>
+		<br/>
+	    <h3>jQuery Zone triggered by external form submit</h3>
+	    <t:zone t:id="myZone2">
+	        <t:delegate t:to="theBlockForm" />
+	    </t:zone>
+	    <t:form t:zone="myZone2" t:id="myForm">
+	    	Enter a value
+	        <t:textfield t:value="dummy"/><t:submit t:id="submit"/>
+	    </t:form>
+	    <t:block t:id="myBlockForm">
+	        <p>
+	            Entered value is : ${dummy}
+	        </p>
+	        <t:ifNotNull t:test="dummy">
+	            <t:DummyScriptAndCSSAdder/>
+	        </t:ifNotNull>
+	    </t:block>
+	    <hr/>
+	  	<br/>
+	  	<h3>jQuery Zone and multi zone update</h3>
+	  	<br/>
+	    
+	    <t:form t:zone="multiZone1" t:id="myMultiZoneUpdateForm">
+	        <t:submit t:id="multiSubmit" />Click me for MultiZoneUpdate
+	    </t:form>
+	    <t:zone t:id="multiZone1">
+	        <t:delegate to="multiUpdateBlock1" />
+	    </t:zone>
+	    <t:zone t:id="multiZone2">
+	        <t:delegate to="multiUpdateBlock2" />
+	    </t:zone>
+	    <t:block t:id="defaultBlock">
+	        <p>default zone content</p>
+	    </t:block>
+	    <t:block t:id="multiUpdateBlock">
+	        <p>rendering block-${blockId} after multi zone update</p>
+	    </t:block>
+	
+	</t:block>    
+	<t:block id="TabsBlockLast">
+		<p>	
+	    Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
+	    <br/><br/>
+	    In your AppModule inside contributeApplicationDefaults method, 
+	    you just have to set the JQuerySymbolConstants.SUPPRESS_PROTOTYPE to "false" in order to force the use of
+	    default prototype implementation of the Tapestry Core components.
+		<br/><br/>
+		jQuery will be added to the javascript stack in every case.
+		</p> 
+    </t:block>
+</html>

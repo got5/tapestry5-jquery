@@ -34,7 +34,7 @@ public class PrototypeTest extends JavascriptTestSuite
     @Override
     public String getCalendarPage()
     {
-        return "/calendar";
+        return "/test/calendar";
     }
 
     @Override
@@ -64,25 +64,25 @@ public class PrototypeTest extends JavascriptTestSuite
     @Override
     public String getAutocompletePage()
     {
-        return "/autocomplete";
+        return "/test/autocomplete";
     }
 
     @Override
     public String getPalettePage()
     {
-        return "/palette";
+        return "/test/palette";
     }
 
     @Override
     public String getLinkSubmitPage()
     {
-        return "/linksubmit";
+        return "/test/linksubmit";
     }
     
     @Override
     public String getTabsPage()
     {
-        return "/jquerytabs";
+        return "/test/jquerytabs";
     }
     
    

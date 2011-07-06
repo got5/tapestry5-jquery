@@ -1,0 +1,48 @@
+<html t:type="layoutWithAccordion" t:title="Reveal" t:activeElement="2" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+ 
+   <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    
+    <t:block id="docs">
+    	<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content">This mixin allows you to display a modal window.</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://www.zurb.com/playground/reveal-modal-plugin">http://www.zurb.com/playground/reveal-modal-plugin</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+		  				<ul class="parameters">
+		  					<li><span class="title">div (String)</span> : The id of the div you want to display.</li>
+		  					<li><span class="title">animation (String)</span> : The effect you want to use. Possible parameter values : fade, fadeAndPop, none</li>
+		  					<li><span class="title">animationspeed (Integer)</span> : how fast your animation has to be.</li>
+		  					<li><span class="title">closeonbackgroundclick (Boolean)</span> : Can we close the model window by clicking the background.</li>
+		  					<li><span class="title">dismissmodalclass (String)</span> : The CSS class for the element that will close the modal.</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  	</table>
+    </t:block>
+    
+    <t:block id="example">
+		  <a id="monLink" t:type="pageLink" t:page="Index" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">
+		  link
+		  </a>
+		  
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="27" t:endLine="29" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="38" t:endLine="41" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+    	
+    	  <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.java"></div>
+	</t:block>
+    
+    <div id="myDiv" class="reveal-div reveal-hidden">
+		Test
+		<div class="close-reveal-modal">x</div>
+	</div>
+</html>

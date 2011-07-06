@@ -1,4 +1,4 @@
 <div  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 <div id="${SliderId}"/>
-<input t:type="textfield" t:value="inherit:value" clientId="prop:TextFieldId" />
+<input t:type="textfield" t:id="textfieldSlider" t:value="inherit:value"  />
 </div>

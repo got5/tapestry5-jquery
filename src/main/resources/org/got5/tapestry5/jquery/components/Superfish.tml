@@ -1,0 +1,8 @@
+<t:container xml:space="default" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+    
+
+	  	<t:body />
+	
+</t:container>

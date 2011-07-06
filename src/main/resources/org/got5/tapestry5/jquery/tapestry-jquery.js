@@ -111,7 +111,7 @@ $.extend(Tapestry.Initializer, {
         link.click(function(e) {
         
             var successHandler = function(data) {
-            
+           
                 var container = $("#" + fragmentId),
 					fragment = container.data("tapestry.formFragment");
                 
@@ -120,8 +120,9 @@ $.extend(Tapestry.Initializer, {
                 }
                 else {
                     var options = {};
-                    container.hide(spec.effect, options, "normal", function() {
-                        container.remove();
+                   
+                    container.fadeOut('slow', function() {
+                    	$(this).remove();
                     });
                 }
             }
@@ -137,17 +138,27 @@ $.extend(Tapestry.Initializer, {
 
     linkSubmit: function (spec) {
 
-        var el = $("#" + spec.clientId);
-        var id = el.attr('id');
-
-        el.wrap('<a id="' + id + '">');
+        var el = $("#" + spec.clientId), 
+        	attrs = el.get(0).attributes;
+        
+        
+       
+		el.replaceWith("<a id='" + spec.clientId + "'>" + el.html() + "</a>");
+		
 		// reload element
 		el = $("#" + spec.clientId);
+		
+		$.each(attrs , function(i, attrib){
+			if(attrib.value) el.attr(attrib.name,attrib.value);
+		});
+		
 		el.attr('href', '#');
-
+		
         el.tapestryLinkSubmit({
             form: spec.form,
-			validate: spec.validate
+			validate: spec.validate,
+			clientId: spec.clientId
+			
         });
     },
 
@@ -159,9 +170,45 @@ $.extend(Tapestry.Initializer, {
      * @param url absolute component event request URL
      */
     linkZone: function(spec) {
-        var element = spec.linkId;
-        var zoneId = spec.zoneId;
-        var url = spec.url;
+    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+				spec.zoneId, spec.url);
+    },
+	
+   /**
+     * Converts a link into an Ajax update of a Zone. The url includes the
+     * information to reconnect with the server-side Form.
+     * 
+     * @param spec.selectId
+     *            id or instance of <select>
+     * @param spec.zoneId
+     *            id of element to update when select is changed
+     * @param spec.url
+     *            component event request URL
+     */
+    linkSelectToZone : function(spec) {
+        Tapestry.Initializer.updateZoneOnEvent("change", spec.selectId,
+				spec.zoneId, spec.url);
+    },
+    
+    /**
+	 * Used by other initializers to connect an element (either a link or a
+	 * form) to a zone.
+	 * 
+	 * @param eventName
+	 *            the event on the element to observe
+	 * @param element
+	 *            the element to observe for events
+	 * @param zoneId
+	 *            identified a Zone by its clientId. Alternately, the special
+	 *            value '^' indicates that the Zone is a container of the
+	 *            element (the first container with the 't-zone' CSS class).
+	 * @param url
+	 *            The request URL to be triggered when the event is observed.
+	 *            Ultimately, a partial page update JSON response will be passed
+	 *            to the Zone's ZoneManager.
+	 */
+    updateZoneOnEvent: function(eventName, element, zoneId, url) {
+
         var el = $('#' + element);
 		
         var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
@@ -181,7 +228,6 @@ $.extend(Tapestry.Initializer, {
 					url : url,
 					params: el.serialize()
 				};
-
 				zoneElement.tapestryZone("update", specs);
 
                 return false;
@@ -202,28 +248,20 @@ $.extend(Tapestry.Initializer, {
             });
 
 		} else {
-            el.click(function() {
-                zoneElement.tapestryZone("update" , {url : url});
+            el.bind(eventName, function() {
+            	el.trigger(Tapestry.TRIGGER_ZONE_UPDATE_EVENT); 
                 return false;
             });
+            
+            el.bind(Tapestry.TRIGGER_ZONE_UPDATE_EVENT, function() {
+            	var parameters = {};
+            	if (el.is('select') && element.value) {
+    				parameters["t:selectvalue"] = element.value;
+    			}
+            	zoneElement.tapestryZone("update" , {url : url, parameters:parameters});
+
+    		});
         }
-    },
-	
-   /**
-     * Converts a link into an Ajax update of a Zone. The url includes the
-     * information to reconnect with the server-side Form.
-     * 
-     * @param spec.selectId
-     *            id or instance of <select>
-     * @param spec.zoneId
-     *            id of element to update when select is changed
-     * @param spec.url
-     *            component event request URL
-     */
-    linkSelectToZone : function(spec) {
-        Tapestry.Initializer.linkZone({ linkId : spec.selectId,
-                                        zoneId : spec.zoneId,      
-								        url : spec.url });
     },
     
     zone: function(spec) {
@@ -327,7 +365,7 @@ $.widget( "ui.tapestryZone", {
 
 	_create: function() {
 		this.element
-			.addClass( "tapestry-zone" )
+			.addClass( "tapestry-zone" );
 	},
 
 	destroy: function() {
@@ -348,6 +386,7 @@ $.widget( "ui.tapestryZone", {
 		var that = this;
 		
         var ajaxRequest = {
+        	type:"POST",
             url: specs.url,
             success: function(data) {
                 
@@ -371,11 +410,9 @@ $.widget( "ui.tapestryZone", {
         
         if (specs.params) {
             ajaxRequest = $.extend(ajaxRequest, {
-                type: 'post',
                 data: specs.params
             });
         }
-        
         $.ajax(ajaxRequest);
     }, 
 	
@@ -408,6 +445,8 @@ $.widget( "ui.tapestryLinkSubmit", {
     },
 
     _create: function() {
+    	var that=this;
+    	
         var form = $("#" + this.options.form);
 
         var el = $(this.element);
@@ -417,7 +456,10 @@ $.widget( "ui.tapestryLinkSubmit", {
 		}
 		
         el.click(function() {
-            $(this).tapestryLinkSubmit("clicked");
+        	
+        	$("#"+that.options.form).formEventManager("setSubmittingElement", that.options.clientId);
+        	
+        	$(this).tapestryLinkSubmit("clicked");
 
             return false;
         });
@@ -429,13 +471,15 @@ $.widget( "ui.tapestryLinkSubmit", {
     },
     
     clicked: function() {
+    	
 		var form = $("#" + this.options.form);
-
+		
 		if (form.hasClass(Tapestry.PREVENT_SUBMISSION)) {
 	   
             $(form).trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);         	
 
 		} else {
+			
             form.submit();  
 		}
     }
@@ -458,21 +502,32 @@ $.widget("ui.formEventManager", {
      *            LinkSubmit)
      */
     setSubmittingElement : function(element) {
-
+    	
+    	/**
+    	 * Get The Form
+    	 */
         var form = this.options.form;
 
-		if (!form.submitHidden) {
+		if (!this.options.submitHidden) {
 
-            // skip if this is not a tapestry controlled form
+            /**
+             * Check if it is a form controlled by Tapestry
+             */
 			var hasNoFormData = true;
 			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
-                hasNoFormData = $.isEmptyObject( $(this).attr('value'));
+				hasNoFormData = ( $(this).attr('value') == '' );
 			});
-
+			
+			/**
+			 * If it is not, we stop.
+			 */
             if (hasNoFormData) {
 				return;
 			}
 
+            /**
+             * Look for hidden input, called t:submit
+             */
             var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
 
             if (hiddens.size() === 0) {
@@ -481,13 +536,18 @@ $.widget("ui.formEventManager", {
                  * Create a new hidden field directly after the first hidden
                  * field in the form.
                  */
-                $(hiddens[0]).after('<input type="hidden" name="t:submit"');
+            	this.options.submitHidden = $('<input type="hidden" name="t:submit"/>')
+            		
+            	$(form).append(this.options.submitHidden);
+                
 
             } else
-                form.submitHidden = hiddens.first();
+            	this.options.submitHidden = hiddens.first();
         }
-
-        this.submitHidden.value = element == null ? null : $(element).id;
+		
+		var t = element == null ? null : $("#"+element).attr("id");
+		
+		this.options.submitHidden.attr("value",t);
     }
 	
 });
@@ -521,8 +581,9 @@ $.widget( "ui.tapestryFormInjector", {
             $.tapestry.utils.loadScriptsInReply(data, function() {
                 // Clone the FormInjector element (usually a div)
                 // to create the new element, that gets inserted
-                // before or after the FormInjector's element.				
-                var newElement = el.clone().attr("id", data.elementId).html(data.content);
+                // before or after the FormInjector's element.			
+            	
+                var newElement = el.clone(false).attr("id", data.elementId).html(data.content);
                 
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
                 

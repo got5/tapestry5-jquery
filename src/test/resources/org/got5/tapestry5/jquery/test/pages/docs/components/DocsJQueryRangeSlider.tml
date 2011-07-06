@@ -1,0 +1,79 @@
+<html t:type="layoutWithAccordion" 
+t:title="jQuery Range Slider" 
+t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+
+
+<t:block id="docs">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> This component allows you create a range slider in a form. 
+					A range slider is a slider that has a min and a max value.
+					This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider.
+					These 2 fields are hidden by default.
+					</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					Parameters marked with * are "required".
+		  				<ul>
+		  					<li>
+		  						<span class="title">*min (Object)</span> : The value to be read and updated, the min slider value. This value is passed to the first textfield. 
+							</li>
+		  					<li>
+		  						<span class="title">*max (Object)</span> : The value to be read and updated, the max slider value. This value is passed to the second textfield. 
+							</li>
+		  					<li>
+		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
+							</li>
+		  					<li>
+		  						<span class="title">zone (String)</span> : The zone to update when changes occure on the slider.
+								An "action" event is triggered on the server. You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderRangeZone"). 
+							</li>
+							<li>
+		  						<span class="title">displayTextField (boolean)</span> : A boolean indicating whether to display the 2 textfields on the client (default is false).  
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+	  </t:block>
+    	
+      <t:block id="example">
+			<t:form>
+				<h2>First example : the range slider</h2>
+				This is a range slider, the values are updated on submit, and the associated textfields are displayed.<br/>
+			    <t:jquery.rangeslider t:min="min" t:max="max" t:params="rangeparams" t:DisplayTextField="true"/>
+			    <br/>
+				The min value is ${min} (updated on submit)<br/>
+				The max value is ${max} (updated on submit)
+				<br/>
+				
+			<h2>Second example : the (vertical and animated) range slider updating a zone</h2>
+				<t:jquery.rangeslider t:min="minZone" t:max="maxZone" t:params="paramsRangeZone" t:zone="myZoneRange" t:id="sliderRangeZone"/>
+				<br/>
+				<t:zone t:id="myZoneRange" id="myZoneRange">
+					The min value is ${minZone}.<br/>
+					The max value is ${maxZone}.
+				</t:zone>
+				<br/>
+				
+				<input type="submit" value="Continue"/>
+			</t:form>
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="53" t:endLine="72" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>
+	  </t:block>
+	  
+	
+</html>

@@ -1,0 +1,122 @@
+<html t:type="layoutWithAccordion"
+t:title="jQuery Dialog" 
+t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+
+
+<t:block id="docs">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> There are a few components you can use to create a dialog in your pages.
+					- Dialog, this is the base of your Dialog, just put the content of your dialog inside.<br/>
+					- DialogLink, clicking a DialogLink will make the associated Dialog to open.<br/>
+					- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
+					</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://jqueryui.com/demos/dialog/">http://jqueryui.com/demos/dialog/</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					Please click on each tab to get details about parameters for each component.
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+</t:block>
+    	
+<t:block id="dialog">
+	  		<table class="documentation">
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					<ul>
+		  					<li>
+		  						<span class="title">clientId (String)</span> : The client id of the dialog. 
+							</li>
+		  					<li>
+		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
+							</li>
+		  					<li>
+		  						<span class="title">initMethod (String)</span> : The Tapestry.Initializer method to call to initialize the dialog. 
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+</t:block>
+
+<t:block id="dialoglink">
+	  		<table class="documentation">
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					<ul>
+		  					<li>
+		  						<span class="title">* dialog (String)</span> : The id of the dialog to open.
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+</t:block>
+
+<t:block id="dialogajaxlink">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+	  					This components extends the DialogLink, so it has the same parameter.
+	  					<ul>
+		  					<li>
+		  						<span class="title">* zone (String)</span> : The id of the zone to refresh.
+							</li>
+							<li>
+		  						<span class="title">* context (Object[])</span> : The activation context.
+							</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+</t:block>
+
+
+      <t:block id="example">
+			 <t:jquery.dialog t:clientId="myDialog">
+		    	Dialog test!
+				<t:zone t:id="myZone" id="myZone">${count}
+				
+				<t:form>
+					Try "abcd" :<input t:type="TextField" type="text" t:id="goalName" t:value="goalName" t:mixins="jquery/Autocomplete"/>
+				</t:form>
+				</t:zone>
+				
+		    </t:jquery.dialog>
+			
+			<h3>Dialog Link</h3>
+			<t:jquery.dialoglink t:dialog="myDialog">Open</t:jquery.dialoglink>
+			
+			<h3>Dialog Ajax Link</h3>
+			<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone">Open</t:jquery.dialogajaxlink>
+			
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="100" t:endLine="115" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.java"></div>
+	  </t:block>
+	  
+	
+</html>

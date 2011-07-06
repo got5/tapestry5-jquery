@@ -1,0 +1,58 @@
+<html t:type="layoutWithAccordion"
+t:title="Checkbox"  
+t:activeElement="1"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+    
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    
+    <t:block id="docs">
+    	<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> This mixin allows you change the look of the original checkboxes.</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://access.aol.com/csun2011">http://access.aol.com/csun2011</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+		  				No Parameter.
+		  			</td>
+	  			</tr>
+	  	</table>
+    </t:block>
+    
+    <t:block id="example">
+    	 <p>
+    		This is a example of the Checkbox component. It extends to the Tapestry Checkbox, but
+    		add some jQuery and CSS.<br />
+    	</p>	
+    	 <t:form t:id="monForm">
+    		Your Choice : 
+	    	<fieldset>	
+		    		<t:label t:for="maBox">Choice 1</t:label>
+		    		<input t:type="jquery/checkbox" t:id="maBox" t:value="value"/> 
+	    	</fieldset>
+	    	<fieldset>	
+		    		<t:label t:for="maBox1">Choice 2</t:label>
+		    		<input t:type="jquery/checkbox" t:id="maBox1" t:value="value"/> 
+	    	</fieldset>
+	    	<fieldset>	
+		    		<t:label t:for="maBox2">Choice 3</t:label>
+		    		<input t:type="jquery/checkbox" t:id="maBox2" t:value="value"/> 
+	    	</fieldset>
+    	</t:form>
+    	
+    	<br />
+    	
+    	<div t:type="jquery/showSource" t:ext="html" t:endLine="47" t:beginLine="33" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.java"></div>
+    </t:block>
+    
+</html>

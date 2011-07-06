@@ -1,0 +1,9 @@
+<html t:type="layoutWithAccordion" 
+t:title="jQuery Autocomplete" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+    	Try "abcd" : 
+        <t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete" />
+        <t:submit/>
+    </t:form>
+</html>

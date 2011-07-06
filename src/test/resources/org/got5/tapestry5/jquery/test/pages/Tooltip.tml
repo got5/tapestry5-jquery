@@ -1,9 +1,0 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    
-    <h2>Example : Tooltip Mixin</h2>
-	This is a example of the Tooltip mixin. This mixin use the title attribute of your element.<br/><br/>
-    
-    <a t:type="actionLink" t:page="Index" t:mixins="jquery/tooltip" title="a small tooltip">Lien vers l'Index</a>
-    
-    
-</html>

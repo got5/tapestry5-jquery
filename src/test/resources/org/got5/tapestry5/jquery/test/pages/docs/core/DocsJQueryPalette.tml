@@ -1,0 +1,9 @@
+<html t:type="layoutWithAccordion" 
+t:title="jQuery Palette" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+        <t:jquery.palette t:id="handling" encoder="encoder" model="model"/>
+        <br/>
+        <input type="submit" value="Continue"/>
+    </t:form>
+</html>

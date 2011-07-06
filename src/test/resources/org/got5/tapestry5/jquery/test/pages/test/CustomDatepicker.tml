@@ -1,0 +1,9 @@
+<html t:type="layout" t:activeElement="2" 
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+    
+	<form t:type="form" t:id="idForm">
+    	<t:label t:for="dateField">The Date : </t:label>
+      	<t:datefield t:id="dateField" t:value="value" t:mixins="jquery/CustomDatepicker" t:params="params"/>
+    </form>
+</html>

@@ -8,22 +8,22 @@
 	<div class="wrapper bs">
 		<ul class="nav">
 				<li>
-					<t:pagelink t:page="index">home</t:pagelink>
+					<t:pagelink t:page="index">Home</t:pagelink>
 				</li>
 				<li>
 					<a href="https://github.com/got5/tapestry5-jquery">Download</a>		
 				</li>
 				<li class="last">
-					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
+					<a href="http://twitter.com/#!/GOTapestry5">Twitter</a>
 				</li>
 			
 		</ul>
 
 		<div id="top">
 
-			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+			<h1><img src="${context:/css/layout/tapestry.png}" alt="Tapestry" id="tapestry" /></h1>
 
-			<div>Welcome to Tapestry5-jQuery !</div>
+			
 			
 			<div id="aside">
 			Tapestry 5jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
@@ -35,7 +35,7 @@
 		</div>
 		
 		<div id="bar">
-			<strong>Tapestry jQuery For Tapestry 5.2.5</strong>
+			<strong>${title}</strong>
 		</div>
 		
 		<div id="wrapper">
@@ -46,32 +46,31 @@
 			<!-- Core Components and features -->
 			<ul>
         		<li>
-            		<t:pagelink t:page="docs/Zone">Zone</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsZone">Zone</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="docs/DateField">DateField</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsDateField">DateField</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="validation">Validation</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsValidation">Validation</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="grid">Grid</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsGrid">Grid</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="ajaxformloop">AjaxFormLoop</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsAjaxformloop">AjaxFormLoop</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="formfragment">FormFragment</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsFormfragment">FormFragment</t:pagelink>
         		</li>
         		<li>
-            		<t:pagelink t:page="linksubmit">LinkSubmit</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsLinksubmit">LinkSubmit</t:pagelink>
         		</li>	
         		<li>
-            		<t:pagelink t:page="jqueryautocomplete">j:Autocomplete</t:pagelink>
+            		<t:pagelink t:page="docs/core/DocsJQueryAutocomplete">j:Autocomplete</t:pagelink>
         		</li>
-        	
-        		 <li>
-                     <t:pagelink t:page="jquerypalette">j:Palette</t:pagelink> 
+        		<li>
+                    <t:pagelink t:page="docs/core/DocsJqueryPalette">j:Palette</t:pagelink> 
         		</li>
 			</ul>
 			</t:block>
@@ -80,21 +79,33 @@
 			<!-- Core Components that need lib mapping -->
 			<ul>
 				 <li>
-			         <t:pagelink t:page="jquerydialog">Dialog</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryDialog">Dialog</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="jquerytabs">Tabs</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryTabs">Tabs</t:pagelink>
 			     </li>
 			     <li>
-			         <t:pagelink t:page="jqueryaccordion">Accordion</t:pagelink>
+			         <t:pagelink t:page="docs/components/DocsJqueryAccordion">Accordion</t:pagelink>
 			     </li>
 			     <li>
-			        <t:pagelink t:page="jqueryslider">Slider</t:pagelink>
+			        <t:pagelink t:page="docs/components/DocsJquerySlider">Slider</t:pagelink>
+			     </li>
+				 <li>
+			        <t:pagelink t:page="docs/components/DocsJqueryRangeSlider">Range Slider</t:pagelink>
 			     </li>
 			     <li>
-			     	<t:pagelink t:page="Button">Button</t:pagelink>
+			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload (broken in Chrome and Safari)</t:pagelink>
+			     </li>			
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsCarouselPage">Carousel</t:pagelink>
 			     </li>
-        	</ul>
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsCheckbox">Checkbox</t:pagelink>
+			     </li>
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsSuperfish">Superfish Menu</t:pagelink>
+			     </li>
+			</ul>
 		
 			</t:block>
 		
@@ -103,24 +114,22 @@
 				<!--  Exclusives jQuery components -->
 			   	
 			    <ul>
-			        <li>
-			            <t:pagelink t:page="twitterviewpage">Twitter View</t:pagelink>
+			    	<li>
+			     		<t:pagelink t:page="docs/mixins/DocsButton">Button</t:pagelink>
+			     	</li>
+			     	<li>
+			     		<t:pagelink t:page="docs/mixins/DocsCustomDatepicker">CustomDatepicker</t:pagelink>
+			     	</li>
+			       	<li>
+			            <t:pagelink t:page="docs/mixins/DocsMask">Mask</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="ajaxuploadtest">AjaxUpload</t:pagelink>
-			        </li>			
-			        <li>
-			            <t:pagelink t:page="CarouselPage">Carousel</t:pagelink>
+			            <t:pagelink t:page="docs/mixins/Docsreveal">Reveal</t:pagelink>
 			        </li>
 			        <li>
-			            <t:pagelink t:page="tooltip">Tooltip</t:pagelink>
+			            <t:pagelink t:page="docs/mixins/DocsTooltip">Tooltip</t:pagelink>
 			        </li>
-			        <li>
-			            <t:pagelink t:page="reveal">Reveal</t:pagelink>
-			        </li>
-			        <li>
-			            <t:pagelink t:page="mask">Mask</t:pagelink>
-			        </li>
+			        
 			    </ul>		
 			</t:block>
 		

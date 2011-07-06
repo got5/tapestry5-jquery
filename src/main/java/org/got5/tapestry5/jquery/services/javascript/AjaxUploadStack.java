@@ -42,12 +42,12 @@ public class AjaxUploadStack implements JavaScriptStack
             }
         };
 
-        final String path = String.format("${tapestry.jquery.path}/upload/jquery.fileuploader%s.js", productionMode ? ".min" : "");
+        final String path = String.format("${assets.path}/components/upload/jquery.fileuploader%s.js", productionMode ? ".min" : "");
 
         javaScriptStack = F.flow(path).map(pathToAsset).toList();
 
         final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
-        cssStack = F.flow("${tapestry.jquery.path}/upload/fileuploader.css").map(pathToStylesheetLink).toList();
+        cssStack = F.flow("${assets.path}/components/upload/fileuploader.css").map(pathToStylesheetLink).toList();
     }
 
     public String getInitialization()

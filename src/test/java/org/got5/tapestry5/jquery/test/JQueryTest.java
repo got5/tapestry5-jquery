@@ -16,8 +16,6 @@
 
 package org.got5.tapestry5.jquery.test;
 
-import org.apache.tools.ant.filters.LineContains.Contains;
-import org.openqa.selenium.remote.server.handler.GetCssProperty;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
@@ -54,7 +52,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Override
     public String getCalendarPage()
     {
-        return "/calendar";
+        return "/test/calendar";
     }
 
     @Override
@@ -84,25 +82,25 @@ public class JQueryTest extends JavascriptTestSuite
     @Override
     public String getAutocompletePage()
     {
-        return "/jqueryautocomplete";
+        return "/test/jqueryautocomplete";
     }
 
     @Override
     public String getPalettePage()
     {
-        return "/jquerypalette";
+        return "/test/jquerypalette";
     }
 
     @Override
     public String getLinkSubmitPage()
     {
-        return "/jquerylinksubmit";
+        return "/test/jquerylinksubmit";
     }
 
     @Override
     public String getTabsPage()
     {
-        return "/jquerytabs";
+        return "/test/jquerytabs";
     }
     
     
@@ -110,55 +108,9 @@ public class JQueryTest extends JavascriptTestSuite
      * jQuery exclusives components
      */
     @Test
-    public void testDialog()
-    {
-        open("/jquerydialog");
-
-        String dialogLink = "identifier=dialoglink";
-        String dialogAjaxLink = "identifier=dialogajaxlink";
-        final String dialog = "identifier=myDialog";
-        String closeDialog = "css=span[class~=\"ui-icon-closethick\"]";
-        String zone = "identifier=myzone";
-
-        checkDialogState(dialogLink, dialog, true);
-
-        checkDialogState(closeDialog, dialog, false);
-
-        checkDialogState(dialogAjaxLink, dialog, true);
-
-        String textFirstState = getText(dialog);
-
-        checkDialogState(closeDialog, dialog, false);
-
-        checkDialogState(dialogAjaxLink, dialog, true);
-
-        String textSecondState = getText(dialog);
-
-        checkDialogState(closeDialog, dialog, false);
-
-        assertTrue(!textFirstState.equals(textSecondState), "Zone content should be different");
-    }
-
-    private void checkDialogState(String triggerLocator, final String dialogLocator, final boolean state)
-    {
-        click(triggerLocator);
-
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return (isVisible(dialogLocator) == state);
-            }
-        }.wait(dialogLocator + " visibility should be " + state);
-
-        assertEquals(isVisible(dialogLocator), state, dialogLocator + " visibility should be " + state);
-    }
-
-    @Test
     public void testAjaxUpload()
     {
-        open("/AjaxUploadTest");
+        open("/test/AjaxUploadTest");
 
         final long start = System.currentTimeMillis();
 
@@ -178,7 +130,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testAccordion()
     {
-        open("/jqueryaccordion");
+        open("/test/jqueryaccordion");
         // active tab must be second
         new Wait()
         {
@@ -210,7 +162,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testToolTip()
     {
-    	open("/Tooltip");
+    	open("/test/Tooltip");
     	
     	mouseOver("//div[@id='content']/a");
     	
@@ -243,7 +195,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testMask(){
     	
-    	open("/mask");
+    	open("/test/mask");
     	
     	click("//a[@id='myTestLink']");
     	
@@ -258,7 +210,7 @@ public class JQueryTest extends JavascriptTestSuite
     @Test
     public void testRevealMixin(){
     	
-    	open("/reveal");
+    	open("/test/reveal");
     	
     	click("//a[@id='pagelink']");
     	
@@ -285,4 +237,106 @@ public class JQueryTest extends JavascriptTestSuite
     	
     }
     
+    @Test
+    public void testCheckboxComponent(){
+    	
+    	open("/test/Checkbox");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//form[@id='monForm']/fieldset/div/div/span@class").equals("ui-checkbox-icon");
+            }
+        }.wait("The checkbox should be unchecked", 5000l);
+    	
+       click("//form[@id='monForm']/fieldset/div/label");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getAttribute("//form[@id='monForm']/fieldset/div/div/span@class").equals("ui-checkbox-icon ui-icon ui-icon-check");
+            }
+        }.wait("The checkbox should be checked", 5000l);
+    }
+    
+    @Test
+    public void testSuperfishComponent(){
+    	
+    	open("/test/SuperFish");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//ul[@id='menu1'][contains(@class,'sf-menu')]");
+            }
+        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), 5000l);
+        
+        click("//ul[@id='menu1']/li[1]/a");
+    	
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+            }
+        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
+        
+        click("//ul[@id='menu1']/li[2]/a");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return !getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+            }
+        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
+    }
+    
+    @Test
+    public void testAjaxFormLoop(){
+    	
+    	open("/test/AjaxFormLoop");
+    	
+    	click("//a[@id='addrowlink']");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+        
+        click("//a[@id='addrowlink']");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(2);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+        
+        click("//a[contains(@id,'removerowlink_')][1]");
+    	
+    	new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+            }
+        }.wait("A New row should be present " + getXpathCount("//div[contains(@id,'rowInjector_')]"), 5000l);
+    	
+    }
 }

@@ -1,0 +1,47 @@
+<html t:type="layoutWithAccordion" t:activeElement="2" t:title="CustomDatepicker"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+    
+     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+	 
+	  <t:block id="docs">
+	  		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> This mixin allows you to override the default configuration parameters of the Datepicker</td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://jqueryui.com/demos/datepicker">http://jqueryui.com/demos/datepicker</a></td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Parameters</td>
+	  				<td class="content">
+		  				<ul class="parameters">
+		  					<li><span class="title">params (JSONObject)</span> : The DatePicker parameters you want to override.</li>
+		  				</ul>
+		  			</td>
+	  			</tr>
+	  		
+	  	</table>
+	  	
+	  </t:block>
+    	
+      <t:block id="example">
+			<p>
+      			This example changes the nextText and prevText parameters of the jQuery DatePicker.
+      		</p>
+      		
+      		<form t:type="form" t:id="idForm">
+      			<t:label t:for="dateField">The Date : </t:label>
+      			<t:datefield t:id="dateField" t:value="date" t:mixins="jquery/CustomDatepicker" t:params="params"/>
+      		</form>
+      		
+      		<div t:type="jquery/showSource" t:ext="html" t:beginLine="33" t:endLine="40" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsCustomDatepicker.tml"></div>
+      		
+      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsCustomDatepicker.java"></div>
+
+	  </t:block>
+</html>
