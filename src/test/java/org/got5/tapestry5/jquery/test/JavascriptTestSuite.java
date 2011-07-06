@@ -73,7 +73,8 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             }
         }.wait("element not found");
 
-        assertEquals(getText("identifier=myZone2"), "Dummy value is : dummy \n I am a Component inside the block which is visible after the zone update");
+        assertTrue(getText("identifier=myZone2").contains("Dummy value is : dummy") && 
+        			getText("identifier=myZone2").contains("I am a Component inside the block which is visible after the zone update"));
     }
 
     @Test
