@@ -1,41 +1,49 @@
-<html t:type="layoutWithAccordion" 
-t:title="Zone" 
-t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" t:title="Zone" t:activeElement="0" 
+xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
    
    	<t:if test="useTabs">
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     </t:if>
 	<t:block id="TabsBlock1">
-		<p>
-		The JS layers of the <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Zone.html">Zone</a>
-		component where overriden in order to continue to use normal component declaration. 
-	  	<br/><br/>
-	  	By default we use the jQuery implementation provided by Tapestry-jquery.js. 
-	  	</p>
-	  	<br/><br/>
-	  	<hr/>
-	  	<br/>
+		<table class="documentation">
+	  			<tr>
+	  				<td class="title">Description</td>
+	  				<td class="content"> The JS layers of the Zone
+					component where overriden in order to continue to use normal component declaration. 
+	  				<br/>
+	  				By default we use the jQuery implementation provided by Tapestry-jquery.js. </td>
+	  			</tr>
+	  			
+	  			<tr>
+	  				<td class="title">Links</td>
+	  				<td class="content"><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Zone.html">Zone</a></td>
+	  			</tr>
+	  			
+	  	</table>
+	</t:block>
+	
+	<t:block id="TabsBlock2">   
 	  	<h3>jQuery Zone Triggered by an action link</h3>
-	  	<br/>
 	    <p>
 	        <t:actionlink t:id="myActionLink" t:zone="myZone">
 	            Click on me to increment the count and refresh a zone
 	        </t:actionlink>
 	    </p>
-	    <t:zone t:id="myZone">
+	    <t:zone t:id="myZone" id="myZone">
 	        <t:delegate t:to="theBlockActionLink" />
 	    </t:zone>
 	    <t:block t:id="myBlockActionLink">
 	        Counting via AJAX : ${count}
-	    </t:block>
-	<!--  >    
+	    </t:block>    
+	    
+	    <div t:type="jquery/showSource" t:ext="html" t:beginLine="26" t:endLine="37"  t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="89" t:endLine="100" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
     </t:block>
-	<t:block id="TabsBlock2">
-	<  -->
-		<hr/>
-		<br/>
+    
+	<t:block id="TabsBlock3">
 	    <h3>jQuery Zone triggered by external form submit</h3>
-	    <t:zone t:id="myZone2">
+	    <t:zone t:id="myZone2" id="myZone2">
 	        <t:delegate t:to="theBlockForm" />
 	    </t:zone>
 	    <t:form t:zone="myZone2" t:id="myForm">
@@ -50,18 +58,21 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	            <t:DummyScriptAndCSSAdder/>
 	        </t:ifNotNull>
 	    </t:block>
-	    <hr/>
-	  	<br/>
-	  	<h3>jQuery Zone and multi zone update</h3>
-	  	<br/>
 	    
-	    <t:form t:zone="multiZone1" t:id="myMultiZoneUpdateForm">
+	    <div t:type="jquery/showSource" t:ext="html" t:beginLine="45" t:endLine="60"  t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="102" t:endLine="112" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+	</t:block>
+	
+	<t:block id="TabsBlock4">
+	  	<h3>jQuery Zone and multi zone update</h3>
+	  	<br/>    
+	    <t:form t:zone="multiZone1" t:id="myMultiZoneUpdateForm" >
 	        <t:submit t:id="multiSubmit" />Click me for MultiZoneUpdate
 	    </t:form>
-	    <t:zone t:id="multiZone1">
+	    <t:zone t:id="multiZone1" id="multiZone1">
 	        <t:delegate to="multiUpdateBlock1" />
 	    </t:zone>
-	    <t:zone t:id="multiZone2">
+	    <t:zone t:id="multiZone2" id="multiZone2">
 	        <t:delegate to="multiUpdateBlock2" />
 	    </t:zone>
 	    <t:block t:id="defaultBlock">
@@ -70,8 +81,12 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	    <t:block t:id="multiUpdateBlock">
 	        <p>rendering block-${blockId} after multi zone update</p>
 	    </t:block>
-	
+	    
+	    <div t:type="jquery/showSource" t:ext="html" t:beginLine="67" t:endLine="83"  t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="114" t:endLine="130" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+	    
 	</t:block>    
+	
 	<t:block id="TabsBlockLast">
 		<p>	
 	    Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
