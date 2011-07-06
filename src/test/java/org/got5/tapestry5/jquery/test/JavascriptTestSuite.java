@@ -288,14 +288,10 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         assertFalse(isEditable(deselect), deselect + " should not be clickable");
 
         focus(avail);
-        select(avail, "index=2");
-        select(avail, "index=4");
-
-        assertTrue(isEditable(select), select + " should be clickable");
-        assertFalse(isEditable(deselect), deselect + " should not be clickable");
-
-        click(select);
-
+        
+        addSelection(avail, "label=Gift Basket");
+        doubleClick(avail);
+        
         assertFalse(isEditable(select), select + " should not be clickable");
         assertTrue(isEditable(deselect), deselect + " should be clickable");
 
@@ -303,6 +299,8 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 
         assertTrue(isEditable(select), select + " should be clickable");
         assertFalse(isEditable(deselect), deselect + " should not be clickable");
+
+        
     }
 
     public abstract String getPalettePage();

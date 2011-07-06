@@ -53,7 +53,7 @@ public class JQueryDialog
     Object updateCount()
     {
         if (!request.isXHR()) { return this; }
-        return myZone;
+        return myZone.getBody();
     }
     
     @Property
