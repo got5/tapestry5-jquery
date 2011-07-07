@@ -65,8 +65,6 @@ public class DocsZone
     @Property
     private Boolean useTabs;
    
-    @Property
-    private Boolean useMultiTabs;
 	
     @Persist
 	@Property
@@ -78,15 +76,13 @@ public class DocsZone
 	@SetupRender
 	void onSetupRender()
 	{
-		useTabs=true;
-		useMultiTabs=false;		
+		useTabs=true;	
 		listTabData = new ArrayList<JQueryTabData>();
-        listTabData.add(new JQueryTabData("Zone","TabsBlock1"));
-        if(useMultiTabs)
-        {	
-        	listTabData.add(new JQueryTabData("With Form","TabsBlock2"));
-        }
-        //listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
+        listTabData.add(new JQueryTabData("Documentation","TabsBlock1"));
+        listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
+        listTabData.add(new JQueryTabData("Form","TabsBlock3"));
+        listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
+        listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
 	}
     
 
@@ -95,30 +91,23 @@ public class DocsZone
 	return myBlockActionLink;
     }
 
+    @OnEvent(value = "action", component = "myActionLink")
+    Object updateCount()
+    {	
+	if (!request.isXHR()) {return this;}
+	count++;
+	return myBlockActionLink;
+    }
+    
     public Block getTheBlockForm()
     {
 	return myBlockForm;
-    }
-    
-    @OnEvent(value = "action", component = "myActionLink")
-    Object updateCount()
-    {
-	if (!request.isXHR())
-	{
-	    return this;
-	}
-	count++;
-	return myBlockActionLink;
     }
 
     @OnEvent(value = EventConstants.SUCCESS, component = "myForm")
     Object updateZoneContentFromForm()
     {
-	if (!request.isXHR())
-	{
-	    return this;
-	}
-
+	if (!request.isXHR()) {return this;}
 	return myBlockForm;
     }
     
@@ -126,21 +115,17 @@ public class DocsZone
     Object performMultiZoneUpdate() 
     {
         afterFormSubmit = true;
-
-        return new MultiZoneUpdate("multiZone1", multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
+        return new MultiZoneUpdate("multiZone1",
+        		   multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
     }
     
     public Block getMultiUpdateBlock1() {
-
-        blockId = 1;
-        
+        blockId = 1;    
         return afterFormSubmit ? multiUpdateBlock : defaultBlock;
     }
     
     public Block getMultiUpdateBlock2() {
-
         blockId = 2;
-        
         return afterFormSubmit ? multiUpdateBlock : defaultBlock;
     }
 }
