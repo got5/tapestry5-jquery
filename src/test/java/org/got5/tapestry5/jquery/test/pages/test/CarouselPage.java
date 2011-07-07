@@ -19,7 +19,11 @@ package org.got5.tapestry5.jquery.test.pages.test;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
@@ -38,11 +42,18 @@ public class CarouselPage{
 	@Inject
 	private AssetSource assetSource;
 	
+	@Persist
+	@Property
+	private int counter;
+	
+	@InjectComponent
+	private Zone myzone;
+	
 	public JSONObject getAjaxParams(){
 		JSONObject retour = new JSONObject();
 		retour.put("wrap", "circular");
 		String url = resources.createEventLink("ajaxEvent").toString();
-		retour.put("itemLoadCallback", new JSONLiteral("loadCarousel('"+url+"')"));
+		retour.put("loadCallbackUrl", url);
 		return retour;
 	}
 	
@@ -82,6 +93,12 @@ public class CarouselPage{
 	@OnEvent("zoneTest")
 	public Object zoneEvent(){
 		return flowerBlock;
+	}
+	
+	@OnEvent("action")
+	public Object refresh(){
+		counter++;
+		return myzone.getBody();
 	}
 	
 }

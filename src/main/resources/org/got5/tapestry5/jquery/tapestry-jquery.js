@@ -405,6 +405,9 @@ $.widget( "ui.tapestryZone", {
 				}
 
                 $.tapestry.utils.loadScriptsInReply(data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
             }
         };
         

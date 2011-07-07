@@ -1,6 +1,11 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
+	
+	<p><t:actionlink t:zone="myzone">Refresh Zone</t:actionlink></p>
 	Complex Items:
+	<t:zone t:id="myzone">
+	<p>Counter : ${counter}</p>
+	
 	<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
 		<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="test/Button" t:context="3"/>
 		<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
@@ -16,7 +21,7 @@
 	
 	<div id="zoneContainer">
 		<span>Click on the big white flower of the complex carousel:</span>
-		<t:zone t:id="flowerZone">
+		<t:zone t:id="flowerZone" id="flowerZone">
 			
 		</t:zone>
 		
@@ -29,6 +34,7 @@
 	Ajax loaded:
 	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
 	
+	</t:zone>
 	
    
 </html>
