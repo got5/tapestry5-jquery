@@ -68,6 +68,8 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * <p/>
  * Option groups within the {@link SelectModel} will be rendered, but are not supported by many
  * browsers, and are not fully handled on the client side.
+ * 
+ * @see <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Palette.html">http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Palette.html</a>
  */
 @ImportJQueryUI(value = "jquery.ui.widget")
 @Import(library= "${assets.path}/components/palette/palette.js")

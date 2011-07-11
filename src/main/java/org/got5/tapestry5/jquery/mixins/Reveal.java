@@ -13,33 +13,50 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 /**
+ * This mixin allows you to display a modal window.
+ * 
  * @since 2.1.1
- * @see http://www.zurb.com/playground/reveal-modal-plugin
+ * @see <a href="http://www.zurb.com/playground/reveal-modal-plugin">http://www.zurb.com/playground/reveal-modal-plugin</a>
  */
 @Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
 public class Reveal{
 	
+	/**
+	 * The id of the div you want to display.
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String div;
 	
+	/**
+	 * The effect you want to use. Possible parameter values : fade, fadeAndPop, none
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL,
 				value="fadeAndPop")
 	private String animation;
 	
+	/**
+	 *  How fast your animation has to be.
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL,
 			value="300")
 	private Integer animationspeed;
 	
+	/**
+	 * Can we close the model window by clicking the background?
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL,
 				value="true")
 	private boolean closeonbackgroundclick;
 	
+	/**
+	 * The CSS class for the element that will close the modal.
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL,
 				value="close-reveal-modal")
 	private String dismissmodalclass;
 	
-	 @InjectContainer
-	    private ClientElement element;
+	@InjectContainer 
+	private ClientElement element;
 	
 	@Inject
 	private JavaScriptSupport javaScriptSupport;

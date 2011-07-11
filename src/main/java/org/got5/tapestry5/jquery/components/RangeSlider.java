@@ -23,7 +23,6 @@ import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -31,25 +30,45 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
+ * This component allows you create a range slider in a form. A range slider is a slider that has a min and a max value. This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider. 
+ * These 2 fields are hidden by default.
+ * 
  * @since 2.1.1
- * @see http://jqueryui.com/demos/slider/
+ * @see <a hred="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a>
  */
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
 @Import( library={ "${assets.path}/components/rangeslider/range-slider.js" })
 public class RangeSlider  {
 
+    /**
+     * The value to be read and updated, the min slider value. This value is passed to the first textfield.
+     */
     @Parameter(required = true)
     private Object min;
     
+    /**
+     * The value to be read and updated, the max slider value. This value is passed to the second textfield.
+     */
     @Parameter(required = true)
     private Object max;
     
+    /**
+     * The slider parameters (please refer to jquery-ui documentation)
+     */
     @Parameter
     private JSONObject params;
     
+    /**
+     * The zone to update when changes occure on the slider. 
+     * An "action" event is triggered on the server. 
+     * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderRangeZone").
+     */
     @Parameter(defaultPrefix="literal")
     private String zone;
 
+    /**
+     * A boolean indicating whether to display the 2 textfields on the client (default is false).
+     */
     @Parameter(value="false")
     private boolean displayTextField;
     

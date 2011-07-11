@@ -38,7 +38,9 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
- * @see http://jqueryui.com/demos/tabs/
+ * This component allows you create a jquery ui tab.
+ * 
+ * @see <a href="http://jqueryui.com/demos/tabs/">http://jqueryui.com/demos/tabs/</a>
  */
 @ImportJQueryUI(value = { "jquery.ui.core",
                           "jquery.ui.widget",
@@ -55,16 +57,25 @@ public class Tabs extends AbstractExtendableComponent
     @Inject
     private AssetSource source;
 
+	/**
+	 *  A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
+	 */
 	@Property
 	@Parameter(required=true)
 	private ArrayList<JQueryTabData> listTabData;
 	
 	private String clientZoneId;
 
+	/**
+	 * The number of the tab to activate when the page is displayed on the client.
+	 */
 	@Parameter(required=true)
 	@Property
 	private int activePanelId;
 
+	/**
+	 * The slider parameters (please refer to jquery-ui documentation)
+	 */
 	@Parameter
     private JSONObject params;
 

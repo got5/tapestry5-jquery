@@ -15,7 +15,10 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  			</tr>
 	  			<tr>
 	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://jqueryui.com/demos/autocomplete/">http://jqueryui.com/demos/autocomplete/</a></td>
+	  				<td class="content">
+	  					<a href="http://jqueryui.com/demos/autocomplete/">The JQuery AutoComplete Mixin</a>
+	  					<br /><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/mixins/Autocomplete.html">The Tapestry AutoComplete Mixin</a>
+	  				</td>
 	  			</tr>
 	  			
 	  	</table>

@@ -29,7 +29,9 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
- * @see http://jqueryui.com/demos/button/
+ * The Button mixin improve the form of traditional elements like button, submit, reset ...
+ * 
+ * @see <a href="http://jqueryui.com/demos/button/">http://jqueryui.com/demos/button/</a>
  */
 @ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core", "jquery.ui.button" })
 @Import(library = { "${assets.path}/mixins/button/button.js" })
@@ -47,9 +49,16 @@ public class Button
     static final String TYPE_BUTTON = "button";
 	static final String TYPE_BUTTONSET = "buttonset";
 
+	/**
+	 * The type parameter indicates wich constructor you want to use. 
+	 * Available Parameter values : button or buttonset
+	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = TYPE_BUTTON)
 	private String type;
 
+	/**
+	 * The Button parameters you want to override.
+	 */
 	@Parameter
     private JSONObject params;
 

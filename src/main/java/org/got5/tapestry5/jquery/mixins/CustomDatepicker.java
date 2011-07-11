@@ -16,12 +16,17 @@ import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
+ * This mixin allows you to override the default configuration parameters of the Datepicker
+ * 
  * @since 2.1.1
- * @see http://jqueryui.com/demos/datepicker
+ * @see <a href="http://jqueryui.com/demos/datepicker">http://jqueryui.com/demos/datepicker</a>
  */
 @Import(library = { "${assets.path}/mixins/customDatepicker/customDatepicker.js" })
 public class CustomDatepicker {
 	
+	/**
+	 * The DatePicker parameters you want to override.
+	 */
 	@Parameter
 	private JSONObject params;
 	

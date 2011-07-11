@@ -9,8 +9,10 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 
 /**
+ * This mixin allows you change the look of the original checkboxes.
+ * 
  * @since 2.1.1
- * @see http://access.aol.com/csun2011
+ * @see <a href="http://access.aol.com/csun2011">http://access.aol.com/csun2011</a>
  */
 @ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core" })
 @Import(library = { "${assets.path}/components/checkbox/jquery.ui.checkbox.js",

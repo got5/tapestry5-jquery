@@ -31,8 +31,12 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
+ * This component allows you create a slider in a form. A range slider is a slider that is mapped to a property value. 
+ * This components actually creates a Tapestry textfield component and enhanced its behaviour by adding a slider. 
+ * This field is are hidden by default.
+ * 
  * @since 2.1.1
- * @see http://jqueryui.com/demos/slider/
+ * @see <a href="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a>
  */
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
 @Import( library={ "${assets.path}/components/slider/slider.js" })
@@ -45,9 +49,16 @@ public class Slider  {
     @Parameter(required = true, principal = true)
     private Object value;
     
+    /**
+     * The slider parameters (please refer to jquery-ui documentation)
+     */
     @Parameter
     private JSONObject params;
     
+    /**
+     * The zone to update when changes occure on the slider. An "action" event is triggered on the server. 
+     * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderZone").
+     */
     @Parameter(defaultPrefix="literal")
     private String zone;
 
@@ -59,6 +70,9 @@ public class Slider  {
     @Inject
     private JavaScriptSupport jsSupport;
     
+    /**
+     * A boolean indicating whether to display the textfield on the client (default is false).
+     */
     @Parameter(value="false")
     private boolean displayTextField;
     

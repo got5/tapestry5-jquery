@@ -2,8 +2,11 @@ package org.got5.tapestry5.jquery.mixins;
 
 
 /**
+ * This mixin allows you to display a tooltip for all your inputs. 
+ * It use the title attribute of your element.
+ * 
  * @since 2.1.1
- * @see http://access.aol.com/csun2011
+ * @see <a href="http://access.aol.com/csun2011">http://access.aol.com/csun2011</a>
  */
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.MarkupWriter;

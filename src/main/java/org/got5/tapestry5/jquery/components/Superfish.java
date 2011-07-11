@@ -32,8 +32,10 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 /**
+ * The Component allows you to create a CSS drop-down menu
+ * 
  * @since 2.1.1
- * @see http://users.tpg.com.au/j_birch/plugins/superfish/
+ * @see <a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a>
  */
 @Import(library = {"${assets.path}/components/superfish/js/hoverIntent.js",
 					"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",

@@ -23,7 +23,10 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  			
 	  			<tr>
 	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://jqueryui.com/demos/datepicker/">http://jqueryui.com/demos/datepicker/</a></td>
+	  				<td class="content">
+	  					<a href="http://jqueryui.com/demos/datepicker/">http://jqueryui.com/demos/datepicker/</a>
+	  					<br /><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/DateField.html">The Tapestry DateField Component</a>
+	  				</td>
 	  			</tr>
 	  			
 	  			
