@@ -4,31 +4,65 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	
 	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
-     <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">The Component allows you to create a CSS drop-down menu</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-		  				<ul class="parameters">
-		  					<li><span class="title">params (JSONObject)</span> : JSON Object for the Superfish Configuration</li>
-		  					<li><span class="title">vertical (Boolean)</span> : your menu will be vertical (vertical=true) or your menu will have the navbar stylesheet (vertical=false)</li>
-		  					<li><span class="title">classe (String)</span> : CSS class for the menu. By default sf-menu</li>
-		  					<li><span class="title">supersubs (Boolean)</span> : Use the supersubs plugin</li>
-		  					<li><span class="title">supersubsParams (JSONObject)</span> : JSON Object for the Supersubs configuration</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
+    <t:block id="docs">
+    	<t:componentDocumentation>
+			<p:title>
+				Superfish Component
+			</p:title>
+			<p:description>
+				The Component allows you to create a CSS drop-down menu
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://users.tpg.com.au/j_birch/plugins/superfish/"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="params"
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="JSON Object for the Superfish Configuration"
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="vertical"
+					t:required="false"
+					t:javaType="Boolean"
+					t:prefix="literal"
+					t:description="your menu will be vertical (vertical=true) or your menu will have the navbar stylesheet (vertical=false)"
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="classe  "
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="sf-menu"
+					t:description="CSS class for the menu. By default sf-menu"
+				/>
+			</p:param_3>
+			<p:param_4>
+				<t:componentParameter
+					t:name="supersubs  "
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="Use the supersubs plugin"
+				/>
+			</p:param_4>
+			<p:param_5>
+				<t:componentParameter
+					t:name="supersubsParams  "
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="JSON Object for the Supersubs configuration"
+				/>
+			</p:param_5>
+			
+		</t:componentDocumentation>
     </t:block>
     
     <t:block id="example">
@@ -139,7 +173,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<br />
 	<br /><br />
 	<div class="superfish-demo-content">
-	<div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="137" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
+	<div t:type="jquery/showSource" t:ext="html" t:beginLine="69" t:endLine="171" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
     	
     <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.java"></div>
     </div>

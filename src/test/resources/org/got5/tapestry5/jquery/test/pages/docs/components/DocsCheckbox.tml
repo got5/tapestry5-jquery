@@ -7,24 +7,17 @@ t:activeElement="1"
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
     <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content"> This mixin allows you change the look of the original checkboxes.</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://access.aol.com/csun2011">http://access.aol.com/csun2011</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-		  				No Parameter.
-		  			</td>
-	  			</tr>
-	  	</table>
+    	<t:componentDocumentation>
+			<p:title>
+				Checkbox component
+			</p:title>
+			<p:description>
+					This mixin allows you change the look of the original checkboxes.
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://access.aol.com/csun2011"/></p:link_1>
+			
+		</t:componentDocumentation>
     </t:block>
     
     <t:block id="example">
@@ -50,7 +43,7 @@ t:activeElement="1"
     	
     	<br />
     	
-    	<div t:type="jquery/showSource" t:ext="html" t:endLine="49" t:beginLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:endLine="42" t:beginLine="28" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.java"></div>
     </t:block>
