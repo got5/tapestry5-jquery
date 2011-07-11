@@ -50,7 +50,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 					t:required="false"
 					t:javaType="Boolean"
 					t:prefix="prop"
-					t:defaulValue="false"
+					t:defaultValue="false"
 					t:description="A boolean indicating whether to display the textfield on the client (default is false). "
 				/>
 			</p:param_4>
