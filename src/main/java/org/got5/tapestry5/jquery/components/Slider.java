@@ -30,6 +30,10 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
+/**
+ * @since 2.1.1
+ * @see http://jqueryui.com/demos/slider/
+ */
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
 @Import( library={ "${assets.path}/components/slider/slider.js" })
 public class Slider  {

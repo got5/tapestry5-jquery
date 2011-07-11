@@ -40,7 +40,7 @@ public class AppModule
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     	
-    	//configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+    	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
     	
     	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
     	

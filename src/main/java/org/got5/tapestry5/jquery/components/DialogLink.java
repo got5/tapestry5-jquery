@@ -12,6 +12,9 @@ import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 
+/**
+ * @see http://jqueryui.com/demos/dialog/
+ */
 public class DialogLink extends AbstractExtendableComponent
 {
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)

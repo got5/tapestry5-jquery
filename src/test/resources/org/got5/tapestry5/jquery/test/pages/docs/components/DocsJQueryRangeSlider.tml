@@ -71,7 +71,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 				
 				<input type="submit" value="Continue"/>
 			</t:form>
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="53" t:endLine="72" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="54" t:endLine="73" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>
 	  </t:block>
 	  

@@ -1,6 +1,6 @@
 <html t:type="layoutWithAccordion" 
 t:title="jQuery SuperFish" 
-t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
+t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
 	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
@@ -32,6 +32,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
     </t:block>
     
     <t:block id="example">
+    <div class="superfish-demo-header">
 	<ul t:type="jquery/superfish" t:params="complexParams" t:clientId="menu1">
 		<li class="current"> 
 						<a href="#a">menu item</a> 
@@ -133,13 +134,15 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 						<a href="#">menu item</a> 
 					</li>	
 	</ul>
+	</div>
 	<br />
 	<br />
 	<br /><br />
-	<div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="135" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
+	<div class="superfish-demo-content">
+	<div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="137" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
     	
     <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.java"></div>
-    
+    </div>
 	</t:block>
 </html>
 

@@ -16,9 +16,14 @@
 
 package org.got5.tapestry5.jquery.test.pages.docs.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsLinkSubmit
 {
@@ -26,26 +31,29 @@ public class DocsLinkSubmit
     @Persist
     @Validate("required,minlength=5")
     private String name;
-
+	
+	@Property
+	private String value;
+	
+	@Property
+	@Persist
+	private List<String> listOfNames;
+	
     @Property
-    @Persist
-    private String lastClicked;
-    
-    @Persist
-    @Property
-    private Double result;
-    
-    public Object[] getFormContext()
-    {
-        return new Object[]{new Integer(7), new Double(3.14159)};
-     }
-
-    void onSelectedFromFred(Integer first, Double second) 
-    { 
-        lastClicked = "Fred"; 
-        
-        result = first + second;
+	private List<JQueryTabData> listTabData;
+	
+	@SetupRender
+	void onSetupRender()
+	{
+		if(listOfNames==null) listOfNames = new ArrayList<String>();
+		
+		listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("Example","example"));
     }
-
-    void onNeighbor() { lastClicked = "Barney"; }
+	
+    
+    void onSelectedFromSend() 
+    { 
+    	listOfNames.add(name);
+    }
 }

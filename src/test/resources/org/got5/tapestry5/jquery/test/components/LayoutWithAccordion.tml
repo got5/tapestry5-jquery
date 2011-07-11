@@ -26,7 +26,7 @@
 			
 			
 			<div id="aside">
-			Tapestry 5jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
+			Tapestry5 jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
 			</div>
 			
 			
@@ -93,9 +93,9 @@
 				 <li>
 			        <t:pagelink t:page="docs/components/DocsJqueryRangeSlider">Range Slider</t:pagelink>
 			     </li>
-			     <li>
+			     <!--<li>
 			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload (broken in Chrome and Safari)</t:pagelink>
-			     </li>			
+			     </li>-->			
 			     <li>
 			     	<t:pagelink t:page="docs/components/DocsCarouselPage">Carousel</t:pagelink>
 			     </li>

@@ -5,7 +5,12 @@
     $.extend(Tapestry.Initializer, {
         source: function(specs){
         	
-        	$("pre."+specs.lang).snippet(specs.lang,
+        	/**
+        	 * Call snippet plugin
+        	 */
+        	var snippet = $("#"+specs.id + " pre."+specs.lang);
+        	
+        	$(snippet).snippet(specs.lang,
         	{
         		style:specs.style,
         		collapse:specs.collapse,
@@ -23,7 +28,7 @@
 	        	
 	        	var flag=false;
 	        	
-	        	$("pre."+specs.lang).find("li").each(function(index){
+	        	$(snippet).find("li").each(function(index){
 	        		
 	        		var o = $(this);
 	        		
@@ -51,13 +56,15 @@
 	        		
 	        	});
 	        	
-	        	$("pre."+specs.lang).find("li").each(function(index){
+	        	$(snippet).find("li").each(function(index){
 	        		
 	        		var o = $(this);
 	        		
 	        		o.html(o.html().substring(goodCount));
 	        	});
         	}
+        	
+        	$(snippet).closest(".my-snippet-container").css("display", "block");
         	
         }
     });

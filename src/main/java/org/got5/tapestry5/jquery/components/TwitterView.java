@@ -32,7 +32,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 
-
+/**
+ * @since 2.1.1
+ */
 @Import(library = {
 			"${assets.path}/components/twitterview/jquery.twitterview.js",
 			"${assets.path}/components/twitterview/twitterview.js"

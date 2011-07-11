@@ -17,15 +17,12 @@ package org.got5.tapestry5.jquery.components;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.Block;
-import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -34,7 +31,10 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 
-
+/**
+ * @since 2.1.1
+ * @see http://users.tpg.com.au/j_birch/plugins/superfish/
+ */
 @Import(library = {"${assets.path}/components/superfish/js/hoverIntent.js",
 					"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
 					"${assets.path}/components/superfish/js/superfish.js",

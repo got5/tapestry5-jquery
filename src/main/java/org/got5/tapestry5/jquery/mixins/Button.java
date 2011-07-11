@@ -28,6 +28,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
+/**
+ * @see http://jqueryui.com/demos/button/
+ */
 @ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core", "jquery.ui.button" })
 @Import(library = { "${assets.path}/mixins/button/button.js" })
 public class Button

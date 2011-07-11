@@ -135,7 +135,11 @@ $.extend(Tapestry.Initializer, {
             return false;
         });
     },
-
+    
+    /**
+     * Rewrite the linkSubmit component. Because Tapestry will use a span tag.
+     * We remove this span, and use an "a" tag and copy/paste all the parameters.
+     */
     linkSubmit: function (spec) {
 
         var el = $("#" + spec.clientId), 
@@ -591,8 +595,10 @@ $.widget( "ui.tapestryFormInjector", {
             });
             
         };
+
         $(this.options).log("this.options.url" + this.options.url)
         $.ajax({
+        	type:"POST",
             url: this.options.url,
             success: successHandler
         });

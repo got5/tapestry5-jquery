@@ -78,7 +78,9 @@ import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
-
+/**
+ * @since 2.1.1
+ */
 @Import(library = {"${assets.path}/components/datatables/jquery.dataTables.min.js",
 				  "${assets.path}/components/datatables/dataTables.js"},
 		stylesheet={"context:css/tango/skin.css"})

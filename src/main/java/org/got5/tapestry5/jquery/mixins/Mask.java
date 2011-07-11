@@ -11,8 +11,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 /**
- * 
- * 
+ * @since 2.1.1
+ * @see	http://digitalbush.com/projects/masked-input-plugin/
  */
 @Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
 					 "${assets.path}/mixins/mask/mask.js" })

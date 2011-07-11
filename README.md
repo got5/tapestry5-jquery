@@ -1,21 +1,22 @@
 # Tapestry 5 jQuery integration Module - 2.1.1
 
 ## List Of Contributors
-- Robin Komiwes as robink
-- Andreas Andreou as andyhot
-- Christian Riedel as criedel
-- François Facon as got5     
-- Tom van Dijk as trolando
+- Robin KOMIWES as robink
+- Andreas ANDREOU as andyhot
+- Christian RIEDEL as criedel
+- François FACON as got5     
+- Tom van DIJK as trolando
 - Emmanuel DEMEY as Gillespie59
-- Clément Uster as cluster
-- Amaury Willemant as awillemant
+- Clément USTER as cluster
+- Amaury WILLEMANT as awillemant
 
 ##Hosting
 Christophe Furmaniak 	
 
 ## Changelog
 
-- 2.1.1 : add (Slider, Mask, Tooltip, Carousel )	
+- 2.1.1 : add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish 
+		  add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip	
 - 2.1.0 : switch to Tapestry 5.2.5
 		  add (Tabs, Accordion, AjaxUpload, Button)	
 - 1.1-SNAPSHOT : exclusive jQuery components
@@ -28,28 +29,38 @@ This module provides jQuery integration for Tapestry 5 and completely drop out P
 It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
 
 Exclusive jQuery components : 
-
-- **Dialog** with **DialogLink** and **DialogAjaxLink**
-	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
-- **Tabs** 
-	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
 - **Accordion** 
 	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
 - **AjaxUpload** 
 	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
-- **Slider** 
-	- based on [http://jqueryui.com/demos/slider/](http://jqueryui.com/demos/slider/)	
+- **Carousel**
+	- Based on [http://sorgalla.com/jcarousel/](http://sorgalla.com/jcarousel/)
+- **CheckBox**
+	- Based on [http://access.aol.com/csun2011](http://access.aol.com/csun2011)
+- **Dialog** with **DialogLink** and **DialogAjaxLink**
+	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
 - **RangeSlider** 
 	- based on [http://jqueryui.com/demos/slider/#range](http://jqueryui.com/demos/slider/#range)
+- **Slider** 
+	- based on [http://jqueryui.com/demos/slider/](http://jqueryui.com/demos/slider/)	
+- **Superfish**
+	- Based on [http://users.tpg.com.au/j_birch/plugins/superfish/](http://users.tpg.com.au/j_birch/plugins/superfish/)
+- **Tabs** 
+	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
 		
 Exclusive jQuery Mixins :
 
 - **Button** 
-	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)	
-- **Tooltip** 
-	- based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)
+- **CustomDatepicker**
+	- Based on [http://jqueryui.com/demos/datepicker](http://jqueryui.com/demos/datepicker)
 - **Mask** 
 	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
+- **Reveal**
+	- Based on [http://www.zurb.com/playground/reveal-modal-plugin](http://www.zurb.com/playground/reveal-modal-plugin)	
+- **Tooltip** 
+	- based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 

@@ -27,7 +27,7 @@ public class DocsCustomDatepicker {
 	}
 	
 	public JSONObject getParams(){
-		return new JSONObject("prevText", "Previous Month ",
+		return new JSONObject(
 							  "nextText", "Next Month");
 	}
 	

@@ -13,6 +13,9 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @see http://jqueryui.com/demos/dialog/
+ */
 public class DialogAjaxLink extends DialogLink
 {
 

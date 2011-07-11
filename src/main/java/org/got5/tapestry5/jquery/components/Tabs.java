@@ -37,6 +37,9 @@ import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
+/**
+ * @see http://jqueryui.com/demos/tabs/
+ */
 @ImportJQueryUI(value = { "jquery.ui.core",
                           "jquery.ui.widget",
                           "jquery.ui.tabs" })

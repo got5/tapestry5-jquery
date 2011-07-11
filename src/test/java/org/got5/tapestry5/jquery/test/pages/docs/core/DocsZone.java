@@ -33,114 +33,101 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsZone
 {
-    @Property
-    @Persist
-    private int count;
 
-    @Inject
-    private Request request;
-
-    @Inject
-    private Block myBlockActionLink;
-
-    @Inject
-    private Block myBlockForm;
-    
-    @Inject
-    private Block defaultBlock, multiUpdateBlock;
-
-    @InjectComponent
-    private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
-    
-    @Property
-    @Persist
-    private String dummy;
-    
-    @Persist
-    private boolean afterFormSubmit;
-    
-    @Property
-    private int blockId;
-    
-    @Property
-    private Boolean useTabs;
-   
-    @Property
-    private Boolean useMultiTabs;
-	
-    @Persist
-	@Property
-	private String activePanel;
-	
 	@Property
 	private List<JQueryTabData> listTabData;
 
 	@SetupRender
 	void onSetupRender()
 	{
-		useTabs=true;
-		useMultiTabs=false;		
 		listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("Zone","TabsBlock1"));
-        if(useMultiTabs)
-        {	
-        	listTabData.add(new JQueryTabData("With Form","TabsBlock2"));
-        }
-        //listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
-	}
-    
-
-    public Block getTheBlockActionLink()
-    {
-	return myBlockActionLink;
     }
+	
+//jQuery Zone Triggered by an action Link
+@Property
+@Persist
+private int count;
+	
+@Inject
+private Request request;
 
-    public Block getTheBlockForm()
-    {
-	return myBlockForm;
-    }
-    
-    @OnEvent(value = "action", component = "myActionLink")
-    Object updateCount()
-    {
+@Inject
+private Block myBlockActionLink;
+	
+@OnEvent(value = "action", component = "myActionLink")
+Object updateCount()
+{
 	if (!request.isXHR())
 	{
-	    return this;
+		return this;
 	}
 	count++;
 	return myBlockActionLink;
-    }
+}
+	
+public Block getTheBlockActionLink()
+{
+	return myBlockActionLink;
+}
 
-    @OnEvent(value = EventConstants.SUCCESS, component = "myForm")
-    Object updateZoneContentFromForm()
-    {
+//jQuery Zone triggered by external form submit
+@Property
+@Persist
+private String dummy;
+	
+@Inject
+private Block myBlockForm;
+	
+public Block getTheBlockForm()
+{
+	return myBlockForm;
+}
+	
+@OnEvent(value = EventConstants.SUCCESS, component = "myForm")
+Object updateZoneContentFromForm()
+{
 	if (!request.isXHR())
 	{
-	    return this;
+		return this;
 	}
-
+	
 	return myBlockForm;
-    }
-    
-    @OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
-    Object performMultiZoneUpdate() 
-    {
-        afterFormSubmit = true;
+}
+	
+//jQuery Zone and multi zone update
+@Inject
+private Block defaultBlock, multiUpdateBlock;
+	
+@InjectComponent
+private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
+	
+@Persist
+private boolean afterFormSubmit;
+	
+@Property
+private int blockId;
+	
+@OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
+Object performMultiZoneUpdate() 
+{
+	afterFormSubmit = true;
 
-        return new MultiZoneUpdate("multiZone1", multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
-    }
+    return new MultiZoneUpdate("multiZone1", multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
+}
     
-    public Block getMultiUpdateBlock1() {
+public Block getMultiUpdateBlock1() {
 
-        blockId = 1;
+	blockId = 1;
         
-        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
-    }
+    return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+}
     
-    public Block getMultiUpdateBlock2() {
+public Block getMultiUpdateBlock2() {
 
-        blockId = 2;
+	blockId = 2;
         
-        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
-    }
+	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+}
+    
 }
