@@ -64,6 +64,10 @@ public class ComponentDocumentation {
 		return links.size()>0;
 	}
 	
+	public boolean getHasParameters(){
+		return params.size()>0;
+	}
+	
 	public Block getCurrentLinkBlock(){
 		return resources.getInformalParameter(currentLink, Block.class);
 	}

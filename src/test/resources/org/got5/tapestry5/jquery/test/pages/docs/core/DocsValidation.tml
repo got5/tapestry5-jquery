@@ -5,20 +5,18 @@
 		<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
     <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">The Tapestry Validation mechanism will use jQuery Validation Plugin. All the Tapestry
-	  								    Validators (required, min, max, minLength, maxLength regexp) can be used.  
-	  				</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://docs.jquery.com/Plugins/validation">http://docs.jquery.com/Plugins/validation</a></td>
-	  			</tr>
-	  			
-	  	</table>
+    	<t:componentDocumentation>
+			<p:title>
+				Validation Mechanism
+			</p:title>
+			<p:description>
+					The Tapestry Validation mechanism will use jQuery Validation Plugin. 
+					All the Tapestry Validators (required, min, max, minLength, maxLength regexp) can be used. 
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://docs.jquery.com/Plugins/validation"/></p:link_1>
+			
+		</t:componentDocumentation>
     </t:block>
     
     <t:block id="example">
@@ -49,7 +47,7 @@
 	        	</t:if>
 	        </p>
 	    </t:zone>    
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="25" t:endLine="51" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="49" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.java"></div>    	
     </t:block>

@@ -5,21 +5,17 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
     <t:jquery.tabs t:listTabData="prop:listTabData" t:activePanelId="0" />
     </t:if>
 <t:block id="TabsBlock1">
-<table class="documentation">
-<tr>
-<td class="title">Description</td>
-<td class="content"> The JS layers of the Zone
-component where overriden in order to continue to use normal component declaration.
-<br/>
-By default we use the jQuery implementation provided by Tapestry-jquery.js. </td>
-</tr>
-
-<tr>
-<td class="title">Links</td>
-<td class="content"><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Zone.html">Zone</a></td>
-</tr>
-
-</table>
+	<t:componentDocumentation>
+			<p:title>
+				Zone Component
+			</p:title>
+			<p:description>
+				The JS layers of the Zone component where overriden in order to continue to use normal component declaration.
+				<br/>By default we use the jQuery implementation provided by Tapestry-jquery.js. 
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Zone.html"/></p:link_1>
+	</t:componentDocumentation>
 </t:block>
 
 <t:block id="TabsBlock2">
@@ -36,7 +32,7 @@ By default we use the jQuery implementation provided by Tapestry-jquery.js. </td
 	Counting via AJAX : ${count}
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="26" t:endLine="37" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="22" t:endLine="33" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
     
      <div t:type="jquery/showSource" t:ext="java" t:beginLine="89" t:endLine="100" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
     </t:block>
@@ -59,7 +55,7 @@ By default we use the jQuery implementation provided by Tapestry-jquery.js. </td
 	</t:ifNotNull>
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="45" t:endLine="60" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="41" t:endLine="56" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
      <div t:type="jquery/showSource" t:ext="java" t:beginLine="102" t:endLine="112" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 </t:block>
 
@@ -82,7 +78,7 @@ By default we use the jQuery implementation provided by Tapestry-jquery.js. </td
 		<p>rendering block-${blockId} after multi zone update</p>
 	</t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="67" t:endLine="83" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="63" t:endLine="79" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
      <div t:type="jquery/showSource" t:ext="java" t:beginLine="114" t:endLine="130" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 
 </t:block>

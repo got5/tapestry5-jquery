@@ -3,34 +3,24 @@ t:title="DateField"
 t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="prop:activeTabIndex" />
 	<t:block id="TabsBlock1">
-		<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">
-	  					<p>
-							The JS layers of the <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/DateField.html">DateField</a>
-							component where overriden in order to continue to use normal component declaration. 
-						  	<br/><br/>
-						  	In RemovePrototype mode we use the jQuery implementation provided by Tapestry-jquery.js 
-						  	and we override <a href="http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/internal/services/javascript/DateFieldStack.html">
-						  	datefieldStack </a>. 
-						  	<br/><br/>
-						  	Tapestry's DateField component is a wrapper around WebFX DatePicker.
-						  	The new jQueryDatefieldStack add all the scripts files required by <a href="http://jqueryui.com/demos/datepicker/">jQuery-UI Calendar</a>. 
-						</p>
-					</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content">
-	  					<a href="http://jqueryui.com/demos/datepicker/">http://jqueryui.com/demos/datepicker/</a>
-	  					<br /><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/DateField.html">The Tapestry DateField Component</a>
-	  				</td>
-	  			</tr>
-	  			
-	  			
-	  	</table>
+		<t:componentDocumentation>
+			<p:title>
+				DateField Component
+			</p:title>
+			<p:description>
+				The JS layers of the DateField component where overriden in order to continue to use normal component declaration.
+
+				<br/>In RemovePrototype mode we use the jQuery implementation provided by Tapestry-jquery.js and we override <a href="http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/internal/services/javascript/DateFieldStack.html">datefieldStack</a>.
+				
+				<br/>Tapestry's DateField component is a wrapper around WebFX DatePicker. The new jQueryDatefieldStack add all the scripts files required by jQuery-UI Calendar. 
+
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/datepicker/ "/></p:link_1>
+			<p:link_2><t:componentLink t:url="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/DateField.html "/></p:link_2>
+			
+
+		</t:componentDocumentation>
 		
 	  	<br/><br/>
 	  	<hr/>
@@ -45,7 +35,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </p>
 	  	<br/>
 	  	
-	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="42" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="29" t:endLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
 		<div t:type="jquery/showSource" t:ext="java" t:beginLine="83" t:endLine="85" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 	  	
@@ -72,7 +62,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	Birthday ${birthdayAjax}
 </t:zone><br/>
 		
-		<div t:type="jquery/showSource" t:ext="html" t:beginLine="53" t:endLine="70" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="46" t:endLine="63" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
 		<div t:type="jquery/showSource" t:ext="java" t:beginLine="88" t:endLine="154" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 		

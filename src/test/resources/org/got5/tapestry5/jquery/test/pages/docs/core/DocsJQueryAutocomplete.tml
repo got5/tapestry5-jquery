@@ -5,23 +5,18 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
 	
 	<t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">
-	  					The AutoComplete mixin is based on the JQuery Autocomplete plugin. It provides suggestions when the 
-	  					user type into your field. 
-	  				</td>
-	  			</tr>
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content">
-	  					<a href="http://jqueryui.com/demos/autocomplete/">The JQuery AutoComplete Mixin</a>
-	  					<br /><a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/mixins/Autocomplete.html">The Tapestry AutoComplete Mixin</a>
-	  				</td>
-	  			</tr>
-	  			
-	  	</table>
+    	<t:componentDocumentation>
+			<p:title>
+				AutoComplete Mixin
+			</p:title>
+			<p:description>
+					The AutoComplete mixin is based on the JQuery Autocomplete plugin. It provides suggestions when the user type into your field. 
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/autocomplete/"/></p:link_1>
+			<p:link_2><t:componentLink t:url="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/mixins/Autocomplete.html"/></p:link_2>
+			
+		</t:componentDocumentation>
     </t:block>
     
     <t:block id="example">
@@ -29,7 +24,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	    	Wich Tapestry JQuery component/mixin do you want to use ?
 	    	<t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete" />
 	    </t:form>
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="25" t:endLine="28" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsJQueryAutocomplete.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="26" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsJQueryAutocomplete.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/Autocomplete.java"></div>    	
     </t:block>

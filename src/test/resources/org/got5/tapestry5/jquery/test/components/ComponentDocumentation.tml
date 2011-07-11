@@ -13,21 +13,23 @@
 				</t:loop>
 			</ul>
 		</t:if>
-	
-		<h4>Parameters</h4>
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Required</th>
-				<th>Java Type</th>
-				<th>Default Prefix</th>
-				<th>Default Value</th>
-				<th>Description</th>
-			</tr>
-			<t:loop t:source="params" t:value="currentParam" t:index="index">
-				<tr class="${rowClass}"><t:delegate t:to="currentParamBlock" /></tr>
-			</t:loop>
-		</table>
+		
+		<t:if test="hasParameters">
+			<h4>Parameters</h4>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Required</th>
+					<th>Java Type</th>
+					<th>Default Prefix</th>
+					<th>Default Value</th>
+					<th>Description</th>
+				</tr>
+				<t:loop t:source="params" t:value="currentParam" t:index="index">
+					<tr class="${rowClass}"><t:delegate t:to="currentParamBlock" /></tr>
+				</t:loop>
+			</table>
+		</t:if>
 	</div>
 
 </t:container>
