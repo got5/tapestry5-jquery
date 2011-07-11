@@ -6,44 +6,55 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 
 
 <t:block id="docs">
-	  		<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content"> This component allows you create a slider in a form. 
-					A range slider is a slider that is mapped to a property value.
-					This components actually creates a Tapestry textfield component and enhanced its behaviour by adding a slider.
-					This field is are hidden by default.
-					</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-	  					Parameters marked with * are "required".
-		  				<ul>
-		  					<li>
-		  						<span class="title">*value (Object)</span> : The value to be read and updated. This value is passed to the textfield. 
-							</li>
-		  					<li>
-		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
-							</li>
-		  					<li>
-		  						<span class="title">zone (String)</span> : The zone to update when changes occure on the slider.
-								An "action" event is triggered on the server. You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderZone"). 
-							</li>
-							<li>
-		  						<span class="title">displayTextField (boolean)</span> : A boolean indicating whether to display the textfield on the client (default is false).  
-							</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  		
-	  	</table>
+	  		<t:componentDocumentation>
+			<p:title>
+				Slider Component
+			</p:title>
+			<p:description>
+				This component allows you create a slider in a form. A range slider is a slider that is mapped to a property value. This components actually creates a Tapestry textfield component and enhanced its behaviour by adding a slider. 
+				This field is are hidden by default. 
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/slider/"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="value "
+					t:required="true"
+					t:javaType="Object"
+					t:prefix="prop"
+					t:description="The value to be read and updated. This value is passed to the textfield. "
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="params"
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="The slider parameters (please refer to jquery-ui documentation) "
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="zone "
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The zone to update when changes occure on the slider. An 'action' event is triggered on the server. You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component='sliderZone'). "
+				/>
+			</p:param_3>
+			<p:param_4>
+				<t:componentParameter
+					t:name="displayTextField"
+					t:required="false"
+					t:javaType="Boolean"
+					t:prefix="prop"
+					t:defaulValue="false"
+					t:description="A boolean indicating whether to display the textfield on the client (default is false). "
+				/>
+			</p:param_4>
+		</t:componentDocumentation>
 	  	
 	  </t:block>
     	
@@ -70,7 +81,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 		<input type="submit" value="Continue"/>
 </t:form>
 
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="51" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="62" t:endLine="82" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.java"></div>
 			
 	  </t:block>
