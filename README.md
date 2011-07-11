@@ -29,6 +29,7 @@ This module provides jQuery integration for Tapestry 5 and completely drop out P
 It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
 
 Exclusive jQuery components : 
+
 - **Accordion** 
 	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
 - **AjaxUpload** 
