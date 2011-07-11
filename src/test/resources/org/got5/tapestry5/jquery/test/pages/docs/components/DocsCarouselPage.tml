@@ -4,74 +4,109 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 
 
 <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
-
+	
 	<t:block id="docs">
-	  		<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content"> This component allows you create a jcarousel. 
-					</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://sorgalla.com/jcarousel/">http://sorgalla.com/jcarousel/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-	  					Parameters marked with * are "required".
-		  				<ul>
-		  					<li>
-		  						<span class="title">clientId (String)</span> : The client id of the carousel
-							</li>
-		  					<li>
-		  						<span class="title">className (String)</span> : The class attribute is added to the carousel 
-							</li>
-		  					<li>
-		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
-							</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
+		<t:componentDocumentation>
+			<p:title>
+				Carousel Component
+			</p:title>
+			<p:description>
+				This component allows you create a jcarousel.
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://sorgalla.com/jcarousel/" /></p:link_1>
+			<p:link_2><t:componentLink t:url="http://access.aol.com/aegis/" t:description="(carousel tab) for accessible version"/></p:link_2>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="clientId"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The client id of the carousel"
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="className"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The class attribute is added to the carousel"
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="params"
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="The slider parameters (please refer to jcarousel documentation)"
+				/>
+			</p:param_3>
+		</t:componentDocumentation>
+	
 		
+		<t:componentDocumentation>
+			<p:title>
+				CarouselItem Component
+			</p:title>
+			<p:description>
+				You have to use this component inside a carousel component, one carouselitem per image you want to show in the carousel. It depends on the carousel component and cannot be used alone.
+			</p:description>
+							
+			<p:param_1><t:componentParameter t:name="width"			t:required="false"	t:javaType="int"	t:prefix="literal" 	t:defaultValue="75"		t:description="The width of the image in pixels" /></p:param_1>
+			<p:param_2><t:componentParameter t:name="height" 		t:required="false"	t:javaType="int" 	t:prefix="literal" 	t:defaultValue="75"		t:description="The height of the image in pixels" /></p:param_2>
+			<p:param_3><t:componentParameter t:name="imageSource" 	t:required="true"	t:javaType="String" t:prefix="prop" 							t:description="The path of the image" /></p:param_3>
+			<p:param_4><t:componentParameter t:name="page" 			t:required="false"	t:javaType="String" t:prefix="literal" 							t:description="If you provide a value, the image will be surrounded by a pagelink which targets this page." /></p:param_4>
+			<p:param_5><t:componentParameter t:name="event" 		t:required="false"	t:javaType="String" t:prefix="literal" 							t:description="If you provide a value, the image will be surrounded by an eventlink which triggers this event." /></p:param_5>
+			<p:param_6><t:componentParameter t:name="context" 		t:required="false"	t:javaType="Object" t:prefix="prop" 							t:description="If the image is surrounded by a link, you can provide a context thanks to this parameter." /></p:param_6>
+			<p:param_7><t:componentParameter t:name="zone" 			t:required="false"	t:javaType="String" t:prefix="literal" 							t:description="If you provide a zone name, the surrounding link will be an ajax link" /></p:param_7>
+			
+		</t:componentDocumentation>
+		
+		 
+  		
+		
+		
+  				
+
+  				
 
 	  </t:block>
     	
       <t:block id="example">
 			Complex Items:
-				<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
-					<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="docs/core/DocsJQueryPalette" t:context="3"/>
-					<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
-					<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
-					<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
-					<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
-				</j:carousel>
-				
-				<div id="zoneContainer">
-					<span>Click on the big white flower of the complex carousel:</span>
-					<t:zone t:id="flowerZone" id="flowerZone">
-						
-					</t:zone>
-					
-					<t:block t:id="flowerBlock" id="flowerBlock">
-						You just clicked on the big white flower !
-					</t:block>
-					
-				</div>
-				<br/><br/>
-				Ajax loaded:
-				<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
+			<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
+				<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="docs/core/DocsJQueryPalette" t:context="3"/>
+				<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
+				<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
+				<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
+				<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
+			</j:carousel>
 			
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
-      		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
+			<div id="zoneContainer">
+				<span>Click on the big white flower of the complex carousel:</span>
+				<t:zone t:id="flowerZone" id="flowerZone">
+					
+				</t:zone>
+				
+				<t:block t:id="flowerBlock" id="flowerBlock">
+					You just clicked on the big white flower !
+				</t:block>
+				
+			</div>
+			<br/><br/>
+			Ajax loaded:
+			<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
+			
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="47" t:endLine="75" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="45" t:endLine="96" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
 	  </t:block>
 </html>
 

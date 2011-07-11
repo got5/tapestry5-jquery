@@ -30,7 +30,6 @@ import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 
-@Import(library={"context:js/carouselPage.js"})
 public class CarouselPage{
 	
 	@Inject
@@ -42,12 +41,9 @@ public class CarouselPage{
 	@Inject
 	private AssetSource assetSource;
 	
-	@Persist
-	@Property
-	private int counter;
 	
-	@InjectComponent
-	private Zone myzone;
+	
+	
 	
 	public JSONObject getAjaxParams(){
 		JSONObject retour = new JSONObject();
@@ -95,10 +91,6 @@ public class CarouselPage{
 		return flowerBlock;
 	}
 	
-	@OnEvent("action")
-	public Object refresh(){
-		counter++;
-		return myzone.getBody();
-	}
+	
 	
 }

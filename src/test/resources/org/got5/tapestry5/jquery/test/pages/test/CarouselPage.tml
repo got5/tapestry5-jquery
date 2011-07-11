@@ -1,10 +1,9 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
 	
-	<p><t:actionlink t:zone="myzone">Refresh Zone</t:actionlink></p>
 	Complex Items:
-	<t:zone t:id="myzone">
-	<p>Counter : ${counter}</p>
+	
+	
 	
 	<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
 		<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="test/Button" t:context="3"/>
@@ -25,7 +24,7 @@
 			
 		</t:zone>
 		
-		<t:block id="flowerBlock">
+		<t:block id="flowerBlock" t:id="flowerBlock">
 			You just clicked on the big white flower !
 		</t:block>
 		
@@ -34,7 +33,6 @@
 	Ajax loaded:
 	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
 	
-	</t:zone>
 	
    
 </html>

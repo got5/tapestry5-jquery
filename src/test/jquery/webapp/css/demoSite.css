@@ -4,12 +4,55 @@
 }
 
 .documentation {
-	margin: 10px 10px 10px 10px;
+	/*margin: 10px 10px 10px 10px;
     border: medium solid #569D2F;
-    border-collapse: collapse
+    border-collapse: collapse*/
+    padding:10px;
+    padding-bottom:30px;
+}
+
+.documentation h4{
+	padding-top:15px;	
 }
     	
-.documentation td{
+.documentation table{
+	border:1px solid #c0c0c0;
+	border-collapse:collapse;
+	font-size:90%;
+}
+
+.documentation table tr.even{
+	background-color:#E7F7DF;
+}
+
+.documentation table tr th{
+	border:1px solid #c0c0c0;
+	padding:3px;
+	background-color:#569D2F;
+	color:#E7F7DF;
+}
+
+.documentation table tr td{
+	border:1px solid #c0c0c0;
+	padding:3px;
+	width:12%;
+}
+
+.documentation table tr td.name{
+	font-weight:bold;
+}
+
+
+.documentation table tr td.center{
+	text-align:center;
+}
+
+.documentation table tr td.description{
+	width:40%;
+}
+
+
+/*.documentation td{
 	font-family: sans-serif;
     border: thin solid #569D2F;
     text-align: left;
@@ -29,7 +72,7 @@
 
 .content .parameters li{
 	margin: 0px 0px 15px 0px;
-}
+}*/
 
 #main #i-component{
 	padding-bottom: 500px;
