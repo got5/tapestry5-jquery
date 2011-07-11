@@ -3,32 +3,31 @@
 <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
 
 <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">It used to specify the disired format of your input. Possible values : 
+		<t:componentDocumentation>
+			<p:title>
+				Mask Mixin
+			</p:title>
+			<p:description>
+				It used to specify the disired format of your input. Possible values : 
 						<ul>
 							<li>'9' for [0-9]</li>
 							<li>'a' for [A-Za-z]</li>
 							<li>'*' for [A-Za-z0-9]</li>
 						</ul>
-					</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://digitalbush.com/projects/masked-input-plugin/">http://digitalbush.com/projects/masked-input-plugin/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-		  				<ul class="parameters">
-		  					<li><span class="title">format (String)</span> : The format you want to use for your input.</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://digitalbush.com/projects/masked-input-plugin/"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="format"
+					t:required="true"
+					t:javaType="String"
+					t:prefix="prop"
+					t:description="The format you want to use for your input."
+				/>
+			</p:param_1>
+		</t:componentDocumentation>
 </t:block>
     	
 <t:block id="example">
@@ -45,7 +44,7 @@
     	</fieldset>
     </t:form>
     
-    <div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="46" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
+    <div t:type="jquery/showSource" t:ext="html" t:beginLine="34" t:endLine="45" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
     	
     <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.java"></div>
 

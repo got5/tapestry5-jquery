@@ -3,46 +3,79 @@
    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
     <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">This mixin allows you to display a modal window.</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://www.zurb.com/playground/reveal-modal-plugin">http://www.zurb.com/playground/reveal-modal-plugin</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-		  				<ul class="parameters">
-		  					<li><span class="title">div (String)</span> : The id of the div you want to display.</li>
-		  					<li><span class="title">animation (String)</span> : The effect you want to use. Possible parameter values : fade, fadeAndPop, none</li>
-		  					<li><span class="title">animationspeed (Integer)</span> : how fast your animation has to be.</li>
-		  					<li><span class="title">closeonbackgroundclick (Boolean)</span> : Can we close the model window by clicking the background.</li>
-		  					<li><span class="title">dismissmodalclass (String)</span> : The CSS class for the element that will close the modal.</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
+    	<t:componentDocumentation>
+			<p:title>
+				Reveal Mixin
+			</p:title>
+			<p:description>
+				This mixin allows you to display a modal window.
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://www.zurb.com/playground/reveal-modal-plugin"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="div"
+					t:required="true"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The id of the div you want to display."
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="animation"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The effect you want to use. Possible parameter values : fade, fadeAndPop, none."
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="animationspeed"
+					t:required="false"
+					t:javaType="Integer"
+					t:prefix="literal"
+					t:description="how fast your animation has to be."
+				/>
+			</p:param_3>
+			<p:param_4>
+				<t:componentParameter
+					t:name="closeonbackgroundclick"
+					t:required="false"
+					t:javaType="Boolean"
+					t:prefix="literal"
+					t:description="Can we close the model window by clicking the background."
+				/>
+			</p:param_4>
+			<p:param_5>
+				<t:componentParameter
+					t:name="dismissmodalclass"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:description="The CSS class for the element that will close the modal."
+				/>
+			</p:param_5>
+		</t:componentDocumentation>
+		  	
     </t:block>
     
     <t:block id="example">
-		  <a id="monLink" t:type="pageLink" t:page="Index" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade" t:dismissmodalclass="reveal-closing">
-		 	 link
-		  </a>
+<a id="monLink" t:type="pageLink" t:page="Index" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade" t:dismissmodalclass="reveal-closing">
+	link
+</a>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="33" t:endLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="68" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="47" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="77" t:endLine="80" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
     	
     	  <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.java"></div>
 	</t:block>
     
-    <div id="myDiv" class="reveal-div reveal-hidden">
-		Test
-		<div class="reveal-closing">x</div>
-	</div>
+<div id="myDiv" class="reveal-div reveal-hidden">
+	Test
+	<div class="reveal-closing">x</div>
+</div>
 </html>

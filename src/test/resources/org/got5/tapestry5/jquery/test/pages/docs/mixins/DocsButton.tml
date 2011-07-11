@@ -3,27 +3,36 @@
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
     
     <t:block id="docs">
-    	<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content">The Button mixin improve the form of traditional elements like button, submit, reset ...</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://jqueryui.com/demos/button/">http://jqueryui.com/demos/button/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-		  				<ul class="parameters">
-		  					<li><span class="title">type (String)</span> : The type parameter indicates wich constructor you want to use. Available Parameter values : button or buttonset</li>
-		  					<li><span class="title">params (JSONObject)</span> : The Button parameters you want to override.</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
+    	<t:componentDocumentation>
+			<p:title>
+				Button Mixin
+			</p:title>
+			<p:description>
+				The Button mixin improve the form of traditional elements like button, submit, reset ...
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/button"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="type"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="button"
+					t:description="The type parameter indicates wich constructor you want to use. Available Parameter values : button or buttonset"
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="params"
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="The Button parameters you want to override."
+				/>
+			</p:param_2>
+		</t:componentDocumentation>
     </t:block>
     
     <t:block id="example">
@@ -37,7 +46,7 @@
 
 <br />
 <br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="31" t:endLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="40" t:endLine="44" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.java"></div>
     	
