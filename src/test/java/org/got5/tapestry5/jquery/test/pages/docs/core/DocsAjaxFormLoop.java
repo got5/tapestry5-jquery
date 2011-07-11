@@ -16,15 +16,19 @@
 
 package org.got5.tapestry5.jquery.test.pages.docs.core;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.got5.tapestry5.jquery.test.entities.Person;
 import org.got5.tapestry5.jquery.test.entities.Phone;
-import org.got5.tapestry5.jquery.test.pages.Index;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsAjaxFormLoop
 {
@@ -60,24 +64,27 @@ public class DocsAjaxFormLoop
 
             public Phone toValue(String clientValue)
             {
-                for (Phone currentPhone : person.getPhones())
-                {
+            	for (Phone currentPhone : person.getPhones())
+                {	
                     if (currentPhone.getNumber() != null && clientValue.equals(currentPhone.getNumber()))
                         return currentPhone;
                 }
+            	
                 return null;
             }
         };
     }
-
+    
+    @OnEvent(EventConstants.SUCCESS)
     public Object onSuccess()
     {
-        return Index.class;
+    	return this;
     }
-
+    
+    @OnEvent(value="addRow", component="phones")
     public Object onAddRowFromPhones()
     {
-        Phone phone = new Phone();
+    	Phone phone = new Phone();
         phone.setNumber("");
         phone.setStartDate(new Date());
 
@@ -87,12 +94,20 @@ public class DocsAjaxFormLoop
         return phone;
     }
     
+    @OnEvent(value="removeRow", component="phones")
     void onRemoveRowFromPhones(Phone phoneToDelete) 
     {
     	person.getPhones().remove(phoneToDelete);
-    	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
-	}
+    }
 
- 
+    @Property
+	private List<JQueryTabData> listTabData;
+	
+	@SetupRender
+	void onSetupRender()
+	{
+		listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("Example","example"));
+    }
     
 }

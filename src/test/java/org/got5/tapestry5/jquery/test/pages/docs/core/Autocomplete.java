@@ -19,6 +19,7 @@ package org.got5.tapestry5.jquery.test.pages.docs.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 
@@ -26,17 +27,48 @@ public class Autocomplete
 {
     @Property
     private String foo;
-
+    
+    @Property
+    private List<String> list;
+    
+    @OnEvent(EventConstants.ACTIVATE)
+    public void createList(){
+    	list = new ArrayList<String>();
+    	
+    	list.add("Accordion");
+    	list.add("AjaxFormLoop");
+    	list.add("AjaxUpload");
+    	list.add("Autocomplete");
+    	list.add("Button");
+    	list.add("Carousel");
+    	list.add("Checkbox");
+    	list.add("CustomDatepicker");
+    	list.add("Datefield");
+    	list.add("Dialog");
+    	list.add("FormFragment");
+    	list.add("LinkSubmit");
+    	list.add("Mask");
+    	list.add("Palette");
+    	list.add("Range Slider");
+    	list.add("Reveal");
+    	list.add("Slider");
+    	list.add("Superfish menu");
+    	list.add("Tabs");
+    	list.add("Tooltip");
+    	list.add("Validation");
+    	list.add("Zone");
+    }
+    
     @OnEvent(component = "foo", value = "provideCompletions")
     public List<String> autoComplete(String start)
     {
         List<String> strings = new ArrayList<String>();
-        if (start != null && start.startsWith("abc"))
+        
+        if (start != null)
         {
-            strings.add("abdcdke");
-            strings.add("hgfdhgfhgf");
-            strings.add("jklhjkhl");
-            strings.add("vcxcvcx");
+            for(String value : list){
+            	if(value.toUpperCase().startsWith(start.toUpperCase())) strings.add(value);
+            }
         }
         
         return strings;

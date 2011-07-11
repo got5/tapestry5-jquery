@@ -4,6 +4,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.json.JSONObject;
 
 public class CustomDatepicker {
+	
 	@Property
 	private String value;
 	

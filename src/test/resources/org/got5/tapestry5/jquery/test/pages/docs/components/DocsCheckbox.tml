@@ -50,7 +50,7 @@ t:activeElement="1"
     	
     	<br />
     	
-    	<div t:type="jquery/showSource" t:ext="html" t:endLine="47" t:beginLine="33" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:endLine="49" t:beginLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/docsCheckbox.java"></div>
     </t:block>

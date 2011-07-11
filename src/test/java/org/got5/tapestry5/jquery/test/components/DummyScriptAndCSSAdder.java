@@ -16,11 +16,9 @@
 
 package org.got5.tapestry5.jquery.test.components;
 
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 
-@IncludeJavaScriptLibrary("dummy.js")
-@IncludeStylesheet("dummy.css")
+@Import(library="dummy.js")
 public class DummyScriptAndCSSAdder
 {
 

@@ -1,25 +1,28 @@
 <html t:type="layoutWithAccordion" 
 t:title="LinkSubmit" 
 t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <h1>Link Submit Demo</h1>
-
-  <p>Result: ${result}.</p>
-
-  <t:form>
-    <t:errors/>
-
-    <t:textfield t:id="name"/>
-    <br/>
-    <t:linksubmit t:id="fred" context="formContext" alt="f">Fred</t:linksubmit>
-    <br/>
-    <t:linksubmit t:id="barney" defer="true" event="neighbor" alt="b">Barney</t:linksubmit>
-
-  </t:form>
-
-  <dl>
-    <dt>Name</dt>
-    <dd id="name-value">${name}</dd>
-    <dt>Last Clicked</dt>
-    <dd id="last-clicked">${lastClicked}</dd>
-  </dl>
+   
+	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+	<t:block id="example">
+<h1>Link Submit Demo</h1>
+<br /><br />
+		
+<t:form>
+	<t:errors/>
+	<t:label t:for="name" t:id="Label">The Name : </t:label>
+	<t:textfield t:id="name"/> 
+	<t:linksubmit t:id="send" context="literal:true" alt="add a name">Send</t:linksubmit>
+</t:form>
+		
+<br/><br/>
+<b>You added :</b>
+<ul>
+	<li t:type="loop" t:id="listNames" t:source="listOfNames" t:value="value">
+		${value}
+	</li>
+</ul>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="23" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.java"></div>    	
+    </t:block>
 </html>

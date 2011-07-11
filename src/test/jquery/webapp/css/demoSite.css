@@ -1,8 +1,21 @@
-.showSource{
+.snippet-container{
 	margin-top:10px;
 	margin-bottom:10px;
+	z-index: -1000;
 }
 
+.superfish-demo-content{
+	position: relative;
+	z-index:1;
+}
+	
+.superfish-demo-header{
+	position: relative;
+	z-index:2;
+}
+/**
+*	For the Documentation Table
+*/
 .documentation {
 	/*margin: 10px 10px 10px 10px;
     border: medium solid #569D2F;
@@ -78,10 +91,29 @@
 	padding-bottom: 500px;
 }
 
+/**
+* For the Reveal Mixin documentation page
+*/
+.reveal-closing{
+		font-size: 16px;
+		line-height: 1;
+		position: absolute;
+		top: 8px;
+		right: 11px;
+		color: #aaa;
+		text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+		font-weight: bold;
+		cursor: pointer;
+}
+
 #myDiv.reveal-div{
 	top:-100px;
 }
 
 #myDiv.reveal-hidden{
 	visibility: hidden;
-}	
+}
+
+.successMessage{
+	color: #f00;
+}

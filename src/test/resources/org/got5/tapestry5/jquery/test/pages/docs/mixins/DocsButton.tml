@@ -27,14 +27,17 @@
     </t:block>
     
     <t:block id="example">
-    	<t:form>
-	        <t:textfield t:value="foo" t:id="foo" />
-	        <t:submit t:mixins="jquery/button" />
-			<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
-		</t:form>
-		<br />
-    	<br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="30" t:endLine="34" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
+
+<t:form>
+	<t:textfield t:value="foo" t:id="foo" />
+	<t:submit t:mixins="jquery/button" />
+	<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
+</t:form>
+
+
+<br />
+<br />
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="31" t:endLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.java"></div>
     	

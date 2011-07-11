@@ -67,6 +67,9 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  *   return . . .;
  * }
  * </pre>
+ * 
+ * @see <a href="http://jqueryui.com/demos/autocomplete/">The JQuery AutoComplete Mixin</a>
+ * @see <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/mixins/Autocomplete.html">The Tapestry AutoComplete Mixin</a>
  */
 @ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
 @Import(library = { "${assets.path}/mixins/autocomplete/autocomplete.js" })

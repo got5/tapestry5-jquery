@@ -24,7 +24,6 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.json.JSONObject;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-
 public class DocsTooltip
 {
 	 @Property

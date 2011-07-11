@@ -48,29 +48,29 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  </t:block>
     	
       <t:block id="example">
-			<t:form>
-		    	<h2>First example : the simple slider</h2>
-				This is a simple slider, the value is updated on submit, associated textfield is hidden<br/>
-		        <t:jquery.slider t:value="val" t:params="params"/>
-		        <br/>
-				The value is ${val} (updated on submit)
-				<br/>
+<t:form>
+	<h2>First example : the simple slider</h2>
+		This is a simple slider, the value is updated on submit, associated textfield is hidden<br/>
+		<t:jquery.slider t:value="val" t:params="params"/>
+		<br/>
+		The value is ${val} (updated on submit)
+		<br/>
 				
 				
 				
-				<h2>Second example : the simple slider, that updates a zone</h2>
-				<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone" />
-				<br/>
-				<t:zone t:id="myZone" id="myZone">
-					${slideZone}
-				</t:zone>
-				<br/>
+	<h2>Second example : the simple slider, that updates a zone</h2>
+		<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone" />
+		<br/>
+		<t:zone t:id="myZone" id="myZone">
+		${slideZone}
+		</t:zone>
+		<br/>
 				
 				
-				<input type="submit" value="Continue"/>
-			</t:form>
+		<input type="submit" value="Continue"/>
+</t:form>
 
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="50" t:endLine="70" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="51" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.java"></div>
 			
 	  </t:block>

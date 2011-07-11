@@ -9,9 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
@@ -23,14 +21,14 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 import org.slf4j.Logger;
 
+
 /**
  * Component for displaying a code source
- *
+ * @since 2.1.1
  */
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
@@ -48,6 +46,9 @@ public class ShowSource {
 	 */
 	@Parameter(defaultPrefix=BindingConstants.PROP)
 	private JSONObject specs;
+	
+	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
+	private String clientId;
 	
 	private JSONObject defaultSpecs;
 	
@@ -73,9 +74,6 @@ public class ShowSource {
 	@Inject
 	private AssetSource assetSource;
 	
-	@Inject
-	private PersistentLocale locale;
-	
 	@Inject 
 	private Logger logger;
 	
@@ -94,12 +92,7 @@ public class ShowSource {
 	@Inject 
 	private Messages message;
 	
-	@Inject 
-	private Block fromBody;
-	
-	@Inject 
-	private Block fromFile;
-	
+	@SuppressWarnings("unused")
 	@SetupRender
 	private boolean setupRender()
 	{	
@@ -247,6 +240,8 @@ public class ShowSource {
 	{
 		JSONObject params = new JSONObject();
 		
+		params.put("id", getClientId());
+		
 		params.put("lang", lang);
 		
 		params.put("beginLine", beginLine);
@@ -317,5 +312,13 @@ public class ShowSource {
 
 	public void setExt(String ext) {
 		this.ext = ext;
+	}
+
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 }

@@ -13,12 +13,26 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * There are a few components you can use to create a dialog in your pages. 
+ *   - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
+ * 	- DialogLink, clicking a DialogLink will make the associated Dialog to open.
+ *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
+ *
+ * @see <a href="http://jqueryui.com/demos/dialog/">http://jqueryui.com/demos/dialog/</a>
+ */
 public class DialogAjaxLink extends DialogLink
 {
 
+    /**
+     * The id of the zone to refresh.
+     */
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
     private String zone;
 
+    /**
+     * The activation context.
+     */
     @Parameter
     private Object[] context;
 

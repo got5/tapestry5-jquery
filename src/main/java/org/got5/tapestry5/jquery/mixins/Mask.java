@@ -11,13 +11,21 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 
 /**
- * 
- * 
+ * It used to specify the disired format of your input. Possible values :
+ *	- '9' for [0-9]
+ *	- 'a' for [A-Za-z]
+ *	- '*' for [A-Za-z0-9]
+ *
+ * @since 2.1.1
+ * @see	<a href="http://digitalbush.com/projects/masked-input-plugin/">http://digitalbush.com/projects/masked-input-plugin/</a>
  */
 @Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
 					 "${assets.path}/mixins/mask/mask.js" })
 public class Mask {
 
+	/**
+	 * The format you want to use for your input.
+	 */
 	@Parameter
 	private String format;
 	

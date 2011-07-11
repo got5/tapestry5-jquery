@@ -32,8 +32,7 @@
 </t:block>
     	
 <t:block id="example">
-
-	<t:form t:id="monForm">
+    <t:form t:id="monForm">
     	<fieldset>	
 	    	<p>
 	    		<t:label t:for="monTextField">Phone Number : </t:label>
@@ -46,7 +45,7 @@
     	</fieldset>
     </t:form>
     
-    <div t:type="jquery/showSource" t:ext="html" t:beginLine="36" t:endLine="47" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
+    <div t:type="jquery/showSource" t:ext="html" t:beginLine="35" t:endLine="46" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
     	
     <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.java"></div>
 

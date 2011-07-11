@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -65,67 +65,68 @@ public class DocsZone
     @Property
     private Boolean useTabs;
    
-	
-    @Persist
-	@Property
-	private String activePanel;
-	
-	@Property
-	private List<JQueryTabData> listTabData;
 
-	@SetupRender
-	void onSetupRender()
-	{
-		useTabs=true;	
-		listTabData = new ArrayList<JQueryTabData>();
+    @Persist
+@Property
+private String activePanel;
+
+@Property
+private List<JQueryTabData> listTabData;
+
+@SetupRender
+void onSetupRender()
+{
+useTabs=true;
+listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("Documentation","TabsBlock1"));
         listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
         listTabData.add(new JQueryTabData("Form","TabsBlock3"));
         listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
         listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
-	}
+}
     
 
-    public Block getTheBlockActionLink()
-    {
+public Block getTheBlockActionLink()
+{
 	return myBlockActionLink;
-    }
+}
 
-    @OnEvent(value = "action", component = "myActionLink")
-    Object updateCount()
-    {	
+@OnEvent(value = "action", component = "myActionLink")
+Object updateCount()
+{
 	if (!request.isXHR()) {return this;}
 	count++;
 	return myBlockActionLink;
-    }
+}
     
-    public Block getTheBlockForm()
-    {
+public Block getTheBlockForm()
+{
 	return myBlockForm;
-    }
+}
 
-    @OnEvent(value = EventConstants.SUCCESS, component = "myForm")
-    Object updateZoneContentFromForm()
-    {
+@OnEvent(value = EventConstants.SUCCESS, component = "myForm")
+Object updateZoneContentFromForm()
+{
 	if (!request.isXHR()) {return this;}
 	return myBlockForm;
-    }
-    
-    @OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
-    Object performMultiZoneUpdate() 
-    {
-        afterFormSubmit = true;
-        return new MultiZoneUpdate("multiZone1",
-        		   multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
-    }
-    
-    public Block getMultiUpdateBlock1() {
-        blockId = 1;    
-        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
-    }
-    
-    public Block getMultiUpdateBlock2() {
-        blockId = 2;
-        return afterFormSubmit ? multiUpdateBlock : defaultBlock;
-    }
 }
+    
+@OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
+Object performMultiZoneUpdate()
+{
+	afterFormSubmit = true;
+	return new MultiZoneUpdate("multiZone1",
+			multiZone1.getBody()).add("multiZone2", multiZone2.getBody());
+}
+    
+public Block getMultiUpdateBlock1() {
+	blockId = 1;
+	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+}
+    
+public Block getMultiUpdateBlock2() {
+	blockId = 2;
+	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+}
+}
+
