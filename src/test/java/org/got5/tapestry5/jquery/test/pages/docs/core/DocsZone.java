@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,101 +33,100 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsZone
 {
+    @Property
+    @Persist
+    private int count;
 
-	@Property
-	private List<JQueryTabData> listTabData;
+    @Inject
+    private Request request;
 
-	@SetupRender
-	void onSetupRender()
-	{
-		listTabData = new ArrayList<JQueryTabData>();
-        listTabData.add(new JQueryTabData("Zone","TabsBlock1"));
-    }
-	
-//jQuery Zone Triggered by an action Link
+    @Inject
+    private Block myBlockActionLink;
+
+    @Inject
+    private Block myBlockForm;
+    
+    @Inject
+    private Block defaultBlock, multiUpdateBlock;
+
+    @InjectComponent
+    private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
+    
+    @Property
+    @Persist
+    private String dummy;
+    
+    @Persist
+    private boolean afterFormSubmit;
+    
+    @Property
+    private int blockId;
+    
+    @Property
+    private Boolean useTabs;
+   
+
+    @Persist
 @Property
-@Persist
-private int count;
-	
-@Inject
-private Request request;
+private String activePanel;
 
-@Inject
-private Block myBlockActionLink;
-	
-@OnEvent(value = "action", component = "myActionLink")
-Object updateCount()
+@Property
+private List<JQueryTabData> listTabData;
+
+@SetupRender
+void onSetupRender()
 {
-	if (!request.isXHR())
-	{
-		return this;
-	}
-	count++;
-	return myBlockActionLink;
+useTabs=true;
+listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("Documentation","TabsBlock1"));
+        listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
+        listTabData.add(new JQueryTabData("Form","TabsBlock3"));
+        listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
+        listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
 }
-	
+    
+
 public Block getTheBlockActionLink()
 {
 	return myBlockActionLink;
 }
 
-//jQuery Zone triggered by external form submit
-@Property
-@Persist
-private String dummy;
-	
-@Inject
-private Block myBlockForm;
-	
+@OnEvent(value = "action", component = "myActionLink")
+Object updateCount()
+{
+	if (!request.isXHR()) {return this;}
+	count++;
+	return myBlockActionLink;
+}
+    
 public Block getTheBlockForm()
 {
 	return myBlockForm;
 }
-	
+
 @OnEvent(value = EventConstants.SUCCESS, component = "myForm")
 Object updateZoneContentFromForm()
 {
-	if (!request.isXHR())
-	{
-		return this;
-	}
-	
+	if (!request.isXHR()) {return this;}
 	return myBlockForm;
 }
-	
-//jQuery Zone and multi zone update
-@Inject
-private Block defaultBlock, multiUpdateBlock;
-	
-@InjectComponent
-private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
-	
-@Persist
-private boolean afterFormSubmit;
-	
-@Property
-private int blockId;
-	
+    
 @OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
-Object performMultiZoneUpdate() 
+Object performMultiZoneUpdate()
 {
 	afterFormSubmit = true;
-
-    return new MultiZoneUpdate("multiZone1", multiZone1.getBody()).add("multiZone2", multiZone2.getBody()); 
+	return new MultiZoneUpdate("multiZone1",
+			multiZone1.getBody()).add("multiZone2", multiZone2.getBody());
 }
     
 public Block getMultiUpdateBlock1() {
-
 	blockId = 1;
-        
-    return afterFormSubmit ? multiUpdateBlock : defaultBlock;
-}
-    
-public Block getMultiUpdateBlock2() {
-
-	blockId = 2;
-        
 	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
 }
     
+public Block getMultiUpdateBlock2() {
+	blockId = 2;
+	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
 }
+}
+

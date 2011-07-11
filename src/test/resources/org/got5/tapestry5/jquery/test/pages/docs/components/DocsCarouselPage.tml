@@ -61,7 +61,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 						
 					</t:zone>
 					
-					<t:block id="flowerBlock">
+					<t:block t:id="flowerBlock" id="flowerBlock">
 						You just clicked on the big white flower !
 					</t:block>
 					

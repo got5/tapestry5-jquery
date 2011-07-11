@@ -32,14 +32,13 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-@Import(library={"context:js/carouselPage.js"})
 public class DocsCarouselPage{
 	
 	@Property
 	private List<JQueryTabData> listTabData;
 	
 	@SetupRender
-	private void setupRender(){
+	public void setupRender(){
 		listTabData = new ArrayList<JQueryTabData>();
 	    listTabData.add(new JQueryTabData("Documentation","docs"));
 	    listTabData.add(new JQueryTabData("Example","example"));
@@ -58,7 +57,7 @@ public class DocsCarouselPage{
 		JSONObject retour = new JSONObject();
 		retour.put("wrap", "circular");
 		String url = resources.createEventLink("ajaxEvent").toString();
-		retour.put("itemLoadCallback", new JSONLiteral("loadCarousel('"+url+"')"));
+		retour.put("loadCallbackUrl", url);
 		return retour;
 	}
 	

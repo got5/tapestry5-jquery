@@ -31,10 +31,11 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
- * @since 2.1.1
- * @see http://sorgalla.com/jcarousel/
- */
-@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.min.js","${assets.path}/components/carousel/carousel.js"},stylesheet={"context:css/tango/skin.css"})
+* @since 2.1.1
+* @see http://sorgalla.com/jcarousel/
+*/
+@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.js","${assets.path}/components/carousel/carousel.js"},stylesheet={"context:css/tango/skin.css"})
+
 @SupportsInformalParameters
 public class Carousel implements ClientElement {
 	 

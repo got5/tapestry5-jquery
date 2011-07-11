@@ -26,6 +26,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -53,7 +54,7 @@ public class TwitterView implements ClientElement {
 	@Parameter
 	private JSONObject params;
 	
-	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	@Parameter(value="gotapestry5", defaultPrefix = BindingConstants.LITERAL)
 	private String account;
 	
 	@Parameter(value="10", defaultPrefix = BindingConstants.LITERAL)
@@ -77,7 +78,8 @@ public class TwitterView implements ClientElement {
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
 	
-	
+	@Inject
+	private Messages messages;
 	
 	
 	
@@ -85,7 +87,10 @@ public class TwitterView implements ClientElement {
 	public void init(MarkupWriter w){
 		w.element("div", "id", clientId, "class", className);
 		componentResources.renderInformalParameters(w);
-		w.write("...");
+		//If javascript is disabled, it shows a link
+		w.element("a", "href","http://www.twitter.com/"+account, "target","_blank");
+		w.write(String.format(messages.get("twitterview-alt-text"),account));
+		w.end();
 		w.end();
 		
 		
@@ -103,9 +108,14 @@ public class TwitterView implements ClientElement {
 		if(params==null){
 			params = new JSONObject();
 		}
+		//Explicit parameters override parameters passed through the 'params' parameter
 		params.put("account",account);
 		params.put("count", count);
 		params.put("includeRetweets", includeRetweets?"1":"0");
+		
+		if(params.isNull("errorMessage")){
+			params.put("errorMessage",messages.get("twitterview-error-text"));
+		}
 		
 		if(params.isNull("loader") && loaderImage!=null){
 			params.put("loader", loaderImage.toClientURL());
