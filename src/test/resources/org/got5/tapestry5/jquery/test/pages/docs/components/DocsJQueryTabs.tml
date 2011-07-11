@@ -6,38 +6,45 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 
 
 <t:block id="docs">
-	  		<table class="documentation">
-	  			<tr>
-	  				<td class="title">Description</td>
-	  				<td class="content"> This component allows you create a jquery ui tab. 
-					</td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Links</td>
-	  				<td class="content"><a href="http://jqueryui.com/demos/tabs/">http://jqueryui.com/demos/tabs/</a></td>
-	  			</tr>
-	  			
-	  			<tr>
-	  				<td class="title">Parameters</td>
-	  				<td class="content">
-	  					Parameters marked with * are "required".
-		  				<ul>
-		  					<li>
-		  						<span class="title">*listTabData (ArrayList of JQueryTabData)</span> : A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
-							</li>
-		  					<li>
-		  						<span class="title">activePanelId (int)</span> : The number of the tab to activate when the page is displayed on the client. 
-							</li>
-		  					<li>
-		  						<span class="title">params (JSONObject)</span> : The slider parameters (please refer to jquery-ui documentation) 
-							</li>
-		  				</ul>
-		  			</td>
-	  			</tr>
-	  	</table>
-	  	
-	  </t:block>
+			<t:componentDocumentation>
+			<p:title>
+				Tabs Component
+			</p:title>
+			<p:description>
+				This component allows you create a jquery ui tab. 
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/tabs/"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="listTabData"
+					t:required="true"
+					t:javaType="ArrayList of JQueryTabData"
+					t:prefix="prop"
+					t:description="A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content). "
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="activePanelId"
+					t:required="true"
+					t:javaType="Int"
+					t:prefix="prop"
+					t:description="The number of the tab to activate when the page is displayed on the client. "
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="params "
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="prop"
+					t:description="The Tabs parameters (please refer to jquery-ui documentation). "
+				/>
+			</p:param_3>
+		</t:componentDocumentation>
+	 </t:block>
     	
       <t:block id="example">
 <t:jquery.tabs  t:listTabData="prop:listTabDataDemo" t:activePanelId="1" />
@@ -70,7 +77,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 		</t:form>
 	</t:block>
 
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="43" t:endLine="71" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="50" t:endLine="78" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.java"></div>
 			
 	  </t:block>
