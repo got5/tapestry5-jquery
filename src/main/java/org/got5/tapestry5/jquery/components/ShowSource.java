@@ -95,7 +95,7 @@ public class ShowSource {
 	@SuppressWarnings("unused")
 	@SetupRender
 	private boolean setupRender()
-	{	
+	{
 		if(!componentResources.isBound("path")){
 			
 			logger.warn("We have to specify a path " +
