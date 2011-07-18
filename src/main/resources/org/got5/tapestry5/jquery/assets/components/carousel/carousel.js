@@ -1,37 +1,37 @@
 (function( $ ) {
 
-var loadCarousel = function(url){
+var loadCarousel = function(spec){
 	function mycarousel_itemLoadCallback(carousel, state){
         if (state != 'init') {
 			return;
 		}
-		jQuery.get(url, function(data) {
-        	mycarousel_itemAddCallback(carousel, carousel.first, carousel.last, data);
+		jQuery.get(spec.loadCallbackUrl, function(data) {
+        	mycarousel_itemAddCallback(carousel, carousel.first, carousel.last, data, spec);
    		});
 	};
 	return mycarousel_itemLoadCallback;
+};
+
+function mycarousel_itemAddCallback(carousel, first, last, data, spec){
+	$.each(data, function(i, d){
+        carousel.add(i, mycarousel_getItemHTML(d, spec));
+	});
+    carousel.size(data.length);
 }
 
-function mycarousel_itemAddCallback(carousel, first, last, data){
-   	for (i = 0; i < data.length; i++) {
-        carousel.add(i+1, mycarousel_getItemHTML(data[i]));
-    }
-    carousel.size(data.length);
-};
-
-function mycarousel_getItemHTML(url){
-    return '<img src="' + url + '" width="75" height="75" alt="" />';
-};
+function mycarousel_getItemHTML(url, spec){
+	var w=spec.width ? spec.width : "75px";
+	var h=spec.height ? spec.height : "75px";
+    return '<img src="' + url + '" width="'+w+'" height="'+h+'" alt="" />';
+}
 	
 $.extend(Tapestry.Initializer, {
     carousel: function(specs) {
-    	
     	if(specs.params.loadCallbackUrl != undefined){
-    		specs.params.itemLoadCallback = loadCarousel(specs.params.loadCallbackUrl); 
+    		specs.params.itemLoadCallback = loadCarousel(specs.params); 
     	}
         $("#" + specs.id).jcarousel(specs.params);
     }
-
 });
 
 }) ( jQuery );

@@ -54,6 +54,7 @@ public class DocsCarouselPage{
 	public JSONObject getAjaxParams(){
 		JSONObject retour = new JSONObject();
 		retour.put("wrap", "circular");
+		retour.put("height", "75");
 		String url = resources.createEventLink("ajaxEvent").toString();
 		retour.put("loadCallbackUrl", url);
 		return retour;
