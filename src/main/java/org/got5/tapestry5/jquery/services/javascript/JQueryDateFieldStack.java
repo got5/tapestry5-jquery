@@ -57,7 +57,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
                                 @Symbol(SymbolConstants.PRODUCTION_MODE)
                                 final boolean productionMode,
-
+                            	
                                 final AssetSource assetSource)
     {
         this.threadLocale = threadLocale;
@@ -120,9 +120,8 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
         spec.put("days", days.toString().toLowerCase(locale));
 
-        // DatePicker expects 0 to be monday. Calendar defines SUNDAY as 1, MONDAY as 2, etc.
-
-        spec.put("firstDay", firstDay == Calendar.SUNDAY ? 6 : firstDay - 2);
+        // jQuery DatePicker widget expects 0 to be sunday. Calendar defines SUNDAY as 1, MONDAY as 2, etc.        
+        spec.put("firstDay", firstDay-1);
 
         // set language
         spec.put("language", locale.getLanguage());
