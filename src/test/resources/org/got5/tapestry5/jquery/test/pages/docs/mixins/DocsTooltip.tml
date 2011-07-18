@@ -20,7 +20,7 @@
 	</t:block>
     
     <t:block id="example">
-    	<a t:type="actionLink" 
+    	<a t:type="pageLink" 
 		   t:page="Index" 
 		   t:mixins="jquery/tooltip" 
 		   title="a small tooltip">Lien vers l'Index</a>
