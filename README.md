@@ -15,6 +15,7 @@ Christophe Furmaniak
 
 ## Changelog
 
+- 2.1.2 : switch to Tapestry 5.2.6
 - 2.1.1 : add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish 
 		  add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip	
 - 2.1.0 : switch to Tapestry 5.2.5
