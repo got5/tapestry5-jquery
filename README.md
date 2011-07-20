@@ -13,6 +13,9 @@
 ##Hosting
 Christophe Furmaniak 	
 
+##Questions? Ideas? Comments?
+http://groups.google.com/group/tapestry5-jquery
+
 ## Changelog
 
 - 2.1.2 : switch to Tapestry 5.2.6
