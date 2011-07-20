@@ -60,5 +60,7 @@ public class JQuerySymbolConstants {
     public static final String ASSETS_PATH = "assets.path";
 
 	public static final String JQUERY_ALIAS = "jquery.alias";
+	
+	public static final String PROTOTYPE_STACK = "prototype.js.stack";
     
 }

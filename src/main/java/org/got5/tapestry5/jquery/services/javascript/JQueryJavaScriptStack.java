@@ -27,8 +27,8 @@ import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.ClientInfrastructure;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.apache.tapestry5.services.javascript.JavaScriptStackSource;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
@@ -39,8 +39,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @author criedel, GOT5
  */
 public class JQueryJavaScriptStack implements JavaScriptStack {
-	
-	private final ClientInfrastructure clientInfrastructure;
 
     private final boolean productionMode;
     
@@ -53,10 +51,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     private final List<StylesheetLink> jQueryCssStack;
     
     private final AssetSource assetSource;
+    
+    private final JavaScriptStack prototypeStack;
 
-    public JQueryJavaScriptStack(ClientInfrastructure clientInfrastructure,
-    		
-    							 @Symbol(SymbolConstants.PRODUCTION_MODE)
+    public JQueryJavaScriptStack(@Symbol(SymbolConstants.PRODUCTION_MODE)
                                  final boolean productionMode,
                                  
                                  @Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
@@ -65,14 +63,18 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                                  @Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
                                  final boolean suppressPrototype,
 
-                                 final AssetSource assetSource)
+                                 final AssetSource assetSource, 
+                                 
+                                 final JavaScriptStackSource jsStackSrc
+    							)
     {
-    	this.clientInfrastructure = clientInfrastructure;
+    	
         this.productionMode = productionMode;
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
         this.jQueryAlias = jQueryAlias;
-
+        this.prototypeStack = jsStackSrc.getStack(JQuerySymbolConstants.PROTOTYPE_STACK);
+        
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
             public Asset map(String path)
@@ -146,7 +148,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
     		ret.add(tapestryJqueryJs);
     		
-    		ret.addAll(clientInfrastructure.getJavascriptStack());   	
+    		ret.addAll(prototypeStack.getJavaScriptLibraries());
     		
     		pathToTapestryJqueryJs = "${tapestry.jquery.path}/jquery-noconflict.js";
     		tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
@@ -164,9 +166,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	ret.addAll(jQueryCssStack);
     	if(!suppressPrototype)
     	{
-    		List<StylesheetLink> prototypeCssStack = F.flow(clientInfrastructure.getStylesheetStack()).map(TapestryInternalUtils.assetToStylesheetLink)
-            .toList();
-    		ret.addAll(prototypeCssStack);  
+    		ret.addAll(prototypeStack.getStylesheets());  
     	}	
  		return ret;
     }
