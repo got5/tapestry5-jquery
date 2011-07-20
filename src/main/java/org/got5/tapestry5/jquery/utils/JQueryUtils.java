@@ -30,7 +30,6 @@ public class JQueryUtils
 
     public static Mapper<Asset, StylesheetLink> assetToStylesheetLink = new Mapper<Asset, StylesheetLink>()
     {
-        @Override
         public StylesheetLink map(Asset input)
         {
             return new StylesheetLink(input);

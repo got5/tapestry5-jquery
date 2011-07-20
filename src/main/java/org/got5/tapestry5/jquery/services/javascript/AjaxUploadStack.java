@@ -35,7 +35,6 @@ public class AjaxUploadStack implements JavaScriptStack
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
-            @Override
             public Asset map(String path)
             {
                 return assetSource.getExpandedAsset(path);
@@ -46,7 +45,9 @@ public class AjaxUploadStack implements JavaScriptStack
 
         javaScriptStack = F.flow(path).map(pathToAsset).toList();
 
-        final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
+        
+        
+        final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, JQueryUtils.assetToStylesheetLink);
         cssStack = F.flow("${assets.path}/components/upload/fileuploader.css").map(pathToStylesheetLink).toList();
     }
 

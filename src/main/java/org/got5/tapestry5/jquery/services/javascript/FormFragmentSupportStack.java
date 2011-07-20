@@ -27,7 +27,6 @@ public class FormFragmentSupportStack implements JavaScriptStack {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
 
-            @Override
             public Asset map(String path) {
 
                 return assetSource.getExpandedAsset(path);

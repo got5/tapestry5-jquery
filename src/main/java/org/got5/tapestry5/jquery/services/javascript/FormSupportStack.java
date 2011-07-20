@@ -29,7 +29,6 @@ public class FormSupportStack implements JavaScriptStack {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
-            @Override
             public Asset map(String path)
             {
                 return assetSource.getExpandedAsset(path);
@@ -48,7 +47,7 @@ public class FormSupportStack implements JavaScriptStack {
                                .map(pathToAsset).toList();
         }
 
-        final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
+        final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, JQueryUtils.assetToStylesheetLink);
 
         stylesheetStack = F.flow("${tapestry.jquery.path}/form.css").map(pathToStylesheetLink).toList();
 

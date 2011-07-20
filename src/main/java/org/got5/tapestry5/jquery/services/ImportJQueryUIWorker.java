@@ -53,7 +53,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
 
     private final Mapper<String, String> expandSimpleName = new Mapper<String, String>()
     {
-        @Override
         public String map(String name)
         {
             final StringBuilder relativePath = new StringBuilder()
@@ -66,7 +65,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
 
     private final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
     {
-        @Override
         public Asset map(String path)
         {
 
@@ -86,7 +84,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
 
     private final Worker<Asset> importLibrary = new Worker<Asset>()
     {
-        @Override
         public void work(Asset value)
         {
             javaScriptSupport.importJavaScriptLibrary(value);
