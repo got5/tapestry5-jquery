@@ -75,14 +75,13 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
-            @Override
             public Asset map(String path)
             {
                 return assetSource.getExpandedAsset(path);
             }
         };
 
-        final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(JQueryUtils.assetToStylesheetLink);
+        final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, JQueryUtils.assetToStylesheetLink);
 
         jQueryCssStack = F.flow("${jquery.ui.default-theme.path}")
                            .map(pathToStylesheetLink)
