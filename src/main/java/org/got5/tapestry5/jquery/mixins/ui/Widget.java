@@ -31,7 +31,7 @@ public class Widget {
 		if ( options == null ) {
 			options = "";
 		}
-		String init = String.format("$('#%s').%s(%s);", clientElement.getClientId(),widgetName(),options);
+		String init = String.format("jQuery('#%s').%s(%s);", clientElement.getClientId(),widgetName(),options);
 		javaScriptSupport.addScript(init);
 	}
 
