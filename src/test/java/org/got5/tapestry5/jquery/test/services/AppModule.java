@@ -17,11 +17,14 @@ package org.got5.tapestry5.jquery.test.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.JQueryModule;
+import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
 import org.got5.tapestry5.jquery.test.data.MockDataSource;
 
@@ -46,6 +49,12 @@ public class AppModule
     	
     	configuration.add("demo-src-dir","");
     	
+    }
+    
+    @Contribute(WidgetParams.class)
+    public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
+    	configuration.add("slider", new JSONObject().put("min", 5));
+    	configuration.add("customdatepicker", new JSONObject("prevText","Previous Month"));
     }
     
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)

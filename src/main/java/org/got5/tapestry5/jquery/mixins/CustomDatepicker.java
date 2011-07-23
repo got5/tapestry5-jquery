@@ -8,11 +8,10 @@ import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.JQueryComponentConstants;
+import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -40,12 +39,11 @@ public class CustomDatepicker {
     private JavaScriptSupport javaScriptSupport;
 	
 	@Inject
-	@Symbol(value = JQueryComponentConstants.CUSTOM_DATEPICKER_PARAMS)
-	private String defaultParamsString;
+	private WidgetParams widgetParams;
 	
 	void setupRender(){
 		
-		defaultParamsObject = new JSONObject(defaultParamsString);
+		defaultParamsObject = widgetParams.paramsForWidget(this.getClass().getSimpleName().toLowerCase());
 		
 	}
 	 /**

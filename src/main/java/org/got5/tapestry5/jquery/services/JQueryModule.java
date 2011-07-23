@@ -22,7 +22,12 @@ import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.Coercion;
+import org.apache.tapestry5.ioc.services.CoercionTuple;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -30,6 +35,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.JQueryVersion;
+import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
@@ -95,5 +101,21 @@ public class JQueryModule
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
+    
+    public static void bind(ServiceBinder binder)
+    {
+      binder.bind(WidgetParams.class, WidgetParamsImpl.class);
+    }
+    
+    
+    @Contribute(TypeCoercer.class)
+    public static void provideBasicTypeCoercions(Configuration<CoercionTuple> configuration)
+    {
+    	configuration.add(new CoercionTuple<String, JSONObject>(String.class, JSONObject.class, new Coercion<String, JSONObject>() {
 
+			public JSONObject coerce(String input) {
+				return new JSONObject(input);
+			}
+		}));
+    }
 }
