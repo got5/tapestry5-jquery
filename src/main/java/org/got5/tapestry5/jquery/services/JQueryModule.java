@@ -24,6 +24,7 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
@@ -94,6 +95,12 @@ public class JQueryModule
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
+    }
+    
+    public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration) {
+        configuration.add("selector", new SelectorBindingFactory());
+
+    	
     }
 
 }
