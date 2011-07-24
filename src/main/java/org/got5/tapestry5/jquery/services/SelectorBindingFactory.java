@@ -19,23 +19,7 @@ public class SelectorBindingFactory implements BindingFactory {
 	public Binding newBinding(String description, ComponentResources container, ComponentResources component,
 		                              String expression, Location location) {
 		
-		//String id = id(component,expression);
-		logger.info("new binding {}",expression);
 		return new SelectorBinding(location, description, component, expression, logger, javaScriptSupport);
 	}
-	
-	/*
-	String id(ComponentResources component, String expression) {
-		Component c = component.getEmbeddedComponent(expression);
-		String id = null;
-		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
-			ClientElement ce = (ClientElement) c;
-			id = ce.getClientId();
-		} else {
-			id = c.getComponentResources().getId();
-		}
-		return id;
-	}
-	*/
 
 }

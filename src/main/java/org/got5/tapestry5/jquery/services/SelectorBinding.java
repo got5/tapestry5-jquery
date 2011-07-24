@@ -35,10 +35,9 @@ public class SelectorBinding extends AbstractBinding {
 	public Object get() {	
 		String id = id(componentResources,tid);
 		if ( id != null ) {
-			javaScriptSupport.addScript(InitializationPriority.EARLY,"selector%s = '#%s'", tid,id);
+			//javaScriptSupport.addScript(InitializationPriority.EARLY,"selector%s = '#%s'", tid,id);
 			return String.format("'#%s'",id);
 		}
-		logger.info("not found {}",tid);
 		return "selector" + tid;
 	}
 	
