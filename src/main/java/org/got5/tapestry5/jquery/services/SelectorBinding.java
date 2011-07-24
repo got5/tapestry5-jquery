@@ -1,8 +1,13 @@
 package org.got5.tapestry5.jquery.services;
 
+import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.Location;
+import org.apache.tapestry5.runtime.Component;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.slf4j.Logger;
 
 /**
  * 
@@ -12,24 +17,52 @@ import org.apache.tapestry5.ioc.Location;
 public class SelectorBinding extends AbstractBinding {
 	
 	private final String description;
-	private final String embeddedId;
+	private final String tid;
 	private final ComponentResources componentResources;
+	private final Logger logger;
+	private final JavaScriptSupport javaScriptSupport;
 	
-	public SelectorBinding(Location location, String description, ComponentResources componentResources, String value) {
+	
+	public SelectorBinding(Location location, String description, ComponentResources componentResources, String value, Logger logger, JavaScriptSupport javaScriptSupport) {
 		super(location);
 		this.description = description;
-		this.embeddedId = value;
+		this.tid = value;
 		this.componentResources = componentResources;
+		this.logger = logger;
+		this.javaScriptSupport = javaScriptSupport;
 	}
 
-	public Object get() {
-		String id = componentResources.getEmbeddedComponent(embeddedId).getComponentResources().getId();
-		return String.format("#%s",id);
+	public Object get() {	
+		String id = id(componentResources,tid);
+		if ( id != null ) {
+			javaScriptSupport.addScript(InitializationPriority.EARLY,"selector%s = '#%s'", tid,id);
+			return String.format("'#%s'",id);
+		}
+		logger.info("not found {}",tid);
+		return "selector" + tid;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("SelectorBinding[%s: %s]", description, embeddedId); 
+		return String.format("SelectorBinding[%s: %s]", description, tid); 
+	}
+	
+	@Override
+	public boolean isInvariant() {
+		return false;
+	}
+	
+	String id(ComponentResources component, String expression) {
+
+		Component c = component.getEmbeddedComponent(expression);
+		String id = null;
+		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
+			ClientElement ce = (ClientElement) c;
+			id = ce.getClientId();
+		}
+		
+		return id;
+		
 	}
 
 }

@@ -68,7 +68,7 @@ Exclusive jQuery Mixins :
 Exclusive jQuery Binding Prefixes :
 
 - **selector**
-    - selector:id returns #clientId allows finding typos in java runtime instead of at javascript runtime
+    - selector:id returns #clientId allows finding typos at java runtime instead of at javascript runtime
 
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :

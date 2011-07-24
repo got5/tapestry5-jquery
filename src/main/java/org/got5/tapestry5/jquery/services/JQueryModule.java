@@ -22,6 +22,9 @@ import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BindingFactory;
@@ -39,6 +42,10 @@ import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
 
 public class JQueryModule
 {
+	public static void bind(ServiceBinder binder) {
+		binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
+	}
+	
     public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
             boolean suppressPrototype)
@@ -97,8 +104,11 @@ public class JQueryModule
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
     
-    public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration) {
-        configuration.add("selector", new SelectorBindingFactory());
+    public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
+    		@InjectService("SelectorBindingFactory")
+    		BindingFactory selectorBindingFactory
+    		) {
+        configuration.add("selector", selectorBindingFactory);
 
     	
     }
