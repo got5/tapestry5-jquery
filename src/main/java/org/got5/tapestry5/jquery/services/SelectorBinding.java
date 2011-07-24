@@ -33,12 +33,17 @@ public class SelectorBinding extends AbstractBinding {
 	}
 
 	public Object get() {	
-		String id = id(componentResources,tid);
-		if ( id != null ) {
-			//javaScriptSupport.addScript(InitializationPriority.EARLY,"selector%s = '#%s'", tid,id);
-			return String.format("'#%s'",id);
+		Component c = componentResources.getEmbeddedComponent(tid);
+		String id = null;
+		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
+			ClientElement ce = (ClientElement) c;
+			id = ce.getClientId();
 		}
-		return "selector" + tid;
+		
+		if ( id != null ) {
+			return String.format("jQuery('#%s')",id);
+		}
+		return String.format("jQuery(selector%s)",tid);
 	}
 	
 	@Override
@@ -51,17 +56,5 @@ public class SelectorBinding extends AbstractBinding {
 		return false;
 	}
 	
-	String id(ComponentResources component, String expression) {
-
-		Component c = component.getEmbeddedComponent(expression);
-		String id = null;
-		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
-			ClientElement ce = (ClientElement) c;
-			id = ce.getClientId();
-		}
-		
-		return id;
-		
-	}
 
 }
