@@ -11,6 +11,7 @@
 			var options = specs.hideOptions;
 			var zoneUpdate = specs.zoneUpdate;
 			var title = specs.title;
+			var history = eval('[' + specs.history + ']')[0];
 			// can't pass function thru JSON
 			var callback = eval('[' + specs.callback + ']')[0];
 			var contextMarker = specs.contextMarker;
@@ -21,7 +22,7 @@
 				if ( preventDefault ) {
 					event.preventDefault();
 				}
-				// do history here
+				
 				if ( title ) {
 					document.title=title;
 				}			
@@ -32,10 +33,13 @@
 					zoneElement.tapestryZone('option','update',zoneUpdate);
 				}
 				var u = new Object();
-				u.url = url;					
-				if ( callback ) {
-					u.context = contextMarker;					
-					u.element = $(this);
+				u.url = url;		
+				u.context = contextMarker;					
+				u.element = $(this);
+				if ( history ) {
+					history(event,ui,u);
+				}
+				if ( callback ) {					
 					// TODO should work if value is array
 					u.addContext = function(value) { u.url = u.url.replace(u.context,value) };
 					callback(event,ui,u);

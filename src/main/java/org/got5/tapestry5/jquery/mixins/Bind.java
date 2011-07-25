@@ -49,6 +49,9 @@ public class Bind {
 
 	@Parameter(defaultPrefix = "literal")
 	private String title;
+	
+	@Parameter(defaultPrefix = "literal")
+	private String history;
 
 	@Parameter(defaultPrefix = "literal")
 	private String eventType;
@@ -132,6 +135,7 @@ public class Bind {
 		spec.put("zoneId", zone);
 		spec.put("zoneUpdate", zoneUpdate);
 		spec.put("title", title);
+		spec.put("history", history);
 		// Does not work with AJAX JSON return
 		// if ( jcontext != null ) {
 		// spec.put("jcontext", new JSONLiteral(jcontext));
