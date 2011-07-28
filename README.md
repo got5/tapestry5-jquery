@@ -9,6 +9,7 @@
 - Emmanuel DEMEY as Gillespie59
 - Clément USTER as cluster
 - Amaury WILLEMANT as awillemant
+- Barry BOOKS as trsvax
 
 ##Hosting
 Christophe Furmaniak 	
@@ -63,8 +64,15 @@ Exclusive jQuery Mixins :
 	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
 - **Reveal**
 	- Based on [http://www.zurb.com/playground/reveal-modal-plugin](http://www.zurb.com/playground/reveal-modal-plugin)	
+- **Slider**
+	- Based on [http://jqueryui.com/demos/slider](http://jqueryui.com/demos/slider)
 - **Tooltip** 
 	- based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+	
+Exclusive jQuery Binding Prefixes :
+
+- **selector**
+    - selector:id returns #clientId allows finding typos at java runtime instead of at javascript runtime
 
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
