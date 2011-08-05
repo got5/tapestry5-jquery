@@ -36,7 +36,6 @@ import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
-import org.got5.tapestry5.jquery.JQueryVersion;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
@@ -83,8 +82,8 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
         configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
 
-        configuration.add(JQuerySymbolConstants.JQUERY_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jquery_core");
-        configuration.add(JQuerySymbolConstants.JQUERY_VERSION, JQueryVersion.v1_5_0);
+        configuration.add(JQuerySymbolConstants.JQUERY_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jquery_core/jquery-1.6.2.js");
+        configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.6.2");
 
         configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8");
         configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.custom.css");
