@@ -34,8 +34,10 @@ import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
@@ -68,6 +70,7 @@ public class JQueryModule
     	{	
     		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+    		//configuration.addInstance("CustomZoneEffectWorker", CustomZoneEffectWorker.class);
     	}
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
@@ -102,15 +105,20 @@ public class JQueryModule
     {
         configuration.add("tap-jquery", "org/got5/tapestry5");
     }
- public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
+
+    public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
+
     		@InjectService("SelectorBindingFactory")
     		BindingFactory selectorBindingFactory
     		) {
         configuration.add("selector", selectorBindingFactory);
+
+       
 }
 public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
+      binder.bind(EffectsParam.class, EffectsParamImpl.class);
       binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
     }
     
@@ -125,6 +133,12 @@ public static void bind(ServiceBinder binder)
 				return new JSONObject(input);
 			}
 		}));
+    }
+
+    
+    @Contribute(EffectsParam.class)
+    public void addEffectsFile(Configuration<String> configuration){
+    	configuration.add(EffectsConstants.HIGHLIGHT);
     }
 
 

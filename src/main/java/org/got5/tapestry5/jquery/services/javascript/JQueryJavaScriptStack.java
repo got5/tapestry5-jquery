@@ -32,6 +32,7 @@ import org.apache.tapestry5.services.ClientInfrastructure;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.services.EffectsParam;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -50,12 +51,16 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     private final boolean suppressPrototype;
 
     private final List<Asset> jQueryJsStack;
-
+    
     private final List<StylesheetLink> jQueryCssStack;
     
     private final AssetSource assetSource;
     
     private SymbolSource symbolSource;
+
+    private EffectsParam effectsParam;
+
+
 
     public JQueryJavaScriptStack(ClientInfrastructure clientInfrastructure,
     		
@@ -69,8 +74,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                                  final boolean suppressPrototype,
 
                                  final AssetSource assetSource, 
-                                 
-    							 final SymbolSource symbolSource)
+
+    							 final SymbolSource symbolSource, 
+    							 
+    							 final EffectsParam effectsParam)
     {
     	this.clientInfrastructure = clientInfrastructure;
         this.productionMode = productionMode;
@@ -78,6 +85,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         this.assetSource = assetSource;
         this.jQueryAlias = jQueryAlias;
         this.symbolSource = symbolSource;
+        this.effectsParam = effectsParam;
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
@@ -112,11 +120,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                         "${jquery.ui.path}/jquery.ui.core.js",
                         "${jquery.ui.path}/jquery.ui.position.js",
                         "${jquery.ui.path}/jquery.ui.widget.js",
-                        "${jquery.ui.path}/jquery.effects.core.js",
-                        "${jquery.ui.path}/jquery.effects.highlight.js")
-            .map(pathToAsset).toList();
-    }
+                        "${jquery.ui.path}/jquery.effects.core.js")
+            .concat(F.flow(this.effectsParam.getEffectsToLoad())).map(pathToAsset).toList();
 
+    }
+    
     public String getInitialization()
     {
     	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
