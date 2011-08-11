@@ -44,6 +44,7 @@ public class SelectorBinding extends AbstractBinding {
 		if ( id != null ) {
 			return String.format("jQuery('#%s')",id);
 		}
+		//String.format("$('td[name=tcol1]') ",tid);
 		return String.format("jQuery(selector%s)",tid);
 	}
 	
