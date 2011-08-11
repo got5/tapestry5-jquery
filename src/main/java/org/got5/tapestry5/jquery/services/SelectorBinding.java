@@ -33,6 +33,7 @@ public class SelectorBinding extends AbstractBinding {
 	}
 
 	public Object get() {	
+		System.out.println("###############");
 		Component c = componentResources.getEmbeddedComponent(tid);
 		String id = null;
 		if ( ClientElement.class.isAssignableFrom(c.getClass())) {

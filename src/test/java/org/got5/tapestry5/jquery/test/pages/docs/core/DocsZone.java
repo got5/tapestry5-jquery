@@ -22,15 +22,19 @@ import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONLiteral;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
-
+@Import(library = "context:js/demo.js")
 public class DocsZone
 {
     @Property
@@ -82,6 +86,7 @@ listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
         listTabData.add(new JQueryTabData("Form","TabsBlock3"));
         listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
+        listTabData.add(new JQueryTabData("Change Effects Parameters","TabsBlock5"));
         listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
 }
     
@@ -127,6 +132,30 @@ public Block getMultiUpdateBlock1() {
 public Block getMultiUpdateBlock2() {
 	blockId = 2;
 	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
+}
+
+@InjectComponent
+private Zone myZoneCustom;
+
+public JSONObject getZoneParams(){
+	
+	JSONObject ap = new JSONObject();
+	
+	ap.put("options",new JSONObject("direction","up"));
+
+	ap.put("speed", 500);
+
+	ap.put("callback", new JSONLiteral(String.format("callbackFunction()")));
+	
+	return ap;
+}
+
+@OnEvent(value = "action", component = "myActionLinkCustom")
+Object cutomMixin()
+{
+	if (!request.isXHR()) {return this;}
+	count++;
+	return myZoneCustom.getBody();
 }
 }
 

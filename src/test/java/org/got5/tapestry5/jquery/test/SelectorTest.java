@@ -10,7 +10,7 @@ public class SelectorTest extends SeleniumTestCase{
     {
 		open("/test/Selector");
 		
-		assertEquals(getText("//div[@id='test']"),"#test");		
+		assertEquals(getText("//div[@id='test']"),"jQuery('#test')");		
         
     }
 

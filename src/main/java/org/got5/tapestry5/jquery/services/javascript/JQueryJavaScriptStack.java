@@ -26,11 +26,13 @@ import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.SymbolSource;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.ClientInfrastructure;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.services.EffectsParam;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -49,10 +51,16 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     private final boolean suppressPrototype;
 
     private final List<Asset> jQueryJsStack;
-
+    
     private final List<StylesheetLink> jQueryCssStack;
     
     private final AssetSource assetSource;
+    
+    private SymbolSource symbolSource;
+
+    private EffectsParam effectsParam;
+
+
 
     public JQueryJavaScriptStack(ClientInfrastructure clientInfrastructure,
     		
@@ -65,19 +73,38 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                                  @Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
                                  final boolean suppressPrototype,
 
-                                 final AssetSource assetSource)
+                                 final AssetSource assetSource, 
+
+    							 final SymbolSource symbolSource, 
+    							 
+    							 final EffectsParam effectsParam)
     {
     	this.clientInfrastructure = clientInfrastructure;
         this.productionMode = productionMode;
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
         this.jQueryAlias = jQueryAlias;
+        this.symbolSource = symbolSource;
+        this.effectsParam = effectsParam;
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
             @Override
             public Asset map(String path)
             {
+            	if(productionMode){
+            		
+            		String pathMin = symbolSource.expandSymbols(path);
+            		
+            		if(path.equalsIgnoreCase("${jquery.core.path}")){
+            			path = new StringBuffer(pathMin).insert(pathMin.lastIndexOf(".js"), ".min").toString();
+            		}
+            		else if(path.contains("${jquery.ui.path}")){
+            			path = new StringBuffer(pathMin).insert(pathMin.lastIndexOf(".js"), ".min")
+            											.insert(pathMin.lastIndexOf('/'), "/minified").toString();
+            		}
+            	}
+            	
                 return assetSource.getExpandedAsset(path);
             }
         };
@@ -88,36 +115,16 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                            .map(pathToStylesheetLink)
                            .toList();
 
-        if (productionMode) {
-
-            jQueryJsStack = F
-                .flow(  //"${tapestry.js.path}",
-                        "${jquery.core.path}/jquery-${jquery.version}.min.js",
-                        "${jquery.ui.path}/minified/jquery.ui.core.min.js",
-                        "${jquery.ui.path}/minified/jquery.ui.position.min.js",
-                        "${jquery.ui.path}/minified/jquery.ui.widget.min.js",
-                        "${jquery.ui.path}/minified/jquery.effects.core.min.js",
-                        "${jquery.ui.path}/minified/jquery.effects.highlight.min.js")
-                        //"${tapestry.jquery.path}/tapestry-jquery.js")
-            .map(pathToAsset).toList();
-
-        } else {
-
-        	jQueryJsStack = F
-                .flow(  //"${tapestry.js.path}",
-                        "${jquery.core.path}/jquery-${jquery.version}.js",
+       	jQueryJsStack = F
+                .flow(  "${jquery.core.path}",
                         "${jquery.ui.path}/jquery.ui.core.js",
                         "${jquery.ui.path}/jquery.ui.position.js",
                         "${jquery.ui.path}/jquery.ui.widget.js",
-                        "${jquery.ui.path}/jquery.effects.core.js",
-                        "${jquery.ui.path}/jquery.effects.highlight.js")
-                        //,"${tapestry.jquery.path}/tapestry-jquery.js")
-            .map(pathToAsset).toList();
-
-        }
+                        "${jquery.ui.path}/jquery.effects.core.js")
+            .concat(F.flow(this.effectsParam.getEffectsToLoad())).map(pathToAsset).toList();
 
     }
-
+    
     public String getInitialization()
     {
     	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";

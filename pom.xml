@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>2.1.1-SNAPSHOT</version>
+	<version>2.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<parent>
@@ -263,7 +263,7 @@
 	</profiles>
 
 	<properties>
-		<tapestry-release-version>5.2.5</tapestry-release-version>
+		<tapestry-release-version>5.2.6</tapestry-release-version>
 		<browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>
