@@ -22,7 +22,10 @@ public class RenderTrackerImpl implements RenderTracker {
 	}
 
 	public Component getRendering() {
-		return components.peek();
+		if ( components.size() > 0) {
+			return components.peek();
+		}
+		return null;
 	}
 
 	public Map<String, Boolean> getIdMap() {

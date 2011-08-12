@@ -35,11 +35,14 @@ public class SelectorBinding extends AbstractBinding {
 	}
 
 	public Object get() {	
-		Component c;
+		Component c = null;
 		if ( "this".equals(tid)) {
 			c = renderTracker.getRendering();
 		} else {
 			c = componentResources.getEmbeddedComponent(tid);
+		}
+		if ( c == null ) {
+			throw new IllegalArgumentException("can't find id for selector binding:" + tid);
 		}
 		String id = null;
 		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
