@@ -5,14 +5,13 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.Location;
 import org.apache.tapestry5.runtime.Component;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.slf4j.Logger;
 
 /**
  * 
  * The selector: binding prefix, returns the jQuery selector for child component via its id.
- *
+ * @since 2.6.0
  */
 public class SelectorBinding extends AbstractBinding {
 	
@@ -33,7 +32,6 @@ public class SelectorBinding extends AbstractBinding {
 	}
 
 	public Object get() {	
-		System.out.println("###############");
 		Component c = componentResources.getEmbeddedComponent(tid);
 		String id = null;
 		if ( ClientElement.class.isAssignableFrom(c.getClass())) {

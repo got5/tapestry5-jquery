@@ -22,48 +22,45 @@ import java.util.List;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.PageReset;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsValidation
 {
     
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	@SetupRender
-	void onSetupRender()
+	public List<JQueryTabData> getListTabData()
 	{
-		listTabData = new ArrayList<JQueryTabData>();
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("Documentation","docs"));
         listTabData.add(new JQueryTabData("Example","example"));
+        return listTabData;
     }
 	
-	@Property
-    private String foo;
+@Property
+private String foo;
 
-    @Property
-    private Integer dummy;
+@Property
+private Integer dummy;
     
-    @Property
-    private String email;
+@Property
+private String email;
     
-    @Property
-    private String regexp;
+@Property
+private String regexp;
     
-    @InjectComponent 
-    private Zone myZone;
+@InjectComponent 
+private Zone myZone;
     
-    @OnEvent(value=EventConstants.SUCCESS)
-    public Object onSuccess(){
-    	return myZone.getBody();
-    }
+@OnEvent(value=EventConstants.SUCCESS)
+public Object onSuccess(){
+	return myZone.getBody();
+}
     
-    public Boolean getDataToDisplay(){
-    	return InternalUtils.isNonBlank(foo) && InternalUtils.isNonBlank(email) && InternalUtils.isNonBlank(regexp);
-    }
+public Boolean getDataToDisplay(){
+	return InternalUtils.isNonBlank(foo) && InternalUtils.isNonBlank(email) && InternalUtils.isNonBlank(regexp);
+}
 }

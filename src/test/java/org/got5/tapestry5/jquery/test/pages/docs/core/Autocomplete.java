@@ -59,7 +59,7 @@ public class Autocomplete
     	list.add("Zone");
     }
     
-    @OnEvent(component = "foo", value = "provideCompletions")
+    @OnEvent(value = "provideCompletions")
     public List<String> autoComplete(String start)
     {
         List<String> strings = new ArrayList<String>();

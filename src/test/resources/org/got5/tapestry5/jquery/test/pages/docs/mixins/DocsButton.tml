@@ -1,6 +1,6 @@
 <html t:type="layoutWithAccordion" t:activeElement="2" t:title="Button" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="tabIndex" />
     
     <t:block id="docs">
     	<t:componentDocumentation>
@@ -47,8 +47,5 @@
 <br />
 <br />
     	<div t:type="jquery/showSource" t:ext="html" t:beginLine="40" t:endLine="44" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
-    	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.java"></div>
-    	
     </t:block>
 </html>

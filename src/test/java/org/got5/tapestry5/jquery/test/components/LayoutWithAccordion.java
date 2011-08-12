@@ -17,14 +17,11 @@
 package org.got5.tapestry5.jquery.test.components;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;

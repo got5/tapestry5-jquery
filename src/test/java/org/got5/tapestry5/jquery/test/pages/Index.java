@@ -43,7 +43,6 @@ public class Index
 		listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("Concept","block1"));
         listTabData.add(new JQueryTabData("Usage","block2"));
-        //listTabData.add(new JQueryTabData("Panel3","block3"));
         listTabData.add(new JQueryTabData("About","block4"));
         
 	}

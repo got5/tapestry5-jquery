@@ -16,8 +16,6 @@
 
 package org.got5.tapestry5.jquery.services;
 
-
-
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -35,7 +33,6 @@ import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.EffectsConstants;
-import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
@@ -97,8 +94,6 @@ public class JQueryModule
         
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
         
-        configuration.add(JQueryComponentConstants.CUSTOM_DATEPICKER_PARAMS, new JSONObject().toString());
-    
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
@@ -115,7 +110,7 @@ public class JQueryModule
 
        
 }
-public static void bind(ServiceBinder binder)
+    public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
       binder.bind(EffectsParam.class, EffectsParamImpl.class);
@@ -136,6 +131,10 @@ public static void bind(ServiceBinder binder)
     }
 
     
+    /**
+     * By Default, we import the JavaScript file of the HighLight Effect.
+     * @param configuration
+     */
     @Contribute(EffectsParam.class)
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);

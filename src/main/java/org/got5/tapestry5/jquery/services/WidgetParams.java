@@ -7,7 +7,7 @@ import org.apache.tapestry5.json.JSONObject;
  * Provides an easy way to set a default JSONObject-type params for one of your mixin.
  * It will be use with the Widget Class.
  * 
- * @since 2.1.2
+ * @since 2.6.0
  * @author Emmanuel DEMEY
  */
 @UsesMappedConfiguration(value = JSONObject.class)

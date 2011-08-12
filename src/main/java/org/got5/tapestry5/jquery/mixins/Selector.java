@@ -7,6 +7,9 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @since 2.6.0
+ */
 public class Selector {
 	
 	@InjectContainer

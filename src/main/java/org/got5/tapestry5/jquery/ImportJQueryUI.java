@@ -12,6 +12,9 @@ import java.lang.annotation.Target;
 
 import org.apache.tapestry5.ioc.annotations.UseWith;
 
+/**
+ * Annotation used to load JavaScript files from the jQuery-UI project
+ */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

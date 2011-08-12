@@ -58,7 +58,7 @@ public class CustomDatepicker {
      * Mixin afterRender phrase occurs after the component itself. 
      * We will change the JSON option of the jQuery datepicker widget
      */
-    void afterRender()
+	void afterRender()
     {
     	/*
     	 * If the selector parameter is not bound, we will use the clientId of the component using the mixin

@@ -1,7 +1,7 @@
 <html t:type="layoutWithAccordion" 
 t:title="DateField" 
 t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="prop:activeTabIndex" />
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
 	<t:block id="TabsBlock1">
 		<t:componentDocumentation>
 			<p:title>
@@ -37,7 +37,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  	
 	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="29" t:endLine="35" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="83" t:endLine="85" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="52" t:endLine="54" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 	  	
     </t:block>
     <t:block id="TabsBlock3">
@@ -64,7 +64,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 		
 		<div t:type="jquery/showSource" t:ext="html" t:beginLine="46" t:endLine="63" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="88" t:endLine="154" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="57" t:endLine="120" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 		
 	</t:block> 
 	<t:block id="TabsBlockLast">

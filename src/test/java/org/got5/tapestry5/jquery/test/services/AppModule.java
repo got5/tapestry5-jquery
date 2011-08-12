@@ -77,8 +77,8 @@ public class AppModule
 		configuration.add(IDataSource.class, new ApplicationStateContribution(
 				"session", creator));
 	}
-    @Contribute(EffectsParam.class)
     
+    @Contribute(EffectsParam.class)
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.SHAKE);
     }

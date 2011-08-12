@@ -22,9 +22,9 @@ import java.util.List;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.PageReset;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -36,69 +36,81 @@ public class DocsJQuerySlider {
 	@Inject
 	private Request request;
 	
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	@SetupRender
-	private void setupRender(){
-		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Documentation","docs"));
-	    listTabData.add(new JQueryTabData("Example","example"));
-	}
+	public List<JQueryTabData> getListTabData(){
 		
-	
-
-	/*
-	 * First example : the simple slider
-	 */
-	@Property
-	@Persist
-	private int min, max;	
-	
-	@Property
-	@Persist
-	private int val;
-	
-	@Property
-	private JSONObject params;
-	
-	@OnEvent(EventConstants.ACTIVATE)
-	public void initSlider(){
-		if(min==0 && max==0) {
-			max=150;
-			min=10;
-		}
-		params=new JSONObject();
-		params.put("value", val);
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
+		
+	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    
+	    listTabData.add(new JQueryTabData("Example","example"));
+	    
+	    return listTabData;
 	}
 	
-
-	/*
-	 * Second example : the simple slider updating a zone
-	 */
-	
-	@Property
 	@Persist
-	private int slideZone;
-
 	@Property
-	private JSONObject paramsZone;
+	private int tabIndex;
 	
-	@OnEvent(EventConstants.ACTIVATE)
-	public void initSliderZone(){
-		paramsZone=new JSONObject();
-		paramsZone.put("value", slideZone);
+	@PageReset
+	public void resetTabIndex(){
+		tabIndex=0;
 	}
 	
-	@Component
-	private Zone myZone;
-	
-	@OnEvent(value=EventConstants.ACTION, component="sliderZone")
-	public Object returnZone(){
-		String input = request.getParameter("slider");
-		slideZone=Integer.parseInt(input);
-		return myZone.getBody();
+	public void onSubmit(){
+		tabIndex=1;
 	}
+
+/*
+ * First example : the simple slider
+ */
+@Property
+@Persist
+private int min, max;	
+
+@Property
+@Persist
+private int val;
+
+@Property
+private JSONObject params;
+
+@OnEvent(EventConstants.ACTIVATE)
+public void initSlider(){
+	if(min==0 && max==0) {
+		max=150;
+		min=10;
+	}
+	params=new JSONObject();
+	params.put("value", val);
+}
+
+
+/*
+ * Second example : the simple slider updating a zone
+ */
+
+@Property
+@Persist
+private int slideZone;
+
+@Property
+private JSONObject paramsZone;
+
+@OnEvent(EventConstants.ACTIVATE)
+public void initSliderZone(){
+	paramsZone=new JSONObject();
+	paramsZone.put("value", slideZone);
+}
+
+@Component
+private Zone myZone;
+
+@OnEvent(value=EventConstants.ACTION, component="sliderZone")
+public Object returnZone(){
+	String input = request.getParameter("slider");
+	slideZone=Integer.parseInt(input);
+	return myZone.getBody();
+}
 	
 
 	

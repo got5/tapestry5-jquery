@@ -41,22 +41,22 @@ public class Palette
 
     public List<SpecialHandling> getHandling()
     {
-	return _handling;
+    	return _handling;
     }
 
     public void setHandling(List<SpecialHandling> handling)
     {
-	_handling = handling;
+    	_handling = handling;
     }
 
     public ValueEncoder<SpecialHandling> getEncoder()
     {
-	return _encoder;
+    	return _encoder;
     }
 
     public SelectModel getModel()
     {
-	return _model;
+    	return _model;
     }
 
 }

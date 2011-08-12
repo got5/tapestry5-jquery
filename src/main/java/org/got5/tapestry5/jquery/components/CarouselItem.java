@@ -90,9 +90,6 @@ public class CarouselItem implements ClientElement {
 		return StringUtils.isNotEmpty(event);
 	}
 	
-	
-	
-	
 	@SetupRender
 	public boolean init(MarkupWriter w){
 		w.element("li");
@@ -131,9 +128,6 @@ public class CarouselItem implements ClientElement {
 		return false;
 		
 	}
-	
-	
-	
 	
 	public String getClientId(){
         return this.clientId;

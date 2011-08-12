@@ -23,6 +23,6 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </ul>
     	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="23" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="61" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.java"></div>    	
     </t:block>
 </html>

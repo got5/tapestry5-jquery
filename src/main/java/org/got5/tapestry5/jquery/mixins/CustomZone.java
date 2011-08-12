@@ -20,7 +20,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * This mixin allows you to override the default configuration parameters of the Effect method, 
  * used by the Tapestry Zone component. 
  * 
- * @since 2.1.2
+ * @since 2.6.0
  * @see <a href="http://jqueryui.com/docs/effect/</a>
  */
 
@@ -64,7 +64,7 @@ public class CustomZone {
      *      - the JSON parameter
      *      - call the widget in order to change the parameter
      */
-    void afterRender()
+	void afterRender()
     {
     	/*
     	 * If the Selector parameter is not bound, we use the clientId of element using the mixin

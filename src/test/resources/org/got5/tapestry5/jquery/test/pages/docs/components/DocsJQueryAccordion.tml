@@ -3,7 +3,7 @@ t:title="jQuery Accordion"
 t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
    
 
-<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="tabIndex" />
 
 	<t:block id="docs">
 			<t:componentDocumentation>
@@ -48,30 +48,30 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  </t:block>
     	
       <t:block id="example">
-<t:jquery.accordion  t:listOfElements="prop:list" t:activeElementId="1" />
+<t:jquery.accordion  t:listOfElements="prop:list" t:activeElementId="activeElement" />
 
-	<t:block id="block1">
-		<h3>Element 1</h3>
-		<hr/>
-		content from block 1
-	</t:block>
+<t:block id="block1">
+	<h3>Element 1</h3>
+	<hr/>
+	content from block 1
+</t:block>
 		
-	<t:block id="block2">
-		<h3>Element 2</h3>
-		<hr/>	
-		content from block 2
-	</t:block>
+<t:block id="block2">
+	<h3>Element 2</h3>
+	<hr/>	
+	content from block 2
+</t:block>
 		
-	<t:block id="block3">
-		<h3>Element 3</h3>
-		<hr/>
-		content from block 3
-	</t:block>
+<t:block id="block3">
+	<h3>Element 3</h3>
+	<hr/>
+	content from block 3
+</t:block>
 		
-	<t:block id="block4">
-		<h3>Element 4</h3>
-		<hr/>
-		content from block 4
+<t:block id="block4">
+	<h3>Element 4</h3>
+	<hr/>
+	content from block 4
 	<t:form>
 		<t:datefield value="sysDate"/>
 		<input type="submit"/>
@@ -79,7 +79,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </t:block>
 			
 			<div t:type="jquery/showSource" t:ext="html" t:beginLine="51" t:endLine="79" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.tml"></div>      		
-      			<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.java"></div>
+      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="45" t:endLine="67" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.java"></div>
 	  </t:block>
 
 </html>
