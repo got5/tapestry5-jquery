@@ -10,16 +10,18 @@ import org.slf4j.Logger;
 public class SelectorBindingFactory implements BindingFactory {
 	private final Logger logger;
 	private final JavaScriptSupport javaScriptSupport;
+	private final RenderTracker selectorTracker;
 	
-	public SelectorBindingFactory(Logger logger, JavaScriptSupport javaScriptSupport) {
+	public SelectorBindingFactory(Logger logger, JavaScriptSupport javaScriptSupport,RenderTracker selectorTracker) {
 		this.logger = logger;
 		this.javaScriptSupport = javaScriptSupport;
+		this.selectorTracker = selectorTracker;
 	}
 
 	public Binding newBinding(String description, ComponentResources container, ComponentResources component,
 		                              String expression, Location location) {
 		
-		return new SelectorBinding(location, description, component, expression, logger, javaScriptSupport);
+		return new SelectorBinding(location, description, component, expression, logger, javaScriptSupport, selectorTracker);
 	}
 
 }
