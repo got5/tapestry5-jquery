@@ -27,11 +27,11 @@ public class Selector {
 	private RenderTracker renderTracker;
 	
 	void beginRender() {
-		renderTracker.setRendering(resources.getContainer());
+		//renderTracker.push(resources.getContainer());
 	}
 	
 	void afterRender() {
-		renderTracker.setRendering(null);
+		//renderTracker.pop();
 		String id = resources.getId();
 		if ( renderTracker.getIdMap().containsKey(id) && ClientElement.class.isAssignableFrom( component.getClass())) {
 			ClientElement clientElement = (ClientElement) component;

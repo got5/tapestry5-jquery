@@ -6,10 +6,19 @@ import org.apache.tapestry5.func.Predicate;
 import org.apache.tapestry5.model.MutableComponentModel;
 import org.apache.tapestry5.services.ClassTransformation;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
+import org.apache.tapestry5.services.ComponentMethodAdvice;
+import org.apache.tapestry5.services.ComponentMethodInvocation;
+import org.apache.tapestry5.services.TransformField;
 import org.apache.tapestry5.services.TransformMethod;
+import org.apache.tapestry5.services.TransformMethodSignature;
 import org.got5.tapestry5.jquery.mixins.Selector;
 
 public class RenderTrackerMixinWorker implements ComponentClassTransformWorker {
+	private final RenderTracker renderTracker;
+	
+	public RenderTrackerMixinWorker(RenderTracker renderTracker) {
+		this.renderTracker = renderTracker;
+	}
 
 	public void transform(ClassTransformation transformation, MutableComponentModel model) {
 
@@ -31,6 +40,24 @@ public class RenderTrackerMixinWorker implements ComponentClassTransformWorker {
 				return;
 			}
 		}
+		TransformMethod beginRender = transformation.getOrCreateMethod( new TransformMethodSignature("beginRender"));
+		beginRender.addAdvice( new ComponentMethodAdvice() {
+			
+			public void advise(ComponentMethodInvocation invocation) {				
+				renderTracker.push(invocation.getInstance());
+				
+			}
+		});
+		TransformMethod afterRender = transformation.getOrCreateMethod( new TransformMethodSignature("afterRender"));
+		afterRender.addAdvice( new ComponentMethodAdvice() {
+			
+			public void advise(ComponentMethodInvocation invocation) {				
+				renderTracker.pop();
+				
+			}
+		});
+		
+		
 		model.addMixinClassName(Selector.class.getName());
 				
 	}
