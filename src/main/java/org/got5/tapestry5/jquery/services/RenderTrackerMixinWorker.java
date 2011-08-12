@@ -43,7 +43,7 @@ public class RenderTrackerMixinWorker implements ComponentClassTransformWorker {
 			}
 		}
 		
-		model.addMixinClassName(Selector.class.getName());
+		model.addMixinClassName(Selector.class.getName(),"before:*");
 				
 	}
 
