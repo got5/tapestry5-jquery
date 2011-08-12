@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.apache.tapestry5.func.Predicate;
 import org.apache.tapestry5.model.MutableComponentModel;
+import org.apache.tapestry5.runtime.Component;
 import org.apache.tapestry5.services.ClassTransformation;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
+import org.apache.tapestry5.services.ComponentInstanceOperation;
 import org.apache.tapestry5.services.ComponentMethodAdvice;
 import org.apache.tapestry5.services.ComponentMethodInvocation;
 import org.apache.tapestry5.services.TransformField;
@@ -40,23 +42,6 @@ public class RenderTrackerMixinWorker implements ComponentClassTransformWorker {
 				return;
 			}
 		}
-		TransformMethod beginRender = transformation.getOrCreateMethod( new TransformMethodSignature("beginRender"));
-		beginRender.addAdvice( new ComponentMethodAdvice() {
-			
-			public void advise(ComponentMethodInvocation invocation) {				
-				renderTracker.push(invocation.getInstance());
-				
-			}
-		});
-		TransformMethod afterRender = transformation.getOrCreateMethod( new TransformMethodSignature("afterRender"));
-		afterRender.addAdvice( new ComponentMethodAdvice() {
-			
-			public void advise(ComponentMethodInvocation invocation) {				
-				renderTracker.pop();
-				
-			}
-		});
-		
 		
 		model.addMixinClassName(Selector.class.getName());
 				
