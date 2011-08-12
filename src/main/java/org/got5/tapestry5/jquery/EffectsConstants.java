@@ -18,6 +18,8 @@ public class EffectsConstants {
 	 
 	 public static final String EXPLODE = "${jquery.ui.path}/jquery.effects.explode.js";
 	 
+	 public static final String FADE = "${jquery.ui.path}/jquery.effects.fade.js";
+	 
 	 public static final String FOLD = "${jquery.ui.path}/jquery.effects.fold.js";
 	 
 	 public static final String HIGHLIGHT = "${jquery.ui.path}/jquery.effects.highlight.js";
