@@ -12,7 +12,6 @@ public class JSSupportImpl implements JSSupport {
 	public JSSupportImpl(JSLocator jsLocator, Logger logger) {
 		this.jsLocator = jsLocator;
 		scriptBuffer = new StringBuffer();
-		scriptBuffer.append("function jsOnLoad() {");
 	}
 
 	public void addScript(String script) {
@@ -20,6 +19,10 @@ public class JSSupportImpl implements JSSupport {
 	}
 
 	public String store() {
+		if ( scriptBuffer.length() == 0 ) {
+			return null;
+		}
+		scriptBuffer.insert(0,"function jsOnLoad() {");
 		scriptBuffer.append("}");
 		return jsLocator.store(scriptBuffer.toString());
 	}
