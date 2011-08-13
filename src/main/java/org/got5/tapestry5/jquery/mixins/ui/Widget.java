@@ -12,6 +12,7 @@ import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.services.js.JSSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
+import org.slf4j.Logger;
 
 /**
  * 
@@ -22,6 +23,9 @@ public class Widget {
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private JSONObject options;
+	
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
+	private String script;
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String name;
@@ -42,6 +46,9 @@ public class Widget {
 	@Inject
 	private JSSupport jsSupport;
 	
+	@Inject
+	private Logger logger;
+	
 	String widgetName() {
 		if ( name != null ) {
 			return name;
@@ -50,7 +57,13 @@ public class Widget {
 	}
 	
 	void afterRender() {
-		String init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
+		String init = null;
+		if ( script != null ) {
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
+		} else {
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
+		}
+		logger.info("init {}",init);
 		//javaScriptSupport.addScript(init);
 		jsSupport.addScript(init);
 	}
