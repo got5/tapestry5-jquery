@@ -27,6 +27,7 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
@@ -47,7 +48,9 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.js.JSModule;
 
+@SubModule(JSModule.class)
 public class JQueryModule
 {	
     public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration,

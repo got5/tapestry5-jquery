@@ -10,6 +10,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
+import org.got5.tapestry5.jquery.services.js.JSSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -38,6 +39,9 @@ public class Widget {
 	@Inject
 	private WidgetParams widgetParams;
 	
+	@Inject
+	private JSSupport jsSupport;
+	
 	String widgetName() {
 		if ( name != null ) {
 			return name;
@@ -47,7 +51,8 @@ public class Widget {
 	
 	void afterRender() {
 		String init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
-		javaScriptSupport.addScript(init);
+		//javaScriptSupport.addScript(init);
+		jsSupport.addScript(init);
 	}
 	
 	private JSONObject overrideParams(){
