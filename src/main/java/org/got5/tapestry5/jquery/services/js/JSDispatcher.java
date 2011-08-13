@@ -20,7 +20,7 @@ public class JSDispatcher implements Dispatcher {
 
 	public boolean dispatch(Request request, Response response) throws IOException {
 		String path = request.getPath();
-
+		logger.info("path {}",path);
         if (!path.startsWith(pathPrefix))
                 return false;
         
