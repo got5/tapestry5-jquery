@@ -63,7 +63,6 @@ public class Widget {
 		} else {
 			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
 		}
-		logger.info("init {}",init);
 		//javaScriptSupport.addScript(init);
 		jsSupport.addScript(init);
 	}
