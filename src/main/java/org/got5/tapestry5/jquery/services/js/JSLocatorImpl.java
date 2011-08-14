@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.Session;
 import org.slf4j.Logger;
 
 /*
@@ -23,6 +24,8 @@ import org.slf4j.Logger;
  * removedScripts
  * 
  * This will allow better management and remove the race condition
+ * 
+ * Would it be better to store this in the Session?
  */
 public class JSLocatorImpl implements JSLocator {
 	private final Map<String, Content> scripts = new HashMap<String, Content>(1000);
@@ -32,9 +35,10 @@ public class JSLocatorImpl implements JSLocator {
 	public JSLocatorImpl(Logger logger, Request request) {
 		this.logger = logger;
 		this.request = request;
+		Session session = request.getSession(true);
 	}
 	
-	public String store(String script) {
+	public String store(final String script) {
 		String key = createKey(script);
 		Content content = scripts.get(key);
 		if ( content != null ) {
