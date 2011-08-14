@@ -20,7 +20,7 @@ public class JSModule {
 	public static void bind(ServiceBinder binder) {
 		binder.bind(Dispatcher.class,JSDispatcher.class).withId("js");
 		binder.bind(JSHandler.class, JSHanderImpl.class);
-		binder.bind(JSLocator.class,JSLocatorImpl.class);
+		binder.bind(JSLocator.class,JSLocatorSession.class);
 		binder.bind(JSSupport.class,JSSupportImpl.class);
 	}
 	
