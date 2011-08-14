@@ -60,11 +60,11 @@ public class Widget {
 		String init = null;
 		if ( script != null ) {
 			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
+			jsSupport.addScript(init);
 		} else {
 			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
-		}
-		//javaScriptSupport.addScript(init);
-		jsSupport.addScript(init);
+			javaScriptSupport.addScript(init);
+		}		
 	}
 	
 	private JSONObject overrideParams(){
