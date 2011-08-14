@@ -1,0 +1,58 @@
+<html t:type="layoutWithAccordion" 
+	  t:activeElement="literal:2"
+	  t:title="Widget"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+    
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    
+    <t:block id="docs">
+    	<t:componentDocumentation>
+			<p:title>
+				Widget Mixin
+			</p:title>
+			<p:description>
+				Interface for jQuery UI widgets. Generally subclassed to create a specific type of widget. See slider.
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://docs.jquery.com/UI_Developer_Guide"/></p:link_1>
+			<p:param_1>
+				<t:componentParameter
+					t:name="options"
+					t:required="false"
+					t:javaType="JSONObject"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="Arguments used to contruct the widget. Defaults may be supplied thru the WidgetParms service."
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="script"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="Experimental! Allows passing javascript functions (or anything) to widgets. This option
+					will contruct a javascript url for the request and use a script tag to fetch it. The gets around JSONObject
+					datatype limitations but adds complications in load balanced/high volume environments."
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="name"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="this.getClass().getSimpleName().toLowerCase()"
+					t:description="Name of the jQuery widget. Typically supplied by subclassing widget to a jQuery widget name."
+				/>
+			</p:param_3>
+		</t:componentDocumentation>
+	</t:block>
+    
+    <t:block id="example">
+   		<div t:type="any"  t:mixins="bind" bind.name="slider" bind.options="{min:0, max: 100}"></div>	   	
+    </t:block>
+    
+</html>
