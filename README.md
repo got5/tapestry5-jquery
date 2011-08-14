@@ -59,7 +59,7 @@ Exclusive jQuery Mixins :
 - **Button** 
 	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)
 - **Bind** 
-	- binds jQuery events to Java Objects and HTML elements. based on [http://api.jquery.com/bind/](http://api.jquery.com/bind/)
+	- binds jQuery events to Tapestry pages/components and HTML elements. based on [http://api.jquery.com/bind/](http://api.jquery.com/bind/)
 - **CustomDatepicker**
 	- Based on [http://jqueryui.com/demos/datepicker](http://jqueryui.com/demos/datepicker)
 - **Mask** 
