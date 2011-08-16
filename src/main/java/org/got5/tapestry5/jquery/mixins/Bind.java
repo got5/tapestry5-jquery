@@ -13,6 +13,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.EffectsConstants;
 
 @Import(library = { "${assets.path}/mixins/bind/bind.js" })
 public class Bind {
@@ -144,17 +145,59 @@ public class Bind {
 		javaScriptSupport.addInitializerCall("jqbind", spec);
 		if (doImports) {
 			if (zoneUpdate != null) {
-				javaScriptSupport
-						.importJavaScriptLibrary(assetSource.getClasspathAsset(String
-								.format("/org/got5/tapestry5/jquery/ui_1_8/jquery.effects.%s.js",
-										zoneUpdate)));
+				String effect = findEffect(zoneUpdate);
+				if ( effect != null ) {
+					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
+				}
 			}
 			if (hideEffect != null) {
-				javaScriptSupport
-						.importJavaScriptLibrary(assetSource.getClasspathAsset(String
-								.format("/org/got5/tapestry5/jquery/ui_1_8/jquery.effects.%s.js",
-										hideEffect)));
+				String effect = findEffect(zoneUpdate);
+				if ( effect != null ) {
+					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
+				}
 			}
 		}
 	}
+	
+	private String findEffect(String effect) {
+		effect = effect.toUpperCase();
+		if ( effect.equals("BLIND")) {
+			return EffectsConstants.BLIND;
+		}
+		if ( effect.equals("BOUNCE")) {
+			return EffectsConstants.BOUNCE;
+		}
+		if ( effect.equals("CLIP")) {
+			return EffectsConstants.CLIP;
+		}
+		if ( effect.equals("DROP")) {
+			return EffectsConstants.DROP;
+		}
+		if ( effect.equals("EXPLODE")) {
+			return EffectsConstants.EXPLODE;
+		}
+		if ( effect.equals("FOLD")) {
+			return EffectsConstants.FOLD;
+		}
+		if ( effect.equals("HIGHLIGHT")) {
+			return EffectsConstants.HIGHLIGHT;
+		}
+		if ( effect.equals("PULSATE")) {
+			return EffectsConstants.PULSATE;
+		}
+		if ( effect.equals("SCALE")) {
+			return EffectsConstants.SCALE;
+		}
+		if ( effect.equals("SHAKE")) {
+			return EffectsConstants.SHAKE;
+		}
+		if ( effect.equals("SLIDE")) {
+			return EffectsConstants.SLIDE;
+		}
+		if ( effect.equals("TRANSFER")) {
+			return EffectsConstants.TRANSFER;
+		}
+		return null;
+	}
+	
 }

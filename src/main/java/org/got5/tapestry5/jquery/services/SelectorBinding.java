@@ -4,8 +4,11 @@ import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.Location;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.runtime.Component;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.slf4j.Logger;
 
 /**
@@ -18,20 +21,19 @@ public class SelectorBinding extends AbstractBinding {
 	private final String description;
 	private final String tid;
 	private final ComponentResources componentResources;
-	private final Logger logger;
-	private final JavaScriptSupport javaScriptSupport;
-	private final RenderTracker renderTracker;
+	private final RenderTracker renderTracker;	@Inject
+	private final String jqueryAlias;
 	
 	
 	public SelectorBinding(Location location, String description, ComponentResources componentResources, 
-			String value, Logger logger, JavaScriptSupport javaScriptSupport, RenderTracker selectorTracker) {
+			String value, RenderTracker selectorTracker,
+			 String alias) {
 		super(location);
 		this.description = description;
 		this.tid = value;
 		this.componentResources = componentResources;
-		this.logger = logger;
-		this.javaScriptSupport = javaScriptSupport;
 		this.renderTracker = selectorTracker;
+		this.jqueryAlias = alias;
 	}
 
 	public Object get() {	
@@ -42,7 +44,7 @@ public class SelectorBinding extends AbstractBinding {
 			c = componentResources.getEmbeddedComponent(tid);
 		}
 		if ( c == null ) {
-			throw new IllegalArgumentException("can't find id for selector binding:" + tid);
+			throw new IllegalArgumentException("Can't find id for selector binding:" + tid);
 		}
 		String id = null;
 		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
@@ -55,10 +57,10 @@ public class SelectorBinding extends AbstractBinding {
 		}
 		
 		if ( id != null ) {
-			return String.format("jQuery('#%s')",id);
+			return String.format("%s('#%s')",jqueryAlias,id);
 		}
 		renderTracker.getIdMap().put(tid, true);
-		return String.format("jQuery(selector['%s'])",tid);
+		return String.format("%s(selector['%s'])",jqueryAlias,tid);
 	}
 	
 	@Override
