@@ -7,7 +7,7 @@
 
         <classes>
           <class name="org.got5.tapestry5.jquery.test.AjaxFormLoopTest"></class>
-           <class name="org.got5.tapestry5.jquery.test.BindTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.BindTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CarouselTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CheckboxTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.CustomDatepickerTest"></class> 

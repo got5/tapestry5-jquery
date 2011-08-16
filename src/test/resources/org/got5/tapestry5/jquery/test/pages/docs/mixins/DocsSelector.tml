@@ -23,11 +23,12 @@
 				This may or may not be the one you want.  
 			</p:description>
 			
-			<p:link_1><t:componentLink t:url="http://jqueryui.com/demos/slider/"/></p:link_1>
+			
 		</t:componentDocumentation>
 	</t:block>
     
     <t:block id="example">
+    
    		<t:any class="${selector:this}" t:mixins="jquery/ui/slider,slidechange" 
 	    	slidechange.event="slidechange"
 	    	slidechange.callback="function (event,ui,url) {url.addContext( ${selector:this}.slider('option','value') )}"
@@ -37,7 +38,19 @@
 	    <t:any >${selector:this}</t:any>
 	    <t:any >${selector:this}</t:any>
 	    <t:any t:id="test">${selector:this} ${selector:first}</t:any>
-	    ${selector:this}</t:any>   	
+	    ${selector:this}</t:any>  
+	    
+	    
+	    <br />
+	    <br />
+	    <br />
+	    <br />
+	    <br />
+	    <br />
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="32" t:endLine="42" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsSelector.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsSelector.java"></div>
+	     	
     </t:block>
     
 </html>

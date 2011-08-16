@@ -114,6 +114,9 @@
 				<!--  Exclusives jQuery components -->
 			   	
 			    <ul>
+			   		<li>
+			     		<t:pagelink t:page="docs/mixins/DocsBind">Bind</t:pagelink>
+			     	</li>
 			    	<li>
 			     		<t:pagelink t:page="docs/mixins/DocsButton">Button</t:pagelink>
 			     	</li>
@@ -127,8 +130,14 @@
 			            <t:pagelink t:page="docs/mixins/Docsreveal">Reveal</t:pagelink>
 			        </li>
 			        <li>
+			     		<t:pagelink t:page="docs/mixins/DocsSelector">Selector</t:pagelink>
+			     	</li>
+			        <li>
 			            <t:pagelink t:page="docs/mixins/DocsTooltip">Tooltip</t:pagelink>
 			        </li>
+			        <li>
+			     		<t:pagelink t:page="docs/mixins/DocsWidget">Widget</t:pagelink>
+			     	</li>
 			        
 			    </ul>		
 			</t:block>

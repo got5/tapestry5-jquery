@@ -52,7 +52,17 @@
 	</t:block>
     
     <t:block id="example">
-   		<div t:type="any"  t:mixins="bind" bind.name="slider" bind.options="{min:0, max: 100}"></div>	   	
+   		<div t:type="any"  t:mixins="jquery/ui/widget" name="slider" options="{min:0, max: 100}"></div>	
+   		
+   		<p>With slider subclass</p>
+   		<div t:type="any"  t:mixins="slider" slider.options="{min:0, max: 100}"></div>   
+   		
+   			    <br />
+	    <br />
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="55" t:endLine="59" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.java"></div>
+   			
     </t:block>
     
 </html>
