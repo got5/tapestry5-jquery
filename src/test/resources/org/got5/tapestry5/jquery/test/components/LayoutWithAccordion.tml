@@ -132,7 +132,13 @@
 			        
 			    </ul>		
 			</t:block>
-		
+			<t:block id="block4">
+				<ul>
+					<li>
+			            <t:pagelink t:page="docs/mecanism/Services">Services</t:pagelink>
+			        </li>
+				</ul>
+			</t:block>
 		</div>
 		
 		<div id="main">

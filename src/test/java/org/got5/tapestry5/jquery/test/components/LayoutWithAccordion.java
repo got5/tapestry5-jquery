@@ -57,6 +57,7 @@ public class LayoutWithAccordion
         list.add(new JQueryAccordionData("Core Components","block1"));
         list.add(new JQueryAccordionData("jQuery Components ","block2"));
         list.add(new JQueryAccordionData("jQuery Mixins","block3"));
+        list.add(new JQueryAccordionData("Mecanisms","block4"));
         
 	}
 }
