@@ -35,6 +35,10 @@ public class Widget {
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String script;
 	
+	/**
+	 * Name of the jQuery widget. Typically supplied by subclassing widget 
+	 * to a jQuery widget name.
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String name;
 	

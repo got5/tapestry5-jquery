@@ -9,6 +9,9 @@ import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.TransformMethod;
 import org.got5.tapestry5.jquery.mixins.Selector;
 
+/**
+ * @since 5.2.6
+ */
 public class RenderTrackerMixinWorker implements ComponentClassTransformWorker {
 
 	public void transform(ClassTransformation transformation, MutableComponentModel model) {

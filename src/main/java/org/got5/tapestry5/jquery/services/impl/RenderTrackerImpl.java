@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.services;
+package org.got5.tapestry5.jquery.services.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,11 @@ import java.util.Stack;
 import org.apache.tapestry5.ioc.ScopeConstants;
 import org.apache.tapestry5.ioc.annotations.Scope;
 import org.apache.tapestry5.runtime.Component;
+import org.got5.tapestry5.jquery.services.RenderTracker;
 
+/**
+ * @since 5.2.6
+ */
 @Scope(ScopeConstants.PERTHREAD)
 public class RenderTrackerImpl implements RenderTracker {
 	private Stack<Component> components = new Stack<Component>();

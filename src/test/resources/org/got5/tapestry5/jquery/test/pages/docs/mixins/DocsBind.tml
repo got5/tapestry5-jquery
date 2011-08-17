@@ -186,26 +186,28 @@
 	</t:block>
     
     <t:block id="example">
-   		 <t:any t:mixins="jquery/ui/slider,jquery/bind" 
-    		bind.event="slidechange"
-    		bind.eventType="slidechange"
-    		bind.callback="function (event,ui,url) {url.addContext( ${selector:this}.slider('option','value') )}"
-    		options='{min:0, max:100, value: 10, step: 2 }'>
-   	     </t:any>
-   	     <t:any class="${selector:this}" t:mixins="jquery/ui/slider,slidechange,click" 
-    		slidechange.event="slidechange"
-    		slidechange.callback="function (event,ui,url) {url.addContext( ${selector:this}.slider('option','value') )}"
-    		click.event="click"
-    		click.callback="function (event,ui,url) {url.addContext( ${selector:this}.slider('option','value') )}"
-    		
-    		options='{min:0, max:100, value: 10, step: 2 }'>
-    	</t:any>	
+    	<div>
+    		<h2>How to Bind just a JavaScript event ?</h2>
+    		<p>
+	    	 	With the Bind mixin, we can catch JavaScript events in your Java Class. Tapestry-jQuery will trigger 
+	    	 	an Ajax Request. In this example, I will bind the slidechange event of the slider widget
+    	 	</p>
+    	 
+<t:any class="${selector:this}" t:mixins="slider,jquery/bind" 
+	bind.event="slidechange"
+	bind.eventType="slidechange"
+	bind.callback="function (event,ui,url) {alert('This is the call back function');}"
+	bind.zone="zoneSlideChange"
+	options='{min:0, max:100, value: 10, step: 2 }'>
+</t:any>	
     	
+    	<div t:type="zone" id="zoneSlideChange" t:id="zoneSlideChange" t:visible="false">Zone for the SlideChange event : ${textZone}</div>
     	<br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="189" t:endLine="203" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="202" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
- 
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="38" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
+ 		</div>
+
     </t:block>
     
 </html>

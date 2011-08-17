@@ -36,6 +36,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
+import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;

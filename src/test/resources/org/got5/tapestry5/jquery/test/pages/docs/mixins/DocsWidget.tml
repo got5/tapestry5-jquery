@@ -52,17 +52,32 @@
 	</t:block>
     
     <t:block id="example">
-   		<div t:type="any"  t:mixins="jquery/ui/widget" name="slider" options="{min:0, max: 100}"></div>	
-   		
-   		<p>With slider subclass</p>
-   		<div t:type="any"  t:mixins="slider" slider.options="{min:0, max: 100}"></div>   
-   		
-   			    <br />
+    	<div>
+    		<h2>Create a new mixin with just the Widget Class</h2>
+    		<p>
+    			You can use a jQuery Widget, which is not available as a mixin in your project, by using
+    			the <b>Widget</b> class and its <b>name</b> parameter. Tapestry-jQuery
+    			will use this value for the name of the widget to execute.<br /> 
+    			In this example, we want to use the Slider widget (completely different from the Tapestry-jQuery Slider component).
+    			The name parameter will be "slider" and Tapestry-jQuery will automatically call the jQuery widget : $(selector).slider(options). 
+    		</p>
+<div t:type="any"  t:mixins="jquery/ui/widget" name="slider" options="{min:0, max: 100}"></div>
+    		<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="64" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+    	</div>
+   		<div>
+   			<h2>Create a new mixin with a Sub-Class of Widget</h2>
+   			<p>
+   				You can also create a class, extending the Widget Class, in order to make some initialization for example. You
+   				will put this new class in the mixins sub-package. In this case, you do not have to specify the name parameter. 
+   				By default, Tapestry-jQuery will take the name of the class.
+   			</p>
+<div t:type="any"  t:mixins="slider" slider.options="{min:0, max: 100}"></div>
+   			<div t:type="jquery/showSource" t:ext="html" t:beginLine="74" t:endLine="74" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+   			<div t:type="jquery/showSource" t:ext="java" t:beginLine="6" t:endLine="9" t:path="src/test/java/org/got5/tapestry5/jquery/test/mixins/Slider.java"></div>
+   		</div>	
+   		<br />
 	    <br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="55" t:endLine="59" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.java"></div>
-   			
-    </t:block>
+   </t:block>
     
 </html>

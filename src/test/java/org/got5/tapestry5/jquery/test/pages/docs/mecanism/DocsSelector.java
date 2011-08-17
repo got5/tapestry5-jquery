@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.test.pages.docs.mixins;
+package org.got5.tapestry5.jquery.test.pages.docs.mecanism;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,8 @@ public class DocsSelector {
 	    return listTabData;
 	}
 	 
-	 @OnEvent("slideChanged")
-	 void onSlideChanges(Integer value) {
+	 @OnEvent("slidechange")
+	 void onSlideChanges(String value) {
 		 
 	 }
 }

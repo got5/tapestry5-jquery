@@ -130,9 +130,6 @@
 			            <t:pagelink t:page="docs/mixins/Docsreveal">Reveal</t:pagelink>
 			        </li>
 			        <li>
-			     		<t:pagelink t:page="docs/mixins/DocsSelector">Selector</t:pagelink>
-			     	</li>
-			        <li>
 			            <t:pagelink t:page="docs/mixins/DocsTooltip">Tooltip</t:pagelink>
 			        </li>
 			        <li>
@@ -145,6 +142,9 @@
 				<ul>
 					<li>
 			            <t:pagelink t:page="docs/mecanism/Services">Services</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="docs/mecanism/DocsSelector">Selector Binding</t:pagelink>
 			        </li>
 				</ul>
 			</t:block>
