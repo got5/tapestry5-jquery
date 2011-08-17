@@ -10,7 +10,9 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
+import org.got5.tapestry5.jquery.services.js.JSSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
+import org.slf4j.Logger;
 
 /**
  * Class used for creating a jQuery Widget
@@ -31,6 +33,9 @@ public class Widget {
 	 * By convention, the value is the name of the Mixin Class
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
+	private String script;
+	
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String name;
 	
 	@InjectContainer
@@ -46,6 +51,12 @@ public class Widget {
 	@Inject
 	private WidgetParams widgetParams;
 	
+	@Inject
+	private JSSupport jsSupport;
+	
+	@Inject
+	private Logger logger;
+	
 	String widgetName() {
 		if ( name != null ) {
 			return name;
@@ -54,8 +65,14 @@ public class Widget {
 	}
 	
 	void afterRender() {
-		String init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
-		javaScriptSupport.addScript(init);
+		String init = null;
+		if ( script != null ) {
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
+			jsSupport.addScript(init);
+		} else {
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
+			javaScriptSupport.addScript(init);
+		}		
 	}
 	
 	private JSONObject overrideParams(){

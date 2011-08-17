@@ -23,6 +23,7 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
@@ -41,7 +42,9 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.js.JSModule;
 
+@SubModule(JSModule.class)
 public class JQueryModule
 {	
     public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration,
@@ -115,6 +118,7 @@ public class JQueryModule
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
       binder.bind(EffectsParam.class, EffectsParamImpl.class);
       binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
+      binder.bind(RenderTracker.class, RenderTrackerImpl.class);
     }
     
     
@@ -139,6 +143,13 @@ public class JQueryModule
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
+    
+    @Contribute(ComponentClassTransformWorker.class)   
+    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker> workers) {    
+        workers.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
+    
+    }
+
 
 
 }

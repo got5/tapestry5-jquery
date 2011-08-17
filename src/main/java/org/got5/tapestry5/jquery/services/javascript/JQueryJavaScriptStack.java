@@ -128,7 +128,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     public String getInitialization()
     {
     	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
-        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true;";
+        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
     }
 
     public List<Asset> getJavaScriptLibraries()
