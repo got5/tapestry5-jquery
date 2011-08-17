@@ -4,12 +4,7 @@ import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.Location;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.runtime.Component;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.JQuerySymbolConstants;
-import org.slf4j.Logger;
 
 /**
  * 
@@ -21,7 +16,7 @@ public class SelectorBinding extends AbstractBinding {
 	private final String description;
 	private final String tid;
 	private final ComponentResources componentResources;
-	private final RenderTracker renderTracker;	@Inject
+	private final RenderTracker renderTracker;
 	private final String jqueryAlias;
 	
 	
