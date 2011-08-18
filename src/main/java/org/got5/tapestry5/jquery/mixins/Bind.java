@@ -152,10 +152,10 @@ public class Bind {
 	String event() {
 		return event;
 	}
-	@Inject private ComponentResources parent;
+	
 	Link createLink(String event, String marker) {
-		/*ComponentResources parent = resources.getContainerResources()
-				.getContainerResources();*/
+		ComponentResources parent = resources.getContainerResources()
+				.getContainerResources();
 		Object[] o = context;
 		if (callback != null) {
 			if (o == null) {

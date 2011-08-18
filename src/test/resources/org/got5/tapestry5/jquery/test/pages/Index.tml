@@ -36,12 +36,12 @@
  		<br/><br/>
  		<!-- source content start -->
 		<div style="padding:10px;"><pre>
-		<![CDATA[
-		<t:form>
-        	<t:jquery.autocomplete />
-				<t:submit />
-    		</t:form>
-    		]]>
+<![CDATA[
+<t:form>
+	<t:jquery.autocomplete />
+	<t:submit />
+</t:form>
+]]>
     	</pre></div>
 		<!-- source content end -->
 		
@@ -52,18 +52,18 @@
 		<br/><br/>
 		<!-- source content start -->
 		<div style="padding:10px;"><pre>
-		<![CDATA[
-		<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      		xmlns:p="tapestry:parameter"
-      		xmlns:j="tapestry-library:jquery">
+<![CDATA[
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter"
+    xmlns:j="tapestry-library:jquery">
 		
-    	<t:form>
-        	<j:palette />
-        	<t:textfield t:mixins="jquery/autocomplete" ... />
-        	<t:submit />
-    	</t:form>
-    	</html>
-		]]>
+<t:form>
+	<j:palette />
+    <t:textfield t:mixins="jquery/autocomplete" ... />
+    <t:submit />
+</t:form>
+</html>
+]]>
 		</pre></div>
 		<!-- source content end -->
 		<br/><br/>
@@ -97,14 +97,15 @@
 	<t:block id="block4">
 
 		## List Of Contributors<br/>
-		- Robin Komiwes as robink		<br/>
-		- Andreas Andreou as andyhot	<br/>
-		- Christian Riedel as criedel	<br/>
-		- Francois Facon as got5     	<br/>
-		- Tom van Dijk as trolando		<br/>
+		- Robin KOMIWES as robink		<br/>
+		- Andreas ANDREOU as andyhot	<br/>
+		- Christian RIEDEL as criedel	<br/>
+		- Francois FACON as got5     	<br/>
+		- Tom van DIJK as trolando		<br/>
 		- Emmanuel DEMEY as Gillespie59	<br/>
-		- Clement Uster as cluster		<br/>
-		- Amaury Willemant as awillemant<br/>
+		- Clement USTER as cluster		<br/>
+		- Amaury WILLEMANT as awillemant<br/>
+		- Barry BOOKS as trsvax<br/>"
 
 		<br/><br/>
 		##Hosting<br/>
@@ -112,12 +113,41 @@
 
 		<br/><br/>
 		## Changelog<br/>
+		<b>>> 2.6.0 :</b> 
+		<div class="releasenotes">
+			<ul>
+				<li>Switch to Tapestry 5.2.6</li>
+				<li>Add Mixins : CustomZone, Widget</li>
+				<li>Other Mecanisms : EffectsParam, WidgetParams, Selector Binding</li>
+			</ul>
+		</div>
+		<b>>> 2.1.1 :</b>
+		<div class="releasenotes">
+			<ul>
+				<li>Add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish</li>
+				<li>Add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip</li>
+			</ul>
+		</div>
+		<b>>> 2.1.0 :</b>
+		<div class="releasenotes">
+			<ul>
+				<li>Switch to Tapestry 5.2.5</li>
+				<li>Add (Tabs, Accordion, AjaxUpload, Button)</li>
+			</ul>
+		</div>
+		<b>>> 1.1-SNAPSHOT :</b>
+		<div class="releasenotes">
+			<ul>
+				<li>Exclusive jQuery components</li>
+			</ul>
+		</div>
+		<b>>> 1.0-SNAPSHOT :</b>
+		<div class="releasenotes">
+			<ul>
+				<li>Initial releases</li>
+			</ul>
+		</div>		  
 		
-		- 2.1.1 : add (Slider, Mask, Tooltip, Carousel )	<br/>
-		- 2.1.0 : switch to Tapestry 5.2.5
-		  		  add (Tabs, Accordion, AjaxUpload, Button)	<br/>
-		- 1.1-SNAPSHOT : exclusive jQuery components		<br/>
-		- 1.0-SNAPSHOT : initial releases					<br/>
 	</t:block>
    
     
