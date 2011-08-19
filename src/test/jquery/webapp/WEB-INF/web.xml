@@ -12,8 +12,13 @@ of where to look for pages, components and mixins. -->
     </context-param>
     <context-param>
         <param-name>ganalytics.key</param-name>
-        <param-value>Test2</param-value>
+        <param-value></param-value>
     </context-param>
+    <context-param>
+        <param-name>enableAnalytics</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    
 	<filter>
         <filter-name>app</filter-name>
         <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>
