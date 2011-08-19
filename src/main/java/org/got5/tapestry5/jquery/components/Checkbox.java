@@ -1,6 +1,5 @@
 package org.got5.tapestry5.jquery.components;
 
-import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.json.JSONObject;
@@ -23,7 +22,7 @@ public class Checkbox extends org.apache.tapestry5.corelib.components.Checkbox{
 	@Environmental
     private JavaScriptSupport javaScriptSupport;
     
-    void afterRender(MarkupWriter writer)
+	void afterRender()
     {
         String id = getClientId();
 

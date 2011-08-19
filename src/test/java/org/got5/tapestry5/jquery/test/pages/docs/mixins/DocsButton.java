@@ -19,26 +19,38 @@ package org.got5.tapestry5.jquery.test.pages.docs.mixins;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tapestry5.annotations.PageReset;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.json.JSONObject;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsButton
 {
-    @Property
-    private String foo;
+	@Persist
+	@Property
+	private String foo;
 
-	 @Property
-	 private List<JQueryTabData> listTabData;
-
-	 @SetupRender
-	 void onSetupRender()
-	 {
-		listTabData = new ArrayList<JQueryTabData>();
-	    listTabData.add(new JQueryTabData("Documentation","docs"));
-	    listTabData.add(new JQueryTabData("Example","example"));
+	public List<JQueryTabData> getListTabData()
+	{
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
 	    
-	    JSONObject params = new JSONObject();
-	 }
+		listTabData.add(new JQueryTabData("Documentation","docs"));
+	    
+		listTabData.add(new JQueryTabData("Example","example"));
+	    
+	    return listTabData;
+	}
+	
+	@Persist
+	@Property
+	private int tabIndex;
+	
+	@PageReset
+	public void resetTabIndex(){
+		tabIndex=0;
+	}
+	
+	public void onSubmit(){
+		tabIndex=1;
+	}
 }

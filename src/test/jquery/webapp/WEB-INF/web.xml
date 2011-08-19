@@ -10,6 +10,10 @@ of where to look for pages, components and mixins. -->
         <param-name>tapestry.app-package</param-name>
         <param-value>org.got5.tapestry5.jquery.test</param-value>
     </context-param>
+    <context-param>
+        <param-name>ganalytics.key</param-name>
+        <param-value>Test2</param-value>
+    </context-param>
 	<filter>
         <filter-name>app</filter-name>
         <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>

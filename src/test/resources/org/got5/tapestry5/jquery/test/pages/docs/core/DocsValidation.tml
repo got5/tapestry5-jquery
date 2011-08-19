@@ -47,8 +47,8 @@
 	        	</t:if>
 	        </p>
 	    </t:zone>    
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="49" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="49" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="43" t:endLine="65" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsValidation.java"></div>    	
     </t:block>
 </html>

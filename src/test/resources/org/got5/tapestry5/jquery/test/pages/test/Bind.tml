@@ -1,0 +1,17 @@
+<html   t:type="layout" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+      
+        <t:zone t:id="clickZone" visible="false">
+   		 	click OK
+   		 </t:zone>
+    
+   		<div t:id="clickHere" t:type="any"  t:mixins="jquery/bind" 
+   			t:eventType="click" t:event="click" t:zone="${clickzone.clientid}"
+   		 >click test</div>
+   		 
+
+   
+    
+</html>

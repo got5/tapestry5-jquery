@@ -364,7 +364,8 @@ $.extend(Tapestry.Initializer, {
 $.widget( "ui.tapestryZone", {
 	options: {
     	show: "highlight",
-    	update: "highlight"
+    	update: "highlight", 
+    	opt: ""
 	},
 
 	_create: function() {
@@ -440,7 +441,7 @@ $.widget( "ui.tapestryZone", {
 		var el = this.element;
 		var effect = el.is(":visible") ? this.options.update : this.options.show;
 
-		el.html(content).effect(effect);
+		el.html(content).effect(effect, this.options.opt.options,this.options.opt.speed,this.options.opt.callback);
         el.trigger(Tapestry.ZONE_UPDATED_EVENT); 
 	}
 	

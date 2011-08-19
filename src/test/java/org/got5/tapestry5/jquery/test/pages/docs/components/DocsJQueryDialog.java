@@ -19,42 +19,44 @@ package org.got5.tapestry5.jquery.test.pages.docs.components;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
+import org.got5.tapestry5.jquery.test.pages.docs.core.Autocomplete;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-public class DocsJQueryDialog
+public class DocsJQueryDialog extends Autocomplete
 {
 	
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	@SetupRender
-	private void setupRender(){
-		listTabData = new ArrayList<JQueryTabData>();
+	public List<JQueryTabData> getListTabData(){
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
 	    listTabData.add(new JQueryTabData("Documentation","docs"));
 	    listTabData.add(new JQueryTabData("Dialog Parameters","dialog"));
 	    listTabData.add(new JQueryTabData("DialogLink Parameters","dialoglink"));
 	    listTabData.add(new JQueryTabData("DialogAjaxLink Parameters","dialogajaxlink"));
 	    listTabData.add(new JQueryTabData("Example","example"));
+	    return listTabData;
 	}
 	
 	
-    @Persist 
+	@Component
+	private Zone myZone;
+	
+	@Persist 
     private Integer count;
-
-    @Component
-    private org.apache.tapestry5.corelib.components.Zone myZone;
 
     @Inject
     private Request request;
 
-    @OnEvent("activate")
+    @Property
+    private String goalName;
+    
+    @OnEvent(EventConstants.ACTIVATE)
     void init()
     {
         if (count == null)
@@ -66,28 +68,13 @@ public class DocsJQueryDialog
         return count++;
     }
 
-    @OnEvent(value = "action")
+    @OnEvent(EventConstants.ACTION)
     Object updateCount()
     {
         if (!request.isXHR()) { return this; }
         return myZone;
     }
     
-    @Property
-    private String goalName;
     
-    List<String> onProvideCompletionsFromGoalName(String partial)
-    {
-        List<String> strings = new ArrayList<String>();
-        if (partial != null && partial.startsWith("abc"))
-        {
-            strings.add("abdcdke");
-            strings.add("hgfdhgfhgf");
-            strings.add("jklhjkhl");
-            strings.add("vcxcvcx");
-        }
-
-        return strings;
-    }
-
+    
 }

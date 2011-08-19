@@ -1,0 +1,213 @@
+<html t:type="layoutWithAccordion" 
+	  t:activeElement="literal:2"
+	  t:title="Bind"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+    
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    
+    <t:block id="docs">
+    	<t:componentDocumentation>
+			<p:title>
+				Bind Mixin
+			</p:title>
+			<p:description>
+				This mixin used jQuery bind to connect java/javascript objects to jQuery events. Bind is easily subclassed
+				to allow more than one event per element.
+			</p:description>
+			
+			<p:link_1><t:componentLink t:url="http://api.jquery.com/bind/"/></p:link_1>
+			
+			<p:param_1>
+				<t:componentParameter
+					t:name="element"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="getClientId()"
+					t:description="Used as the selector for jQuery bind."
+				/>
+			</p:param_1>
+			<p:param_2>
+				<t:componentParameter
+					t:name="event"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="Tapestry event name. For example if you supply click onClick() will be called."
+				/>
+			</p:param_2>
+			<p:param_3>
+				<t:componentParameter
+					t:name="hide"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="ID of element to hide on this event."
+				/>
+			</p:param_3>
+			<p:param_4>
+				<t:componentParameter
+					t:name="hideEffect"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="slide"
+					t:description="jQuery effect used to hide the element."
+				/>
+			</p:param_4>
+			<p:param_5>
+				<t:componentParameter
+					t:name="hideTime"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="500"
+					t:description="Duration of hide effect."
+				/>
+			</p:param_5>
+			<p:param_6>
+				<t:componentParameter
+					t:name="hideOption"
+					t:required="false"
+					t:javaType="Map&lt;String, String&gt;"
+					t:prefix="prop"
+					t:defaultValue="none"
+					t:description="Any options need by the hide effect."
+				/>
+			</p:param_6>
+			<p:param_7>
+				<t:componentParameter
+					t:name="zone"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="If supplied a zone update will be triggered."
+				/>
+			</p:param_7>
+			<p:param_8>
+				<t:componentParameter
+					t:name="zoneUpdate"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="highlight"
+					t:description="Effect used when zone is updating."
+				/>
+			</p:param_8>
+			<p:param_9>
+				<t:componentParameter
+					t:name="callback"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="Javascript anonymous function called by the event. The signature is function(event,ui,url) 
+					where event and ui are described by jQuery bind. The url parameter is structure representing the Tapestry event url
+					and contains the url and a function to add a context. See examples below. "
+				/>
+			</p:param_9>
+			<p:param_10>
+				<t:componentParameter
+					t:name="context"
+					t:required="false"
+					t:javaType="Object[]"
+					t:prefix="prop"
+					t:defaultValue="none"
+					t:description="The context used to construct the event link."
+				/>
+			</p:param_10>
+			<p:param_11>
+				<t:componentParameter
+					t:name="title"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="When an event is triggered the page title is changed to this value."
+				/>
+			</p:param_11>
+			<p:param_12>
+				<t:componentParameter
+					t:name="history"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="none"
+					t:description="Javascript anonymous function called by the event. Used to manage history on the browser.
+					Signature is history(event,ui,url). The parameter types are identical to callback."
+				/>
+			</p:param_12>
+			<p:param_13>
+				<t:componentParameter
+					t:name="eventType"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="this.getClass().getSimpleName().toLowerCase()"
+					t:description="Name of the jQuery event. By subclassing bind you can create mixins named by the jQuery
+					event type. This allows more than one event per element."
+				/>
+			</p:param_13>
+			<p:param_14>
+				<t:componentParameter
+					t:name="preventDefault"
+					t:required="false"
+					t:javaType="Boolean"
+					t:prefix="prop"
+					t:defaultValue="true"
+					t:description="If true calls event.preventDefault()."
+				/>
+			</p:param_14>
+			<p:param_15>
+				<t:componentParameter
+					t:name="doImports"
+					t:required="false"
+					t:javaType="Boolean"
+					t:prefix="prop"
+					t:defaultValue="true"
+					t:description="If true bind will attempt to include the right effect libraries for zone and hide."
+				/>
+			</p:param_15>
+			<p:param_16>
+				<t:componentParameter
+					t:name="contextMarker"
+					t:required="false"
+					t:javaType="String"
+					t:prefix="literal"
+					t:defaultValue="CoNtExT"
+					t:description="Used as a marker by url.addContext() to insert values into the Tapestry event url."
+				/>
+			</p:param_16>
+		</t:componentDocumentation>
+	</t:block>
+    
+    <t:block id="example">
+    	<div>
+    		<h2>How to Bind just a JavaScript event ?</h2>
+    		<p>
+	    	 	With the Bind mixin, we can catch JavaScript events in your Java Class. Tapestry-jQuery will trigger 
+	    	 	an Ajax Request. In this example, I will bind the slidechange event of the slider widget
+    	 	</p>
+    	 
+<t:any class="${selector:this}" t:mixins="slider,jquery/bind" 
+	bind.event="slidechange"
+	bind.eventType="slidechange"
+	bind.callback="function (event,ui,url) {alert('This is the call back function');}"
+	bind.zone="zoneSlideChange"
+	options='{min:0, max:100, value: 10, step: 2 }'>
+</t:any>	
+    	
+    	<div t:type="zone" id="zoneSlideChange" t:id="zoneSlideChange" t:visible="false">Zone for the SlideChange event : ${textZone}</div>
+    	<br />
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="202" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="38" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
+ 		</div>
+
+    </t:block>
+    
+</html>

@@ -7,6 +7,7 @@
 
         <classes>
           <class name="org.got5.tapestry5.jquery.test.AjaxFormLoopTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.BindTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CarouselTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CheckboxTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.CustomDatepickerTest"></class> 
@@ -14,6 +15,8 @@
           <class name="org.got5.tapestry5.jquery.test.JQueryTest"></class>
           <class name="org.got5.tapestry5.jquery.test.MaskTest"></class>
           <class name="org.got5.tapestry5.jquery.test.RevealTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.SelectorTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.SliderTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SuperfishTest"></class>
           <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class> 
         </classes>

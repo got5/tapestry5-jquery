@@ -9,12 +9,19 @@
 - Emmanuel DEMEY as Gillespie59
 - Clément USTER as cluster
 - Amaury WILLEMANT as awillemant
+- Barry BOOKS as trsvax
 
 ##Hosting
 Christophe Furmaniak 	
 
+##Questions? Ideas? Comments?
+http://groups.google.com/group/tapestry5-jquery
+
 ## Changelog
 
+- 2.6.0 : switch to Tapestry 5.2.6
+		  add Mixins : CustomZone, Widget
+		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
 - 2.1.1 : add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish 
 		  add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip	
 - 2.1.0 : switch to Tapestry 5.2.5
@@ -53,14 +60,25 @@ Exclusive jQuery Mixins :
 
 - **Button** 
 	- based on [http://jqueryui.com/demos/button/](http://jqueryui.com/demos/button/)
+- **Bind** 
+	- binds jQuery events to Tapestry pages/components and HTML elements. based on [http://api.jquery.com/bind/](http://api.jquery.com/bind/)
 - **CustomDatepicker**
 	- Based on [http://jqueryui.com/demos/datepicker](http://jqueryui.com/demos/datepicker)
+- **CustomZone**
+	- Based on [http://jqueryui.com/demos/effect/](http://jqueryui.com/demos/effect/)
 - **Mask** 
 	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
 - **Reveal**
 	- Based on [http://www.zurb.com/playground/reveal-modal-plugin](http://www.zurb.com/playground/reveal-modal-plugin)	
+- **Slider**
+	- Based on [http://jqueryui.com/demos/slider](http://jqueryui.com/demos/slider)
 - **Tooltip** 
 	- based on [http://access.aol.com/csun2011/](http://access.aol.com/csun2011/)
+	
+Exclusive jQuery Binding Prefixes :
+
+- **selector**
+    - selector:id returns #clientId allows finding typos at java runtime instead of at javascript runtime
 
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :

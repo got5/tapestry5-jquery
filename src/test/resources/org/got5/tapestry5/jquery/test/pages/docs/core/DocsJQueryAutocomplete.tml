@@ -24,8 +24,8 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	    	Wich Tapestry JQuery component/mixin do you want to use ?
 	    	<t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete" />
 	    </t:form>
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="26" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsJQueryAutocomplete.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="26" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsJQueryAutocomplete.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/Autocomplete.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="26" t:endLine="76"  t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/Autocomplete.java"></div>    	
     </t:block>
 </html>

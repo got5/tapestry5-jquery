@@ -42,9 +42,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	      </div>
 	</div>
 </t:form>  
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="44" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="44" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="39" t:endLine="66" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.java"></div>    	
     </t:block>
     
 </html>

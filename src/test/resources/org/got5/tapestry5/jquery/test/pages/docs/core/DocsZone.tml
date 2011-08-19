@@ -1,9 +1,9 @@
 <html t:type="layoutWithAccordion" t:title="Zone" t:activeElement="0"
 xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
    
-    <t:if test="useTabs">
+    
     <t:jquery.tabs t:listTabData="prop:listTabData" t:activePanelId="0" />
-    </t:if>
+    
 <t:block id="TabsBlock1">
 	<t:componentDocumentation>
 			<p:title>
@@ -32,10 +32,10 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 	Counting via AJAX : ${count}
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="22" t:endLine="33" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
-    
-     <div t:type="jquery/showSource" t:ext="java" t:beginLine="89" t:endLine="100" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
-    </t:block>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="22" t:endLine="33" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="55" t:endLine="73" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+</t:block>
     
 <t:block id="TabsBlock3">
 <h3>jQuery Zone triggered by external form submit</h3>
@@ -55,8 +55,9 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 	</t:ifNotNull>
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="41" t:endLine="56" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
-     <div t:type="jquery/showSource" t:ext="java" t:beginLine="102" t:endLine="112" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="41" t:endLine="56" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="77" t:endLine="94" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 </t:block>
 
 <t:block id="TabsBlock4">
@@ -78,10 +79,42 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 		<p>rendering block-${blockId} after multi zone update</p>
 	</t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="63" t:endLine="79" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
-     <div t:type="jquery/showSource" t:ext="java" t:beginLine="114" t:endLine="130" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="80" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+
+     <div t:type="jquery/showSource" t:ext="java" t:beginLine="97" t:endLine="125" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 
 </t:block>
+<t:block id="TabsBlock5">
+<h3>How can we change the parameters of the Effect method ?</h3>
+<p>
+	You can already specify the name of the effect methods you want to use thanks to the show and update Zone parameter.<br />
+	But the jQuery effect method can take additional parameters : options, speed and callback.<br />
+	<a href="http://jqueryui.com/demos/effect/">http://jqueryui.com/demos/effect/</a><br />
+	You can specify them by using the customZone mixin, wich takes a JSON parameter. Here is an example of this mixin. 
+</p>
+
+<p>
+	The default jQuery selector will be the client id of the component using the mixin. But if you want to use the mixin with an exiting component 
+	(for example our Tabs component), using a Zone, you can use the mixin with this component. you just have to specify a specific jQuery selector, 
+	thanks to the selector parameter.
+</p>
+<p>
+	<t:actionlink t:id="myActionLinkCustom" t:zone="myZoneCustom">
+		Click on me to increment the count and refresh a zone
+	</t:actionlink>
+</p>
+<t:zone t:id="myZoneCustom" id="myZoneCustom"  t:update="shake" t:mixins="jquery/customZone" t:params="zoneParams">
+	Counting via AJAX : ${count}
+</t:zone>
+
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="88" t:endLine="108" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+    
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="128" t:endLine="150" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+
+<div t:type="jquery/showSource" t:ext="javascript" t:path="jquery/webapp/js/demo.js"></div>
+</t:block>
+
+
 
 <t:block id="TabsBlockLast">
 <p>

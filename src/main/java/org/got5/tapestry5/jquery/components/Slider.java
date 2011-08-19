@@ -16,6 +16,7 @@
 
 package org.got5.tapestry5.jquery.components;
 
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
@@ -23,7 +24,6 @@ import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -59,7 +59,7 @@ public class Slider  {
      * The zone to update when changes occure on the slider. An "action" event is triggered on the server. 
      * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderZone").
      */
-    @Parameter(defaultPrefix="literal")
+    @Parameter(defaultPrefix=BindingConstants.LITERAL)
     private String zone;
 
     private JSONObject specs;
@@ -86,7 +86,6 @@ public class Slider  {
     	return clientId;
     }
     
-    @AfterRender
     void afterRender()
     {
     	specs = new JSONObject();

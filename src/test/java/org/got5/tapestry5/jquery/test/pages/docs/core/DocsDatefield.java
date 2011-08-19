@@ -30,61 +30,30 @@ import org.apache.tapestry5.corelib.components.DateField;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsDatefield
 {
-    @Property
-    @Persist
-    private int activeTabIndex;
-
-    @Inject
-    private Request request;
-
-    @Persist
-    private boolean afterFormSubmit;
-    
-    @Property
-    private int blockId;
-    
-    @Property
-    private Boolean useTabs;
-   
-    @Property
-    private Boolean useMultiTabs;
-	
-    @Persist
-	@Property
-	private String activePanel;
-	
-	@Property
-	private List<JQueryTabData> listTabData;
-	
-	
-	void pageLoaded()
-	{
-
-		useTabs=true;
-		useMultiTabs=true;		
-		listTabData = new ArrayList<JQueryTabData>();
-        listTabData.add(new JQueryTabData("DateField","TabsBlock1"));
-        listTabData.add(new JQueryTabData("Ajax Form","TabsBlock3"));
-        listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
-        
-        if (_firstName == null && _lastName == null) {
+    public void onActivate(){
+		if (_firstName == null && _lastName == null) {
 			_firstName = "Humpty";
 			_lastName = "Dumpty";
 		}
 	}
-	/**simple page ****************************************************/
+	public List<JQueryTabData> getListTabData()
+	{
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("DateField","TabsBlock1"));
+        listTabData.add(new JQueryTabData("Ajax Form","TabsBlock3"));
+        listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
+        return listTabData;
+    }
+/**simple page ****************************************************/
 @Persist
 @Property
 private Date date;
     
-	/**AjaxForm ****************************************************/
+/**AjaxForm ****************************************************/
 @Property
 private String _firstName;
 

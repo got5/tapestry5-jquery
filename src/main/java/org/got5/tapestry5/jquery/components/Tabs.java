@@ -19,15 +19,11 @@ import java.util.ArrayList;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
@@ -91,14 +87,8 @@ public class Tabs extends AbstractExtendableComponent
         setDefaultMethod("tabs");
     }
 
-    @BeginRender
-    void startDiv(MarkupWriter writer)
-    {
-
-    }
-
     @AfterRender
-    void declareDialog(MarkupWriter writer)
+    void declareTabs()
     {
         JSONObject data = new JSONObject();
         data.put("id", getClientId());

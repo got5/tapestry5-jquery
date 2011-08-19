@@ -6,7 +6,6 @@ import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -99,8 +98,7 @@ public class AjaxUpload implements ClientElement {
 
     private String clientId;
 
-    @AfterRender
-    void addInitScripts() {
+    void afterRender() {
 
         final JSONObject uploadMessages = new JSONObject()
                 .put("typeError", messages.get("typeError"))

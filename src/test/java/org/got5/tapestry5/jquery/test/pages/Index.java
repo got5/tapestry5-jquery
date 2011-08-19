@@ -19,32 +19,18 @@ package org.got5.tapestry5.jquery.test.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
 public class Index
 {
-	@Persist
-	@Property
-	private String activePanel;
-
-	
-	@Property
-	private List<JQueryTabData> listTabData;
-
-	
-	@SetupRender
-	void onSetupRender()
+	public List<JQueryTabData> getListTabData()
 	{
 				
-		listTabData = new ArrayList<JQueryTabData>();
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("Concept","block1"));
         listTabData.add(new JQueryTabData("Usage","block2"));
-        //listTabData.add(new JQueryTabData("Panel3","block3"));
         listTabData.add(new JQueryTabData("About","block4"));
-        
+        return listTabData;
 	}
 }

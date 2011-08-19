@@ -4,7 +4,7 @@
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    <t:jquery.tabs  t:listTabData="listTabData" t:activePanelId="0" />
     
     <t:block id="docs">
     	<t:componentDocumentation>
@@ -26,10 +26,7 @@
 		   title="a small tooltip">Lien vers l'Index</a>
     	<br />
     	<br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="26" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsTooltip.tml"></div>
-    	
-    	<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsTooltip.java"></div>
-    	
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="26" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsTooltip.tml"></div>
     	
     </t:block>
     

@@ -55,19 +55,13 @@ public class Carousel implements ClientElement {
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
 	
-	
-	
 	@Property
 	private String currentParameterName;
-	
 	
 	@SetupRender
 	public void init(MarkupWriter w){
 		w.element("ul","id",clientId,"class",className);
 		componentResources.renderInformalParameters(w);
-		
-		
-		
 	}
 	
 	
@@ -78,10 +72,7 @@ public class Carousel implements ClientElement {
 		jso.put("id", clientId);
 		jso.put("params", params);
 		javaScriptSupport.addInitializerCall("carousel", jso);
-		
 	}
-	
-	
 	
 	public Block getCurrentParameterBlock(){
 		return componentResources.getBlockParameter(currentParameterName);
