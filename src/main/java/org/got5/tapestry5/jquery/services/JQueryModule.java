@@ -34,6 +34,7 @@ import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
@@ -146,8 +147,8 @@ public class JQueryModule
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
     
-    @Contribute(ComponentClassTransformWorker.class)   
-    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker> workers) {    
+    @Contribute(ComponentClassTransformWorker2.class)   
+    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker2> workers) {    
         workers.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
     
     }

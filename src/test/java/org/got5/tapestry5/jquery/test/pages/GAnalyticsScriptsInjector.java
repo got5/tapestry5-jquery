@@ -46,7 +46,7 @@ public class GAnalyticsScriptsInjector implements MarkupRendererFilter {
 
 	public void renderMarkup(MarkupWriter writer, MarkupRenderer renderer) {
 		renderer.renderMarkup(writer);
-
+		
 		this.addScript(writer.getDocument());
 	}
 
