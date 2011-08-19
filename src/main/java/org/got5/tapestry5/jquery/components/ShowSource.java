@@ -142,7 +142,7 @@ public class ShowSource {
 		
 		File file = null;
 		
-		String rootSrc = InternalUtils.isBlank(srcDir) ? System.getProperty("user.dir") : srcDir; 
+		String rootSrc = InternalUtils.isBlank(srcDir) ? System.getProperty("user.dir")+"/src/test/" : srcDir; 
 		
 		String pathFile = rootSrc+File.separator+path;
 		

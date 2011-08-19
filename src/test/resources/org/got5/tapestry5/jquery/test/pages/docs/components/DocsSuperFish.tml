@@ -173,7 +173,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<br />
 	<br /><br />
 	<div class="superfish-demo-content">
-	<div t:type="jquery/showSource" t:ext="html" t:beginLine="69" t:endLine="171" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
+	<div t:type="jquery/showSource" t:ext="html" t:beginLine="69" t:endLine="171" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/docsSuperFish.tml"></div>
     </div>
 	</t:block>
 </html>

@@ -24,9 +24,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	</div>
 </t:form>  
 	    
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="9" t:endLine="25" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="9" t:endLine="25" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="42" t:endLine="104" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="42" t:endLine="104" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.java"></div>    	
     </t:block>
    
 </html>

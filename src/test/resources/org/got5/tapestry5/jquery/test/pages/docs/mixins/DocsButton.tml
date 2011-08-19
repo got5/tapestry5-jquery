@@ -46,6 +46,6 @@
 
 <br />
 <br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="40" t:endLine="44" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="40" t:endLine="44" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsButton.tml"></div>
     </t:block>
 </html>

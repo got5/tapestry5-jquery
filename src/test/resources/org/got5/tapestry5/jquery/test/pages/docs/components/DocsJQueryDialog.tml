@@ -123,8 +123,8 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 <h3>Dialog Ajax Link</h3>
 <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone">Open</t:jquery.dialogajaxlink>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="109" t:endLine="124" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.tml"></div>      		
-<div t:type="jquery/showSource" t:ext="java" t:beginLine="47" t:endLine="76" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.java"></div>			
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="109" t:endLine="124" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.tml"></div>      		
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="47" t:endLine="76" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryDialog.java"></div>			
 	  </t:block>
 	  
 	

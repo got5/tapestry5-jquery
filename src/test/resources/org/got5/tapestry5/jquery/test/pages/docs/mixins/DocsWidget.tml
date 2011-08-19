@@ -62,7 +62,7 @@
     			The name parameter will be "slider" and Tapestry-jQuery will automatically call the jQuery widget : $(selector).slider(options). 
     		</p>
 <div t:type="any"  t:mixins="jquery/ui/widget" name="slider" options="{min:0, max: 100}"></div>
-    		<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="64" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+    		<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="64" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
     	</div>
    		<div>
    			<h2>Create a new mixin with a Sub-Class of Widget</h2>
@@ -72,8 +72,8 @@
    				By default, Tapestry-jQuery will take the name of the class.
    			</p>
 <div t:type="any"  t:mixins="slider" slider.options="{min:0, max: 100}"></div>
-   			<div t:type="jquery/showSource" t:ext="html" t:beginLine="74" t:endLine="74" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
-   			<div t:type="jquery/showSource" t:ext="java" t:beginLine="6" t:endLine="9" t:path="src/test/java/org/got5/tapestry5/jquery/test/mixins/Slider.java"></div>
+   			<div t:type="jquery/showSource" t:ext="html" t:beginLine="74" t:endLine="74" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+   			<div t:type="jquery/showSource" t:ext="java" t:beginLine="6" t:endLine="9" t:path="java/org/got5/tapestry5/jquery/test/mixins/Slider.java"></div>
    		</div>	
    		<br />
 	    <br />

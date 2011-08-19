@@ -76,8 +76,8 @@ This is a range slider, the values are updated on submit, and the associated tex
 The min value is ${min} (updated on submit)<br/>
 The max value is ${max} (updated on submit)
 <br/>
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="72" t:endLine="77" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
-<div t:type="jquery/showSource" t:ext="java" t:beginLine="68" t:endLine="85" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>	
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="72" t:endLine="77" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="68" t:endLine="85" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>	
 				
 <h2>Second example : the (vertical and animated) range slider updating a zone</h2>
 <t:jquery.rangeslider t:min="minZone" t:max="maxZone" t:params="paramsRangeZone" t:zone="myZoneRange" t:id="sliderRangeZone"/>
@@ -90,8 +90,8 @@ The max value is ${max} (updated on submit)
 
 <input type="submit" value="Continue"/>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="82" t:endLine="91" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
-<div t:type="jquery/showSource" t:ext="java" t:beginLine="94" t:endLine="127" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="82" t:endLine="91" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.tml"></div>      		
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="94" t:endLine="127" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryRangeSlider.java"></div>
 
 			</t:form>
 	  </t:block>

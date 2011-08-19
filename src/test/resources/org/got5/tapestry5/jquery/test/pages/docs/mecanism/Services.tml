@@ -1,4 +1,4 @@
-<html t:type="layoutWithAccordion" t:title="Mecanisms provided by Tapestry5/jQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" t:title="Mecanisms provided by Tapestry5/jQuery" t:activeElement="3" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     
     
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
@@ -12,7 +12,7 @@
 				the javascript files for the jQuery effects. You can add a new effect
 				by adding an entry to its Configuration object. 
 			</p>
-			<div t:type="jquery/showSource" t:ext="java" t:beginLine="81" t:endLine="84" t:path="src/test/java/org/got5/tapestry5/jquery/test/services/AppModule.java"></div>
+			<div t:type="jquery/showSource" t:ext="java" t:beginLine="85" t:endLine="88" t:path="java/org/got5/tapestry5/jquery/test/services/AppModule.java"></div>
 		</div>
 		
 		<div class="docs_service">
@@ -26,7 +26,7 @@
 				them.<br />
 				It is also used by the customDatepicker and customZone mixins.
 			</p>
-			<div t:type="jquery/showSource" t:ext="java" t:beginLine="57" t:endLine="61" t:path="src/test/java/org/got5/tapestry5/jquery/test/services/AppModule.java"></div>
+			<div t:type="jquery/showSource" t:ext="java" t:beginLine="61" t:endLine="65" t:path="java/org/got5/tapestry5/jquery/test/services/AppModule.java"></div>
 		</div>
 	</t:block>
 

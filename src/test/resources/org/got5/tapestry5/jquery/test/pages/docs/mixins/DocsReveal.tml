@@ -69,9 +69,9 @@
 								  t:animation="fade" 
 								  t:dismissmodalclass="reveal-closing">link</a>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="70" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="70" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="78" t:endLine="81" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="78" t:endLine="81" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 
 	</t:block>
     

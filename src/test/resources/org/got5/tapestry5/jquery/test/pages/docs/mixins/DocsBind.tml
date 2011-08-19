@@ -203,9 +203,9 @@
     	
     	<div t:type="zone" id="zoneSlideChange" t:id="zoneSlideChange" t:visible="false">Zone for the SlideChange event : ${textZone}</div>
     	<br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="202" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="202" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="38" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="38" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
  		</div>
 
     </t:block>
