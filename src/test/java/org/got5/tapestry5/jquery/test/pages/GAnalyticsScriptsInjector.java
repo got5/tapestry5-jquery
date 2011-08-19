@@ -15,7 +15,7 @@ public class GAnalyticsScriptsInjector implements MarkupRendererFilter {
 	private final static Messages SCRIPTS = MessagesImpl.forClass(GAnalyticsScriptsMessages.class);
 
 	private final String key;
-
+	
 	public GAnalyticsScriptsInjector(@Inject @Symbol("ganalytics.key") String key) {
 		this.key = key;
 	}

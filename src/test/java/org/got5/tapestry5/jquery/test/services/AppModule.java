@@ -81,16 +81,16 @@ public void addWidgetParams(MappedConfiguration<String, JSONObject> configuratio
 		configuration.add(IDataSource.class, new ApplicationStateContribution(
 				"session", creator));
 	}
-    
+
 @Contribute(EffectsParam.class)
 public void addEffectsFile(Configuration<String> configuration){
 	configuration.add(EffectsConstants.SHAKE);
 }
 
 public void contributeMarkupRenderer(OrderedConfiguration<MarkupRendererFilter> configuration,
-		@Symbol(SymbolConstants.PRODUCTION_MODE) final boolean productionMode) {
+		@Symbol("enableAnalytics") final boolean enableAnalytics) {
 
-	if (productionMode) {
+	if (enableAnalytics) {
 		configuration.addInstance("GAnalyticsScript", GAnalyticsScriptsInjector.class, "after:DocumentLinker");
 	}
 
