@@ -61,7 +61,8 @@ public class AppModule
 @Contribute(WidgetParams.class)
 public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
 	configuration.add("slider", new JSONObject().put("min", 5));
-    configuration.add("customdatepicker", new JSONObject("prevText","Previous Month"));
+    configuration.add("customdatepicker", 
+    		new JSONObject("prevText","Previous Month"));
 }
     
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)

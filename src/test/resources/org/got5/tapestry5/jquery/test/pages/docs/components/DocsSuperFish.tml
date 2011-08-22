@@ -69,104 +69,104 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
     <div class="superfish-demo-header">
 	<ul t:type="jquery/superfish" t:clientId="menu1">
 		<li class="current"> 
-						<a href="#a">menu item</a> 
-						<ul> 
-							<li> 
-								<a href="#aa">menu item</a> 
-							</li> 
-							<li class="current"> 
-								<a href="#ab">menu item quite long</a> 
-								<ul> 
-									<li class="current"><a href="#">menu item</a></li> 
-									<li><a t:type="pageLink" t:page="Index">Index Page</a></li> 
-									<li><a t:type="actionLink" t:id="action">ActionLink</a></li> 
-									<li><a href="#abc">menu item</a></li> 
-									<li><a href="#abd">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-						</ul> 
-					</li> 
-					<li> 
-						<a href="#">menu item</a> 
-					</li> 
-					<li> 
-						<a href="#">menu item</a> 
-						<ul> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-							<li> 
-								<a href="#">menu item</a> 
-								<ul> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-									<li><a href="#">menu item</a></li> 
-								</ul> 
-							</li> 
-						</ul> 
-					</li> 
-					<li> 
-						<a href="#">menu item</a> 
-					</li>	
+		<a href="#a">menu item</a> 
+		<ul> 
+			<li> 
+				<a href="#aa">menu item</a> 
+			</li> 
+			<li class="current"> 
+				<a href="#ab">menu item quite long</a> 
+				<ul> 
+					<li class="current"><a href="#">menu item</a></li> 
+					<li><a t:type="pageLink" t:page="Index">Index Page</a></li> 
+					<li><a t:type="actionLink" t:id="action">ActionLink</a></li> 
+					<li><a href="#abc">menu item</a></li> 
+					<li><a href="#abd">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+		</ul> 
+	</li> 
+	<li> 
+		<a href="#">menu item</a> 
+	</li> 
+	<li> 
+		<a href="#">menu item</a> 
+		<ul> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+			<li> 
+				<a href="#">menu item</a> 
+				<ul> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+					<li><a href="#">menu item</a></li> 
+				</ul> 
+			</li> 
+		</ul> 
+	</li> 
+	<li> 
+		<a href="#">menu item</a> 
+	</li>	
 	</ul>
 	</div>
 	<br />

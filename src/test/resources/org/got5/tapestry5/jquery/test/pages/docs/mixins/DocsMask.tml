@@ -35,16 +35,20 @@
     	<fieldset>	
 	    	<p>
 	    		<t:label t:for="monTextField">Phone Number : </t:label>
-	    		<t:textField t:id="monTextField" t:value="value" t:mixins="jquery/mask" t:format="literal:99-99-99-99-99" /> (t:format="literal:99-99-99-99-99")
+	    		<t:textField t:id="monTextField" t:value="value" 
+	    		t:mixins="jquery/mask" t:format="literal:99-99-99-99-99" /> 
+	    		(t:format="literal:99-99-99-99-99")
     	    </p>
     	    <p>		
 	    		<t:label t:for="monTextField2">Birth Date : </t:label>
-	    		<t:textField t:id="monTextField2" t:value="value" t:mixins="jquery/mask" t:format="literal:99/99/9999" /> (t:format="literal:99/99/9999")
+	    		<t:textField t:id="monTextField2" t:value="value" 
+	    		t:mixins="jquery/mask" t:format="literal:99/99/9999" /> 
+	    		(t:format="literal:99/99/9999")
     		</p>
     	</fieldset>
     </t:form>
     
-    <div t:type="jquery/showSource" t:ext="html" t:beginLine="34" t:endLine="45" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
+    <div t:type="jquery/showSource" t:ext="html" t:beginLine="34" t:endLine="49" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
     	
 </t:block>
 

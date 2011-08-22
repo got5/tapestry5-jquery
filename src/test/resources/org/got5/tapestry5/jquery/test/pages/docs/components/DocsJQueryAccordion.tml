@@ -48,7 +48,8 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	  </t:block>
     	
       <t:block id="example">
-<t:jquery.accordion  t:listOfElements="prop:list" t:activeElementId="activeElement" />
+<t:jquery.accordion  t:listOfElements="prop:list" 
+		t:activeElementId="activeElement" />
 
 <t:block id="block1">
 	<h3>Element 1</h3>

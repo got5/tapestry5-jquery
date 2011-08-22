@@ -1,7 +1,7 @@
 <html t:type="layoutWithAccordion" 
 t:title="DateField" 
 t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="prop:activePanel" />
 	<t:block id="TabsBlock1">
 		<t:componentDocumentation>
 			<p:title>
@@ -21,12 +21,10 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 			
 
 		</t:componentDocumentation>
-		
-	  	<br/><br/>
-	  	<hr/>
-	  	<br/>
+		</t:block>
+	  	<t:block id="TabsBlock2">
 <h3>Simple Calendar</h3>
-<t:form>
+<t:form t:id="simpleDate">
 	<t:datefield t:value="date" />
 	<t:submit />
 </t:form>
@@ -35,9 +33,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </p>
 	  	<br/>
 	  	
-	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="29" t:endLine="35" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="26" t:endLine="33" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="52" t:endLine="54" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="61" t:endLine="63" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 	  	
     </t:block>
     <t:block id="TabsBlock3">
@@ -62,9 +60,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	Birthday ${birthdayAjax}
 </t:zone><br/>
 		
-		<div t:type="jquery/showSource" t:ext="html" t:beginLine="46" t:endLine="63" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="61" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="57" t:endLine="120" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="66" t:endLine="129" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
 		
 	</t:block> 
 	<t:block id="TabsBlockLast">

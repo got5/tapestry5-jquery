@@ -47,7 +47,8 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	 </t:block>
     	
       <t:block id="example">
-<t:jquery.tabs  t:listTabData="prop:listTabDataDemo" t:activePanelId="activeElement" />
+<t:jquery.tabs  t:listTabData="prop:listTabDataDemo" 
+	t:activePanelId="activeElement" />
 
 <t:block id="block1">
 	<h3>Panel 1</h3>
@@ -77,7 +78,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	</t:form>
 </t:block>
 
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="50" t:endLine="78" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="50" t:endLine="79" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:beginLine="43" t:endLine="62" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryTabs.java"></div>
 			
 	  </t:block>
