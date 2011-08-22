@@ -67,11 +67,12 @@ This is a simple slider, the value is updated on submit, associated textfield is
 The value is ${val} (updated on submit)
 <br/>
 				
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="63" t:endLine="68" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="65" t:endLine="68" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
 <div t:type="jquery/showSource" t:ext="java" t:beginLine="66" t:endLine="85" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.java"></div>						
 				
 <h2>Second example : the simple slider, that updates a zone</h2>
-<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" t:id="sliderZone" />
+<t:jquery.slider t:value="slideZone" t:params="paramsZone" t:zone="myZone" 
+		t:id="sliderZone" />
 <br/>
 <t:zone t:id="myZone" id="myZone">
 	${slideZone}
@@ -80,7 +81,7 @@ The value is ${val} (updated on submit)
 
 <input type="submit" value="Continue"/>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="73" t:endLine="81" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="73" t:endLine="82" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.tml"></div>      		
 <div t:type="jquery/showSource" t:ext="java" t:beginLine="92" t:endLine="113" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQuerySlider.java"></div>
 
 </t:form>

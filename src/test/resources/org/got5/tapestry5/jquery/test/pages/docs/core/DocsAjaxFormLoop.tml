@@ -11,8 +11,10 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<div class="t-beaneditor">
 		<h2>Person</h2>
 		<t:beaneditor t:id="person"/><h3>Phones</h3>
-		<div t:type="ajaxformloop" t:id="phones" source="person.phones" encoder="phoneEncoder" value="phone">
-			<t:select t:id="type" value="phone.type"/><t:textfield t:id="number" value="phone.number"/>
+		<div t:type="ajaxformloop" t:id="phones" source="person.phones" 
+				encoder="phoneEncoder" value="phone">
+			<t:select t:id="type" value="phone.type"/><t:textfield t:id="number" 	
+				value="phone.number"/>
 		    <t:datefield t:id="date" value="phone.startDate"/>|
 		    <t:removerowlink>
 		    	remove
@@ -24,9 +26,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	</div>
 </t:form>  
 	    
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="9" t:endLine="25" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="9" t:endLine="27" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="42" t:endLine="104" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="42" t:endLine="105" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsAjaxFormLoop.java"></div>    	
     </t:block>
    
 </html>

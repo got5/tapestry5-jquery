@@ -69,7 +69,8 @@ public ValueEncoder<Phone> getPhoneEncoder()
         {
         	for (Phone currentPhone : person.getPhones())
             {	
-        		if (currentPhone.getNumber() != null && clientValue.equals(currentPhone.getNumber()))
+        		if (currentPhone.getNumber() != null && 
+        				clientValue.equals(currentPhone.getNumber()))
         			return currentPhone;
             }
             	

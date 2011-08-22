@@ -33,7 +33,11 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsDatefield
-{
+{	
+	@Persist
+	@Property
+	private int activePanel;
+	
     public void onActivate(){
 		if (_firstName == null && _lastName == null) {
 			_firstName = "Humpty";
@@ -44,10 +48,15 @@ public class DocsDatefield
 	{
 		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
         listTabData.add(new JQueryTabData("DateField","TabsBlock1"));
+        listTabData.add(new JQueryTabData("Simple Date","TabsBlock2"));
         listTabData.add(new JQueryTabData("Ajax Form","TabsBlock3"));
         listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
         return listTabData;
     }
+	
+	public void onSubmitFromActivePanel(){
+		activePanel=1;
+	}
 /**simple page ****************************************************/
 @Persist
 @Property

@@ -72,7 +72,8 @@ void setupRender() {
 }
 
 public BeanModel getMyModel(){
-	BeanModel myModel = _beanModelSource.createDisplayModel(User.class, _componentResources.getMessages());
+	BeanModel myModel = _beanModelSource.createDisplayModel(User.class, 
+				_componentResources.getMessages());
 	myModel.add("action", null);
 	myModel.include("firstName", "lastName", "action");
 	myModel.get("firstName").sortable(false);

@@ -103,11 +103,12 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 		Click on me to increment the count and refresh a zone
 	</t:actionlink>
 </p>
-<t:zone t:id="myZoneCustom" id="myZoneCustom"  t:update="shake" t:mixins="jquery/customZone" t:params="zoneParams">
+<t:zone t:id="myZoneCustom" id="myZoneCustom"  t:update="shake" 
+		t:mixins="jquery/customZone" t:params="zoneParams">
 	Counting via AJAX : ${count}
 </t:zone>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="88" t:endLine="108" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="101" t:endLine="109" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
     
 <div t:type="jquery/showSource" t:ext="java" t:beginLine="128" t:endLine="150" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 

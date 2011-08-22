@@ -35,9 +35,11 @@ public class Palette
     @Inject
     private Messages _messages;
 
-    private final ValueEncoder<SpecialHandling> _encoder = new EnumValueEncoder<SpecialHandling>(SpecialHandling.class);
+    private final ValueEncoder<SpecialHandling> _encoder = 
+    		new EnumValueEncoder<SpecialHandling>(SpecialHandling.class);
 
-    private final SelectModel _model = new EnumSelectModel(SpecialHandling.class, _messages);
+    private final SelectModel _model = 
+    		new EnumSelectModel(SpecialHandling.class, _messages);
 
     public List<SpecialHandling> getHandling()
     {

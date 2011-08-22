@@ -67,7 +67,8 @@ public class Autocomplete
         if (start != null)
         {
             for(String value : list){
-            	if(value.toUpperCase().startsWith(start.toUpperCase())) strings.add(value);
+            	if(value.toUpperCase().startsWith(start.toUpperCase())) 
+            		strings.add(value);
             }
         }
         
