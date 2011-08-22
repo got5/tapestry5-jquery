@@ -7,6 +7,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.runtime.Component;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
@@ -29,6 +30,9 @@ public class Widget {
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String name;
+	
+	@Parameter(defaultPrefix=BindingConstants.COMPONENT)
+	private Component element;
 	
 	@InjectContainer
 	private ClientElement clientElement;
@@ -56,13 +60,21 @@ public class Widget {
 		return this.getClass().getSimpleName().toLowerCase(); 
 	}
 	
+	String element() {
+		if ( element != null ) {
+			ClientElement c = (ClientElement) element;
+			return c.getClientId();
+		}
+		return clientElement.getClientId();
+	}
+	
 	void afterRender() {
 		String init = null;
 		if ( script != null ) {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),script);
 			jsSupport.addScript(init);
 		} else {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),overrideParams());
 			javaScriptSupport.addScript(init);
 		}		
 	}
