@@ -111,8 +111,9 @@ public class JQueryModule
     		BindingFactory selectorBindingFactory
     		) {
         configuration.add("selector", selectorBindingFactory);
-       }
-    
+
+       
+}
     public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
