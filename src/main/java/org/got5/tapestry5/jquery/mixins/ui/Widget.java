@@ -79,10 +79,10 @@ public class Widget {
 	void afterRender() {
 		String init = null;
 		if ( script != null ) {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),script);
 			jsSupport.addScript(init);
 		} else {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),overrideParams());
 			javaScriptSupport.addScript(init);
 		}		
 	}
