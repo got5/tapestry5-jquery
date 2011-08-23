@@ -105,8 +105,8 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 			Ajax loaded:
 			<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
 			
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="79" t:endLine="108" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
-      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="45" t:endLine="96" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="79" t:endLine="108" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
+      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="44" t:endLine="96" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
 	  </t:block>
 </html>
 

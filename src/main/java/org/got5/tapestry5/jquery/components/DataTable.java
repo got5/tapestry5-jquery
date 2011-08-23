@@ -61,6 +61,7 @@ import org.apache.tapestry5.services.Core;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.JQueryEventConstants;
 
 
 /**
@@ -69,7 +70,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 @Import(library = {"${assets.path}/components/datatables/jquery.dataTables.min.js",
 				  "${assets.path}/components/datatables/dataTables.js"},
 		stylesheet={"context:css/tango/skin.css"})
-@Events("Data")
+@Events(JQueryEventConstants.DATA)
 public class DataTable implements ClientElement
 {
     /**
@@ -290,7 +291,7 @@ public class DataTable implements ClientElement
 * to parse it according to the server-side format. 
 * see http://www.datatables.net/ for more details
 */
- @OnEvent(value="Data")
+ @OnEvent(value=JQueryEventConstants.DATA)
  JSONObject onData()
  {
      String echo = request.getParameter(ECHO);

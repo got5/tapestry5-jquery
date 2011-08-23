@@ -48,12 +48,6 @@ public class Mask {
         	
         String id = element.getClientId();
 
-        JSONObject data = new JSONObject();
-    
-        data.put("id", id);
-        
-        data.put("format", format);
-    
-        javaScriptSupport.addInitializerCall("mask", data);
+        javaScriptSupport.addInitializerCall("mask", new JSONObject("id", id, "format", format));
     }
 }

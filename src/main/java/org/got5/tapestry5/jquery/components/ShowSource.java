@@ -9,12 +9,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -34,7 +33,7 @@ import org.slf4j.Logger;
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
 		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})
 public class ShowSource {
-
+	
 	/**
 	 * Code Source path
 	 */
@@ -47,29 +46,32 @@ public class ShowSource {
 	@Parameter(defaultPrefix=BindingConstants.PROP)
 	private JSONObject specs;
 	
+	/**
+	 * The ClientId of the ShowSource component
+	 */
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
 	
-	private JSONObject defaultSpecs;
-	
+	/**
+	 * The language you want to use for your snippet.
+	 * If not bound, we will use the extension of the file. 
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String ext;
 	
+	/**
+	 * Where to Start ? By default line 0.
+	 */
 	@Parameter(value="0")
 	private Integer beginLine;
 	
+	/**
+	 * Where to finish ?
+	 */
 	@Parameter 
 	private Integer endLine;
 	
-	/**
-	 * Code Source Lang for the JQuery Plugin
-	 */
-	private String lang;
-	
-	/**
-	 * Code Source Extension 
-	 */
-	private String extension;
+	private JSONObject defaultSpecs;
 	
 	@Inject
 	private AssetSource assetSource;
@@ -92,14 +94,14 @@ public class ShowSource {
 	@Inject 
 	private Messages message;
 	
-	@SuppressWarnings("unused")
-	@SetupRender
 	private boolean setupRender()
 	{
 		if(!componentResources.isBound("path")){
 			
 			logger.warn("We have to specify a path " +
 					"for the showSource component");
+			
+			return false;
 		}
 		
 		if(componentResources.isBound("endLine"))
@@ -111,27 +113,6 @@ public class ShowSource {
 				return false;
 			}
 		}
-		
-		if(componentResources.isBound("ext"))
-		{
-			lang = ext;
-		}
-		else if(componentResources.isBound("path"))
-		{
-
-			langs = new HashMap<String, String>();
-			
-			langs.put("js", "javascript");
-			
-			langs.put("tml", "html");
-			
-			extension  = path.substring((path.lastIndexOf('.')+1)); 
-			
-			if(langs.get(extension) != null) 
-				lang = langs.get(extension);
-			else lang = extension;
-		}
-		
 		
 		/**
 		 * Init the Default parameter for the jQuery plugin
@@ -161,13 +142,13 @@ public class ShowSource {
 		
 		File file = null;
 		
-		String rootSrc; 
+		String rootSrc = InternalUtils.isBlank(srcDir) ? System.getProperty("user.dir")+"/src/test/" : srcDir; 
 		
-		if(InternalUtils.isBlank(srcDir)) 
-			rootSrc=System.getProperty("user.dir");
-		else rootSrc=srcDir;  
+		String pathFile = rootSrc+File.separator+path;
 		
-		file = new File(rootSrc+File.separator+path);
+		logger.info("The ShowSource Component displays the file : " + pathFile);
+		
+		file = new File(pathFile);
 
 		try 
 		{
@@ -235,14 +216,13 @@ public class ShowSource {
 		
 	}
 	
-	@AfterRender
 	public void afterRender()
 	{
 		JSONObject params = new JSONObject();
 		
 		params.put("id", getClientId());
 		
-		params.put("lang", lang);
+		params.put("lang", getLanguage());
 		
 		params.put("beginLine", beginLine);
 		
@@ -257,68 +237,25 @@ public class ShowSource {
 		support.addInitializerCall("source", params);
 		
 	}
-
-	public String getPath() {
-		return path;
+	
+	public String getLanguage(){
+		
+		if(componentResources.isBound("ext"))
+			return ext;
+		
+		langs = new HashMap<String, String>();
+			
+		langs.put("js", "javascript");
+		
+		langs.put("tml", "html");
+			
+		String extension  = path.substring((path.lastIndexOf('.')+1)); 
+			
+		return extension = langs.get(extension)!=null ? langs.get(extension) : extension;
+		
 	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String getLang() {
-		return lang;
-	}
-
-	public void setLang(String lang) {
-		this.lang = lang;
-	}
-
-	public Map<String, String> getLangs() {
-		return langs;
-	}
-
-	public void setLangs(Map<String, String> langs) {
-		this.langs = langs;
-	}
-
-	public String getExtension() {
-		return extension;
-	}
-
-	public void setExtension(String extension) {
-		this.extension = extension;
-	}
-
-	public JSONObject getDefaultSpecs() {
-		return defaultSpecs;
-	}
-
-	public void setDefaultSpecs(JSONObject defaultSpecs) {
-		this.defaultSpecs = defaultSpecs;
-	}
-
-	public JSONObject getSpecs() {
-		return specs;
-	}
-
-	public void setSpecs(JSONObject specs) {
-		this.specs = specs;
-	}
-
-	public String getExt() {
-		return ext;
-	}
-
-	public void setExt(String ext) {
-		this.ext = ext;
-	}
-
+	
 	public String getClientId() {
 		return clientId;
-	}
-
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
 	}
 }

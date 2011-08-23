@@ -1,6 +1,6 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 <div id="${clientId}" class="my-snippet-container" style="display: none;">
-	<pre class="${lang}">
+	<pre class="${language}">
 		${srcContent}
 	</pre>
 </div>

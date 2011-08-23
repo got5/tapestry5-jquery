@@ -19,7 +19,9 @@ http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
 
-- 2.1.2 : switch to Tapestry 5.2.6
+- 2.6.0 : switch to Tapestry 5.2.6
+		  add Mixins : CustomZone, Widget
+		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
 - 2.1.1 : add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish 
 		  add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip	
 - 2.1.0 : switch to Tapestry 5.2.5
@@ -62,6 +64,8 @@ Exclusive jQuery Mixins :
 	- binds jQuery events to Tapestry pages/components and HTML elements. based on [http://api.jquery.com/bind/](http://api.jquery.com/bind/)
 - **CustomDatepicker**
 	- Based on [http://jqueryui.com/demos/datepicker](http://jqueryui.com/demos/datepicker)
+- **CustomZone**
+	- Based on [http://jqueryui.com/demos/effect/](http://jqueryui.com/demos/effect/)
 - **Mask** 
 	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
 - **Reveal**

@@ -16,18 +16,26 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 import org.slf4j.Logger;
 
 /**
- * 
- * @since 2.1.2
- *
+ * Class used for creating a jQuery Widget
+ * You just have to create a class extending this one. 
+ * And automatically, the widget javascript method will be called. 
+ * @since 2.6.0
  */
 public class Widget {
 	
+	/**
+	 * The JSON parameter for your widget
+	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private JSONObject options;
 	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String script;
 	
+	/**
+	 * Name of the jQuery widget. Typically supplied by subclassing widget 
+	 * to a jQuery widget name.
+	 */	
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String name;
 	
@@ -71,10 +79,10 @@ public class Widget {
 	void afterRender() {
 		String init = null;
 		if ( script != null ) {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),script);
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
 			jsSupport.addScript(init);
 		} else {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, element(),widgetName(),overrideParams());
+			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
 			javaScriptSupport.addScript(init);
 		}		
 	}
@@ -86,10 +94,10 @@ public class Widget {
 		if(widgetParams.paramsForWidget(widgetName())!=null){
 			params=widgetParams.paramsForWidget(widgetName());
 			JQueryUtils.merge(params, options);
+			return params;
 		}
-		else if(options!=null) params = options;
-		
-		return params;
+		 
+		return options;
 	}
 
 }

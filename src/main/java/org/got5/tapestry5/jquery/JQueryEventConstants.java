@@ -14,5 +14,10 @@ public class JQueryEventConstants {
      * Triggered when a file has been uploaded via {@link AjaxUpload}.
      */
     public static final String AJAX_UPLOAD = "ajaxFileUpload";
+    
+    /**
+     * Triggered by the DataTable component
+     */
+    public static final String DATA = "Data";
 
 }

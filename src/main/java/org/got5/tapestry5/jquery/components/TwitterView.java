@@ -92,14 +92,7 @@ public class TwitterView implements ClientElement {
 		w.write(String.format(messages.get("twitterview-alt-text"),account));
 		w.end();
 		w.end();
-		
-		
-		
 	}
-	
-	
-	
-	
 	
 	@AfterRender()
 	public void finish(MarkupWriter w){
@@ -125,13 +118,7 @@ public class TwitterView implements ClientElement {
 		
 	}
 	
-	
-	
-	
-	
 	public String getClientId(){
         return this.clientId;
     }
-	
-	
 }

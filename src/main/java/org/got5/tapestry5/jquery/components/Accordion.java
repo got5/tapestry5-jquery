@@ -19,13 +19,9 @@ import java.util.ArrayList;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -71,22 +67,12 @@ public class Accordion extends AbstractExtendableComponent
 	@Property
 	private JQueryAccordionData currentElement;
 
-
-	@SetupRender
-    void setJSInit()
+	void setupRender()
     {
         setDefaultMethod("accordion");
     }
 
-    @BeginRender
-    void startDiv(MarkupWriter writer)
-    {
-
-
-    }
-
-    @AfterRender
-    void declareDialog(MarkupWriter writer)
+    void afterRender()
     {
 
         JSONObject data = new JSONObject();

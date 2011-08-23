@@ -26,21 +26,15 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsTooltip
 {
-	 @Property
-	 private JSONObject params;
-	 
-	 
-	 @Property
-	 private List<JQueryTabData> listTabData;
-
-	 @SetupRender
-	 void onSetupRender()
+	 public List<JQueryTabData> getListTabData()
 	 {
-		listTabData = new ArrayList<JQueryTabData>();
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
+		
 	    listTabData.add(new JQueryTabData("Documentation","docs"));
+	    
 	    listTabData.add(new JQueryTabData("Example","example"));
 	    
-	    JSONObject params = new JSONObject();
+	    return listTabData;
 	 }
 
 }

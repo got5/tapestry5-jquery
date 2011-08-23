@@ -18,7 +18,7 @@ package org.got5.tapestry5.jquery.mixins;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
-import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
@@ -66,20 +66,15 @@ public class Button
      * Mixin afterRender phrase occurs after the component itself. This is where we write the
      * &lt;div&gt; element and
      * the JavaScript.
-     *
-     * @param writer
      */
-    void afterRender(MarkupWriter writer)
+	void afterRender()
     {
         String id = element.getClientId();
 
-        JSONObject data = new JSONObject();
-        data.put("id", id);
-        data.put("type", type);
-
-        JSONObject defaults = new JSONObject();
-        defaults.put("type", type);
-
+        JSONObject data = new JSONObject("id", id, "type", type);
+        
+        JSONObject defaults = new JSONObject("type", type);
+        
         if (params == null)
             params = new JSONObject();
 

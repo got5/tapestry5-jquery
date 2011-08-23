@@ -31,7 +31,8 @@ public class SelectorBinding extends AbstractBinding {
 		this.jqueryAlias = alias;
 	}
 
-	public Object get() {	
+	public Object get() {
+
 		Component c = null;
 		if ( "this".equals(tid)) {
 			c = renderTracker.getRendering();
@@ -41,6 +42,7 @@ public class SelectorBinding extends AbstractBinding {
 		if ( c == null ) {
 			throw new IllegalArgumentException("Can't find id for selector binding:" + tid);
 		}
+
 		String id = null;
 		if ( ClientElement.class.isAssignableFrom(c.getClass())) {
 			ClientElement ce = (ClientElement) c;

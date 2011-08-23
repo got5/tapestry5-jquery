@@ -27,7 +27,6 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONLiteral;
@@ -37,73 +36,51 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 @Import(library = "context:js/demo.js")
 public class DocsZone
 {
-    @Property
-    @Persist
-    private int count;
-
-    @Inject
-    private Request request;
-
-    @Inject
-    private Block myBlockActionLink;
-
-    @Inject
-    private Block myBlockForm;
-    
-    @Inject
-    private Block defaultBlock, multiUpdateBlock;
-
-    @InjectComponent
-    private org.apache.tapestry5.corelib.components.Zone multiZone1, multiZone2;
-    
-    @Property
-    @Persist
-    private String dummy;
-    
-    @Persist
-    private boolean afterFormSubmit;
-    
-    @Property
-    private int blockId;
-    
-    @Property
-    private Boolean useTabs;
-   
-
-    @Persist
+	@Inject
+	private Request request;
+	 
+	public List<JQueryTabData> getListTabData()
+	{
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Documentation","TabsBlock1"));
+	    listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
+	    listTabData.add(new JQueryTabData("Form","TabsBlock3"));
+	    listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
+	    listTabData.add(new JQueryTabData("Custom Effects","TabsBlock5"));
+	    listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
+	    return listTabData;
+	}
+	
+//Demo ActionLink
 @Property
-private String activePanel;
+@Persist
+private int count;
 
-@Property
-private List<JQueryTabData> listTabData;
-
-@SetupRender
-void onSetupRender()
-{
-useTabs=true;
-listTabData = new ArrayList<JQueryTabData>();
-        listTabData.add(new JQueryTabData("Documentation","TabsBlock1"));
-        listTabData.add(new JQueryTabData("ActionLink","TabsBlock2"));
-        listTabData.add(new JQueryTabData("Form","TabsBlock3"));
-        listTabData.add(new JQueryTabData("MultiZoneUpdate","TabsBlock4"));
-        listTabData.add(new JQueryTabData("Change Effects Parameters","TabsBlock5"));
-        listTabData.add(new JQueryTabData("Back to Prototype","TabsBlockLast"));
-}
-    
+@Inject
+private Block myBlockActionLink;
 
 public Block getTheBlockActionLink()
 {
 	return myBlockActionLink;
 }
 
-@OnEvent(value = "action", component = "myActionLink")
+@OnEvent(value = EventConstants.ACTION, component = "myActionLink")
 Object updateCount()
 {
 	if (!request.isXHR()) {return this;}
 	count++;
 	return myBlockActionLink;
 }
-    
+
+
+//Demo Form
+@Property
+@Persist
+private String dummy;
+
+@Inject
+private Block myBlockForm;
+
 public Block getTheBlockForm()
 {
 	return myBlockForm;
@@ -115,7 +92,20 @@ Object updateZoneContentFromForm()
 	if (!request.isXHR()) {return this;}
 	return myBlockForm;
 }
-    
+
+//Demo MultiZoneUpdate
+@Persist
+private boolean afterFormSubmit;
+
+@Property
+private int blockId;
+
+@InjectComponent
+private Zone multiZone1, multiZone2;
+
+@Inject
+private Block defaultBlock, multiUpdateBlock;
+
 @OnEvent(value = EventConstants.SUCCESS, component = "myMultiZoneUpdateForm")
 Object performMultiZoneUpdate()
 {
@@ -134,6 +124,7 @@ public Block getMultiUpdateBlock2() {
 	return afterFormSubmit ? multiUpdateBlock : defaultBlock;
 }
 
+//Demo Custom
 @InjectComponent
 private Zone myZoneCustom;
 
@@ -150,12 +141,14 @@ public JSONObject getZoneParams(){
 	return ap;
 }
 
-@OnEvent(value = "action", component = "myActionLinkCustom")
+@OnEvent(value = EventConstants.ACTION, component = "myActionLinkCustom")
 Object cutomMixin()
 {
 	if (!request.isXHR()) {return this;}
 	count++;
 	return myZoneCustom.getBody();
 }
+
+
 }
 

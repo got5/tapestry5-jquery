@@ -13,8 +13,11 @@
 				<li>
 					<a href="https://github.com/got5/tapestry5-jquery">Download</a>		
 				</li>
-				<li class="last">
+				<li>
 					<a href="http://twitter.com/#!/GOTapestry5">Twitter</a>
+				</li>
+				<li class="last">
+					<a href="https://groups.google.com/forum/?hl=fr#!forum/tapestry5-jquery">Google Group</a>
 				</li>
 			
 		</ul>
@@ -141,7 +144,16 @@
 			        
 			    </ul>		
 			</t:block>
-		
+			<t:block id="block4">
+				<ul>
+					<li>
+			            <t:pagelink t:page="docs/mecanism/Services">Services</t:pagelink>
+			        </li>
+			        <li>
+			            <t:pagelink t:page="docs/mecanism/DocsSelector">Selector Binding</t:pagelink>
+			        </li>
+				</ul>
+			</t:block>
 		</div>
 		
 		<div id="main">

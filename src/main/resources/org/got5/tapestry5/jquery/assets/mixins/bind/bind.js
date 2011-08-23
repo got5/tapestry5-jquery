@@ -32,6 +32,7 @@
 				if ( zoneUpdate ) {
 					zoneElement.tapestryZone('option','update',zoneUpdate);
 				}
+				
 				var u = new Object();
 				u.url = url;		
 				u.context = contextMarker;					

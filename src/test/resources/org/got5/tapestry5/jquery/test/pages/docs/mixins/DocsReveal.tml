@@ -63,15 +63,16 @@
     </t:block>
     
     <t:block id="example">
-<a id="monLink" t:type="pageLink" t:page="Index" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade" t:dismissmodalclass="reveal-closing">
-	link
-</a>
+<a id="monLink" t:type="pageLink" t:page="Index" 
+								  t:mixins="jquery/reveal" 
+								  t:div="literal:myDiv" 
+								  t:animation="fade" 
+								  t:dismissmodalclass="reveal-closing">link</a>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="68" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="70" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="77" t:endLine="80" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
-    	
-    	  <div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.java"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="78" t:endLine="81" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+
 	</t:block>
     
 <div id="myDiv" class="reveal-div reveal-hidden">

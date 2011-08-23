@@ -3,6 +3,7 @@ package org.got5.tapestry5.jquery.mixins;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
@@ -15,55 +16,111 @@ import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.EffectsConstants;
 
+/**
+ * @since 2.6.0
+ */
 @Import(library = { "${assets.path}/mixins/bind/bind.js" })
 public class Bind {
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * Used as the selector for jQuery bind.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String element;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * 	Tapestry event name. For example if you supply click onClick() will be called.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String event;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * ID of element to hide on this event.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String hide;
 
-	@Parameter(defaultPrefix = "literal", value = "slide")
+	/**
+	 * jQuery effect used to hide the element.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "slide")
 	private String hideEffect;
 
-	@Parameter(defaultPrefix = "literal", value = "500")
+	/**
+	 * Duration of hide effect.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "500")
 	private String hideTime;
 
+	/**
+	 * Any options need by the hide effect.
+	 */
 	@Parameter
 	private Map<String, String> hideOptions;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * If supplied a zone update will be triggered.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String zone;
 
-	@Parameter(defaultPrefix = "literal", value = "highlight")
+	/**
+	 * Effect used when zone is updating.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "highlight")
 	private String zoneUpdate;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * Javascript anonymous function called by the event. The signature is function(event,ui,url) 
+	 * where event and ui are described by jQuery bind. 
+	 * The url parameter is structure representing the Tapestry event url and contains the url and 
+	 * a function to add a context. See examples below.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String callback;
 
+	/**
+	 * The context used to construct the event link.
+	 */
 	@Parameter
 	private Object[] context;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * When an event is triggered the page title is changed to this value.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String title;
 	
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * Javascript anonymous function called by the event. Used to manage history on the browser. 
+	 * Signature is history(event,ui,url). The parameter types are identical to callback.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String history;
 
-	@Parameter(defaultPrefix = "literal")
+	/**
+	 * Name of the jQuery event. By subclassing bind you can create mixins named by the jQuery event type. 
+	 * This allows more than one event per element.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String eventType;
 
+	/**
+	 * If true calls event.preventDefault().
+	 */
 	@Parameter(value = "true")
 	private Boolean preventDefault;
 
+	/**
+	 * If true bind will attempt to include the right effect libraries for zone and hide.
+	 */
 	@Parameter(value = "true")
 	private Boolean doImports;
 
-	@Parameter(value = "CoNtExT", defaultPrefix = "literal")
+	/**
+	 * Used as a marker by url.addContext() to insert values into the Tapestry event url.
+	 */
+	@Parameter(value = "CoNtExT", defaultPrefix = BindingConstants.LITERAL)
 	private String contextMarker;
 
 	@Inject
@@ -95,7 +152,7 @@ public class Bind {
 	String event() {
 		return event;
 	}
-
+	
 	Link createLink(String event, String marker) {
 		ComponentResources parent = resources.getContainerResources()
 				.getContainerResources();

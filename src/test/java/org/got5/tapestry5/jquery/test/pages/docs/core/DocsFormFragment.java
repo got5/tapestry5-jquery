@@ -29,13 +29,23 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 public class DocsFormFragment
 {
+	public List<JQueryTabData> getListTabData()
+	{
+		List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
+		listTabData.add(new JQueryTabData("Example","example"));
+		return listTabData;
+    }
+	
     @Persist
+    @Property
     private ShippingAddress _billingAddress;
 
     @Persist
+    @Property
     private ShippingAddress _shippingAddress;
 
     @Persist
+    @Property
     private boolean _separateShipTo;
     
     @Persist("flash")
@@ -50,47 +60,9 @@ public class DocsFormFragment
     @Property
     private boolean codeVisible;
 
-    public ShippingAddress getBillingAddress()
-    {
-        return _billingAddress;
-    }
-
-    public void setBillingAddress(ShippingAddress billingAddress)
-    {
-        _billingAddress = billingAddress;
-    }
-
-    public ShippingAddress getShippingAddress()
-    {
-        return _shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress)
-    {
-        _shippingAddress = shippingAddress;
-    }
-
-    public boolean isSeparateShipTo()
-    {
-        return _separateShipTo;
-    }
-
-    public void setSeparateShipTo(boolean separateShipTo)
-    {
-        _separateShipTo = separateShipTo;
-    }
-    
     @OnEvent(EventConstants.SUBMIT)
     public void onSubmit(){
     	successMessage = "Your form has been submitted !";
     }
-    @Property
-	private List<JQueryTabData> listTabData;
-	
-	@SetupRender
-	void onSetupRender()
-	{
-		listTabData = new ArrayList<JQueryTabData>();
-		listTabData.add(new JQueryTabData("Example","example"));
-    }
+    
 }

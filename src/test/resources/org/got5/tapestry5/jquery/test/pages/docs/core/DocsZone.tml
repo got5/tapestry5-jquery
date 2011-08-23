@@ -1,9 +1,9 @@
 <html t:type="layoutWithAccordion" t:title="Zone" t:activeElement="0"
 xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
    
-    <t:if test="useTabs">
+    
     <t:jquery.tabs t:listTabData="prop:listTabData" t:activePanelId="0" />
-    </t:if>
+    
 <t:block id="TabsBlock1">
 	<t:componentDocumentation>
 			<p:title>
@@ -32,9 +32,9 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 	Counting via AJAX : ${count}
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="22" t:endLine="33" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="22" t:endLine="33" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
 
-<div t:type="jquery/showSource" t:ext="java" t:beginLine="94" t:endLine="105" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="55" t:endLine="73" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 </t:block>
     
 <t:block id="TabsBlock3">
@@ -55,9 +55,9 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 	</t:ifNotNull>
 </t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="41" t:endLine="56" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="41" t:endLine="56" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
 
-     <div t:type="jquery/showSource" t:ext="java" t:beginLine="107" t:endLine="117" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="77" t:endLine="94" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 </t:block>
 
 <t:block id="TabsBlock4">
@@ -79,9 +79,9 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 		<p>rendering block-${blockId} after multi zone update</p>
 	</t:block>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="80" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="80" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
 
-     <div t:type="jquery/showSource" t:ext="java" t:beginLine="119" t:endLine="135" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+     <div t:type="jquery/showSource" t:ext="java" t:beginLine="97" t:endLine="125" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 
 </t:block>
 <t:block id="TabsBlock5">
@@ -107,11 +107,11 @@ xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry
 	Counting via AJAX : ${count}
 </t:zone>
 
-<div t:type="jquery/showSource" t:ext="html" t:beginLine="88" t:endLine="108" t:path="src/test/resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
+<div t:type="jquery/showSource" t:ext="html" t:beginLine="88" t:endLine="108" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.tml"></div>
     
-<div t:type="jquery/showSource" t:ext="java" t:beginLine="137" t:endLine="159" t:path="src/test/java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
+<div t:type="jquery/showSource" t:ext="java" t:beginLine="128" t:endLine="150" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsZone.java"></div>
 
-<div t:type="jquery/showSource" t:ext="javascript" t:path="src/test/jquery/webapp/js/demo.js"></div>
+<div t:type="jquery/showSource" t:ext="javascript" t:path="jquery/webapp/js/demo.js"></div>
 </t:block>
 
 

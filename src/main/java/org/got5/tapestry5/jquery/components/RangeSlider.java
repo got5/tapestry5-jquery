@@ -16,6 +16,7 @@
 
 package org.got5.tapestry5.jquery.components;
 
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
@@ -63,7 +64,7 @@ public class RangeSlider  {
      * An "action" event is triggered on the server. 
      * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderRangeZone").
      */
-    @Parameter(defaultPrefix="literal")
+    @Parameter(defaultPrefix=BindingConstants.LITERAL)
     private String zone;
 
     /**
@@ -90,7 +91,6 @@ public class RangeSlider  {
     	return clientId;
     }
     
-    @AfterRender
     void afterRender()
     {
     	specs = new JSONObject();

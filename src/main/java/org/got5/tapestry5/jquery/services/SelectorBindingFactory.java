@@ -9,6 +9,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.slf4j.Logger;
 
+/**
+ * @since 2.6.0
+ */
 public class SelectorBindingFactory implements BindingFactory {
 	private final RenderTracker selectorTracker;
 	private final String alias;

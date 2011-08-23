@@ -2,7 +2,7 @@
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     
-   		<t:any element="div" t:id="test" t:mixins="jquery/ui/slider">${selector:test}</t:any>
+   		<t:any element="div" t:id="test" t:mixins="slider">${selector:test}</t:any>
    
     
 </html>

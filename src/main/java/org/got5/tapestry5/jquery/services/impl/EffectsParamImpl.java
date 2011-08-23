@@ -4,6 +4,13 @@ import java.util.Collection;
 
 import org.got5.tapestry5.jquery.services.EffectsParam;
 
+/**
+ * Principal Implementation of the EffectParam Service
+ * Used to define the JavaScript files you want load, 
+ * in order to use the jQuery Effects.
+ * 
+ * @since 2.6.0
+ */
 public class EffectsParamImpl implements EffectsParam {
 	
 	public Collection<String> effectToLoad;

@@ -2,7 +2,7 @@
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
 	  xmlns:p="tapestry:parameter">
     
-   		<div t:type="any"  t:mixins="jquery/ui/slider" slider.options="{min: 0, max: 100, value: 10}" />
+   		<div t:type="any"  t:mixins="slider" slider.options="{min: 0, max: 100, value: 10}" />
    
     
 </html>

@@ -18,11 +18,14 @@ package org.got5.tapestry5.jquery.test.services;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
+import org.apache.tapestry5.services.MarkupRendererFilter;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.EffectsParam;
@@ -30,6 +33,7 @@ import org.got5.tapestry5.jquery.services.JQueryModule;
 import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
 import org.got5.tapestry5.jquery.test.data.MockDataSource;
+import org.got5.tapestry5.jquery.test.pages.GAnalyticsScriptsInjector;
 
 @SubModule(value = JQueryModule.class)
 public class AppModule
@@ -38,7 +42,7 @@ public class AppModule
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
     	
-    	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+    	configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
     	
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
     	
@@ -54,11 +58,11 @@ public class AppModule
     	
     }
     
-    @Contribute(WidgetParams.class)
-    public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
-    	configuration.add("slider", new JSONObject().put("min", 5));
-    	configuration.add("customdatepicker", new JSONObject("prevText","Previous Month"));
-    }
+@Contribute(WidgetParams.class)
+public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
+	configuration.add("slider", new JSONObject().put("min", 5));
+    configuration.add("customdatepicker", new JSONObject("prevText","Previous Month"));
+}
     
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
@@ -77,10 +81,18 @@ public class AppModule
 		configuration.add(IDataSource.class, new ApplicationStateContribution(
 				"session", creator));
 	}
-    @Contribute(EffectsParam.class)
-    
-    public void addEffectsFile(Configuration<String> configuration){
-    	configuration.add(EffectsConstants.SHAKE);
-    }
 
+@Contribute(EffectsParam.class)
+public void addEffectsFile(Configuration<String> configuration){
+	configuration.add(EffectsConstants.SHAKE);
+}
+
+public void contributeMarkupRenderer(OrderedConfiguration<MarkupRendererFilter> configuration,
+		@Symbol("enableAnalytics") final boolean enableAnalytics) {
+
+	if (enableAnalytics) {
+		configuration.addInstance("GAnalyticsScript", GAnalyticsScriptsInjector.class, "after:DocumentLinker");
+	}
+
+}
 }

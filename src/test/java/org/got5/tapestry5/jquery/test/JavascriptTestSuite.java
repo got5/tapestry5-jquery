@@ -123,7 +123,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         // it, or prototype does not support it
     }
 
-    protected void assertValidationWorking(final String fieldId, String value, boolean validationVisible, String submitId)
+    protected void assertValidationWorking(final String fieldId, String value, final boolean validationVisible, String submitId)
     {
         focus("identifier=" + fieldId);
         type("identifier=" + fieldId, value);
@@ -138,10 +138,18 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                 {
                     return isVisible(getValidationElementLocator(fieldId));
                 }
-            }.wait("element not found");
+            }.wait("The Element " + fieldId + " not found", 5000l);
         }
-
-        assertEquals(validationVisible, isVisible(getValidationElementLocator(fieldId)));
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isVisible(getValidationElementLocator(fieldId))==validationVisible;
+            }
+        }.wait("Element not visible", 5000l);
+        //assertEquals(validationVisible, isVisible(getValidationElementLocator(fieldId)));
 
     }
 
