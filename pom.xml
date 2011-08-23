@@ -85,6 +85,11 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+	<url>https://github.com/got5/tapestry5-jquery</url>
+	<organization>
+		<name>GOT5</name>
+		<url>https://github.com/got5</url>
+	</organization>
 	<build>
 		<finalName>tapestry-jquery</finalName>
 
