@@ -12,7 +12,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<t:label t:for="name" t:id="Label">The Name : </t:label>
 	<t:textfield t:id="name"/> 
 	<t:linksubmit t:id="send" context="literal:true" alt="add a name">
-		Send this Name :
+		Send this Name
 	</t:linksubmit>
 </t:form>
 		
