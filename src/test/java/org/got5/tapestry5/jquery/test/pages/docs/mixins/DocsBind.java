@@ -13,7 +13,6 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 import org.slf4j.Logger;
 
 public class DocsBind {
-
 	@Inject
 	private Logger logger;
 
@@ -37,6 +36,5 @@ public Object onSlideChange(String value) {
 	textZone = "The SlideChange event was triggered.";
 	return zoneSlideChange.getBody();
 }
-
 
 }
