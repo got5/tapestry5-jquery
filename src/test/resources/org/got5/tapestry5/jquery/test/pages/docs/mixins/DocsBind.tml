@@ -196,14 +196,15 @@
 <t:any class="${selector:this}" t:mixins="slider,jquery/bind" 
 	bind.event="slidechange"
 	bind.eventType="slidechange"
-	bind.callback="function (event,ui,url) {alert('This is the call back function');}"
+	bind.callback="function (event,ui,url) 
+		{alert('This is the call back function');}"
 	bind.zone="zoneSlideChange"
 	options='{min:0, max:100, value: 10, step: 2 }'>
 </t:any>	
     	
     	<div t:type="zone" id="zoneSlideChange" t:id="zoneSlideChange" t:visible="false">Zone for the SlideChange event : ${textZone}</div>
     	<br />
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="202" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="196" t:endLine="203" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="38" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsBind.java"></div>
  		</div>

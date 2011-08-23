@@ -78,9 +78,12 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
       <t:block id="example">
 			Complex Items:
 			<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
-				<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="docs/core/DocsJQueryPalette" t:context="3"/>
-				<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
-				<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
+				<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" 
+					t:page="docs/core/DocsJQueryPalette" t:context="3"/>
+				<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" 
+					t:event="zoneTest" t:zone="flowerZone"  />
+				<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" 
+					t:event="eventTest" t:context="literal:hello" />
 				<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
 				<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
 				<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
@@ -105,7 +108,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 			Ajax loaded:
 			<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
 			
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="79" t:endLine="108" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="79" t:endLine="109" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:beginLine="44" t:endLine="96" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsCarouselPage.java"></div>
 	  </t:block>
 </html>

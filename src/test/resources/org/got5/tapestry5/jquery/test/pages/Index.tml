@@ -8,7 +8,7 @@
 	<span>
 		The "Tapestry5-jQuery" is an open sourced Tapestry 5 library from Atos WorldLine. 
   		It aims to make it possible to replace the Prototype/Scriptaculous JS layer of Tapestry: all its components, mixins or any other JS interactions.
-  		It also provided overdvanced UI component framework for easily integrating Ajax capabilities into business applications using Tapestry5
+  		It also provided advanced UI component framework for easily integrating Ajax capabilities into business applications using Tapestry5
   	</span>
   	<br/><br/>
   		Tapestry 5 has a loose coupling on Prototype and Scriptaculous on a lot of points.
@@ -20,7 +20,7 @@
 	<br/><br/>
   	<div>
   		Project is hosted  Github under the <a href="http://github.com/got5">Got5</a>  account.
-  		Tapestry5-jquery is based on Tapestry 5.2.5, jQuery, jQuery UI or any plugins.
+  		Tapestry5-jquery is based on Tapestry 5.2.6, jQuery, jQuery UI or any plugins.
   	</div>
 	
 	</t:block>

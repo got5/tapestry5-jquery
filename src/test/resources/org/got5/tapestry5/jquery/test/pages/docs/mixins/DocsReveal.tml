@@ -64,19 +64,21 @@
     
     <t:block id="example">
 <a id="monLink" t:type="pageLink" t:page="Index" 
-								  t:mixins="jquery/reveal" 
-								  t:div="literal:myDiv" 
-								  t:animation="fade" 
-								  t:dismissmodalclass="reveal-closing">link</a>
+	  t:mixins="jquery/reveal" 
+	  t:div="literal:myDiv" 
+	  t:animation="fade" 
+	  t:dismissmodalclass="reveal-closing">
+	  Click Here in order to display the modal window.
+</a>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="70" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="72" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="78" t:endLine="81" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="80" t:endLine="83" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
 
 	</t:block>
     
 <div id="myDiv" class="reveal-div reveal-hidden">
-	Test
+	Here is the Modal Window/
 	<div class="reveal-closing">x</div>
 </div>
 </html>

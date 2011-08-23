@@ -61,6 +61,7 @@ public Object onSuccess(){
 }
     
 public Boolean getDataToDisplay(){
-	return InternalUtils.isNonBlank(foo) && InternalUtils.isNonBlank(email) && InternalUtils.isNonBlank(regexp);
+	return InternalUtils.isNonBlank(foo) && InternalUtils.isNonBlank(email) && 
+		InternalUtils.isNonBlank(regexp);
 }
 }

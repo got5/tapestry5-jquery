@@ -11,7 +11,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<t:errors/>
 	<t:label t:for="name" t:id="Label">The Name : </t:label>
 	<t:textfield t:id="name"/> 
-	<t:linksubmit t:id="send" context="literal:true" alt="add a name">Send</t:linksubmit>
+	<t:linksubmit t:id="send" context="literal:true" alt="add a name">
+		Send this Name
+	</t:linksubmit>
 </t:form>
 		
 <br/><br/>
@@ -21,7 +23,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 		${value}
 	</li>
 </ul>
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="23" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="25" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="61" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsLinkSubmit.java"></div>    	
     </t:block>

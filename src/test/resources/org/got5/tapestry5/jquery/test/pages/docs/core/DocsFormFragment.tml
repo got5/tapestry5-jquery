@@ -10,7 +10,8 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	<t:errors/>
 	<div class="t-beaneditor">
 		<h2>Billing Address</h2>
-	    <t:beaneditor t:id="billingAddress"/><t:checkbox t:id="separateShipTo" t:mixins="triggerfragment" fragment="seperateShippingAddress"/>
+	    <t:beaneditor t:id="billingAddress"/><t:checkbox t:id="separateShipTo" 
+	    	t:mixins="triggerfragment" fragment="seperateShippingAddress"/>
 	    <t:label for="separateShipTo">
 	    	Separate Ship To?
 	    </t:label>
@@ -22,7 +23,8 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	    <br/>
 	
 	    <t:radiogroup value="codeVisible">
-	    	<t:radio t:id="on" label="On" value="true"  t:mixins="triggerfragment" fragment="codeFragment"/>
+	    	<t:radio t:id="on" label="On" value="true"  t:mixins="triggerfragment" 
+	    		fragment="codeFragment"/>
 	    	<t:label for="on">Enter code</t:label>
 	    	<t:radio t:id="off" label="Off"  value="false"/>
 	    	<t:label for="off">No code</t:label>
@@ -38,11 +40,12 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	        
 	        
 	      <div class="t-beaneditor-row">
-	      	<input type="submit" value="Continue"/><span class="successMessage">${successMessage}</span>
+	      	<input type="submit" value="Continue"/>
+	      		<span class="successMessage">${successMessage}</span>
 	      </div>
 	</div>
 </t:form>  
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="44" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="47" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:beginLine="39" t:endLine="66" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsFormFragment.java"></div>    	
     </t:block>
