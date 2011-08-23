@@ -52,7 +52,6 @@
 	</t:block>
     
     <t:block id="example">
-
     	<div>
     		<h2>Create a new mixin with just the Widget Class</h2>
     		<p>
@@ -81,6 +80,5 @@
 	    <br />
     	
    </t:block>
-
     
 </html>
