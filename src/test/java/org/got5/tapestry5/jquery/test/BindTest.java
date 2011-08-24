@@ -11,7 +11,7 @@ public class BindTest extends SeleniumTestCase{
     {
 		open("/test/Bind");
 		
-		assertSourcePresent("jqbind","\"eventType\" : \"click\"");       
+		assertSourcePresent("jqbind","\"eventType\":\"click\"");       
     }
 	
 	@Test
