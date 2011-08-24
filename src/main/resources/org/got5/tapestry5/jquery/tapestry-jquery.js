@@ -433,8 +433,7 @@ $.widget( "ui.tapestryZone", {
 	applyContentUpdate: function(content) {
 
 		if (!content) {
-
-			console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
+			$().log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
 			return;
 		}
 
@@ -613,7 +612,7 @@ $.widget( "ui.tapestryFormInjector", {
 /**
  * Logger based on console
  */
-jQuery.fn.log = function(msg) {
+jQuery.fn.log = function(msg) { 
     if (Tapestry.DEBUG_ENABLED && typeof console != "undefined" && typeof console.log != "undefined") 
         console.log("%s: %o", msg, this);
     

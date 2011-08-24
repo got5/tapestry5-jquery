@@ -208,7 +208,7 @@ public class Bind {
 				}
 			}
 			if (hideEffect != null) {
-				String effect = findEffect(zoneUpdate);
+				String effect = findEffect(hideEffect);
 				if ( effect != null ) {
 					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
 				}

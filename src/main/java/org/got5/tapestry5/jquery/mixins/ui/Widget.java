@@ -29,8 +29,7 @@ public class Widget {
 	private JSONObject options;
 	
 	/**
-	 * The name of the widget. Used for calling the javascript method. 
-	 * By convention, the value is the name of the Mixin Class
+	 * Use if options needs a function. Experimental
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String script;
