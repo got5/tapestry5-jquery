@@ -433,8 +433,9 @@ $.widget( "ui.tapestryZone", {
 	applyContentUpdate: function(content) {
 
 		if (!content) {
-
-			console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
+			if (Tapestry.DEBUG_ENABLED && typeof console != "undefined" && typeof console.log != "undefined") { 
+				console.log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
+			}
 			return;
 		}
 
