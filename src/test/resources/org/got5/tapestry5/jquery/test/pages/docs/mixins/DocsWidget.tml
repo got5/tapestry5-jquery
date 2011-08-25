@@ -73,7 +73,7 @@
    				By default, Tapestry-jQuery will take the name of the class.
    			</p>
 <div t:type="any"  t:mixins="slider" slider.options="{min:0, max: 100}"></div>
-   			<div t:type="jquery/showSource" t:ext="html" t:beginLine="75" t:endLine="75" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
+   			<div t:type="jquery/showSource" t:ext="html" t:beginLine="75" t:endLine="75" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsWidget.tml"></div>
    			<div t:type="jquery/showSource" t:ext="java" t:beginLine="6" t:endLine="9" t:path="java/org/got5/tapestry5/jquery/test/mixins/Slider.java"></div>
    		</div>	
    		<br />

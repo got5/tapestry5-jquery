@@ -40,9 +40,9 @@
 		t:mixins="jquery/CustomDatepicker" t:params="params"/>
 </form>
       		
-      		<div t:type="jquery/showSource" t:ext="html" t:beginLine="37" t:endLine="41" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsCustomDatepicker.tml"></div>
+      		<div t:type="jquery/showSource" t:ext="html" t:beginLine="37" t:endLine="41" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsCustomDatepicker.tml"></div>
       		
-      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="25" t:endLine="30" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsCustomDatepicker.java"></div>
+      		<div t:type="jquery/showSource" t:ext="java" t:beginLine="25" t:endLine="30" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsCustomDatepicker.java"></div>
 
 	  </t:block>
 </html>

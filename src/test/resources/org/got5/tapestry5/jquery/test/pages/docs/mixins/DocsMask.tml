@@ -48,7 +48,7 @@
     	</fieldset>
     </t:form>
     
-    <div t:type="jquery/showSource" t:ext="html" t:beginLine="34" t:endLine="49" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsMask.tml"></div>
+    <div t:type="jquery/showSource" t:ext="html" t:beginLine="34" t:endLine="49" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsMask.tml"></div>
     	
 </t:block>
 
