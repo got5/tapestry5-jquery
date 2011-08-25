@@ -71,9 +71,9 @@
 	  Click Here in order to display the modal window.
 </a>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="72" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="66" t:endLine="72" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsReveal.tml"></div>
 		  
-		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="80" t:endLine="83" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsReveal.tml"></div>
+		  <div t:type="jquery/showSource" t:ext="html" t:beginLine="80" t:endLine="83" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/DocsReveal.tml"></div>
 
 	</t:block>
     

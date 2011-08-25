@@ -21,8 +21,8 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 			</div>
 			<br/></t:zone>
 	    </t:jquery.dialog> 
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="23" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsGrid.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="23" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsGrid.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="48" t:endLine="118" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsGrid.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="48" t:endLine="118" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsGrid.java"></div>    	
     </t:block>
 </html>

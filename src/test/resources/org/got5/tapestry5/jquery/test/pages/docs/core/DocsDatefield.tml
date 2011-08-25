@@ -33,9 +33,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </p>
 	  	<br/>
 	  	
-	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="26" t:endLine="33" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+	  	<div t:type="jquery/showSource" t:ext="html" t:beginLine="26" t:endLine="33" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsDatefield.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="61" t:endLine="63" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="61" t:endLine="63" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsDatefield.java"></div>
 	  	
     </t:block>
     <t:block id="TabsBlock3">
@@ -61,9 +61,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	Birthday ${birthdayAjax}
 </t:zone><br/>
 		
-		<div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="62" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.tml"></div>
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="44" t:endLine="62" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsDatefield.tml"></div>
 		  
-		<div t:type="jquery/showSource" t:ext="java" t:beginLine="66" t:endLine="129" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/docsDateField.java"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:beginLine="66" t:endLine="129" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsDatefield.java"></div>
 		
 	</t:block> 
 	<t:block id="TabsBlockLast">

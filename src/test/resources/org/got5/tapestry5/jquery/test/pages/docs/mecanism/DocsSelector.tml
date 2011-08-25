@@ -67,7 +67,7 @@ of the Component container :<br />
 >> ${selector:this}</t:any>  
 	</div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="43" t:endLine="66" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mecanism/docsSelector.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="43" t:endLine="66" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mecanism/DocsSelector.tml"></div>
     	
      </t:block>
     
