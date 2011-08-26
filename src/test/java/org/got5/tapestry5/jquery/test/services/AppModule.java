@@ -22,6 +22,8 @@ import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.ApplicationDefaults;
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
@@ -37,7 +39,9 @@ import org.got5.tapestry5.jquery.test.pages.GAnalyticsScriptsInjector;
 
 @SubModule(value = JQueryModule.class)
 public class AppModule
-{
+{	
+	@Contribute(SymbolProvider.class)
+	@ApplicationDefaults
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");

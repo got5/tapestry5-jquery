@@ -28,6 +28,8 @@ import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
+import org.apache.tapestry5.ioc.services.FactoryDefaults;
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BindingFactory;
@@ -83,6 +85,8 @@ public class JQueryModule
         configuration.add(new LibraryMapping("jquery", "org.got5.tapestry5.jquery"));
     }
 
+    @Contribute(SymbolProvider.class)
+    @FactoryDefaults
     public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
     {
         configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
