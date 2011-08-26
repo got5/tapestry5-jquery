@@ -36,6 +36,7 @@ import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.apache.tapestry5.services.meta.MetaWorker;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
@@ -65,19 +66,6 @@ public class JQueryModule
     		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
-    }
-
-    public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration,
-    		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
-            boolean suppressPrototype)
-    {
-    	if(suppressPrototype)
-    	{	
-    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
-    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
-    		//configuration.addInstance("CustomZoneEffectWorker", CustomZoneEffectWorker.class);
-    	}
-    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -151,10 +139,17 @@ public class JQueryModule
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
     
-    @Contribute(ComponentClassTransformWorker2.class)   
-    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker2> workers) {    
-        workers.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
-    
+       
+    public static void  contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker2> configuration, 
+    		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype) {
+       
+    	if(suppressPrototype)
+    	{	
+    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
+    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+    	}
+    	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
+    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
 

@@ -2,28 +2,30 @@ package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.annotations.BeginRender;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Flow;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.func.Worker;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.model.MutableComponentModel;
+import org.apache.tapestry5.plastic.MethodAdvice;
+import org.apache.tapestry5.plastic.MethodInvocation;
+import org.apache.tapestry5.plastic.PlasticClass;
+import org.apache.tapestry5.plastic.PlasticMethod;
 import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.ClassTransformation;
-import org.apache.tapestry5.services.ComponentClassTransformWorker;
-import org.apache.tapestry5.services.ComponentMethodAdvice;
-import org.apache.tapestry5.services.ComponentMethodInvocation;
 import org.apache.tapestry5.services.TransformConstants;
-import org.apache.tapestry5.services.TransformMethod;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
+import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
 
-public class ImportJQueryUIWorker implements ComponentClassTransformWorker
+public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 {
-    private final AssetSource assetSource;
+	
+	private final AssetSource assetSource;
 
     private final JavaScriptSupport javaScriptSupport;
 
@@ -50,6 +52,31 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
         this.jqueryUIBase = jqueryUIBase;
         this.productionMode = productionMode;
     }
+    
+	public void transform(PlasticClass plasticClass,
+			TransformationSupport support, MutableComponentModel model) {
+
+		ImportJQueryUI annotation = plasticClass.getAnnotation(ImportJQueryUI.class);
+		
+		if(annotation == null)
+			return;
+		
+		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
+		
+		final Flow<Asset> assetFlow = F.flow(annotation.value()).map(expandSimpleName).map(pathToAsset);
+		
+		setupRender.addAdvice(new MethodAdvice() {
+			
+			public void advise(MethodInvocation invocation) {
+				assetFlow.each(importLibrary);
+
+                invocation.proceed();
+			}
+		});
+
+        model.addRenderPhase(SetupRender.class);
+		
+	}
 
     private final Mapper<String, String> expandSimpleName = new Mapper<String, String>()
     {
@@ -89,40 +116,4 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker
             javaScriptSupport.importJavaScriptLibrary(value);
         }
     };
-
-    public void transform(ClassTransformation transformation, MutableComponentModel model)
-    {
-        ImportJQueryUI annotation = transformation.getAnnotation(ImportJQueryUI.class);
-
-        if (annotation == null)
-            return;
-
-        Flow<Asset> assetFlow = F.flow(annotation.value()).map(expandSimpleName).map(pathToAsset);
-
-        addAdvicetoBeginRender(transformation, assetFlow);
-
-        model.addRenderPhase(BeginRender.class);
-    }
-
-    private void addAdvicetoBeginRender(ClassTransformation transformation, Flow<Asset> assetFlow)
-    {
-        TransformMethod method = transformation.getOrCreateMethod(TransformConstants.BEGIN_RENDER_SIGNATURE);
-
-        method.addAdvice(createBeginRenderAdvice(assetFlow));
-    }
-
-    private ComponentMethodAdvice createBeginRenderAdvice(final Flow<Asset> assetFlow)
-    {
-
-        return new ComponentMethodAdvice()
-        {
-            public void advise(ComponentMethodInvocation invocation)
-            {
-                assetFlow.each(importLibrary);
-
-                invocation.proceed();
-            }
-        };
-    }
-
 }

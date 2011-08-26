@@ -16,22 +16,23 @@
 
 package org.got5.tapestry5.jquery.services;
 
-import org.apache.tapestry5.annotations.BeginRender;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.FormFragment;
 import org.apache.tapestry5.model.MutableComponentModel;
-import org.apache.tapestry5.services.ClassTransformation;
-import org.apache.tapestry5.services.ComponentClassTransformWorker;
-import org.apache.tapestry5.services.ComponentMethodAdvice;
-import org.apache.tapestry5.services.ComponentMethodInvocation;
+import org.apache.tapestry5.plastic.MethodAdvice;
+import org.apache.tapestry5.plastic.MethodInvocation;
+import org.apache.tapestry5.plastic.PlasticClass;
+import org.apache.tapestry5.plastic.PlasticMethod;
 import org.apache.tapestry5.services.TransformConstants;
-import org.apache.tapestry5.services.TransformMethod;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
+import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 
 /**
  * Adds a {@link IncludeFormResources} mixin when a Form component is transformed
  */
-public class FormFragmentResourcesInclusionWorker implements ComponentClassTransformWorker
+public class FormFragmentResourcesInclusionWorker implements ComponentClassTransformWorker2
 {
     private final JavaScriptSupport javaScriptSupport;
 
@@ -42,31 +43,25 @@ public class FormFragmentResourcesInclusionWorker implements ComponentClassTrans
     {
         this.javaScriptSupport = javaScriptSupport;
     }
+    
+    public void transform(PlasticClass plasticClass,
+			TransformationSupport support, MutableComponentModel model) {
+		
+    	if(model.getComponentClassName().equals(FormFragment.class.getName())){
+			
+			PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
+			
+			setupRender.addAdvice(new MethodAdvice() {
+				
+				public void advise(MethodInvocation invocation) {
+					
+					 javaScriptSupport.importStack(FormFragmentSupportStack.STACK_ID);
 
-    public void transform(ClassTransformation transformation, MutableComponentModel model)
-    {
-        if (model.getComponentClassName().equals(FormFragment.class.getName()))
-        {
-
-            addAdvicetoBeginRender(transformation);
-
-            model.addRenderPhase(BeginRender.class);
-        }
-    }
-
-    private void addAdvicetoBeginRender(ClassTransformation transformation)
-    {
-        TransformMethod method = transformation.getOrCreateMethod(TransformConstants.BEGIN_RENDER_SIGNATURE);
-
-        method.addAdvice(new ComponentMethodAdvice()
-        {
-            public void advise(ComponentMethodInvocation invocation)
-            {
-                javaScriptSupport.importStack(FormFragmentSupportStack.STACK_ID);
-
-                invocation.proceed();
-            }
-        });
-    }
-
+		             invocation.proceed();
+					
+				}
+			});
+			model.addRenderPhase(SetupRender.class);
+		}
+	}
 }
