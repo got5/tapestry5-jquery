@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 2.1.1
+# Tapestry 5 jQuery integration Module - 2.6.0
 
 ## List Of Contributors
 - Robin KOMIWES as robink
@@ -109,7 +109,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>2.1.0</version>
+			<version>2.6.0</version>
 		</dependency>
 		...
 	</dependencies>
