@@ -1,5 +1,8 @@
 # Tapestry 5 jQuery integration Module - 2.6.0
 
+## Demo and documentation
+http://tapestry5-jquery.com/
+
 ## List Of Contributors
 - Robin KOMIWES as robink
 - Andreas ANDREOU as andyhot
