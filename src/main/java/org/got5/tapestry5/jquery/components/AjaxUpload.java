@@ -2,7 +2,6 @@ package org.got5.tapestry5.jquery.components;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
@@ -11,7 +10,7 @@ import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.internal.services.PageRenderQueue;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -20,12 +19,17 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.PartialMarkupRenderer;
 import org.apache.tapestry5.services.PartialMarkupRendererFilter;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.upload.services.MultipartDecoder;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
+import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
+import org.got5.tapestry5.jquery.services.AjaxUploadDecoder;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * File-Upload component based on Tapestry-Upload and
@@ -39,9 +43,15 @@ import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
  *
  * @author criedel
  */
-@Events( { JQueryEventConstants.AJAX_UPLOAD } )
+@Events( { JQueryEventConstants.AJAX_UPLOAD, JQueryEventConstants.NON_XHR_UPLOAD } )
 @Import(stack = AjaxUploadStack.STACK_ID)
-public class AjaxUpload implements ClientElement {
+public class AjaxUpload extends AbstractExtendableComponent {
+
+    /**
+     * Put this as a key of your JSON response in case of NON_XHR_UPLOAD events.
+     * A JSON response of { UPDATE_ZONE_CALLBACK : { url : /your_event_callback_url/, params : /any_custom_params/ } }
+     */
+    public static final String UPDATE_ZONE_CALLBACK = "updateZone";
 
     private static final String[] UNITS = new String[] {"K", "M", "G"};
 
@@ -75,6 +85,12 @@ public class AjaxUpload implements ClientElement {
     @Parameter(value = "3")
     private int maxConnections;
 
+    /**
+     * Additional parameters (please refer to valum's file uploader documentation)
+     */
+    @Parameter
+    private JSONObject params;
+
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
@@ -82,7 +98,10 @@ public class AjaxUpload implements ClientElement {
     private ComponentResources resources;
 
     @Inject
-    private MultipartDecoder decoder;
+    private MultipartDecoder multipartDecoder;
+
+    @Inject
+    private AjaxUploadDecoder ajaxDecoder;
 
     @Inject
     private Request request;
@@ -90,15 +109,22 @@ public class AjaxUpload implements ClientElement {
     @Inject
     private Messages messages;
 
-    @Inject
-    private PageRenderQueue pageRenderQueue;
-
     @InjectComponent
     private Dialog uploadErrorMesages;
 
-    private String clientId;
+    @Inject
+    private AjaxResponseRenderer ajaxResponseRenderer;
+
+    @SetupRender
+    void setup() {
+
+        setDefaultMethod("uploadable");
+    }
 
     void afterRender() {
+
+        if (params == null)
+            params = new JSONObject();
 
         final JSONObject uploadMessages = new JSONObject()
                 .put("typeError", messages.get("typeError"))
@@ -127,7 +153,9 @@ public class AjaxUpload implements ClientElement {
             parameter.put("allowedExtensions", new JSONArray(allowedExtensions));
         }
 
-        javaScriptSupport.addInitializerCall("uploadable", parameter);
+        JQueryUtils.merge(parameter, params);
+
+        javaScriptSupport.addInitializerCall(getInitMethod(), parameter);
 
     }
 
@@ -158,21 +186,21 @@ public class AjaxUpload implements ClientElement {
         return 0;
     }
 
-    public String getClientId() {
+    private UploadedFile getUploadedFile() {
 
-        if (clientId == null) {
+        if (ajaxDecoder.isAjaxUploadRequest(request)) {
 
-            clientId = javaScriptSupport.allocateClientId(resources);
+            return ajaxDecoder.getFileUpload();
         }
 
-        return clientId;
+        return multipartDecoder.getFileUpload(JQueryComponentConstants.FILE_UPLOAD_PARAMETER);
     }
 
     @OnEvent(value = "upload")
     Object onUpload() {
 
         // The parameter 'qqfile' is specified in jquery.fileuploader.js
-        UploadedFile uploaded = decoder.getFileUpload("qqfile");
+        UploadedFile uploaded = getUploadedFile();
 
         if (uploaded != null && StringUtils.isEmpty(uploaded.getFileName())) {
             uploaded = null;
@@ -190,32 +218,48 @@ public class AjaxUpload implements ClientElement {
         };
 
         final boolean success = uploaded != null;
-        final JSONObject result = new JSONObject().put("success", success);
 
-        this.resources.triggerEvent(JQueryEventConstants.AJAX_UPLOAD, new Object[]{ uploaded }, callback);
+        if ( ! ajaxDecoder.isAjaxUploadRequest(request)) {
 
-        if (!request.isXHR()) {
+            this.resources.triggerEvent(JQueryEventConstants.NON_XHR_UPLOAD, new Object[]{ uploaded }, callback);
 
-            return new TextStreamResponse("text/html", result.toCompactString());
+            return processNonXHRResult(success, holder.get());
         }
 
-        final Object triggerResult = holder.get();
-        if (triggerResult == null) {
+        this.resources.triggerEvent(JQueryEventConstants.AJAX_UPLOAD, new Object[]{ uploaded }, callback);
+        return processXHRResult(success, holder.get());
+    }
 
+    private Object processXHRResult(final boolean success, final Object triggerResult) {
+
+        final JSONObject result = new JSONObject().put("success", success);
+        if (triggerResult != null && triggerResult instanceof JSONObject) {
+
+            JQueryUtils.merge(result, (JSONObject) triggerResult);
             return result;
         }
 
-        pageRenderQueue.addPartialMarkupRendererFilter(new PartialMarkupRendererFilter() {
+        ajaxResponseRenderer.addFilter(new PartialMarkupRendererFilter() {
 
             public void renderMarkup(MarkupWriter writer, JSONObject reply, PartialMarkupRenderer renderer) {
 
                 renderer.renderMarkup(writer, reply);
-                reply.put("success", success);
+                JQueryUtils.merge(reply, result);
             }
         });
 
         return triggerResult;
+    }
 
+    private Object processNonXHRResult(boolean success, final Object triggerResult) {
+
+        final JSONObject result = new JSONObject().put("success", success);
+        if (triggerResult != null && triggerResult instanceof JSONObject) {
+
+            JQueryUtils.merge(result, (JSONObject) triggerResult);
+        }
+
+        return new TextStreamResponse("text/html", result.toCompactString());
     }
 
 }
