@@ -31,6 +31,7 @@ import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
+import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.got5.tapestry5.jquery.EffectsConstants;
@@ -47,15 +48,15 @@ import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
 public class JQueryModule
-{	
+{
     public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
             boolean suppressPrototype)
     {
-    	
+
     	configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
     	if(suppressPrototype)
-    	{	
+    	{
     		configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
     		configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
     		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
@@ -68,7 +69,7 @@ public class JQueryModule
             boolean suppressPrototype)
     {
     	if(suppressPrototype)
-    	{	
+    	{
     		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
     		//configuration.addInstance("CustomZoneEffectWorker", CustomZoneEffectWorker.class);
@@ -95,9 +96,9 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
         configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
         configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
-        
+
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
-        
+
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
@@ -112,7 +113,7 @@ public class JQueryModule
     		) {
         configuration.add("selector", selectorBindingFactory);
 
-       
+
 }
     public static void bind(ServiceBinder binder)
     {
@@ -120,9 +121,10 @@ public class JQueryModule
       binder.bind(EffectsParam.class, EffectsParamImpl.class);
       binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
       binder.bind(RenderTracker.class, RenderTrackerImpl.class);
+      binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class);
     }
-    
-    
+
+
     @Contribute(TypeCoercer.class)
     public static void provideBasicTypeCoercions(Configuration<CoercionTuple> configuration)
     {
@@ -135,7 +137,7 @@ public class JQueryModule
 		}));
     }
 
-    
+
     /**
      * By Default, we import the JavaScript file of the HighLight Effect.
      * @param configuration
@@ -144,13 +146,17 @@ public class JQueryModule
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
-    
-    @Contribute(ComponentClassTransformWorker.class)   
-    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker> workers) {    
+
+    @Contribute(ComponentClassTransformWorker.class)
+    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker> workers) {
         workers.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
-    
+
     }
 
+    public static void contributeHttpServletRequestHandler(final OrderedConfiguration<HttpServletRequestFilter> configuration,
+                                                           final AjaxUploadDecoder ajaxUploadDecoder) {
 
+        configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
+    }
 
 }

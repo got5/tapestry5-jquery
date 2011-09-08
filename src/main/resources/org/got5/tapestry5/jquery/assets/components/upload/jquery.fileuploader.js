@@ -1221,24 +1221,8 @@ qq.FileUploaderBasic.prototype = {
 											xhr.open("POST", queryString, true);
 							xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 							xhr.setRequestHeader("X-File-Name", encodeURIComponent(name));
-
-							// adding some random boundary here
-							// inspired by http://mike.kaply.com/2010/05/20/post-multipart-form-xhr/
-							var boundary = '-------------------------------';
-							boundary += Math.floor(Math.random()*32768);
-							boundary += Math.floor(Math.random()*32768);
-							boundary += Math.floor(Math.random()*32768);
-							
-							var body = '--' + boundary + '\r\n' 
-							         + 'Content-Disposition: form-data; name="qqfile"; filename="' + encodeURIComponent(name) + '"\r\n'
-                       + 'Content-Type: '+file.type+'\r\n\r\n'
-							         + file.getAsBinary() + '\r\n'
-								     + '--' + boundary + '--';
-
-							xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
-							xhr.setRequestHeader('Content-Length', body.length);
-
-							xhr.sendAsBinary(body);
+							xhr.setRequestHeader("Content-Type", "application/octet-stream");
+					        xhr.send(file);
 					},
 					_onComplete: function(id, xhr){
 						// the request was aborted/cancelled
