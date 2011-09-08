@@ -236,6 +236,7 @@ public class AjaxUpload extends AbstractExtendableComponent {
         if (triggerResult != null && triggerResult instanceof JSONObject) {
 
             JQueryUtils.merge(result, (JSONObject) triggerResult);
+            return result;
         }
 
         pageRenderQueue.addPartialMarkupRendererFilter(new PartialMarkupRendererFilter() {
@@ -243,7 +244,8 @@ public class AjaxUpload extends AbstractExtendableComponent {
             public void renderMarkup(MarkupWriter writer, JSONObject reply, PartialMarkupRenderer renderer) {
 
                 renderer.renderMarkup(writer, reply);
-                JQueryUtils.merge(reply, result);            }
+                JQueryUtils.merge(reply, result);
+            }
         });
 
         return triggerResult;
