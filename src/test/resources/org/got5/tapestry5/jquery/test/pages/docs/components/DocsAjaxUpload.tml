@@ -50,10 +50,10 @@
                 </table>
                 
                 <p>Example for JQueryEventConstants.AJAX_UPLOAD event handler:</p>
-                <div t:type="jquery/showSource" t:ext="java" t:beginLine="61" t:endLine="71" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
+                <div t:type="jquery/showSource" t:ext="java" t:beginLine="63" t:endLine="74" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
                 
                 <p>Example for JQueryEventConstants.NON_XHR_UPLOAD event handler with custom event handler for the additional zone refresh:</p>
-                <div t:type="jquery/showSource" t:ext="java" t:beginLine="73" t:endLine="97" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
+                <div t:type="jquery/showSource" t:ext="java" t:beginLine="76" t:endLine="100" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
             </p:description>
             
             <p:link_1>The original JS library: <t:componentLink t:url="https://github.com/valums/file-uploader"/></p:link_1>
@@ -205,8 +205,8 @@ params = {
 	        </div>
 	    </t:zone>
 
-        <div t:type="jquery/showSource" t:ext="html" t:beginLine="71" t:endLine="94" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.tml"></div>           
-        <div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="112" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
+        <div t:type="jquery/showSource" t:ext="html" t:beginLine="183" t:endLine="206" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.tml"></div>           
+        <div t:type="jquery/showSource" t:ext="java" t:beginLine="63" t:endLine="100" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsAjaxUpload.java"></div>
 
     </t:block>
 
