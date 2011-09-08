@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PersistenceConstants;
-import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -14,6 +13,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.components.AjaxUpload;
@@ -39,6 +39,9 @@ public class DocsAjaxUpload {
     @Inject
     private ComponentResources resources;
 
+    @Inject
+    private AjaxResponseRenderer ajaxResponseRenderer;
+
     void onActivate() {
 
         if (uploadedFiles == null)
@@ -58,7 +61,7 @@ public class DocsAjaxUpload {
     }
 
     @OnEvent(component = "uploadImage", value = JQueryEventConstants.AJAX_UPLOAD)
-    Object onImageUpload(UploadedFile uploadedFile) {
+    void onImageUpload(UploadedFile uploadedFile) {
 
         if (uploadedFile != null) {
 
@@ -67,7 +70,7 @@ public class DocsAjaxUpload {
 
         message = "This upload was: AJAX_UPLOAD";
 
-        return new MultiZoneUpdate("uploadResult", uploadResult);
+        ajaxResponseRenderer.addRender("uploadResult", uploadResult);
     }
 
     @OnEvent(component = "uploadImage", value = JQueryEventConstants.NON_XHR_UPLOAD)
@@ -89,18 +92,18 @@ public class DocsAjaxUpload {
     }
 
     @OnEvent(value = "myCustomEvent")
-    Object onMyCustomEvent(final String someParam) {
+    void onMyCustomEvent(final String someParam) {
 
         message = "This upload was: " + someParam;
 
-        return new MultiZoneUpdate("uploadResult", uploadResult);
+        ajaxResponseRenderer.addRender("uploadResult", uploadResult);
     }
 
-    Object onUploadException(FileUploadException ex) {
+    void onUploadException(FileUploadException ex) {
 
         message = "Upload exception: " + ex.getMessage();
 
-        return new MultiZoneUpdate("uploadResult", uploadResult);
+        ajaxResponseRenderer.addRender("uploadResult", uploadResult);
     }
 
     public String getMessage() {

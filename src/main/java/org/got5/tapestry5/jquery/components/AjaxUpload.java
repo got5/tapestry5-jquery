@@ -20,6 +20,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.PartialMarkupRenderer;
 import org.apache.tapestry5.services.PartialMarkupRendererFilter;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.upload.services.MultipartDecoder;
 import org.apache.tapestry5.upload.services.UploadedFile;
@@ -114,6 +115,9 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
     @InjectComponent
     private Dialog uploadErrorMesages;
+
+    @Inject
+    private AjaxResponseRenderer ajaxResponseRenderer;
 
     @SetupRender
     void setup() {
@@ -236,14 +240,16 @@ public class AjaxUpload extends AbstractExtendableComponent {
         if (triggerResult != null && triggerResult instanceof JSONObject) {
 
             JQueryUtils.merge(result, (JSONObject) triggerResult);
+            return result;
         }
 
-        pageRenderQueue.addPartialMarkupRendererFilter(new PartialMarkupRendererFilter() {
+        ajaxResponseRenderer.addFilter(new PartialMarkupRendererFilter() {
 
             public void renderMarkup(MarkupWriter writer, JSONObject reply, PartialMarkupRenderer renderer) {
 
                 renderer.renderMarkup(writer, reply);
-                JQueryUtils.merge(reply, result);            }
+                JQueryUtils.merge(reply, result);
+            }
         });
 
         return triggerResult;
