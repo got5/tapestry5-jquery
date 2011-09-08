@@ -326,6 +326,16 @@ $.extend(Tapestry.Initializer, {
 
                     $.tapestry.utils.loadScriptsInReply(responseJSON);
                 }
+				
+				if (responseJSON.updateZone) {
+
+					var spec = { 
+							url : responseJSON.updateZone.url, 
+							params : responseJSON.updateZone.params
+					};
+
+					$('#' + responseJSON.updateZone.zoneId).tapestryZone("update", spec);
+				}
 
 			}, 
 			
