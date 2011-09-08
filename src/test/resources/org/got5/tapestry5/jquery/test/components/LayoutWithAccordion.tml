@@ -96,9 +96,9 @@
 				 <li>
 			        <t:pagelink t:page="docs/components/DocsJqueryRangeSlider">Range Slider</t:pagelink>
 			     </li>
-			     <!--<li>
-			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload (broken in Chrome and Safari)</t:pagelink>
-			     </li>-->			
+			     <li>
+			     	<t:pagelink t:page="docs/components/DocsAjaxupload">AjaxUpload</t:pagelink>
+			     </li>			
 			     <li>
 			     	<t:pagelink t:page="docs/components/DocsCarouselPage">Carousel</t:pagelink>
 			     </li>
