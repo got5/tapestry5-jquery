@@ -11,7 +11,6 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.internal.services.PageRenderQueue;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -109,9 +108,6 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
     @Inject
     private Messages messages;
-
-    @Inject
-    private PageRenderQueue pageRenderQueue;
 
     @InjectComponent
     private Dialog uploadErrorMesages;
