@@ -53,8 +53,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     private final List<StylesheetLink> jQueryCssStack;
     
     private final AssetSource assetSource;
-    
-    private final JavaScriptStack prototypeStack;
+      
+    private final JavaScriptStackSource jsStackSource;
 
     private SymbolSource symbolSource;
 
@@ -83,7 +83,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
         this.jQueryAlias = jQueryAlias;
-        this.prototypeStack = jsStackSrc.getStack(JQuerySymbolConstants.PROTOTYPE_STACK);
+        this.jsStackSource = jsStackSrc;
         this.symbolSource = symbolSource;
         this.effectsParam = effectsParam;
 
@@ -153,8 +153,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		String pathToTapestryJqueryJs = "${tapestry.jquery.path}/noconflict.js";
     		Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
     		ret.add(tapestryJqueryJs);
+   
+    		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getJavaScriptLibraries());
     		
-    		ret.addAll(prototypeStack.getJavaScriptLibraries());
     		
     		pathToTapestryJqueryJs = "${tapestry.jquery.path}/jquery-noconflict.js";
     		tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
@@ -172,7 +173,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	ret.addAll(jQueryCssStack);
     	if(!suppressPrototype)
     	{
-    		ret.addAll(prototypeStack.getStylesheets());  
+     		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets());
+    		
     	}	
  		return ret;
     }
