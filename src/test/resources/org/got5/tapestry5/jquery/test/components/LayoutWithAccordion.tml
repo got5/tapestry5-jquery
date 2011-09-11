@@ -138,7 +138,9 @@
 			        <li>
 			     		<t:pagelink t:page="docs/mixins/DocsWidget">Widget</t:pagelink>
 			     	</li>
-			        
+	                <li>
+	                   <t:pagelink t:page="docs/mixins/GalleryPage">Gallery</t:pagelink>
+	                </li>
 			    </ul>		
 			</t:block>
 			<t:block id="block4">
