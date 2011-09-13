@@ -259,6 +259,11 @@
 			<name>OpenQA Release Repository</name>
 			<url>http://archiva.openqa.org/repository/releases/</url>
 		</repository>
+		<repository>
+			<id>Apache Staging</id>
+			<name>Apache Maven Staging Repository</name>
+			<url>https://repository.apache.org/content/groups/staging/</url>
+		</repository>
 	</repositories>
 
 	<profiles>
@@ -275,7 +280,7 @@
 	</profiles>
 
 	<properties>
-		<tapestry-release-version>5.3-SNAPSHOT</tapestry-release-version>
+		<tapestry-release-version>5.3-beta-1</tapestry-release-version>
 		<browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>
