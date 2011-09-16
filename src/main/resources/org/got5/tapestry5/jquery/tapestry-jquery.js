@@ -1,6 +1,5 @@
 (function( $ ) {
 	
-
 $.extend(Tapestry, {
 	/** 
      * Key for storing virtualScripts data in the DOM
@@ -17,6 +16,7 @@ $.extend(Tapestry, {
     
     init: function(specs) {
         $.each(specs, function(functionName, params) {
+        	
             var initf = Tapestry.Initializer[functionName];
             
             if (!initf) {
@@ -54,49 +54,36 @@ $.extend(Tapestry, {
     }
 });
 
-/** Container of functions that may be invoked by the Tapestry.init() function. */
-$.extend(Tapestry.Initializer, {
+/** Compatibility: set Tapestry.Initializer equal to T5.initializers. */
+
+Tapestry.Initializer = T5.initializers;
+
+T5.extendInitializers({
 	
 	/** Make the given field the active field (focus on the field). */
-	activate : function(id) {
-		$("#" + id).focus();
-	},
-
-    ajaxFormLoop: function(spec) {
+    activate : function(id) {
+        $("#" + id).focus();
+    },
     
-        $.each(spec.addRowTriggers, function(index, triggerId) {
-        
+    /**
+     * evalScript is a synonym for the JavaScript eval function. It is
+     * used in Ajax requests to handle any setup code that does not fit
+     * into a standard Tapestry.Initializer call.
+     */
+    evalScript : function(spec) {
+
+		eval(spec);
+	},
+    
+    ajaxFormLoop : function(spec) {
+    	$.each(spec.addRowTriggers, function(index, triggerId) {
+            
             $("#" + triggerId).click(function(event) {
                 $("#" + spec.rowInjector).tapestryFormInjector("trigger");
                 return false;
             })
         });
-    },
-
-	/**
-	 * evalScript is a synonym for the JavaScript eval function. It is used in
-	 * Ajax requests to handle any setup code that does not fit into a standard
-	 * Tapestry.Initializer call.
-	 */
-	evalScript : function(spec) {
-
-		eval(spec);
-	},
-    
-	formEventManager : function(spec) {
-		$("#" + spec.formId).formEventManager({
-	       
-            'form' : $('#' + spec.formId),
-            'validateOnBlur' : spec.validate.blur,
-            'validateOnSubmit' : spec.validate.submit
-
-	    });
-		
-	},
-    
-    formInjector: function(spec) {
-        $("#" + spec.element).tapestryFormInjector(spec);
-    },
+    }, 
     
     formLoopRemoveLink: function(spec) {
         defaults = {
@@ -135,6 +122,38 @@ $.extend(Tapestry.Initializer, {
             return false;
         });
     },
+    /**
+     * Convert a form or link into a trigger of an Ajax update that
+     * updates the indicated Zone.
+     *
+     * @param spec.linkId
+     *            id or instance of &lt;form&gt; or &lt;a&gt; element
+     * @param spec.zoneId
+     *            id of the element to update when link clicked or form
+     *            submitted
+     * @param spec.url
+     *            absolute component event request URL
+     */
+    linkZone : function(spec) {
+    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+				spec.zoneId, spec.url);
+    },
+    
+    /**
+     * Converts a link into an Ajax update of a Zone. The url includes
+     * the information to reconnect with the server-side Form.
+     *
+     * @param spec.selectId
+     *            id or instance of &lt;select&gt;
+     * @param spec.zoneId
+     *            id of element to update when select is changed
+     * @param spec.url
+     *            component event request URL
+     */
+    linkSelectToZone : function(spec) {
+    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+				spec.zoneId, spec.url);
+    },
     
     /**
      * Rewrite the linkSubmit component. Because Tapestry will use a span tag.
@@ -158,6 +177,10 @@ $.extend(Tapestry.Initializer, {
 		
 		el.attr('href', '#');
 		
+		if (spec.cancel) {
+			el.attr("name", "cancel");
+        }
+		
         el.tapestryLinkSubmit({
             form: spec.form,
 			validate: spec.validate,
@@ -165,58 +188,42 @@ $.extend(Tapestry.Initializer, {
 			
         });
     },
-
-    /**
-     * Convert a form or link into a trigger of an Ajax update that
-     * updates the indicated Zone.
-     * @param element id or instance of <form> or <a> element
-     * @param zoneId id of the element to update when link clicked or form submitted
-     * @param url absolute component event request URL
-     */
-    linkZone: function(spec) {
-    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
-				spec.zoneId, spec.url);
-    },
-	
-   /**
-     * Converts a link into an Ajax update of a Zone. The url includes the
-     * information to reconnect with the server-side Form.
-     * 
-     * @param spec.selectId
-     *            id or instance of <select>
-     * @param spec.zoneId
-     *            id of element to update when select is changed
-     * @param spec.url
-     *            component event request URL
-     */
-    linkSelectToZone : function(spec) {
-        Tapestry.Initializer.updateZoneOnEvent("change", spec.selectId,
-				spec.zoneId, spec.url);
-    },
     
     /**
-	 * Used by other initializers to connect an element (either a link or a
-	 * form) to a zone.
-	 * 
-	 * @param eventName
-	 *            the event on the element to observe
-	 * @param element
-	 *            the element to observe for events
-	 * @param zoneId
-	 *            identified a Zone by its clientId. Alternately, the special
-	 *            value '^' indicates that the Zone is a container of the
-	 *            element (the first container with the 't-zone' CSS class).
-	 * @param url
-	 *            The request URL to be triggered when the event is observed.
-	 *            Ultimately, a partial page update JSON response will be passed
-	 *            to the Zone's ZoneManager.
-	 */
-    updateZoneOnEvent: function(eventName, element, zoneId, url) {
-
-        var el = $('#' + element);
+     * Used by other initializers to connect an element (either a link
+     * or a form) to a zone.
+     *
+     * @param eventName
+     *            the event on the element to observe
+     * @param element
+     *            the element to observe for events
+     * @param zoneId
+     *            identified a Zone by its clientId. Alternately, the
+     *            special value '^' indicates that the Zone is a
+     *            container of the element (the first container with the
+     *            't-zone' CSS class).
+     * @param url
+     *            The request URL to be triggered when the event is
+     *            observed. Ultimately, a partial page update JSON
+     *            response will be passed to the Zone's ZoneManager.
+     */
+    updateZoneOnEvent : function(eventName, element, zoneId, url) {
+    	var el = $('#' + element);
 		
         var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
-
+        
+        if (!zoneElement) {
+            Tapestry
+                .error(
+                "Could not find zone element '#{zoneId}' to update on #{eventName} of element '#{elementId}",
+                {
+                    zoneId : zoneId,
+                    eventName : eventName,
+                    elementId : element.id
+                });
+            return;
+        }
+        
         if (el.is('form')) {
 			
 			el.addClass(Tapestry.PREVENT_SUBMISSION);
@@ -268,6 +275,25 @@ $.extend(Tapestry.Initializer, {
         }
     },
     
+    /**
+     * Sets up a Tapestry.FormEventManager for the form, and enables
+     * events for validations. This is executed with
+     * InitializationPriority.EARLY, to ensure that the FormEventManager
+     * exists vefore any validations are added for fields within the
+     * Form.
+     *
+     * @since 5.2.2
+     */
+    formEventManager : function(spec) {
+    	$("#" + spec.formId).formEventManager({
+ 	       
+            'form' : $('#' + spec.formId),
+            'validateOnBlur' : spec.validate.blur,
+            'validateOnSubmit' : spec.validate.submit
+
+	    });
+    },
+    
     zone: function(spec) {
         if (!jQuery.isPlainObject(spec)) {
             spec = {
@@ -277,7 +303,17 @@ $.extend(Tapestry.Initializer, {
         
         $('#' + spec.element).tapestryZone(spec);
     }, 
-	
+    
+    formInjector: function(spec) {
+        $("#" + spec.element).tapestryFormInjector(spec);
+    },
+    
+    cancelButton : function(clientId) {
+    	$("#" + clientId).click(function() {
+    		//TODO
+    	});
+    },
+    
 	/**
 	 * 
 	 * @param spec.action 
@@ -359,13 +395,77 @@ $.extend(Tapestry.Initializer, {
         el.fileuploader(spec);
         
     }
-    
 });
 
+$.widget("ui.formEventManager", {
+    options: { },
 
+    _create: function() { 
+	
+	},
 
+    /**
+     * Identifies in the form what is the cause of the submission. The element's
+     * id is stored into the t:submit hidden field (created as needed).
+     * 
+     * @param element
+     *            id or element that is the cause of the submit (a Submit or
+     *            LinkSubmit)
+     */
+    setSubmittingElement : function(element) {
+    	
+    	/**
+    	 * Get The Form
+    	 */
+        var form = this.options.form;
 
+		if (!this.options.submitHidden) {
 
+            /**
+             * Check if it is a form controlled by Tapestry
+             */
+			var hasNoFormData = true;
+			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
+				hasNoFormData = ( $(this).attr('value') == '' );
+			});
+			
+			/**
+			 * If it is not, we stop.
+			 */
+            if (hasNoFormData) {
+				return;
+			}
+
+            /**
+             * Look for hidden input, called t:submit
+             */
+            var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
+
+            if (hiddens.size() === 0) {
+
+                /**
+                 * Create a new hidden field directly after the first hidden
+                 * field in the form.
+                 */
+            	this.options.submitHidden = $('<input type="hidden" name="t:submit"/>')
+            		
+            	$(form).append(this.options.submitHidden);
+                
+
+            } else
+            	this.options.submitHidden = hiddens.first();
+        }
+		
+		var t = element == null ? null : $.toJSON([element,
+		                                           $("#"+element).attr("name")]);
+		
+		this.options.submitHidden.attr("value", t);
+	},
+	
+	handleSubmit : function(element) {
+		//TODO ?
+	}
+});
 
 /**
  * Zone plugin
@@ -503,71 +603,7 @@ $.widget( "ui.tapestryLinkSubmit", {
 	
 });
 
-$.widget("ui.formEventManager", {
-    options: { },
 
-    _create: function() { 
-	
-	},
-
-    /**
-     * Identifies in the form what is the cause of the submission. The element's
-     * id is stored into the t:submit hidden field (created as needed).
-     * 
-     * @param element
-     *            id or element that is the cause of the submit (a Submit or
-     *            LinkSubmit)
-     */
-    setSubmittingElement : function(element) {
-    	
-    	/**
-    	 * Get The Form
-    	 */
-        var form = this.options.form;
-
-		if (!this.options.submitHidden) {
-
-            /**
-             * Check if it is a form controlled by Tapestry
-             */
-			var hasNoFormData = true;
-			$(form).find('input[type="hidden"][name="t:formdata"]').each(function(){
-				hasNoFormData = ( $(this).attr('value') == '' );
-			});
-			
-			/**
-			 * If it is not, we stop.
-			 */
-            if (hasNoFormData) {
-				return;
-			}
-
-            /**
-             * Look for hidden input, called t:submit
-             */
-            var hiddens = $(form).find('input[type="hidden"][name="t:submit"]');
-
-            if (hiddens.size() === 0) {
-
-                /**
-                 * Create a new hidden field directly after the first hidden
-                 * field in the form.
-                 */
-            	this.options.submitHidden = $('<input type="hidden" name="t:submit"/>')
-            		
-            	$(form).append(this.options.submitHidden);
-                
-
-            } else
-            	this.options.submitHidden = hiddens.first();
-        }
-		
-		var t = element == null ? null : $("#"+element).attr("id");
-		
-		this.options.submitHidden.attr("value",t);
-    }
-	
-});
 
 /**
  * Form Injector
@@ -600,7 +636,9 @@ $.widget( "ui.tapestryFormInjector", {
                 // to create the new element, that gets inserted
                 // before or after the FormInjector's element.			
             	
-                var newElement = el.clone(false).attr("id", data.elementId).html(data.content);
+                var newElement = el.clone(false);
+                newElement.attr("id", data.elementId);
+                newElement.html(data.content);
                 
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
                 

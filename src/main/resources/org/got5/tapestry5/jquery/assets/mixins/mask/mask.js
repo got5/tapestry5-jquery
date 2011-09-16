@@ -1,9 +1,14 @@
-(function($){
-    
-	/** Container of functions that may be invoked by the Tapestry.init() function. */
-    $.extend(Tapestry.Initializer, {
-    	mask: function(specs){
-            $("#" + specs.id).mask(specs.format);
-        }
-    });
-})(jQuery);
+(function( $ ) {
+
+	T5.extendInitializers(function(){
+		
+		function init(spec) {
+			 $("#" + spec.id).mask(spec.format);
+		}
+		
+		return {
+			mask : init
+		}
+	});
+	
+}) ( jQuery );

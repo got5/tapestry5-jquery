@@ -24,15 +24,19 @@ function mycarousel_getItemHTML(url, spec){
 	var h=spec.height ? spec.height : "75px";
     return '<img src="' + url + '" width="'+w+'" height="'+h+'" alt="" />';
 }
+T5.extendInitializers(function(){
 	
-$.extend(Tapestry.Initializer, {
-    carousel: function(specs) {
-    	if(specs.params.loadCallbackUrl != undefined){
+	function init(specs) {
+		if(specs.params.loadCallbackUrl != undefined){
     		specs.params.itemLoadCallback = loadCarousel(specs.params); 
     	}
         $("#" + specs.id).jcarousel(specs.params);
-    }
-});
+	}
+	
+	return {
+		carousel : init
+	}
+});	
 
 }) ( jQuery );
 

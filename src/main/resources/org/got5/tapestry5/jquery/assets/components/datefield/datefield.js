@@ -1,14 +1,19 @@
-(function($){
+(function( $ ) {
 
-    $.extend(Tapestry.Initializer, {
-        dateField: function(specs) {	
-            $("#" + specs.field).datepicker({
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
+			$("#" + specs.field).datepicker({
                 gotoCurrent: true,
                 showOn: "button",
         		buttonImageOnly: false
             });
-        }
-    });
+		}
+		
+		return {
+			dateField : init
+		}
+	});
 	
 	$.extend(Tapestry, {
 		DateField : {
@@ -21,5 +26,4 @@
 			}
 		}
 	});
-			
-})(jQuery);
+}) ( jQuery );

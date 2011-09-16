@@ -1,12 +1,18 @@
-(function($){
-    /** Container of functions that may be invoked by the Tapestry.init() function. */
-    $.extend(Tapestry.Initializer, {
-        button: function(specs){
-            if(specs.type=="buttonset")
-            	 $("#" + specs.id).buttonset(specs.params);
-            else
-            	$("#" + specs.id).button(specs.params);
-        }
-    });
-})(jQuery);
+(function( $ ) {
+
+	T5.extendInitializers(function(){
+		
+		function init(spec) {
+			if(spec.type=="buttonset")
+           	 $("#" + spec.id).buttonset(spec.params);
+           else
+           	$("#" + spec.id).button(spec.params);
+		}
+		
+		return {
+			button : init
+		}
+	});
+	
+}) ( jQuery );
 

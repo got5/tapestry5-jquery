@@ -120,7 +120,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                         "${jquery.ui.path}/jquery.ui.core.js",
                         "${jquery.ui.path}/jquery.ui.position.js",
                         "${jquery.ui.path}/jquery.ui.widget.js",
-                        "${jquery.ui.path}/jquery.effects.core.js")
+                        "${jquery.ui.path}/jquery.effects.core.js",
+                        "${tapestry.jquery.path}/jquery.json-2.2.js")
             .concat(F.flow(this.effectsParam.getEffectsToLoad())).map(pathToAsset).toList();
 
     }
@@ -130,39 +131,85 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
         return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
     }
-
+    
+    /**
+     * Asset in Prototype, have to be changed by a jQuery version
+     * 
+     * JavaScript File          | A Prototype JavaScript File ? |  jQuery version exist ?
+     * t5-ajax.js				|Y
+     * t5-alerts.js				|Y
+     * t5-console.js			|Y								| t5-console-jquery.js 
+     * t5-core.js				|N
+     * t5-dom.js				|Y								| t5-dom-jquery.js
+     * t5-events.js				|N
+     * t5-formfragment.js		|Y
+     * t5-init.js				|N
+     * t5-prototype.js			|Y								| t5-jquery.js						
+     * t5-pubsub.js				|I do not think so
+     * t5-spi.js				|N
+     * tapestry-console.js		|N
+     * tapestry.js				|Y								| tapestry-jquery.js : has to be reviewed !!
+     * tree.js					|Y
+     */
+    public Object chooseJavascript(Asset asset){
+    	
+    	if(suppressPrototype)
+    	{
+    		if(asset.getResource().getFile().endsWith("t5-prototype.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-jquery.js");
+    		}
+    		
+    		if(asset.getResource().getFile().endsWith("tapestry.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/tapestry-jquery.js");
+    		}
+    		if(asset.getResource().getFile().endsWith("t5-console.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-console-jquery.js");
+    		}
+    		if(asset.getResource().getFile().endsWith("t5-dom.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-dom-jquery.js");
+    		}
+    		if(asset.getResource().getFile().endsWith("prototype.js") || 
+    				asset.getResource().getFile().endsWith("scriptaculous.js") ||
+    				asset.getResource().getFile().endsWith("effects.js"))
+    		{
+    			return null;
+    		}
+    		
+    	}
+    	
+    	return asset;
+    }
+    
     public List<Asset> getJavaScriptLibraries()
     {
     	List<Asset> ret = new ArrayList<Asset>();
+    	
     	if(suppressPrototype)
     	{
-    		String pathToTapestryJs = "${tapestry.js.path}";
-    	    Asset  tapestryJs = this.assetSource.getExpandedAsset(pathToTapestryJs);
-    	    ret.add(tapestryJs);
-    	
-    	    ret.addAll(jQueryJsStack);
-    		
-    	    String pathToTapestryJqueryJs = "${tapestry.jquery.path}/tapestry-jquery.js";
-    	    Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
-    		ret.add(tapestryJqueryJs);
+    		ret.add(this.assetSource.getExpandedAsset("${tapestry.js.path}"));
     	}
-    	else
+    	
+    	ret.addAll(jQueryJsStack);
+    	
+    	if(!suppressPrototype){
+    		ret.add(this.assetSource.getExpandedAsset("${tapestry.jquery.path}/noconflict.js"));
+    	}
+    	
+    	for(Asset asset : jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getJavaScriptLibraries())
     	{
-    		ret.addAll(jQueryJsStack);
-    		
-    		String pathToTapestryJqueryJs = "${tapestry.jquery.path}/noconflict.js";
-    		Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
-    		ret.add(tapestryJqueryJs);
-   
-    		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getJavaScriptLibraries());
-    		
-    		
-    		pathToTapestryJqueryJs = "${tapestry.jquery.path}/jquery-noconflict.js";
-    		tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
-    		ret.add(tapestryJqueryJs);
-    	}	
- 		
- 		return ret;
+    		asset=(Asset) chooseJavascript(asset);
+    		if(asset!=null) ret.add(asset);
+    	}
+    	
+    	if(!suppressPrototype){
+    		ret.add(this.assetSource.getExpandedAsset("${tapestry.jquery.path}/jquery-noconflict.js"));
+    	}
+  
+    	return ret;
         
     }
 

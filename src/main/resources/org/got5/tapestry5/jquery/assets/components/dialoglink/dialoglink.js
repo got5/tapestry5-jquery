@@ -1,23 +1,18 @@
-(function($) {
+(function( $ ) {
 
-$.extend(Tapestry.Initializer, {
+	T5.extendInitializers(function(){
+		
+		function init(spec) {
+			$('#' + spec.triggerId).click(function() {
+	            jQuery('#' + spec.dialogId).dialog('open');
+				
+				return false;
+	        });
+		}
+		
+		return {
+			dialogLink : init
+		}
+	});
 	
-    /**
-     * Initialize jquery dialog popup on click of an element.
-     */
-    dialogLink: function(spec) {
-        $('#' + spec.triggerId).click(function() {
-            jQuery('#' + spec.dialogId).dialog('open');
-			
-			return false;
-        });
-    }
-});
-    
-})(jQuery);
-
-
-
-
-
-
+}) ( jQuery );

@@ -54,7 +54,7 @@ public class DocsDatefield
         return listTabData;
     }
 	
-	public void onSubmitFromActivePanel(){
+	public void onSubmitFromSimpleDate(){
 		activePanel=1;
 	}
 /**simple page ****************************************************/

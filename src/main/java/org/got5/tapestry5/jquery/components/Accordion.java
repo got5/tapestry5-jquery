@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -67,14 +68,15 @@ public class Accordion extends AbstractExtendableComponent
 	@Property
 	private JQueryAccordionData currentElement;
 
-	void setupRender()
+	@BeginRender
+	void initJs()
     {
         setDefaultMethod("accordion");
     }
 
     void afterRender()
     {
-
+    	System.out.println("### test2"+getInitMethod());
         JSONObject data = new JSONObject();
         data.put("id", getClientId());
 

@@ -1,6 +1,8 @@
 (function( $ ) {
-	$.extend(Tapestry.Initializer, {
-	    tabs: function(specs) {
+
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
 			var p = specs.params;
 			if(!p.ajaxOptions)
 				p.ajaxOptions={};
@@ -10,6 +12,11 @@
 					return false;
 				}});
 			$("#" + specs.id).tabs(p);
-	    }
+		}
+		
+		return {
+			tabs : init
+		}
 	});
+	
 }) ( jQuery );

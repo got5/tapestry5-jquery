@@ -1,14 +1,9 @@
 (function($){
     
-	/** Container of functions that may be invoked 
-	 * by the Tapestry.init() function. */
-    $.extend(Tapestry.Initializer, {
-        source: function(specs){
-        	
-        	/**
-        	 * Call snippet plugin
-        	 */
-        	var snippet = $("#"+specs.id + " pre."+specs.lang);
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
+var snippet = $("#"+specs.id + " pre."+specs.lang);
         	
         	$(snippet).snippet(specs.lang,
         	{
@@ -66,6 +61,13 @@
         	
         	$(snippet).closest(".my-snippet-container").css("display", "block");
         	
-        }
-    });
+        
+		}
+		
+		return {
+			source : init
+		}
+	});
+    
+    
 })(jQuery);

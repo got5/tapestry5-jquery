@@ -1,16 +1,17 @@
 (function( $ ) {
 
-$.extend(Tapestry.Initializer, {
-    accordion: function(specs) {
-        $("#" + specs.id).accordion(specs.params);
-  
-    }
-});
-
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
+			$("#" + specs.id).accordion(specs.params);
+		}
+		
+		return {
+			accordion : init
+		}
+	});
+	
 }) ( jQuery );
-
-
-
 
 
 
