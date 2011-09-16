@@ -21,7 +21,15 @@
 T5.extend(T5.spi, function() {
 
     function observe(element, eventName, listener) {
-    	//TODO
+    	$(element).bind(eventName, listener);
+    	
+    	element = null;
+        eventName = null;
+        listener = null;
+
+        return function() {
+        	$(element).stop();
+        };
   
     }
 

@@ -137,7 +137,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
      * 
      * JavaScript File          | A Prototype JavaScript File ? |  jQuery version exist ?
      * t5-ajax.js				|Y
-     * t5-alerts.js				|Y
+     * t5-alerts.js				|Y								| t5-alerts-jquery.js
      * t5-console.js			|Y								| t5-console-jquery.js 
      * t5-core.js				|N
      * t5-dom.js				|Y								| t5-dom-jquery.js
@@ -152,6 +152,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
      * tree.js					|Y
      */
     public Object chooseJavascript(Asset asset){
+    	
+    	
     	
     	if(suppressPrototype)
     	{
@@ -171,6 +173,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		if(asset.getResource().getFile().endsWith("t5-dom.js"))
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-dom-jquery.js");
+    		}
+    		if(asset.getResource().getFile().endsWith("t5-alerts.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-alerts-jquery.js");
     		}
     		if(asset.getResource().getFile().endsWith("prototype.js") || 
     				asset.getResource().getFile().endsWith("scriptaculous.js") ||
@@ -221,8 +227,14 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	if(!suppressPrototype)
     	{
      		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets());
-    		
-    	}	
+    	}
+    	else
+    	{
+    		for(StylesheetLink css : jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets()){
+    			if(css.getURL().endsWith("t5-alerts.css") || 
+    					css.getURL().endsWith("tree.css")) ret.add(css);
+    		}
+    	}
  		return ret;
     }
 

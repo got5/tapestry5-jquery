@@ -75,6 +75,9 @@
         		<li>
                     <t:pagelink t:page="docs/core/DocsJqueryPalette">j:Palette</t:pagelink> 
         		</li>
+        		<li>
+                    <t:pagelink t:page="docs/core/DocsAlert">Alert</t:pagelink> 
+        		</li>
 			</ul>
 			</t:block>
 		
