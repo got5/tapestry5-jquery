@@ -94,14 +94,15 @@
 	                    // TODO: Switch this to T5.ajax.sendRequest when implemented/available
 	
 	                    // Send a request, we don't care about the response.
-	
+	                   
 	                    if (alertSpec.id) {
-	                    	var ajaxRequest = {
+	                    	$.tapestry.utils.ajaxRequest(spec.dismissURL,{type: "POST", data: {id: alertSpec.id}});
+/*	                    	var ajaxRequest = {
 	                            	type:"POST",
 	                                url: spec.dismissURL, 
 	                                data: {id : alertSpec.id}
 	                        };
-	                        $.ajax(ajaxRequest);
+	                        $.ajax(ajaxRequest);*/
 	                        
 	                    }
 	                });

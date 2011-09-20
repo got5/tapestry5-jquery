@@ -136,7 +136,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
      * Asset in Prototype, have to be changed by a jQuery version
      * 
      * JavaScript File          | A Prototype JavaScript File ? |  jQuery version exist ?
-     * t5-ajax.js				|Y
+     * t5-ajax.js				|Y								| t5-ajax-jquery.js
      * t5-alerts.js				|Y								| t5-alerts-jquery.js
      * t5-console.js			|Y								| t5-console-jquery.js 
      * t5-core.js				|N
@@ -178,9 +178,14 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-alerts-jquery.js");
     		}
+    		if(asset.getResource().getFile().endsWith("t5-ajax.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-ajax-jquery.js");
+    		}
     		if(asset.getResource().getFile().endsWith("prototype.js") || 
     				asset.getResource().getFile().endsWith("scriptaculous.js") ||
-    				asset.getResource().getFile().endsWith("effects.js"))
+    				asset.getResource().getFile().endsWith("effects.js") || 
+    				asset.getResource().getFile().endsWith("exceptiondisplay.js"))
     		{
     			return null;
     		}
@@ -231,7 +236,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	else
     	{
     		for(StylesheetLink css : jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets()){
-    			if(css.getURL().endsWith("t5-alerts.css") || 
+    			if(css.getURL().endsWith("t5-alerts.css") || css.getURL().endsWith("tapestry-console.css") ||
     					css.getURL().endsWith("tree.css")) ret.add(css);
     		}
     	}

@@ -20,10 +20,13 @@ import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
@@ -32,6 +35,9 @@ import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.plastic.MethodAdvice;
+import org.apache.tapestry5.plastic.MethodInvocation;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -155,6 +161,28 @@ public class JQueryModule
                                                            final AjaxUploadDecoder ajaxUploadDecoder) {
 
         configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
+    }
+    
+    @Advise
+    @Match("AssetPathConverter")
+    public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source)
+    	throws SecurityException, NoSuchMethodException{
+    	
+    	MethodAdvice advise = new MethodAdvice() {
+			
+			public void advise(MethodInvocation invocation) {
+				
+				invocation.proceed();
+				
+				if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
+					
+					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
+					
+				}
+				
+			}
+		};
+		receiver.adviseMethod(receiver.getInterface().getMethod("convertAssetPath", String.class),advise);
     }
 
 }

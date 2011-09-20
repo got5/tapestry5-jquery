@@ -33,7 +33,43 @@ $.extend(Tapestry, {
             });
         });
     },
+    /** Formats and displays an error message on the console. */
+    error : function(message, substitutions) {
+        Tapestry.invokeLogger(message, substitutions, Tapestry.Logging.error);
+    },
+
+    /** Formats and displays a warning on the console. */
+    warn : function(message, substitutions) {
+        Tapestry.invokeLogger(message, substitutions, Tapestry.Logging.warn);
+    },
+
+    /** Formats and displays an info message on the console. */
+    info : function(message, substitutions) {
+        Tapestry.invokeLogger(message, substitutions, Tapestry.Logging.info);
+    },
+
+    /** Formats and displays a debug message on the console. */
+    debug : function(message, substitutions) {
+        Tapestry.invokeLogger(message, substitutions, Tapestry.Logging.debug);
+    },
     
+    //Based on http://javascript.crockford.com/remedial.html
+    supplant : function (message,o) {
+        return message.replace(/{([^{}]*)}/g,
+            function (a, b) {
+                var r = o[b];
+                return typeof r === 'string' || typeof r === 'number' ? r : a;
+            }
+        );
+    },
+    
+    invokeLogger : function(message, substitutions, loggingFunction) {
+        if (substitutions != undefined){
+            message = Tapestry.supplant(message,substitutions);
+        }
+		
+        loggingFunction.call(this, message);
+    },
     markScriptLibrariesLoaded: function(scripts) {
         var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
 
@@ -499,39 +535,69 @@ $.widget( "ui.tapestryZone", {
     update: function(specs) {
         
 		var that = this;
-		
-        var ajaxRequest = {
-        	type:"POST",
-            url: specs.url,
-            success: function(data) {
-                
-				if (data.content) {
+		var ajaxRequest = {
+				url: specs.url,
+				type: "POST", 
+				success: function(data){
+					if (data.content) {
 
-	                that.applyContentUpdate(data.content);
+		                that.applyContentUpdate(data.content);
 
-				} else if (data.zones) {
+					} else if (data.zones) {
 
-                    // perform multi zone update
-					$.each(data.zones, function(zoneId){
+	                    // perform multi zone update
+						$.each(data.zones, function(zoneId){
 
-						$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
-					});
-					
+							$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
+						});
+						
+					}
+
+	                $.tapestry.utils.loadScriptsInReply(data);
 				}
-
-                $.tapestry.utils.loadScriptsInReply(data);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert(textStatus);
-            }
-        };
-        
-        if (specs.params) {
-            ajaxRequest = $.extend(ajaxRequest, {
+		};
+		
+		if (specs.params) {
+			$.extend(ajaxRequest, {
                 data: specs.params
             });
         }
-        $.ajax(ajaxRequest);
+		
+        $.tapestry.utils.ajaxRequest(ajaxRequest);
+		
+		
+		 /*var ajaxRequest = {
+		        	type:"POST",
+		            url: specs.url,
+		            error : $.tapestry.utils.ajaxFailureHandler,
+		            success: function(data) {
+		                
+						if (data.content) {
+
+			                that.applyContentUpdate(data.content);
+
+						} else if (data.zones) {
+
+		                    // perform multi zone update
+							$.each(data.zones, function(zoneId){
+
+								$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
+							});
+
+						}
+
+		                $.tapestry.utils.loadScriptsInReply(data);
+		            }
+		        };
+		        
+		        if (specs.params) {
+		            ajaxRequest = $.extend(ajaxRequest, {
+		                data: specs.params
+		            });
+		        }
+		        $.ajax(ajaxRequest);
+		*/
+		
     }, 
 	
 	/**
@@ -816,7 +882,112 @@ $.tapestry = {
 
 	            Tapestry.init(initArray[index]);
 	        });
+	    }, 
+	    
+	    /**
+	     * Default function for handling a communication error during an Ajax
+	     * request.
+	     */
+	    ajaxExceptionHandler : function(response, exception) {
+	    	
+	        Tapestry.error(Tapestry.Messages.communicationFailed + exception);
+
+	        Tapestry.debug(Tapestry.Messages.ajaxFailure + exception, response);
+
+	        throw exception;
+	    },
+
+	    /**
+	     * Default function for handling Ajax-related failures.
+	     */
+	    ajaxFailureHandler : function(response) {
+	        var rawMessage = response.getResponseHeader("X-Tapestry-ErrorMessage");
+
+	        var message = unescape(rawMessage);
+
+	        Tapestry.error(Tapestry.Messages.communicationFailed + message);
+	        
+	        var JSONresponse = {
+	        		status: response.status
+	        }
+	        Tapestry.debug(Tapestry.Messages.ajaxFailure + message, JSONresponse);
+
+	        var contentType = response.getResponseHeader("content-type")
+
+	        var isHTML = contentType && (contentType.split(';')[0] === "text/html");
+
+	        if (isHTML) {
+	            T5.ajax.showExceptionDialog(response.responseText)
+	        }
+	    }, 
+	    
+	    /**
+	     * Processes a typical Ajax request for a URL. In the simple case, a success
+	     * handler is provided (as options). In a more complex case, an options
+	     * object is provided, with keys as per Ajax.Request. The onSuccess key will
+	     * be overwritten, and defaults for onException and onFailure will be
+	     * provided. The handler should take up-to two parameters: the
+	     * XMLHttpRequest object itself, and the JSON Response (from the X-JSON
+	     * response header, usually null).
+	     *
+	     * @param url
+	     *            of Ajax request
+	     * @param options
+	     *            either a success handler
+	     * @return the Ajax.Request object
+	     */
+	    ajaxRequest : function(options) {
+	    	
+	    	if ($.isFunction(options)) {
+	            return $.tapestry.utils.ajaxRequest(url, {
+	                success : options
+	            });
+	        }
+	        var successHandler = options.success;
+	        
+	        
+	        var finalOptions = {
+	        		onException : $.tapestry.utils.ajaxExceptionHandler,	
+	        		error : $.tapestry.utils.ajaxFailureHandler
+	        };
+	        
+	        $.extend(finalOptions, options);
+	        
+	        $.extend(finalOptions, {
+	        	success : function(response, jsonResponse,textStatus) {
+	        		/*
+                     * When the page is unloaded, pending Ajax requests appear to
+                     * terminate as successful (but with no reply value). Since
+                     * we're trying to navigate to a new page anyway, we just ignore
+                     * those false success callbacks. We have a listener for the
+                     * window's "beforeunload" event that sets this flag.
+                     */
+                    if (Tapestry.windowUnloaded)
+                        return;
+
+                    /*
+                     * Prototype treats status == 0 as success, even though it seems
+                     * to mean the server didn't respond.
+                     */
+                    if (textStatus.status!=200) {
+                        finalOptions.error.call(this, response);
+                        return;
+                    }
+                    try {
+                        /* Re-invoke the success handler, capturing any exceptions. */
+                        successHandler.call(this, response, jsonResponse);
+                    	
+                    	
+                    } catch (e) {
+                        finalOptions.onException.call(this, ajaxRequest, e);
+                    }
+	        	}
+	        });
+	        var ajaxRequest = $.ajax(finalOptions);
+
+	        return ajaxRequest;
 	    }
+
 
     }
 };
