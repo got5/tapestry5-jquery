@@ -55,7 +55,7 @@ $.extend(Tapestry, {
     
     //Based on http://javascript.crockford.com/remedial.html
     supplant : function (message,o) {
-        return message.replace(/{([^{}]*)}/g,
+        return message.replace(/#{([^{}]*)}/g,
             function (a, b) {
                 var r = o[b];
                 return typeof r === 'string' || typeof r === 'number' ? r : a;

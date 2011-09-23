@@ -78,6 +78,9 @@
         		<li>
                     <t:pagelink t:page="docs/core/DocsAlert">Alert</t:pagelink> 
         		</li>
+        		<li>
+                    <t:pagelink t:page="docs/core/AjaxExceptionReport">Ajax Exception Report</t:pagelink> 
+        		</li>
 			</ul>
 			</t:block>
 		

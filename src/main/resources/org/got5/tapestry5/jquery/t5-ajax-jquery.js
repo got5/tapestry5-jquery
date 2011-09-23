@@ -101,7 +101,7 @@ T5.define("ajax", function() {
             
              
              $(document.body).append(markup);
-             var exceptionContainer = $("div.t-exception-container");
+             exceptionContainer = $("div.t-exception-container");
             
              iframe = exceptionContainer.find("iframe");
 

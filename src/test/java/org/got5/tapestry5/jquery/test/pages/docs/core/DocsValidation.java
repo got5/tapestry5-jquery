@@ -59,7 +59,12 @@ private Zone myZone;
 public Object onSuccess(){
 	return myZone.getBody();
 }
-    
+
+@OnEvent(value=EventConstants.FAILURE)
+public Object onFailure(){
+	return myZone.getBody();
+}
+
 public Boolean getDataToDisplay(){
 	return InternalUtils.isNonBlank(foo) && InternalUtils.isNonBlank(email) && 
 		InternalUtils.isNonBlank(regexp);
