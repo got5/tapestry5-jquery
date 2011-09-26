@@ -73,7 +73,7 @@
             		<t:pagelink t:page="docs/core/DocsJQueryAutocomplete">j:Autocomplete</t:pagelink>
         		</li>
         		<li>
-                    <t:pagelink t:page="docs/core/DocsJqueryPalette">j:Palette</t:pagelink> 
+            		<t:pagelink t:page="docs/core/DocsJQueryPalette">j:Palette</t:pagelink>
         		</li>
         		<li>
                     <t:pagelink t:page="docs/core/DocsAlert">Alert</t:pagelink> 

@@ -27,6 +27,7 @@ import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Match;
+import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
@@ -144,8 +145,10 @@ public class JQueryModule
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
-
-    public static void  contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker2> configuration,
+    
+    @Contribute(ComponentClassTransformWorker2.class)
+    @Primary
+    public static void  addWorker(OrderedConfiguration<ComponentClassTransformWorker2> configuration,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype) {
 
     	if(suppressPrototype)
@@ -160,7 +163,7 @@ public class JQueryModule
     public static void contributeHttpServletRequestHandler(final OrderedConfiguration<HttpServletRequestFilter> configuration,
                                                            final AjaxUploadDecoder ajaxUploadDecoder) {
 
-        configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
+       configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
     }
     
     @Advise
