@@ -96,14 +96,7 @@
 	                    // Send a request, we don't care about the response.
 	                   
 	                    if (alertSpec.id) {
-	                    	$.tapestry.utils.ajaxRequest(spec.dismissURL,{type: "POST", data: {id: alertSpec.id}});
-/*	                    	var ajaxRequest = {
-	                            	type:"POST",
-	                                url: spec.dismissURL, 
-	                                data: {id : alertSpec.id}
-	                        };
-	                        $.ajax(ajaxRequest);*/
-	                        
+	                    	$.tapestry.utils.ajaxRequest({url:spec.dismissURL, type: "POST", data: {id: alertSpec.id}});
 	                    }
 	                });
 	

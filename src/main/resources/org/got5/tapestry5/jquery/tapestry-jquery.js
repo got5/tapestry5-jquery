@@ -975,7 +975,7 @@ $.tapestry = {
                     }
                     try {
                         /* Re-invoke the success handler, capturing any exceptions. */
-                        successHandler.call(this, response, jsonResponse);
+                        if(successHandler != undefined) successHandler.call(this, response, jsonResponse);
                     	
                     	
                     } catch (e) {
