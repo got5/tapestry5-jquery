@@ -22,6 +22,7 @@ import java.util.List;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
+
 public class Index
 {
 	public List<JQueryTabData> getListTabData()
