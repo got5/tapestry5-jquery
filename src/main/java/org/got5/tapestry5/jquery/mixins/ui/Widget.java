@@ -39,7 +39,7 @@ public class Widget {
 	 * to a jQuery widget name.
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String name;
+	private String widgetName;
 	
 	@InjectContainer
 	private ClientElement clientElement;
@@ -57,12 +57,13 @@ public class Widget {
 	@Inject
 	private JSSupport jsSupport;
 	
-	@Inject
+	@SuppressWarnings("unused")
+    @Inject
 	private Logger logger;
 	
 	String widgetName() {
-		if ( name != null ) {
-			return name;
+		if ( widgetName != null ) {
+			return widgetName;
 		}
 		return this.getClass().getSimpleName().toLowerCase(); 
 	}

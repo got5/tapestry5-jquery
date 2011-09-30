@@ -67,13 +67,13 @@
 
 });
 
-$.extend(Tapestry.Initializer, {
-
-	formFragment: function ( spec ) {
+T5.extendInitializers(function(){
+	
+	function init(spec) {
 		$("#" + spec.element ).formFragment();
-	},
-
-	linkTriggerToFormFragment : function(spec) {
+	}
+	
+	function linkTriggerToFormFragment(spec) {
 		var trigger = spec.triggerId;
 		var element = spec.fragmentId;
 		var invert = spec.invert;
@@ -95,6 +95,10 @@ $.extend(Tapestry.Initializer, {
         /* Normal trigger is a checkbox; listen just to it. */
         trigger.click(update);
     }
+	return {
+		formFragment : init, 
+		linkTriggerToFormFragment : linkTriggerToFormFragment
+	}
 });
 
 })( jQuery );

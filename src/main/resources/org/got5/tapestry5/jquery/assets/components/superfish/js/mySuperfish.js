@@ -1,16 +1,20 @@
 (function( $ ) {
 
-$.extend(Tapestry.Initializer, {
-    superfish: function(specs) {
-        
-    	if(specs.supersubs)
-    	{
-    		$("#" + specs.id).supersubs(specs.supersubsParams);
-    	}
-    		
-    	$("#" + specs.id).superfish(specs.params);
-    }
-});
-
+	T5.extendInitializers(function(){
+		
+		function init(spec) {
+			if(spec.supersubs)
+	    	{
+	    		$("#" + spec.id).supersubs(spec.supersubsParams);
+	    	}
+	    		
+	    	$("#" + spec.id).superfish(spec.params);
+		}
+		
+		return {
+			superfish : init
+		}
+	});
+	
 }) ( jQuery );
 

@@ -1,0 +1,20 @@
+<html t:type="layoutWithAccordion" 
+t:title="Alert Demo" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+
+<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+	
+	<t:block id="example">
+<h1>Alert Demo</h1>
+<br /><br />
+
+<t:alerts />
+
+<t:actionLink t:id="ajax" t:zone="zone">Click Here to see the Exception Report</t:actionLink><br />
+<t:zone t:id="zone"></t:zone>
+
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="11" t:endLine="15" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsAlert.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="21" t:endLine="41" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsAlert.java"></div>    	
+    </t:block>
+</html>

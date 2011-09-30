@@ -1,7 +1,8 @@
 (function( $ ) {
-	$.extend(Tapestry.Initializer, {
-		jqbind: function(specs) {
 
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
 			var el = $('#'+specs.elementId);
 			var url = specs.url;
 			var zoneId = specs.zoneId;
@@ -55,5 +56,10 @@
 				}
 			});
 		}
+		
+		return {
+			jqbind : init
+		}
 	});
+	
 }) ( jQuery );

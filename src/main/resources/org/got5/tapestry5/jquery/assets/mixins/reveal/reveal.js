@@ -1,21 +1,24 @@
 (function( $ ) {
 
-$.extend(Tapestry.Initializer, {
-	reveal: function(specs) {
+	T5.extendInitializers(function(){
 		
-		$('#'+specs.div).addClass('reveal-modal');
+		function init(spec) {
+			$('#'+spec.div).addClass('reveal-modal');
+			
+	    	$('#'+spec.id).click(function(e) {
+	            e.preventDefault();
+	            $('#'+spec.div).reveal({
+	            	animation:spec.animation,
+	            	animationspeed:spec.animationspeed,
+	            	closeonbackgroundclick:spec.closeonbackgroundclick,
+	            	dismissmodalclass:spec.dismissmodalclass
+	            });
+	    	});
+		}
 		
-    	$('#'+specs.id).click(function(e) {
-            e.preventDefault();
-            $('#'+specs.div).reveal({
-            	animation:specs.animation,
-            	animationspeed:specs.animationspeed,
-            	closeonbackgroundclick:specs.closeonbackgroundclick,
-            	dismissmodalclass:specs.dismissmodalclass
-            });
-    	});
-    }
-});
-
+		return {
+			reveal : init
+		}
+	});
+	
 }) ( jQuery );
-

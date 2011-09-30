@@ -281,9 +281,14 @@ $.widget( "ui.palette", {
     }
 });
 
-$.extend(Tapestry.Initializer, {
-	palette: function ( options ) {
+T5.extendInitializers(function(){
+	
+	function init(options) {
 		$("#" + options.id).palette(options);
+	}
+	
+	return {
+		palette : init
 	}
 });
 

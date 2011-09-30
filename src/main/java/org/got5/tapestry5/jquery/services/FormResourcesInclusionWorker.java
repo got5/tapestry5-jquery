@@ -46,7 +46,7 @@ public class FormResourcesInclusionWorker implements ComponentClassTransformWork
 
     public void transform(PlasticClass plasticClass,
 			TransformationSupport support, MutableComponentModel model) {
-    	if (model.getComponentClassName().equals(Form.class.getName()))
+    	//if (model.getComponentClassName().equals(Form.class.getName()))
         {
     		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
     		

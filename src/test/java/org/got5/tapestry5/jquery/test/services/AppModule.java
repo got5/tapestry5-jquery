@@ -56,6 +56,8 @@ public class AppModule
     	
     	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
     	
+    	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
+    	
     	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
     	
     	configuration.add("demo-src-dir","");

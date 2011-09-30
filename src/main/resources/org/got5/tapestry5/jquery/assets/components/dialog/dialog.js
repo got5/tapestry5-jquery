@@ -1,15 +1,14 @@
 (function( $ ) {
 
-$.extend(Tapestry.Initializer, {
-    dialog: function(specs) {
-        $("#" + specs.id).dialog(specs.params);		
-    }
-});
-
+	T5.extendInitializers(function(){
+		
+		function init(specs) {
+			 $("#" + specs.id).dialog(specs.params);
+		}
+		
+		return {
+			dialog : init
+		}
+	});
+	
 }) ( jQuery );
-
-
-
-
-
-

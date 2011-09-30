@@ -1,31 +1,30 @@
-(function($) {
+(function( $ ) {
 
-$.extend(Tapestry.Initializer, {
-    dialogAjaxLink: function(spec) {
-        var element = spec.element;
-        var zoneId = spec.zoneId;
-        var dialogId = spec.dialogId;
-        var url = spec.url;
-        var onOpen = function(event, ui) {
-            $("#" + zoneId).tapestryZone("update", {
-                url: url
-            });
-		};
+	T5.extendInitializers(function(){
 		
-
-        $("#" + element).click(function(e) {
-			$('#' + dialogId).one("dialogopen", onOpen);
-            $('#' + dialogId).dialog('open');
+		function init(spec) {
+			var element = spec.element;
+	        var zoneId = spec.zoneId;
+	        var dialogId = spec.dialogId;
+	        var url = spec.url;
+	        var onOpen = function(event, ui) {
+	            $("#" + zoneId).tapestryZone("update", {
+	                url: url
+	            });
+			};
 			
-			return false;
-        });
-    }
-});
 
-})(jQuery);
-
-
-
-
-
-
+	        $("#" + element).click(function(e) {
+				$('#' + dialogId).one("dialogopen", onOpen);
+	            $('#' + dialogId).dialog('open');
+				
+				return false;
+	        });
+		}
+		
+		return {
+			dialogAjaxLink : init
+		}
+	});
+	
+}) ( jQuery );
