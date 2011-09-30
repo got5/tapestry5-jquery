@@ -43,24 +43,21 @@ import org.apache.tapestry5.util.TextStreamResponse;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
- * A mixin for a text field that allows for autocompletion of text fields. This is based on
- * Prototype's autocompleter
+ * A mixin for a text field that allows for autocompletion of text fields. This is based on Prototype's autocompleter
  * control.
  * <p/>
- * The mixin renders an (initially invisible) progress indicator after the field (it will also be
- * after the error icon most fields render). The progress indicator is made visible during the
- * request to the server. The mixin then renders a &lt;div&gt; that will be filled in on the client
- * side with dynamically obtained selections.
+ * The mixin renders an (initially invisible) progress indicator after the field (it will also be after the error icon
+ * most fields render). The progress indicator is made visible during the request to the server. The mixin then renders
+ * a &lt;div&gt; that will be filled in on the client side with dynamically obtained selections.
  * <p/>
- * Multiple selection on the client is enabled by binding the tokens parameter (however, the mixin
- * doesn't help split multiple selections up on the server, that is still your code's
- * responsibility).
+ * Multiple selection on the client is enabled by binding the tokens parameter (however, the mixin doesn't help split
+ * multiple selections up on the server, that is still your code's responsibility).
  * <p/>
- * The container is responsible for providing an event handler for event "providecompletions". The
- * context will be the partial input string sent from the client. The return value should be an
- * array or list of completions, in presentation order. I.e.
+ * The container is responsible for providing an event handler for event "providecompletions". The context will be the
+ * partial input string sent from the client. The return value should be an array or list of completions, in
+ * presentation order. I.e.
  * <p/>
- *
+ * 
  * <pre>
  * String[] onProvideCompletionsFromMyField(String input)
  * {
@@ -68,8 +65,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * }
  * </pre>
  * 
- * @see <a href="http://jqueryui.com/demos/autocomplete/">The JQuery AutoComplete Mixin</a>
- * @see <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/mixins/Autocomplete.html">The Tapestry AutoComplete Mixin</a>
+ * @tapestrydoc
  */
 @ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
 @Import(library = { "${assets.path}/mixins/autocomplete/autocomplete.js" })
@@ -99,7 +95,7 @@ public class Autocomplete
      * Overwrites the default minimum characters to trigger a server round trip (the default is 1).
      */
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private int minLength;
+    private int minChars;
 
     @Inject
     private ResponseRenderer responseRenderer;
@@ -110,7 +106,14 @@ public class Autocomplete
      * seconds.
      */
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private double delay;
+    private double frequency;
+    
+    /**
+     * If given, then the autocompleter will support multiple input values, seperated by any of the individual
+     * characters in the string.
+     */
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
+    private String tokens;
 
     /**
      * Mixin afterRender phrase occurs after the component itself. This is where we write the
@@ -131,12 +134,19 @@ public class Autocomplete
 
         config.put("paramName", PARAM_NAME);
 
-        if (resources.isBound("minLength"))
-            config.put("minLength", minLength);
+        if (resources.isBound("minChars"))
+            config.put("minLength", minChars);
 
-        if (resources.isBound("delay"))
-            config.put("delay", delay);
-
+        if (resources.isBound("frequency"))
+            config.put("delay", frequency);
+        
+        if (resources.isBound("tokens"))
+        {
+            for (int i = 0; i < tokens.length(); i++)
+            {
+                config.accumulate("tokens", tokens.substring(i, i + 1));
+            }
+        }
         // Let subclasses do more.
         configure(config);
 
