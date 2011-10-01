@@ -8,6 +8,8 @@ import org.apache.tapestry5.func.Flow;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.func.Worker;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.internal.util.InternalUtils;
+import org.apache.tapestry5.ioc.internal.util.TapestryException;
 import org.apache.tapestry5.model.MutableComponentModel;
 import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
@@ -20,6 +22,7 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.internal.TapestryJQueryExceptionMessages;
 
 
 public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
@@ -82,6 +85,11 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         public String map(String name)
         {
+        	
+        	if(InternalUtils.isBlank(name)) 
+        		throw new TapestryException(TapestryJQueryExceptionMessages.importJQueryUiMissingValue(), null);
+        		
+        	
             final StringBuilder relativePath = new StringBuilder()
                 .append(productionMode ? "/minified/" : "/")
                 .append(name);
@@ -94,18 +102,15 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         public Asset map(String path)
         {
+        	path = productionMode ? (path + ".min.js") : (path + ".js");
+        	
+        	Asset asset = assetSource.getExpandedAsset(path);
+        	
+        	if (!asset.getResource().exists())
+        		throw new TapestryException(TapestryJQueryExceptionMessages.importJQueryUiFileMissing(path), null);
+        		
+        	return asset;
 
-            if (productionMode)
-            {
-                String minPath = path + ".min.js";
-
-                Asset asset = assetSource.getExpandedAsset(minPath);
-
-                if (asset.getResource().exists())
-                    return asset;
-            }
-
-            return assetSource.getExpandedAsset(path + ".js");
         }
     };
 
