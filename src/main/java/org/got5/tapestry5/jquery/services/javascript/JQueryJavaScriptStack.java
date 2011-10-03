@@ -145,6 +145,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     	    String pathToTapestryJqueryJs = "${tapestry.jquery.path}/tapestry-jquery.js";
     	    Asset  tapestryJqueryJs = this.assetSource.getExpandedAsset(pathToTapestryJqueryJs);
     		ret.add(tapestryJqueryJs);
+    		
+    		for(Asset a : clientInfrastructure.getJavascriptStack()){
+    			if(a.toClientURL().contains("tapestry-message")){ret.add(a);}
+    		}
     	}
     	else
     	{
