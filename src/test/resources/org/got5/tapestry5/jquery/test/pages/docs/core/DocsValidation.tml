@@ -1,4 +1,4 @@
-<html t:type="layoutWithAccordion" 
+<html t:type="layoutWithAccordion"
 		t:title="Validation" 
 		t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
 		
@@ -25,7 +25,7 @@
 		    	<t:errors />
 				
 		        <p><label for="field">Required, minLength=3, maxLength=10</label>
-		            <br/><t:textfield t:value="foo" t:id="field" 
+		            <br/><t:textfield t:value="foo" t:id="field"
 		            		t:validate="required, minLength=3, maxLength=10"/>
 		        </p>
 		        <p><label for="field">Required, min=3, max=6, number</label>
@@ -54,6 +54,6 @@
 	    </t:zone>    
     	<div t:type="jquery/showSource" t:ext="html" t:beginLine="23" t:endLine="53" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsValidation.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="43" t:endLine="71sd" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsValidation.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="43" t:endLine="71" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsValidation.java"></div>    	
     </t:block>
 </html>

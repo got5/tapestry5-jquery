@@ -46,7 +46,7 @@ public class AppModule
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
     	
-    	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+    	configuration.add(SymbolConstants.PRODUCTION_MODE, "true");
     	
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
     	
