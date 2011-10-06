@@ -24,5 +24,10 @@ public class JQueryEventConstants {
      * Triggered by the DataTable component
      */
     public static final String DATA = "Data";
-
+    
+    
+    /**
+     * Triggered by the ZoneRefresh component
+     */
+    public static final String REFRESH = "Refresh";
 }
