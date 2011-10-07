@@ -126,19 +126,6 @@ public class JQueryModule
     }
 
 
-    @Contribute(TypeCoercer.class)
-    public static void provideBasicTypeCoercions(Configuration<CoercionTuple> configuration)
-    {
-    	configuration.add(new CoercionTuple<String, JSONObject>(String.class, JSONObject.class, new Coercion<String, JSONObject>() {
-
-
-			public JSONObject coerce(String input) {
-				return new JSONObject(input);
-			}
-		}));
-    }
-
-
     /**
      * By Default, we import the JavaScript file of the HighLight Effect.
      * @param configuration
