@@ -17,16 +17,25 @@
 package org.got5.tapestry5.jquery.test.pages.docs.components;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
-public class DocsCheckbox
+public class DocsDraggable
 {
+
+	@Persist
 	@Property
-	private boolean value;
+	private String data;
+	
+	@Component
+	private Zone dropzone; 
 	
 	public List<JQueryTabData> getListTabData()
 	{
@@ -40,4 +49,13 @@ public class DocsCheckbox
 
 	}
 
+	 public Object onDrop(String contexte)
+	 {
+		 data = contexte;
+		 return dropzone.getBody();		 
+	 }
+	 public Date getNow()
+	 {
+		 return new Date();
+	 }
 }

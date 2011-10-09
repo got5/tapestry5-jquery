@@ -30,4 +30,11 @@ public class JQueryEventConstants {
      * Triggered by the ZoneRefresh component
      */
     public static final String REFRESH = "Refresh";
+    
+    
+    /**
+     * Triggered by the ZoneDrop component
+     */
+    public static final String DROP = "Drop";
+    
 }
