@@ -546,9 +546,16 @@ $.widget( "ui.tapestryZone", {
 					} else if (data.zones) {
 
 	                    // perform multi zone update
-						$.each(data.zones, function(zoneId){
+						$.each(data.zones, function(zoneId, content){
+							
+							if (zoneId === "" || ! $('#' + zoneId).length) {
 
-							$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
+				                that.applyContentUpdate(content);
+
+							} else {
+								
+								$('#' + zoneId).tapestryZone("applyContentUpdate", content);
+							}
 						});
 						
 					}
