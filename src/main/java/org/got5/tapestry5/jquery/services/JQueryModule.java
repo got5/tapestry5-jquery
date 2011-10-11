@@ -144,6 +144,7 @@ public class JQueryModule
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
     	}
     	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
+    	configuration.addInstance("DateFieldWorker", DateFieldWorker.class);
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
