@@ -62,7 +62,7 @@ public class DialogTest extends SeleniumTestCase {
             {
                 return (isVisible(dialogLocator) == state);
             }
-        }.wait(dialogLocator + " visibility should be " + state);
+        }.wait(dialogLocator + " visibility should be " + state, JQueryTestConstants.TIMEOUT);
 
         assertEquals(isVisible(dialogLocator), state, dialogLocator + " visibility should be " + state);
     }

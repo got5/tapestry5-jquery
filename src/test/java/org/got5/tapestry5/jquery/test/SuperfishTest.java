@@ -19,7 +19,7 @@ public class SuperfishTest extends SeleniumTestCase{
             {
                 return isElementPresent("//ul[@id='menu1'][contains(@class,'sf-menu')]");
             }
-        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), 5000l);
+        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), JQueryTestConstants.TIMEOUT);
         
         click("//ul[@id='menu1']/li[1]/a");
     	
@@ -30,7 +30,7 @@ public class SuperfishTest extends SeleniumTestCase{
             {
                 return getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
+        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
         
         click("//ul[@id='menu1']/li[2]/a");
         
@@ -41,7 +41,7 @@ public class SuperfishTest extends SeleniumTestCase{
             {
                 return !getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), 5000l);
+        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
     }
 	
 }

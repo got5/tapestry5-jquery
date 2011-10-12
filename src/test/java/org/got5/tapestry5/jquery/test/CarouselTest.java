@@ -47,7 +47,7 @@ public class CarouselTest extends SeleniumTestCase {
             	int newPosition = (Integer) getElementPositionLeft("id=myComplexCarousel");
             	return Math.abs(initPosition - newPosition)==255;
             }
-        }.wait("The carousel did not slide correctly", 3000);
+        }.wait("The carousel did not slide correctly", JQueryTestConstants.TIMEOUT);
 		//test of an eventlink inside a carousel
 		assertTrue("".equals(getText("id=flowerZone")),"The zone is not empty before the ajax call");
 		click("id=carouselitem_0");

@@ -25,16 +25,6 @@ public class JQueryTest extends JavascriptTestSuite
 
     public JQueryTest()
     {
-    	//chrome on macosx
-        //super("src/test/jquery/webapp", "*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
-        //super("src/test/jquery/webapp", "*googlechrome");
-    	//safari on macosx
-    	//super("src/test/jquery/webapp", "*safari /Applications/Safari.app/Contents/MacOS/Safari");
-    	//super("src/test/jquery/webapp", "*safari");
-    	//firefox on macosx
-    	//super("src/test/jquery/webapp", "*firefox /Applications/Firefox.app/Contents/MacOS/firefox-bin");
-    	//super("src/test/jquery/webapp", "*firefox");
-    	//super("src/test/jquery/webapp", "*iehta");
     }
 
     @Override
@@ -124,7 +114,7 @@ public class JQueryTest extends JavascriptTestSuite
             {
                 return start + 2000 < System.currentTimeMillis();
             };
-        }.wait("waited for a long time...", 3000);
+        }.wait("waited for a long time...", JQueryTestConstants.TIMEOUT);
     }
     
     @Test
@@ -139,7 +129,7 @@ public class JQueryTest extends JavascriptTestSuite
             {
                 return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 2");
             }
-        }.wait("element not found!", 5000l);
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
        
           //click on first tab
         click("xpath=/html/body/div/div/div/h3/a");
@@ -151,7 +141,7 @@ public class JQueryTest extends JavascriptTestSuite
             {
                 return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 1");
             }
-        }.wait("element not found!", 5000l);
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
 
        
     }

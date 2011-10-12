@@ -36,7 +36,7 @@ public class CustomDatepickerTest extends SeleniumTestCase {
             {
                 return !getAttribute("//div[@id='ui-datepicker-div']@style").isEmpty();
             }
-        }.wait("Your calendar should be visible.", 5000l);
+        }.wait("Your calendar should be visible.", JQueryTestConstants.TIMEOUT);
         
         click("//button[@class='ui-datepicker-trigger']");
         
@@ -48,7 +48,7 @@ public class CustomDatepickerTest extends SeleniumTestCase {
                 return getAttribute("//div[@id='ui-datepicker-div']@style").contains("DISPLAY: none;") || 
                 	getAttribute("//div[@id='ui-datepicker-div']@style").contains("display: none;");
             }
-        }.wait("Your calendar should not be visible.", 5000l);
+        }.wait("Your calendar should not be visible.", JQueryTestConstants.TIMEOUT);
         
         
 	}	

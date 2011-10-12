@@ -25,7 +25,7 @@ public class TooltipTest extends SeleniumTestCase{
             {
                 return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("false");
             }
-        }.wait("The tooltip is not visible", 5000l);
+        }.wait("The tooltip is not visible", JQueryTestConstants.TIMEOUT);
     	
     	mouseOut("//div[@id='content']/a");
     	
@@ -36,7 +36,7 @@ public class TooltipTest extends SeleniumTestCase{
             {
                 return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("true");
             }
-        }.wait("The tooltip is visible!", 5000l);
+        }.wait("The tooltip is visible!", JQueryTestConstants.TIMEOUT);
         
     }
     

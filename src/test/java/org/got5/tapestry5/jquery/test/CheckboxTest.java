@@ -19,7 +19,7 @@ public class CheckboxTest extends SeleniumTestCase{
             {
                 return getAttribute("//form[@id='monForm']/fieldset/div/div/span@class").equals("ui-checkbox-icon");
             }
-        }.wait("The checkbox should be unchecked", 5000l);
+        }.wait("The checkbox should be unchecked", JQueryTestConstants.TIMEOUT);
     	
        click("//form[@id='monForm']/fieldset/div/label");
         
@@ -30,7 +30,7 @@ public class CheckboxTest extends SeleniumTestCase{
             {
             	return getAttribute("//form[@id='monForm']/fieldset/div/div/span@class").equals("ui-checkbox-icon ui-icon ui-icon-check");
             }
-        }.wait("The checkbox should be checked", 5000l);
+        }.wait("The checkbox should be checked", JQueryTestConstants.TIMEOUT);
     }
 	
 }
