@@ -109,13 +109,13 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         open("/test/validation");
         waitForPageToLoad();
 
-        assertValidationWorking("field", "a", true, "submit");
-        assertValidationWorking("field", "abcdefghijklmnopq", true, "submit");
-        assertValidationWorking("field", "abcd", false, "submit");
+        assertValidationWorking("field", "a", true, "submit_0");
+        assertValidationWorking("field", "abcdefghijklmnopq", true, "submit_0");
+        assertValidationWorking("field", "abcd", false, "submit_0");
 
-        assertValidationWorking("field2", "0", true, "submit");
-        assertValidationWorking("field2", "10", true, "submit");
-        assertValidationWorking("field2", "3", false, "submit");
+        assertValidationWorking("field2", "0", true, "submit_0");
+        assertValidationWorking("field2", "10", true, "submit_0");
+        assertValidationWorking("field2", "3", false, "submit_0");
 
         additionalValidationTest();
 
