@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 2.6.1
+# Tapestry 5 jQuery integration Module - 3.0.0-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -22,7 +22,9 @@ http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
 
-- 2.6.1 : add (Gallery)
+- 3.0.0 : switch to Tapestry 5.3, add (Gallery)
+- 2.6.1 : add Components : InPlaceEditor, Draggable
+		  add Mixins : ZoneRefresh, ZoneDroppable 
 - 2.6.0 : switch to Tapestry 5.2.6
 		  add Mixins : CustomZone, Widget
 		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
@@ -51,6 +53,8 @@ Exclusive jQuery components :
 	- Based on [http://access.aol.com/csun2011](http://access.aol.com/csun2011)
 - **Dialog** with **DialogLink** and **DialogAjaxLink**
 	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
+- **InPlaceEditor** 
+	- based on [http://www.appelsiini.net/projects/jeditable](http://www.appelsiini.net/projects/jeditable)
 - **RangeSlider** 
 	- based on [http://jqueryui.com/demos/slider/#range](http://jqueryui.com/demos/slider/#range)
 - **Slider** 
@@ -116,7 +120,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>2.6.0</version>
+			<version>3.0.0-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>
