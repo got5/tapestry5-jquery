@@ -62,7 +62,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         assertEquals(getText("identifier=myZone2"), "Dummy value is :");
 
         type("identifier=textfield", "dummy");
-        click("identifier=submit");
+        click("//form[@id='myForm']/input[@type='submit']");
 
         new Wait()
         {
