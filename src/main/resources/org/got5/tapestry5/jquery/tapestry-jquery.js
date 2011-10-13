@@ -187,7 +187,7 @@ T5.extendInitializers({
      *            component event request URL
      */
     linkSelectToZone : function(spec) {
-    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+    	Tapestry.Initializer.updateZoneOnEvent("change", spec.selectId,
 				spec.zoneId, spec.url);
     },
     
