@@ -26,7 +26,7 @@ public class BindTest extends SeleniumTestCase{
             {
                 return isTextPresent("click OK");
             }
-        }.wait("element not found");
+        }.wait("element not found", JQueryTestConstants.TIMEOUT);
         assertEquals(getText("identifier=clickZone"), "click OK");
 	}
 

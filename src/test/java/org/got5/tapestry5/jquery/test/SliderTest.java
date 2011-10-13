@@ -3,8 +3,6 @@ package org.got5.tapestry5.jquery.test;
 import org.apache.tapestry5.test.SeleniumTestCase;
 import org.testng.annotations.Test;
 
-import com.thoughtworks.selenium.Wait;
-
 public class SliderTest extends SeleniumTestCase {
 	
 	@Test

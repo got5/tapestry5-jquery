@@ -50,7 +50,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             {
                 return isTextPresent("Counting via AJAX : 1");
             }
-        }.wait("element not found");
+        }.wait("element not found", JQueryTestConstants.TIMEOUT);
         assertEquals(getText("identifier=myZone"), "Counting via AJAX : 1");
     }
 
@@ -62,7 +62,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         assertEquals(getText("identifier=myZone2"), "Dummy value is :");
 
         type("identifier=textfield", "dummy");
-        click("identifier=submit");
+        click("//form[@id='myForm']/input[@type='submit']");
 
         new Wait()
         {
@@ -71,7 +71,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             {
                 return isTextPresent("Dummy value is : dummy");
             }
-        }.wait("element not found");
+        }.wait("element not found", JQueryTestConstants.TIMEOUT);
 
         assertTrue(getText("identifier=myZone2").contains("Dummy value is : dummy") && 
         			getText("identifier=myZone2").contains("I am a Component inside the block which is visible after the zone update"));
@@ -94,7 +94,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
             {
                 return isTextPresent("rendering block");
             }
-        }.wait("element not found");
+        }.wait("element not found", JQueryTestConstants.TIMEOUT);
 
         assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update");
         assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update");
@@ -109,13 +109,13 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         open("/test/validation");
         waitForPageToLoad();
 
-        assertValidationWorking("field", "a", true, "submit");
-        assertValidationWorking("field", "abcdefghijklmnopq", true, "submit");
-        assertValidationWorking("field", "abcd", false, "submit");
+        assertValidationWorking("field", "a", true, "submit_0");
+        assertValidationWorking("field", "abcdefghijklmnopq", true, "submit_0");
+        assertValidationWorking("field", "abcd", false, "submit_0");
 
-        assertValidationWorking("field2", "0", true, "submit");
-        assertValidationWorking("field2", "10", true, "submit");
-        assertValidationWorking("field2", "3", false, "submit");
+        assertValidationWorking("field2", "0", true, "submit_0");
+        assertValidationWorking("field2", "10", true, "submit_0");
+        assertValidationWorking("field2", "3", false, "submit_0");
 
         additionalValidationTest();
 
@@ -360,7 +360,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         waitForPageToLoad();
 
         String field = "identifier=textfield";
-        String link = "identifier=linksubmit";
+        String link = "identifier=fred";
         String result = "identifier=result";
         
         

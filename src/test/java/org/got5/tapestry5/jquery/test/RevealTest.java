@@ -20,7 +20,7 @@ public class RevealTest extends SeleniumTestCase{
              {
                  return getAttribute("//div[@class='reveal-modal']@style").contains("visible");
              }
-         }.wait("The reveal window is not visible", 5000l);
+         }.wait("The reveal window is not visible", JQueryTestConstants.TIMEOUT);
          
          click("//div[@class='reveal-modal-bg']");
          
@@ -32,7 +32,7 @@ public class RevealTest extends SeleniumTestCase{
              {
                  return getAttribute("//div[@class='reveal-modal']@style").contains("hidden");
              }
-         }.wait("The reveal window visible", 5000l);
+         }.wait("The reveal window visible", JQueryTestConstants.TIMEOUT);
     	
     }
 }
