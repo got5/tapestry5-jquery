@@ -563,7 +563,13 @@ $.widget( "ui.tapestryZone", {
 	                $.tapestry.utils.loadScriptsInReply(data);
 				}
 		};
-		
+
+		if (this.options.parameters) {
+			
+			// adds t:formid and t:formcomponentid
+			$.extend(specs.params, this.options.parameters);
+		}
+
 		if (specs.params) {
 			$.extend(ajaxRequest, {
                 data: specs.params
