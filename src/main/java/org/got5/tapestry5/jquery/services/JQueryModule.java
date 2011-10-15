@@ -30,12 +30,8 @@ import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
-import org.apache.tapestry5.ioc.services.Coercion;
-import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
-import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.services.AssetSource;
@@ -134,7 +130,7 @@ public class JQueryModule
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
-    
+
     @Contribute(ComponentClassTransformWorker2.class)
     @Primary
     public static void  addWorker(OrderedConfiguration<ComponentClassTransformWorker2> configuration,
@@ -147,7 +143,9 @@ public class JQueryModule
     	}
     	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
     	configuration.addInstance("DateFieldWorker", DateFieldWorker.class);
-    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
+
+    	// note: the ordering must ensure that the worker gets added after the RenderPhase-Worker!
+    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import", "after:RenderPhase");
     }
 
     public static void contributeHttpServletRequestHandler(final OrderedConfiguration<HttpServletRequestFilter> configuration,
@@ -155,24 +153,24 @@ public class JQueryModule
 
        configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
     }
-    
+
     @Advise
     @Match("AssetPathConverter")
     public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source)
     	throws SecurityException, NoSuchMethodException{
-    	
+
     	MethodAdvice advise = new MethodAdvice() {
-			
+
 			public void advise(MethodInvocation invocation) {
-				
+
 				invocation.proceed();
-				
+
 				if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
-					
+
 					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
-					
+
 				}
-				
+
 			}
 		};
 		receiver.adviseMethod(receiver.getInterface().getMethod("convertAssetPath", String.class),advise);
