@@ -140,12 +140,12 @@ public class JQueryModule
 
     	if(suppressPrototype)
     	{
-    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
-    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class, "after:RenderPhase");
+    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class, "after:RenderPhase");
     	}
     	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
-    	configuration.addInstance("DateFieldWorker", DateFieldWorker.class);
-    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
+    	configuration.addInstance("DateFieldWorker", DateFieldWorker.class, "after:RenderPhase");
+    	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import", "after:RenderPhase");
     }
 
     public static void contributeHttpServletRequestHandler(final OrderedConfiguration<HttpServletRequestFilter> configuration,
