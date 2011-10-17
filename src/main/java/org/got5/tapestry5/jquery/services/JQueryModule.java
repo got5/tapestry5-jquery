@@ -30,12 +30,8 @@ import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
-import org.apache.tapestry5.ioc.services.Coercion;
-import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
-import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.services.AssetSource;
@@ -106,14 +102,13 @@ public class JQueryModule
     }
 
     public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
-
     		@InjectService("SelectorBindingFactory")
-    		BindingFactory selectorBindingFactory
-    		) {
+    		BindingFactory selectorBindingFactory) 
+    {
         configuration.add("selector", selectorBindingFactory);
-
-
-}
+    
+    }
+    
     public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
