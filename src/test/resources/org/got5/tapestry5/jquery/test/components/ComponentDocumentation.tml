@@ -7,11 +7,14 @@
 	
 		<t:if test="hasLinks">
 			<h4>Links</h4>
-			<ul>
-				<t:loop t:source="links" t:value="currentLink">
-					<li><t:delegate t:to="currentLinkBlock" /></li>
-				</t:loop>
-			</ul>
+			
+			<t:if t:test="currentLink">
+				<ul>
+					<t:loop t:source="links" t:value="currentLink">
+						<li><t:delegate t:to="currentLinkBlock" /></li>
+					</t:loop>
+				</ul>
+			</t:if>
 		</t:if>
 		
 		<t:if test="hasParameters">

@@ -9,21 +9,29 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 		
 <t:form>
 	<t:errors/>
-	<t:label t:for="name" t:id="Label">The Name : </t:label>
-	<t:textfield t:id="name"/> 
-	<t:linksubmit t:id="send" context="literal:true" alt="add a name">
-		Send this Name
-	</t:linksubmit>
+	<p>
+		<t:label t:for="name" t:id="Label">The Name : </t:label>
+		<t:textfield t:id="name"/>
+	</p> 
+	<p>
+		<t:linksubmit t:id="send" context="literal:true">
+			Send this Name
+		</t:linksubmit>
+	</p>
+	
 </t:form>
 		
 <br/><br/>
 <strong>You added :</strong>
-<ul>
+<t:if t:test="listOfNames">
+	<ul>
 	<li t:type="loop" t:id="listNames" t:source="listOfNames" t:value="value">
 		${value}
 	</li>
 </ul>
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="25" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsLinkSubmit.tml"></div>
+</t:if>
+
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="7" t:endLine="32" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsLinkSubmit.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:beginLine="27" t:endLine="61" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsLinkSubmit.java"></div>    	
     </t:block>

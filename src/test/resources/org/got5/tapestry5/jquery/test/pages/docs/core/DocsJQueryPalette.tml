@@ -6,9 +6,11 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
     
     <t:block id="example">
 <t:form>
-	<t:jquery.palette t:id="handling" encoder="encoder" model="model"/>
-	<br/>
-	<input type="submit" value="Continue"/>
+	<p>
+		<t:jquery.palette t:id="handling" encoder="encoder" model="model"/>
+		<input type="submit" value="Continue"/>
+	</p>
+	
 </t:form>    
     	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="12" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsJQueryPalette.tml"></div>
     	
