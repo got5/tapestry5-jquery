@@ -37,14 +37,14 @@ public class CarouselTest extends SeleniumTestCase {
 		//Content test
 		assertEquals(getText("css=#zoneContainer span"), "Click on the big white flower of the complex carousel:", "The page does not seem to be fully loaded");
 		//Carousel control test
-		final int initPosition = (Integer) getElementPositionLeft("id=myComplexCarousel");
+		final int initPosition = (Integer) getElementPositionLeft("css=.jcarousel-list");
 		click("css=.jcarousel-next");
 		new Wait()
         {
             @Override
             public boolean until()
             {
-            	int newPosition = (Integer) getElementPositionLeft("id=myComplexCarousel");
+            	int newPosition = (Integer) getElementPositionLeft("css=.jcarousel-list");
             	return Math.abs(initPosition - newPosition)==255;
             }
         }.wait("The carousel did not slide correctly", 3000);
