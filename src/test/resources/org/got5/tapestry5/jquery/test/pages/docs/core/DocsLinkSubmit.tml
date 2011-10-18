@@ -17,7 +17,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 </t:form>
 		
 <br/><br/>
-<b>You added :</b>
+<strong>You added :</strong>
 <ul>
 	<li t:type="loop" t:id="listNames" t:source="listOfNames" t:value="value">
 		${value}
