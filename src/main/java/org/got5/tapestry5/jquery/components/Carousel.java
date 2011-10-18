@@ -34,18 +34,19 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 * @since 2.1.1
 * @see http://sorgalla.com/jcarousel/
 */
-@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.js","${assets.path}/components/carousel/carousel.js"},stylesheet={"context:css/tango/skin.css"})
+@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.js","${assets.path}/components/carousel/carousel.js"},
+					stylesheet={"${assets.path}/components/carousel/tango/skin.css"})
 
 @SupportsInformalParameters
 public class Carousel implements ClientElement {
 	 
-	
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
 	
 	@Parameter
 	private JSONObject params;
 	
+	@Property
 	@Parameter(value="jcarousel-skin-tango", defaultPrefix=BindingConstants.LITERAL)
 	private String className;
 	
@@ -60,14 +61,12 @@ public class Carousel implements ClientElement {
 	
 	@SetupRender
 	public void init(MarkupWriter w){
-		w.element("ul","id",clientId,"class",className);
 		componentResources.renderInformalParameters(w);
 	}
 	
 	
 	@AfterRender()
 	public void finish(MarkupWriter w){
-		w.end();
 		JSONObject jso = new JSONObject();
 		jso.put("id", clientId);
 		jso.put("params", params);
