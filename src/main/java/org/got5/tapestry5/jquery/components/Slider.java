@@ -20,10 +20,12 @@ import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
+import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -38,6 +40,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a>
  */
+@SupportsInformalParameters
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
 @Import( library={ "${assets.path}/components/slider/slider.js" })
 public class Slider  {
@@ -85,9 +88,10 @@ public class Slider  {
     		clientId = resources.getId();
     	return clientId;
     }
-    
-    void afterRender()
+    @AfterRender
+    void afterRender(MarkupWriter writer)
     {
+    	resources.renderInformalParameters(writer);
     	specs = new JSONObject();
     	
     	if (!resources.isBound("params"))
