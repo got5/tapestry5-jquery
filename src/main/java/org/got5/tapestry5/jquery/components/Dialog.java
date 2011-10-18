@@ -1,5 +1,7 @@
 package org.got5.tapestry5.jquery.components;
 
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.MarkupWriter;
@@ -21,6 +23,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  *
  * @see <a href="http://jqueryui.com/demos/dialog/">http://jqueryui.com/demos/dialog/</a>
  */
+@SupportsInformalParameters
 @ImportJQueryUI(value = { "jquery.ui.mouse", "jquery.ui.draggable", "jquery.ui.resizable", "jquery.ui.dialog" })
 public class Dialog implements ClientElement
 {
@@ -47,6 +50,9 @@ public class Dialog implements ClientElement
 
     @Inject
     private JavaScriptSupport support;
+    
+    @Inject
+    private ComponentResources resources;
 
     @BeginRender
     void startDiv(MarkupWriter writer)
@@ -57,6 +63,7 @@ public class Dialog implements ClientElement
     @AfterRender
     void declareDialog(MarkupWriter writer)
     {
+        resources.renderInformalParameters(writer);
         writer.end();
 
         JSONObject data = new JSONObject();
