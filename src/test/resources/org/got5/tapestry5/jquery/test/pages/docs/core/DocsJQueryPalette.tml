@@ -12,7 +12,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	</p>
 	
 </t:form>    
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="12" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsJQueryPalette.tml"></div>
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="14" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsJQueryPalette.tml"></div>
     	
     	<div t:type="jquery/showSource" t:ext="java" t:beginLine="30" t:endLine="64" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/Palette.java"></div>    	
     </t:block>
