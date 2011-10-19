@@ -24,6 +24,7 @@ import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -76,11 +77,19 @@ public class Accordion extends AbstractExtendableComponent
         setDefaultMethod("accordion");
     }
 	
+	@SetupRender
+    void startDiv(MarkupWriter writer)
+    {
+        writer.element("div", "id", getClientId());
+    }
+
+	
 	@AfterRender
     void afterRender(MarkupWriter writer)
-    {
+	{
     	resources.renderInformalParameters(writer);
-        JSONObject data = new JSONObject();
+        writer.end();
+    	JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
         if (params == null)
