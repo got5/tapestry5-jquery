@@ -85,15 +85,18 @@ public class Tabs extends AbstractExtendableComponent
 	private int currentPanelId;
 
 	@SetupRender
-    void setJSInit()
+    void setJSInit(MarkupWriter writer)
     {
         setDefaultMethod("tabs");
+        writer.element("div", "id", getClientId());
     }
 
+	
     @AfterRender
     void declareTabs(MarkupWriter writer)
     {
     	resources.renderInformalParameters(writer);
+    	writer.end();
         JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
