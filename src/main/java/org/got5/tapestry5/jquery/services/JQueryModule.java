@@ -104,14 +104,13 @@ public class JQueryModule
     }
 
     public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
-
     		@InjectService("SelectorBindingFactory")
-    		BindingFactory selectorBindingFactory
-    		) {
+    		BindingFactory selectorBindingFactory)
+    {
         configuration.add("selector", selectorBindingFactory);
 
+    }
 
-}
     public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
@@ -138,13 +137,13 @@ public class JQueryModule
 
     	if(suppressPrototype)
     	{
-    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
-    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
+    		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class, "after:RenderPhase");
+    		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class, "after:RenderPhase");
     	}
     	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
-    	configuration.addInstance("DateFieldWorker", DateFieldWorker.class);
 
     	// note: the ordering must ensure that the worker gets added after the RenderPhase-Worker!
+    	configuration.addInstance("DateFieldWorker", DateFieldWorker.class, "after:RenderPhase");
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import", "after:RenderPhase");
     }
 
