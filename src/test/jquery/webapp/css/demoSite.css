@@ -37,7 +37,7 @@
 	width:12%;
 }
 
-.documentation table tr:nth-child(even) {
+.documentation table tr:nth-child(even){
 	background-color:#E7F7DF;
 }
 

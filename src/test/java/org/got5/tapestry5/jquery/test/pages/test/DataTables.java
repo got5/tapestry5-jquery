@@ -19,34 +19,31 @@ package org.got5.tapestry5.jquery.test.pages.test;
 import java.util.List;
 
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONLiteral;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.test.data.Celebrity;
 import org.got5.tapestry5.jquery.test.data.CelebritySource;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
 
 @Import(stylesheet ={ "context:dataTables/css/demo_table_jui.css",
 					  "context:dataTables/css/demo_page.css",	
-					  "context:dataTables/css/demo_table.css"})
+					  "context:dataTables/css/demo_table.css",
+					  "context:dataTables/ColVis/media/css/ColVis.css", 
+					  "context:dataTables/ColReorder/media/css/ColReorder.css", 
+					  "context:dataTables/TableTools/css/TableTools.css"})
 public class DataTables
 {
 	@SessionState
 	private IDataSource dataSource;
-	
-	/*@Persist
-	private IDataSource dataSource;
-	
-	@SetupRender
-	void onInit()
-	{
-		dataSource = new MockDataSource();
-	}*/
-	
-	
 	private Celebrity celebrity;
 	private CelebritySource celebritySource;
 
@@ -84,6 +81,33 @@ public class DataTables
 	public BeanModel getModel() {
 		this.model = beanModelSource.createDisplayModel(Celebrity.class,resources.getMessages());
 		return model;
+	}
+	
+	public JSONObject getOptions(){
+		
+		JSONObject json = new JSONObject("bJQueryUI", "true", "bStateSave", "true", "sDom", "TC<\"clear\">Rlfrtip");
+		
+		JSONObject dataTable = new JSONObject();
+		dataTable.put("sSwfPath", as.getContextAsset("dataTables/TableTools/swf/copy_cvs_xls_pdf.swf", null).toClientURL());
+		
+		json.put("oTableTools", dataTable);
+		
+		return json;
+	}
+	
+	@Inject
+	private JavaScriptSupport js;
+	
+	@Inject
+	private AssetSource as;
+	
+	@AfterRender
+	public void addJsFile(){
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColVis/media/js/ColVis.js", null));
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColReorder/media/js/ColReorder.js", null));
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/ZeroClipboard.js", null));
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/TableTools.js", null));
+		
 	}
 	
 }
