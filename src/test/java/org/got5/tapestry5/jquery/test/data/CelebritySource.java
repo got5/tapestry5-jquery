@@ -1,19 +1,10 @@
 package org.got5.tapestry5.jquery.test.data;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import org.apache.tapestry5.PropertyConduit;
-import org.apache.tapestry5.beaneditor.BeanModel;
-import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.SortConstraint;
 import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
-
-import org.got5.tapestry5.jquery.test.data.IDataSource;
-import org.got5.tapestry5.jquery.test.data.Celebrity;
 
 public class CelebritySource implements GridDataSource {
 

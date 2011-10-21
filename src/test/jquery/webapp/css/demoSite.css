@@ -17,9 +17,6 @@
 *	For the Documentation Table
 */
 .documentation {
-	/*margin: 10px 10px 10px 10px;
-    border: medium solid #569D2F;
-    border-collapse: collapse*/
     padding:10px;
     padding-bottom:30px;
 }
@@ -34,7 +31,13 @@
 	font-size:90%;
 }
 
-.documentation table tr.even{
+.documentation table tr td{
+	border:1px solid #c0c0c0;
+	padding:3px;
+	width:12%;
+}
+
+.documentation table tr:nth-child(even){
 	background-color:#E7F7DF;
 }
 
@@ -45,11 +48,15 @@
 	color:#E7F7DF;
 }
 
-.documentation table tr td{
+caption{
 	border:1px solid #c0c0c0;
 	padding:3px;
-	width:12%;
+	background-color:#569D2F;
+	color:#E7F7DF;
+	font-weight: bold;
+	visibility: hidden
 }
+
 
 .documentation table tr td.name{
 	font-weight:bold;
