@@ -19,9 +19,13 @@ import java.util.ArrayList;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -33,6 +37,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 /**
  * @see <a href="http://jqueryui.com/demos/accordion/">http://jqueryui.com/demos/accordion/</a>
  */
+@SupportsInformalParameters
 @ImportJQueryUI( value = { "jquery.ui.core",
                            "jquery.ui.widget",
                            "jquery.ui.accordion" })
@@ -71,11 +76,20 @@ public class Accordion extends AbstractExtendableComponent
     {
         setDefaultMethod("accordion");
     }
-
-    void afterRender()
+	
+	@SetupRender
+    void startDiv(MarkupWriter writer)
     {
+        writer.element("div", "id", getClientId());
+    }
 
-        JSONObject data = new JSONObject();
+	
+	@AfterRender
+    void afterRender(MarkupWriter writer)
+	{
+    	resources.renderInformalParameters(writer);
+        writer.end();
+    	JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
         if (params == null)
