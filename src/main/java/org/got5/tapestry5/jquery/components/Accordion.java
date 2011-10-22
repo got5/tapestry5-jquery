@@ -76,8 +76,7 @@ public class Accordion extends AbstractExtendableComponent
 
     void afterRender()
     {
-    	System.out.println("### test2"+getInitMethod());
-        JSONObject data = new JSONObject();
+    	JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
         if (params == null)

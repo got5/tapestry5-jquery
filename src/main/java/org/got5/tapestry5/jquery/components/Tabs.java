@@ -97,7 +97,7 @@ public class Tabs extends AbstractExtendableComponent
 
 	@BeginRender
     void setJSInit()
-    {System.out.println("######### ");
+    {
         setDefaultMethod("tabs");
 
         if (StringUtils.isBlank(update)) {

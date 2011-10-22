@@ -1,4 +1,4 @@
-<html t:type="layoutWithAccordion" 
+<html t:type="layoutWithAccordion"
 	  t:activeElement="literal:2"
 	  t:title="Widget"
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
@@ -56,7 +56,7 @@
     		<h2>Create a new mixin with just the Widget Class</h2>
     		<p>
     			You can use a jQuery Widget, which is not available as a mixin in your project, by using
-    			the <b>Widget</b> class and its <b>name</b> parameter. Tapestry-jQuery
+    			the <strong>Widget</strong> class and its <b>name</b> parameter. Tapestry-jQuery
     			will use this value for the name of the widget to execute.<br /> 
     			In this example, we want to use the Slider widget (completely different from the Tapestry-jQuery Slider component).
     			The name parameter will be "slider" and Tapestry-jQuery will automatically call the jQuery widget : $(selector).slider(options). 

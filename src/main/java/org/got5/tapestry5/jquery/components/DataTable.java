@@ -17,7 +17,6 @@
 package org.got5.tapestry5.jquery.components;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +29,7 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
+import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
@@ -51,7 +51,7 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
-import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BeanBlockSource;
 import org.apache.tapestry5.services.BeanModelSource;
@@ -62,6 +62,9 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
+import org.got5.tapestry5.jquery.internal.DataTableModel;
+import org.got5.tapestry5.jquery.internal.DefaultDataModel;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
 /**
@@ -69,7 +72,7 @@ import org.got5.tapestry5.jquery.JQueryEventConstants;
  */
 @Import(library = {"${assets.path}/components/datatables/jquery.dataTables.min.js",
 				  "${assets.path}/components/datatables/dataTables.js"},
-		stylesheet={"context:css/tango/skin.css"})
+		stylesheet={"${assets.path}/components/datatables/tango/skin.css"})
 @Events(JQueryEventConstants.DATA)
 public class DataTable implements ClientElement
 {
@@ -239,247 +242,175 @@ public class DataTable implements ClientElement
 	 
 	 private String clientId;
 
- 
-	 private static final String ECHO = "sEcho";
+	 /**
+	 * TODO
+	 */
+	private DataTableModel reponse = new DefaultDataModel(typeCoercer);
+	 
+	 /**
+	 * TODO
+	 */
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private DataTableModel dataTableModel;
 	
-	 private static final String SEARCH = "_search";
-	 private static final String SEARCH_FIELD = "searchField";
-	 private static final String SEARCH_STRING = "searchString";
-	 private static final String SEARCH_OPER = "searchOper";
+	/**
+	 * TODO
+	 */
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject options;
 	
-	 private static final String COL = "iColumns";
-	 private static final String DISPLAY_LENGTH = "iDisplayLength";
-	 private static final String DISPLAY_START = "iDisplayStart";
-	 private static final String SORTING_COLS = "iSortingCols";
-	 private static final String SORT_COL = "iSortCol_";
-	 private static final String SORT_DIR = "sSortDir_";
- 
-	 /*sEcho:1
-	 iColumns:5
-	 sColumns:
-	 iDisplayStart:0
-	 iDisplayLength:10
-	 sSearch:
-	 bRegex:false
-	 sSearch_0:
-	 bRegex_0:false
-	 bSearchable_0:true
-	 sSearch_1:
-	 bRegex_1:false
-	 bSearchable_1:true
-	 sSearch_2:
-	 bRegex_2:false
-	 bSearchable_2:true
-	 sSearch_3:
-	 bRegex_3:false
-	 bSearchable_3:true
-	 sSearch_4:
-	 bRegex_4:false
-	 bSearchable_4:true
-	 iSortingCols:1
-	 iSortCol_0:0
-	 sSortDir_0:asc
-	 bSortable_0:true
-	 bSortable_1:true
-	 bSortable_2:true
-	 bSortable_3:true
-	 bSortable_4:true*/
- 
+	/**
+	 * TODO
+	 */
+	@Parameter(value="true", defaultPrefix = BindingConstants.LITERAL)
+	private Boolean mode;
 
- /**
+	
+/**
 * Ajax event handler, form client side to get the data to display
 * to parse it according to the server-side format. 
 * see http://www.datatables.net/ for more details
 */
  @OnEvent(value=JQueryEventConstants.DATA)
  JSONObject onData()
- {
-     String echo = request.getParameter(ECHO);
-     
-     String search = request.getParameter(SEARCH);
-     String searchField = request.getParameter(SEARCH_FIELD);
-     String searchString = request.getParameter(SEARCH_STRING);
-     String searchOper = request.getParameter(SEARCH_OPER);
-     //searchField=tax&searchString=100&searchOper=gt
-    
-     
-     /*if(search.equals("false"))
-    	 source.resetFilter();	  
-     else if(searchField!=null && searchOper!=null && searchString!=null)
-     {	 
-    	 SearchOperator op = SearchOperator.valueOf(searchOper);
-    	 Class searchType = getDataModel().get(searchField).getConduit().getPropertyType();
-    	 Object searchValue = typeCoercer.coerce(searchString,searchType);
-    	 SearchConstraint searchFor = new SearchConstraint(searchField,
-    			 										   op,
-    			 										   searchValue,
-    			 										   getDataModel().get(searchField).getConduit()); 
-    	 List<SearchConstraint> lst = new ArrayList();
-    	 lst.add(searchFor);
-    	 source.setFilter(lst);
-     }*/
-      
-     JSONObject response = new JSONObject();    
-     /*
-     {"sEcho": 2, "iTotalRecords": 57, "iTotalDisplayRecords": 57, "aaData": [ ["Gecko","Mozilla 1.1","Win 95+ / OSX.1+","1.1","A"],
-                                                                               ["Gecko","Mozilla 1.2","Win 95+ / OSX.1+","1.2","A"],
-                                                                               ["Gecko","Mozilla 1.3","Win 95+ / OSX.1+","1.3","A"],
-                                                                               ["Gecko","Mozilla 1.4","Win 95+ / OSX.1+","1.4","A"],
-                                                                               ["Gecko","Mozilla 1.5","Win 95+ / OSX.1+","1.5","A"],
-                                                                               ["Gecko","Mozilla 1.6","Win 95+ / OSX.1+","1.6","A"],
-                                                                               ["Gecko","Mozilla 1.7","Win 98+ / OSX.1+","1.7","A"],
-                                                                               ["Gecko","Mozilla 1.8","Win 98+ / OSX.1+","1.8","A"],
-                                                                               ["Gecko","Seamonkey 1.1","Win 98+ / OSX.2+","1.8","A"],
-                                                                               ["Gecko","Epiphany 2.20","Gnome","1.8","A"]] }
-     */
-     response.put("sEcho",echo);
-     
-     int records = source.getAvailableRows();
-     response.put("iTotalDisplayRecords", records);  
-     response.put("iTotalRecords", records);
-     
-     String sortingCols = request.getParameter(SORTING_COLS);
-     int nbSortingCols = Integer.parseInt(sortingCols);
-     String sord = request.getParameter(SORT_DIR+"0");
-     String sidx = request.getParameter(SORT_COL+"0");
-     
-     
-     
-     List<SortConstraint> sortConstraints = new ArrayList();
-     if(nbSortingCols>0)
-     {
-    	 List<String> names = getDataModel().getPropertyNames();
-    	 int indexProperty = Integer.parseInt(sidx);
-    	 String propName = names.get(indexProperty);
-    	 
-    	 GridSortModel sortModel = getSortModel();
-    	 ColumnSort colSort =sortModel.getColumnSort(propName);
-    	 if(sord.equals("asc")) setSortAscending(true);
-    	 else setSortAscending(false);
-    	 sortModel.updateSort(propName);
-    	 sortConstraints = sortModel.getSortConstraints();
-     }
-     
-     String displayStart = request.getParameter(DISPLAY_START);
-     int startIndex=Integer.parseInt(displayStart);
-     
-     String displayLength = request.getParameter(DISPLAY_LENGTH);
-     int rowsPerPage=Integer.parseInt(displayLength);
-     
-     int endIndex= startIndex + rowsPerPage -1;
-     if(endIndex>records-1) endIndex= records-1;
-     source.prepare(startIndex,endIndex + rowsPerPage,sortConstraints );
-     
-     
-     JSONArray rows = new JSONArray();
-     
-     for(int index=startIndex;index<=endIndex;index++)
-     {	 
-    	 JSONArray cell = new JSONArray();
-    	 Object obj = source.getRowValue(index);
-    	 List<String> names = getDataModel().getPropertyNames();
-    	 for (String name: names)
-    	 {
-    		 
-    		 PropertyConduit conduit = getDataModel().get(name).getConduit();
-    		 Class type = conduit.getPropertyType();
-    		 //Block displayBlock = defaultBeanBlockSource.getDisplayBlock(getDataModel().get(name).getDataType());
-    		 
-    		 try
-    	        {
-    			 	String cellValue;
-    			 	Object val = conduit.get(obj);
-    			 	//todo use BeanBlockSource or ...
-    			 	if(type.equals(Date.class)) 
-    			 	{
-    			 		//mimic PropertyDisplayBlock
-    			 		Date cellDate = (Date)val;
-    			 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
-    			 		cellValue = dateFormat.format(cellDate) ;
-    			 	}else if (type.equals(Enum.class))
-    			 	{
-    			 		cellValue = TapestryInternalUtils.getLabelForEnum(overrides.getOverrideMessages(), (Enum)val);
-    			 	}else
-    			 	{
-    			 		if(val==null) cellValue = "undefined "+name;
-    			 		else
-    			 			cellValue = typeCoercer.coerce(val, String.class);
-    			 		//ValueEncoder valueEncoder =encoderSource.getValueEncoder(type);
-    			 		//cellValue = valueEncoder.toClient(val);
-    			 	}
-    	            cell.put(cellValue);
-    	        }
-    	        catch (NullPointerException ex)
-    	        {
-    	        	cell.put("undefined "+name);
-    	        }
-    		 
-    	 }
-    	 rows.put(cell);
-     }
-     response.put("aaData", rows);
-     return response;
+ { 
+	 return getDataTModel().sendResponse(request, source, getDataModel(), getSortModel());
+ }
+ 
+ /**
+ * TODO
+ */
+private DataTableModel getDataTModel(){
+	 if(resources.isBound("dataTableModel")) return dataTableModel;
+	 return reponse;
  }
 
-
+ @BeginRender
  void beginRender(MarkupWriter writer)
  {
-	 
+	
+	 String clientId = getClientId();
 
-     String clientId = getClientId();
-
-     //<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-     writer.element("table","id", clientId);
+     writer.element("table","id", clientId, "width", "100%", "class", "display");
      writer.element("thead");
      writer.element("tr");
-     
+ 
      List<String> names = getDataModel().getPropertyNames();
-     for (String name: names)
-     {
-    	 writer.element("th","width","25%");
-    	 writer.write(name);
-    	 writer.end();
-    	 //<th width="20%>Property Label</th>
-     }    
-     writer.end();//</tr>
-     writer.end();//</thead>
-    
-	 writer.element("tbody");
-	 writer.element("tr");
-	 writer.element("td");
-	 writer.write("Loading data from server");
-	 //<td colspan="5" class="dataTables_empty">Loading data from server</td>
-	 writer.end();//</td>
+	 for (String name: names)
+	 {
+		 writer.element("th");
+		 writer.write(getDataModel().get(name).getLabel());
+		 writer.end();
+	 }  
+
 	 writer.end();//</tr>
+	 writer.end();//</thead>
+
+	 writer.element("tbody");
+	 
+	
+	 
+	 if(mode){
+		 writer.element("tr");
+		 writer.element("td");
+		 writer.write("Loading data from server");
+		 writer.end();//</td>
+		 writer.end();
+	 }
+	 else{
+	 	 
+		 for(int index=0;index<source.getAvailableRows();index++)
+	     {	 
+			 writer.element("tr");
+			 
+			 Object obj = source.getRowValue(index);
+			 
+	    	 for (String name: (List<String>) model.getPropertyNames())
+	    	 {
+	    		 PropertyConduit conduit = model.get(name).getConduit();
+	    		 
+	    		 Class type = conduit.getPropertyType();
+	    		 
+	    		 String cellValue;
+	    		 
+			 	 Object val = conduit.get(obj);
+			 	 
+	    		 if(val == null) cellValue="";
+	    		 else {
+	    			 
+	    			 try{
+	    				 
+	    				 if(type.equals(Date.class)){
+	    					 Date cellDate = (Date)val;
+		    			 	 
+	    					 DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, request.getLocale());
+		    			 	 
+	    					 cellValue = dateFormat.format(cellDate) ;
+	    				}
+	    				 else if(type.equals(Enum.class)){
+	    					 //TODO
+	    					 cellValue="Not yet";
+	    				 }
+	    				 else {
+	    					 cellValue = typeCoercer.coerce(val, String.class);
+	    				 }
+	    				 
+	    			 }
+	    			 catch (NullPointerException ex){
+	    				 
+	    				 cellValue = "undefined " + name;
+	    				 
+		    	     }
+	    		 }
+	    		 
+	    		 writer.element("td");
+	    		 writer.write(cellValue);
+	    		 writer.end();
+	    	 }	 
+	    	 
+	    	 writer.end();
+	     }
+		 
+		
+		 
+		 
+	 }
+	 
+	 
 	 writer.end();//</tbody>
 
-     writer.end();//</table>
+	 writer.end();//</table>
+ 
+	 JSONObject setup = new JSONObject();
+	 setup.put("id", clientId);
+ 
      
-     
-     
-     
-     JSONObject setup = new JSONObject();
-     setup.put("id", clientId);
-     
-         
-     JSONObject dataTableParams = new JSONObject();
-     dataTableParams.put("sAjaxSource", resources.createEventLink("data").toAbsoluteURI());
-     dataTableParams.put("bServerSide", "true");
-     dataTableParams.put("bProcessing", "true");
-     
-     setup.put("params",dataTableParams);
-    
-     if (request.getAttribute(LOCALIZATION_CONFIGURED_FLAG) == null)
-     {
-         JSONObject spec = new JSONObject();
-         request.setAttribute(LOCALIZATION_CONFIGURED_FLAG, true);
-     }
+	 JSONObject dataTableParams = new JSONObject();
+	 
+	 if(mode) {
+		 dataTableParams.put("sAjaxSource", resources.createEventLink("data").toAbsoluteURI());
+		 dataTableParams.put("bServerSide", "true");
+		 dataTableParams.put("bProcessing", "true");
+	 }
+	 
+	 dataTableParams.put("sPaginationType", "full_numbers");
+	 dataTableParams.put("iDisplayLength", getRowsPerPage());
+	 dataTableParams.put("aLengthMenu", new JSONLiteral("[["+rowsPerPage+","+(rowsPerPage*2)+","+(rowsPerPage*4)+"],["+rowsPerPage+","+(rowsPerPage*2)+","+(rowsPerPage*4)+"]]"));
+	 
+	 
+	 JQueryUtils.merge(dataTableParams, options);
+	 
+	 setup.put("params",dataTableParams);
+	 
+	 if (request.getAttribute(LOCALIZATION_CONFIGURED_FLAG) == null)
+	 {
+	     JSONObject spec = new JSONObject();
+	     request.setAttribute(LOCALIZATION_CONFIGURED_FLAG, true);
+	 }
 
-     support.addInitializerCall("dataTable", setup);
+	 support.addInitializerCall("dataTable", setup);
  }
 
-
- 
  public String getClientId() {
 
      if (clientId == null) {
@@ -662,27 +593,6 @@ public class DataTable implements ClientElement
  {
      return sortModel;
  }
-
- /*public Object getPagerTop()
- {
-     return pagerPosition.isMatchTop() ? pager : null;
- }
-
- public Object getPagerBottom()
- {
-     return pagerPosition.isMatchBottom() ? pager : null;
- }
-
- public int getCurrentPage()
- {
-     return currentPage == null ? 1 : currentPage;
- }
-
- public void setCurrentPage(int currentPage)
- {
-     this.currentPage = currentPage;
- }*/
-
  private boolean getSortAscending()
  {
      return sortAscending != null && sortAscending.booleanValue();

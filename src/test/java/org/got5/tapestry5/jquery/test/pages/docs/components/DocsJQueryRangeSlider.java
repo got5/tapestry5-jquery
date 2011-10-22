@@ -52,7 +52,7 @@ public class DocsJQueryRangeSlider {
 	@Property
 	private int tabIndex; 
 	
-	public void onSubmit(){System.out.println("### onSubmit");
+	public void onSubmit(){
 		tabIndex = 1;
 	}
 	

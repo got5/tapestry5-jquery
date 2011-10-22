@@ -113,7 +113,7 @@
 
 		<br/><br/>
 		## Changelog<br/>
-		<b>>> 2.6.0 :</b> 
+		<strong> 2.6.0 :</strong>
 		<div class="releasenotes">
 			<ul>
 				<li>Switch to Tapestry 5.2.6</li>
@@ -121,27 +121,27 @@
 				<li>Other Mecanisms : EffectsParam, WidgetParams, Selector Binding</li>
 			</ul>
 		</div>
-		<b>>> 2.1.1 :</b>
+		<strong> 2.1.1 :</strong>
 		<div class="releasenotes">
 			<ul>
 				<li>Add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish</li>
 				<li>Add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip</li>
 			</ul>
 		</div>
-		<b>>> 2.1.0 :</b>
+		<strong> 2.1.0 :</strong>
 		<div class="releasenotes">
 			<ul>
 				<li>Switch to Tapestry 5.2.5</li>
 				<li>Add (Tabs, Accordion, AjaxUpload, Button)</li>
 			</ul>
 		</div>
-		<b>>> 1.1-SNAPSHOT :</b>
+		<strong> 1.1-SNAPSHOT :</strong>
 		<div class="releasenotes">
 			<ul>
 				<li>Exclusive jQuery components</li>
 			</ul>
 		</div>
-		<b>>> 1.0-SNAPSHOT :</b>
+		<strong> 1.0-SNAPSHOT :</strong>
 		<div class="releasenotes">
 			<ul>
 				<li>Initial releases</li>
