@@ -14,7 +14,10 @@
  */
 
 (function( $ ) {
+    
 	T5.define("dom", function() {
+
+	    var _ = T5._;
 	
 	    var removeEventHandlers;
 	
