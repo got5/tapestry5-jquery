@@ -73,8 +73,9 @@ public class JQueryModule
     		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
     		//configuration.addInstance("CustomZoneEffectWorker", CustomZoneEffectWorker.class);
-    		configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
+    		
     	}
+    	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
 
