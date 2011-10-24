@@ -111,9 +111,12 @@
 			     <li>
 			     	<t:pagelink t:page="docs/components/DocsCheckbox">Checkbox</t:pagelink>
 			     </li>
-			     <li>
-			     	<t:pagelink t:page="docs/components/DocsSuperfish">Superfish Menu</t:pagelink>
-			     </li>
+                 <li>
+                    <t:pagelink t:page="docs/components/DocsSuperfish">Superfish Menu</t:pagelink>
+                 </li>
+                 <li>
+                    <t:pagelink t:page="docs/components/DocsColorboxGallery">Gallery</t:pagelink>
+                 </li>
 			</ul>
 		
 			</t:block>

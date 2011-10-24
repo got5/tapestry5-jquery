@@ -48,6 +48,7 @@ import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
+import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
 import org.got5.tapestry5.jquery.services.js.JSModule;
@@ -68,6 +69,7 @@ public class JQueryModule
     		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
+        configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -103,12 +105,12 @@ public class JQueryModule
 
     public static void contributeBindingSource(MappedConfiguration<String, BindingFactory> configuration,
     		@InjectService("SelectorBindingFactory")
-    		BindingFactory selectorBindingFactory) 
+    		BindingFactory selectorBindingFactory)
     {
         configuration.add("selector", selectorBindingFactory);
-    
+
     }
-    
+
     public static void bind(ServiceBinder binder)
     {
       binder.bind(WidgetParams.class, WidgetParamsImpl.class);
@@ -127,7 +129,7 @@ public class JQueryModule
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
     }
-    
+
     @Contribute(ComponentClassTransformWorker2.class)
     @Primary
     public static void  addWorker(OrderedConfiguration<ComponentClassTransformWorker2> configuration,
@@ -139,6 +141,8 @@ public class JQueryModule
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class, "after:RenderPhase");
     	}
     	configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
+
+    	// note: the ordering must ensure that the worker gets added after the RenderPhase-Worker!
     	configuration.addInstance("DateFieldWorker", DateFieldWorker.class, "after:RenderPhase");
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import", "after:RenderPhase");
     }
@@ -148,24 +152,24 @@ public class JQueryModule
 
        configuration.add("AjaxUploadFilter", new AjaxUploadServletRequestFilter(ajaxUploadDecoder), "after:IgnoredPaths");
     }
-    
+
     @Advise
     @Match("AssetPathConverter")
     public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source)
     	throws SecurityException, NoSuchMethodException{
-    	
+
     	MethodAdvice advise = new MethodAdvice() {
-			
+
 			public void advise(MethodInvocation invocation) {
-				
+
 				invocation.proceed();
-				
+
 				if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
-					
+
 					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
-					
+
 				}
-				
+
 			}
 		};
 		receiver.adviseMethod(receiver.getInterface().getMethod("convertAssetPath", String.class),advise);

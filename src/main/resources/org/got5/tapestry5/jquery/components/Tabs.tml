@@ -4,7 +4,7 @@
             <li><a href="#" t:type="eventLink" t:event="selectTab" t:zone="prop:clientZoneId" context="tabContext">${currentTabData.title}</a></li>                
         </t:loop>
 	</ul>
-		<div t:type="zone" t:id="contentZone" id="${clientZoneId}">
+		<div t:type="zone" t:id="contentZone" id="${clientZoneId}" update="updateMethod">
 			<t:delegate to="ActiveBlock"/>
        </div>	
 </div>

@@ -1,3 +1,17 @@
+// Copyright 2007, 2008, 2009, 2010, 2011 The Apache Software Foundation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package org.got5.tapestry5.jquery.components;
 
 import static org.apache.tapestry5.ioc.internal.util.CollectionFactory.newList;
@@ -9,67 +23,79 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.Binding;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.FieldValidationSupport;
+import org.apache.tapestry5.FieldValidator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.OptionGroupModel;
 import org.apache.tapestry5.OptionModel;
 import org.apache.tapestry5.Renderable;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.SelectModelVisitor;
+import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.ValidationTracker;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.base.AbstractField;
+import org.apache.tapestry5.corelib.components.Checklist;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.internal.util.SelectModelRenderer;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
- * Multiple selection component. Generates a UI consisting of two &lt;select&gt; elements configured
- * for multiple
- * selection; the one on the left is the list of "available" elements, the one on the right is
- * "selected". Elements can
- * be moved between the lists by clicking a button, or double clicking an option (and eventually,
- * via drag and drop).
+ * Multiple selection component. Generates a UI consisting of two &lt;select&gt; elements configured for multiple
+ * selection; the one on the left is the list of "available" elements, the one on the right is "selected". Elements can
+ * be moved between the lists by clicking a button, or double clicking an option (and eventually, via drag and drop).
  * <p/>
- * The items in the available list are kept ordered as per {@link SelectModel} order. When items are
- * moved from the selected list to the available list, they items are inserted back into their
- * proper positions.
+ * The items in the available list are kept ordered as per {@link SelectModel} order. When items are moved from the
+ * selected list to the available list, they items are inserted back into their proper positions.
  * <p/>
  * The Palette may operate in normal or re-orderable mode, controlled by the reorder parameter.
  * <p/>
- * In normal mode, the items in the selected list are kept in the same "natural" order as the items
- * in the available list.
+ * In normal mode, the items in the selected list are kept in the same "natural" order as the items in the available
+ * list.
  * <p/>
- * In re-order mode, items moved to the selected list are simply added to the bottom of the list. In
- * addition, two extra buttons appear to move items up and down within the selected list.
+ * In re-order mode, items moved to the selected list are simply added to the bottom of the list. In addition, two extra
+ * buttons appear to move items up and down within the selected list.
  * <p/>
- * Much of the look and feel is driven by CSS, the default Tapestry CSS is used to set up the
- * columns, etc. By default, the &lt;select&gt; element's widths are 200px, and it is common to
- * override this to a specific value:
+ * Much of the look and feel is driven by CSS, the default Tapestry CSS is used to set up the columns, etc. By default,
+ * the &lt;select&gt; element's widths are 200px, and it is common to override this to a specific value:
  * <p/>
- * 
+ * <p/>
  * <pre>
  * &lt;style&gt;
  * DIV.t-palette SELECT { width: 300px; }
  * &lt;/style&gt;
  * </pre>
  * <p/>
- * You'll want to ensure that both &lt;select&gt; in each column is the same width, otherwise the
- * display will update poorly as options are moved from one column to the other.
+ * You'll want to ensure that both &lt;select&gt; in each column is the same width, otherwise the display will update
+ * poorly as options are moved from one column to the other.
  * <p/>
- * Option groups within the {@link SelectModel} will be rendered, but are not supported by many
- * browsers, and are not fully handled on the client side.
- * 
- * @see <a href="http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Palette.html">http://tapestry.apache.org/current/tapestry-core/ref/org/apache/tapestry5/corelib/components/Palette.html</a>
+ * Option groups within the {@link SelectModel} will be rendered, but are not supported by many browsers, and are not
+ * fully handled on the client side.
+ * <p/>
+ * For an alternative component that can be used for similar purposes, see
+ * {@link Checklist}.
+ *
+ * @tapestrydoc
+ * @see Form
+ * @see Select
  */
 @ImportJQueryUI(value = "jquery.ui.widget")
 @Import(library= "${assets.path}/components/palette/palette.js")
@@ -82,7 +108,8 @@ public class Palette extends AbstractField
     {
         public void render(MarkupWriter writer)
         {
-            writer.element("select", "id", getClientId() + "-avail", "multiple", "multiple", "size", getSize(), "name", getControlName() + "-avail");
+            writer.element("select", "id", getClientId() + "-avail", "multiple", "multiple", "size", getSize(), "name",
+                    getControlName() + "-avail");
 
             writeDisabled(writer, isDisabled());
 
@@ -142,9 +169,16 @@ public class Palette extends AbstractField
     {
         public void render(MarkupWriter writer)
         {
-            writer.element("select", "id", getClientId(), "multiple", "multiple", "size", getSize(), "name", getControlName());
+            writer.element("select", "id", getClientId(), "multiple", "multiple", "size", getSize(), "name",
+                    getControlName());
 
             writeDisabled(writer, isDisabled());
+
+            putPropertyNameIntoBeanValidationContext("selected");
+
+            Palette.this.validate.render(writer);
+
+            removePropertyNameFromBeanValidationContext();
 
             for (Object value : getSelected())
             {
@@ -164,13 +198,16 @@ public class Palette extends AbstractField
 
     /**
      * The image to use for the deselect button (the default is a left pointing arrow).
-     */    
+     */
 	@Parameter(value = "asset:deselect.png")
     @Property(write = false)
     private Asset deselect;
 
     /**
-     * Encoder used to translate between server-side objects and client-side strings.
+     * A ValueEncoder used to convert server-side objects (provided from the
+     * "source" parameter) into unique client-side strings (typically IDs) and
+     * back. Note: this component does NOT support ValueEncoders configured to
+     * be provided automatically by Tapestry.
      */
     @Parameter(required = true, allowNull = false)
     private ValueEncoder<Object> encoder;
@@ -182,8 +219,7 @@ public class Palette extends AbstractField
     private SelectModel model;
 
     /**
-     * Allows the title text for the available column (on the left) to be modified. As this is a
-     * Block, it can contain
+     * Allows the title text for the available column (on the left) to be modified. As this is a Block, it can contain
      * conditionals and components. The default is the text "Available".
      */
     @Property(write = false)
@@ -191,8 +227,7 @@ public class Palette extends AbstractField
     private Block availableLabel;
 
     /**
-     * Allows the title text for the selected column (on the right) to be modified. As this is a
-     * Block, it can contain
+     * Allows the title text for the selected column (on the right) to be modified. As this is a Block, it can contain
      * conditionals and components. The default is the text "Available".
      */
     @Property(write = false)
@@ -217,13 +252,25 @@ public class Palette extends AbstractField
      * Used to include scripting code in the rendered page.
      */
     @Environmental
-    private JavaScriptSupport javaScriptSupport;
+    private JavaScriptSupport javascriptSupport;
+
+    @Environmental
+    private ValidationTracker tracker;
 
     /**
      * Needed to access query parameters when processing form submission.
      */
     @Inject
     private Request request;
+
+    @Inject
+    private ComponentDefaultProvider defaultProvider;
+
+    @Inject
+    private ComponentResources componentResources;
+
+    @Inject
+    private FieldValidationSupport fieldValidationSupport;
 
     private SelectModelRenderer renderer;
 
@@ -235,27 +282,22 @@ public class Palette extends AbstractField
     private Asset select;
 
     /**
-     * The list of selected values from the {@link org.apache.tapestry5.SelectModel}. This will be
-     * updated when the form
-     * is submitted. If the value for the parameter is null, a new list will be created, otherwise
-     * the existing list
-     * will be cleared. If unbound, defaults to a property of the container matching this
-     * component's id.
+     * The list of selected values from the {@link org.apache.tapestry5.SelectModel}. This will be updated when the form
+     * is submitted. If the value for the parameter is null, a new list will be created, otherwise the existing list
+     * will be cleared. If unbound, defaults to a property of the container matching this component's id.
      */
     @Parameter(required = true, autoconnect = true)
     private List<Object> selected;
 
     /**
-     * If true, then additional buttons are provided on the client-side to allow for re-ordering of
-     * the values.
+     * If true, then additional buttons are provided on the client-side to allow for re-ordering of the values.
      */
     @Parameter("false")
     @Property(write = false)
     private boolean reorder;
 
     /**
-     * Used during rendering to identify the options corresponding to selected values (from the
-     * selected parameter), in
+     * Used during rendering to identify the options corresponding to selected values (from the selected parameter), in
      * the order they should be displayed on the page.
      */
     private List<OptionModel> selectedOptions;
@@ -267,6 +309,20 @@ public class Palette extends AbstractField
      */
     @Parameter(value = "10")
     private int size;
+
+    /**
+     * The object that will perform input validation. The validate binding prefix is generally used to provide
+     * this object in a declarative fashion.
+     *
+     * @since 5.2.0
+     */
+    @Parameter(defaultPrefix = BindingConstants.VALIDATE)
+    @SuppressWarnings("unchecked")
+    private FieldValidator<Object> validate;
+
+    @Inject
+    @Symbol(SymbolConstants.COMPACT_JSON)
+    private boolean compactJSON;
 
     /**
      * The natural order of elements, in terms of their client ids.
@@ -284,9 +340,12 @@ public class Palette extends AbstractField
     }
 
     @Override
-    protected void processSubmission(String elementName)
+    protected void processSubmission(String controlName)
     {
-        String parameterValue = request.getParameter(elementName + "-values");
+        String parameterValue = request.getParameter(controlName + "-values");
+
+        this.tracker.recordInput(this, parameterValue);
+
         JSONArray values = new JSONArray(parameterValue);
 
         // Use a couple of local variables to cut down on access via bindings
@@ -298,7 +357,7 @@ public class Palette extends AbstractField
         else
             selected.clear();
 
-        ValueEncoder<Object> encoder = this.encoder;
+        ValueEncoder encoder = this.encoder;
 
         int count = values.length();
         for (int i = 0; i < count; i++)
@@ -310,7 +369,19 @@ public class Palette extends AbstractField
             selected.add(objectValue);
         }
 
-        this.selected = selected;
+        putPropertyNameIntoBeanValidationContext("selected");
+
+        try
+        {
+            this.fieldValidationSupport.validate(selected, this.componentResources, this.validate);
+
+            this.selected = selected;
+        } catch (final ValidationException e)
+        {
+            this.tracker.recordError(this, e.getMessage());
+        }
+
+        removePropertyNameFromBeanValidationContext();
     }
 
     private void writeDisabled(MarkupWriter writer, boolean disabled)
@@ -341,19 +412,18 @@ public class Palette extends AbstractField
 
         String clientId = getClientId();
 
-        
-        
-        
+
+
+
         JSONObject options = new JSONObject();
         options.put("id", clientId);
         options.put("reorder", reorder);
         options.put("naturalOrder", naturalOrder);
-        
 
+        javascriptSupport.addInitializerCall("palette", options);
 
-        javaScriptSupport.addInitializerCall("palette", options);
-
-        writer.element("input", "type", "hidden", "id", clientId + "-values", "name", getControlName() + "-values", "value", selectedValues);
+        writer.element("input", "type", "hidden", "id", clientId + "-values", "name", getControlName() + "-values",
+                "value", selectedValues);
         writer.end();
     }
 
@@ -412,6 +482,15 @@ public class Palette extends AbstractField
         model.visit(visitor);
     }
 
+    /**
+     * Computes a default value for the "validate" parameter using
+     * {@link org.apache.tapestry5.services.FieldValidatorDefaultSource}.
+     */
+    Binding defaultValidate()
+    {
+        return this.defaultProvider.defaultValidatorBinding("selected", this.componentResources);
+    }
+
     // Avoids a strange Javassist bytecode error, c'est lavie!
     int getSize()
     {
@@ -429,5 +508,11 @@ public class Palette extends AbstractField
             return Collections.emptyList();
 
         return selected;
+    }
+
+    @Override
+    public boolean isRequired()
+    {
+        return validate.isRequired();
     }
 }
