@@ -73,6 +73,7 @@ public class JQueryModule
     		configuration.addInstance("FormFragmentResourcesInclusionWorker", FormFragmentResourcesInclusionWorker.class);
     		configuration.addInstance("FormResourcesInclusionWorker", FormResourcesInclusionWorker.class);
     		//configuration.addInstance("CustomZoneEffectWorker", CustomZoneEffectWorker.class);
+    		configuration.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
     	}
     	configuration.addInstance("ImportJQueryUIWorker", ImportJQueryUIWorker.class, "before:Import");
     }
@@ -145,12 +146,6 @@ public class JQueryModule
     @Contribute(EffectsParam.class)
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
-    }
-
-    @Contribute(ComponentClassTransformWorker.class)
-    public static void  provideWorkers(OrderedConfiguration<ComponentClassTransformWorker> workers) {
-        workers.addInstance("RenderTrackerMixinWorker", RenderTrackerMixinWorker.class);
-
     }
 
     public static void contributeHttpServletRequestHandler(final OrderedConfiguration<HttpServletRequestFilter> configuration,
