@@ -73,6 +73,7 @@
 
         <div t:type="jquery/showSource" t:ext="html" t:beginLine="46" t:endLine="72" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsColorboxGallery.tml"></div>           
 
+
     </t:block>
 
 </html>
