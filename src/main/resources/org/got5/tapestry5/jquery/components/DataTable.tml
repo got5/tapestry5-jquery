@@ -1,0 +1,30 @@
+<div class="t-data-grid" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+    <table id="${clientId}" width="100%" class="display">
+        <thead t:id="columns"/>
+        <tbody>
+        	<t:if t:test="mode">
+        	
+        		<tr><td>Loading data from server</td></tr>
+        		
+        		<t:parameter name="else">
+	        		
+	        		<tr t:type="loop" t:source="loopSource" t:value="index">
+	        		
+	        			<t:loop t:source="propertyNames" t:value="cellModel">
+	        			
+	        				<td>${cellValue}</td>	
+	        				
+	        			</t:loop>
+	        		
+	        		</tr>
+	        		
+	        			
+        		</t:parameter>
+        	
+        	</t:if>
+            
+        </tbody>
+    </table>
+
+</div>

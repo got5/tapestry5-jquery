@@ -1,0 +1,78 @@
+<html t:type="layoutWithAccordion" t:activeElement="1" 
+	t:title="Colorbox Gallery" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+
+    <t:block id="docs">
+        <t:componentDocumentation>
+            <p:title>
+                Gallery component
+            </p:title>
+            <p:description>
+                <em>A light-weight, customizable lightbox plugin for jQuery.</em>
+            </p:description>
+            
+            <p:link_1>jQuery Colorbox: <t:componentLink t:url="http://colorpowered.com/colorbox/"/></p:link_1>
+        
+            <p:param_1>
+                <t:componentParameter
+                    t:name="selector"
+                    t:required="true"
+                    t:javaType="String"
+                    t:prefix="literal"
+                    t:description="A CSS selector that defines the desired elements for the gallery. The
+                                   following selector would include all links that have the rel-attribute
+                                   set to 'gallery': t:selector='a[rel^=gallery]'"
+                />
+            </p:param_1>
+            <p:param_2>
+                <t:componentParameter
+                    t:name="params"
+                    t:required="false"
+                    t:javaType="JSONObject"
+                    t:prefix="prop"
+                    t:description="Gives you the full control over all parameters. Please read
+                                   the documentation of the colorbox gallery." 
+                />
+            </p:param_2>
+        </t:componentDocumentation>
+    </t:block>
+    
+    <t:block id="example">
+    
+	    <div class="gallery" t:type="jQuery/Gallery" t:selector="a[rel^=gal1]">
+	        <h2>My random gallery</h2>
+	        
+	        <a href="http://farm2.static.flickr.com/1395/1116205566_42ce0841ab.jpg" 
+	        	id="image1" rel="gal1" title="perth during the daytime.">
+	        
+	        	<img src="http://farm2.static.flickr.com/1395/1116205566_42ce0841ab_s.jpg" 
+	        		height="75" width="75"/>
+	        
+	        </a>
+	        
+	        <a href="http://farm6.static.flickr.com/5216/5473701315_9f03ec8f71.jpg" 
+	        	id="image2" rel="gal1" title="The alps">
+	        	
+	        	<img src="http://farm6.static.flickr.com/5216/5473701315_9f03ec8f71_s.jpg" 
+	        		height="75" width="75"/>
+	        		
+	        </a>
+	        
+	        <a href="http://farm6.static.flickr.com/5166/5312423800_0e4aae5b38.jpg" 
+	        	id="image3" rel="gal1" title="The sea">
+	        	
+	        	<img src="http://farm6.static.flickr.com/5166/5312423800_0e4aae5b38_s.jpg" 
+	        		height="75" width="75"/>
+	        
+	        </a>
+	    </div>        
+
+        <div t:type="jquery/showSource" t:ext="html" t:beginLine="46" t:endLine="72" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsColorboxGallery.tml"></div>           
+
+    </t:block>
+
+</html>

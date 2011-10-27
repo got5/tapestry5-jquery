@@ -2,6 +2,10 @@
  
      <t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
-		reorder="lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="false"/> 
+		reorder="lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="true">
+		
+		<p:firstNameHeader>Prénom</p:firstNameHeader>
+		
+	</t:jquery.datatable> 
     
 </html>

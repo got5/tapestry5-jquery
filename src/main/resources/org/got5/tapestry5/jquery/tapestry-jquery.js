@@ -187,7 +187,7 @@ T5.extendInitializers({
      *            component event request URL
      */
     linkSelectToZone : function(spec) {
-    	Tapestry.Initializer.updateZoneOnEvent("click", spec.linkId,
+    	Tapestry.Initializer.updateZoneOnEvent("change", spec.selectId,
 				spec.zoneId, spec.url);
     },
     
@@ -546,9 +546,16 @@ $.widget( "ui.tapestryZone", {
 					} else if (data.zones) {
 
 	                    // perform multi zone update
-						$.each(data.zones, function(zoneId){
+						$.each(data.zones, function(zoneId, content){
+							
+							if (zoneId === "" || ! $('#' + zoneId).length) {
 
-							$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
+				                that.applyContentUpdate(content);
+
+							} else {
+								
+								$('#' + zoneId).tapestryZone("applyContentUpdate", content);
+							}
 						});
 						
 					}
@@ -556,7 +563,13 @@ $.widget( "ui.tapestryZone", {
 	                $.tapestry.utils.loadScriptsInReply(data);
 				}
 		};
-		
+
+		if (this.options.parameters) {
+			
+			// adds t:formid and t:formcomponentid
+			$.extend(specs.params, this.options.parameters);
+		}
+
 		if (specs.params) {
 			$.extend(ajaxRequest, {
                 data: specs.params
