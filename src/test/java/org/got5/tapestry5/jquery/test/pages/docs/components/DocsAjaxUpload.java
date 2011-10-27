@@ -52,9 +52,9 @@ public class DocsAjaxUpload {
 
         List<JQueryTabData> listTabData = new ArrayList<JQueryTabData>();
 
-        listTabData.add(new JQueryTabData("Example", "example"));
         listTabData.add(new JQueryTabData("Documentation", "docs"));
         listTabData.add(new JQueryTabData("JSONParameters", "JSONParameters"));
+        listTabData.add(new JQueryTabData("Example", "example"));
 
         return listTabData;
 

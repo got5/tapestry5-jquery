@@ -244,15 +244,11 @@
 			<url>http://repository.apache.org/snapshots</url>
 		</repository>
 
-		<!-- TODO: remove when 5.3 hits central -->
+		<!-- TODO: remove when 5.3 is final -->
         <repository>
             <id>apache-staging</id>
             <url>https://repository.apache.org/content/groups/staging/</url>
         </repository>
-		<repository>
-			<id>apache-snapshots2</id>
-			<url>https://repository.apache.org/content/groups/public</url>
-		</repository>
 
 		<repository>
 			<id>codehaus.snapshots</id>
@@ -284,7 +280,7 @@
 	</profiles>
 
 	<properties>
-		<tapestry-release-version>5.3-beta-21</tapestry-release-version>
+		<tapestry-release-version>5.3-beta-26</tapestry-release-version>
 		<browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>

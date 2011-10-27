@@ -21,9 +21,10 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-- 3.0.0 : switch to Tapestry 5.3
-- 2.6.1 : add Components : InPlaceEditor,Draggable
-		  add Mixins : ZoneRefresh,ZoneDroppable 
+
+- 3.0.0 : switch to Tapestry 5.3, add (Gallery)
+- 2.6.1 : add Components : InPlaceEditor, Draggable
+		  add Mixins : ZoneRefresh, ZoneDroppable 
 - 2.6.0 : switch to Tapestry 5.2.6
 		  add Mixins : CustomZone, Widget
 		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
@@ -62,6 +63,9 @@ Exclusive jQuery components :
 	- Based on [http://users.tpg.com.au/j_birch/plugins/superfish/](http://users.tpg.com.au/j_birch/plugins/superfish/)
 - **Tabs** 
 	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
+- **Gallery** 
+    - based on [http://colorpowered.com/colorbox/](http://colorpowered.com/colorbox/)
+    
 		
 Exclusive jQuery Mixins :
 
