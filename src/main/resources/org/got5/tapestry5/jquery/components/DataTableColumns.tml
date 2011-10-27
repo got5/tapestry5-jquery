@@ -1,0 +1,10 @@
+<thead xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+    <tr>
+        <th t:type="Loop" source="columnNames" value="columnName" formstate="none">
+            <t:delegate to="blockForColumn"/>
+            <t:block id="standardHeader">
+               ${columnModel.label}
+            </t:block>
+        </th>
+    </tr>
+</thead>

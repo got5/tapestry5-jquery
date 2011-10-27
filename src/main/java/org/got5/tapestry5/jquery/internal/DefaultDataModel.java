@@ -6,11 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.tapestry5.PropertyConduit;
+import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
+import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
@@ -32,7 +34,7 @@ public class DefaultDataModel implements DataTableModel {
 	
 	private BeanModel model;
 	
-	
+	private PropertyOverrides overrides;
 	
 	private JSONObject response = new JSONObject();
 	public DefaultDataModel(TypeCoercer typeCoercer) {
@@ -190,8 +192,7 @@ public class DefaultDataModel implements DataTableModel {
 	    					 cellValue = dateFormat.format(cellDate) ;
 	    				}
 	    				 else if(type.equals(Enum.class)){
-	    					 //TODO
-	    					 cellValue="Not yet";
+	    					 cellValue=TapestryInternalUtils.getLabelForEnum(overrides.getOverrideMessages(), (Enum) val);
 	    				 }
 	    				 else {
 	    					 cellValue = typeCoercer.coerce(val, String.class);
@@ -219,11 +220,12 @@ public class DefaultDataModel implements DataTableModel {
 	/**
 	 * TODO
 	 */
-	public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel) {
+	public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides) {
 		
 		this.request = request;
 		this.sortModel = sortModel;
 		this.model = model;
+		this.overrides = overrides;
 		
 		GridDataSource s = source;
 		
