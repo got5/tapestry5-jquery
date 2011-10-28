@@ -35,6 +35,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ResponseRenderer;
@@ -75,6 +76,8 @@ public class Autocomplete
     static final String EVENT_NAME = "autocomplete";
 
     private static final String PARAM_NAME = "t:input";
+    
+    private static final String EXTRA_NAME = "extra";
 
     /**
      * The field component to which this mixin is attached.
@@ -114,7 +117,7 @@ public class Autocomplete
      */
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String tokens;
-
+    
     /**
      * Mixin afterRender phrase occurs after the component itself. This is where we write the
      * &lt;div&gt; element and
@@ -131,7 +134,6 @@ public class Autocomplete
         JSONObject config = new JSONObject();
         config.put("id", id);
         config.put("url", link.toAbsoluteURI());
-
         config.put("paramName", PARAM_NAME);
 
         if (resources.isBound("minChars"))
@@ -147,6 +149,7 @@ public class Autocomplete
                 config.accumulate("tokens", tokens.substring(i, i + 1));
             }
         }
+        
         // Let subclasses do more.
         configure(config);
 
@@ -155,10 +158,14 @@ public class Autocomplete
 
     Object onAutocomplete()
     {
-        String input = request.getParameter(PARAM_NAME);
-
+        JSONObject json = new JSONObject(request.getParameter("data"));
+        
+        JSONObject extra = (json.length()>1) ? new JSONObject(json.getString(EXTRA_NAME)) : new JSONObject();
+        
+        String input = json.getString(PARAM_NAME);
+        
         final Holder<List> matchesHolder = Holder.create();
-
+        
         // Default it to an empty list.
 
         matchesHolder.put(Collections.emptyList());
@@ -172,9 +179,10 @@ public class Autocomplete
                 return true;
             }
         };
-
-        resources.triggerEvent(EventConstants.PROVIDE_COMPLETIONS, new Object[]
-        { input }, callback);
+        
+        Object[] params = extra.length()==0 ? new Object[] {input} : new Object[] {input, extra};
+        
+        resources.triggerEvent(EventConstants.PROVIDE_COMPLETIONS, params, callback);
 
         ContentType contentType = responseRenderer.findContentType(this);
 
