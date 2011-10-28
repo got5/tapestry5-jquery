@@ -47,7 +47,6 @@ public class DataTables
 	private Celebrity celebrity;
 	private CelebritySource celebritySource;
 
-	
 	public GridDataSource getCelebritySource() {
 		if(celebritySource==null)
 			celebritySource = new CelebritySource(dataSource);
@@ -80,6 +79,7 @@ public class DataTables
 	@SuppressWarnings("unchecked")
 	public BeanModel getModel() {
 		this.model = beanModelSource.createDisplayModel(Celebrity.class,resources.getMessages());
+		this.model.get("firstName").sortable(false);
 		return model;
 	}
 	

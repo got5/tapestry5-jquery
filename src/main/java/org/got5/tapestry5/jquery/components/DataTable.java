@@ -34,6 +34,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
+import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
@@ -72,42 +73,39 @@ public class DataTable extends GridComponent {
 
 	
 	/**
-	 * TODO JavaDoc
+	 * The default Implementation of the DataTableModel Interface
 	 */
 	private DataTableModel reponse = new DefaultDataModel(typeCoercer);
 
 	/**
-	 * TODO JavaDoc
+	 * Parameter used to write the method called when we use the dataTable via Ajax. the SendResponse method will return the datas
 	 */
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private DataTableModel dataTableModel;
 
 	/**
-	 * TODO JavaDoc
+	 * JSON options for the DataTable component
 	 */
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private JSONObject options;
 
 	/**
-	 * TODO JavaDoc
+	 * if false, all the datas will be loaded once. if true, a ajax request will be 
+	 * sent each time is needed. 
+	 * 
+	 * @see DataTableModel
 	 */
 	@Parameter(value = "true", defaultPrefix = BindingConstants.LITERAL)
 	private Boolean mode;
 
-	/**
-	 * TODO JavaDoc
-	 */
 	@Property
 	private Integer index;
 
-	/**
-	 * TODO JavaDoc
-	 */
 	@Property
 	private String cellModel;
 	
 	/**
-	 * TODO JavaDoc
+	 * Event method in order to get the datas to display.
 	 */
 	@OnEvent(value = JQueryEventConstants.DATA)
 	JSONObject onData() {
@@ -116,7 +114,8 @@ public class DataTable extends GridComponent {
 	}
 
 	/**
-	 * TODO JavaDoc
+	 * Get the DataTableModel. If the dataTableModel parameter is not bound, we will use
+	 * the default implementation
 	 */
 	private DataTableModel getDataTModel() {
 		if (resources.isBound("dataTableModel"))
@@ -125,7 +124,7 @@ public class DataTable extends GridComponent {
 	}
 
 	/**
-	 * TODO Javadoc
+	 * In order get the value of a specific cell
 	 */
 	public String getCellValue() {
 
@@ -167,14 +166,14 @@ public class DataTable extends GridComponent {
 	}
 
 	/**
-	 * TODO Javadoc
+	 * source of the seconf loop component, in order to loop on each cells
 	 */
 	public List<String> getPropertyNames() {
 		return (List<String>) getDataModel().getPropertyNames();
 	}
 
 	/**
-	 * TODO Javadoc
+	 * Iterator for the look component in order to loop to each rows
 	 */
 	public Iterable<Integer> getLoopSource() {
 		return new Iterable<Integer>() {
@@ -204,7 +203,7 @@ public class DataTable extends GridComponent {
 
 	
 	/**
-	 * TODO JavaDoc
+	 * This method will construct the JSON options and call the DataTable contructor
 	 */
 	@AfterRender
 	void setJS() {
@@ -231,7 +230,15 @@ public class DataTable extends GridComponent {
 				+ (getRowsPerPage() * 4) + "]]"));
 		
 		JQueryUtils.merge(dataTableParams, options);
-
+		
+		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
+		JSONArray sortableConfs = new JSONArray();
+		for(String propertyName : getPropertyNames()){
+			sortableConfs.put(new JSONObject(String.format("{'bSortable': %s}", getModel().get(propertyName).isSortable())));
+		}
+		
+		dataTableParams.put("aoColumns", sortableConfs);
+		
 		setup.put("params", dataTableParams);
 
 		support.addInitializerCall("dataTable", setup);
