@@ -1,4 +1,4 @@
-<div id="${clientId}"  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id="${clientId}"  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 	<ul>
 		<t:loop source="prop:listTabData" value="currentTabData" index="currentPanelId">
             <li><a href="#" t:type="eventLink" t:event="selectTab" t:zone="prop:clientZoneId" context="tabContext">${currentTabData.title}</a></li>                

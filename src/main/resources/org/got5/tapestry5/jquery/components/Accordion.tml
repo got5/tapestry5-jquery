@@ -1,4 +1,4 @@
-<div id="${clientId}"  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id="${clientId}"  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 <t:loop source="prop:listOfElements" value="currentElement" >
     <h3><a href="#">${currentElement.title}</a></h3>
 	<div>

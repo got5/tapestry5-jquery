@@ -1,4 +1,4 @@
-<html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
     
     
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
@@ -53,7 +53,7 @@
 		<!-- source content start -->
 		<div style="padding:10px;"><pre>
 <![CDATA[
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter"
     xmlns:j="tapestry-library:jquery">
 		

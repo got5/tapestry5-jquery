@@ -1,4 +1,4 @@
-<html t:type="layout" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layout" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
     <h3>Triggered by action link</h3>
     <p>
         <t:actionlink t:id="myActionLink" t:zone="myZone">

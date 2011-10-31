@@ -1,4 +1,4 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
  
   <a id="monLink" t:type="pageLink" t:page="Index" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">
   link

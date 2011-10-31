@@ -1,7 +1,7 @@
 <html t:type="layoutWithAccordion"
 t:title="Checkbox"  
 t:activeElement="1"
-	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
 	  xmlns:p="tapestry:parameter">
     
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />

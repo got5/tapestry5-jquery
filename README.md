@@ -167,7 +167,7 @@ Then use components like you would normally do. For Autocomplete and Palette use
 
 Or add jquery to the tapestry-library namespace:
 
-	<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
 
