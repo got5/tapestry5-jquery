@@ -16,13 +16,8 @@
 
 package org.got5.tapestry5.jquery.components;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Environmental;
@@ -30,8 +25,6 @@ import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
@@ -57,7 +50,7 @@ public class DataTable extends GridComponent {
 
 	@Component(parameters = { "index=inherit:columnIndex", "lean=inherit:lean",
 			"overrides=overrides", "model=dataModel" })
-	private DataTableColumns columns;
+	private GridColumns columns;
 	
 	@Inject
 	private ComponentResources resources;
@@ -95,14 +88,10 @@ public class DataTable extends GridComponent {
 	 * 
 	 * @see DataTableModel
 	 */
-	@Parameter(value = "true", defaultPrefix = BindingConstants.LITERAL)
+	@Parameter(value = "false", defaultPrefix = BindingConstants.LITERAL)
 	private Boolean mode;
 
-	@Property
-	private Integer index;
-
-	@Property
-	private String cellModel;
+	
 	
 	/**
 	 * Event method in order to get the datas to display.
@@ -123,85 +112,6 @@ public class DataTable extends GridComponent {
 		return reponse;
 	}
 
-	/**
-	 * In order get the value of a specific cell
-	 */
-	public String getCellValue() {
-
-		Object obj = getSource().getRowValue(index);
-
-		PropertyConduit conduit = getDataModel().get(cellModel).getConduit();
-
-		Class type = conduit.getPropertyType();
-
-		String cellValue;
-
-		Object val = conduit.get(obj);
-
-		if (val == null)
-			cellValue = "";
-		else {
-
-			try {
-
-				if (type.equals(Date.class)) {
-					
-					DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, request.getLocale());
-
-					cellValue = dateFormat.format((Date) val);
-					
-				} else if (type.equals(Enum.class)) {
-					cellValue = TapestryInternalUtils.getLabelForEnum(getOverrides().getOverrideMessages(), (Enum) val);
-				} else {
-					cellValue = typeCoercer.coerce(val, String.class);
-				}
-
-			} catch (NullPointerException ex) {
-
-				cellValue = "undefined " + cellModel;
-
-			}
-		}
-		return cellValue;
-	}
-
-	/**
-	 * source of the seconf loop component, in order to loop on each cells
-	 */
-	public List<String> getPropertyNames() {
-		return (List<String>) getDataModel().getPropertyNames();
-	}
-
-	/**
-	 * Iterator for the look component in order to loop to each rows
-	 */
-	public Iterable<Integer> getLoopSource() {
-		return new Iterable<Integer>() {
-
-			public Iterator<Integer> iterator() {
-
-				return new Iterator<Integer>() {
-
-					Integer i = new Integer(0);
-
-					public boolean hasNext() {
-						return i < getSource().getAvailableRows();
-					}
-
-					public Integer next() {
-						return i++;
-					}
-
-					public void remove() {
-						i = 0;
-					}
-				};
-
-			}
-		};
-	}
-
-	
 	/**
 	 * This method will construct the JSON options and call the DataTable contructor
 	 */
