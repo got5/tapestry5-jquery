@@ -1,15 +1,21 @@
 package org.got5.tapestry5.jquery.components;
 
+import java.text.DateFormat;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.tapestry5.Binding;
 import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
@@ -23,7 +29,9 @@ import org.apache.tapestry5.internal.beaneditor.BeanModelUtils;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @SupportsInformalParameters
@@ -160,7 +168,19 @@ public class GridComponent implements ClientElement {
 	private String sortColumnId;
 	
 	private String clientId;
+	
+	@Property
+	private Integer index;
 
+	@Property
+	private String cellModel;
+	
+	@Inject
+	private TypeCoercer typeCoercer;
+
+	@Inject
+	private Request request;
+	
 	public String getClientId() {
 
 		if (clientId == null) {
@@ -341,6 +361,99 @@ public class GridComponent implements ClientElement {
 		}
 		
 		
+	}
+	
+	@Parameter(required = true)
+    @Property(write = false)
+    private Object row;
+	
+	/**
+	 * In order get the value of a specific cell
+	 */
+	public String getCellValue() {
+
+		Object obj = getSource().getRowValue(index);
+
+		PropertyConduit conduit = getDataModel().get(cellModel).getConduit();
+
+		Class type = conduit.getPropertyType();
+
+		String cellValue;
+
+		Object val = conduit.get(obj);
+
+		if (val == null)
+			cellValue = "";
+		else {
+
+			try {
+
+				if (type.equals(Date.class)) {
+					
+					DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, request.getLocale());
+
+					cellValue = dateFormat.format((Date) val);
+					
+				} else if (type.equals(Enum.class)) {
+					cellValue = TapestryInternalUtils.getLabelForEnum(getOverrides().getOverrideMessages(), (Enum) val);
+				} else {
+					cellValue = typeCoercer.coerce(val, String.class);
+				}
+
+			} catch (NullPointerException ex) {
+
+				cellValue = "undefined " + cellModel;
+
+			}
+		}
+		return cellValue;
+	}
+
+	/**
+	 * source of the seconf loop component, in order to loop on each cells
+	 */
+	public List<String> getPropertyNames() {
+		return (List<String>) getDataModel().getPropertyNames();
+	}
+
+	/**
+	 * Iterator for the look component in order to loop to each rows
+	 */
+	public Iterable<Integer> getLoopSource() {
+		return new Iterable<Integer>() {
+
+			public Iterator<Integer> iterator() {
+
+				return new Iterator<Integer>() {
+
+					Integer i = new Integer(0);
+
+					public boolean hasNext() {
+						
+						return i < getSource().getAvailableRows();
+					}
+
+					public Integer next() {
+						row=getSource().getRowValue(i);
+						return i++;
+					}
+
+					public void remove() {
+						i = 0;
+					}
+				};
+
+			}
+		};
+	}
+	
+	@Inject
+	private Block cell;
+	
+	public Block getCellBlock(){
+		Block override = overrides.getOverrideBlock(getDataModel().get(cellModel).getPropertyName()+"Cell");
+		if(override != null) return override;
+		return cell;
 	}
 
 }

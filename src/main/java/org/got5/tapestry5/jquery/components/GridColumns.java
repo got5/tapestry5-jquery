@@ -14,7 +14,7 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 @SupportsInformalParameters
-public class DataTableColumns {
+public class GridColumns {
 	
 	/**
      * The object that provides access to bean and data models, which is typically the enclosing Grid component.
