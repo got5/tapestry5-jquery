@@ -5,9 +5,8 @@
     
     <div class="gallery" t:type="jQuery/Gallery" t:selector="a[rel^=gal1]">
         <h2>My random gallery</h2>
-        <a href="http://farm2.static.flickr.com/1395/1116205566_42ce0841ab.jpg" id="image1" rel="gal1" title="perth during the daytime."><img src="http://farm2.static.flickr.com/1395/1116205566_42ce0841ab_s.jpg" height="75" width="75"/></a>
-        <a href="http://farm6.static.flickr.com/5216/5473701315_9f03ec8f71.jpg" id="image2" rel="gal1" title="The alps"><img src="http://farm6.static.flickr.com/5216/5473701315_9f03ec8f71_s.jpg" height="75" width="75"/></a>
-        <a href="http://farm6.static.flickr.com/5166/5312423800_0e4aae5b38.jpg" id="image3" rel="gal1" title="The sea"><img src="http://farm6.static.flickr.com/5166/5312423800_0e4aae5b38_s.jpg" height="75" width="75"/></a>
-	</div>
+        <a href="${asset:context:img/gallery1.jpg}" id="image1" rel="gal1" title="perth during the daytime."><img src="${asset:context:img/gallery1_s.jpg}" height="75" width="75"/></a>
+        <a href="${asset:context:img/gallery2.jpg}" id="image1" rel="gal1" title="perth during the daytime."><img src="${asset:context:img/gallery2_s.jpg}" height="75" width="75"/></a>
+    </div>
     
 </html>
