@@ -21,7 +21,9 @@ import java.util.List;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.RequestParameter;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.GridDataSource;
@@ -29,6 +31,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.test.data.Celebrity;
 import org.got5.tapestry5.jquery.test.data.CelebritySource;
@@ -95,6 +98,11 @@ public class DataTables
 		
 		json.put("oTableTools", dataTable);
 		
+		//These parameters are not a DataTable. They are used to get more information about a row
+		json.put("ajaxUrl", resources.createEventLink("extraInfo", null).toURI());
+		json.put("openImg", as.getContextAsset("img/details_open.png", null).toClientURL());
+		json.put("closeImg", as.getContextAsset("img/details_close.png", null).toClientURL());
+		
 		return json;
 	}
 	
@@ -110,7 +118,13 @@ public class DataTables
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColReorder/media/js/ColReorder.js", null));
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/ZeroClipboard.js", null));
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/TableTools.js", null));
-		
+		js.importJavaScriptLibrary(as.getContextAsset("js/demo.js", null));
 	}
+	
+	@OnEvent(value="extrainfo")
+	public JSONObject sendResponse(@RequestParameter(value = "name") String name){
+		return new JSONObject("name", name);
+	}
+	
 	
 }
