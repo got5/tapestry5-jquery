@@ -50,8 +50,6 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     private final List<Asset> jQueryJsStack;
     
-    private final List<StylesheetLink> jQueryCssStack;
-    
     private final AssetSource assetSource;
       
     private final JavaScriptStackSource jsStackSource;
@@ -111,11 +109,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
         final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, JQueryUtils.assetToStylesheetLink);
 
-        jQueryCssStack = F.flow("${jquery.ui.default-theme.path}")
-                           .map(pathToStylesheetLink)
-                           .toList();
-
-       	jQueryJsStack = F
+        jQueryJsStack = F
                 .flow(  "${jquery.core.path}",
                         "${jquery.ui.path}/jquery.ui.core.js",
                         "${jquery.ui.path}/jquery.ui.position.js",
@@ -228,7 +222,6 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     {
     	List<StylesheetLink> ret = new ArrayList<StylesheetLink>();
     	
-    	ret.addAll(jQueryCssStack);
     	if(!suppressPrototype)
     	{
      		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets());

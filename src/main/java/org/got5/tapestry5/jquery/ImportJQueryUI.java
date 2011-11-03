@@ -25,5 +25,10 @@ public @interface ImportJQueryUI {
      * @return the base name of a jQuery script that should be imported.
      * @see JQuerySymbolConstants#JQUERY_UI_PATH
      */
-    String[] value();
+    String[] value() default {};
+    
+    /**
+     * 
+     */
+    String theme() default "";
 }
