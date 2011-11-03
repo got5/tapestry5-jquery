@@ -31,7 +31,6 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.test.pages.docs.core.Autocomplete;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
-@ImportJQueryUI(theme="classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.15.custom.css")
 public class DocsJQueryDialog extends Autocomplete
 {
 	
