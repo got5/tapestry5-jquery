@@ -2,12 +2,14 @@
  
      <t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
-		reorder="lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="false" 
-		t:model="model" t:row="current">
+		reorder="link,lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="false" 
+		t:model="model" t:row="current" t:add="link">
 		
 		<p:firstNameHeader>Prénom</p:firstNameHeader>
 		
 		<p:firstNameCell>${current?.firstName}</p:firstNameCell>
+		
+		<p:linkCell>${current?.lastName}</p:linkCell>
 		
 	</t:jquery.datatable> 
     
