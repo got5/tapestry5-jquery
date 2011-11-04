@@ -34,6 +34,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final String jqueryUIBase;
 
+    private final String themePath;
+    
     private final boolean productionMode;
 
     /**
@@ -47,52 +49,70 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
             String jqueryUIBase,
 
             @Symbol(SymbolConstants.PRODUCTION_MODE)
-            boolean productionMode)
+            boolean productionMode, 
+            
+    		@Symbol(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME)
+    		String themePath)
     {
         this.assetSource = assetSource;
         this.javaScriptSupport = javaScriptSupport;
 
         this.jqueryUIBase = jqueryUIBase;
         this.productionMode = productionMode;
+        this.themePath = themePath;
     }
     
 	public void transform(PlasticClass plasticClass,
 			TransformationSupport support, MutableComponentModel model) {
 
-		ImportJQueryUI annotation = plasticClass.getAnnotation(ImportJQueryUI.class);
-		
-		if(annotation == null)
-			return;
+		final ImportJQueryUI annotation = plasticClass.getAnnotation(ImportJQueryUI.class);
 		
 		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
 		
-		final Flow<Asset> assetFlow = F.flow(annotation.value()).map(expandSimpleName).map(pathToAsset);
-		
-		setupRender.addAdvice(new MethodAdvice() {
+		if(annotation != null){
 			
-			public void advise(MethodInvocation invocation) {
-				assetFlow.each(importLibrary);
+			if(annotation.value().length > 0){
+				
+				final Flow<Asset> assetFlow = F.flow(annotation.value()).map(expandSimpleName).map(pathToAsset);
+				
+				setupRender.addAdvice(new MethodAdvice() {
+					
+					public void advise(MethodInvocation invocation) {
+						
+						assetFlow.each(importLibrary);
 
-                invocation.proceed();
+		                invocation.proceed();
+					}
+				});
 			}
-		});
-
-        model.addRenderPhase(SetupRender.class);
+		}
+		
+		if(model.isPage()){
+			setupRender.addAdvice(new MethodAdvice() {
+				
+				public void advise(MethodInvocation invocation) {
+					javaScriptSupport.importStylesheet(annotation != null && InternalUtils.isNonBlank(annotation.theme()) ?
+															assetSource.getExpandedAsset(annotation.theme()) :
+															assetSource.getExpandedAsset(themePath));
+					invocation.proceed();
+				}
+			});
+		}
+		model.addRenderPhase(SetupRender.class);
 		
 	}
-
-    private final Mapper<String, String> expandSimpleName = new Mapper<String, String>()
+	
+	private final Mapper<String, String> expandSimpleName = new Mapper<String, String>()
     {
         public String map(String name)
         {
-        	
         	if(InternalUtils.isBlank(name)) 
         		throw new TapestryException(TapestryJQueryExceptionMessages.importJQueryUiMissingValue(), null);
-        		
         	
             final StringBuilder relativePath = new StringBuilder()
                 .append(productionMode ? "/minified/" : "/")
-                .append(name);
+                .append(name)
+                .append(productionMode ? ".min.js" : ".js");
 
             return jqueryUIBase + relativePath.toString();
         }
@@ -102,8 +122,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         public Asset map(String path)
         {
-        	path = productionMode ? (path + ".min.js") : (path + ".js");
-        	
         	Asset asset = assetSource.getExpandedAsset(path);
         	
         	if (!asset.getResource().exists())
@@ -121,4 +139,5 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
             javaScriptSupport.importJavaScriptLibrary(value);
         }
     };
+
 }

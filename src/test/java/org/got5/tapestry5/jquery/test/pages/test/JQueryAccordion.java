@@ -41,9 +41,9 @@ public class JQueryAccordion
 	private List<JQueryAccordionData> list;
 
 	@SetupRender
-	void onSetupRender()
+	void getList()
 	{
-				
+				System.out.println("#########################");
 		list = new ArrayList<JQueryAccordionData>();
         list.add(new JQueryAccordionData("Element1","block1"));
         list.add(new JQueryAccordionData("Element2","block2"));

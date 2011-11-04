@@ -16,19 +16,22 @@
 
 package org.got5.tapestry5.jquery.test.pages.test;
 
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@Import(library="context:js/demo.js")
 public class JQueryAutocomplete extends Autocomplete
 {
 	@Inject
 	private JavaScriptSupport js;
 	
+	@Inject
+	private AssetSource as;
+	
 	public void afterRender(){
+		js.importJavaScriptLibrary(as.getContextAsset("js/demo.js", null));
 		js.addInitializerCall(InitializationPriority.EARLY, "setData", new JSONArray());
 	}
 }

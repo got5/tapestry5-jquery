@@ -27,6 +27,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.test.pages.docs.core.Autocomplete;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 

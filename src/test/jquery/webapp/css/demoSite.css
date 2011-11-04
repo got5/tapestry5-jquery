@@ -40,6 +40,9 @@
 .documentation table tr:nth-child(even){
 	background-color:#E7F7DF;
 }
+.documentation table tr:nth-child(odd){
+	background:none;
+}
 
 .documentation table tr th{
 	border:1px solid #c0c0c0;

@@ -1,4 +1,4 @@
-<div class="t-data-grid" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+<div class="t-data-grid" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
     <table id="${clientId}" width="100%" class="display">
         <thead t:id="columns"/>
@@ -12,8 +12,10 @@
 	        		<tr t:type="loop" t:source="loopSource" t:value="index">
 	        		
 	        			<t:loop t:source="propertyNames" t:value="cellModel">
-	        			
-	        				<td>${cellValue}</td>	
+							<td>	        			
+	        					<t:delegate t:to="cellBlock" />
+	        				</td>
+	        				<t:block t:id="cell">${cellValue}</t:block>	
 	        				
 	        			</t:loop>
 	        		

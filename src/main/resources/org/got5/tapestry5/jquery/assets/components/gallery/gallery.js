@@ -1,12 +1,14 @@
-(function($) {
+(function( $ ) {
 
-	$.extend(Tapestry.Initializer, {
-
-		gallery : function(spec) 
-		{
-			$(spec.selector).colorbox(spec); 
+	T5.extendInitializers(function(){
+		
+		function init(spec) {
+			$(spec.selector).colorbox(spec); ;
 		}
-
+		
+		return {
+			gallery : init
+		}
 	});
-
-})(jQuery);
+	
+}) ( jQuery );
