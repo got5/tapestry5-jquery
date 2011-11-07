@@ -16,15 +16,12 @@
 
 package org.got5.tapestry5.jquery.components;
 
-import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
@@ -34,7 +31,8 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
-import org.got5.tapestry5.jquery.internal.DefaultDataModel;
+import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
+import org.got5.tapestry5.jquery.internal.TableInformation;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -45,12 +43,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 		"${assets.path}/components/datatables/jquery.dataTables.min.js",
 		"${assets.path}/components/datatables/dataTables.js" }, 
 		stylesheet = { "${assets.path}/components/datatables/tango/skin.css" })
-public class DataTable extends GridComponent {
-	
-
-	@Component(parameters = { "index=inherit:columnIndex", "lean=inherit:lean",
-			"overrides=overrides", "model=dataModel" })
-	private GridColumns columns;
+public class DataTable extends AbstractJQueryTable {
 	
 	@Inject
 	private ComponentResources resources;
@@ -64,35 +57,11 @@ public class DataTable extends GridComponent {
 	@Inject
 	private Request request;
 
-	
 	/**
 	 * The default Implementation of the DataTableModel Interface
 	 */
-	private DataTableModel reponse = new DefaultDataModel(typeCoercer);
+	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer);
 
-	/**
-	 * Parameter used to write the method called when we use the dataTable via Ajax. the SendResponse method will return the datas
-	 */
-	@Parameter(defaultPrefix = BindingConstants.PROP)
-	private DataTableModel dataTableModel;
-
-	/**
-	 * JSON options for the DataTable component
-	 */
-	@Parameter(defaultPrefix = BindingConstants.PROP)
-	private JSONObject options;
-
-	/**
-	 * if false, all the datas will be loaded once. if true, a ajax request will be 
-	 * sent each time is needed. 
-	 * 
-	 * @see DataTableModel
-	 */
-	@Parameter(value = "false", defaultPrefix = BindingConstants.LITERAL)
-	private Boolean mode;
-
-	
-	
 	/**
 	 * Event method in order to get the datas to display.
 	 */
@@ -102,15 +71,10 @@ public class DataTable extends GridComponent {
 				getSortModel(), getOverrides());
 	}
 
-	/**
-	 * Get the DataTableModel. If the dataTableModel parameter is not bound, we will use
-	 * the default implementation
-	 */
-	private DataTableModel getDataTModel() {
-		if (resources.isBound("dataTableModel"))
-			return dataTableModel;
-		return reponse;
-	}
+	
+	public DataTableModel getDefaultDataTableModel(){return reponse;}
+	
+	
 
 	/**
 	 * This method will construct the JSON options and call the DataTable contructor
@@ -124,7 +88,7 @@ public class DataTable extends GridComponent {
 
 		JSONObject dataTableParams = new JSONObject();
 
-		if (mode) {
+		if (getMode()) {
 			dataTableParams.put("sAjaxSource", resources.createEventLink("data").toAbsoluteURI());
 			dataTableParams.put("bServerSide", "true");
 			dataTableParams.put("bProcessing", "true");
@@ -139,7 +103,7 @@ public class DataTable extends GridComponent {
 				+ getRowsPerPage() + "," + (getRowsPerPage() * 2) + ","
 				+ (getRowsPerPage() * 4) + "]]"));
 		
-		JQueryUtils.merge(dataTableParams, options);
+		JQueryUtils.merge(dataTableParams, getOptions());
 		
 		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
 		JSONArray sortableConfs = new JSONArray();
@@ -154,5 +118,4 @@ public class DataTable extends GridComponent {
 		support.addInitializerCall("dataTable", setup);
 	}
 
-	public Boolean getMode() { return mode;	}
 }

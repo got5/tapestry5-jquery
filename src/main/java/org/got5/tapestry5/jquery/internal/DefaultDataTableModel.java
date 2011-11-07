@@ -24,7 +24,7 @@ import org.got5.tapestry5.jquery.DataTableConstants;
 /**
  * TODO
  */
-public class DefaultDataModel implements DataTableModel {
+public class DefaultDataTableModel implements DataTableModel {
 
 	private TypeCoercer typeCoercer;
 	
@@ -37,7 +37,7 @@ public class DefaultDataModel implements DataTableModel {
 	private PropertyOverrides overrides;
 	
 	private JSONObject response = new JSONObject();
-	public DefaultDataModel(TypeCoercer typeCoercer) {
+	public DefaultDataTableModel(TypeCoercer typeCoercer) {
 		super();
 		this.typeCoercer = typeCoercer;
 	}

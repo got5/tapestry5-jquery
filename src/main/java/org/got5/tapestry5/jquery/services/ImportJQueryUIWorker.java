@@ -38,9 +38,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     
     private final boolean productionMode;
 
-    /**
-     * @param javaScriptSupport
-     */
     public ImportJQueryUIWorker(AssetSource assetSource,
 
             JavaScriptSupport javaScriptSupport,
@@ -98,6 +95,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 				}
 			});
 		}
+		
 		model.addRenderPhase(SetupRender.class);
 		
 	}

@@ -31,8 +31,10 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.internal.DataTableModel;
+import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
+import org.got5.tapestry5.jquery.internal.TableInformation;
 import org.got5.tapestry5.jquery.test.data.Celebrity;
 import org.got5.tapestry5.jquery.test.data.CelebritySource;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
@@ -87,6 +89,26 @@ public class DataTables
 		this.model = beanModelSource.createDisplayModel(Celebrity.class,resources.getMessages());
 		this.model.get("firstName").sortable(false);
 		return model;
+	}
+	
+	public TableInformation getInformation(){
+		return new TableInformation() {
+			
+			public String getTableSummary() {
+				// TODO Auto-generated method stub
+				return "A summary description of table data";
+			}
+			
+			public String getTableCaption() {
+				// TODO Auto-generated method stub
+				return "The table title";
+			}
+			
+			public String getTableCSS() {
+				// TODO Auto-generated method stub
+				return "k-data-table";
+			}
+		};
 	}
 	
 	public JSONObject getOptions(){

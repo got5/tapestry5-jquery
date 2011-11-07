@@ -1,16 +1,18 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
  
-     <t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
+     <table t:type="jquery/datatable" t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
 		reorder="link,lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="false" 
-		t:model="model" t:row="current" t:add="link">
+		t:model="model" t:row="current" t:add="link" t:tableInformation="information">
 		
 		<p:firstNameHeader>Prénom</p:firstNameHeader>
+		
+		<p:firstNameFooter>Prénom Footer</p:firstNameFooter>
 		
 		<p:firstNameCell>${current?.firstName}</p:firstNameCell>
 		
 		<p:linkCell>${current?.lastName}</p:linkCell>
 		
-	</t:jquery.datatable> 
+	</table> 
     
 </html>
