@@ -15,7 +15,7 @@
             <t:textfield t:value="regexp" t:validate="required, regexp=.*foo.*" t:id="field4" />
         </p>
         <p>
-            <t:submit t:id="submit" />
+            <t:submit t:id="submit" name="test"/>
         </p>
     </t:form>
 </html>
