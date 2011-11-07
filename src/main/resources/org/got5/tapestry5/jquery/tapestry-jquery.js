@@ -33,6 +33,26 @@ $.extend(Tapestry, {
             });
         });
     },
+    onDomLoadedCallback: function(){
+    	
+    	$('input[type="submit"],input[type="image"]').each(function(){
+    		
+    		if(!$(this).data('trackingClicks')) {
+    			
+    			$(this).bind('click', function(){
+    				
+    				var form = $(this).closest('form');
+    				
+    				$(form).formEventManager("setSubmittingElement", $(this).attr('id'));
+    				
+    			});
+    			
+    			$(this).data('trackingClicks', true);
+    		}
+    	});
+    	
+    	
+    },
     /** Formats and displays an error message on the console. */
     error : function(message, substitutions) {
         Tapestry.invokeLogger(message, substitutions, Tapestry.Logging.error);
@@ -895,6 +915,8 @@ $.tapestry = {
 
 	            Tapestry.init(initArray[index]);
 	        });
+	        
+	        Tapestry.onDomLoadedCallback();
 	    }, 
 	    
 	    /**
@@ -1004,5 +1026,5 @@ $.tapestry = {
 
     }
 };
-    
+Tapestry.onDOMLoaded(Tapestry.onDomLoadedCallback);    
 })(jQuery);
