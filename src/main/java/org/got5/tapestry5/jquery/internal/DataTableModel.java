@@ -15,5 +15,4 @@ public interface DataTableModel {
 	
 	public abstract JSONObject sendResponse(Request request,
 			GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides);
-	
 }

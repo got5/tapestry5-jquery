@@ -21,7 +21,7 @@ function callbackFunction(){
 	$.extend(Tapestry.Initializer, {
 		dataTable: function(specs) {
 			
-var nCloneTd = '<a>open</a>';
+			var nCloneTd = '<a>open</a>';
 			
 			$('#' + specs.id + ' tbody tr td:first-child').each( function () {
 				var context = $(this).html();
