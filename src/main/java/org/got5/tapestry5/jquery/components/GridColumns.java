@@ -43,11 +43,17 @@ public class GridColumns {
     @Parameter
     private String zone;
 
-        @Inject
+    @Parameter 
+    private Boolean mode;
+    
+    @Inject
     private Messages messages;
 
     @Inject
     private Block standardHeader;
+    
+    @Inject
+    private Block standardFooter;
 
     /**
      * Optional output parameter that stores the current column index.
@@ -93,11 +99,13 @@ public class GridColumns {
 
     public Block getBlockForColumn()
     {
-        Block override = overrides.getOverrideBlock(columnModel.getId() + "Header");
+        Block override = overrides.getOverrideBlock(columnModel.getId() + (mode ? "Header" : "Footer"));
 
         if (override != null) return override;
 
-        return standardHeader;
+        return mode ? standardHeader : standardFooter;
     }
+    
+    public Boolean getMode(){return mode;}
 }
 

@@ -35,7 +35,7 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @SupportsInformalParameters
-public class GridComponent implements ClientElement {
+public class AbstractTable implements ClientElement {
 
 	/**
 	 * The source of data for the Grid to display. This will usually be a List
