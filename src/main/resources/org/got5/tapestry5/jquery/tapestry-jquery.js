@@ -512,7 +512,7 @@ $.widget("ui.formEventManager", {
             	this.options.submitHidden = hiddens.first();
         }
 		
-		var t = element == null ? null : $.toJSON([element,
+		var t = element == null ? $.toJSON([null, null]) : $.toJSON([element,
 		                                           $("#"+element).attr("name")]);
 		
 		this.options.submitHidden.attr("value", t);
