@@ -2,6 +2,7 @@ package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Flow;
@@ -31,6 +32,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 	private final AssetSource assetSource;
 
     private final JavaScriptSupport javaScriptSupport;
+    
+    private JQueryUITheme theme;
 
     private final String jqueryUIBase;
 
@@ -41,7 +44,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     public ImportJQueryUIWorker(AssetSource assetSource,
 
             JavaScriptSupport javaScriptSupport,
-
+            JQueryUITheme theme,
             @Symbol(JQuerySymbolConstants.JQUERY_UI_PATH)
             String jqueryUIBase,
 
@@ -53,7 +56,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         this.assetSource = assetSource;
         this.javaScriptSupport = javaScriptSupport;
-
+        this.theme = theme;
         this.jqueryUIBase = jqueryUIBase;
         this.productionMode = productionMode;
         this.themePath = themePath;
@@ -65,6 +68,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 		final ImportJQueryUI annotation = plasticClass.getAnnotation(ImportJQueryUI.class);
 		
 		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
+		
+		PlasticMethod afterRender = plasticClass.introduceMethod(TransformConstants.AFTER_RENDER_DESCRIPTION);
 		
 		if(annotation != null){
 			
@@ -83,20 +88,30 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 				});
 			}
 		}
-		
-		if(model.isPage()){
-			setupRender.addAdvice(new MethodAdvice() {
+		setupRender.addAdvice(new MethodAdvice() {
+			
+			public void advise(MethodInvocation invocation) {
+				
+				if(annotation!=null && InternalUtils.isNonBlank(annotation.theme()) && InternalUtils.isBlank(theme.getPath())){
+					theme.changePath(annotation.theme());
+				}
+				invocation.proceed();
+				
+			}
+		});
+		afterRender.addAdvice(new MethodAdvice() {
 				
 				public void advise(MethodInvocation invocation) {
-					javaScriptSupport.importStylesheet(annotation != null && InternalUtils.isNonBlank(annotation.theme()) ?
-															assetSource.getExpandedAsset(annotation.theme()) :
-															assetSource.getExpandedAsset(themePath));
+					if(InternalUtils.isBlank(theme.getPath())) theme.changePath(themePath);
+					
+					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(theme.getPath()));
 					invocation.proceed();
 				}
-			});
-		}
+		});
+		
 		
 		model.addRenderPhase(SetupRender.class);
+		model.addRenderPhase(AfterRender.class);
 		
 	}
 	
