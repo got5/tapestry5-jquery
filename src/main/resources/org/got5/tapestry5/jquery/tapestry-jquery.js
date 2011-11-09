@@ -41,9 +41,11 @@ $.extend(Tapestry, {
     			
     			$(this).bind('click', function(){
     				
-    				var form = $(this).closest('form');
-    				
-    				$(form).formEventManager("setSubmittingElement", $(this).attr('id'));
+    				var id = $(this).attr('id');
+    				if ( id != null ) {
+    					var form = $(this).closest('form');   				
+    					$(form).formEventManager("setSubmittingElement", id);
+    				}
     				
     			});
     			
