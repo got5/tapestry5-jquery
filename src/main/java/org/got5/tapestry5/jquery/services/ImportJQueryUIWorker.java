@@ -17,6 +17,7 @@ import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.plastic.PlasticClass;
 import org.apache.tapestry5.plastic.PlasticMethod;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TransformConstants;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
@@ -33,8 +34,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final JavaScriptSupport javaScriptSupport;
     
-    private JQueryUITheme theme;
-
+    private final Request request;
+    
     private final String jqueryUIBase;
 
     private final String themePath;
@@ -43,8 +44,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     public ImportJQueryUIWorker(AssetSource assetSource,
 
-            JavaScriptSupport javaScriptSupport,
-            JQueryUITheme theme,
+            JavaScriptSupport javaScriptSupport, Request request, 
+            
             @Symbol(JQuerySymbolConstants.JQUERY_UI_PATH)
             String jqueryUIBase,
 
@@ -56,7 +57,9 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         this.assetSource = assetSource;
         this.javaScriptSupport = javaScriptSupport;
-        this.theme = theme;
+        this.request = request;
+        
+        
         this.jqueryUIBase = jqueryUIBase;
         this.productionMode = productionMode;
         this.themePath = themePath;
@@ -88,26 +91,32 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 				});
 			}
 		}
-		setupRender.addAdvice(new MethodAdvice() {
-			
-			public void advise(MethodInvocation invocation) {
-				
-				if(annotation!=null && InternalUtils.isNonBlank(annotation.theme()) && InternalUtils.isBlank(theme.getPath())){
-					theme.changePath(annotation.theme());
-				}
-				invocation.proceed();
-				
-			}
-		});
-		afterRender.addAdvice(new MethodAdvice() {
+		if(model.isPage()){
+			setupRender.addAdvice(new MethodAdvice() {
 				
 				public void advise(MethodInvocation invocation) {
-					if(InternalUtils.isBlank(theme.getPath())) theme.changePath(themePath);
 					
-					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(theme.getPath()));
+					String path = (annotation!=null && InternalUtils.isNonBlank(annotation.theme())) ? annotation.theme() : themePath;
+					
+					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
+					
 					invocation.proceed();
+					
 				}
-		});
+			});
+		}
+		/*
+		if(model.isPage()){
+			afterRender.addAdvice(new MethodAdvice() {
+					
+					public void advise(MethodInvocation invocation) {
+						if(InternalUtils.isBlank(theme.getPath())) theme.changePath(themePath);
+						
+						javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(theme.getPath()));
+						invocation.proceed();
+					}
+			});
+		}*/
 		
 		
 		model.addRenderPhase(SetupRender.class);

@@ -26,6 +26,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 
 @Import(stylesheet =
