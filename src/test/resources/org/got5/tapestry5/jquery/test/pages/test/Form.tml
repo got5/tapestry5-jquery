@@ -1,0 +1,12 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+    <t:form t:id="form" t:zone="zone">
+    	<t:submit t:id="test" />
+    	
+    	<t:submit t:id="test2" />  
+    </t:form>
+    
+    <t:zone t:id="zone">
+    	${submit}
+    </t:zone>
+</html>

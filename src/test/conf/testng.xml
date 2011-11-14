@@ -20,11 +20,11 @@
           <class name="org.got5.tapestry5.jquery.test.SuperfishTest"></class>
           <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.GalleryTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.FormTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">
-    
-        <classes>
+    	<classes>
        	  <class name="org.got5.tapestry5.jquery.test.unit.ImportJQueryUITest"></class>
         </classes>
     </test>
