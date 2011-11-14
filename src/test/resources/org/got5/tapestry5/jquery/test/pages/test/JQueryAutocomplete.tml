@@ -1,7 +1,7 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
     <t:form>
     	Try "abcdq" : 
-        <t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete"/>
+        <t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete" t:minChars="0"/>
         <t:submit t:id="submit"/>
     </t:form>
 </html>

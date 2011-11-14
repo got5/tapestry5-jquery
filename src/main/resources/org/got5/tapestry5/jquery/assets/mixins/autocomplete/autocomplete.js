@@ -23,10 +23,10 @@
 	                    $.ajax(ajaxRequest);
 	                }
 	        };
-	        if (specs.delay) 
+	        if (specs.delay >= 0) 
 	        	conf.delay = specs.delay;
 	            
-	        if (specs.minLength) 
+	        if (specs.minLength >= 0) 
 	        	conf.minLength = specs.minLength;
 	        
 	        $("#" + specs.id).autocomplete(conf);
