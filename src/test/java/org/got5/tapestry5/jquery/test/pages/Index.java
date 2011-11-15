@@ -19,7 +19,6 @@ package org.got5.tapestry5.jquery.test.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 

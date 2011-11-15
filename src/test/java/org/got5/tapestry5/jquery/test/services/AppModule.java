@@ -60,6 +60,8 @@ public class AppModule
     	
     	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
     	
+    	configuration.add("enableAnalytics", "false");
+    	
     	configuration.add("demo-src-dir","");
     	
     }
