@@ -147,7 +147,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
     }
     
     private Asset getLocaleAsset(Locale locale){
-    	
+    	locale = new Locale("en", "US");
     	String prefix = "${jquery.ui.path}/i18n/jquery.ui.datepicker-"+locale.getLanguage();
     	
     	if(locale.getCountry() != null && getLocaleAsset(prefix+"-"+locale.getCountry()+".js") != null){

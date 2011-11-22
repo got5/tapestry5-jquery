@@ -1,8 +1,6 @@
 package org.got5.tapestry5.jquery.components;
 
-import java.text.DateFormat;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +11,7 @@ import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
+import org.apache.tapestry5.Translator;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -32,6 +31,7 @@ import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.services.BeanModelSource;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 @SupportsInformalParameters
@@ -161,6 +161,8 @@ public class AbstractTable implements ClientElement {
 	@Inject
 	private BeanModelSource modelSource;
 	
+	@Inject 
+	private TranslatorSource translatorSource;
 	@Persist
 	private Boolean sortAscending;
 
@@ -370,7 +372,7 @@ public class AbstractTable implements ClientElement {
 	/**
 	 * In order get the value of a specific cell
 	 */
-	public String getCellValue() {
+	public Object getCellValue() {
 
 		Object obj = getSource().getRowValue(index);
 
@@ -378,35 +380,23 @@ public class AbstractTable implements ClientElement {
 
 		Class type = conduit.getPropertyType();
 
-		String cellValue;
-
 		Object val = conduit.get(obj);
 
-		if (val == null)
-			cellValue = "";
-		else {
-
-			try {
-
-				if (type.equals(Date.class)) {
-					
-					DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, request.getLocale());
-
-					cellValue = dateFormat.format((Date) val);
-					
-				} else if (type.equals(Enum.class)) {
-					cellValue = TapestryInternalUtils.getLabelForEnum(getOverrides().getOverrideMessages(), (Enum) val);
-				} else {
-					cellValue = typeCoercer.coerce(val, String.class);
-				}
-
-			} catch (NullPointerException ex) {
-
-				cellValue = "undefined " + cellModel;
-
-			}
-		}
-		return cellValue;
+		if (!String.class.equals(getDataModel().get(cellModel).getClass())
+                && !Number.class.isAssignableFrom(getDataModel().get(cellModel).getClass()))
+        {
+			Translator<Object> translator = translatorSource.findByType(getDataModel().get(cellModel).getPropertyType());
+            if (translator != null)
+            {
+            	val = translator.toClient(val);
+            }
+            else
+            {
+            	val = val.toString();
+            }
+        }
+            
+		return val;
 	}
 
 	/**
