@@ -22,17 +22,18 @@ import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
-import org.got5.tapestry5.jquery.internal.TableInformation;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -51,16 +52,21 @@ public class DataTable extends AbstractJQueryTable {
 	@Inject
 	private TypeCoercer typeCoercer;
 
+	@Inject
+	private TranslatorSource ts;
+	
 	@Environmental
 	private JavaScriptSupport support;
 
 	@Inject
 	private Request request;
-
+	
+	@Inject
+	private Messages messages;
 	/**
 	 * The default Implementation of the DataTableModel Interface
 	 */
-	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer);
+	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer, ts);
 
 	/**
 	 * Event method in order to get the datas to display.
@@ -113,6 +119,22 @@ public class DataTable extends AbstractJQueryTable {
 		
 		dataTableParams.put("aoColumns", sortableConfs);
 		
+		
+		
+		JSONObject language = new JSONObject();
+        language.put("sProcessing", messages.get("datatable.sProcessing"));
+        language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
+        language.put("sZeroRecords", messages.get("datatable.sZeroRecords"));
+        language.put("sEmptyTable", messages.get("datatable.sEmptyTable"));
+        language.put("sLoadingRecords", messages.get("datatable.sLoadingRecords"));
+        language.put("sInfo", messages.get("datatable.sInfo"));
+        language.put("sInfoEmpty", messages.get("datatable.sInfoEmpty"));
+        language.put("sInfoFiltered", messages.get("datatable.sInfoFiltered"));
+        language.put("sInfoPostFix", messages.get("datatable.sInfoPostFix"));
+        language.put("sSearch", messages.get("datatable.sSearch"));
+        language.put("sUrl", messages.get("datatable.sUrl"));
+        dataTableParams.put("oLanguage", language);
+        
 		setup.put("params", dataTableParams);
 
 		support.addInitializerCall("dataTable", setup);
