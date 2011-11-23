@@ -133,9 +133,10 @@ public class JQueryDateFieldStack implements JavaScriptStack
     public List<Asset> getJavaScriptLibraries()
     {
     	Locale locale = threadLocale.getLocale();
-        String pathToDatepickerI18nRess = "${jquery.ui.path}/i18n/jquery.ui.datepicker-"+locale.getLanguage()+".js";
-        Asset datePickerI18nAsset = this.assetSource.getExpandedAsset(pathToDatepickerI18nRess);
-     	if (datePickerI18nAsset.getResource().exists())
+    	
+    	Asset datePickerI18nAsset = getLocaleAsset(locale);
+    	
+     	if (datePickerI18nAsset != null)
      	{
      		List<Asset> ret = new ArrayList<Asset>();
      		ret.addAll(javaScriptStack);
@@ -144,7 +145,30 @@ public class JQueryDateFieldStack implements JavaScriptStack
      	}
     	return javaScriptStack;
     }
-
+    
+    private Asset getLocaleAsset(Locale locale){
+    	locale = new Locale("en", "US");
+    	String prefix = "${jquery.ui.path}/i18n/jquery.ui.datepicker-"+locale.getLanguage();
+    	
+    	if(locale.getCountry() != null && getLocaleAsset(prefix+"-"+locale.getCountry()+".js") != null){
+    	
+    		return getLocaleAsset(prefix+"-"+locale.getCountry()+".js");
+    		
+        } else if(getLocaleAsset(prefix+".js") != null){
+        
+        	return getLocaleAsset(prefix+".js");
+        }
+    	
+    	return null;
+    }
+    
+    private Asset getLocaleAsset(String path){
+    	if(this.assetSource.getExpandedAsset(path).getResource().exists()){
+    		return this.assetSource.getExpandedAsset(path);
+    	}
+    	return null;
+    }
+    
     public List<StylesheetLink> getStylesheets()
     {
         return Collections.emptyList();

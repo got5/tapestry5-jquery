@@ -1,24 +1,23 @@
 package org.got5.tapestry5.jquery.internal;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
+import org.apache.tapestry5.Translator;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
-import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.TranslatorSource;
 import org.got5.tapestry5.jquery.DataTableConstants;
 
 /**
@@ -36,10 +35,13 @@ public class DefaultDataTableModel implements DataTableModel {
 	
 	private PropertyOverrides overrides;
 	
+	 private TranslatorSource translatorSource;
+	 
 	private JSONObject response = new JSONObject();
-	public DefaultDataTableModel(TypeCoercer typeCoercer) {
+	public DefaultDataTableModel(TypeCoercer typeCoercer,TranslatorSource translatorSource) {
 		super();
 		this.typeCoercer = typeCoercer;
+		this.translatorSource = translatorSource;
 	}
 
 
@@ -179,34 +181,20 @@ public class DefaultDataTableModel implements DataTableModel {
 	    		 
 			 	 Object val = conduit.get(obj);
 			 	 
-	    		 if(val == null) cell.put("");
-	    		 else {
-	    			 
-	    			 try{
-	    				 
-	    				 if(type.equals(Date.class)){
-	    					 Date cellDate = (Date)val;
-		    			 	 
-	    					 DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, request.getLocale());
-		    			 	 
-	    					 cellValue = dateFormat.format(cellDate) ;
-	    				}
-	    				 else if(type.equals(Enum.class)){
-	    					 cellValue=TapestryInternalUtils.getLabelForEnum(overrides.getOverrideMessages(), (Enum) val);
-	    				 }
-	    				 else {
-	    					 cellValue = typeCoercer.coerce(val, String.class);
-	    				 }
-	    				 
-	    			 }
-	    			 catch (NullPointerException ex){
-	    				 
-	    				 cellValue = "undefined " + name;
-	    				 
-		    	     }
-	    			
-	    			 cell.put(cellValue);
-	    		 }
+			 	if (!String.class.equals(model.get(name).getClass())
+	                    && !Number.class.isAssignableFrom(model.get(name).getClass()))
+	                {
+	                    Translator<Object> translator = translatorSource.findByType(model.get(name).getPropertyType());
+	                    if (translator != null)
+	                    {
+	                        val = translator.toClient(val);
+	                    }
+	                    else
+	                    {
+	                        val = val.toString();
+	                    }
+	                }
+	             cell.put(val);
 	    	 }	 
 	    	 
 	    	 rows.put(cell);
