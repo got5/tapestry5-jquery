@@ -24,16 +24,18 @@ import java.util.Locale;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.func.F;
-import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.internal.services.javascript.DateFieldStack;
+import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.SymbolSource;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
 /**
  * Replacement for the core stack {@link DateFieldStack}.
@@ -43,12 +45,16 @@ import org.apache.tapestry5.services.javascript.StylesheetLink;
 public class JQueryDateFieldStack implements JavaScriptStack
 {
     private final ThreadLocale threadLocale;
-    
+
     private final AssetSource assetSource;
 
     private final boolean compactJSON;
 
-    private final List<Asset> javaScriptStack;
+    private final boolean productionMode;
+
+    private final TypeCoercer typeCoercer;
+
+    private final SymbolSource symbolSource;
 
     public JQueryDateFieldStack(final ThreadLocale threadLocale,
 
@@ -57,37 +63,19 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
                                 @Symbol(SymbolConstants.PRODUCTION_MODE)
                                 final boolean productionMode,
-                            	
-                                final AssetSource assetSource)
+
+                                final AssetSource assetSource,
+
+                                final TypeCoercer typeCoercer,
+                                final SymbolSource symbolSource)
     {
         this.threadLocale = threadLocale;
         this.assetSource = assetSource;
         this.compactJSON = compactJSON;
+        this.typeCoercer = typeCoercer;
+        this.symbolSource = symbolSource;
 
-        final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
-        {
-            public Asset map(String path)
-            {
-                return assetSource.getExpandedAsset(path);
-            }
-        };
-        
-        
-        if (productionMode) {
-
-            javaScriptStack = F
-                    .flow("${jquery.ui.path}/minified/jquery.ui.datepicker.min.js",
-                          "${assets.path}/components/datefield/datefield.js")
-                    .map(pathToAsset).toList();
-
-        } else {
-
-            javaScriptStack = F
-                    .flow("${jquery.ui.path}/jquery.ui.datepicker.js",
-                          "${assets.path}/components/datefield/datefield.js")
-                    .map(pathToAsset).toList();
-        }
-
+        this.productionMode = productionMode;
     }
 
     public String getInitialization()
@@ -119,12 +107,12 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
         spec.put("days", days.toString().toLowerCase(locale));
 
-        // jQuery DatePicker widget expects 0 to be sunday. Calendar defines SUNDAY as 1, MONDAY as 2, etc.        
+        // jQuery DatePicker widget expects 0 to be sunday. Calendar defines SUNDAY as 1, MONDAY as 2, etc.
         spec.put("firstDay", firstDay-1);
 
         // set language
         spec.put("language", locale.getLanguage());
-        
+
         // TODO: Skip localization if locale is English?
 
         return String.format("Tapestry.DateField.initLocalization(%s);", spec.toString(compactJSON));
@@ -132,43 +120,51 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     public List<Asset> getJavaScriptLibraries()
     {
-    	Locale locale = threadLocale.getLocale();
-    	
-    	Asset datePickerI18nAsset = getLocaleAsset(locale);
-    	
+    	final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale());
+
+    	final List<Asset> javaScriptStack = new ArrayList<Asset>();
+
      	if (datePickerI18nAsset != null)
      	{
-     		List<Asset> ret = new ArrayList<Asset>();
-     		ret.addAll(javaScriptStack);
-     		ret.add(datePickerI18nAsset);
-     		return ret;
+     	    javaScriptStack.add(datePickerI18nAsset);
      	}
+
+     	javaScriptStack.add(assetSource.getExpandedAsset("${assets.path}/components/datefield/datefield.js"));
+
     	return javaScriptStack;
     }
-    
-    private Asset getLocaleAsset(Locale locale){
-    	locale = new Locale("en", "US");
-    	String prefix = "${jquery.ui.path}/i18n/jquery.ui.datepicker-"+locale.getLanguage();
-    	
-    	if(locale.getCountry() != null && getLocaleAsset(prefix+"-"+locale.getCountry()+".js") != null){
-    	
-    		return getLocaleAsset(prefix+"-"+locale.getCountry()+".js");
-    		
-        } else if(getLocaleAsset(prefix+".js") != null){
-        
-        	return getLocaleAsset(prefix+".js");
+
+    private Asset getLocaleAsset(Locale locale) {
+
+        String jQueryUIPath = symbolSource.valueForSymbol(JQuerySymbolConstants.JQUERY_UI_PATH);
+        if ( ! jQueryUIPath.endsWith("/")) {
+
+            jQueryUIPath += "/";
         }
-    	
-    	return null;
+
+        final String prefix = String.format("%s/i18n/jquery.ui.datepicker-%s", jQueryUIPath, locale.getLanguage());
+        final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.getCountry()), Resource.class);
+
+        if (withCountryExtension.exists()) {
+
+            return assetSource.getClasspathAsset(withCountryExtension.getPath());
+        }
+
+        final Resource withLanguageExtension = typeCoercer.coerce(String.format("%s.js", prefix), Resource.class);
+
+        if (withLanguageExtension.exists()) {
+
+            return assetSource.getClasspathAsset(withLanguageExtension.getPath());
+        }
+
+        if (productionMode) {
+
+            return assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js"));
+        }
+
+        return assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js"));
     }
-    
-    private Asset getLocaleAsset(String path){
-    	if(this.assetSource.getExpandedAsset(path).getResource().exists()){
-    		return this.assetSource.getExpandedAsset(path);
-    	}
-    	return null;
-    }
-    
+
     public List<StylesheetLink> getStylesheets()
     {
         return Collections.emptyList();
