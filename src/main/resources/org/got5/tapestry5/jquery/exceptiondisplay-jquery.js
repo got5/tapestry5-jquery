@@ -20,11 +20,10 @@ Tapestry.stackFrameToggle = function(id)
     {
         var newDisplay = checkbox.is(':checked')? "none" : "list-item";
         
-        $(".t-exception-report").find("li.t-omitted-frame").each(function(){
+        $(".t-exception-report").find("li.t-omitted-frame").each(function() {
         	
         	this.style.display = newDisplay;
-        	this.style.listStyleType = "square"
-        	
+        	this.style.listStyleType = "square";
         });
         
     });
