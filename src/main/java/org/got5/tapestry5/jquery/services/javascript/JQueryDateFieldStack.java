@@ -163,10 +163,14 @@ public class JQueryDateFieldStack implements JavaScriptStack
     }
     
     private Asset getLocaleAsset(String path){
-    	if(this.assetSource.getExpandedAsset(path).getResource().exists()){
-    		return this.assetSource.getExpandedAsset(path);
-    	}
-    	return null;
+        try {
+            if(this.assetSource.getExpandedAsset(path).getResource().exists()){
+            	return this.assetSource.getExpandedAsset(path);
+        	}
+        	return null;
+        } catch(RuntimeException re) {
+            return null;
+        }
     }
     
     public List<StylesheetLink> getStylesheets()
