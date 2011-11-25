@@ -482,9 +482,9 @@ $.widget( "ui.tapestryLinkSubmit", {
         });
     },
 
-    destroy: function() {
+    _destroy: function() {
 
-        $.Widget.prototype.destroy.apply( this, arguments );
+        $.Widget.prototype.destroy.apply( this );
     },
     
     clicked: function() {
