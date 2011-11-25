@@ -120,7 +120,13 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     public List<Asset> getJavaScriptLibraries()
     {
-    	final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale());
+        String jQueryUIPath = symbolSource.valueForSymbol(JQuerySymbolConstants.JQUERY_UI_PATH);
+        if ( ! jQueryUIPath.endsWith("/")) {
+
+            jQueryUIPath += "/";
+        }
+
+    	final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
 
     	final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
@@ -129,18 +135,19 @@ public class JQueryDateFieldStack implements JavaScriptStack
      	    javaScriptStack.add(datePickerI18nAsset);
      	}
 
+        if (productionMode) {
+
+            javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js")));
+        }
+
+        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js")));
+
      	javaScriptStack.add(assetSource.getExpandedAsset("${assets.path}/components/datefield/datefield.js"));
 
     	return javaScriptStack;
     }
 
-    private Asset getLocaleAsset(Locale locale) {
-
-        String jQueryUIPath = symbolSource.valueForSymbol(JQuerySymbolConstants.JQUERY_UI_PATH);
-        if ( ! jQueryUIPath.endsWith("/")) {
-
-            jQueryUIPath += "/";
-        }
+    private Asset getLocaleAsset(Locale locale, String jQueryUIPath) {
 
         final String prefix = String.format("%s/i18n/jquery.ui.datepicker-%s", jQueryUIPath, locale.getLanguage());
         final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.getCountry()), Resource.class);
@@ -157,12 +164,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
             return assetSource.getClasspathAsset(withLanguageExtension.getPath());
         }
 
-        if (productionMode) {
-
-            return assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js"));
-        }
-
-        return assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js"));
+        return null;
     }
 
     public List<StylesheetLink> getStylesheets()
