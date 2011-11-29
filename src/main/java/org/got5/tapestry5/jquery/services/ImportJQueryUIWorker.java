@@ -34,8 +34,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final JavaScriptSupport javaScriptSupport;
     
-    private final Request request;
-    
     private final String jqueryUIBase;
 
     private final String themePath;
@@ -57,9 +55,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         this.assetSource = assetSource;
         this.javaScriptSupport = javaScriptSupport;
-        this.request = request;
-        
-        
+                
         this.jqueryUIBase = jqueryUIBase;
         this.productionMode = productionMode;
         this.themePath = themePath;
@@ -71,8 +67,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 		final ImportJQueryUI annotation = plasticClass.getAnnotation(ImportJQueryUI.class);
 		
 		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
-		
-		PlasticMethod afterRender = plasticClass.introduceMethod(TransformConstants.AFTER_RENDER_DESCRIPTION);
 		
 		if(annotation != null){
 			
@@ -91,6 +85,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 				});
 			}
 		}
+		
 		if(model.isPage()){
 			setupRender.addAdvice(new MethodAdvice() {
 				
@@ -105,22 +100,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 				}
 			});
 		}
-		/*
-		if(model.isPage()){
-			afterRender.addAdvice(new MethodAdvice() {
-					
-					public void advise(MethodInvocation invocation) {
-						if(InternalUtils.isBlank(theme.getPath())) theme.changePath(themePath);
-						
-						javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(theme.getPath()));
-						invocation.proceed();
-					}
-			});
-		}*/
-		
 		
 		model.addRenderPhase(SetupRender.class);
-		model.addRenderPhase(AfterRender.class);
 		
 	}
 	
@@ -146,9 +127,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
         {
         	Asset asset = assetSource.getExpandedAsset(path);
         	
-        	if (!asset.getResource().exists())
-        		throw new TapestryException(TapestryJQueryExceptionMessages.importJQueryUiFileMissing(path), null);
-        		
         	return asset;
 
         }

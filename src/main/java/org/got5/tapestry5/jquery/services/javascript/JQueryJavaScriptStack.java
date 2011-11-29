@@ -23,7 +23,6 @@ import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
-import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.SymbolSource;
@@ -128,26 +127,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     
     /**
      * Asset in Prototype, have to be changed by a jQuery version
-     * 
-     * JavaScript File          | A Prototype JavaScript File ? |  jQuery version exist ?
-     * t5-ajax.js				|Y								| t5-ajax-jquery.js
-     * t5-alerts.js				|Y								| t5-alerts-jquery.js
-     * t5-console.js			|Y								| t5-console-jquery.js 
-     * t5-core.js				|N
-     * t5-dom.js				|Y								| t5-dom-jquery.js
-     * t5-events.js				|N
-     * t5-formfragment.js		|Y
-     * t5-init.js				|N
-     * t5-prototype.js			|Y								| t5-jquery.js						
-     * t5-pubsub.js				|I do not think so
-     * t5-spi.js				|N
-     * tapestry-console.js		|N
-     * tapestry.js				|Y								| tapestry-jquery.js : has to be reviewed !!
-     * tree.js					|Y
-     */
+    */
     public Object chooseJavascript(Asset asset){
-    	
-    	
     	
     	if(suppressPrototype)
     	{

@@ -21,15 +21,6 @@ public class ImportJQueryUITest extends Assert{
 	}
 	
 	@Test
-	public void testAssetDoesNotExist(){
-		
-		Document doc = tester.renderPage("test/annotations/ImportJQueryUIAssetDoesNotExist");
-		
-		assertTrue(doc.getRootElement().getChildMarkup().contains("wrongPath.js file does not exist"));
-		
-	}
-	
-	@Test
 	public void testPageWithTheme(){
 		
 		Document doc = tester.renderPage("test/annotations/ImportJQueryUIWithTheme");

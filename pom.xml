@@ -244,12 +244,6 @@
 			<url>http://repository.apache.org/snapshots</url>
 		</repository>
 
-		<!-- TODO: remove when 5.3 is final -->
-        <repository>
-            <id>apache-staging</id>
-            <url>https://repository.apache.org/content/groups/staging/</url>
-        </repository>
-
 		<repository>
 			<id>codehaus.snapshots</id>
 			<url>http://snapshots.repository.codehaus.org</url>

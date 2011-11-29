@@ -21,7 +21,7 @@ import org.apache.tapestry5.services.TranslatorSource;
 import org.got5.tapestry5.jquery.DataTableConstants;
 
 /**
- * TODO
+ * This is the default implementation of the DataTableModel
  */
 public class DefaultDataTableModel implements DataTableModel {
 
@@ -46,7 +46,7 @@ public class DefaultDataTableModel implements DataTableModel {
 
 
 	/**
-	 * TODO
+	 * This method will filter all your data by using the search input from your datatable.
 	 */
 	public GridDataSource filterData(GridDataSource source){
 		
@@ -109,7 +109,7 @@ public class DefaultDataTableModel implements DataTableModel {
 	}
 	
 	/**
-	 * TODO
+	 * This method will set all the Sorting stuffs, thanks to sSortDir and iSortCol DataTable parameters, coming from the request
 	 */
 	public void prepareResponse(GridDataSource source){
 		
@@ -137,7 +137,7 @@ public class DefaultDataTableModel implements DataTableModel {
 	}
 	
 	/**
-	 * TODO
+	 * methdo returning the desired data
 	 */
 	public JSONObject getResponse(GridDataSource source){
 		
@@ -206,7 +206,8 @@ public class DefaultDataTableModel implements DataTableModel {
 	}
 	
 	/**
-	 * TODO
+	 * This is the method we have to implement for the DataTableModel interface. 
+	 * This is called in the DataTable component, when the datas are loaded by ajax.
 	 */
 	public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides) {
 		

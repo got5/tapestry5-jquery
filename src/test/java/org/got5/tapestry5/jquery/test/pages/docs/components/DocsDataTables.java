@@ -31,6 +31,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.internal.TableInformation;
 import org.got5.tapestry5.jquery.test.data.Celebrity;
 import org.got5.tapestry5.jquery.test.data.CelebritySource;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
@@ -142,4 +143,20 @@ public class DocsDataTables
 	    return listTabData;
 	} 
 	
+	public TableInformation getTableInformation(){
+		return new TableInformation() {
+			
+			public String getTableSummary() {
+				return "This is summary for this table";
+			}
+			
+			public String getTableCaption() {
+				return "DataTable Sample";
+			}
+			
+			public String getTableCSS() {
+				return "";
+			}
+		};
+	}
 }

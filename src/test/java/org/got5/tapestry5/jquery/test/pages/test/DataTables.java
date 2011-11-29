@@ -95,17 +95,14 @@ public class DataTables
 		return new TableInformation() {
 			
 			public String getTableSummary() {
-				// TODO Auto-generated method stub
 				return "A summary description of table data";
 			}
 			
 			public String getTableCaption() {
-				// TODO Auto-generated method stub
 				return "The table title";
 			}
 			
 			public String getTableCSS() {
-				// TODO Auto-generated method stub
 				return "k-data-table";
 			}
 		};

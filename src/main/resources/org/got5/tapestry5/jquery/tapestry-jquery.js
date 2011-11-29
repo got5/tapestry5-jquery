@@ -599,40 +599,6 @@ $.widget( "ui.tapestryZone", {
         }
 		
         $.tapestry.utils.ajaxRequest(ajaxRequest);
-		
-		
-		 /*var ajaxRequest = {
-		        	type:"POST",
-		            url: specs.url,
-		            error : $.tapestry.utils.ajaxFailureHandler,
-		            success: function(data) {
-		                
-						if (data.content) {
-
-			                that.applyContentUpdate(data.content);
-
-						} else if (data.zones) {
-
-		                    // perform multi zone update
-							$.each(data.zones, function(zoneId){
-
-								$('#' + zoneId).tapestryZone("applyContentUpdate", data.zones[zoneId]);
-							});
-
-						}
-
-		                $.tapestry.utils.loadScriptsInReply(data);
-		            }
-		        };
-		        
-		        if (specs.params) {
-		            ajaxRequest = $.extend(ajaxRequest, {
-		                data: specs.params
-		            });
-		        }
-		        $.ajax(ajaxRequest);
-		*/
-		
     }, 
 	
 	/**
@@ -683,9 +649,9 @@ $.widget( "ui.tapestryLinkSubmit", {
         });
     },
 
-    destroy: function() {
+    _destroy: function() {
 
-        $.Widget.prototype.destroy.apply( this, arguments );
+        $.Widget.prototype.destroy.apply( this );
     },
     
     clicked: function() {

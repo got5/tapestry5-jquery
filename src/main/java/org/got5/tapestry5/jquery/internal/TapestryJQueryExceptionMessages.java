@@ -15,9 +15,4 @@ public final class TapestryJQueryExceptionMessages {
     {
         return MESSAGES.get("importJQueryUi-missing-value");
     }
-    
-    public static String importJQueryUiFileMissing(String path)
-    {
-        return MESSAGES.format("importJQueryUi-missing-file", path);
-    }
 }

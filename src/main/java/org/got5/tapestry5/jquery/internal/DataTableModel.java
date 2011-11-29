@@ -8,7 +8,8 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 
 /**
- * TODO
+ * Interface used when your dataTable load the data by using ajax. You will have to implement 
+ * the sendResponse. 
  */
 public interface DataTableModel {
 	

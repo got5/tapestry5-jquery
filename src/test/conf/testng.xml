@@ -21,11 +21,14 @@
           <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.GalleryTest"></class>
           <class name="org.got5.tapestry5.jquery.test.FormTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.ButtonTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.ShowSourceTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">
     	<classes>
        	  <class name="org.got5.tapestry5.jquery.test.unit.ImportJQueryUITest"></class>
+       	  <class name="org.got5.tapestry5.jquery.test.unit.JQueryUtilsMergeTest"></class>
         </classes>
     </test>
 </suite>
