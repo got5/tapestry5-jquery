@@ -80,7 +80,9 @@ public class Widget {
 	}
 	
 	private JSONObject overrideParams(){
-		
+		if ( options == null ) {
+			options = new JSONObject();
+		}
 		JSONObject params = new JSONObject();
 		
 		if(widgetParams.paramsForWidget(widgetName())!=null){
