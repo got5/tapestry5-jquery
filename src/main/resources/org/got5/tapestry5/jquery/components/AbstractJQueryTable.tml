@@ -1,6 +1,6 @@
 <div xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
-    <table id="${clientId}" width="100%" class="${tableInformation.tableCSS}" summary="${tableInformation.tableSummary}">
-    	<t:if t:test="tableInformation.tableCaption"><caption>${tableInformation.tableCaption}</caption></t:if>
+    <table id="${clientId}" width="100%" class="${tableInformation?.tableCSS}" summary="${tableInformation?.tableSummary}">
+    	<t:if t:test="tableInformation?.tableCaption"><caption>${tableInformation.tableCaption}</caption></t:if>
         <thead t:id="headers"/>
         <tbody>
         	<t:if t:test="mode">
