@@ -157,6 +157,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-ajax-jquery.js");
     		}
+    		if(asset.getResource().getFile().endsWith("tree.js"))
+    		{
+    			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-tree-jquery.js");
+    		}
     		if(asset.getResource().getFile().endsWith("prototype.js") || 
     				asset.getResource().getFile().endsWith("scriptaculous.js") ||
     				asset.getResource().getFile().endsWith("effects.js") || 

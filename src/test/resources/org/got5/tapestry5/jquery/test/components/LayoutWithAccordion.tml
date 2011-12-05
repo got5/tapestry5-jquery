@@ -83,6 +83,9 @@
         		<li>
                     <t:pagelink t:page="docs/core/AjaxExceptionReport">Ajax Exception Report</t:pagelink> 
         		</li>
+        		<li>
+                    <t:pagelink t:page="docs/core/DocsTree">Tree</t:pagelink> 
+        		</li>
 			</ul>
 			</t:block>
 		
