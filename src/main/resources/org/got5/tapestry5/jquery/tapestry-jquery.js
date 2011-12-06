@@ -221,10 +221,6 @@ $.extend(Tapestry.Initializer, {
 			
 			el.addClass(Tapestry.PREVENT_SUBMISSION);
 
-				
-				el.trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
-				
-				return false;
             el.bind(Tapestry.FORM_PROCESS_SUBMIT_EVENT, function() {
 				var specs = {
 					url : url,
