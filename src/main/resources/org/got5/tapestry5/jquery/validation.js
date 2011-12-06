@@ -4,11 +4,21 @@
  */
 $.extend(Tapestry.Initializer, {
     validate: function(/*field, */specs) {    	
+    	var b = true;
         $.each(specs, function(i, ruleSpecs) {
             var field = i;
-            $('#' + field).closest('form').validate({
-                errorClass: "t-error"
-            });
+            var $form = $('#' + field).closest('form');
+            if (b) {
+            	b = false;
+            	var settings = {errorClass: "t-error"};
+            	if (typeof(validationErrorPlacementCallback) !== 'undefined' && $.isFunction(validationErrorPlacementCallback)) {
+            		settings.errorPlacement = validationErrorPlacementCallback; 
+            	}
+            	if (typeof(validationShowErrorsCallback) !== 'undefined' && $.isFunction(validationShowErrorsCallback)) {
+            		settings.showErrors = validationShowErrorsCallback; 
+            	}
+	            $form.validate(settings);
+            }
             $.each(ruleSpecs, function(j, ruleSpec) {
                 var jsRule = $.tapestry.validate.toJSRule(ruleSpec[0]);
                 var ruleAsString = '{"' + jsRule + '" :' + ((ruleSpec[2] === undefined) ? 'true' : '"' + ruleSpec[2] + '"') + ', "messages": {"' + jsRule + '":"' + ruleSpec[1] + '"}}';
