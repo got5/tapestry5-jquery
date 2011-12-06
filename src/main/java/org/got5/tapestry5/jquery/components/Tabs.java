@@ -17,17 +17,16 @@ package org.got5.tapestry5.jquery.components;
 
 import java.util.ArrayList;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -89,36 +88,21 @@ public class Tabs extends AbstractExtendableComponent
 	@Property
 	private int currentPanelId;
 
-    /**
-     * Affects how the component's internal Zone behaves on zone updates
-     * triggered by tab-changes.
-     */
-	@Parameter(defaultPrefix = BindingConstants.LITERAL)
-	private String update;
 
-	@SuppressWarnings("unused")
-    @Property
-	private String updateMethod;
-
-	@BeginRender
-    void setJSInit()
+	@SetupRender
+    void setJSInit(MarkupWriter writer)
     {
         setDefaultMethod("tabs");
+        writer.element("div", "id", getClientId());
 
-        if (StringUtils.isBlank(update)) {
-
-            updateMethod = "highlight";
-
-        } else {
-
-            updateMethod = update;
-        }
     }
 
+	
     @AfterRender
     void declareTabs(MarkupWriter writer)
     {
     	resources.renderInformalParameters(writer);
+    	writer.end();
         JSONObject data = new JSONObject();
         data.put("id", getClientId());
 
