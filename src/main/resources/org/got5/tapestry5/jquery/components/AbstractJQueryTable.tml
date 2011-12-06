@@ -1,0 +1,32 @@
+<div xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+    <table id="${clientId}" width="100%" class="${tableInformation.tableCSS}" summary="${tableInformation.tableSummary}">
+    	<t:if t:test="tableInformation.tableCaption"><caption>${tableInformation.tableCaption}</caption></t:if>
+        <thead t:id="headers"/>
+        <tbody>
+        	<t:if t:test="mode">
+        	
+        		<tr><td>Loading data from server</td></tr>
+        		
+        		<t:parameter name="else">
+	        		
+	        		<tr t:type="loop" t:source="loopSource" t:value="index">
+	        		
+	        			<t:loop t:source="propertyNames" t:value="cellModel">
+							<td>	        			
+	        					<t:delegate t:to="cellBlock" />
+	        				</td>
+	        				<t:block t:id="cell">${cellValue}</t:block>	
+	        				
+	        			</t:loop>
+	        		
+	        		</tr>
+	        		
+	        			
+        		</t:parameter>
+        	
+        	</t:if>
+        </tbody>
+        <thead t:id="footers"/>
+    </table>
+
+</div>

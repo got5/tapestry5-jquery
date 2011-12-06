@@ -18,7 +18,7 @@
           <class name="org.got5.tapestry5.jquery.test.SelectorTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SliderTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SuperfishTest"></class>
-          <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class> 
+          <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class>
         </classes>
     </test>
 </suite>

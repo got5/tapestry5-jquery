@@ -221,12 +221,10 @@ $.extend(Tapestry.Initializer, {
 			
 			el.addClass(Tapestry.PREVENT_SUBMISSION);
 
-			/*el.submit(function() {
 				
 				el.trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
 				
 				return false;
-			});*/
             el.bind(Tapestry.FORM_PROCESS_SUBMIT_EVENT, function() {
 				var specs = {
 					url : url,
@@ -477,10 +475,12 @@ $.widget( "ui.tapestryLinkSubmit", {
         });
     },
 
-    destroy: function() {
-        $.Widget.prototype.destroy.apply( this, arguments );
+    _destroy: function() {
+
+        $.Widget.prototype.destroy.apply( this );
     },
     
+
     clicked: function(e) {
     	//we don't need to validate anything here, since everything is done w/ the formEventManager
     	$("#" + this.options.form).submit();

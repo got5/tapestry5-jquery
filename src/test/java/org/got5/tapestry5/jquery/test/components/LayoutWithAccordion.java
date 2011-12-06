@@ -24,6 +24,7 @@ import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 
@@ -59,5 +60,18 @@ public class LayoutWithAccordion
         list.add(new JQueryAccordionData("jQuery Mixins","block3"));
         list.add(new JQueryAccordionData("Mecanisms","block4"));
         
+	}
+	
+	@Inject
+	private Messages messages;
+	
+	public String getHeadTitle(){ return getSeoDatas("Title"); }
+	
+	public String getKeywords(){ return getSeoDatas("Keywords"); }
+	
+	public String getDescription(){ return getSeoDatas("Description"); }
+	
+	private String getSeoDatas(String type){
+		return messages.get(type);
 	}
 }

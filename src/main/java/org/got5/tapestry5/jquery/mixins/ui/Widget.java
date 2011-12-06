@@ -12,7 +12,6 @@ import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.services.js.JSSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
-import org.slf4j.Logger;
 
 /**
  * Class used for creating a jQuery Widget
@@ -39,7 +38,7 @@ public class Widget {
 	 * to a jQuery widget name.
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String name;
+	private String widgetName;
 	
 	@InjectContainer
 	private ClientElement clientElement;
@@ -57,12 +56,9 @@ public class Widget {
 	@Inject
 	private JSSupport jsSupport;
 	
-	@Inject
-	private Logger logger;
-	
 	String widgetName() {
-		if ( name != null ) {
-			return name;
+		if ( widgetName != null ) {
+			return widgetName;
 		}
 		return this.getClass().getSimpleName().toLowerCase(); 
 	}
