@@ -1,17 +1,17 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-    <t:form>
+    <t:form >
     	<t:errors />
 		
         <p><label for="field">Required, minLength=3, maxLength=10</label>
             <t:textfield t:value="foo" t:validate="required, minLength=3, maxLength=10" t:id="field" />
         </p>
-        <p><label for="field">Required, min=3, max=6, number</label>
+        <p><label for="field2">Required, min=3, max=6, number</label>
             <t:textfield t:value="dummy" t:validate="required, min=3, max=6" t:id="field2" />
         </p>
-		<p><label for="field">Required, email (will not produce any client side validation, because default Tapestry validator does not handle it))</label>
+		<p><label for="field3">Required, email (will not produce any client side validation, because default Tapestry validator does not handle it))</label>
             <t:textfield t:value="email" t:validate="required, email" t:id="field3" />
         </p>
-		<p><label for="field">Required, regular expression (.*foo.*)</label>
+		<p><label for="field4">Required, regular expression (.*foo.*)</label>
             <t:textfield t:value="regexp" t:validate="required, regexp=.*foo.*" t:id="field4" />
         </p>
         <p>

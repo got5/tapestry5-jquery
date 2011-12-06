@@ -4,3 +4,5 @@ t.error {
 
 /* temporarily disabling the trigger icon of the dateField component */
 img.t-calendar-trigger { display: none; }
+
+.tjq-error-popup{display:inline; color:red;}
