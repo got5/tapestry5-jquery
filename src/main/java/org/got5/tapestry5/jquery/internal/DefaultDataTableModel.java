@@ -158,7 +158,7 @@ public class DefaultDataTableModel implements DataTableModel {
 	     
 	     int endIndex= startIndex + rowsPerPage -1;
 	     if(endIndex>records-1) endIndex= records-1;
-	     source.prepare(startIndex,endIndex + rowsPerPage,sortModel.getSortConstraints() );
+	     source.prepare(startIndex,endIndex,sortModel.getSortConstraints() );
 	     
 	     
 	     JSONArray rows = new JSONArray();
