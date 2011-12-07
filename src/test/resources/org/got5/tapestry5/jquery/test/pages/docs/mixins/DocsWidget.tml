@@ -40,7 +40,7 @@
 			</p:param_2>
 			<p:param_3>
 				<t:componentParameter
-					t:name="name"
+					t:name="widgetName"
 					t:required="false"
 					t:javaType="String"
 					t:prefix="literal"
@@ -61,7 +61,7 @@
     			In this example, we want to use the Slider widget (completely different from the Tapestry-jQuery Slider component).
     			The name parameter will be "slider" and Tapestry-jQuery will automatically call the jQuery widget : $(selector).slider(options). 
     		</p>
-<div t:type="any"  t:mixins="jquery/ui/widget" name="slider" 
+<div t:type="any"  t:mixins="jquery/ui/widget" widgetName="slider" 
 				options="{min:0, max: 100}"></div>
     		<div t:type="jquery/showSource" t:ext="html" t:beginLine="64" t:endLine="65" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/mixins/docsWidget.tml"></div>
     	</div>
