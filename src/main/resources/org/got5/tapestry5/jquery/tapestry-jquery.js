@@ -368,7 +368,10 @@ T5.extendInitializers({
     
     cancelButton : function(clientId) {
     	$("#" + clientId).click(function() {
-    		//TODO
+    		var form = $(this).closest('form');
+    	 	form.formEventManager("skipValidation");
+    	 	form.formEventManager("setSubmittingElement", clientId);
+    	 	form.submit();
     	});
     },
     
