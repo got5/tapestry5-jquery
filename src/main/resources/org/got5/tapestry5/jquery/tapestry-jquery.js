@@ -358,7 +358,7 @@ $.extend(Tapestry.Initializer, {
 		 * Set the form's skipValidation property and allow the event to
 		 * continue, which will ultimately submit the form.
 		 */
-		$(clientId).click(function(event) {
+		$("#"+clientId).click(function(event) {
 			var form = $(this).closest('form');
 			form.formEventManager("skipValidation");
 			form.formEventManager("setSubmittingElement", clientId);
