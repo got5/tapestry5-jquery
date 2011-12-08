@@ -286,12 +286,6 @@ T5.extendInitializers({
 			
 			el.addClass(Tapestry.PREVENT_SUBMISSION);
 
-			el.submit(function() {
-				
-				el.trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
-				
-				return false;
-			});
             el.bind(Tapestry.FORM_PROCESS_SUBMIT_EVENT, function() {
 				var specs = {
 					url : url,
@@ -459,11 +453,12 @@ T5.extendInitializers({
 });
 
 $.widget("ui.formEventManager", {
-    options: { },
+	options: {validationError:false, skipValidation:false },
 
-    _create: function() { 
-	
-	},
+	 _create: function() { 
+	    	//this.element is the jQuery object of the form, confusing isn't it?
+	    	this.element.submit({that:this}, this.handleSubmit);
+		},
 
     /**
      * Identifies in the form what is the cause of the submission. The element's
@@ -521,10 +516,81 @@ $.widget("ui.formEventManager", {
 		                                           $("#"+element).attr("name")]);
 		
 		this.options.submitHidden.attr("value", t);
-	},
-	
-	handleSubmit : function(element) {
-		//TODO ?
+	}, 
+    setValidationError : function(isInError){
+    	this.options.validationError = isInError;
+    },
+    skipValidation : function(){
+    	this.options.skipValidation = true;
+    },
+    handleSubmit : function(e) {
+    	/*
+		 * Necessary because we set the onsubmit property of the form, rather
+		 * than observing the event. But that's because we want to specfically
+		 * overwrite any other handlers.
+		 */
+		//Event.extend(domevent);
+
+    	var thatOpt = e.data.that.options;
+    	var $that = e.data.that.element;
+    	thatOpt.validationError = false;
+    	
+		if (!thatOpt.skipValidation) {
+
+			/* Let all the fields do their validations first. */
+			$that.trigger(Tapestry.FORM_VALIDATE_FIELDS_EVENT);
+			
+			//this.form.fire(Tapestry.FORM_VALIDATE_FIELDS_EVENT, this.form);
+
+			/*
+			 * Allow observers to validate the form as a whole. The FormEvent
+			 * will be visible as event.memo. The Form will not be submitted if
+			 * event.result is set to false (it defaults to true). Still trying
+			 * to figure out what should get focus from this kind of event.
+			 */
+			if (!thatOpt.validationError)
+				$that.trigger(Tapestry.FORM_VALIDATE_EVENT);
+
+			if (thatOpt.validationError) {
+				//domevent.stop();
+				e.preventDefault();
+				/*
+				 * Because the submission failed, the last submit element is
+				 * cleared, since the form may be submitted for some other
+				 * reason later.
+				 */
+				e.data.that.setSubmittingElement(null);
+				
+				//e.preventDefault();
+				return false;
+			}
+		}
+
+		$that.trigger(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT);
+
+		/*
+		 * This flag can be set to prevent the form from submitting normally.
+		 * This is used for some Ajax cases where the form submission must run
+		 * via Ajax.Request.
+		 */
+
+		if ($that.hasClass(Tapestry.PREVENT_SUBMISSION)) {
+			//domevent.stop();
+			e.preventDefault();
+			/*
+			 * Instead fire the event (a listener will then trigger the Ajax
+			 * submission). This is really a hook for the ZoneManager.
+			 */
+			$that.trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
+			//e.preventDefault();
+			return false;
+		}
+
+		/* Validation is OK, not doing Ajax, continue as planned. */
+
+		// form.submit() or just returning true is enough ??
+		return true;
+		
 	}
 });
 
@@ -633,23 +699,19 @@ $.widget( "ui.tapestryLinkSubmit", {
 
     _create: function() {
     	var that=this;
-    	
         var form = $("#" + this.options.form);
-
-        var el = $(this.element);
+        var el = this.element;
 		if (!this.options.validate) {
 			// skips validation if the SubmitMode is CANCEL
 			el.addClass("cancel");
+			form.formEventManager("skipValidation");
 		}
 		
-        el.click(function() {
-        	
-        	$("#"+that.options.form).formEventManager("setSubmittingElement", that.options.clientId);
-        	
-        	$(this).tapestryLinkSubmit("clicked");
-
-            return false;
-        });
+		 el.click(function(e) {
+	        	form.formEventManager("setSubmittingElement", that.options.clientId);
+	        	that.clicked(e);
+	            return false;
+	        });
     },
 
     _destroy: function() {
@@ -657,18 +719,9 @@ $.widget( "ui.tapestryLinkSubmit", {
         $.Widget.prototype.destroy.apply( this );
     },
     
-    clicked: function() {
-    	
-		var form = $("#" + this.options.form);
-		
-		if (form.hasClass(Tapestry.PREVENT_SUBMISSION)) {
-	   
-            $(form).trigger(Tapestry.FORM_PROCESS_SUBMIT_EVENT);         	
-
-		} else {
-			
-            form.submit();  
-		}
+    clicked: function(e) {
+    	//we don't need to validate anything here, since everything is done w/ the formEventManager
+    	$("#" + this.options.form).submit();
     }
 	
 });

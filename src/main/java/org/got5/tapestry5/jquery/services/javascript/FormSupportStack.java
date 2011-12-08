@@ -37,13 +37,11 @@ public class FormSupportStack implements JavaScriptStack {
 
         if (productionMode) {
 
-            javaScriptStack = F.flow("${jquery.validate.path}/jquery.validate.min.js",
-                                     "${tapestry.jquery.path}/validation.js")
+            javaScriptStack = F.flow("${tapestry.jquery.path}/validation.js")
                                .map(pathToAsset).toList();
         } else {
 
-            javaScriptStack = F.flow("${jquery.validate.path}/jquery.validate.js",
-                                     "${tapestry.jquery.path}/validation.js")
+            javaScriptStack = F.flow("${tapestry.jquery.path}/validation.js")
                                .map(pathToAsset).toList();
         }
 
