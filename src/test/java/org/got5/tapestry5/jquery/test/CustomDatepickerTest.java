@@ -25,6 +25,7 @@ public class CustomDatepickerTest extends SeleniumTestCase {
 
 	@Test
 	public void testCustomDatepicker() {
+		
 		open("/test/customdatepicker");
 		
 		click("//button[@class='ui-datepicker-trigger']");

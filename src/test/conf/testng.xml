@@ -6,29 +6,38 @@
         <parameter name="tapestry.browser-start-command" value="${browserStartCommand}" />
 
         <classes>
+         
        	  <class name="org.got5.tapestry5.jquery.test.AjaxFormLoopTest"></class>
           <class name="org.got5.tapestry5.jquery.test.BindTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CarouselTest"></class>
           <class name="org.got5.tapestry5.jquery.test.CheckboxTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.CustomDatepickerTest"></class> 
           <class name="org.got5.tapestry5.jquery.test.DialogTest"></class>
-          <class name="org.got5.tapestry5.jquery.test.JQueryTest"></class>
           <class name="org.got5.tapestry5.jquery.test.MaskTest"></class>
           <class name="org.got5.tapestry5.jquery.test.RevealTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SelectorTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SliderTest"></class>
           <class name="org.got5.tapestry5.jquery.test.SuperfishTest"></class>
-          <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class> 
+		  <class name="org.got5.tapestry5.jquery.test.TooltipTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.ValidationTest"></class> 
+          <class name="org.got5.tapestry5.jquery.test.AutocompleteTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.TabsTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.FormfragmentTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.CalendarTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.AccordionTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.PaletteTest"></class>
           <class name="org.got5.tapestry5.jquery.test.GalleryTest"></class>
           <class name="org.got5.tapestry5.jquery.test.FormTest"></class>
           <class name="org.got5.tapestry5.jquery.test.ButtonTest"></class>
           <class name="org.got5.tapestry5.jquery.test.ShowSourceTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.LinksubmitTest"></class>
+          <class name="org.got5.tapestry5.jquery.test.ZoneTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">
     	<classes>
        	  <class name="org.got5.tapestry5.jquery.test.unit.ImportJQueryUITest"></class>
        	  <class name="org.got5.tapestry5.jquery.test.unit.JQueryUtilsMergeTest"></class>
-        </classes>
+    	</classes>
     </test>
 </suite>
