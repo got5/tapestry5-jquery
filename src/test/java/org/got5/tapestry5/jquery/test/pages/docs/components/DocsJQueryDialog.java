@@ -45,36 +45,36 @@ public class DocsJQueryDialog extends Autocomplete
 	}
 	
 	
-	@Component
-	private Zone myZone;
-	
-	@Persist 
-    private Integer count;
+@Component
+private Zone myZone;
 
-    @Inject
-    private Request request;
+@Persist 
+private Integer count;
 
-    @Property
-    private String goalName;
-    
-    @OnEvent(EventConstants.ACTIVATE)
-    void init()
-    {
-        if (count == null)
-            count = 0;
-    }
+@Inject
+private Request request;
 
-    public Integer getCount()
-    {
-        return count++;
-    }
+@Property
+private String goalName;
 
-    @OnEvent(EventConstants.ACTION)
-    Object updateCount()
-    {
-        if (!request.isXHR()) { return this; }
-        return myZone;
-    }
+@OnEvent(EventConstants.ACTIVATE)
+void init()
+{
+    if (count == null)
+        count = 0;
+}
+
+public Integer getCount()
+{
+    return count++;
+}
+
+@OnEvent(EventConstants.ACTION)
+Object updateCount()
+{
+    if (!request.isXHR()) { return this; }
+    return myZone;
+}
     
     
     

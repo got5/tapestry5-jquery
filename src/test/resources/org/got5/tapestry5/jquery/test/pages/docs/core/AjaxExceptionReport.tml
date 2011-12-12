@@ -13,8 +13,8 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 <t:actionLink t:id="ajax" t:zone="zone">Click Here to see the Exception Report</t:actionLink><br />
 <t:zone t:id="zone"></t:zone>
 
-		<div t:type="jquery/showSource" t:ext="html" t:beginLine="11" t:endLine="15" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/DocsAlert.tml"></div>
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="13" t:endLine="14" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/core/AjaxExceptionReport.tml"></div>
     	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="21" t:endLine="41" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/DocsAlert.java"></div>    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="22" t:endLine="32" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/core/AjaxExceptionReport.java"></div>    	
     </t:block>
 </html>

@@ -19,15 +19,15 @@ public class AjaxExceptionReport {
         return listTabData;
     }
 	
-	@Component
-	private Zone zone;
+@Component
+private Zone zone;
+
+@OnEvent(value=EventConstants.ACTION, component="ajax")
+public Object displayException(){
 	
-	@OnEvent(value=EventConstants.ACTION, component="ajax")
-	public Object displayException(){
-		
-		String error = null;
-		System.out.println(error.contains("error"));
-		
-		return zone;
-	}
+	String error = null;
+	System.out.println(error.contains("error"));
+	
+	return zone;
+}
 }

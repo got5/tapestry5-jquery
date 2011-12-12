@@ -79,7 +79,7 @@ t:activeElement="1" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	</t:form>
 </t:block>
 			
-			<div t:type="jquery/showSource" t:ext="html" t:beginLine="51" t:endLine="79" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.tml"></div>      		
+			<div t:type="jquery/showSource" t:ext="html" t:beginLine="51" t:endLine="80" t:path="resources/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.tml"></div>      		
       		<div t:type="jquery/showSource" t:ext="java" t:beginLine="45" t:endLine="67" t:path="java/org/got5/tapestry5/jquery/test/pages/docs/components/DocsJQueryAccordion.java"></div>
 	  </t:block>
 
