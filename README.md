@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.0.0-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 3.0.0
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -13,6 +13,8 @@ http://tapestry5-jquery.com/
 - Clément USTER as cluster
 - Amaury WILLEMANT as awillemant
 - Barry BOOKS as trsvax
+- Pablo NUSSEMBAUM as bauna
+- Alexander OBLOVATNIY
 
 ##Hosting
 Christophe Furmaniak 	
@@ -22,8 +24,10 @@ http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
 
-- 3.0.0 : switch to Tapestry 5.3, add (Gallery)
-- 2.6.1 : add Components : InPlaceEditor, Draggable
+- 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
+          add Components : Gallery
+- 2.6.1 : improve Validation Mecanism and DataTable Component
+		  add Components : InPlaceEditor, Draggable
 		  add Mixins : ZoneRefresh, ZoneDroppable 
 - 2.6.0 : switch to Tapestry 5.2.6
 		  add Mixins : CustomZone, Widget
@@ -120,7 +124,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>3.0.0-SNAPSHOT</version>
+			<version>3.0.0</version>
 		</dependency>
 		...
 	</dependencies>

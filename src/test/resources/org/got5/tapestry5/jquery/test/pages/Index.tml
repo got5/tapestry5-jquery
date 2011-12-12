@@ -20,7 +20,7 @@
 	<br/><br/>
   	<div>
   		Project is hosted  Github under the <a href="http://github.com/got5">Got5</a>  account.
-  		Tapestry5-jquery is based on Tapestry 5.2.6, jQuery, jQuery UI or any plugins.
+  		Tapestry5-jquery is based on Tapestry 5.3, jQuery, jQuery UI or any plugins.
   	</div>
 	
 	</t:block>
@@ -105,7 +105,9 @@
 		- Emmanuel DEMEY as Gillespie59	<br/>
 		- Clement USTER as cluster		<br/>
 		- Amaury WILLEMANT as awillemant<br/>
-		- Barry BOOKS as trsvax<br/>"
+		- Barry BOOKS as trsvax<br/>
+		- Pablo NUSSEMBAUL as bauna<br/>
+		- Alexander OBLOVATNIY<br/>
 
 		<br/><br/>
 		##Hosting<br/>
@@ -113,6 +115,21 @@
 
 		<br/><br/>
 		## Changelog<br/>
+		<strong> 3.0.0 :</strong>
+		<div class="releasenotes">
+			<ul>
+				<li>Switch to Tapestry 5.3 (new JavaScript Layer)</li>
+				<li>add Components : Gallery</li>
+			</ul>
+		</div>
+		<strong> 2.6.1 :</strong>
+		<div class="releasenotes">
+			<ul>
+				<li>improve Validation Mecanism and DataTable Component</li>
+				<li>add Components : InPlaceEditor, Draggable</li>
+				<li>add Mixins : ZoneRefresh, ZoneDroppable </li>
+			</ul>
+		</div>
 		<strong> 2.6.0 :</strong>
 		<div class="releasenotes">
 			<ul>

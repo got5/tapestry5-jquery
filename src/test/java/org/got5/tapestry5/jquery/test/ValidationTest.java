@@ -25,8 +25,8 @@ public class ValidationTest extends SeleniumTestCase{
 
     protected void assertValidationWorking(final String fieldId, String value, final boolean validationVisible)
     {
-        focus("identifier=" + fieldId);
-        type("identifier=" + fieldId, value);
+        focus("//input[@type='text'][@id='"+fieldId+"']");
+        type("//input[@type='text'][@id='"+fieldId+"']", value);
         focus("//input[@type='submit']");
 
 	   new Wait()
