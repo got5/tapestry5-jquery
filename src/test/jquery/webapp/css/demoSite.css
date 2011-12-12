@@ -8,7 +8,12 @@
 	position: relative;
 	z-index:1;
 }
-	
+#colorbox{
+	z-index:2;
+}
+#cboxOverlay{
+	z-index:1;
+}
 .superfish-demo-header{
 	position: relative;
 	z-index:2;
