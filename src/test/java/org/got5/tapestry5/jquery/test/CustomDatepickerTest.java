@@ -34,7 +34,7 @@ public class CustomDatepickerTest extends SeleniumTestCase {
             @Override
             public boolean until()
             {
-                return !getAttribute("//div[@id='ui-datepicker-div']@style").isEmpty();
+                return (getAttribute("//div[@id='ui-datepicker-div']@style")!=null);
             }
         }.wait("Your calendar should be visible.", JQueryTestConstants.TIMEOUT);
         
