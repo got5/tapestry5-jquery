@@ -53,6 +53,33 @@ $.extend(Tapestry, {
     		}
     	});
     	
+    	$(".t-invisible").each(function() {
+            $(this).hide().removeClass("t-invisible");
+        });
+
+        /*
+         * Adds a focus observer that fades all error popups except for the
+         * field in question.
+         */
+        $(":input").each(function() {
+            /*
+             * Due to Ajax, we may execute the callback multiple times, and we
+             * don't want to add multiple listeners to the same element.
+             */
+        	var element = $(this);
+        	
+            if (!element.data("observingFocusChange")) {
+                element.focus(function() {
+                    if (element != Tapestry.currentFocusField) {
+                        $(document).trigger(Tapestry.FOCUS_CHANGE_EVENT);
+                        Tapestry.currentFocusField = element[0];
+                    }
+                });
+
+                element.data("observingFocusChange",true);
+            }
+        });
+    	
     	
     },
     /** Formats and displays an error message on the console. */
