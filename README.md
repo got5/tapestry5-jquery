@@ -37,7 +37,7 @@ http://groups.google.com/group/tapestry5-jquery
 - 2.1.0 : switch to Tapestry 5.2.5
 		  add (Tabs, Accordion, AjaxUpload, Button)	
 - 1.1-SNAPSHOT : exclusive jQuery components
-- 1.0-SNAPSHOT : initial releases
+- 1.0-SNAPSHOT : initial releases  !
 
 ## Features
 
