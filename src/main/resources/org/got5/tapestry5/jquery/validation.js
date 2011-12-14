@@ -59,8 +59,10 @@
 			this.options.id = field.attr("id");
 			var form = field.closest('form');
 			if (form.formEventManager("option", "validateOnBlur")) {
-				field.blur(function(){ 
-					that.validateInput();
+				$(document).bind(Tapestry.FOCUS_CHANGE_EVENT, function(ev){
+					if (Tapestry.currentFocusField == field[0]){
+						that.validateInput();
+					}
 				});
 			}
 			if (form.formEventManager("option", "validateOnSubmit")) {

@@ -51,6 +51,61 @@ $.extend(Tapestry, {
         });
         
         $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
+    }, 
+    onDomLoadedCallback: function(){
+    	
+    	/*Tapestry.pageLoaded = true;
+
+        Tapestry.ScriptManager.initialize();*/
+
+        $(".t-invisible").each(function() {
+            $(this).hide().removeClass("t-invisible");
+        });
+
+        /*
+         * Adds a focus observer that fades all error popups except for the
+         * field in question.
+         */
+        $(":input").each(function() {
+            /*
+             * Due to Ajax, we may execute the callback multiple times, and we
+             * don't want to add multiple listeners to the same element.
+             */
+        	var element = $(this);
+        	
+            if (!element.data("observingFocusChange")) {
+                element.focus(function() {
+                    if (element != Tapestry.currentFocusField) {
+                        $(document).trigger(Tapestry.FOCUS_CHANGE_EVENT);
+                        Tapestry.currentFocusField = element[0];
+                    }
+                });
+
+                element.data("observingFocusChange",true);
+            }
+        });
+
+        /*
+         * When a submit element is clicked, record the name of the element into
+         * the associated form. This is necessary for some Ajax processing, see
+         * TAPESTRY-2324.
+         *
+         * TAP5-1418: Added "type=image" so that they set the submitting element
+         * correctly.
+         */
+        /*$$("INPUT[type=submit]", "INPUT[type=image]").each(function(element) {
+            var t = $T(element);
+
+            if (!t.trackingClicks) {
+                element.observe("click", function() {
+                    $(element.form).setSubmittingElement(element);
+                });
+
+                t.trackingClicks = true;
+            }
+        });
+        */
+        
     }
 });
 
@@ -846,8 +901,10 @@ $.tapestry = {
 
 	            Tapestry.init(initArray[index]);
 	        });
+	        
+	        Tapestry.onDomLoadedCallback();
 	    }
     }
 };
-    
+Tapestry.onDOMLoaded(Tapestry.onDomLoadedCallback);  
 })(jQuery);
