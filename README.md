@@ -18,8 +18,10 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
+- 2.6.2-SNAPSHOT : more work on client side validation
 - 2.6.1 : add Components : InPlaceEditor,Draggable
 		  add Mixins : ZoneRefresh,ZoneDroppable 
+		  totally reworking the client side validation
 - 2.6.0 : switch to Tapestry 5.2.6
 		  add Mixins : CustomZone, Widget
 		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
@@ -112,7 +114,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>2.6.1-SNAPSHOT</version>
+			<version>2.6.1</version>
 		</dependency>
 		...
 	</dependencies>
