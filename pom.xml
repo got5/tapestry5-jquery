@@ -145,7 +145,7 @@
 						<append>true</append>
 					</requestLog>
 					<useTestClasspath>true</useTestClasspath>
-					<webAppSourceDirectory>src/test/jquery/webapp</webAppSourceDirectory>
+					<webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
 				</configuration>
 			</plugin>
 

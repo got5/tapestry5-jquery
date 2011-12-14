@@ -17,7 +17,7 @@ public class ImportJQueryUITest extends Assert{
 		
 		String appName = "app";
 		
-		tester = new PageTester(appPackage, appName, "src/test/jquery/webapp");
+		tester = new PageTester(appPackage, appName, "src/test/webapp");
 	}
 	
 	@Test

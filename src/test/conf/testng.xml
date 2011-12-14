@@ -2,7 +2,7 @@
 <suite name="tapestry5-jquery Application Test Suite" annotations="1.5">
    <test name="JQuery Integration Tests"  enabled="true">
     
-        <parameter name="tapestry.web-app-folder" value="src/test/jquery/webapp"/>
+        <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
         <parameter name="tapestry.browser-start-command" value="${browserStartCommand}" />
 
         <classes>
