@@ -485,7 +485,11 @@ $.widget( "ui.tapestryZone", {
                 alert(textStatus);
             }
         };
-        
+        if (this.options.parameters) {
+
+			// adds t:formid and t:formcomponentid
+			$.extend(specs.params, this.options.parameters);
+		}
         if (specs.params) {
             ajaxRequest = $.extend(ajaxRequest, {
                 data: specs.params
