@@ -63,8 +63,9 @@ public abstract class AbstractJQueryTable extends AbstractTable{
 	 * the default implementation
 	 */
 	public DataTableModel getDataTModel() {
-		if (resources.isBound("dataTableModel"))
+		if (resources.isBound("dataTableModel")){
 			return getDataTableModel();
+		}
 		return getDefaultDataTableModel();
 	}
 	protected abstract DataTableModel getDefaultDataTableModel();

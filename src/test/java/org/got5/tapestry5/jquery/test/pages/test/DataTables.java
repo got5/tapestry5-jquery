@@ -28,16 +28,18 @@ import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
-import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
 import org.got5.tapestry5.jquery.internal.TableInformation;
 import org.got5.tapestry5.jquery.test.data.Celebrity;
 import org.got5.tapestry5.jquery.test.data.CelebritySource;
 import org.got5.tapestry5.jquery.test.data.IDataSource;
+import org.got5.tapestry5.jquery.test.data.SampleDataTableModel;
 
 @Import(stylesheet ={ "context:dataTables/css/demo_table_jui.css",
 					  "context:dataTables/css/demo_page.css",	
@@ -99,7 +101,7 @@ public class DataTables
 			}
 			
 			public String getTableCaption() {
-				return "The table title";
+				return "The table Title";
 			}
 			
 			public String getTableCSS() {
@@ -131,6 +133,7 @@ public class DataTables
 	@Inject
 	private AssetSource as;
 	
+	
 	@AfterRender
 	public void addJsFile(){
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColVis/media/js/ColVis.js", null));
@@ -145,5 +148,15 @@ public class DataTables
 		return new JSONObject("name", name);
 	}
 	
+	@Inject
+	private TypeCoercer typeCoercer;
+
+	@Inject
+	private TranslatorSource ts;
+	
+	
+	public DataTableModel getDataTableModel(){
+		return new SampleDataTableModel(typeCoercer, ts, resources);
+	}
 	
 }
