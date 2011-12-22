@@ -3,7 +3,7 @@
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
       
-        <t:zone t:id="clickZone" visible="false">
+        <t:zone t:id="clickZone" t:visible="false">
    		 	click OK
    		 </t:zone>
     
