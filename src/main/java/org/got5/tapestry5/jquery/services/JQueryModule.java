@@ -51,6 +51,7 @@ import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.widgets.Slider;
 import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
@@ -70,6 +71,8 @@ public class JQueryModule
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
         configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
+        
+        configuration.addInstance("slider", Slider.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)

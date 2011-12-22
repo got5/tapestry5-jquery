@@ -1,0 +1,5 @@
+<html t:type="layout" 
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	  xmlns:p="tapestry:parameter">
+   		<div t:type="jquery/widget"  t:name="slider" t:id="slider" t:options="prop:test"/>
+</html>
