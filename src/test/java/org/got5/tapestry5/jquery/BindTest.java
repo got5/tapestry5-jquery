@@ -6,19 +6,19 @@ import org.testng.annotations.Test;
 import com.thoughtworks.selenium.Wait;
 
 public class BindTest extends SeleniumTestCase{
+	
 	@Test
-    public void testBind()
-    {
+    public void testBind(){
 		open("/Bind");
 		
 		assertSourcePresent("jqbind","eventType","\"click\",");       
-
-    }
+	}
 	
 	@Test
 	public void testEvent() {
 		open("/Bind");
-        click("identifier=clickHere");
+    
+		click("//div[@id='clickHere']");
         
         new Wait()
         {
@@ -28,6 +28,7 @@ public class BindTest extends SeleniumTestCase{
                 return isTextPresent("click OK");
             }
         }.wait("element not found", JQueryTestConstants.TIMEOUT);
+        
         assertEquals(getText("identifier=clickZone"), "click OK");
 	}
 
