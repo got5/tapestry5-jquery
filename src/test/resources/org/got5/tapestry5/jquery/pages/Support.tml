@@ -1,0 +1,28 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<head>
+	<style type="text/css">
+		body, td	{ font-family: Arial, Helvetica, sans-serif; font-size: 13px; }
+		form		{ background-color: #eee; padding: 15px; }
+		.t-zone		{ background-color: #eee; }
+	</style>
+</head>
+<body>
+	<form t:type="form" t:id="searchCriteria">
+
+		<t:label for="carMake"/>:
+		<select t:type="select" t:id="carMake" t:model="carMakes" t:zone="carModelZone"
+			t:blankOption="ALWAYS" t:blankLabel="Choose..." t:validate="required" />
+	
+		<t:zone t:id="carModelZone" id="carModelZone" style="display: inline;">
+			<t:label for="carModel"/>:
+			<select t:type="select" t:id="carModel" t:model="carModels" 
+				t:blankOption="ALWAYS" t:blankLabel="Choose..." t:validate="required"/>
+		</t:zone>
+
+		Keywords: <input t:type="TextField" t:id="keywords"/> (optional)<br/> 
+
+		<input type="submit" value="Save"/>
+		<t:errors/>
+
+	</form></body>
+</html>

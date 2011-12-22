@@ -8,7 +8,7 @@
         <!-- The only significant configuration for Tapestry 5, this informs Tapestry
 of where to look for pages, components and mixins. -->
         <param-name>tapestry.app-package</param-name>
-        <param-value>org.got5.tapestry5.jquery.test</param-value>
+        <param-value>org.got5.tapestry5.jquery</param-value>
     </context-param>
     <context-param>
         <param-name>ganalytics.key</param-name>

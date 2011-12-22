@@ -1,0 +1,40 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
+	
+	
+	Complex Items:
+	
+	
+	
+	<j:carousel t:params="complexParams" t:clientId="myComplexCarousel">
+		<j:carouselItem t:imageSource="asset:context:img/flower_01.jpg" t:page="Button" t:context="3"/>
+		<j:carouselItem t:imageSource="asset:context:img/flower_02.jpg" t:event="zoneTest" t:zone="flowerZone"  />
+		<j:carouselItem t:imageSource="asset:context:img/flower_03.jpg" t:event="eventTest" t:context="literal:hello" />
+		<j:carouselItem t:imageSource="asset:context:img/flower_04.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_05.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_06.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_07.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_08.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_09.jpg"   />
+		<j:carouselItem t:imageSource="asset:context:img/flower_10.jpg"   />
+	</j:carousel>
+	
+	<div id="zoneContainer">
+		<span>Click on the big white flower of the complex carousel:</span>
+		<t:zone t:id="flowerZone" id="flowerZone">
+			
+		</t:zone>
+		
+		<t:block id="flowerBlock" t:id="flowerBlock">
+			You just clicked on the big white flower !
+		</t:block>
+		
+	</div>
+	<br/><br/>
+	Ajax loaded:
+	<j:carousel t:params="ajaxParams" t:clientId="myAjaxCarousel" />
+	
+	
+   
+</html>
+
+  

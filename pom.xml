@@ -274,7 +274,7 @@
 	</profiles>
 
 	<properties>
-		<tapestry-release-version>5.3</tapestry-release-version>
+		<tapestry-release-version>5.3.1</tapestry-release-version>
 	    <browserStartCommand>*iexploreproxy</browserStartCommand>
 	</properties>
 </project>
