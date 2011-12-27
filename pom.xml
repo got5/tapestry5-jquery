@@ -12,28 +12,9 @@
 		<version>1.0</version>
 	</parent>
 	<dependencies>
-
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-core</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-func</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-ioc</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-json</artifactId>
 			<version>${tapestry-release-version}</version>
 		</dependency>
 		<dependency>
@@ -41,41 +22,35 @@
 			<artifactId>tapestry-upload</artifactId>
 			<version>${tapestry-release-version}</version>
 		</dependency>
-		
 		<dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.2</version>
         </dependency>
-
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>5.14.6</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
 			<version>2.4</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-test</artifactId>
 			<version>${tapestry-release-version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -84,11 +59,8 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-	<url>https://github.com/got5/tapestry5-jquery</url>
-	<organization>
-		<name>GOT5</name>
-		<url>https://github.com/got5</url>
-	</organization>
+	
+	
 	<build>
 		<finalName>tapestry-jquery</finalName>
 
@@ -107,13 +79,6 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
@@ -125,17 +90,6 @@
 					</archive>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-					<optimize>true</optimize>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -150,38 +104,6 @@
 			</plugin>
 
 			<plugin>
-				<groupId>com.mycila.maven-license-plugin</groupId>
-				<artifactId>maven-license-plugin</artifactId>
-				<version>1.5.1</version>
-				<configuration>
-					<header>LICENSE.txt</header>
-					<excludes>
-						<exclude>**/*.sql</exclude>
-						<exclude>**/*.txt</exclude>
-						<exclude>**/PLACEHOLDER</exclude>
-						<exclude>**/*.properties</exclude>
-						<exclude>**/web.xml</exclude>
-						<exclude>**/*.apt</exclude>
-						<exclude>**/*.tml</exclude>
-						<exclude>**/.*</exclude>
-						<exclude>**/*.ent</exclude>
-						<exclude>**/*.xsl</exclude>
-						<exclude>**/*.xml</exclude>
-						<exclude>**/*.html</exclude>
-						<exclude>**/*.dtd</exclude>
-						<exclude>src/main/resources/org/got5/tapestry5/jquery/**</exclude>
-						<exclude>src/test/conf/**</exclude>
-					</excludes>
-					<useDefaultExcludes>true</useDefaultExcludes>
-					<mapping>
-						<java>DOUBLESLASH_STYLE</java>
-					</mapping>
-					<useDefaultMapping>true</useDefaultMapping>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.8.1</version>
 				<configuration>
@@ -215,53 +137,7 @@
 		</plugins>
 	</reporting>
 
-
-	<repositories>
-		<repository>
-			<id>devlab722-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>apache-snapshots</id>
-			<url>http://repository.apache.org/snapshots</url>
-		</repository>
-
-		<repository>
-			<id>codehaus.snapshots</id>
-			<url>http://snapshots.repository.codehaus.org</url>
-		</repository>
-		<repository>
-			<id>OpenQA_Release</id>
-			<name>OpenQA Release Repository</name>
-			<url>http://archiva.openqa.org/repository/releases/</url>
-		</repository>
-		<repository>
-			<id>Apache Staging</id>
-			<name>Apache Maven Staging Repository</name>
-			<url>https://repository.apache.org/content/groups/staging/</url>
-		</repository>
-	</repositories>
-
 	<profiles>
-
         <profile>
             <id>mac-os-test</id>
             <activation>
