@@ -34,38 +34,36 @@
 		Then use components like you would normally do. For Autocomplete and Palette use "jquery" namespace:
  		
  		<br/><br/>
- 		<!-- source content start -->
-		<div style="padding:10px;"><pre>
-<![CDATA[
-<t:form>
-	<t:jquery.autocomplete />
-	<t:submit />
-</t:form>
-]]>
-    	</pre></div>
-		<!-- source content end -->
-		
 
+		<div style="visibility: hidden;">
+                    <![CDATA[
+                        <t:form>
+                            <t:jquery.autocomplete />
+                            <t:submit />
+                        </t:form>
+                    ]]>
+                </div>
+                
+                <div t:type="jquery/showSource" t:specs="{'collapse': 'false'}" t:ext="html" t:beginLine="40" t:endLine="43" t:path="resources/org/got5/tapestry5/jquery/test/pages/Index.tml"></div>
+		
 		<br/><br/>
 		Or add jquery to the tapestry-library namespace:
 		
-		<br/><br/>
-		<!-- source content start -->
-		<div style="padding:10px;"><pre>
-<![CDATA[
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-	xmlns:p="tapestry:parameter"
-    xmlns:j="tapestry-library:jquery">
-		
-<t:form>
-	<j:palette />
-    <t:textfield t:mixins="jquery/autocomplete" ... />
-    <t:submit />
-</t:form>
-</html>
-]]>
-		</pre></div>
-		<!-- source content end -->
+		<div style="visibility: hidden">
+                <![CDATA[
+                    <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+                            xmlns:p="tapestry:parameter"
+                            xmlns:j="tapestry-library:jquery">
+                        <t:form>
+                            <j:palette />
+                            <t:textfield t:mixins="jquery/autocomplete" ... />
+                            <t:submit />
+                        </t:form>
+                    </html>
+                ]]>
+                </div>
+                <div t:type="jquery/showSource" t:specs="{'collapse': 'false'}" t:ext="html" t:beginLine="54" t:endLine="62" t:path="resources/org/got5/tapestry5/jquery/test/pages/Index.tml"></div>
+                
 		<br/><br/>
 		## You still need to have PrototypeJS and the components originally included in tapestry ?
 		<br/><br/>
@@ -132,40 +130,37 @@
 		</div>
 		<strong> 2.6.0 :</strong>
 		<div class="releasenotes">
-			<ul>
-				<li>Switch to Tapestry 5.2.6</li>
-				<li>Add Mixins : CustomZone, Widget</li>
-				<li>Other Mecanisms : EffectsParam, WidgetParams, Selector Binding</li>
-			</ul>
+                    <ul>
+			<li>Switch to Tapestry 5.2.6</li>
+                    	<li>Add Mixins : CustomZone, Widget</li>
+			<li>Other Mecanisms : EffectsParam, WidgetParams, Selector Binding</li>
+                    </ul>
 		</div>
 		<strong> 2.1.1 :</strong>
 		<div class="releasenotes">
-			<ul>
-				<li>Add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish</li>
-				<li>Add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip</li>
-			</ul>
+                    <ul>
+			<li>Add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish</li>
+			<li>Add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip</li>
+                    </ul>
 		</div>
 		<strong> 2.1.0 :</strong>
 		<div class="releasenotes">
-			<ul>
-				<li>Switch to Tapestry 5.2.5</li>
-				<li>Add (Tabs, Accordion, AjaxUpload, Button)</li>
-			</ul>
+                    <ul>
+			<li>Switch to Tapestry 5.2.5</li>
+			<li>Add (Tabs, Accordion, AjaxUpload, Button)</li>
+                    </ul>
 		</div>
 		<strong> 1.1-SNAPSHOT :</strong>
 		<div class="releasenotes">
-			<ul>
-				<li>Exclusive jQuery components</li>
-			</ul>
+                    <ul>
+                        <li>Exclusive jQuery components</li>
+                    </ul>
 		</div>
 		<strong> 1.0-SNAPSHOT :</strong>
 		<div class="releasenotes">
-			<ul>
-				<li>Initial releases</li>
-			</ul>
-		</div>		  
-		
+                    <ul>
+                        <li>Initial releases</li>
+                    </ul>
+		</div>		
 	</t:block>
-   
-    
 </html>
