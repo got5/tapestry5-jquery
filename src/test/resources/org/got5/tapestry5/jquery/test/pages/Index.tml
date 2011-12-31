@@ -28,14 +28,13 @@
 	<t:block id="block2">
 		## How to use it
 		<br/><br/>
-		Just add tapestry5-jquery to your classpath (see Maven dependency snippet below)!
+                Just add tapestry5-jquery to your classpath (see Maven dependency snippet <a href="#mvn.snippet">below</a>)!
 		
 		<br/><br/>
-		Then use components like you would normally do. For Autocomplete and Palette use "jquery" namespace:
- 		
+		Then use components like you would normally do. For Autocomplete and Palette use "jquery" namespace: 		
  		<br/><br/>
 
-		<div style="visibility: hidden;">
+		<div style="visibility: hidden; position: absolute; top: -9999%; left: -9999%;">
                     <![CDATA[
                         <t:form>
                             <t:jquery.autocomplete />
@@ -44,12 +43,13 @@
                     ]]>
                 </div>
                 
-                <div t:type="jquery/showSource" t:specs="{'collapse': 'false'}" t:ext="html" t:beginLine="40" t:endLine="43" t:path="resources/org/got5/tapestry5/jquery/test/pages/Index.tml"></div>
+                <div t:type="jquery/showSource" t:specs="{'collapse': 'false'}" t:ext="html" t:beginLine="39" t:endLine="42" t:path="resources/org/got5/tapestry5/jquery/test/pages/Index.tml"></div>
 		
 		<br/><br/>
 		Or add jquery to the tapestry-library namespace:
-		
-		<div style="visibility: hidden">
+		<br/><br/>
+                
+		<div style="visibility: hidden; position: absolute; top: -9999%; left: -9999%;">
                 <![CDATA[
                     <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
                             xmlns:p="tapestry:parameter"
@@ -82,7 +82,55 @@
 
 		By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option to false, you may not use `$` to refer to jQuery, because `$` actually refers to Prototype.
 		Thus, you may want to change jQuery's alias in that particular case.
-		However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
+		However, if you didn't change it, jQuery's alias will automatically be set to `$j`.
+                
+                <br/><br/> 
+                <div id="mvn.snippet">
+                    ## Maven dependency description:
+                </div>
+                <br/><br/>
+                
+		<div style="visibility: hidden; position: absolute; top: -9999%; left: -9999%;">
+                <![CDATA[
+<dependencies>
+    ...
+    <dependency>
+        <groupId>org.got5</groupId>
+        <artifactId>tapestry5-jquery</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+    ...
+</dependencies>
+
+<repositories>
+    ...
+    <repository>
+        <id>devlab722-repo</id>
+        <url>
+            http://nexus.devlab722.net/nexus/content/repositories/releases
+        </url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+
+    <repository>
+        <id>devlab722-snapshot-repo</id>
+        <url>
+            http://nexus.devlab722.net/nexus/content/repositories/snapshots
+        </url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+    ...
+</repositories>
+                ]]>
+                </div>
+                <div t:type="jquery/showSource"
+                     t:specs="{'collapse': 'false'}"
+                     t:ext="xml" t:beginLine="95"
+                     t:endLine="127" t:path="resources/org/got5/tapestry5/jquery/test/pages/Index.tml"></div>
 	</t:block>
 
 	<t:block id="block3">
