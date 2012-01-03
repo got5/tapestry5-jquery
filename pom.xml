@@ -2,15 +2,35 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.0.1-SNAPSHOT</version>
+	<version>3.0.1</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
-	<parent>
-		<groupId>org.got5</groupId>
-		<artifactId>got5-parent</artifactId>
-		<version>1.0</version>
-	</parent>
+	<description>Tapestry5-jQuery</description>
+	<url>https://github.com/got5/tapestry5-jquery</url>
+	<organization>
+		<name>GOT5</name>
+		<url>https://github.com/got5</url>
+	</organization>
+	
+	<issueManagement>
+		<system>Github</system>
+		<url>http://github.com/got5</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache Software License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<ciManagement>
+		<system>Hudson</system>
+		<url>http://ci.dev.kalaari.net/hudson/</url>
+	</ciManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
@@ -76,6 +96,66 @@
       		</resources>
 
 		<plugins>
+                       <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.5.1</version>
+				<configuration>
+					<header>LICENSE.txt</header>
+					<excludes>
+						<exclude>**/*.sql</exclude>
+						<exclude>**/*.txt</exclude>
+						<exclude>**/PLACEHOLDER</exclude>
+						<exclude>**/*.properties</exclude>
+						<exclude>**/web.xml</exclude>
+						<exclude>**/*.apt</exclude>
+						<exclude>**/*.tml</exclude>
+						<exclude>**/.*</exclude>
+						<exclude>**/*.ent</exclude>
+						<exclude>**/*.xsl</exclude>
+						<exclude>**/*.xml</exclude>
+						<exclude>**/*.html</exclude>
+						<exclude>**/*.dtd</exclude>
+						<exclude>src/test/conf/**</exclude>
+					</excludes>
+					<useDefaultExcludes>true</useDefaultExcludes>
+					<mapping>
+						<java>DOUBLESLASH_STYLE</java>
+					</mapping>
+					<useDefaultMapping>true</useDefaultMapping>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -122,7 +202,29 @@
 		    </plugin>
 		</plugins>
 	</build>
+        <repositories>
+		<repository>
+			<id>devlab722-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 
+		<repository>
+			<id>devlab722-snapshot-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -136,6 +238,16 @@
 		</plugins>
 	</reporting>
 
+        <distributionManagement>
+		<repository>
+			<id>devlab722-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>devlab722-snapshot-repo</id>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<profiles>
         <profile>
             <id>mac-os-test</id>

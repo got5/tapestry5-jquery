@@ -17,7 +17,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * There are a few components you can use to create a dialog in your pages. 
- *   - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
+ *  - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
  * 	- DialogLink, clicking a DialogLink will make the associated Dialog to open.
  *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
  *

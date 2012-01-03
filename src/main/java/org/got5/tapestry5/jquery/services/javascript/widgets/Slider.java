@@ -35,7 +35,7 @@ public class Slider implements JavaScriptStack
 
     public String getInitialization()
     {
-        return "";
+        return null;
     }
 
     public List<Asset> getJavaScriptLibraries()
