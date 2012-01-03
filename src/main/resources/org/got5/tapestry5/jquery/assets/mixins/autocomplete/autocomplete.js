@@ -6,9 +6,13 @@
 			var conf = {
 					source: function(request, response){
 						
-						var params = {
-								"extra": $("#" + specs.id).data('extra')
-						};
+						var params = {};
+						
+						var extra = $("#" + specs.id).data('extra');
+						if(extra) {
+							params["extra"] = extra;
+						}
+						
 						params[specs.paramName] = request.term;
 						
 						var ajaxRequest = {
