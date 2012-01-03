@@ -1,14 +1,26 @@
-<project
+<project	
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.0.2-SNAPSHOT</version>
+	<version>3.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<description>Tapestry5-jQuery</description>
 	<url>https://github.com/got5/tapestry5-jquery</url>
+	<parent>
+	    <groupId>org.sonatype.oss</groupId>
+	    <artifactId>oss-parent</artifactId>
+	    <version>7</version>
+     </parent>
+     <licenses>
+		<license>
+			<name>Apache Software License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<organization>
 		<name>GOT5</name>
 		<url>https://github.com/got5</url>
@@ -18,15 +30,14 @@
 		<system>Github</system>
 		<url>http://github.com/got5</url>
 	</issueManagement>
-
-	<licenses>
-		<license>
-			<name>Apache Software License 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
+	<scm>
+	    <connection>scm:git:git@github.com:got5/tapestry5-jquery.git</connection>
+	    <developerConnection>scm:git:git@github.com:got5/tapestry5-jquery.git</developerConnection>
+	    <url>git@github.com:got5/tapestry5-jquery.git</url>
+  	</scm>
+  	<developers>
+  		<developer><name>Emmanuel DEMEY</name></developer>
+  	</developers>
 	<ciManagement>
 		<system>Hudson</system>
 		<url>http://ci.dev.kalaari.net/hudson/</url>
@@ -202,29 +213,6 @@
 		    </plugin>
 		</plugins>
 	</build>
-        <repositories>
-		<repository>
-			<id>devlab722-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 	<reporting>
 		<plugins>
 			<plugin>
