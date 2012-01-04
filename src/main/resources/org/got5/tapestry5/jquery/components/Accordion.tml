@@ -1,9 +1,8 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-	<t:loop source="prop:listOfElements" value="currentElement" >
-	    <h3><a href="#">${currentElement.title}</a></h3>
+	<t:loop source="prop:panels" value="panel" >
+	    <h3><a href="#">${panelTitle}</a></h3>
 		<div>
 			<t:delegate to="CurrentBlock"/>
 		</div>     
 	</t:loop>
 </t:container>
-

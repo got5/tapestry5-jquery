@@ -15,12 +15,11 @@
 //
 package org.got5.tapestry5.jquery.components;
 
-import java.util.ArrayList;
-
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
@@ -35,7 +34,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
-import org.got5.tapestry5.jquery.utils.JQueryTabData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -63,9 +61,8 @@ public class Tabs extends AbstractExtendableComponent
 	/**
 	 *  A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
 	 */
-	@Property
-	@Parameter(required=true)
-	private ArrayList<JQueryTabData> listTabData;
+	@Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
+	private String tabs;
 
 	private String clientZoneId;
 
@@ -83,8 +80,15 @@ public class Tabs extends AbstractExtendableComponent
     private JSONObject params;
 
 	@Property
-	private JQueryTabData currentTabData;
+	private String tab;
 
+	/**
+     * Defines where block and label overrides are obtained from. 
+     */
+    @Parameter(value = "this", allowNull = false)
+    @Property(write = false)
+    private PropertyOverrides overrides;
+    
 	@Property
 	private int currentPanelId;
 
@@ -129,7 +133,7 @@ public class Tabs extends AbstractExtendableComponent
     }
     public Object[] getTabContext()
     {
-        return new Object[] { currentTabData.getBlockName(), currentPanelId };
+        return new Object[] { tab, currentPanelId };
     }
 
 
@@ -148,13 +152,21 @@ public class Tabs extends AbstractExtendableComponent
 
 		resources.triggerEvent(JQueryEventConstants.SELECT_TAB, new Object[] { activePanelId }, null);
 
-		return resources.getContainer().getComponentResources().getBlock(blockName);
+		return overrides.getOverrideBlock(blockName);
 	}
 
 	public Block getActiveBlock()
 	{
-		String blockName=listTabData.get(activePanelId).getBlockName();
-		return resources.getContainer().getComponentResources().getBlock(blockName);
+		return overrides.getOverrideBlock(getTabs()[activePanelId]);
+	}
+	
+	public String[] getTabs()
+	{
+		return tabs.split(",");
+	}
+	
+	public String getTabTitle(){
+		return overrides.getOverrideMessages().get(tab);
 	}
 
 }
