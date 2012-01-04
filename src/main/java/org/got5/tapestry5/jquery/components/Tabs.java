@@ -30,7 +30,6 @@ import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
@@ -57,11 +56,18 @@ public class Tabs extends AbstractExtendableComponent
     private JavaScriptSupport javaScriptSupport;
 
 	/**
-	 *  A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
+	 *  A comma-separated list of strings, corresponding to yours blocks
 	 */
 	@Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
 	private String tabs;
 
+	/**
+	 * Indicate if you want to load your block by ajax. 
+	 */
+	@Property
+	@Parameter(value="true", defaultPrefix=BindingConstants.LITERAL)
+	private Boolean ajax;
+	
 	private String clientZoneId;
 
 	/**
@@ -155,7 +161,9 @@ public class Tabs extends AbstractExtendableComponent
 
 	public Block getActiveBlock()
 	{
-		return overrides.getOverrideBlock(getTabs()[activePanelId]);
+		if(ajax)
+			return overrides.getOverrideBlock(getTabs()[activePanelId]);
+		return overrides.getOverrideBlock(tab);
 	}
 	
 	public String[] getTabs()
