@@ -1,7 +1,6 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
    
-
-	<t:jquery.accordion  t:panels="block1,block2,block3,block4" t:activeElementId="1">
+   <t:jquery.accordion  t:panels="block1,block2,block3,block4" t:activeElementId="1">
 		
 		<p:block1>
 			<h3>Element 1</h3>

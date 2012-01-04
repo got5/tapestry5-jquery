@@ -1,4 +1,4 @@
-<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 	<t:loop source="prop:panels" value="panel" >
 	    <h3><a href="#">${panelTitle}</a></h3>
 		<div>

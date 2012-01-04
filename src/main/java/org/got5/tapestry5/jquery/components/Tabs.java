@@ -27,6 +27,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
@@ -54,9 +55,6 @@ public class Tabs extends AbstractExtendableComponent
 
     @Inject
     private JavaScriptSupport javaScriptSupport;
-
-    @Inject
-    private AssetSource source;
 
 	/**
 	 *  A list of JQueryTabData (object containing the title of the tab and the name of the block that has the content).
@@ -162,7 +160,7 @@ public class Tabs extends AbstractExtendableComponent
 	
 	public String[] getTabs()
 	{
-		return tabs.split(",");
+		return TapestryInternalUtils.splitAtCommas(tabs);
 	}
 	
 	public String getTabTitle(){

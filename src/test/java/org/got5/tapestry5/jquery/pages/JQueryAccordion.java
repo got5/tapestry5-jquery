@@ -16,16 +16,10 @@
 
 package org.got5.tapestry5.jquery.pages;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
-import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
-
 
 public class JQueryAccordion
 {
@@ -36,20 +30,4 @@ public class JQueryAccordion
 	@Persist
 	@Property
 	private Date sysDate;
-
-	@Property
-	private List<JQueryAccordionData> list;
-
-	@SetupRender
-	void getList()
-	{
-				System.out.println("#########################");
-		list = new ArrayList<JQueryAccordionData>();
-        list.add(new JQueryAccordionData("Element1","block1"));
-        list.add(new JQueryAccordionData("Element2","block2"));
-        list.add(new JQueryAccordionData("Element3","block3"));
-        list.add(new JQueryAccordionData("Element4","block4"));
-        
-	}
-
 }

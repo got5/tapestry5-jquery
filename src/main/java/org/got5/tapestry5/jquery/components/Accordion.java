@@ -27,6 +27,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -51,10 +52,7 @@ public class Accordion extends AbstractExtendableComponent
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
-    @Inject
-    private Messages messages;
-    
-	@Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
+    @Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
 	private String panels;
 
 	/**
@@ -122,7 +120,7 @@ public class Accordion extends AbstractExtendableComponent
 	
 	public String[] getPanels()
 	{ 
-		return panels.split(","); 
+		return TapestryInternalUtils.splitAtCommas(panels);
 	}
 	
 	public String getPanelTitle()
