@@ -1,6 +1,7 @@
 package org.got5.tapestry5.jquery.utils;
 
 import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
@@ -35,5 +36,19 @@ public class JQueryUtils
             return new StylesheetLink(input);
         };
     };
+    
+    public static JSONObject convertInformalParametersToJson(ComponentResources resources, String prefix) 
+    {
+    	JSONObject json = new JSONObject();
+    	for(String parameter : resources.getInformalParameterNames()) 
+    	{
+    		if(parameter.startsWith(prefix)) 
+    		{
+    			json.put(parameter.substring(prefix.length()),
+    					resources.getInformalParameter(parameter,String.class));
+    		}
+    	}
+    	return json;
+    }
 
 }

@@ -98,6 +98,7 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
 
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
+        configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
 
     }
 
