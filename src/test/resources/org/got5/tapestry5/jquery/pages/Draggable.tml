@@ -1,0 +1,26 @@
+<html t:type="layout"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	  xmlns:p="tapestry:parameter">
+	  
+  
+  
+    	 <t:jquery.Draggable  t:id="draggableItem1" t:draggablecontext="literal:contexteItem1" >
+    		Drag Item 1 
+  		 </t:jquery.Draggable>
+   		<t:jquery.Draggable  t:id="draggableItem2" t:draggablecontext="literal:contexteItem2" >
+    		Drag Item 2 
+   		</t:jquery.Draggable>
+
+	   <div t:type='zone'  t:id="dropzone" t:mixins='jquery/zonedroppable'>
+	   		Last zone Update:${now} <br/>
+	   		Last Drop:${data}
+	   </div>
+	
+	   <style type="text/css">
+	   	.ui-draggable { width: 75px; height: 25px; background: silver; padding: 10px; margin-bottom:20px;}
+	   	.ui-droppable { background: gray; color: white; padding: 10px; margin-bottom:20px;}
+	 	</style>
+    	
+    	<br />
+   
+</html>
