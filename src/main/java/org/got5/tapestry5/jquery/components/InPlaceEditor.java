@@ -25,6 +25,7 @@ import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.Environmental;
+import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -41,6 +42,7 @@ import org.apache.tapestry5.util.TextStreamResponse;
  *
  * @version $Id: InPlaceEditor.java jquery version of chenillekit component from homburgs $
  */
+@Events(InPlaceEditor.SAVE_EVENT)
 @SupportsInformalParameters
 @Import(library = {"${assets.path}/components/jeditable/jquery.jeditable.js",
 				   "${assets.path}/components/jeditable/jeditable.js"})
