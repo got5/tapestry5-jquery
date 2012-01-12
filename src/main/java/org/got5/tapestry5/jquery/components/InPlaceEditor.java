@@ -127,8 +127,7 @@ public class InPlaceEditor implements ClientElement
 		opts.put("tooltip", messages.get("tooltip"));
 		
 		JQueryUtils.merge(opts, options);
-		System.out.println(options);
-		System.out.println(opts);
+		
 		spec.put("options", opts);
 
 		javascriptSupport.addInitializerCall("editable", spec);
