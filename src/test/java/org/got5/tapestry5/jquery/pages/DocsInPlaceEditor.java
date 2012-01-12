@@ -99,5 +99,8 @@ public class DocsInPlaceEditor
 		user.setLastName(value);
 		System.err.println("User #" + id + " changed to '" + value + "'");
 	}
-
+	public JSONObject getOptions(){
+		return new JSONObject("width", "500");
+		
+	}
 }

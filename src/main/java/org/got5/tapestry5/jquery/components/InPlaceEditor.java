@@ -35,6 +35,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
 /**
@@ -67,13 +68,10 @@ public class InPlaceEditor implements ClientElement
 	 */
 	@Parameter(required = true, principal = true)
 	private String value;
-
-	/**
-	 * Size of the input text tag.
-	 */
-	@Parameter(value = "20", required = false, defaultPrefix = BindingConstants.PROP)
-	private int size;
-
+	
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject options;
+	
 	/**
 	 * The context for the link (optional parameter). This list of values will be converted into strings and included in
 	 * the URI.
@@ -127,9 +125,12 @@ public class InPlaceEditor implements ClientElement
 		opts.put("cancel", messages.get("cancelbutton"));
 		opts.put("submit", messages.get("savebutton"));
 		opts.put("tooltip", messages.get("tooltip"));
+		
+		JQueryUtils.merge(opts, options);
+		System.out.println(options);
+		System.out.println(opts);
 		spec.put("options", opts);
 
-		
 		javascriptSupport.addInitializerCall("editable", spec);
 	}
 
