@@ -140,7 +140,7 @@ public class InPlaceEditor implements ClientElement
 		if (valueText == null || valueText.length() == 0)
 			valueText = messages.get("empty");
 
-		return new TextStreamResponse("text/html", new String(valueText.getBytes("UTF8")));
+		return new TextStreamResponse("text/html", valueText);
 	}
 
 	/**

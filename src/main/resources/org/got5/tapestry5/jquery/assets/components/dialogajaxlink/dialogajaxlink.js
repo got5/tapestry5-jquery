@@ -15,7 +15,7 @@
 			
 
 	        $("#" + element).click(function(e) {
-				$('#' + dialogId).one("dialogopen", onOpen);
+				$('#' + dialogId).live("dialogopen", onOpen);
 	            $('#' + dialogId).dialog('open');
 				
 				return false;
