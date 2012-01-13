@@ -775,7 +775,7 @@ $.widget( "ui.tapestryFormInjector", {
 		$.Widget.prototype.destroy.apply( this, arguments );
 	},
 
-    trigger: function() {
+    trigger: function(callback) {
 		var that = this,
 			el = $("#" + this.options.element);
 		
@@ -793,6 +793,10 @@ $.widget( "ui.tapestryFormInjector", {
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
                 
                 newElement.effect(that.options.show);
+                
+                if (callback) {
+                    callback(data.elementId);
+                }
             });
             
         };
