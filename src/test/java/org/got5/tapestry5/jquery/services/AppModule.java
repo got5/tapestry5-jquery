@@ -89,15 +89,5 @@ public void addWidgetParams(MappedConfiguration<String, JSONObject> configuratio
 public void addEffectsFile(Configuration<String> configuration){
 	configuration.add(EffectsConstants.SHAKE);
 }
-public static void bind(ServiceBinder binder)
-{
-    // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-    
-    // Make bind() calls on the binder object to define most IoC services.
-    // Use service builder methods (example below) when the implementation
-    // is provided inline, or requires more initialization than simply
-    // invoking the constructor.
-        binder.bind(SelectIdModelFactory.class, SelectIdModelFactoryImpl.class);
-}
 
 }
