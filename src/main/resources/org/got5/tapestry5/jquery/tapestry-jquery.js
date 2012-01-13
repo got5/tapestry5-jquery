@@ -348,7 +348,7 @@ T5.extendInitializers({
             	if (el.is('select') && element.value) {
     				parameters["t:selectvalue"] = element.value;
     			}
-            	zoneElement.tapestryZone("update" , {url : url, parameters:parameters});
+            	zoneElement.tapestryZone("update" , {url : url, params : parameters});
 
     		});
         }
