@@ -110,4 +110,25 @@ public class Zone
         
         return afterFormSubmit ? multiUpdateBlock : defaultBlock;
     }
+    
+    @Property
+    @Persist
+    private String firstName;
+    
+    @Property
+    @Persist
+    private String lastName;
+    
+    @InjectComponent
+    private org.apache.tapestry5.corelib.components.Zone formZone;
+    
+    @OnEvent(value = "action", component = "switch")
+    Object switchOnclick()
+    {
+    	String temp;
+    	temp = lastName;
+    	lastName=firstName;
+    	firstName=temp;
+    	return formZone;
+    }
 }
