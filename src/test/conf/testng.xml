@@ -33,6 +33,7 @@
           <class name="org.got5.tapestry5.jquery.ZoneTest"></class>
           <class name="org.got5.tapestry5.jquery.DraggableTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableTest"></class>
+          <class name="org.got5.tapestry5.jquery.InPlaceEditorTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">

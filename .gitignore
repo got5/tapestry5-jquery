@@ -9,10 +9,12 @@ target/
 tidyErrors.txt
 *.origin
 *.orig
-.svn
+.svn/
 bin/
 pom-internal.xml
+pom-internal-release.xml
 .DS_Store
 "/var/*
 maven-eclipse.xml
 .externalToolBuilders
+.gradle/

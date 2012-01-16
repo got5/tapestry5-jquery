@@ -25,6 +25,7 @@ import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.Environmental;
+import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -34,6 +35,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
 /**
@@ -41,6 +43,7 @@ import org.apache.tapestry5.util.TextStreamResponse;
  *
  * @version $Id: InPlaceEditor.java jquery version of chenillekit component from homburgs $
  */
+@Events(InPlaceEditor.SAVE_EVENT)
 @SupportsInformalParameters
 @Import(library = {"${assets.path}/components/jeditable/jquery.jeditable.js",
 				   "${assets.path}/components/jeditable/jeditable.js"})
@@ -65,13 +68,10 @@ public class InPlaceEditor implements ClientElement
 	 */
 	@Parameter(required = true, principal = true)
 	private String value;
-
-	/**
-	 * Size of the input text tag.
-	 */
-	@Parameter(value = "20", required = false, defaultPrefix = BindingConstants.PROP)
-	private int size;
-
+	
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject options;
+	
 	/**
 	 * The context for the link (optional parameter). This list of values will be converted into strings and included in
 	 * the URI.
@@ -125,9 +125,11 @@ public class InPlaceEditor implements ClientElement
 		opts.put("cancel", messages.get("cancelbutton"));
 		opts.put("submit", messages.get("savebutton"));
 		opts.put("tooltip", messages.get("tooltip"));
+		
+		JQueryUtils.merge(opts, options);
+		
 		spec.put("options", opts);
 
-		
 		javascriptSupport.addInitializerCall("editable", spec);
 	}
 
@@ -140,7 +142,7 @@ public class InPlaceEditor implements ClientElement
 		if (valueText == null || valueText.length() == 0)
 			valueText = messages.get("empty");
 
-		return new TextStreamResponse("text/html", new String(valueText.getBytes("UTF8")));
+		return new TextStreamResponse("text/html", valueText);
 	}
 
 	/**

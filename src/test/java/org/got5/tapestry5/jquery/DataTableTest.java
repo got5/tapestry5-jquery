@@ -109,7 +109,7 @@ public class DataTableTest extends SeleniumTestCase{
 		
 	}
 	
-	@Test
+	/*@Test
 	private void testSearchFilter(){
 		open("/DataTables");
 		
@@ -123,7 +123,7 @@ public class DataTableTest extends SeleniumTestCase{
 				return getXpathCount("//table[@id='datatable']/tbody/tr").equals(1);
 			}
 		}.wait("We should have 1 rows", JQueryTestConstants.TIMEOUT);
-	}
+	}*/
 	
 	private void checkDisable(final int i) {
 		new Wait() {
