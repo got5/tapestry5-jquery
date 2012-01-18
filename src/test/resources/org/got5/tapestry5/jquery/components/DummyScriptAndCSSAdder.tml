@@ -1,0 +1,5 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+    <p class="red">
+        I am a Component inside the block which is visible after the zone update
+    </p>
+</t:container>

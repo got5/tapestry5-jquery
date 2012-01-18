@@ -206,7 +206,8 @@ public class Autocomplete
         JSONArray array = new JSONArray();
         for (Object o : matches)
         {
-            array.put(o.toString());
+            if (o instanceof JSONObject) array.put(o);
+            else array.put(o.toString());
         }
         return array;
     }
