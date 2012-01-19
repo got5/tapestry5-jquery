@@ -15,6 +15,8 @@
 //
 package org.got5.tapestry5.jquery.components;
 
+import java.util.ArrayList;
+
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
@@ -28,12 +30,12 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
+import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -46,27 +48,25 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 @Import(library =          "${assets.path}/components/accordion/accordion.js")
 public class Accordion extends AbstractExtendableComponent
 {
-	@Inject
-	private ComponentResources resources;
-
-    @Inject
-    private JavaScriptSupport javaScriptSupport;
-
-    @Parameter(required=true, defaultPrefix=BindingConstants.LITERAL)
+	
+	/**
+	 * 
+	 */
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String panels;
-
+	
 	/**
 	 * The number of the accordion tab to activate when the page is displayed on the client.
 	 */
 	@Parameter(required=true)
 	private int activeElementId;
-
+	
 	/**
 	 * The slider parameters (please refer to jquery-ui documentation)
 	 */
 	@Parameter
     private JSONObject params;
-
+	
 	/**
      * Defines where block and label overrides are obtained from. 
      */
@@ -74,10 +74,29 @@ public class Accordion extends AbstractExtendableComponent
     @Property(write = false)
     private PropertyOverrides overrides;
     
-	@Property
+    /**
+     * @deprecated
+     */
+    @Property
+    @Parameter
+    private ArrayList<JQueryAccordionData> listOfElements;
+    
+    /**
+     * @deprecated
+     */
+    @Property
+    private JQueryAccordionData currentElement;
+    
+	@Inject
+	private ComponentResources resources;
+
+    @Inject
+    private JavaScriptSupport javaScriptSupport;
+	
+    @Property
 	private String panel;
 
-	@BeginRender
+    @BeginRender
 	void initJs()
     {
         setDefaultMethod("accordion");
@@ -115,6 +134,8 @@ public class Accordion extends AbstractExtendableComponent
 
 	public Block getCurrentBlock()
 	{
+		if(resources.isBound("listOfElements"))
+			return resources.getContainer().getComponentResources().getBlock(currentElement.getBlockName());
 		return overrides.getOverrideBlock(panel);
 	}
 	
@@ -127,5 +148,8 @@ public class Accordion extends AbstractExtendableComponent
 	{
 		return overrides.getOverrideMessages().get(panel);
 	}
-
+	
+	public Boolean getJQueryAccordionData(){
+		return resources.isBound("listOfElements");
+	}
 }
