@@ -42,4 +42,19 @@
     <t:block t:id="multiUpdateBlock">
         <p>rendering block-${blockId} after multi zone update</p>
     </t:block>
+    
+    <t:form t:id="ajaxForm">
+
+        <t:zone t:id="formZone" id="formZone">
+            First Name: <t:textfield t:id="firstName" value="firstName" t:validate="required" /><br/>
+            Last Name: <t:textfield t:id="lastName" value="lastName" t:validate="required"/><br/>
+        </t:zone>
+
+        <t:actionLink t:id="switch" t:zone="formZone">Switch fields</t:actionLink>
+
+        <input type="submit" />
+
+        <t:errors/>
+    </t:form>
+    
 </html>
