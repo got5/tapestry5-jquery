@@ -222,7 +222,6 @@
 						    <instrumentation>
 				            <excludes>
 				              <exclude>org/got5/tapestry5/jquery/*Constants.class</exclude>
-				              <exclude>com/example/**/*Test.class</exclude>
 				            </excludes>
          				 </instrumentation>
 					   </configuration>
