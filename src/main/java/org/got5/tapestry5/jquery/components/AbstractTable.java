@@ -387,7 +387,7 @@ public class AbstractTable implements ClientElement {
 		Class type = conduit.getPropertyType();
 
 		Object val = conduit.get(obj);
-
+		
 		if (!String.class.equals(getDataModel().get(cellModel).getClass())
                 && !Number.class.isAssignableFrom(getDataModel().get(cellModel).getClass()))
         {
@@ -398,7 +398,7 @@ public class AbstractTable implements ClientElement {
             }
             else
             {
-            	val = val.toString();
+            	val = val != null ? val.toString() : "";
             }
         }
             
