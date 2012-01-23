@@ -23,6 +23,15 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
             }
         }.wait("We should have just one row.", JQueryTestConstants.TIMEOUT);
         
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//div[@id='testCallback']@class").equalsIgnoreCase("added");
+            }
+        }.wait("The Added event has not been triggered.", JQueryTestConstants.TIMEOUT);
+        
         click("//a[@id='addrowlink']");
     	
     	new Wait()
@@ -45,5 +54,13 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
             }
         }.wait("The first row should be deleted.", JQueryTestConstants.TIMEOUT);
     	
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//div[@id='testCallback']@class").equalsIgnoreCase("removed");
+            }
+        }.wait("The Removed event has not been triggered.", JQueryTestConstants.TIMEOUT);
     }
 }
