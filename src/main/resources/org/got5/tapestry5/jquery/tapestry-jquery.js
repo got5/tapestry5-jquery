@@ -164,13 +164,17 @@ T5.extendInitializers({
     	$.each(spec.addRowTriggers, function(index, triggerId) {
             
             $("#" + triggerId).click(function(event) {
-                $("#" + spec.rowInjector).tapestryFormInjector("trigger");
+               
+            	$("#" + spec.rowInjector).tapestryFormInjector("trigger");
+                
                 return false;
             })
         });
     }, 
     
     formLoopRemoveLink: function(spec) {
+    	
+    	
         defaults = {
             effect: "blind"
         };
@@ -194,6 +198,9 @@ T5.extendInitializers({
                     var options = {};
                    
                     container.fadeOut('slow', function() {
+                    	
+                    	$(this).trigger(Tapestry.AJAXFORMLOOP_ROW_REMOVED);
+                    	
                     	$(this).remove();
                     });
                 }
@@ -793,6 +800,8 @@ $.widget( "ui.tapestryFormInjector", {
                 newElement = that.options.below ? el.after(newElement) : el.before(newElement);
                 
                 newElement.effect(that.options.show);
+                
+                newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED);
             });
             
         };
