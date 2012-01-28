@@ -1,0 +1,47 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+   
+   <t:jquery.accordion t:listOfElements="prop:data" t:activeElementId="1"/>
+
+
+	<t:block id="block1">
+	
+	<h3>Element 1</h3>
+	<hr/>
+	
+	content from block 1
+	
+	</t:block>
+	
+	<t:block id="block2">
+	
+	<h3>Element 2</h3>
+	<hr/>
+	
+	content from block 2
+	
+	</t:block>
+	
+	<t:block id="block3">
+	
+	<h3>Element 3</h3>
+	<hr/>
+	
+	content from block 3
+	
+	</t:block>
+	
+	
+	<t:block id="block4">
+	
+	<h3>Element 4</h3>
+	<hr/>
+	
+	content from block 4
+	<t:form>
+	<t:datefield value="sysDate"/>
+	<input type="submit"/>
+	</t:form>
+	
+	</t:block>
+
+</html>

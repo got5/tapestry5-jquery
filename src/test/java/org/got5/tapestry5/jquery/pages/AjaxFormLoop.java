@@ -19,12 +19,18 @@ package org.got5.tapestry5.jquery.pages;
 import java.util.Date;
 
 import org.apache.tapestry5.ValueEncoder;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.entities.Person;
 import org.got5.tapestry5.jquery.entities.Phone;
 
+@Import(library="context:js/demo.js")
 public class AjaxFormLoop
 {
 	
@@ -37,7 +43,10 @@ public class AjaxFormLoop
     
     @Property
     private Boolean deleted;
-
+    
+    @Inject
+    private JavaScriptSupport js;
+    
     @OnEvent("activate")
     void init()
     {
@@ -92,6 +101,10 @@ public class AjaxFormLoop
     	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
 	}
 
- 
+    public void afterRender(){
+    	js.addInitializerCall(InitializationPriority.LATE, 
+    								"ajaxFormLoopCallback", 
+    								new JSONArray());
+    }
     
 }

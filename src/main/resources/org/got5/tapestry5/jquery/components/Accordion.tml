@@ -1,8 +1,19 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-	<t:loop source="prop:panels" value="panel" >
-	    <h3><a href="#">${panelTitle}</a></h3>
-		<div>
-			<t:delegate to="CurrentBlock"/>
-		</div>     
-	</t:loop>
+	<t:if t:test="JQueryAccordionData" t:negate="true">
+		<t:loop source="prop:panels" value="panel" >
+		    <h3><a href="#">${panelTitle}</a></h3>
+			<div>
+				<t:delegate to="CurrentBlock"/>
+			</div>     
+		</t:loop>
+	</t:if>
+	
+	<t:if t:test="JQueryAccordionData">
+		<t:loop source="prop:listOfElements" value="currentElement" >
+		    <h3><a href="#">${currentElement.title}</a></h3>
+			<div>
+				<t:delegate to="CurrentBlock"/>
+			</div>     
+		</t:loop>
+	</t:if>
 </t:container>

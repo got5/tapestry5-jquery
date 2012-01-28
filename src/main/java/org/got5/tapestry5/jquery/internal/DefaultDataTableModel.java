@@ -191,7 +191,7 @@ public class DefaultDataTableModel implements DataTableModel {
 	                    }
 	                    else
 	                    {
-	                        val = val.toString();
+	                        val = val != null ? val.toString() : "";
 	                    }
 	                }
 	             cell.put(val);

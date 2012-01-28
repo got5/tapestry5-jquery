@@ -207,7 +207,26 @@
 					</descriptorRefs>
 				</configuration>
 		    </plugin>
-		</plugins>
+                     <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>cobertura-maven-plugin</artifactId>
+                        <version>2.5</version>
+                       <executions>
+	                       	<execution>
+	                       		<goals>
+	                       			<goal>clean</goal>
+	                       		</goals>
+	                       	</execution>
+                       </executions>
+					   <configuration>
+						    <instrumentation>
+				            <excludes>
+				              <exclude>org/got5/tapestry5/jquery/*Constants.class</exclude>
+				            </excludes>
+         				 </instrumentation>
+					   </configuration>
+                    </plugin>
+			</plugins>
 	</build>
 	<reporting>
 		<plugins>
@@ -219,6 +238,11 @@
 					<rootPackage>org.got5.tapestry5.jquery</rootPackage>
 				</configuration>
 			</plugin>
+			<plugin>
+            	<groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
 		</plugins>
 	</reporting>
 
@@ -236,7 +260,7 @@
         <profile>
             <id>mac-os-test</id>
             <activation>
-                <os><family>mac</family></os>	
+                <os><family>mac</family></os>
             </activation>
             <properties>
                 <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>

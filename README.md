@@ -23,7 +23,8 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-
+- 3.0.2-SNAPSHOT
+- 3.0.1 : Update to Tapestry 5.3.1
 - 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
           add Components : Gallery
 - 2.6.1 : improve Validation Mecanism and DataTable Component

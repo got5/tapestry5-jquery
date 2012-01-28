@@ -11,7 +11,19 @@ function callbackFunction(){
 (function( $ ) {
 
 	T5.extendInitializers(function(){
-
+		
+		function ajaxFormLoopCallback(specs){
+			$("div.tapestry-forminjector").live(Tapestry.AJAXFORMLOOP_ROW_ADDED, function(){
+				$("#testCallback").removeClass("removed");
+				$("#testCallback").addClass("added");
+			});
+			
+			$("div.tapestry-forminjector, div.tapestry-formfragment").live(Tapestry.AJAXFORMLOOP_ROW_REMOVED, function(){
+				$("#testCallback").removeClass("added");
+				$("#testCallback").addClass("removed");
+			});
+		}
+		
 		function init(specs) {
 			$("#foo").data('extra',{test: 16, teste: 17});
 	    }
@@ -69,7 +81,8 @@ function callbackFunction(){
 		}
 		return {
 			setData : init, 
-			dataTable : dataTableExtra
+			dataTable : dataTableExtra, 
+			ajaxFormLoopCallback : ajaxFormLoopCallback 
 		}
 	});
 

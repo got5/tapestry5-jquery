@@ -90,6 +90,16 @@
 		 */
 		PREVENT_SUBMISSION : "t-prevent-submission",
 	    
+		/**
+		 * Event triggered when a row of the AjaxFormLoop has been added
+		 */
+		AJAXFORMLOOP_ROW_ADDED : "tjq:rowadded",
+		
+		/**
+		 * Event triggered when a row of the AjaxFormLoop has been deleted
+		 */
+		AJAXFORMLOOP_ROW_REMOVED : "tjq:rowremoved",
+		
 	    /** Container of functions that may be invoked by the Tapestry.init() function. */
 		Initializer: { }
 		

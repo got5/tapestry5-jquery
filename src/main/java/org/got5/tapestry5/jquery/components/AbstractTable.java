@@ -171,9 +171,7 @@ public class AbstractTable implements ClientElement {
 	
 	private String clientId;
 	
-	@Property
-	private Integer index;
-
+	
 	@Property
 	private String cellModel;
 	
@@ -369,19 +367,27 @@ public class AbstractTable implements ClientElement {
     @Property(write = false)
     private Object row;
 	
+	@Parameter
+    private int rowIndex;
+	
+	@Property
+	private Integer index;
+
 	/**
 	 * In order get the value of a specific cell
 	 */
 	public Object getCellValue() {
-
+		
+		rowIndex = index;
+		
 		Object obj = getSource().getRowValue(index);
-
+		
 		PropertyConduit conduit = getDataModel().get(cellModel).getConduit();
 
 		Class type = conduit.getPropertyType();
 
 		Object val = conduit.get(obj);
-
+		
 		if (!String.class.equals(getDataModel().get(cellModel).getClass())
                 && !Number.class.isAssignableFrom(getDataModel().get(cellModel).getClass()))
         {
@@ -392,7 +398,7 @@ public class AbstractTable implements ClientElement {
             }
             else
             {
-            	val = val.toString();
+            	val = val != null ? val.toString() : "";
             }
         }
             

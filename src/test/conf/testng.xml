@@ -32,7 +32,7 @@
           <class name="org.got5.tapestry5.jquery.LinksubmitTest"></class>
           <class name="org.got5.tapestry5.jquery.ZoneTest"></class>
           <class name="org.got5.tapestry5.jquery.DraggableTest"></class>
-          <class name="org.got5.tapestry5.jquery.DataTableTest"></class>
+          <class name="org.got5.tapestry5.jquery.DataTableAjaxTest"></class>
           <class name="org.got5.tapestry5.jquery.InPlaceEditorTest"></class>
         </classes>
     </test>
@@ -40,6 +40,7 @@
     	<classes>
        	  <class name="org.got5.tapestry5.jquery.unit.ImportJQueryUITest"></class>
        	  <class name="org.got5.tapestry5.jquery.unit.JQueryUtilsMergeTest"></class>
+       	  <class name="org.got5.tapestry5.jquery.unit.InformalParametersToJsonTest"></class>
     	</classes>
     </test>
 </suite>

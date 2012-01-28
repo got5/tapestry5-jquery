@@ -108,10 +108,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         public String map(String name)
         {
-        	if(InternalUtils.isBlank(name)) 
-        		throw new TapestryException(TapestryJQueryExceptionMessages.importJQueryUiMissingValue(), null);
-        	
-            final StringBuilder relativePath = new StringBuilder()
+        	final StringBuilder relativePath = new StringBuilder()
                 .append(productionMode ? "/minified/" : "/")
                 .append(name)
                 .append(productionMode ? ".min.js" : ".js");

@@ -7,12 +7,4 @@ public final class TapestryJQueryExceptionMessages {
 	
 	private static final Messages MESSAGES = MessagesImpl.forClass(TapestryJQueryExceptionMessages.class);
 
-    private TapestryJQueryExceptionMessages()
-    {
-    }
-
-    public static String importJQueryUiMissingValue()
-    {
-        return MESSAGES.get("importJQueryUi-missing-value");
-    }
 }
