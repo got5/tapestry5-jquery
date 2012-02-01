@@ -23,7 +23,7 @@ public class RenderTrackerMixinWorker implements ComponentClassTransformWorker2 
         if (methods.isEmpty())
 			return;
 				
-		if(model.getMixinClassNames().contains(Selector.class.getName())){
+		if(!model.getMixinClassNames().contains(Selector.class.getName())){
 			model.addMixinClassName(Selector.class.getName(),"before:*");		
 		}
 		
