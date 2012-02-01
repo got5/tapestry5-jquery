@@ -23,7 +23,9 @@ public class RenderTrackerMixinWorker implements ComponentClassTransformWorker2 
         if (methods.isEmpty())
 			return;
 				
-		model.addMixinClassName(Selector.class.getName(),"before:*");		
+		if(model.getMixinClassNames().contains(Selector.class.getName())){
+			model.addMixinClassName(Selector.class.getName(),"before:*");		
+		}
 		
 	}
 	private Flow<PlasticMethod> matchEventHandlerMethods(PlasticClass plasticClass)
