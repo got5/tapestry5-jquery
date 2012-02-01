@@ -20,6 +20,7 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.grid.ColumnSort;
+import org.apache.tapestry5.grid.GridConstants;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
@@ -27,6 +28,7 @@ import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.internal.beaneditor.BeanModelUtils;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.services.BeanModelSource;
@@ -370,12 +372,28 @@ public class AbstractTable implements ClientElement {
 	@Parameter
     private int rowIndex;
 	
+	@Parameter(cache = false)
+	private String rowClass;
+	
 	@Property
 	private Integer index;
 
 	/**
 	 * In order get the value of a specific cell
 	 */
+	public String getRowClass()
+    {
+        List<String> classes = CollectionFactory.newList();
+
+        // Not a cached parameter, so careful to only access it once.
+
+       String rc = rowClass;
+
+       if (rc != null) classes.add(rc);
+
+       return TapestryInternalUtils.toClassAttributeValue(classes);
+    }
+	
 	public Object getCellValue() {
 		
 		rowIndex = index;

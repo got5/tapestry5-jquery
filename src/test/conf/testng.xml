@@ -34,6 +34,7 @@
           <class name="org.got5.tapestry5.jquery.DraggableTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableAjaxTest"></class>
           <class name="org.got5.tapestry5.jquery.InPlaceEditorTest"></class>
+          <class name="org.got5.tapestry5.jquery.DataTableTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">

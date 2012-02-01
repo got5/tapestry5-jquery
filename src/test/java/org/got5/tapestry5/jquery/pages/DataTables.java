@@ -102,4 +102,13 @@ public class DataTables
 		JSONObject json = new JSONObject("bJQueryUI", "true", "bStateSave", "true", "sDom", "TC<\"clear\">Rlfrtip");
 		return json;
 	}
+	
+	@Property
+	private int index;
+	
+	public String getCss(){
+		if(index==0)
+			return "first";
+		return "other";
+	}
 }
