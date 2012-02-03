@@ -106,7 +106,28 @@ public class DataTableTest extends SeleniumTestCase{
 		checkDisable(2);
 		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][3]");
 		checkDisable(3);
+		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][1]");
 		
+	}
+	@Test
+	public void testCssClass(){
+		open("/DataTables");
+		
+		new Wait() {
+			
+			@Override
+			public boolean until() {
+				return getAttribute("//table/tbody/tr[1]@class").contains("first");
+			}
+		}.wait("The first row should have the CSS class 'css'", JQueryTestConstants.TIMEOUT);
+		
+		new Wait() {
+			
+			@Override
+			public boolean until() {
+				return getAttribute("//table/tbody/tr[2]@class").contains("other");
+			}
+		}.wait("The second row should have the CSS class 'css2'", JQueryTestConstants.TIMEOUT);
 	}
 	
 	private void checkDisable(final int i) {

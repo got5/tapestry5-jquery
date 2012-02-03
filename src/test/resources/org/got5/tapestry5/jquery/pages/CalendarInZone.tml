@@ -1,0 +1,11 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+    <t:zone t:id="zone" t:visible="false">
+    <t:form>
+        <t:datefield t:value="date" />
+		<t:submit />
+    </t:form>
+    </t:zone>
+    
+    <t:actionLink t:id="link" t:zone="zone">Link</t:actionLink>
+</html>

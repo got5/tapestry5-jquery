@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.0.2-SNAPSHOT</version>
+	<version>3.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<description>Tapestry5-jQuery</description>
@@ -32,7 +32,102 @@
 	    <url>git@github.com:got5/tapestry5-jquery.git</url>
   	</scm>
   	<developers>
-  		<developer><name>Emmanuel DEMEY</name></developer>
+  		<developer>
+      		<id>robink</id>
+      		<name>Robin KOMIWES</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>andyhot</id>
+      		<name>Andreas ANDREOU</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+2</timezone>
+   		</developer>
+   		<developer>
+      		<id>criedel</id>
+      		<name>Christian RIEDEL</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>got5</id>
+      		<name>François FACON</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>trolando</id>
+      		<name>Tom van DIJK</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+ 		<developer>
+      		<id>Gillespie59</id>
+      		<name>Emmanuel DEMEY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+		<developer>
+      		<id>cluster</id>
+      		<name>Clément USTER</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>awillemant</id>
+      		<name>Amaury WILLEMANT</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>trsvax</id>
+      		<name>Barry BOOKS</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id>bauna</id>
+      		<name>Pablo NUSSEMBAUM</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id></id>
+      		<name>Alexander OBLOVATNIY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id>Nephtys</id>
+      		<name>Stéfanie DUPREY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
   	</developers>
 	<ciManagement>
 		<system>Hudson</system>
@@ -103,7 +198,7 @@
       		</resources>
 
 		<plugins>
-                       <plugin>
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>

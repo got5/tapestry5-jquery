@@ -84,7 +84,7 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 		focus("//body");
 	}
 	
-	@Test
+	/*@Test
 	public  void testNavigation(){
 		open("/DataTablesAjax");
 		
@@ -94,7 +94,7 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][3]");
 		checkDisable(3);
 		
-	}
+	}*/
 	
 	@Test
 	public  void testFilter(){

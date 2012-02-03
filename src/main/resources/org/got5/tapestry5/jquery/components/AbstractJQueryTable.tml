@@ -9,7 +9,7 @@
         		
         		<t:parameter name="else">
 	        		
-	        		<tr t:type="loop" t:source="loopSource" t:value="index">
+	        		<tr t:type="loop" t:source="loopSource" t:value="index" class="${rowClass}">
 	        		
 	        			<t:loop t:source="propertyNames" t:value="cellModel">
 							<td>	        			

@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.0.0
+# Tapestry 5 jQuery integration Module - 3.1.0
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -15,6 +15,7 @@ http://tapestry5-jquery.com/
 - Barry BOOKS as trsvax
 - Pablo NUSSEMBAUM as bauna
 - Alexander OBLOVATNIY
+- Stéfanie DUPREY as Nephtys
 
 ##Hosting
 Christophe Furmaniak 	
@@ -23,8 +24,8 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-- 3.0.2-SNAPSHOT
-- 3.0.1 : Update to Tapestry 5.3.1
+- 3.2.0 : Update to Tapestry 5.3.2
+- 3.1.0-SNAPSHOT : Update to Tapestry 5.3.1
 - 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
           add Components : Gallery
 - 2.6.1 : improve Validation Mecanism and DataTable Component
