@@ -26,4 +26,40 @@ public class CalendarTest extends SeleniumTestCase{
 
         assertEquals(true, isVisible("identifier=ui-datepicker-div"));
     }
+	
+	@Test
+	public void testCalendarInZone(){
+		
+		testLocalInZone("en", "Next");
+        
+		testLocalInZone("fr", "Suivant");
+	}
+	
+	private void testLocalInZone(String locale, final String text){
+		
+        open("/"+locale+"/calendarinzone");
+		
+		click("//a[@id='link']");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return !getAttribute("//div[contains(@class,'t-zone')]@style").contains("none");
+            }
+        }.wait("zone fr not visible!", JQueryTestConstants.TIMEOUT);
+
+        click("//button[@class='ui-datepicker-trigger']");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("//span[@class='ui-icon ui-icon-circle-triangle-e']").equalsIgnoreCase(text);
+            }
+        }.wait("element not visible!", JQueryTestConstants.TIMEOUT);
+        
+	}
 }
