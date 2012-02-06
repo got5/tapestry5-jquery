@@ -16,8 +16,12 @@ public class CalendarInZone {
 	@InjectComponent
 	private Zone zone;
 	
+	@Property
+	private boolean showContents;
+	
 	@OnEvent(EventConstants.ACTION)
 	public Object updateZone(){
+		showContents = true;
 		return zone.getBody();
 	}
 }
