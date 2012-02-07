@@ -57,9 +57,10 @@ public class CalendarTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getText("//span[@class='ui-icon ui-icon-circle-triangle-e']").equalsIgnoreCase(text);
+                return getAttribute("//a[contains(@class,'ui-datepicker-next')]@title").equalsIgnoreCase(text);
+              
             }
-        }.wait("element not visible!", JQueryTestConstants.TIMEOUT);
+        }.wait(text+" element not visible! "+getAttribute("//a[contains(@class,'ui-datepicker-next')]@title"), JQueryTestConstants.TIMEOUT);
         
 	}
 }

@@ -2,7 +2,7 @@
     
     <t:zone t:id="zone" t:visible="false">
 	<t:if test="showContents">
-		<t:form>
+		<t:form t:zone="zone">
         		<t:datefield t:value="date" />
 			<t:submit />
     		</t:form>
@@ -10,4 +10,11 @@
     </t:zone>
     
     <t:actionLink t:id="link" t:zone="zone">Link</t:actionLink>
+    <p>
+        
+        <t:actionlink t:id="english"> english</t:actionlink><br/>
+        <t:actionlink t:id="french" t:zone="zone"> french</t:actionlink><br/>
+       
+    </p>
+    
 </html>
