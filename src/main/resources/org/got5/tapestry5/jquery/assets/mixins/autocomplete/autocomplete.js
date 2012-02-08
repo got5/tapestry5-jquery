@@ -32,6 +32,10 @@
 	            
 	        if (specs.minLength >= 0) 
 	        	conf.minLength = specs.minLength;
+
+	        if (specs.options) {
+	            $.extend(conf, specs.options);
+	        }
 	        
 	        $("#" + specs.id).autocomplete(conf);
 	    }
