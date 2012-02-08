@@ -58,16 +58,16 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     public JQueryDateFieldStack(final ThreadLocale threadLocale,
 
-                                @Symbol(SymbolConstants.COMPACT_JSON)
-                                final boolean compactJSON,
+    @Symbol(SymbolConstants.COMPACT_JSON)
+    final boolean compactJSON,
 
-                                @Symbol(SymbolConstants.PRODUCTION_MODE)
-                                final boolean productionMode,
+    @Symbol(SymbolConstants.PRODUCTION_MODE)
+    final boolean productionMode,
 
-                                final AssetSource assetSource,
+    final AssetSource assetSource,
 
-                                final TypeCoercer typeCoercer,
-                                final SymbolSource symbolSource)
+    final TypeCoercer typeCoercer,
+    final SymbolSource symbolSource)
     {
         this.threadLocale = threadLocale;
         this.assetSource = assetSource;
@@ -126,22 +126,19 @@ public class JQueryDateFieldStack implements JavaScriptStack
             jQueryUIPath += "/";
         }
 
-    	final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
+        final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
-    	final List<Asset> javaScriptStack = new ArrayList<Asset>();
+        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s/jquery.ui.datepicker%s.js", jQueryUIPath, 
+        		(!productionMode ? "/minified" : ""),
+        		(!productionMode ? ".min" : ""))));
 
-     	if (datePickerI18nAsset != null)
+        final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
+
+    	if (datePickerI18nAsset != null)
      	{
      	    javaScriptStack.add(datePickerI18nAsset);
      	}
-
-        if (productionMode) {
-
-            javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js")));
-        }
-
-        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js")));
-
+        
      	javaScriptStack.add(assetSource.getExpandedAsset("${assets.path}/components/datefield/datefield.js"));
 
     	return javaScriptStack;
