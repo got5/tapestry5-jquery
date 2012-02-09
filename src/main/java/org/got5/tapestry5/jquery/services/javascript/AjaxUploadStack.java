@@ -43,7 +43,7 @@ public class AjaxUploadStack implements JavaScriptStack
 
         final String path = String.format("${assets.path}/components/upload/jquery.fileuploader%s.js", productionMode ? ".min" : "");
 
-        javaScriptStack = F.flow(path).map(pathToAsset).toList();
+        javaScriptStack = F.flow(path, "${assets.path}/components/upload/upload.js").map(pathToAsset).toList();
 
         
         
