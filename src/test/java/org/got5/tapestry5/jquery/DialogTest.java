@@ -23,16 +23,16 @@ import com.thoughtworks.selenium.Wait;
 
 public class DialogTest extends SeleniumTestCase {
 
+	String dialogLink = "identifier=dialoglink";
+    String dialogAjaxLink = "identifier=dialogajaxlink";
+    final String dialog = "identifier=myDialog";
+    String closeDialog = "css=span[class~=\"ui-icon-closethick\"]";
+    String zone = "identifier=myzone";
+    
 	@Test
     public void testDialog()
     {
         open("/jquerydialog");
-
-        String dialogLink = "identifier=dialoglink";
-        String dialogAjaxLink = "identifier=dialogajaxlink";
-        final String dialog = "identifier=myDialog";
-        String closeDialog = "css=span[class~=\"ui-icon-closethick\"]";
-        String zone = "identifier=myzone";
 
         checkDialogState(dialogLink, dialog, true);
 
@@ -50,6 +50,29 @@ public class DialogTest extends SeleniumTestCase {
 
        checkDialogState(closeDialog, dialog, false);
     }
+	
+	@Test(dependsOnMethods="testDialog")
+	public void testDraggableDialog(){
+		
+		open("/jquerydialog");
+		
+		checkDialogState(dialogLink, dialog, true);
+		
+		final Number top = getElementPositionTop("//div[contains(@class, 'ui-dialog-titlebar')]");
+		
+		dragAndDropToObject("//div[contains(@class, 'ui-dialog-titlebar')]", "//div[@id='top']");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return top != getElementPositionTop("//div[contains(@class, 'ui-dialog-titlebar')]");
+            }
+        }.wait("The dialog has not been moved !!", JQueryTestConstants.TIMEOUT);
+        
+        checkDialogState(closeDialog, dialog, false);
+	}
 	
 	private void checkDialogState(String triggerLocator, final String dialogLocator, final boolean state)
     {

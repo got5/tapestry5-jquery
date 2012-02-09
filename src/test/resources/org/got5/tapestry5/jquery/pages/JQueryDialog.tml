@@ -1,5 +1,5 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:jquery.dialog t:clientId="myDialog">
+    <t:jquery.dialog t:clientId="myDialog" t:params="options">
     	Dialog test!
 		<t:zone t:id="myZone">${count}
 		
