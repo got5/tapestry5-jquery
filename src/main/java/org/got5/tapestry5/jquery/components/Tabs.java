@@ -197,7 +197,7 @@ public class Tabs extends AbstractExtendableComponent
 	}
 	
 	public boolean getOlderVersion(){
-		return resources.isBound("activePanelId");
+		return resources.isBound("listTabData");
 	}
 	
 	public String[] getTabs()
