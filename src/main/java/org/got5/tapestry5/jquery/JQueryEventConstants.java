@@ -37,4 +37,8 @@ public class JQueryEventConstants {
      */
     public static final String DROP = "Drop";
     
+    /**
+     * Triggered by the {@link Tabs} component whenever a tab is changed.
+     */
+    public static final String SELECT_TAB = "SelectTab";
 }

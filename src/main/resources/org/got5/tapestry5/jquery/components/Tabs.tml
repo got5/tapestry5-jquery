@@ -1,10 +1,51 @@
-<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" xmlns:p="tapestry:parameter">
+	
 	<ul>
-		<t:loop source="prop:listTabData" value="currentTabData" index="currentPanelId">
-            <li><a href="#" t:type="eventLink" t:event="selectTab" t:zone="prop:clientZoneId" context="tabContext">${currentTabData.title}</a></li>                
-        </t:loop>
+		<t:if t:test="olderVersion">
+			<t:loop source="prop:listTabData" value="currentTabData" index="currentPanelId">
+				<t:if t:test="ajax">
+	            	<li><a href="#" t:type="eventLink" t:event="selectTab" t:zone="prop:clientZoneId" t:context="tabContext">${currentTabData.title}</a></li>
+	            	<p:else>
+	            		<li><a href="#${currentTabData?.blockName}">${currentTabData?.title}</a></li>
+	            	
+	            	</p:else>
+	            </t:if>                
+	        </t:loop>
+	        
+	        <p:else>
+	        	<t:loop source="tabs" value="tab" index="currentPanelId">
+		            <li>
+		            	<t:if t:test="ajax">
+		            		<a href="#" t:type="eventLink" t:event="selectTab" t:zone="prop:clientZoneId" t:context="tabContext">${tabTitle}</a>
+		            		<p:else>
+		            			<a href="#${tab}">${tabTitle}</a>
+		            		</p:else>
+		            	</t:if>
+		            </li>                
+		        </t:loop>
+	        </p:else>
+        </t:if>
 	</ul>
-	<div t:type="zone" t:id="contentZone" id="${clientZoneId}">
-		<t:delegate to="ActiveBlock"/>
-	</div>	
+	
+	<t:if t:test="ajax">
+		<div t:type="zone" t:id="xontentZone" id="${clientZoneId}">
+			<t:delegate to="ActiveBlock"/>
+		</div>
+		<p:else>
+			<t:if t:test="olderVersion">
+				<t:loop source="prop:listTabData" value="currentTabData" index="currentPanelId">
+					<div id="${currentTabData?.blockName}">
+						<t:delegate to="ActiveBlock"/>
+					</div>	
+				</t:loop>
+				<p:else>
+					<t:loop source="tabs" value="tab" index="currentPanelId">
+						<div id="${tab}">
+							<t:delegate to="ActiveBlock"/>
+						</div>	
+					</t:loop>
+				</p:else>
+			</t:if>
+		</p:else>
+	</t:if>	
 </t:container>

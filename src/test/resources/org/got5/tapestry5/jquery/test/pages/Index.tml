@@ -1,7 +1,7 @@
 <html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
     
     
-    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" t:ajax="false"/>
    
 
 	<t:block id="block1">
