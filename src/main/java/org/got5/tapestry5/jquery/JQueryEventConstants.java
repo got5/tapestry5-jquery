@@ -2,7 +2,6 @@ package org.got5.tapestry5.jquery;
 
 import org.apache.tapestry5.EventConstants;
 import org.got5.tapestry5.jquery.components.AjaxUpload;
-import org.got5.tapestry5.jquery.components.Tabs;
 
 /**
  * Analog to {@link EventConstants}-
@@ -25,22 +24,21 @@ public class JQueryEventConstants {
      * Triggered by the DataTable component
      */
     public static final String DATA = "Data";
-
-
+    
+    
     /**
      * Triggered by the ZoneRefresh component
      */
     public static final String REFRESH = "Refresh";
-
-
+    
+    
     /**
      * Triggered by the ZoneDrop component
      */
     public static final String DROP = "Drop";
-
+    
     /**
      * Triggered by the {@link Tabs} component whenever a tab is changed.
      */
     public static final String SELECT_TAB = "SelectTab";
-
 }
