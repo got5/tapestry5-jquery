@@ -34,18 +34,16 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
+import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * @since 2.1.1
  */
 @Events(JQueryEventConstants.DATA)
-@Import(library = {
-		"${assets.path}/components/datatables/jquery.dataTables.min.js",
-		"${assets.path}/components/datatables/dataTables.js" }, 
-		stylesheet = { "${assets.path}/components/datatables/tango/skin.css" })
+@Import(stack = DataTableStack.STACK_ID)
 public class DataTable extends AbstractJQueryTable {
-	
+
 	@Inject
 	private ComponentResources resources;
 
@@ -54,15 +52,16 @@ public class DataTable extends AbstractJQueryTable {
 
 	@Inject
 	private TranslatorSource ts;
-	
+
 	@Environmental
 	private JavaScriptSupport support;
 
 	@Inject
 	private Request request;
-	
+
 	@Inject
 	private Messages messages;
+
 	/**
 	 * The default Implementation of the DataTableModel Interface
 	 */
@@ -77,10 +76,11 @@ public class DataTable extends AbstractJQueryTable {
 				getSortModel(), getOverrides());
 	}
 
-	
-	public DataTableModel getDefaultDataTableModel(){return reponse;}
-	
-	
+
+	@Override
+    public DataTableModel getDefaultDataTableModel(){return reponse;}
+
+
 
 	/**
 	 * This method will construct the JSON options and call the DataTable contructor
@@ -89,7 +89,7 @@ public class DataTable extends AbstractJQueryTable {
 	void setJS() {
 
 		JSONObject setup = new JSONObject();
-		
+
 		setup.put("id", getClientId());
 
 		JSONObject dataTableParams = new JSONObject();
@@ -101,26 +101,26 @@ public class DataTable extends AbstractJQueryTable {
 		}
 
 		dataTableParams.put("sPaginationType", "full_numbers");
-		
+
 		dataTableParams.put("iDisplayLength", getRowsPerPage());
-		
+
 		dataTableParams.put("aLengthMenu", new JSONLiteral("[[" + getRowsPerPage()
 				+ "," + (getRowsPerPage() * 2) + "," + (getRowsPerPage() * 4) + "],["
 				+ getRowsPerPage() + "," + (getRowsPerPage() * 2) + ","
 				+ (getRowsPerPage() * 4) + "]]"));
-		
+
 		JQueryUtils.merge(dataTableParams, getOptions());
-		
+
 		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
 		JSONArray sortableConfs = new JSONArray();
 		for(String propertyName : getPropertyNames()){
 			sortableConfs.put(new JSONObject(String.format("{'bSortable': %s}", getModel().get(propertyName).isSortable())));
 		}
-		
+
 		dataTableParams.put("aoColumns", sortableConfs);
-		
-		
-		
+
+
+
 		JSONObject language = new JSONObject();
         language.put("sProcessing", messages.get("datatable.sProcessing"));
         language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
@@ -134,7 +134,7 @@ public class DataTable extends AbstractJQueryTable {
         language.put("sSearch", messages.get("datatable.sSearch"));
         language.put("sUrl", messages.get("datatable.sUrl"));
         dataTableParams.put("oLanguage", language);
-        
+
 		setup.put("params", dataTableParams);
 
 		support.addInitializerCall("dataTable", setup);

@@ -16,7 +16,6 @@
 
 package org.got5.tapestry5.jquery.services;
 
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
@@ -47,6 +46,7 @@ import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
@@ -72,7 +72,8 @@ public class JQueryModule
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
         configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
-        
+        configuration.addInstance(DataTableStack.STACK_ID, DataTableStack.class);
+
         configuration.addInstance("slider", Slider.class);
     }
 
@@ -161,7 +162,7 @@ public class JQueryModule
 
     @Advise
     @Match("AssetPathConverter")
-    public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source, 
+    public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean prototype)
     	throws SecurityException, NoSuchMethodException{
 
@@ -179,7 +180,7 @@ public class JQueryModule
 
 			}
 		};
-		
+
 		if(prototype)
 			receiver.adviseMethod(receiver.getInterface().getMethod("convertAssetPath", String.class),advise);
     }
