@@ -16,7 +16,6 @@
 
 package org.got5.tapestry5.jquery.services;
 
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
@@ -171,12 +170,12 @@ public class JQueryModule
 
 				invocation.proceed();
 
-				if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
-
-					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
-
+				if(invocation.getReturnValue().toString().endsWith("ProgressiveDisplay.js")){
+					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/assets/components/progressiveDisplay/progressiveDisplay-jquery.js").toClientURL());
 				}
-
+				else if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
+					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
+				}
 			}
 		};
 		
