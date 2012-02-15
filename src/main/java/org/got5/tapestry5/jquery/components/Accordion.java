@@ -144,9 +144,22 @@ public class Accordion extends AbstractExtendableComponent
 		return TapestryInternalUtils.splitAtCommas(panels);
 	}
 	
+	/**
+	 * First, Tapestry5-jQuery will look for the label in an associated
+	 * bundle, with the name of the panel as a key. If the message does not exist
+	 * Tapestry5-jQuery will provide a default value :  the name of the panel, with
+	 * capital letters and space.
+	 * 
+	 * @return the label of a tab
+	 */
 	public String getPanelTitle()
 	{
-		return overrides.getOverrideMessages().get(panel);
+		if(overrides.getOverrideMessages().contains(panel))
+		{
+			return overrides.getOverrideMessages().get(panel);
+		}
+		
+		return TapestryInternalUtils.toUserPresentable(panel);
 	}
 	
 	public Boolean getJQueryAccordionData(){
