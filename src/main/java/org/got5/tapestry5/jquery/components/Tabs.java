@@ -30,6 +30,7 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -205,8 +206,22 @@ public class Tabs extends AbstractExtendableComponent
 		return TapestryInternalUtils.splitAtCommas(tabs);
 	}
 
+	/**
+	 * First, Tapestry5-jQuery will look for the label in an associated
+	 * bundle, with the name of the tab as a key. If the message does not exist
+	 * Tapestry5-jQuery will provide a default value :  the name of the tab, with
+	 * capital letters and space.
+	 * 
+	 * @return the label of a tab
+	 */
 	public String getTabTitle(){
-		return overrides.getOverrideMessages().get(tab);
+		
+		if(overrides.getOverrideMessages().contains(tab))
+		{
+			return overrides.getOverrideMessages().get(tab);
+		}
+		
+		return TapestryInternalUtils.toUserPresentable(tab);
 	}
 	
 }
