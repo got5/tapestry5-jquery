@@ -3,6 +3,8 @@ package org.got5.tapestry5.jquery.pages;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 
 public class ZoneRefresh {
@@ -11,8 +13,16 @@ public class ZoneRefresh {
 	@Persist
 	private int i;
 	
+	@Inject
+	private JavaScriptSupport js;
+	
 	@OnEvent(JQueryEventConstants.REFRESH)
 	public void refesh(){
 		i++;
+	}
+	
+	public void afterRender(){
+		js.addScript("$(\"#stop\").bind(\"click\", function(){$(\"#clickZone\").trigger(\"stopRefresh\");});");
+		js.addScript("$(\"#start\").bind(\"click\", function(){$(\"#clickZone\").trigger(\"startRefresh\");});");
 	}
 }

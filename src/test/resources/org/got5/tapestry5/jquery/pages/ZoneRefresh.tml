@@ -5,6 +5,11 @@
       
         <t:zone t:id="clickZone" t:mixins="jquery/ZoneRefresh" t:period="2">
    		 	${i}
-   		 </t:zone>
-    
+   		</t:zone>
+    	<p>
+    		<a id="stop">Stop Refreshing the Zone</a>
+    	</p>
+    	<p>
+    		<a id="start">Start Refreshing the Zone</a>
+    	</p>
 </html>

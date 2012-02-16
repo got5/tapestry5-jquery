@@ -41,6 +41,29 @@ public class ZoneRefreshTest extends SeleniumTestCase{
 		    }
 		}.wait("The ZoneRefresh mixin does not work well : expected 0 : " + getText("//div[@id='clickZone']"), 
 				JQueryTestConstants.TIMEOUT);
-		   
+		
+		click("//a[@id='stop']");
+		
+		new Wait()
+		{
+			@Override
+		    public boolean until()
+		    {
+				return getText("//div[@id='clickZone']").equals("2");
+		    }
+		}.wait("The Stop event of the ZoneRefresh mixin does not work well : expected 0 : " + getText("//div[@id='clickZone']"), 
+				JQueryTestConstants.TIMEOUT);
+		
+		click("//a[@id='start']");
+		
+		new Wait()
+		{
+			@Override
+		    public boolean until()
+		    {
+				return getText("//div[@id='clickZone']").equals("3");
+		    }
+		}.wait("The Start event of the ZoneRefresh mixin does not work well : expected 0 : " + getText("//div[@id='clickZone']"), 
+				JQueryTestConstants.TIMEOUT);
 	}
 }
