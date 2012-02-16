@@ -41,4 +41,9 @@ public class JQueryEventConstants {
      * Triggered by the {@link Tabs} component whenever a tab is changed.
      */
     public static final String SELECT_TAB = "SelectTab";
+    
+    /**
+     * Triggered by the {@link Sortable} mixin
+     */
+    public static final String SORTABLE = "sort";
 }

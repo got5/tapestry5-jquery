@@ -28,13 +28,13 @@
           <class name="org.got5.tapestry5.jquery.GalleryTest"></class>
           <class name="org.got5.tapestry5.jquery.FormTest"></class>
           <class name="org.got5.tapestry5.jquery.ButtonTest"></class>
-          <!-- <class name="org.got5.tapestry5.jquery.ShowSourceTest"></class> -->
           <class name="org.got5.tapestry5.jquery.LinksubmitTest"></class>
           <class name="org.got5.tapestry5.jquery.ZoneTest"></class>
           <class name="org.got5.tapestry5.jquery.DraggableTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableAjaxTest"></class>
           <class name="org.got5.tapestry5.jquery.InPlaceEditorTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableTest"></class>
+          <class name="org.got5.tapestry5.jquery.SortableTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">
