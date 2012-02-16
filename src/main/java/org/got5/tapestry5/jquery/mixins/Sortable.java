@@ -23,7 +23,7 @@ import org.got5.tapestry5.jquery.JQueryEventConstants;
  */
 @Events(JQueryEventConstants.SORTABLE)
 @ImportJQueryUI({"jquery.ui.mouse", "jquery.ui.sortable"})
-@Import(library="classpath:org/got5/tapestry5/jquery/assets/components/sortable/sortable.js")
+@Import(library="classpath:org/got5/tapestry5/jquery/assets/mixins/sortable/sortable.js")
 public class Sortable {
 	
 	/**
@@ -54,7 +54,7 @@ public class Sortable {
 		javaScriptSupport.addInitializerCall("sortable", opt);
 	}
 	
-	@OnEvent("sortable")
+	@OnEvent("sortable")	
 	public void sort(){
 		
 		String value = request.getParameter("list");
