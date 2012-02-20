@@ -337,7 +337,7 @@
 		          			<tagletArtifact>
 					            <groupId>org.apache.tapestry</groupId>                       
 					            <artifactId>tapestry-javadoc</artifactId>                       
-					            <version>5.3.2</version>                   
+					            <version>${tapestry-release-version}</version>                   
 		          			</tagletArtifact>
 		          		</configuration>
 		      		</plugin>
