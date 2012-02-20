@@ -13,6 +13,8 @@ import org.got5.tapestry5.jquery.mixins.ui.Widget;
  * 
  * @since 2.6.1
  * @see <a href="http://webcloud.se/code/jQuery-Placeholder/">http://webcloud.se/code/jQuery-Placeholder/</a>
+ * 
+ * @tapestrydoc
  */
 @Import(library = "${assets.path}/mixins/placeholder/jquery.placeholder.min.js")
 @MixinAfter

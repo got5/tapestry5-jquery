@@ -30,7 +30,6 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -44,6 +43,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * This component allows you create a jquery ui tab.
  * 
  * @see <a href="http://jqueryui.com/demos/tabs/">http://jqueryui.com/demos/tabs/</a>
+ * 
+ * @tapestrydoc
  */
 @SupportsInformalParameters
 @ImportJQueryUI(value = { "jquery.ui.core",

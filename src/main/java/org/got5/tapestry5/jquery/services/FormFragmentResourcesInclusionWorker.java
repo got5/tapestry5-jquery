@@ -29,9 +29,6 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 
-/**
- * Adds a {@link IncludeFormResources} mixin when a Form component is transformed
- */
 public class FormFragmentResourcesInclusionWorker implements ComponentClassTransformWorker2
 {
     private final JavaScriptSupport javaScriptSupport;

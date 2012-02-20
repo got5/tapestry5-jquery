@@ -36,6 +36,9 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @tapestrydoc
+ */
 @SupportsInformalParameters
 public class AbstractTable implements ClientElement {
 

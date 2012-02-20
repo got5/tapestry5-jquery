@@ -32,7 +32,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
 * @since 2.1.1
-* @see http://sorgalla.com/jcarousel/
+* @see <a hred="http://sorgalla.com/jcarousel/">sorgalla.com</a>
+* 
+* @tapestrydoc
 */
 @Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.js","${assets.path}/components/carousel/carousel.js"},
 					stylesheet={"${assets.path}/components/carousel/tango/skin.css"})

@@ -38,6 +38,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * The droppable component 
  * 
  * @see <a href="http://docs.jquery.com/UI/Draggable">http://docs.jquery.com/UI/Draggable</a>
+ * 
+ * @tapestrydoc
  */
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.droppable"})
 @Import(library = { "${assets.path}/mixins/zonedroppable/zonedroppable.js" })

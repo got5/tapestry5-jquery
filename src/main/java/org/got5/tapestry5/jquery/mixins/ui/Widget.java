@@ -19,6 +19,8 @@ import org.slf4j.Logger;
  * You just have to create a class extending this one. 
  * And automatically, the widget javascript method will be called. 
  * @since 2.6.0
+ * 
+ * @tapestrydoc
  */
 public class Widget {
 	

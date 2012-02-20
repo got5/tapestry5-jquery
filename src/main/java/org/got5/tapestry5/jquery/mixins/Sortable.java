@@ -20,6 +20,8 @@ import org.got5.tapestry5.jquery.JQueryEventConstants;
  * @since 3.2.0
  * @see <a href="http://jqueryui.com/demos/sortable/">http://jqueryui.com/demos/sortable/</a>
  * @author Emmanuel DEMEY
+ * 
+ * @tapestrydoc
  */
 @Events(JQueryEventConstants.SORTABLE)
 @ImportJQueryUI({"jquery.ui.mouse", "jquery.ui.sortable"})

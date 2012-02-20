@@ -36,6 +36,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @since 2.1.1
  * @see <a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a>
+ * 
+ * @tapestrydoc
  */
 @Import(library = {"${assets.path}/components/superfish/js/hoverIntent.js",
 					"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",

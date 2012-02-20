@@ -17,6 +17,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @since 2.1.1
  * @see <a href="http://www.zurb.com/playground/reveal-modal-plugin">http://www.zurb.com/playground/reveal-modal-plugin</a>
+ * 
+ * @tapestrydoc
  */
 @Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
 public class Reveal{

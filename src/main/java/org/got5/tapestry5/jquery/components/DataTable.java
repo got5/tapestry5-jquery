@@ -38,6 +38,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * @since 2.1.1
+ * 
+ * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
 @Import(library = {

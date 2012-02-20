@@ -16,6 +16,9 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
+/**
+ * @tapestrydoc
+ */
 @SupportsInformalParameters
 public class Widget {
 
