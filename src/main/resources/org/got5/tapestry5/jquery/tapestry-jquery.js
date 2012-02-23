@@ -630,7 +630,7 @@ $.widget( "ui.tapestryZone", {
 	 */
 	applyContentUpdate: function(content) {
 
-		if (!content) {
+		if (content === null) {
 			$().log("WARN: content is undefined. Aborting update for zone: " + this.element.attr("id"));
 			return;
 		}
