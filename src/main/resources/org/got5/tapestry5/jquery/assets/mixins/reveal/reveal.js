@@ -5,7 +5,7 @@
 		function init(spec) {
 			$('#'+spec.div).addClass('reveal-modal');
 			
-	    	$('#'+spec.id).click(function(e) {
+	    	$(spec.id).click(function(e) {
 	            e.preventDefault();
 	            $('#'+spec.div).reveal({
 	            	animation:spec.animation,

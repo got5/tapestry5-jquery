@@ -1,8 +1,14 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
  
-  <a id="monLink" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">
+  <a id="monLink"  name="monLink" t:selector="a[name='monLink']" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">
   link
   </a>
+  
+  <br />
+  <a id="monLink2"  name="monLink2" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">
+  link 2
+  </a>
+  
   <div id="myDiv">
   	Test
   </div>

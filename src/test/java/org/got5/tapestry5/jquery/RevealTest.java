@@ -11,28 +11,43 @@ public class RevealTest extends SeleniumTestCase{
     	
     	open("/reveal");
     	
-    	click("//a[@id='pagelink']");
+    	click("//a[@name='monLink2']");
     	
-    	 new Wait()
-         {
-             @Override
-             public boolean until()
-             {
-                 return getAttribute("//div[@class='reveal-modal']@style").contains("visible");
-             }
-         }.wait("The reveal window is not visible", JQueryTestConstants.TIMEOUT);
-         
-         click("//div[@class='reveal-modal-bg']");
-         
-        
-    	 new Wait()
-         {
-             @Override
-             public boolean until()
-             {
-                 return getAttribute("//div[@class='reveal-modal']@style").contains("hidden");
-             }
-         }.wait("The reveal window visible", JQueryTestConstants.TIMEOUT);
+    	testModal();
     	
     }
+	
+	@Test
+    public void testRevealMixinWithSelector(){
+    	
+    	open("/reveal");
+    	
+    	click("//a[@name='monLink']");
+    	
+    	testModal();
+    	
+    }
+	
+	private void testModal(){
+   	 new Wait()
+     {
+         @Override
+         public boolean until()
+         {
+             return getAttribute("//div[@class='reveal-modal']@style").contains("visible");
+         }
+     }.wait("The reveal window is not visible", JQueryTestConstants.TIMEOUT);
+     
+     click("//div[@class='reveal-modal-bg']");
+     
+    
+	 new Wait()
+     {
+         @Override
+         public boolean until()
+         {
+             return getAttribute("//div[@class='reveal-modal']@style").contains("hidden");
+         }
+     }.wait("The reveal window visible", JQueryTestConstants.TIMEOUT);
+	}
 }

@@ -20,7 +20,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @tapestrydoc
  */
-@Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
+@Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},
+		stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
 public class Reveal{
 	
 	/**
@@ -57,6 +58,15 @@ public class Reveal{
 				value="close-reveal-modal")
 	private String dismissmodalclass;
 	
+	/**
+	 * The jQuery Selector for the element used to display the modal window (a link most of the time)
+	 * By default, the #id of the element.
+	 * 
+	 * @since 3.2.0
+	 */
+	@Parameter(defaultPrefix=BindingConstants.LITERAL, value="prop:clientId")
+	private String selector;
+	
 	@InjectContainer 
 	private ClientElement element;
 	
@@ -67,7 +77,7 @@ public class Reveal{
 	public void finish(MarkupWriter w){
 		
 		JSONObject jso = new JSONObject();
-		jso.put("id", element.getClientId());
+		jso.put("id", selector);
 		jso.put("div", div);
 		
 		jso.put("animation", animation);
@@ -85,6 +95,10 @@ public class Reveal{
 
 	public void setDiv(String div) {
 		this.div = div;
+	}
+	
+	public String getClientId(){
+		return "#"+element.getClientId();
 	}
 	
 }
