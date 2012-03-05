@@ -18,6 +18,8 @@ import org.got5.tapestry5.jquery.EffectsConstants;
 
 /**
  * @since 2.6.0
+ * 
+ * @tapestrydoc
  */
 @Import(library = { "${assets.path}/mixins/bind/bind.js" })
 public class Bind {

@@ -28,6 +28,8 @@ import org.slf4j.Logger;
 /**
  * Component for displaying a code source
  * @since 2.1.1
+ * 
+ * @tapestrydoc
  */
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 

@@ -40,6 +40,8 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * 
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a>
+ * 
+ * @tapestrydoc
  */
 @SupportsInformalParameters
 @ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})

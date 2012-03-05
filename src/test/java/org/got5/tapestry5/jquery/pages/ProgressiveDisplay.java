@@ -11,7 +11,8 @@ public class ProgressiveDisplay {
 	private Block testBlock;
 	
 	@OnEvent(EventConstants.PROGRESSIVE_DISPLAY)
-	public Object returnBlock(){
+	public Object returnBlock() throws InterruptedException{
+		Thread.sleep(2000);
 		return testBlock;
 	}
 }

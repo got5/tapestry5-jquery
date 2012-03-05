@@ -172,12 +172,12 @@ public class JQueryModule
 
 				invocation.proceed();
 
-				if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
-
-					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
-
+				if(invocation.getReturnValue().toString().endsWith("ProgressiveDisplay.js")){
+					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/assets/components/progressiveDisplay/progressiveDisplay-jquery.js").toClientURL());
 				}
-
+				else if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
+					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
+				}
 			}
 		};
 

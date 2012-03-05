@@ -17,6 +17,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  *
  * @author criedel
  * @since 2.6.1
+ * 
+ * @tapestrydoc
  */
 @Import(stack = GalleryStack.STACK_ID)
 public class Gallery extends AbstractExtendableComponent {

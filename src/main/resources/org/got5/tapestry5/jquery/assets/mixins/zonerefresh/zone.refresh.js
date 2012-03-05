@@ -12,7 +12,8 @@ $.extend(Tapestry.Initializer, {
 	   var element = $("#" + params.id);
 	  
 	   // Function to be called for each refresh
-	   var keepUpdatingZone = function(e){
+	   var keepUpdatingZone = function(e)
+	   {
 	      try
 	      {
 	            element.tapestryZone("update" , {url : params.URL});
@@ -32,11 +33,17 @@ $.extend(Tapestry.Initializer, {
 	   var timer = window.setInterval(keepUpdatingZone,params.period*1000);
 	   
 	   $(window).unload(function(){
-			            window.clearInterval(timer); });
+	     window.clearInterval(timer); 
+	   });
 	   
-	   }
+	   element.bind('stopRefresh', function(){
+    	   window.clearInterval(timer); 
+       });
+	   
+	   element.bind('startRefresh', function(){
+		   timer = window.setInterval(keepUpdatingZone,params.period*1000);
+       });
+	}
 });
 
 }) ( jQuery );
-
-

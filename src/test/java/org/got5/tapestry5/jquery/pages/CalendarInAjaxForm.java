@@ -18,13 +18,14 @@ package org.got5.tapestry5.jquery.pages;
 
 import java.util.Date;
 
-import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.DateField;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 
 public class CalendarInAjaxForm {
 
@@ -56,7 +57,8 @@ public class CalendarInAjaxForm {
 	@Component(id="formZone")
 	private Zone _formZone;
 	
-	
+	@Inject
+	private AjaxResponseRenderer renderer;
 	
 	// The code
 	
@@ -83,15 +85,12 @@ public class CalendarInAjaxForm {
 	}
 
 
-	Object onSuccess() {
-		MultiZoneUpdate zoneUpdate =  new MultiZoneUpdate(_nameZone).add(_formZone);
-		return zoneUpdate;
+	void onSuccess() {
+		renderer.addRender(_nameZone).addRender(_formZone);
 	}
 	
-	Object onFailure() {
-		MultiZoneUpdate zoneUpdate =  new MultiZoneUpdate(_formZone).add(_nameZone);
-		return zoneUpdate;
-		
+	void onFailure() {
+		renderer.addRender(_formZone).addRender(_nameZone);
 	}
 
 	public String getName() {

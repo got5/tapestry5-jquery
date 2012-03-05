@@ -20,6 +20,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
  *
  * @see <a href="http://jqueryui.com/demos/dialog/">http://jqueryui.com/demos/dialog/</a>
+ * 
+ * @tapestrydoc
  */
 public class DialogAjaxLink extends DialogLink
 {

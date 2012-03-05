@@ -43,6 +43,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * This component allows you create a jquery ui tab.
  * 
  * @see <a href="http://jqueryui.com/demos/tabs/">http://jqueryui.com/demos/tabs/</a>
+ * 
+ * @tapestrydoc
  */
 @SupportsInformalParameters
 @ImportJQueryUI(value = { "jquery.ui.core",
@@ -205,8 +207,22 @@ public class Tabs extends AbstractExtendableComponent
 		return TapestryInternalUtils.splitAtCommas(tabs);
 	}
 
+	/**
+	 * First, Tapestry5-jQuery will look for the label in an associated
+	 * bundle, with the name of the tab as a key. If the message does not exist
+	 * Tapestry5-jQuery will provide a default value :  the name of the tab, with
+	 * capital letters and space.
+	 * 
+	 * @return the label of a tab
+	 */
 	public String getTabTitle(){
-		return overrides.getOverrideMessages().get(tab);
+		
+		if(overrides.getOverrideMessages().contains(tab))
+		{
+			return overrides.getOverrideMessages().get(tab);
+		}
+		
+		return TapestryInternalUtils.toUserPresentable(tab);
 	}
 	
 }

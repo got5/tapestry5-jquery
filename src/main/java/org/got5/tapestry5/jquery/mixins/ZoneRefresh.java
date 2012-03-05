@@ -19,6 +19,7 @@ import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
@@ -30,6 +31,14 @@ import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 
+/**
+ * Auto-Updated Zone. 
+ * If you want to start/stop refreshing the zone, you can trigger 
+ * a stopRefreh/startRefresh events to the zone element.
+ * 
+ * @tapestrydoc
+ */
+@Events(JQueryEventConstants.REFRESH)
 @Import(library = "${assets.path}/mixins/zonerefresh/zone.refresh.js")
 public class ZoneRefresh
 {
@@ -53,20 +62,6 @@ public class ZoneRefresh
 
    @Inject
    private ComponentResources resources;
-
-   public ZoneRefresh()
-   {
-   }
-
-   //For testing purpose
-   ZoneRefresh(Object [] context, ComponentResources resources,
-      JavaScriptSupport javaScriptSupport, Zone zone)
-   {
-      this.context = context;
-      this.resources = resources;
-      this.javaScriptSupport = javaScriptSupport;
-      this.zone = zone;
-   }
 
    @AfterRender
    void addJavaScript()

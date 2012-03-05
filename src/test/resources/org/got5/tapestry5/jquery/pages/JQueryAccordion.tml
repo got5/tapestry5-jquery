@@ -1,6 +1,6 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
    
-   <t:jquery.accordion  t:panels="block1,block2,block3,block4" t:activeElementId="1">
+   <t:jquery.accordion  t:panels="block1,block2,block3,blockTest" t:activeElementId="1">
 		
 		<p:block1>
 			<h3>Element 1</h3>
@@ -23,7 +23,7 @@
 			content from block 3
 		</p:block3>
 		
-		<p:block4>
+		<p:blockTest>
 			<h3>Element 4</h3>
 			<hr/>
 			
@@ -32,7 +32,7 @@
 				<t:datefield value="sysDate"/>
 				<input type="submit"/>
 			</t:form>
-		</p:block4>
+		</p:blockTest>
 		
 	</t:jquery.accordion>
 

@@ -1,0 +1,15 @@
+<html   t:type="layout" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+      
+        <t:zone t:id="clickZone" t:mixins="jquery/ZoneRefresh" t:period="2">
+   		 	${i}
+   		</t:zone>
+    	<p>
+    		<a id="stop">Stop Refreshing the Zone</a>
+    	</p>
+    	<p>
+    		<a id="start">Start Refreshing the Zone</a>
+    	</p>
+</html>
