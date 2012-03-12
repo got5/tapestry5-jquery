@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.2.0-SNAPSHOT</version>
+	<version>3.2.0</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<description>Tapestry5-jQuery</description>
@@ -321,6 +321,7 @@
          				 </instrumentation>
 					   </configuration>
                     </plugin>
+                    <!-- 
                     <plugin>
 				        <groupId>org.apache.maven.plugins</groupId>
 				        <artifactId>maven-javadoc-plugin</artifactId>
@@ -331,6 +332,7 @@
 				        		<goals><goal>jar</goal></goals>
 				        	</execution>
 				        </executions>
+				        
 				        <configuration>
 				        	<stylesheetfile>${basedir}/src/site/javadoc.css</stylesheetfile>
 							<taglet>org.apache.tapestry5.javadoc.TapestryDocTaglet</taglet>
@@ -341,6 +343,7 @@
 		          			</tagletArtifact>
 		          		</configuration>
 		      		</plugin>
+		      		 -->
 			</plugins>
 	</build>
 	<reporting>
