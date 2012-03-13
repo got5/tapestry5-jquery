@@ -49,6 +49,15 @@ public class CalendarTest extends SeleniumTestCase{
                 return !getAttribute("//div[contains(@class,'t-zone')]@style").contains("none");
             }
         }.wait("zone fr not visible!", JQueryTestConstants.TIMEOUT);
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//button[@class='ui-datepicker-trigger']");
+            }
+        }.wait("button[@class='ui-datepicker-trigger'] not found!", JQueryTestConstants.TIMEOUT);
 
         click("//button[@class='ui-datepicker-trigger']");
         
