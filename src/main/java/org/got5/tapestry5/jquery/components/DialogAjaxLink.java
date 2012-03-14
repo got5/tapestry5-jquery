@@ -8,6 +8,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
@@ -15,7 +16,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * There are a few components you can use to create a dialog in your pages. 
- *   - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
+ *  - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
  * 	- DialogLink, clicking a DialogLink will make the associated Dialog to open.
  *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
  *
@@ -23,6 +24,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @tapestrydoc
  */
+@SupportsInformalParameters
 public class DialogAjaxLink extends DialogLink
 {
 
@@ -61,6 +63,7 @@ public class DialogAjaxLink extends DialogLink
     @AfterRender
     void initJS(MarkupWriter writer)
     {
+    	resources.renderInformalParameters(writer);
         writer.end();
         
         Link link = resources.createEventLink(EventConstants.ACTION, context);
