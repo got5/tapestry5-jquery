@@ -614,7 +614,7 @@ $.widget( "ui.tapestryZone", {
 		}
 
     $.extend(ajaxRequest, {
-		  data: specs.params ? $.extend(specs.params, {'t:zoneid': this.element.attr("id")}) : {'t:zoneid': this.element..attr("id")} 
+		  data: specs.params ? $.extend(specs.params, {'t:zoneid': this.element.attr("id")}) : {'t:zoneid': this.element.attr("id")}
     });
     $.tapestry.utils.ajaxRequest(ajaxRequest);
   },
