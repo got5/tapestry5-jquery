@@ -168,32 +168,18 @@ public class DefaultDataTableModel implements DataTableModel {
 	    	 JSONArray cell = new JSONArray();
 	    	 
 	    	 Object obj = source.getRowValue(index);
-             
-             if (obj == null) { //rows can be null, as stated in getRowValue docs
-                 continue;
-             }
 	    	 
 	    	 List<String> names = model.getPropertyNames();
 	    	 
 	    	 for (String name: names)
 	    	 {
 	    		 PropertyConduit conduit = model.get(name).getConduit();
-
-                if (conduit == null) {
-                    cell.put(""); // added cells should be displayed
-                    continue;
-                }
 	    		 
 	    		 Class type = conduit.getPropertyType();
 	    		 
 	    		 String cellValue;
 	    		 
 			 	 Object val = conduit.get(obj);
-                 
-                if (val == null) { // cells should be able to have null values
-                    cell.put("");
-                    continue;
-                }
 			 	 
 			 	if (!String.class.equals(model.get(name).getClass())
 	                    && !Number.class.isAssignableFrom(model.get(name).getClass()))
