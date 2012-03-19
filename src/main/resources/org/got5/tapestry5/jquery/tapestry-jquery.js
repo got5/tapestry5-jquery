@@ -613,11 +613,13 @@ $.widget( "ui.tapestryZone", {
 			$.extend(specs.params, this.options.parameters);
 		}
 
-    $.extend(ajaxRequest, {
-		  data: specs.params ? $.extend(specs.params, {'t:zoneid': this.element.attr("id")}) : {'t:zoneid': this.element.attr("id")}
-    });
-    $.tapestry.utils.ajaxRequest(ajaxRequest);
-  },
+		if (specs.params) {
+			$.extend(ajaxRequest, {
+				data: specs.params
+			});
+		}
+		$.tapestry.utils.ajaxRequest(ajaxRequest);
+	}, 
 	
 	/**
 	 * Updates the element's content and triggers the appropriate effect on the
