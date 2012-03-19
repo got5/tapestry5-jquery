@@ -27,7 +27,7 @@ public class ValidationTest extends SeleniumTestCase{
     {
         focus("//input[@type='text'][@id='"+fieldId+"']");
         type("//input[@type='text'][@id='"+fieldId+"']", value);
-        focus("//input[@type='submit']");
+        click("//input[@type='submit']");
 
 	   new Wait()
 	   {

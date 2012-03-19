@@ -22,11 +22,11 @@ import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
-import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -36,6 +36,7 @@ import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
+import org.apache.tapestry5.services.ClasspathProvider;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
@@ -161,7 +162,7 @@ public class JQueryModule
     }
 
     @Advise
-    @Match("AssetPathConverter")
+    @ClasspathProvider
     public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean prototype)
     	throws SecurityException, NoSuchMethodException{
@@ -170,19 +171,19 @@ public class JQueryModule
 
 			public void advise(MethodInvocation invocation) {
 
+				Resource res = (Resource) invocation.getParameter(0);
+				if(res.getPath().contains("ProgressiveDisplay.js")){
+					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/assets/components/progressiveDisplay/progressiveDisplay-jquery.js").getResource());
+				}
+				else if(res.getPath().contains("exceptiondisplay.js")){
+					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").getResource());
+				}
 				invocation.proceed();
-
-				if(invocation.getReturnValue().toString().endsWith("ProgressiveDisplay.js")){
-					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/assets/components/progressiveDisplay/progressiveDisplay-jquery.js").toClientURL());
-				}
-				else if(invocation.getReturnValue().toString().endsWith("exceptiondisplay.js")){
-					invocation.setReturnValue( source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").toClientURL());
-				}
 			}
 		};
 
 		if(prototype)
-			receiver.adviseMethod(receiver.getInterface().getMethod("convertAssetPath", String.class),advise);
+			receiver.adviseMethod(receiver.getInterface().getMethod("createAsset", Resource.class),advise);
     }
 
 }

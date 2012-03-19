@@ -615,12 +615,11 @@ $.widget( "ui.tapestryZone", {
 
 		if (specs.params) {
 			$.extend(ajaxRequest, {
-                data: specs.params
-            });
-        }
-		
-        $.tapestry.utils.ajaxRequest(ajaxRequest);
-    }, 
+				data: specs.params
+			});
+		}
+		$.tapestry.utils.ajaxRequest(ajaxRequest);
+	}, 
 	
 	/**
 	 * Updates the element's content and triggers the appropriate effect on the

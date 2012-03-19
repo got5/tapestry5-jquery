@@ -74,6 +74,30 @@ public class DialogTest extends SeleniumTestCase {
         checkDialogState(closeDialog, dialog, false);
 	}
 	
+	@Test
+	public void checkInformalParameters(){
+		
+		open("/jquerydialog");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getAttribute("//a[@id='dialoglink']@class").contains("css");
+            }
+        }.wait("The first link should have a CSS class", JQueryTestConstants.TIMEOUT);
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getAttribute("//a[@id='dialogajaxlink']@class").contains("css2");
+            }
+        }.wait("The second link should have a CSS class", JQueryTestConstants.TIMEOUT);
+	}
+	
 	private void checkDialogState(String triggerLocator, final String dialogLocator, final boolean state)
     {
         click(triggerLocator);
