@@ -27,7 +27,6 @@ import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.InjectService;
-import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -48,6 +47,7 @@ import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
@@ -73,7 +73,8 @@ public class JQueryModule
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
         configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
-        
+        configuration.addInstance(DataTableStack.STACK_ID, DataTableStack.class);
+
         configuration.addInstance("slider", Slider.class);
     }
 
@@ -162,7 +163,7 @@ public class JQueryModule
 
     @Advise
     @ClasspathProvider
-    public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source, 
+    public static void modifyJsfile(MethodAdviceReceiver receiver, final AssetSource source,
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean prototype)
     	throws SecurityException, NoSuchMethodException{
 
@@ -176,11 +177,11 @@ public class JQueryModule
 				}
 				else if(res.getPath().contains("exceptiondisplay.js")){
 					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").getResource());
-				} 
+				}
 				invocation.proceed();
 			}
 		};
-		
+
 		if(prototype)
 			receiver.adviseMethod(receiver.getInterface().getMethod("createAsset", Resource.class),advise);
     }

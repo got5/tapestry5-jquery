@@ -7,7 +7,7 @@
 		
 		return {
 			dataTable : init
-		}
+		};
 	});
 
 }) ( jQuery );

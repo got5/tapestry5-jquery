@@ -5,49 +5,69 @@ import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class RevealTest extends SeleniumTestCase{
-	@Test
-    public void testRevealMixin(){
-    	
-    	open("/reveal");
-    	
-    	click("//a[@name='monLink2']");
-    	
-    	testModal();
-    	
+public class RevealTest extends SeleniumTestCase {
+
+    @Test
+    public void testRevealMixin() {
+
+        open("/reveal");
+        waitForPageToLoad();
+
+        assertFalse(isVisible("//div[@id='myDiv']"));
+
+        click("//a[@name='monLink2']");
+
+        testModal("myDiv");
     }
-	
-	@Test
-    public void testRevealMixinWithSelector(){
-    	
-    	open("/reveal");
-    	
-    	click("//a[@name='monLink']");
-    	
-    	testModal();
-    	
+
+    @Test
+    public void testRevealMixinWithSelector() {
+
+        open("/reveal");
+        waitForPageToLoad();
+
+        assertFalse(isVisible("//div[@id='myDiv']"));
+
+        click("//a[@name='monLink']");
+
+        testModal("myDiv");
     }
-	
-	private void testModal(){
-   	 new Wait()
-     {
-         @Override
-         public boolean until()
-         {
-             return getAttribute("//div[@class='reveal-modal']@style").contains("visible");
-         }
-     }.wait("The reveal window is not visible", JQueryTestConstants.TIMEOUT);
-     
-     click("//div[@class='reveal-modal-bg']");
-     
-    
-	 new Wait()
-     {
-         @Override
-         public boolean until()
-         {
-             return getAttribute("//div[@class='reveal-modal']@style").contains("hidden");
-         }
-     }.wait("The reveal window visible", JQueryTestConstants.TIMEOUT);
-	}
+
+    @Test
+    public void testRevealMixinWithRevealElement() {
+
+        open("/reveal");
+        waitForPageToLoad();
+
+        assertFalse(isVisible("//div[@id='myDiv']"));
+
+        click("//a[@name='myLink3']");
+
+        testModal("revealThis");
+    }
+
+    private void testModal(final String modalId) {
+
+        final String modalSelector = String.format("//div[@id='%s']", modalId);
+
+        new Wait() {
+
+            @Override
+            public boolean until() {
+
+                return isVisible(modalSelector);
+            }
+        }.wait("The reveal window is not visible", JQueryTestConstants.TIMEOUT);
+
+        click("//div[@class='reveal-modal-bg']");
+
+        new Wait() {
+
+            @Override
+            public boolean until() {
+
+                return !isVisible(modalSelector);
+            }
+        }.wait("The reveal window visible", JQueryTestConstants.TIMEOUT);
+    }
 }
