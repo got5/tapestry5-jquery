@@ -577,7 +577,7 @@ $.widget( "ui.tapestryZone", {
      */
     update: function(specs) {
         
-		var that = this;
+		var that = this, zoneIdInfo = {'t:zoneid': this.element.attr("id")};
 		var ajaxRequest = {
 				url: specs.url,
 				type: "POST", 
@@ -613,13 +613,18 @@ $.widget( "ui.tapestryZone", {
 			$.extend(specs.params, this.options.parameters);
 		}
 
-		if (specs.params) {
-			$.extend(ajaxRequest, {
-				data: specs.params
-			});
-		}
-		$.tapestry.utils.ajaxRequest(ajaxRequest);
-	}, 
+    if(specs.params && typeof specs.params === 'string'){
+       $.extend(ajaxRequest, {
+                 data: specs.params + '&' + $.param(zoneIdInfo)
+      });
+    } else {
+      $.extend(ajaxRequest, {
+                 data: specs.params ? $.extend(specs.params, zoneIdInfo) : zoneIdInfo
+      });
+    }
+
+    $.tapestry.utils.ajaxRequest(ajaxRequest);
+  },
 	
 	/**
 	 * Updates the element's content and triggers the appropriate effect on the
