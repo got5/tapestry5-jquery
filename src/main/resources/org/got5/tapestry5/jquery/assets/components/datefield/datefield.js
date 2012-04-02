@@ -6,7 +6,7 @@
 			$("#" + specs.field).datepicker({
                 gotoCurrent: true,
                 showOn: "button",
-        		buttonImageOnly: false,
+                buttonImageOnly: false,
                 disabled: $("#" + specs.field).attr("disabled")
             });
 		}
