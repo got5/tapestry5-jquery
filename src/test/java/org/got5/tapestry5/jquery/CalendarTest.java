@@ -62,4 +62,19 @@ public class CalendarTest extends SeleniumTestCase{
         }.wait(text + " element not visible! " + getAttribute("//a[contains(@class,'ui-datepicker-next')]@title"), JQueryTestConstants.TIMEOUT);
         
 	}
+
+    @Test
+    public void testCalendarDisabled() {
+
+        open("/calendardisabled");
+        waitForPageToLoad();
+
+        assertEquals(false, isEditable("identifier=datefield"));
+
+        click("//button[@class='ui-datepicker-trigger']");
+
+        assertEquals(false, isVisible("identifier=ui-datepicker-div"));
+
+    }
+
 }
