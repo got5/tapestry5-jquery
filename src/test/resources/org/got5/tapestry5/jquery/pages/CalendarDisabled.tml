@@ -1,0 +1,6 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    <t:form>
+        <t:datefield t:value="date" disabled="true" />
+		<t:submit />
+    </t:form>
+</html>
