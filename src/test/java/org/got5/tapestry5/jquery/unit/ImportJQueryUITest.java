@@ -34,7 +34,7 @@ public class ImportJQueryUITest extends Assert{
 		
 		Document doc = tester.renderPage("annotations/AbstractImportJQueryUI");
 		
-		assertTrue(doc.getRootElement().getChildMarkup().contains("jquery-ui.css"));
+		assertTrue(doc.getRootElement().getChildMarkup().contains("jquery-ui-1.8.19.custom.css"));
 		
 	}
 	

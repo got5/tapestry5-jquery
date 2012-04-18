@@ -26,7 +26,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 public class JGrowl {
 	 
 		/**
-		 *  The JSON-type parameter for the jQuery plugin. 
+		 *  The JSON-type parameter for the jQuery plugin. This component
+		 *  will extend the default options of the jGrowl plugin by this parameter
 		 */
 		@Parameter
 		private JSONObject params;

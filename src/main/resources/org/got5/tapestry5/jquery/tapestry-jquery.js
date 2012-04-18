@@ -264,8 +264,14 @@ T5.extendInitializers({
 		el = $("#" + spec.clientId);
 		
 		$.each(attrs , function(i, attrib){
-			if(attrib.value) el.attr(attrib.name,attrib.value);
+			try{
+				if(attrib.value) el.attr(attrib.name,attrib.value);
+			}
+			catch(e){
+				
+			}
 		});
+		
 		
 		el.attr('href', '#');
 		
