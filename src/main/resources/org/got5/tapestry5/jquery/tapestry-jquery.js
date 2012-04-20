@@ -252,38 +252,27 @@ T5.extendInitializers({
      * We remove this span, and use an "a" tag and copy/paste all the parameters.
      */
     linkSubmit: function (spec) {
-
         var el = $("#" + spec.clientId), 
-        	attrs = el.get(0).attributes;
+            element = el.get(0),
+            outerHTML = element.outerHTML || new XMLSerializer().serializeToString(element),
+            tag = element.tagName,
+            replaceHTML = outerHTML.replace(new RegExp("^<" + tag, "i"), "<a").replace(new RegExp("</" + tag + ">$", "i"),"</a>");
+
+        el.replaceWith(replaceHTML);
         
+        // reload element
+        el = $("#" + spec.clientId);
         
-       
-		el.replaceWith("<a id='" + spec.clientId + "'>" + el.html() + "</a>");
-		
-		// reload element
-		el = $("#" + spec.clientId);
-		
-		$.each(attrs , function(i, attrib){
-			try{
-				if(attrib.value) el.attr(attrib.name,attrib.value);
-			}
-			catch(e){
-				
-			}
-		});
-		
-		
-		el.attr('href', '#');
-		
-		if (spec.cancel) {
-			el.attr("name", "cancel");
-        }
-		
+        el.attr('href', '#');
+        
+        if (spec.cancel)
+            el.attr("name", "cancel");
+        
+
         el.tapestryLinkSubmit({
             form: spec.form,
-			validate: spec.validate,
-			clientId: spec.clientId
-			
+            validate: spec.validate,
+            clientId: spec.clientId
         });
     },
     
