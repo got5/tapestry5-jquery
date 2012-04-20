@@ -4,10 +4,12 @@
 		
 		function init(specs) {
 			
+			var sep = (specs.url.indexOf("?") >= 0) ? "&" : "?";
+
 			if(!specs.params.update)
 				specs.params.update=function(a,b){
 					ajaxRequest = {
-	                        url: specs.url + "?list="+ $("#"+specs.id).sortable("toArray").toString()
+	                        url: specs.url + sep + "list="+ $("#"+specs.id).sortable("toArray").toString()
 	                };
 	                $.ajax(ajaxRequest);
 			};
