@@ -16,9 +16,6 @@
 
 package org.got5.tapestry5.jquery.services;
 
-import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
@@ -35,17 +32,13 @@ import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ClasspathProvider;
-import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
-import org.apache.tapestry5.services.MarkupRenderer;
-import org.apache.tapestry5.services.MarkupRendererFilter;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
@@ -185,6 +178,9 @@ public class JQueryModule
 				else if(res.getPath().contains("exceptiondisplay.js")){
 					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").getResource());
 				}
+				else if(res.getPath().contains("tapestry-beanvalidator.js")){
+					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/tapestry-beanvalidator-jquery.js").getResource());
+				}
 				invocation.proceed();
 			}
 		};
@@ -192,13 +188,4 @@ public class JQueryModule
 		if(prototype)
 			receiver.adviseMethod(receiver.getInterface().getMethod("createAsset", Resource.class),advise);
     }
-    
-    public void contributeMarkupRenderer(
-            OrderedConfiguration<MarkupRendererFilter> configuration,
-    		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean prototype)
-    {
-        
-    	if(prototype) configuration.override("BeanValidatorScript", null);
-    }
-
 }
