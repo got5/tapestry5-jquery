@@ -391,7 +391,7 @@
 	</profiles>
 
 	<properties>
-		<tapestry-release-version>5.3.2</tapestry-release-version>
+		<tapestry-release-version>5.3.3</tapestry-release-version>
 	    <browserStartCommand>*firefox</browserStartCommand>
 	</properties>
 </project>
