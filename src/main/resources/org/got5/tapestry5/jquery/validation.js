@@ -24,7 +24,7 @@
 								Tapestry.Messages.missingValidator
 										+ "\n--> validator name : " + name
 										+ "\n & field name :"
-										+ field.prop('id'));
+										+ field.attr('id'));
 						return;
 					}
 
@@ -108,7 +108,7 @@
 			this.getIcon() && this.getIcon().hide();
 
 			Tapestry.ErrorPopup
-					.hide($("#" + field.prop('id') + "\\:errorpopup"));
+					.hide($("#" + field.attr('id') + "\\:errorpopup"));
 		},
 
 		/**
@@ -135,10 +135,10 @@
 			if (icon)
 				icon.show();
 
-			var id = field.prop('id') + "\\:errorpopup";
+			var id = field.attr('id') + "\\:errorpopup";
 			if ($("#" + id).size() == 0) // if the errorpopup isn't on the
 											// page yet, we create it
-				field.after("<div id='" + field.prop('id')
+				field.after("<div id='" + field.attr('id')
 						+ ":errorpopup' class='tjq-error-popup'/>");
 			Tapestry.ErrorPopup.show($("#" + id), "<span>" + message
 					+ "</span>");

@@ -41,7 +41,7 @@ $.extend(Tapestry, {
     			
     			$(this).bind('click', function(){
     				
-    				var id = $(this).prop('id');
+    				var id = $(this).attr('id');
     				if ( id != null ) {
     					var form = $(this).closest('form');   				
     					$(form).formEventManager("setSubmittingElement", id);

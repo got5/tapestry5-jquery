@@ -17,7 +17,7 @@
 			$.Widget.prototype.destroy.apply( this, arguments );
 		},
 	    update: function(specs) {
-			$T(this.element.prop('id')).zoneManager.updateFromURL(specs.url);
+			$T(this.element.attr('id')).zoneManager.updateFromURL(specs.url);
 	    }
 	});
 
