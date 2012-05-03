@@ -74,7 +74,7 @@
 					// if language is NOT a string...
 					if(typeof language != "string"){
 						if(o.attr('class').length>0){var errclass=" class=\""+o.attr('class')+"\""}else{var errclass="";}
-						if(o.attr('id').length>0){var errid=" id=\""+o.attr('id')+"\""}else{var errid="";}
+						if(o.prop('id').length>0){var errid=" id=\""+o.prop('id')+"\""}else{var errid="";}
 						var error = "Snippet Error: You must specify a language on inital usage of Snippet. Reference <pre"+errclass+errid+">";
 						console.log(error);
 						return false;

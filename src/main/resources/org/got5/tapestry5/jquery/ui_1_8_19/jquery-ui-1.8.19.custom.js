@@ -6695,7 +6695,7 @@ $.extend($.ui.dialog, {
 	maxZ: 0,
 
 	getTitleId: function($el) {
-		var id = $el.attr('id');
+		var id = $el.prop('id');
 		if (!id) {
 			this.uuid += 1;
 			id = this.uuid;
