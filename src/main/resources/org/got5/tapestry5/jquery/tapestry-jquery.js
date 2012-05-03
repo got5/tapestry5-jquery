@@ -772,6 +772,43 @@ $.tapestry = {
             return l.protocol + "//" + l.host + path;
         },
         
+        formatLocalizedNumber: function (number, isInteger) {
+            /*
+             * We convert from localized string to a canonical string, stripping out
+             * group seperators (normally commas). If isInteger is true, we don't
+             * allow a decimal point.
+             */
+
+            var minus = Tapestry.decimalFormatSymbols.minusSign;
+            var grouping = Tapestry.decimalFormatSymbols.groupingSeparator;
+            var decimal = Tapestry.decimalFormatSymbols.decimalSeparator;
+
+            var canonical = "";
+            
+            for(var i=0; i<number.length; i++) {
+            	//number.strip().toArray().each(function (ch) {
+            	ch = number.charAt(i);
+                if (ch == minus) {
+                    canonical += "-";
+                    
+                }
+                else if (ch == grouping) {
+                    
+                }
+                else if (ch == decimal) {
+                    if (isInteger)
+                        throw Tapestry.Messages.notAnInteger;
+
+                    ch = ".";
+                } else if (ch < "0" || ch > "9")
+                    throw Tapestry.Messages.invalidCharacter;
+
+                canonical += ch;
+            };
+
+            return Number(canonical);
+        },
+        
         /**
          * Add scripts, as needed, to the document, then waits for them all to load, and finally, calls
          * the callback function.
