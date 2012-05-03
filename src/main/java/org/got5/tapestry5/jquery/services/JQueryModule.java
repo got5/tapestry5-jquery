@@ -178,6 +178,9 @@ public class JQueryModule
 				else if(res.getPath().contains("exceptiondisplay.js")){
 					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").getResource());
 				}
+				else if(res.getPath().contains("tapestry-beanvalidator.js")){
+					invocation.setParameter(0, source.getExpandedAsset("${tapestry.jquery.path}/tapestry-beanvalidator-jquery.js").getResource());
+				}
 				invocation.proceed();
 			}
 		};
@@ -185,5 +188,4 @@ public class JQueryModule
 		if(prototype)
 			receiver.adviseMethod(receiver.getInterface().getMethod("createAsset", Resource.class),advise);
     }
-
 }
