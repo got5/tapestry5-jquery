@@ -389,7 +389,7 @@ T5.extendInitializers({
         $("#" + spec.element).tapestryFormInjector(spec);
     },
     
-    cancelButton : function(clientId) {
+    enableBypassValidation : function(clientId) {
     	$("#" + clientId).click(function() {
     		var form = $(this).closest('form');
     	 	form.formEventManager("skipValidation");
