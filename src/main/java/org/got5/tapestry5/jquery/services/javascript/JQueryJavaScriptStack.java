@@ -41,16 +41,18 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  */
 public class JQueryJavaScriptStack implements JavaScriptStack {
 
+    private static final String DEFAULT_JQUERY_ALIAS = "$";
+
     private final boolean productionMode;
-    
+
     private String jQueryAlias;
-    
+
     private final boolean suppressPrototype;
 
     private final List<Asset> jQueryJsStack;
-    
+
     private final AssetSource assetSource;
-      
+
     private final JavaScriptStackSource jsStackSource;
 
     private SymbolSource symbolSource;
@@ -59,23 +61,23 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     public JQueryJavaScriptStack(@Symbol(SymbolConstants.PRODUCTION_MODE)
                                  final boolean productionMode,
-                                 
+
                                  @Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
                                  final String jQueryAlias,
-                                 
+
                                  @Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
                                  final boolean suppressPrototype,
 
-                                 final AssetSource assetSource, 
-                   
+                                 final AssetSource assetSource,
+
                                  final JavaScriptStackSource jsStackSrc,
 
-    							 final SymbolSource symbolSource, 
-    							 
+    							 final SymbolSource symbolSource,
+
     							 final EffectsParam effectsParam)
 
     {
-    	
+
         this.productionMode = productionMode;
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
@@ -90,9 +92,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
             public Asset map(String path)
             {
             	if(productionMode){
-            		
+
             		String pathMin = symbolSource.expandSymbols(path);
-            		
+
             		if(path.equalsIgnoreCase("${jquery.core.path}")){
             			path = new StringBuffer(pathMin).insert(pathMin.lastIndexOf(".js"), ".min").toString();
             		}
@@ -101,7 +103,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
             											.insert(pathMin.lastIndexOf('/'), "/minified").toString();
             		}
             	}
-            	
+
                 return assetSource.getExpandedAsset(path);
             }
         };
@@ -118,25 +120,39 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
             .concat(F.flow(this.effectsParam.getEffectsToLoad())).map(pathToAsset).toList();
 
     }
-    
-    public String getInitialization()
-    {
-    	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
-        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
+
+    public String getInitialization() {
+
+        if (!suppressPrototype && DEFAULT_JQUERY_ALIAS.equals(jQueryAlias)) {
+
+            jQueryAlias = "$j";
+        }
+
+        final StringBuilder jQueryInit = new StringBuilder();
+        if (productionMode) {
+
+            return jQueryInit.append("var ")
+                             .append(jQueryAlias)
+                             .append(" = jQuery;").toString();
+        }
+
+        return jQueryInit.append("var ")
+                         .append(jQueryAlias)
+                         .append(" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();").toString();
     }
-    
+
     /**
      * Asset in Prototype, have to be changed by a jQuery version
     */
-    public Object chooseJavascript(Asset asset){
-    	
+    private Asset chooseJavascript(Asset asset){
+
     	if(suppressPrototype)
     	{
     		if(asset.getResource().getFile().endsWith("t5-prototype.js"))
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-jquery.js");
     		}
-    		
+
     		if(asset.getResource().getFile().endsWith("tapestry.js"))
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/tapestry-jquery.js");
@@ -161,52 +177,52 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		{
     			return this.assetSource.getExpandedAsset("${tapestry.jquery.path}/t5-tree-jquery.js");
     		}
-    		if(asset.getResource().getFile().endsWith("prototype.js") || 
+    		if(asset.getResource().getFile().endsWith("prototype.js") ||
     				asset.getResource().getFile().endsWith("scriptaculous.js") ||
-    				asset.getResource().getFile().endsWith("effects.js") || 
+    				asset.getResource().getFile().endsWith("effects.js") ||
     				asset.getResource().getFile().endsWith("exceptiondisplay.js"))
     		{
     			return null;
     		}
-    		
+
     	}
-    	
+
     	return asset;
     }
-    
+
     public List<Asset> getJavaScriptLibraries()
     {
     	List<Asset> ret = new ArrayList<Asset>();
-    	
+
     	if(suppressPrototype)
     	{
     		ret.add(this.assetSource.getExpandedAsset("${tapestry.js.path}"));
     	}
-    	
+
     	ret.addAll(jQueryJsStack);
-    	
+
     	if(!suppressPrototype){
     		ret.add(this.assetSource.getExpandedAsset("${tapestry.jquery.path}/noconflict.js"));
     	}
-    	
+
     	for(Asset asset : jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getJavaScriptLibraries())
     	{
-    		asset=(Asset) chooseJavascript(asset);
+    		asset = chooseJavascript(asset);
     		if(asset!=null) ret.add(asset);
     	}
-    	
+
     	if(!suppressPrototype){
     		ret.add(this.assetSource.getExpandedAsset("${tapestry.jquery.path}/jquery-noconflict.js"));
     	}
-  
+
     	return ret;
-        
+
     }
 
     public List<StylesheetLink> getStylesheets()
     {
     	List<StylesheetLink> ret = new ArrayList<StylesheetLink>();
-    	
+
     	if(!suppressPrototype)
     	{
      		ret.addAll(jsStackSource.getStack(JQuerySymbolConstants.PROTOTYPE_STACK).getStylesheets());
