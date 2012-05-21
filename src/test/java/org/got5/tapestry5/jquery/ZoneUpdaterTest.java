@@ -25,6 +25,6 @@ public class ZoneUpdaterTest extends SeleniumTestCase {
 			public boolean until() {
 				return isElementPresent("//div[@id='nameZone'][contains(text(), 'Hempster Dempster')]");
 			}
-		}.wait("The tooltip is not visible", 50000000); //JQueryTestConstants.TIMEOUT)
+		}.wait("The tooltip is not visible", JQueryTestConstants.TIMEOUT);
 	}
 }
