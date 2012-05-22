@@ -70,7 +70,7 @@ $.extend(Tapestry, {
         	
             if (!element.data("observingFocusChange")) {
                 element.focus(function() {
-                    if (element != Tapestry.currentFocusField) {
+                    if (element[0] != Tapestry.currentFocusField) {
                         $(document).trigger(Tapestry.FOCUS_CHANGE_EVENT);
                         Tapestry.currentFocusField = element[0];
                     }
@@ -79,6 +79,21 @@ $.extend(Tapestry, {
                 element.data("observingFocusChange",true);
             }
         });
+        
+        //Init scripts loaded from script elements
+        var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
+
+        if (!virtualScripts) {
+            virtualScripts = [];
+        }
+        $('script[src]').each(function(i, script) {
+            path = $(script).attr('src');
+            var url = $.tapestry.utils.rebuildURL(path);
+            if($.inArray(url, virtualScripts) === -1) {
+              virtualScripts.push(url);
+            }
+        });
+        $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
     	
     	
     },
@@ -668,7 +683,8 @@ $.widget( "ui.tapestryZone", {
 
 		                that.applyContentUpdate(data.content);
 
-					} else if (data.zones) {
+					} 
+                    if (data.zones) {
 
 	                    // perform multi zone update
 						$.each(data.zones, function(zoneId, content){
@@ -894,7 +910,7 @@ $.tapestry = {
         addStylesheets: function(stylesheets) {
             if (stylesheets) {
                 $.each(stylesheets, function(i, s) {
-                    var assetURL = $.tapestry.utils.rebuildURL(s.href);
+                    var assetURL = s.href;
                     
                     if ($('head link[href="' + assetURL + '"]').size() === 0) {
                     
@@ -927,13 +943,7 @@ $.tapestry = {
             var redirectURL = reply.redirectURL;
             
             if (redirectURL) {
-                // Check for complete URL.
-                if (/^https?:/.test(redirectURL)) {
-                    window.location = redirectURL;
-                    return;
-                }
-                
-                window.location.pathname = redirectURL;
+                window.location.href = redirectURL;
                 
                 // Don't bother loading scripts or invoking the callback.
                 return;
