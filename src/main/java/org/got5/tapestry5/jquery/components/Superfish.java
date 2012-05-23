@@ -28,6 +28,7 @@ import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 
 
 
@@ -39,11 +40,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @tapestrydoc
  */
-@Import(library = {"${assets.path}/components/superfish/js/hoverIntent.js",
-					"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
-					"${assets.path}/components/superfish/js/superfish.js",
-					"${assets.path}/components/superfish/js/supersubs.js",
-					"${assets.path}/components/superfish/js/mySuperfish.js"})
+@Import(stack=SuperfishStack.STACK_ID)
 @SupportsInformalParameters
 public class Superfish{
 	 
