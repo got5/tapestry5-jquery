@@ -26,6 +26,8 @@ import org.apache.tapestry5.services.javascript.StylesheetLink;
 
 public class Slider implements JavaScriptStack
 {
+	public static final String STACK_ID = "slider";
+	
     private final AssetSource assetSource;
 
     public Slider(final AssetSource assetSource)

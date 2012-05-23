@@ -238,23 +238,16 @@
 										.tapestryFieldEventManager(
 												{
 													translator : function(input) {
-														if (!(!isNaN(parseFloat(input)) && isFinite(input)))
+														
+														try {
+															return $.tapestry.utils.formatLocalizedNumber(input, isInteger);
+														} catch (e) {
 															$(field)
-																	.tapestryFieldEventManager(
-																			"showValidationMessage",
-																			message);
-														else
-															return parseFloat(input);
-														/*
-														 * maybe the
-														 * formatLocalizedNumber
-														 * method should be
-														 * implemented here, to
-														 * really fit tapestry's
-														 * way but we assume
-														 * that parsing to float
-														 * is ok atm
-														 */
+															.tapestryFieldEventManager(
+																	"showValidationMessage",
+																	message);
+														}
+														
 													}
 												});
 							},
