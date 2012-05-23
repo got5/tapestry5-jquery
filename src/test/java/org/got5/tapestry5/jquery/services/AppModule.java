@@ -47,7 +47,7 @@ public class AppModule
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
     	
-    	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+    	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
     	
     	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
     	
@@ -59,12 +59,12 @@ public class AppModule
     	
     }
     
-@Contribute(WidgetParams.class)
-public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
-	configuration.add("slider", new JSONObject().put("min", 5));
-    configuration.add("customdatepicker", 
-    		new JSONObject("prevText","Previous Month"));
-}
+	@Contribute(WidgetParams.class)
+	public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
+		configuration.add("slider", new JSONObject().put("min", 5));
+	    configuration.add("customdatepicker", 
+	    		new JSONObject("prevText","Previous Month"));
+	}
     
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
@@ -84,9 +84,9 @@ public void addWidgetParams(MappedConfiguration<String, JSONObject> configuratio
 				"session", creator));
 	}
 
-@Contribute(EffectsParam.class)
-public void addEffectsFile(Configuration<String> configuration){
-	configuration.add(EffectsConstants.SHAKE);
-}
+	@Contribute(EffectsParam.class)
+	public void addEffectsFile(Configuration<String> configuration){
+		configuration.add(EffectsConstants.SHAKE);
+	}
 
 }

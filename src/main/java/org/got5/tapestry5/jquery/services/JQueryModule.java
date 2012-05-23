@@ -16,7 +16,9 @@
 
 package org.got5.tapestry5.jquery.services;
 
+import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.internal.InternalConstants;
+import org.apache.tapestry5.internal.services.StringValueEncoder;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
