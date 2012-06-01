@@ -1034,5 +1034,8 @@ $.tapestry = {
 
     }
 };
-Tapestry.onDOMLoaded(Tapestry.onDomLoadedCallback);    
+
+Tapestry.onDOMLoaded(function () {
+	Tapestry.onDomLoadedCallback();
+});
 })(jQuery);
