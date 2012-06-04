@@ -75,7 +75,7 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 			public boolean until() {
 				return getXpathCount("//table[@id='datatable']/tbody/tr").equals(10);
 			}
-		}.wait("We should have 5 rows", JQueryTestConstants.TIMEOUT);
+		}.wait("We should have 10 rows", JQueryTestConstants.TIMEOUT);
 		
 		checkNumberPage(2);
 		
@@ -84,19 +84,7 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 		focus("//body");
 	}
 	
-	/*@Test
-	public  void testNavigation(){
-		open("/DataTablesAjax");
-		
-		checkDisable(1);
-		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][2]");
-		checkDisable(2);
-		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][3]");
-		checkDisable(3);
-		
-	}*/
-	
-	@Test
+	@Test(dependsOnMethods="testNumberRows10")
 	public  void testFilter(){
 		open("/DataTablesAjax");
 		type("//div[@id='datatable_filter']/label/input[@type='text']", "Ka");

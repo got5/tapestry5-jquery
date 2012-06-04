@@ -147,18 +147,12 @@
 		<dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.2</version>
+            <version>1.2.2</version>
         </dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>5.14.6</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>2.4</version>
+			<version>6.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -450,7 +444,7 @@
             </properties>
         </profile>
 	</profiles>
-
+	
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
 		<tapestry-release-version>5.3.3</tapestry-release-version>
