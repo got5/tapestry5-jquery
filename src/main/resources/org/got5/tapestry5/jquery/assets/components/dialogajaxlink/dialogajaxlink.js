@@ -14,9 +14,11 @@
             $("#" + element).click(function(e) {
 
                 e.preventDefault();
-                dialog.dialog('open');
                 zone.tapestryZone("update", {
-                    url: url
+                    url: url,
+                    callback: function() {
+                        dialog.dialog('open');
+                    }
                 });
 
                 return false;
