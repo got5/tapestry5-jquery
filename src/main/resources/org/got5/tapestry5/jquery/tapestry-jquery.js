@@ -598,7 +598,7 @@ $.widget( "ui.tapestryZone", {
 						
 					}
 
-	                $.tapestry.utils.loadScriptsInReply(data);
+	                $.tapestry.utils.loadScriptsInReply(data, specs.callback);
 				}
 		};
 
