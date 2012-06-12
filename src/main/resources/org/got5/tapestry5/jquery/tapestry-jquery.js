@@ -724,10 +724,10 @@ $.widget( "ui.tapestryFormInjector", {
         };
 
         $(this.options).log("this.options.url" + this.options.url)
-        $.ajax({
+        $.tapestry.utils.ajaxRequest({
         	type:"POST",
-            url: this.options.url,
-            success: successHandler
+        	url: this.options.url,
+        	success: successHandler
         });
     }
 });
