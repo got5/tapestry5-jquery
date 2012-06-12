@@ -130,18 +130,18 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     	final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
+        if (productionMode) {
+
+            javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js")));
+        } else {
+			javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js")));			
+		}
+
      	if (datePickerI18nAsset != null)
      	{
      	    javaScriptStack.add(datePickerI18nAsset);
      	}
-
-        if (productionMode) {
-
-            javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js")));
-        }
-
-        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js")));
-
+		
      	javaScriptStack.add(assetSource.getExpandedAsset("${assets.path}/components/datefield/datefield.js"));
 
     	return javaScriptStack;
