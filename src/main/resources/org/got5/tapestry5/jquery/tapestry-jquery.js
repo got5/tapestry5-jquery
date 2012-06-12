@@ -867,8 +867,7 @@ $.tapestry = {
                 return path;
             }
             
-            var l = window.location;
-            return l.protocol + "//" + l.host + path;
+            return path;
         },
         
         /**
