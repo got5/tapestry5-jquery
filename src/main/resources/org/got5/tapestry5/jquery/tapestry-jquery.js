@@ -598,7 +598,7 @@ $.widget( "ui.tapestryZone", {
 						
 					}
 
-	                $.tapestry.utils.loadScriptsInReply(data);
+	                $.tapestry.utils.loadScriptsInReply(data, specs.callback);
 				}
 		};
 
@@ -724,10 +724,10 @@ $.widget( "ui.tapestryFormInjector", {
         };
 
         $(this.options).log("this.options.url" + this.options.url)
-        $.ajax({
+        $.tapestry.utils.ajaxRequest({
         	type:"POST",
-            url: this.options.url,
-            success: successHandler
+        	url: this.options.url,
+        	success: successHandler
         });
     }
 });
@@ -1034,5 +1034,8 @@ $.tapestry = {
 
     }
 };
-Tapestry.onDOMLoaded(Tapestry.onDomLoadedCallback);    
+
+Tapestry.onDOMLoaded(function () {
+	Tapestry.onDomLoadedCallback();
+});
 })(jQuery);
