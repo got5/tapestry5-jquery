@@ -23,6 +23,7 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.Resource;
+import org.apache.tapestry5.ioc.ScopeConstants;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
@@ -130,7 +131,7 @@ public class JQueryModule
       binder.bind(EffectsParam.class, EffectsParamImpl.class);
       binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
       binder.bind(RenderTracker.class, RenderTrackerImpl.class);
-      binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class);
+      binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class).scope(ScopeConstants.PERTHREAD);
     }
 
 
