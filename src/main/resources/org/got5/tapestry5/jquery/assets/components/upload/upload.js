@@ -28,9 +28,10 @@
 	T5.extendInitializers(function(){
 		
 		function init(spec) {
+			
 			var el = $('#' + spec.elementId);
 			
-			$.extend(spec, {
+			var options = {
 				showMessage: function(message) {
 
 					$('#' + spec.showMessagesDialog).text(message).dialog('open');
@@ -77,9 +78,9 @@
 	                    '<span class="qq-upload-failed-text">' + spec.messages.failedLabel + '</span>' +
 	                    '</li>'
 				
-			});
-			
-	        el.fileuploader(spec);
+			};
+			$.extend(options, spec);
+	        el.fileuploader(options);
 		}
 		
 		return {

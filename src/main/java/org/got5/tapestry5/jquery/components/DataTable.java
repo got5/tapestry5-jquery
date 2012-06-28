@@ -111,7 +111,6 @@ public class DataTable extends AbstractJQueryTable {
 				+ getRowsPerPage() + "," + (getRowsPerPage() * 2) + ","
 				+ (getRowsPerPage() * 4) + "]]"));
 
-		JQueryUtils.merge(dataTableParams, getOptions());
 
 		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
 		JSONArray sortableConfs = new JSONArray();
@@ -137,6 +136,7 @@ public class DataTable extends AbstractJQueryTable {
         language.put("sUrl", messages.get("datatable.sUrl"));
         dataTableParams.put("oLanguage", language);
 
+        JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
 		support.addInitializerCall("dataTable", setup);
