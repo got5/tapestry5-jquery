@@ -847,10 +847,14 @@ $.tapestry = {
         
         addStylesheets: function(stylesheets) {
             if (stylesheets) {
+                var loaded = $('link[rel="stylesheet"]').map(function(i, style) {
+                    return $.tapestry.utils.rebuildURL(style.href);
+                });
+
                 $.each(stylesheets, function(i, s) {
                     var assetURL = $.tapestry.utils.rebuildURL(s.href);
-                    
-                    if ($('head link[href="' + assetURL + '"]').size() === 0) {
+
+                    if ($.inArray(assetURL, loaded) === -1) {
                     
                         stylesheet = '<link href="' + assetURL + '" type="text/css" rel="stylesheet"';
                         
