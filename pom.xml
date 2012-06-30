@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.2.2-SNAPSHOT</version>
+	<version>3.3.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery library</name>
 	<description>Tapestry5-jQuery</description>
@@ -123,6 +123,14 @@
    		<developer>
       		<id>Nephtys</id>
       		<name>Stéfanie DUPREY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>maspetsberger</id>
+      		<name>Michael Aspetsberger</name>
       		<roles>
         		<role>Developer</role>
       		</roles>

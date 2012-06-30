@@ -3,7 +3,7 @@
    <test name="JQuery Integration Tests"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
-        <parameter name="tapestry.browser-start-command" value="${browserStartCommand}" />
+        <parameter name="tapestry.browser-start-command" value="*googlechrome" />
 
         <classes>
           <class name="org.got5.tapestry5.jquery.JGrowlTest"></class>
