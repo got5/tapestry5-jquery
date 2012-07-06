@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
@@ -58,6 +59,11 @@ public class DocsDataTables
 	@Inject
 	private BeanModelSource beanModelSource;
 	
+	/**
+	 * For ajax mode, annotate your current item with @Environmental
+	 * The same for any object used in propertyOverride block for ajax mode
+	 * */
+	@Environmental
 	@Property
 	private Celebrity current;
 	
@@ -139,7 +145,8 @@ public class DocsDataTables
 	    
 	    listTabData.add(new JQueryTabData("Example","example"));
 	    
+	    listTabData.add(new JQueryTabData("Example 2","example2"));
+	    
 	    return listTabData;
 	} 
-	
 }

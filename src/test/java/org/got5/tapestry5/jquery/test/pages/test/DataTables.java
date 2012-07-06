@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
@@ -27,10 +28,16 @@ import org.apache.tapestry5.annotations.RequestParameter;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.GridDataSource;
+import org.apache.tapestry5.internal.services.AjaxPartialResponseRenderer;
+import org.apache.tapestry5.internal.services.PageRenderQueue;
+import org.apache.tapestry5.internal.services.ajax.AjaxFormUpdateController;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.Environment;
+import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
@@ -52,9 +59,18 @@ public class DataTables
 	private Celebrity celebrity;
 	private CelebritySource celebritySource;
 	
+	/**
+	 * For ajax mode, annotate your current item with @Environmental
+	 * The same for any object used in propertyOverride block for ajax mode (index, ...)
+	 * */
+	@Environmental
 	@Property
 	private Celebrity current;
-	
+		
+	@Environmental
+	@Property
+	private int index;
+		
 	public GridDataSource getCelebritySource() {
 		if(celebritySource==null)
 			celebritySource = new CelebritySource(dataSource);
@@ -147,6 +163,4 @@ public class DataTables
 	public JSONObject sendResponse(@RequestParameter(value = "name") String name){
 		return new JSONObject("name", name);
 	}
-	
-	
 }
