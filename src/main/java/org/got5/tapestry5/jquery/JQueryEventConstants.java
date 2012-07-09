@@ -27,6 +27,18 @@ public class JQueryEventConstants {
     
     
     /**
+     * Triggered by the DataTable component to give a chance to the developer to filter data on server-side
+     */
+    public static final String FILTER_DATA = "filterData";
+    
+    
+    /**
+     * Triggered by the DataTable component to give a chance to the developer to sort data on server-side
+     */
+    public static final String SORT_DATA = "sortData";
+    
+    
+    /**
      * Triggered by the ZoneRefresh component
      */
     public static final String REFRESH = "Refresh";
@@ -37,8 +49,4 @@ public class JQueryEventConstants {
      */
     public static final String DROP = "Drop";
     
-    /**
-     * Triggered by the {@link Tabs} component whenever a tab is changed.
-     */
-    public static final String SELECT_TAB = "SelectTab";
 }
