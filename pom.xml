@@ -4,12 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.3.0-SNAPSHOT</version>
+	<version>3.3.0</version>
 	<packaging>jar</packaging>
-	<name>Tapestry 5 JQuery library</name>
-	<description>Tapestry5-jQuery</description>
+	<name>Tapestry 5 JQuery Library</name>
+	<description>Tapestru Components Library</description>
 	<url>https://github.com/got5/tapestry5-jquery</url>
-
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
      <licenses>
 		<license>
 			<name>Apache Software License 2.0</name>
@@ -141,6 +145,9 @@
 		<system>Hudson</system>
 		<url>http://ci.dev.kalaari.net/hudson/</url>
 	</ciManagement>
+	
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
@@ -238,39 +245,39 @@
 				</executions>
 			</plugin>
 			 <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-        <version>1.3</version>
-        <configuration>
-          <providerSelection>1.7</providerSelection>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>testCompile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.gmaven.runtime</groupId>
-            <artifactId>gmaven-runtime-1.7</artifactId>
-            <version>1.3</version>
-            <exclusions>
-              <exclusion>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.8.6</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+		        <groupId>org.codehaus.gmaven</groupId>
+		        <artifactId>gmaven-plugin</artifactId>
+		        <version>1.3</version>
+		        <configuration>
+		          <providerSelection>1.7</providerSelection>
+		        </configuration>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>compile</goal>
+		              <goal>testCompile</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		        <dependencies>
+		          <dependency>
+		            <groupId>org.codehaus.gmaven.runtime</groupId>
+		            <artifactId>gmaven-runtime-1.7</artifactId>
+		            <version>1.3</version>
+		            <exclusions>
+		              <exclusion>
+		                <groupId>org.codehaus.groovy</groupId>
+		                <artifactId>groovy-all</artifactId>
+		              </exclusion>
+		            </exclusions>
+		          </dependency>
+		          <dependency>
+		            <groupId>org.codehaus.groovy</groupId>
+		            <artifactId>groovy-all</artifactId>
+		            <version>1.8.6</version>
+		          </dependency>
+		        </dependencies>
+		      </plugin>
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
@@ -431,7 +438,7 @@
 		</plugins>
 	</reporting>
 
-        <distributionManagement>
+    <distributionManagement>
 		<repository>
 			<id>devlab722-repo</id>
 			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
