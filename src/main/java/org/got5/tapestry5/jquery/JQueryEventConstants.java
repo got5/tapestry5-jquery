@@ -49,4 +49,5 @@ public class JQueryEventConstants {
      */
     public static final String DROP = "Drop";
     
+    public static final String SELECT_TAB = "SelectTab";
 }
