@@ -25,6 +25,7 @@ import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.internal.util.TapestryException;
 import org.apache.tapestry5.ioc.services.SymbolSource;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
@@ -121,7 +122,12 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     
     public String getInitialization()
     {
-    	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
+    	if(!suppressPrototype && jQueryAlias.equals("$"))
+    		throw new RuntimeException("You are using an application based on Prototype" +
+    				" and jQuery. You should set in your AppModule the alias for the jQuery object to a different" +
+    				" value than '$'");
+    	
+    	
         return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
     }
     
