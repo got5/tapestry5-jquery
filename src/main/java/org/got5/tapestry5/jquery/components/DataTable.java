@@ -149,7 +149,6 @@ public class DataTable extends AbstractJQueryTable {
 				+ getRowsPerPage() + "," + (getRowsPerPage() * 2) + ","
 				+ (getRowsPerPage() * 4) + "]]"));
 		
-		JQueryUtils.merge(dataTableParams, getOptions());
 		
 		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
 		//We set also the mDataProp parameters to handle ColReorder plugin. Cf : http://datatables.net/release-datatables/extras/ColReorder/server_side.html
@@ -179,8 +178,9 @@ public class DataTable extends AbstractJQueryTable {
         language.put("sUrl", messages.get("datatable.sUrl"));
         dataTableParams.put("oLanguage", language);
         
+        JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
-
+		
 		support.addInitializerCall("dataTable", setup);
 	}
 
