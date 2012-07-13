@@ -817,26 +817,26 @@ $.tapestry = {
          */
         addScripts: function (scripts, callback) {
             if (scripts) {
-                var virtualScripts = $j('html').data(Tapestry.VIRTUAL_SCRIPTS),
+                var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS),
                     that = this;
                 
                 if (!virtualScripts) {
                     virtualScripts = [];
                     var path;
-                    $j('script[src]').each(function () {
-                        path = $j(this).attr('src');
-                        virtualScripts.push($j.tapestry.utils.rebuildURL(path));
+                    $('script[src]').each(function () {
+                        path = $(this).attr('src');
+                        virtualScripts.push($.tapestry.utils.rebuildURL(path));
                     });
                 }
                 
                 (function loadJS(i) {
                     if(i=== scripts.length) {
-                        $j('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
+                        $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
                         callback.call(that);
                         return;
                     }
-                    var assetURL = $j.tapestry.utils.rebuildURL(scripts[i]);
-                    if ($j.inArray(assetURL, virtualScripts) === -1) {
+                    var assetURL = $.tapestry.utils.rebuildURL(scripts[i]);
+                    if ($.inArray(assetURL, virtualScripts) === -1) {
                         var head= document.getElementsByTagName('head')[0],
                             script = document.createElement('script');
                         
