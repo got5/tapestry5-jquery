@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.3.0</version>
+	<version>3.3.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery Library</name>
-	<description>Tapestru Components Library</description>
+	<description>Tapestry Components Library</description>
 	<url>https://github.com/got5/tapestry5-jquery</url>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -135,6 +135,14 @@
    		<developer>
       		<id>maspetsberger</id>
       		<name>Michael Aspetsberger</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>dragansah</id>
+      		<name>Dragan Sahpaski</name>
       		<roles>
         		<role>Developer</role>
       		</roles>
