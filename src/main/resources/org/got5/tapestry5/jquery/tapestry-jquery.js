@@ -815,34 +815,49 @@ $.tapestry = {
          * @param scripts Array of scripts to load
          * @param callback invoked after scripts are loaded
          */
-        addScripts: function(scripts, callback) {
+        addScripts: function (scripts, callback) {
             if (scripts) {
-            
-                $.each(scripts, function(i, s) {
-                    var assetURL = $.tapestry.utils.rebuildURL(s);
-                    var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
-                    
-                    if (!virtualScripts) {
-                        virtualScripts = [];
-                        
-                        $('script[src]').each(function(i, script) {
-                            path = $(script).attr('src');
-                            virtualScripts.push($.tapestry.utils.rebuildURL(path));
-                        });
-                    }
-                    
-                    if ($.inArray(assetURL, virtualScripts) === -1) {
-                        $('head').append('<script src="' + assetURL + '" type="text/javascript" />');
-                        virtualScripts.push(assetURL);
-                    }
-                    
-                    $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
-                });
+                var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS),
+                    that = this;
                 
+                if (!virtualScripts) {
+                    virtualScripts = [];
+                    var path;
+                    $('script[src]').each(function () {
+                        path = $(this).attr('src');
+                        virtualScripts.push($.tapestry.utils.rebuildURL(path));
+                    });
+                }
+                
+                (function loadJS(i) {
+                    if(i=== scripts.length) {
+                        $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
+                        callback.call(that);
+                        return;
+                    }
+                    var assetURL = $.tapestry.utils.rebuildURL(scripts[i]);
+                    if ($.inArray(assetURL, virtualScripts) === -1) {
+                        var head= document.getElementsByTagName('head')[0],
+                            script = document.createElement('script');
+                        
+                        script.src = assetURL;
+                        script.type = "text/javascript";
+                        script.onreadystatechange = script.onload = function() {
+                            if (!script.readyState || script.readyState == "loaded" || script.readyState == "complete"){
+                                virtualScripts.push(assetURL);
+                                loadJS(++i);
+                            }
+                        };
+                        head.appendChild(script);
+                    }
+                    else {
+                        loadJS(++i);
+                    }
+                })(0);
             }
-            
-            // TODO : re-implement scriptLoadMonitor
-            callback.call(this);
+            else {
+                callback.call(this);
+            }
         },
         
         addStylesheets: function(stylesheets) {
