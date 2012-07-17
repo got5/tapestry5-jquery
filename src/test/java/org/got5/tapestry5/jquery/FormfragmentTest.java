@@ -41,4 +41,30 @@ public class FormfragmentTest extends SeleniumTestCase{
         }.wait(fragment + " should not be visible");
     }
 
+	/**
+	 * When a form fragment par is hidden, it's data shouldn't be submitted and it shouldn't block validation 
+	 */
+	@Test
+    public void testFormFragmentSubmissionFilter()
+    {
+        open("/formfragment");
+        waitForPageToLoad();
+        type("address", "_address_");
+        type("code", "bad_value");
+        
+        
+        click("//input[@type='submit']");
+        waitForPageToLoad();
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return "0".equals(getValue("code")) /* default value*/ && "_address_".equals(getValue("address")) /* value submitted*/ ;
+            }
+        }.wait("Code bad_value shouldn't have been submitted and shouldn't block submission");
+        
+
+    }
 }
