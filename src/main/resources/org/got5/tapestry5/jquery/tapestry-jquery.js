@@ -844,7 +844,7 @@ $.tapestry = {
                         script.type = "text/javascript";
                         script.onreadystatechange = script.onload = function() {
                             //needed because of IE
-                            if($j.inArray(assetURL, virtualScripts) === -1) {
+                            if($.inArray(assetURL, virtualScripts) === -1) {
                                 virtualScripts.push(assetURL);
                                 loadJS(++i);
                             }
