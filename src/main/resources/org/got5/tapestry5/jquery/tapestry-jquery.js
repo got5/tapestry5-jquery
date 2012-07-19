@@ -843,7 +843,8 @@ $.tapestry = {
                         script.src = assetURL;
                         script.type = "text/javascript";
                         script.onreadystatechange = script.onload = function() {
-                            if (!script.readyState || script.readyState == "loaded" || script.readyState == "complete"){
+                            //needed because of IE
+                            if($j.inArray(assetURL, virtualScripts) === -1) {
                                 virtualScripts.push(assetURL);
                                 loadJS(++i);
                             }
