@@ -1,0 +1,18 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+
+    <t:form t:id="monForm">
+    	
+    		<t:label for="criteriaValue">Raty : </t:label>
+			<input type="text" class="ratingCriteriaValue" t:type="select" t:value="value"
+				t:id="criteriaValue" t:model="model"
+				t:mixins="jquery/raty"
+				t:ratyRates="prop:model" t:ratyValue="value" />
+    	
+    	<t:submit />
+    </t:form>
+    
+    <t:any t:mixins="jquery/raty"
+				t:ratyRates="prop:model" t:ratyValue="literal:1"/>
+
+</html>

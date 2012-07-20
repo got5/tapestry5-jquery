@@ -3,7 +3,7 @@
    <test name="JQuery Integration Tests"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
-        <parameter name="tapestry.browser-start-command" value="*googlechrome" />
+        <parameter name="tapestry.browser-start-command" value="*firefox" />
 
         <classes>
           <class name="org.got5.tapestry5.jquery.JGrowlTest"></class>
@@ -39,6 +39,7 @@
           <class name="org.got5.tapestry5.jquery.SortableTest"></class>
           <class name="org.got5.tapestry5.jquery.ZoneRefreshTest"></class>
           <class name="org.got5.tapestry5.jquery.GMapTest"></class>
+          <class name="org.got5.tapestry5.jquery.RatyTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">

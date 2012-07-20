@@ -34,9 +34,10 @@ configurations {
 
 Project projectDef = project;
 
-tapestryVersion = "5.3.3"
-servletapi = "2.5"
-spock = "0.6-groovy-1.8"
+
+def tapestryVersion = "5.3.3"
+def servletapi = "2.5"
+def spock = "0.6-groovy-1.8"
 
 
 repositories {
@@ -83,14 +84,24 @@ compileTestGroovy.dependsOn compileTestJava
 
 test {
 		useJUnit()
-        useTestNG()
-        options.suites("src/test/conf/testng.xml")
         maxHeapSize = "400M"
         systemProperties["tapestry.service-reloading-enabled"] = "false"
         jvmArgs("-XX:MaxPermSize=512m")
         logging.captureStandardOutput LogLevel.INFO
         getLogging().setLevel(LogLevel.INFO)
 }
+
+task testng(type: Test) { 
+     useTestNG() 
+     options.suites("src/test/conf/testng.xml")
+     maxHeapSize = "400M"
+     systemProperties["tapestry.service-reloading-enabled"] = "false"
+     jvmArgs("-XX:MaxPermSize=512m")
+     logging.captureStandardOutput LogLevel.INFO
+     getLogging().setLevel(LogLevel.INFO)
+} 
+
+check.dependsOn testng 
 
 jar {	
 
