@@ -815,48 +815,50 @@ $.tapestry = {
          * @param scripts Array of scripts to load
          * @param callback invoked after scripts are loaded
          */
-        addScripts: function(scripts, callback) {
-            if (!scripts) {
-                // TODO : re-implement scriptLoadMonitor
-                callback.call(this);
-                return;
-            }
-
-            var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
-            if (!virtualScripts) {
-                virtualScripts = [];
+        addScripts: function (scripts, callback) {
+            if (scripts) {
+                var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS),
+                    that = this;
                 
-                $('script[src]').each(function(i, script) {
-                    path = $(script).attr('src');
-                    virtualScripts.push($.tapestry.utils.rebuildURL(path));
-                });
+                if (!virtualScripts) {
+                    virtualScripts = [];
+                    var path;
+                    $('script[src]').each(function () {
+                        path = $(this).attr('src');
+                        virtualScripts.push($.tapestry.utils.rebuildURL(path));
+                    });
+                }
+                
+                (function loadJS(i) {
+                    if(i=== scripts.length) {
+                        $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
+                        callback.call(that);
+                        return;
+                    }
+                    var assetURL = $.tapestry.utils.rebuildURL(scripts[i]);
+                    if ($.inArray(assetURL, virtualScripts) === -1) {
+                        var head= document.getElementsByTagName('head')[0],
+                            script = document.createElement('script');
+                        
+                        script.src = assetURL;
+                        script.type = "text/javascript";
+                        script.onreadystatechange = script.onload = function() {
+                            //needed because of IE
+                            if($.inArray(assetURL, virtualScripts) === -1) {
+                                virtualScripts.push(assetURL);
+                                loadJS(++i);
+                            }
+                        };
+                        head.appendChild(script);
+                    }
+                    else {
+                        loadJS(++i);
+                    }
+                })(0);
             }
-            
-            var callbacks = [];
-            $.each(scripts, function(i, scriptURL){
-            	callbacks.push(function(){
-            		 var assetURL = $.tapestry.utils.rebuildURL(scriptURL);
-                     if ($.inArray(assetURL, virtualScripts) === -1) {
-                         var script   = document.createElement("script");
-                         script.type  = "text/javascript";
-                         script.src   = assetURL;
-                         document.getElementsByTagName('head')[0].appendChild(script);
-                         virtualScripts.push(assetURL);
-                         if(i == callbacks.length - 2)
-                        	 $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
-                         var completed = false;
-                         script.onload = script.onreadystatechange = function () {
-                        	 if (!completed && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
-                        		 completed = true;
-                        		 script.onload = script.onreadystatechange = null;
-                        		 callbacks[i + 1].call(this);
-                        	 }
-                         };
-                     }
-            	});
-            });
-            callbacks.push(callback);
-            callbacks[0].call(this);
+            else {
+                callback.call(this);
+            }
         },
         
         addStylesheets: function(stylesheets) {
