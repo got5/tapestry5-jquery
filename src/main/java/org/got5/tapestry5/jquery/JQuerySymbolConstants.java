@@ -67,5 +67,10 @@ public class JQuerySymbolConstants {
 	public static final String PROTOTYPE_STACK = "prototype.js.stack";
 	
 	public static final String PARAMETER_PREFIX = "parameter.prefix";
+	
+	 /**
+     * Indicates that we want use the minified version of JavaScript files
+     */
+    public static final String USE_MINIFIED_JS = "use.minified.js";
     
 }

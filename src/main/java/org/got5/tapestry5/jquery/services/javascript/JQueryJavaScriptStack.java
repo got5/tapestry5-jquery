@@ -20,12 +20,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.annotations.Symbol;
-import org.apache.tapestry5.ioc.internal.util.TapestryException;
 import org.apache.tapestry5.ioc.services.SymbolSource;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
@@ -42,7 +40,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  */
 public class JQueryJavaScriptStack implements JavaScriptStack {
 
-    private final boolean productionMode;
+    private final boolean minified;
     
     private String jQueryAlias;
     
@@ -54,12 +52,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
       
     private final JavaScriptStackSource jsStackSource;
 
-    private SymbolSource symbolSource;
-
     private EffectsParam effectsParam;
 
-    public JQueryJavaScriptStack(@Symbol(SymbolConstants.PRODUCTION_MODE)
-                                 final boolean productionMode,
+    public JQueryJavaScriptStack(@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+                                 final boolean minified,
                                  
                                  @Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
                                  final String jQueryAlias,
@@ -77,12 +73,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     {
     	
-        this.productionMode = productionMode;
+        this.minified = minified;
         this.suppressPrototype = suppressPrototype;
         this.assetSource = assetSource;
         this.jQueryAlias = jQueryAlias;
         this.jsStackSource = jsStackSrc;
-        this.symbolSource = symbolSource;
         this.effectsParam = effectsParam;
 
 
@@ -90,7 +85,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         {
             public Asset map(String path)
             {
-            	if(productionMode){
+            	if(minified){
             		
             		String pathMin = symbolSource.expandSymbols(path);
             		
@@ -128,7 +123,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     				" value than '$'");
     	
     	
-        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
+        return minified ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
     }
     
     /**

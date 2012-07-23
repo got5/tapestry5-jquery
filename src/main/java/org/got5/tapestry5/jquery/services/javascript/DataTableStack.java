@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.components.DataTable;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
@@ -28,8 +28,8 @@ public class DataTableStack implements JavaScriptStack
     private final List<StylesheetLink> cssStack;
 
     public DataTableStack(
-            @Symbol(SymbolConstants.PRODUCTION_MODE)
-            final boolean productionMode,
+            @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+            final boolean minified,
             final AssetSource assetSource)
     {
 
@@ -41,7 +41,7 @@ public class DataTableStack implements JavaScriptStack
             }
         };
 
-        final String path = String.format("${assets.path}/components/datatables/jquery.dataTables%s.js", productionMode ? ".min" : "");
+        final String path = String.format("${assets.path}/components/datatables/jquery.dataTables%s.js", minified ? ".min" : "");
 
         javaScriptStack = F.flow(path, "${assets.path}/components/datatables/dataTables.js").map(pathToAsset).toList();
 
