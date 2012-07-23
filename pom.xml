@@ -470,7 +470,7 @@
 	
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-		<tapestry-release-version>5.3.3</tapestry-release-version>
+		<tapestry-release-version>5.3.4</tapestry-release-version>
 	    <browserStartCommand>*firefox</browserStartCommand>
 	</properties>
 </project>
