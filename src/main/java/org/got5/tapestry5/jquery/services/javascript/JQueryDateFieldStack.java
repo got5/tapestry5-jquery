@@ -50,7 +50,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     private final boolean compactJSON;
 
-    private final boolean productionMode;
+    private final boolean minified;
 
     private final TypeCoercer typeCoercer;
 
@@ -61,8 +61,8 @@ public class JQueryDateFieldStack implements JavaScriptStack
     @Symbol(SymbolConstants.COMPACT_JSON)
     final boolean compactJSON,
 
-    @Symbol(SymbolConstants.PRODUCTION_MODE)
-    final boolean productionMode,
+    @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+    final boolean minified,
 
     final AssetSource assetSource,
 
@@ -75,7 +75,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
         this.typeCoercer = typeCoercer;
         this.symbolSource = symbolSource;
 
-        this.productionMode = productionMode;
+        this.minified = minified;
     }
 
     public String getInitialization()
@@ -129,8 +129,8 @@ public class JQueryDateFieldStack implements JavaScriptStack
         final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
         javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s/jquery.ui.datepicker%s.js", jQueryUIPath, 
-        		(!productionMode ? "/minified" : ""),
-        		(!productionMode ? ".min" : ""))));
+        		(!minified ? "/minified" : ""),
+        		(!minified ? ".min" : ""))));
 
         final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
 

@@ -1,0 +1,113 @@
+description = "Tapestry 5 Jquery Project"
+import org.gradle.api.Project
+
+apply plugin: 'java'
+apply plugin: "groovy" // mostly for testing
+apply plugin: "maven"
+apply plugin: "project-report"
+
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+// Specific to top-level build, not set for subprojects:
+  version = "3.3.1-SNAPSHOT"
+  group = "org.got5"
+
+configurations {
+   provided
+   deployerJars
+   binaries // additional dependencies included in the binary archive
+}
+
+
+// See http://jira.codehaus.org/browse/GRADLE-784
+
+  sourceSets {
+    main {
+      compileClasspath += configurations.provided
+    }
+    test {
+      compileClasspath += configurations.provided
+      runtimeClasspath += configurations.provided
+    }
+  }
+
+Project projectDef = project;
+
+
+def tapestryVersion = "5.3.4"
+def servletapi = "2.5"
+def spock = "0.6-groovy-1.8"
+
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+    //mavenRepo urls: "https://repository.apache.org/content/repositories/staging/"
+        
+}
+
+dependencies {
+	compile "org.apache.tapestry:tapestry-core:$tapestryVersion"
+	compile "org.apache.tapestry:tapestry-upload:$tapestryVersion"
+	compile "commons-fileupload:commons-fileupload:1.2.2"
+    compile "commons-lang:commons-lang:2.6"
+    
+
+	providedCompile "javax.servlet:servlet-api:2.5"
+	
+	testCompile "org.apache.tapestry:tapestry-test:$tapestryVersion"
+	//testCompile "org.codehaus.groovy:groovy-all:1.8.6"
+	
+	testCompile "org.spockframework:spock-core:${spock}"
+	groovy "org.codehaus.groovy:groovy-all:1.8.6"
+	        
+
+	testRuntime "org.eclipse.jetty:jetty-server:7.0.0.v20091005"
+
+	
+	
+}
+
+jettyRun {
+	dependsOn testClasses
+    classpath =  sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+	httpPort = 8080
+	webXml = new File("$projectDef.projectDir/src/test/webapp/WEB-INF/web.xml")
+	webAppSourceDirectory = new File("$projectDef.projectDir/src/test/webapp")
+	
+	
+}
+
+// Not sure why this is necessary:
+compileTestGroovy.dependsOn compileTestJava
+
+test {
+		useJUnit()
+        maxHeapSize = "400M"
+        systemProperties["tapestry.service-reloading-enabled"] = "false"
+        jvmArgs("-XX:MaxPermSize=512m")
+        logging.captureStandardOutput LogLevel.INFO
+        getLogging().setLevel(LogLevel.INFO)
+}
+
+task testng(type: Test) { 
+     useTestNG() 
+     options.suites("src/test/conf/testng.xml")
+     maxHeapSize = "400M"
+     systemProperties["tapestry.service-reloading-enabled"] = "false"
+     jvmArgs("-XX:MaxPermSize=512m")
+     logging.captureStandardOutput LogLevel.INFO
+     getLogging().setLevel(LogLevel.INFO)
+} 
+
+check.dependsOn testng 
+
+jar {	
+
+	manifest {	
+		attributes 'Tapestry-Module-Classes': 'org.got5.tapestry5.jquery.services.JQueryModule'
+		}
+ }
+
+

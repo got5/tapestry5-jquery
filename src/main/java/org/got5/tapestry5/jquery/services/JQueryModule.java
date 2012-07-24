@@ -16,6 +16,7 @@
 
 package org.got5.tapestry5.jquery.services;
 
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
@@ -109,6 +110,7 @@ public class JQueryModule
 
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
         configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
+        configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS, SymbolConstants.PRODUCTION_MODE_VALUE);
 
     }
 

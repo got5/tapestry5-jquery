@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
 public class FormFragmentSupportStack implements JavaScriptStack {
 
@@ -21,8 +21,8 @@ public class FormFragmentSupportStack implements JavaScriptStack {
 
     public FormFragmentSupportStack(final AssetSource assetSource,
 
-            @Symbol(SymbolConstants.PRODUCTION_MODE)
-            final boolean productionMode)
+            @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+            final boolean minified)
     {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
@@ -33,7 +33,7 @@ public class FormFragmentSupportStack implements JavaScriptStack {
             }
         };
 
-        if (productionMode) {
+        if (minified) {
 
             javaScriptStack = F.flow("${assets.path}/components/formfragment/formfragment.js",
                                      "${jquery.ui.path}/minified/jquery.effects.blind.min.js")

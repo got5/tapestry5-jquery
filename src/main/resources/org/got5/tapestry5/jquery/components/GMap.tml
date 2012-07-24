@@ -1,0 +1,4 @@
+<t:container xml:space="default"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<div id="${clientId}" class="k-gmap"></div>
+</t:container>

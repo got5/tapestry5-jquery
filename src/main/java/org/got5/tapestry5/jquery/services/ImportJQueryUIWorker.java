@@ -1,7 +1,6 @@
 package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.Asset;
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Flow;
@@ -9,7 +8,6 @@ import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.func.Worker;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
-import org.apache.tapestry5.ioc.internal.util.TapestryException;
 import org.apache.tapestry5.model.MutableComponentModel;
 import org.apache.tapestry5.plastic.MethodAdvice;
 import org.apache.tapestry5.plastic.MethodInvocation;
@@ -23,7 +21,6 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
-import org.got5.tapestry5.jquery.internal.TapestryJQueryExceptionMessages;
 
 
 public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
@@ -37,7 +34,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final String themePath;
     
-    private final boolean productionMode;
+    private final boolean minified;
 
     public ImportJQueryUIWorker(AssetSource assetSource,
 
@@ -46,8 +43,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
             @Symbol(JQuerySymbolConstants.JQUERY_UI_PATH)
             String jqueryUIBase,
 
-            @Symbol(SymbolConstants.PRODUCTION_MODE)
-            boolean productionMode, 
+            @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+            boolean minified, 
             
     		@Symbol(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME)
     		String themePath)
@@ -56,7 +53,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
         this.javaScriptSupport = javaScriptSupport;
                 
         this.jqueryUIBase = jqueryUIBase;
-        this.productionMode = productionMode;
+        this.minified = minified;
         this.themePath = themePath;
     }
     
@@ -109,9 +106,9 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
         public String map(String name)
         {
         	final StringBuilder relativePath = new StringBuilder()
-                .append(productionMode ? "/minified/" : "/")
+                .append(minified ? "/minified/" : "/")
                 .append(name)
-                .append(productionMode ? ".min.js" : ".js");
+                .append(minified ? ".min.js" : ".js");
             return jqueryUIBase + relativePath.toString();
         }
     };
