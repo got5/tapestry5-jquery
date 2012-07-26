@@ -162,7 +162,8 @@ T5.extendInitializers({
 	
 	/** Make the given field the active field (focus on the field). */
     activate : function(id) {
-        $("#" + id).focus();
+    	//IE7 raises an error if you try to activate an invisible field
+    	$(document.getElementById(id)).filter(":visible").focus();
     },
     
     /**
