@@ -985,15 +985,15 @@
 
 						if ($.inArray(assetURL, loaded) === -1) {
 
-							stylesheet = '<link href="' + assetURL
-									+ '" type="text/css" rel="stylesheet"';
+							var style = document.createElement("link");
+							style.setAttribute("type", "text/css");
+							style.setAttribute("rel", "stylesheet");
+							style.setAttribute("href", assetURL);
+							if (s.media) {
+								style.setAttribute("media", s.media);
+							}
 
-							if (s.media)
-								stylesheet += ' media="' + s.media + '" ';
-
-							stylesheet += '/>';
-
-							$('head').append(stylesheet);
+							$('head')[0].appendChild(style);
 						}
 					});
 				}
