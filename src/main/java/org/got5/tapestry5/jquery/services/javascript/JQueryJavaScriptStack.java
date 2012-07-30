@@ -120,7 +120,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
                         "${jquery.ui.path}/jquery.ui.core.js",
                         "${jquery.ui.path}/jquery.ui.position.js",
                         "${jquery.ui.path}/jquery.ui.widget.js",
-                        "${jquery.ui.path}/jquery.effects.core.js")
+                        "${jquery.ui.path}/jquery.effects.core.js", 
+                        "${tapestry.jquery.path}/jquery.json-2.2.js")
             .concat(F.flow(this.effectsParam.getEffectsToLoad())).map(pathToAsset).toList();
 
     }
@@ -128,7 +129,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     public String getInitialization()
     {
     	if(!suppressPrototype && jQueryAlias.equals("$")) jQueryAlias="$j";
-        return productionMode ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
+        return productionMode ? "var "+jQueryAlias+" = jQuery; Tapestry.JQUERY="+suppressPrototype+";" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array(); Tapestry.JQUERY="+suppressPrototype+";";
     }
 
     public List<Asset> getJavaScriptLibraries()

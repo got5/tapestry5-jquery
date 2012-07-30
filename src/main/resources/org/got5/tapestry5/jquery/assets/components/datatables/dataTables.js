@@ -12,10 +12,14 @@
     			fnDrawCallback: function( oSettings ) {
     				if(oSettings.jqXHR){
 	    				json = {};
-	    				json.scripts = oSettings.jqXHR.responseText.evalJSON().scripts;
-	    				json.stylesheets = oSettings.jqXHR.responseText.evalJSON().stylesheets;
-	    				json.inits = oSettings.jqXHR.responseText.evalJSON().inits;
-	    				Tapestry.loadScriptsInReply(json,function(){});
+	    				json.scripts = $.evalJSON(oSettings.jqXHR.responseText).scripts;
+	    				json.stylesheets = $.evalJSON(oSettings.jqXHR.responseText).stylesheets;
+	    				json.inits = $.evalJSON(oSettings.jqXHR.responseText).inits;
+	    				
+	    				if(Tapestry.JQUERY){
+	    					$.tapestry.utils.loadScriptsInReply(json,function(){});
+	    				}
+	    				else Tapestry.loadScriptsInReply(json,function(){});
     				}
         	      }
     		});
