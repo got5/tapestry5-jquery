@@ -32,7 +32,7 @@
 		</div>
 		
 		<div id="bar">
-			<strong>Tapestry jQuery ${message:tapestry-jquery-version} For Tapestry ${message:tapestry-version}</strong>
+			<strong>Tapestry jQuery ${message:tapestry-jquery-version} For Tapestry ${tapestryVersion}</strong>
 		</div>
 		
 		
