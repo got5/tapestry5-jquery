@@ -122,8 +122,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     				" and jQuery. You should set in your AppModule the alias for the jQuery object to a different" +
     				" value than '$'");
     	
-    	
-        return minified ? "var "+jQueryAlias+" = jQuery;" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array();";
+    	return minified ? "var "+jQueryAlias+" = jQuery; Tapestry.JQUERY="+suppressPrototype+";" : "var "+jQueryAlias+" = jQuery; Tapestry.DEBUG_ENABLED = true; var selector = new Array(); Tapestry.JQUERY="+suppressPrototype+";";
     }
     
     /**
