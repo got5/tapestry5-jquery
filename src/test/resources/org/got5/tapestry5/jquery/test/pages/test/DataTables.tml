@@ -3,7 +3,7 @@
      <table t:type="jquery/datatable" t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
 		reorder="inline,link,lastName,firstName,occupation,dateOfBirth" t:options="options" t:mode="true" 
-		t:model="model" t:row="current" t:rowIndex="index" t:add="link,inline" t:tableInformation="information">
+		t:model="model" t:row="current" t:rowIndex="index" t:add="link,inline" t:tableInformation="information" t:id="datatable" id="datatable">
 		
 		<p:firstNameHeader>Prénom</p:firstNameHeader>
 		

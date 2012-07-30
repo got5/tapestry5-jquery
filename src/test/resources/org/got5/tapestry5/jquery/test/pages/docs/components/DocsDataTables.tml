@@ -56,7 +56,7 @@ t:activeElement="1">
     	<t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
 		reorder="lastName,firstName,occupation,dateOfBirth" t:options="options"  
-		t:mode="false" t:model="model" t:row="current">
+		t:mode="false" t:model="model" t:row="current" t:id="datatable" id="datatable">
 		
 			<p:firstNameHeader>First Name</p:firstNameHeader>
 			
@@ -74,7 +74,7 @@ t:activeElement="1">
     	<t:jquery.datatable t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
 		reorder="lastName,firstName,occupation,dateOfBirth" t:options="options"  
-		t:mode="true" t:model="model" t:row="current">
+		t:mode="true" t:model="model" t:row="current" t:id="datatable2" id="datatable2">
 		
 			<p:firstNameHeader>First Name</p:firstNameHeader>
 			

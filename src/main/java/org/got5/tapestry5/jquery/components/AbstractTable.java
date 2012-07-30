@@ -185,12 +185,7 @@ public class AbstractTable implements ClientElement {
 	
 	public String getClientId() {
 
-		if (clientId == null) {
-
-			clientId = javaScriptSupport.allocateClientId(resources);
-		}
-
-		return clientId;
+		return (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
 	}
 
 	public int getRowsPerPage() {
