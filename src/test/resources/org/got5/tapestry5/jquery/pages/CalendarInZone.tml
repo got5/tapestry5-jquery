@@ -1,0 +1,20 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+    <t:zone t:id="zone" t:visible="false">
+	<t:if test="showContents">
+		<t:form t:zone="zone">
+        		<t:datefield t:value="date" />
+			<t:submit />
+    		</t:form>
+	</t:if>
+    </t:zone>
+    
+    <t:actionLink t:id="link" t:zone="zone">Link</t:actionLink>
+    <p>
+        
+        <t:actionlink t:id="english"> english</t:actionlink><br/>
+        <t:actionlink t:id="french" t:zone="zone"> french</t:actionlink><br/>
+       
+    </p>
+    
+</html>

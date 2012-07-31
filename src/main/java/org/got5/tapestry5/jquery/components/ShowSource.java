@@ -28,6 +28,8 @@ import org.slf4j.Logger;
 /**
  * Component for displaying a code source
  * @since 2.1.1
+ * 
+ * @tapestrydoc
  */
 @Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
 				  "${assets.path}/components/showSource/my-snippet.js"}, 
@@ -118,11 +120,12 @@ public class ShowSource {
 		 * Init the Default parameter for the jQuery plugin
 		 */
 		defaultSpecs = new JSONObject();
+		System.out.println("########### " +  path.substring(path.lastIndexOf("/") + 1));
 		
-		defaultSpecs.put("showMsg", message.get("ShowSource-showMsg"));
+		defaultSpecs.put("showMsg", path.substring(path.lastIndexOf("/") + 1) + " - " + message.get("ShowSource-showMsg"));
 			
-		defaultSpecs.put("hideMsg", message.get("ShowSource-hideMsg"));
-			
+		defaultSpecs.put("hideMsg", path.substring(path.lastIndexOf("/") + 1) + " - " + message.get("ShowSource-hideMsg"));
+		
 		defaultSpecs.put("style", message.get("ShowSource-style"));
 			
 		defaultSpecs.put("collapse", message.get("ShowSource-collapse"));

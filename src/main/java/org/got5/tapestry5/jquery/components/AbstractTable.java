@@ -36,6 +36,9 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @tapestrydoc
+ */
 @SupportsInformalParameters
 public class AbstractTable implements ClientElement {
 
@@ -184,13 +187,7 @@ public class AbstractTable implements ClientElement {
 	private Request request;
 	
 	public String getClientId() {
-
-		if (clientId == null) {
-
-			clientId = javaScriptSupport.allocateClientId(resources);
-		}
-
-		return clientId;
+		return (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
 	}
 
 	public int getRowsPerPage() {
@@ -399,12 +396,20 @@ public class AbstractTable implements ClientElement {
 		rowIndex = index;
 		
 		Object obj = getSource().getRowValue(index);
+
+		if (obj == null) { //rows can be null, as stated in getRowValue docs
+		    return "";
+		}
 		
 		PropertyConduit conduit = getDataModel().get(cellModel).getConduit();
 
 		Class type = conduit.getPropertyType();
 
 		Object val = conduit.get(obj);
+
+		if (val == null) { //cells should be able to have null values
+		    return "";
+		}
 		
 		if (!String.class.equals(getDataModel().get(cellModel).getClass())
                 && !Number.class.isAssignableFrom(getDataModel().get(cellModel).getClass()))

@@ -11,6 +11,8 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 
@@ -27,6 +29,9 @@ public class AjaxUploadTest {
     @InjectComponent
     private Zone uploadResult;
 
+    @Inject
+    private AjaxResponseRenderer renderer;
+    
     void onActivate() {
 
         if (uploadedFiles == null)
@@ -34,17 +39,17 @@ public class AjaxUploadTest {
     }
 
     @OnEvent(component = "uploadImage", value = JQueryEventConstants.AJAX_UPLOAD)
-    Object onImageUpload(UploadedFile uploadedFile) {
+    void onImageUpload(UploadedFile uploadedFile) {
 
         this.uploadedFiles.add(uploadedFile);
-
-        return new MultiZoneUpdate("uploadResult", uploadResult.getBody());
+        
+        renderer.addRender("uploadResult", uploadResult.getBody());
     }
 
-    Object onUploadException(FileUploadException ex) {
+    void onUploadException(FileUploadException ex) {
 
         message = "Upload exception: " + ex.getMessage();
 
-        return new MultiZoneUpdate("uploadResult", uploadResult.getBody());
+        renderer.addRender("uploadResult", uploadResult.getBody());
     }
 }

@@ -19,11 +19,13 @@ package org.got5.tapestry5.jquery.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 
 public class JQueryDialog
@@ -37,7 +39,7 @@ public class JQueryDialog
     @Inject
     private Request request;
 
-    @OnEvent("activate")
+    @OnEvent(value = EventConstants.ACTIVATE)
     void init()
     {
         if (count == null)
@@ -49,7 +51,7 @@ public class JQueryDialog
         return count++;
     }
 
-    @OnEvent(value = "action")
+    @OnEvent(value = EventConstants.ACTION)
     Object updateCount()
     {
         if (!request.isXHR()) { return this; }
@@ -72,5 +74,8 @@ public class JQueryDialog
 
         return strings;
     }
-
+    
+    public JSONObject getOptions(){
+    	return new JSONObject("draggable", "true");
+    }
 }

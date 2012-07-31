@@ -18,7 +18,6 @@ package org.got5.tapestry5.jquery.services;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
@@ -52,20 +51,15 @@ public class AppModule
     	
     	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
     	
-    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
-    	
-    	configuration.add("enableAnalytics", "false");
-    	
-    	configuration.add("demo-src-dir","");
-    	
+    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui-1.8.19.custom.css");
     }
     
-@Contribute(WidgetParams.class)
-public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
-	configuration.add("slider", new JSONObject().put("min", 5));
-    configuration.add("customdatepicker", 
-    		new JSONObject("prevText","Previous Month"));
-}
+	@Contribute(WidgetParams.class)
+	public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
+		configuration.add("slider", new JSONObject().put("min", 5));
+	    configuration.add("customdatepicker", 
+	    		new JSONObject("prevText","Previous Month"));
+	}
     
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
@@ -85,9 +79,9 @@ public void addWidgetParams(MappedConfiguration<String, JSONObject> configuratio
 				"session", creator));
 	}
 
-@Contribute(EffectsParam.class)
-public void addEffectsFile(Configuration<String> configuration){
-	configuration.add(EffectsConstants.SHAKE);
-}
+	@Contribute(EffectsParam.class)
+	public void addEffectsFile(Configuration<String> configuration){
+		configuration.add(EffectsConstants.SHAKE);
+	}
 
 }

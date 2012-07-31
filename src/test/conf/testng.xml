@@ -3,9 +3,11 @@
    <test name="JQuery Integration Tests"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
-        <parameter name="tapestry.browser-start-command" value="${browserStartCommand}" />
+        <parameter name="tapestry.browser-start-command" value="*firefox" />
 
         <classes>
+          <class name="org.got5.tapestry5.jquery.JGrowlTest"></class>
+          <class name="org.got5.tapestry5.jquery.TreeTest"></class>
           <class name="org.got5.tapestry5.jquery.AjaxFormLoopTest"></class>
           <class name="org.got5.tapestry5.jquery.BindTest"></class>
           <class name="org.got5.tapestry5.jquery.CarouselTest"></class>
@@ -28,13 +30,16 @@
           <class name="org.got5.tapestry5.jquery.GalleryTest"></class>
           <class name="org.got5.tapestry5.jquery.FormTest"></class>
           <class name="org.got5.tapestry5.jquery.ButtonTest"></class>
-          <!-- <class name="org.got5.tapestry5.jquery.ShowSourceTest"></class> -->
           <class name="org.got5.tapestry5.jquery.LinksubmitTest"></class>
           <class name="org.got5.tapestry5.jquery.ZoneTest"></class>
           <class name="org.got5.tapestry5.jquery.DraggableTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableAjaxTest"></class>
           <class name="org.got5.tapestry5.jquery.InPlaceEditorTest"></class>
           <class name="org.got5.tapestry5.jquery.DataTableTest"></class>
+          <class name="org.got5.tapestry5.jquery.SortableTest"></class>
+          <class name="org.got5.tapestry5.jquery.ZoneRefreshTest"></class>
+          <class name="org.got5.tapestry5.jquery.GMapTest"></class>
+          <class name="org.got5.tapestry5.jquery.RatyTest"></class>
         </classes>
     </test>
     <test name="JQuery Unit Tests"  enabled="true">

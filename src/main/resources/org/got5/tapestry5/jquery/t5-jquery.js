@@ -46,9 +46,9 @@ T5.extend(T5.spi, function() {
 
     return {
         observe : observe,
-        find : Element.down,
-        show : Element.show,
-        hide : Element.hide,
+        find : undefined,
+        show : undefined,
+        hide : undefined,
         appendMarkup : appendMarkup
     };
 });

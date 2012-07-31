@@ -65,7 +65,7 @@
 	    		
 	    		// Chrome doesn't automatically output a trace with the error message.
 	            // FireFox does.
-	    		if (! $.browser.safari) {
+	    		if (! $.browser.safari && console.trace) {
 	                console.trace();
 	            }
 	    	}
@@ -75,7 +75,11 @@
 	        /** Time, in seconds, that floating console messages are displayed to the user. */
 	        DURATION  : 10000,
 	
-	        debug : level("t-debug", nativeConsole.debug),
+	        debug : function(message) {
+	            if (Tapestry.DEBUG_ENABLED) {
+	                level("t-debug", nativeConsole.debug).call(window, message);
+	            }
+          },
 	        info : level("t-info", nativeConsole.info),
 	        warn : level("t-warn", nativeConsole.warn),
 	        error : error

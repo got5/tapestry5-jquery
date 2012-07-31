@@ -57,14 +57,14 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * partial input string sent from the client. The return value should be an array or list of completions, in
  * presentation order. I.e.
  * <p/>
- * 
+ *
  * <pre>
  * String[] onProvideCompletionsFromMyField(String input)
  * {
  *   return . . .;
  * }
  * </pre>
- * 
+ *
  * @tapestrydoc
  */
 @ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
@@ -75,7 +75,7 @@ public class Autocomplete
     static final String EVENT_NAME = "autocomplete";
 
     private static final String PARAM_NAME = "t:input";
-    
+
     private static final String EXTRA_NAME = "extra";
 
     /**
@@ -109,18 +109,23 @@ public class Autocomplete
      */
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private double frequency;
-    
+
     /**
      * If given, then the autocompleter will support multiple input values, seperated by any of the individual
      * characters in the string.
      */
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String tokens;
-    
+
     /**
-     * Mixin afterRender phrase occurs after the component itself. This is where we write the
-     * &lt;div&gt; element and
-     * the JavaScript.
+     * Adds options to jQuery's autocomplete function.
+     */
+    @Parameter(defaultPrefix=BindingConstants.LITERAL)
+    private JSONObject options;
+
+    /**
+     * Mixin afterRender phase occurs after the component itself. This is where
+     * we write the &lt;div&gt; element and the JavaScript.
      *
      * @param writer
      */
@@ -140,7 +145,7 @@ public class Autocomplete
 
         if (resources.isBound("frequency"))
             config.put("delay", frequency);
-        
+
         if (resources.isBound("tokens"))
         {
             for (int i = 0; i < tokens.length(); i++)
@@ -148,7 +153,9 @@ public class Autocomplete
                 config.accumulate("tokens", tokens.substring(i, i + 1));
             }
         }
-        
+
+        config.put("options", options);
+
         // Let subclasses do more.
         configure(config);
 
@@ -158,13 +165,13 @@ public class Autocomplete
     Object onAutocomplete()
     {
         JSONObject json = new JSONObject(request.getParameter("data"));
-        
+
         JSONObject extra = (json.length()>1) ? new JSONObject(json.getString(EXTRA_NAME)) : new JSONObject();
-        
+
         String input = json.getString(PARAM_NAME);
-        
+
         final Holder<List> matchesHolder = Holder.create();
-        
+
         // Default it to an empty list.
 
         matchesHolder.put(Collections.emptyList());
@@ -178,9 +185,9 @@ public class Autocomplete
                 return true;
             }
         };
-        
+
         Object[] params = extra.length()==0 ? new Object[] {input} : new Object[] {input, extra};
-        
+
         resources.triggerEvent(EventConstants.PROVIDE_COMPLETIONS, params, callback);
 
         ContentType contentType = responseRenderer.findContentType(this);

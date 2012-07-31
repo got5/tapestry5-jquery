@@ -6,7 +6,11 @@
     		$( "#" + specs.id ).bind( "drop", function(event, ui) {
     			 var contexte=$(ui.draggable).data("contexte");
     			 var element = $("#" + specs.id);
-    			 var urlWithContexte =specs.BaseURL + "/" + contexte;
+				 
+				 var parts = specs.BaseURL.split("?");
+				 parts[0] += "/" + encodeURIComponent(contexte);
+				 var urlWithContexte = parts.join("?");
+
     			 element.tapestryZone("update" , {url : urlWithContexte});
     		});
         }

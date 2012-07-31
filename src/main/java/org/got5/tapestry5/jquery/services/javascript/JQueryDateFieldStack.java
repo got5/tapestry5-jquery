@@ -50,7 +50,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     private final boolean compactJSON;
 
-    private final boolean productionMode;
+    private final boolean minified;
 
     private final TypeCoercer typeCoercer;
 
@@ -58,16 +58,16 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     public JQueryDateFieldStack(final ThreadLocale threadLocale,
 
-                                @Symbol(SymbolConstants.COMPACT_JSON)
-                                final boolean compactJSON,
+    @Symbol(SymbolConstants.COMPACT_JSON)
+    final boolean compactJSON,
 
-                                @Symbol(SymbolConstants.PRODUCTION_MODE)
-                                final boolean productionMode,
+    @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
+    final boolean minified,
 
-                                final AssetSource assetSource,
+    final AssetSource assetSource,
 
-                                final TypeCoercer typeCoercer,
-                                final SymbolSource symbolSource)
+    final TypeCoercer typeCoercer,
+    final SymbolSource symbolSource)
     {
         this.threadLocale = threadLocale;
         this.assetSource = assetSource;
@@ -75,7 +75,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
         this.typeCoercer = typeCoercer;
         this.symbolSource = symbolSource;
 
-        this.productionMode = productionMode;
+        this.minified = minified;
     }
 
     public String getInitialization()
@@ -126,22 +126,19 @@ public class JQueryDateFieldStack implements JavaScriptStack
             jQueryUIPath += "/";
         }
 
-    	final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
+        final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
-    	final List<Asset> javaScriptStack = new ArrayList<Asset>();
+        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s/jquery.ui.datepicker%s.js", jQueryUIPath, 
+        		(!minified ? "/minified" : ""),
+        		(!minified ? ".min" : ""))));
 
-        if (productionMode) {
+        final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
 
-            javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/minified/jquery.ui.datepicker.min.js")));
-        } else {
-			javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s", jQueryUIPath, "/jquery.ui.datepicker.js")));			
-		}
-
-     	if (datePickerI18nAsset != null)
+    	if (datePickerI18nAsset != null)
      	{
      	    javaScriptStack.add(datePickerI18nAsset);
      	}
-		
+        
      	javaScriptStack.add(assetSource.getExpandedAsset("${assets.path}/components/datefield/datefield.js"));
 
     	return javaScriptStack;

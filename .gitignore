@@ -18,3 +18,5 @@ pom-internal-release.xml
 maven-eclipse.xml
 .externalToolBuilders
 .gradle/
+.idea/
+build

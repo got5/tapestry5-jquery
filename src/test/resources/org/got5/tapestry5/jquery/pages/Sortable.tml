@@ -1,0 +1,12 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+    
+    <ul t:type="any" t:mixins="sortable">
+    	<li id="1" class="ui-state-default">Ligne 1</li>
+    	<li id="2" class="ui-state-default">Ligne 2</li>
+    	<li id="3" class="ui-state-default">Ligne 3</li>
+    	<li id="4" class="ui-state-default">Ligne 4</li>
+    	<li id="5" class="ui-state-default">Ligne 5</li>
+    </ul>
+    
+</html>

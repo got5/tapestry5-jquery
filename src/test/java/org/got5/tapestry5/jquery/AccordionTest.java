@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import com.thoughtworks.selenium.Wait;
 
 public class AccordionTest extends SeleniumTestCase{
+	
 	@Test
     public void testAccordion()
     {
@@ -34,6 +35,21 @@ public class AccordionTest extends SeleniumTestCase{
 
        
     }
+	
+	@Test
+	public void testDefaultLabelForAccordion(){
+		
+		open("/jqueryaccordion");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("//div[@id='accordion']/h3[4]/a").equals("Block Test");
+            }
+        }.wait("The fourth accordion does not have the right default value.", JQueryTestConstants.TIMEOUT);
+	}
 	
 	@Test
     public void testAccordionOld()

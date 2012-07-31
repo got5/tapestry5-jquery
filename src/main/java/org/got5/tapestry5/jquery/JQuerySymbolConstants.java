@@ -43,7 +43,7 @@ public class JQuerySymbolConstants {
     /**
      * Base path for jQuery validation plugin.
      *
-     * @see http://docs.jquery.com/Plugins/Validation
+     * @see <a href="http://docs.jquery.com/Plugins/Validation">jQuery Validation mecanism</a>
      */
     public static final String JQUERY_VALIDATE_PATH = "jquery.validate.path";
     
@@ -67,5 +67,10 @@ public class JQuerySymbolConstants {
 	public static final String PROTOTYPE_STACK = "prototype.js.stack";
 	
 	public static final String PARAMETER_PREFIX = "parameter.prefix";
+	
+	 /**
+     * Indicates that we want use the minified version of JavaScript files
+     */
+    public static final String USE_MINIFIED_JS = "use.minified.js";
     
 }

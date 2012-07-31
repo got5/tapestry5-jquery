@@ -18,7 +18,6 @@ package org.got5.tapestry5.jquery.mixins;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
-import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
@@ -32,6 +31,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * The Button mixin improve the form of traditional elements like button, submit, reset ...
  * 
  * @see <a href="http://jqueryui.com/demos/button/">http://jqueryui.com/demos/button/</a>
+ * 
+ * @tapestrydoc
  */
 @ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core", "jquery.ui.button" })
 @Import(library = { "${assets.path}/mixins/button/button.js" })

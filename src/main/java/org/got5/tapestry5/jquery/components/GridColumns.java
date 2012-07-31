@@ -13,6 +13,9 @@ import org.apache.tapestry5.beaneditor.PropertyModel;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
+/**
+ * @tapestrydoc
+ */
 @SupportsInformalParameters
 public class GridColumns {
 	

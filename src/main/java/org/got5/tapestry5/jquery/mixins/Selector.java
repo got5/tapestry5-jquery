@@ -12,6 +12,8 @@ import org.got5.tapestry5.jquery.services.RenderTracker;
 /**
  * Added to every ClientId component via injection.
  * @since 2.6.0 
+ * 
+ * @tapestrydoc
  */
 public class Selector {
 	

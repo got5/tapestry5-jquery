@@ -9,6 +9,9 @@ import org.apache.tapestry5.json.JSONObject;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.TableInformation;
 
+/**
+ * @tapestrydoc
+ */
 public abstract class AbstractJQueryTable extends AbstractTable{
 
 	/**

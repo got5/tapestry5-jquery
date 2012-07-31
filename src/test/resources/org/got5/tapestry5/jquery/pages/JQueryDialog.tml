@@ -1,5 +1,5 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:jquery.dialog t:clientId="myDialog">
+    <t:jquery.dialog t:clientId="myDialog" t:params="options">
     	Dialog test!
 		<t:zone t:id="myZone">${count}
 		
@@ -11,8 +11,8 @@
     </t:jquery.dialog>
 	
 	<h3>Dialog Link</h3>
-	<t:jquery.dialoglink t:dialog="myDialog">Open</t:jquery.dialoglink>
+	<t:jquery.dialoglink t:dialog="myDialog" class="css">Open</t:jquery.dialoglink>
 	
 	<h3>Dialog Ajax Link</h3>
-	<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone">Open</t:jquery.dialogajaxlink>
+	<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone" class="css2">Open</t:jquery.dialogajaxlink>
 </html>

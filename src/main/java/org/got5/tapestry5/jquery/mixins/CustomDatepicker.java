@@ -20,6 +20,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/demos/datepicker">http://jqueryui.com/demos/datepicker</a>
+ * 
+ * @tapestrydoc
  */
 public class CustomDatepicker {
 	

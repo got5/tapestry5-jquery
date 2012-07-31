@@ -4,9 +4,6 @@ import java.util.Map;
 
 import org.apache.tapestry5.runtime.Component;
 
-/**
- * @5.2.6
- */
 public interface RenderTracker {
 	
 	public void push(Component component);

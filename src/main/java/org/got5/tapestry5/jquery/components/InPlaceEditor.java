@@ -42,6 +42,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * a "just in place" edit component that dont must emmbedded in a form.
  *
  * @version $Id: InPlaceEditor.java jquery version of chenillekit component from homburgs $
+ * 
+ * @tapestrydoc
  */
 @Events(InPlaceEditor.SAVE_EVENT)
 @SupportsInformalParameters

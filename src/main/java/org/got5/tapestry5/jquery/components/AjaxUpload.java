@@ -42,6 +42,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * </p>
  *
  * @author criedel
+ * 
+ * @tapestrydoc
  */
 @Events( { JQueryEventConstants.AJAX_UPLOAD, JQueryEventConstants.NON_XHR_UPLOAD } )
 @Import(stack = AjaxUploadStack.STACK_ID)

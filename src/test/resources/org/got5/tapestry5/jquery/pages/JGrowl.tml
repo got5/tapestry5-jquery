@@ -1,0 +1,12 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+ 
+<h1>JGrowl Demo</h1>
+<br /><br />
+
+<t:jquery.jgrowl />
+
+<t:actionLink t:id="transient">Transient Mode</t:actionLink><br />
+<t:actionLink t:id="single">Single Mode</t:actionLink><br />
+<t:actionLink t:id="untilDismiss">Until-Dismiss Mode</t:actionLink><br />
+
+</html>
