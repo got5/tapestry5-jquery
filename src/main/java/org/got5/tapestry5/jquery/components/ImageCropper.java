@@ -21,6 +21,8 @@ import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeforeRenderBody;
@@ -64,6 +66,14 @@ public class ImageCropper implements ClientElement{
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
 	
+	/**
+     * The zone to update when onSelect event occured on the jcrop. 
+     * An "select" event is triggered on the server. 
+     * You can catch it on your page with @OnEvent(value=EventConstants.SELECTED, component="ImageCropper").
+     */
+    @Parameter(defaultPrefix=BindingConstants.LITERAL)
+    private String zone;
+	
 	@Inject
 	private AssetSource assetSource;
 
@@ -93,6 +103,11 @@ public class ImageCropper implements ClientElement{
 		JSONObject jso = new JSONObject();
 		jso.put("id", clientId);
 		//jso.put("params", params);
+		if(_resources.isBound("zone")){
+    		Link link = _resources.createEventLink(EventConstants.SELECTED);
+    		jso.put("url", link.toAbsoluteURI());
+    		jso.put("zoneId", zone);
+    	}
 		_support.addInitializerCall("imageCropper", jso);
 	}
 

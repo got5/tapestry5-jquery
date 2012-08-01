@@ -16,10 +16,38 @@
 
 package org.got5.tapestry5.jquery.pages;
 
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
+
 
 public class ImageCropperPage{
 	
+	@Property
+	@Persist
+	private int x, y, x2, y2, w, h;
+	
+	@Component
+	private Zone myImageCropped;
+	
+	@Inject
+	private Request request;
 
+	@OnEvent(value=EventConstants.SELECTED, component="myImageCropper")
+	public Object returnZoneRange(){
+		x= Integer.parseInt(request.getParameter("x"));
+		y= Integer.parseInt(request.getParameter("y"));	
+		x2= Integer.parseInt(request.getParameter("x2"));
+		y2= Integer.parseInt(request.getParameter("y2"));
+		w= Integer.parseInt(request.getParameter("w"));
+		h= Integer.parseInt(request.getParameter("h"));
+		return myImageCropped.getBody();
+	}
 	
 	
 	

@@ -3,6 +3,11 @@
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
     
-    	<img t:type="jquery/ImageCropper" src="img/gallery2.jpg" alt="ma cabane au canada" border="0"/>
+    	<img t:type="jquery/ImageCropper" src="img/gallery2.jpg" alt="ma cabane au canada" border="0"
+    	t:zone="myImageCropped" t:id="myImageCropper"/>
+    	<t:zone t:id="myImageCropped" id="myImageCropped" >
+			The crop parameters x=${x} y=${y} x2=${x2} y2=${y2} w=${w} y=${h}.
+		</t:zone>
+		
     
 </html>
