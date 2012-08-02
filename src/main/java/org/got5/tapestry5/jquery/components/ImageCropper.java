@@ -41,9 +41,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 * 
 * @tapestrydoc
 */
-@Import(library = {"${assets.path}/components/jcrop/jquery.jcrop.js",
+@Import(library = {"${assets.path}/components/jcrop/jquery.Jcrop.js",
 				   "${assets.path}/components/jcrop/imagecropper.js"},
-	    stylesheet={"${assets.path}/components/jcrop/jquery.jcrop.css"})
+	    stylesheet={"${assets.path}/components/jcrop/jquery.Jcrop.css"})
 
 @SupportsInformalParameters
 public class ImageCropper implements ClientElement{
