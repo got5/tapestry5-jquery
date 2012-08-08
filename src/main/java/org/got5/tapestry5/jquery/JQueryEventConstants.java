@@ -5,6 +5,8 @@ import org.apache.tapestry5.EventConstants;
  * Analog to {@link EventConstants}-
  *
  * @author criedel
+ * 
+ * @tapestrydoc 
  */
 public class JQueryEventConstants {
 
@@ -44,4 +46,16 @@ public class JQueryEventConstants {
      * Triggered by the {@link org.got5.tapestry5.jquery.mixins.Sortable} mixin
      */
     public static final String SORTABLE = "sort";
+    
+    /**
+     * Triggered by the DataTable component to give a chance to the developer to filter data on server-side
+     */
+    public static final String FILTER_DATA = "filterData";
+    
+    
+    /**
+     * Triggered by the DataTable component to give a chance to the developer to sort data on server-side
+     */
+    public static final String SORT_DATA = "sortData";
+    
 }

@@ -32,6 +32,8 @@ http://groups.google.com/group/tapestry5-jquery
 - 3.1.0-SNAPSHOT : Update to Tapestry 5.3.1
 - 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
           add Components : Gallery
+- 2.6.6 : handle datatable's ajax mode for server-side pagination
+- 2.6.2-SNAPSHOT : more work on client side validation
 - 2.6.1 : improve Validation Mecanism and DataTable Component
 		  add Components : InPlaceEditor, Draggable
 		  add Mixins : ZoneRefresh, ZoneDroppable 

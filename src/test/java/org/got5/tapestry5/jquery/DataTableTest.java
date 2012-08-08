@@ -100,7 +100,7 @@ public class DataTableTest extends SeleniumTestCase{
 	@Test
 	public  void testNavigation(){
 		open("/DataTables");
-		
+
 		checkDisable(1);
 		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][2]");
 		checkDisable(2);
@@ -129,6 +129,39 @@ public class DataTableTest extends SeleniumTestCase{
 			}
 		}.wait("The second row should have the CSS class 'css2'", JQueryTestConstants.TIMEOUT);
 	}
+	
+	@Test
+    public void testData()
+    {
+        open("/DataTables");
+        waitForPageToLoad();
+        
+        //click on next page
+        click("datatable_next");
+        final String expectedText2 = "Pascal";
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getText("//table[@id='datatable']").contains(expectedText2);
+            }
+        }.wait("Expected text is missing ["+expectedText2+"]", JQueryTestConstants.TIMEOUT);
+        
+      //click on first page
+        click("datatable_first");
+        final String expectedText = "Clinton";
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getText("//table[@id='datatable']").contains(expectedText);
+            }
+        }.wait("Expected text is missing ["+expectedText+"]", JQueryTestConstants.TIMEOUT);   
+                
+        
+    }
 	
 	private void checkDisable(final int i) {
 		new Wait() {

@@ -1,5 +1,6 @@
 package org.got5.tapestry5.jquery.data;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,7 +221,7 @@ public class SampleDataTableModel implements DataTableModel {
 	 * This is the method we have to implement for the DataTableModel interface. 
 	 * This is called in the DataTable component, when the datas are loaded by ajax.
 	 */
-	public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides) {
+	public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides, boolean mode) {
 		
 		this.request = request;
 		this.sortModel = sortModel;
@@ -229,7 +230,9 @@ public class SampleDataTableModel implements DataTableModel {
 		
 		GridDataSource s = source;
 		
-		if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH))) s = filterData(source);
+		if(!mode){
+			if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH))) s = filterData(source);
+		}
 		
 		prepareResponse(s);
 		

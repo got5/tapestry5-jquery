@@ -35,6 +35,9 @@ public abstract class AbstractJQueryTable extends AbstractTable{
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private DataTableModel dataTableModel;
 	
+	/**
+	 * Parameter used to definine some parameters of a HTML table : caption, summary, css class
+	 */
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private TableInformation tableInformation;
 	

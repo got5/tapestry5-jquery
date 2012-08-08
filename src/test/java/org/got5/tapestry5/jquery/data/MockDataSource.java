@@ -64,4 +64,21 @@ public class MockDataSource implements IDataSource {
 		}
 		return result;
 	}
+	
+	public void filter(String value) {
+		celebrities = new MockDataSource().getAllCelebrities(); 
+		if(value==null || value.length()==0) {
+			return;
+		}
+		List<Celebrity> result = new ArrayList<Celebrity>();
+		for (Celebrity c : celebrities) {
+			if (c.getFirstName().toUpperCase().contains(value.toUpperCase()) || 
+					c.getLastName().toUpperCase().contains(value.toUpperCase())||
+					c.getOccupation().name().toUpperCase().contains(value.toUpperCase())){
+				
+				result.add(c);
+			}
+		}
+		celebrities = result;
+	}
 }
