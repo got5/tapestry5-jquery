@@ -145,7 +145,7 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@id='datatableAjax_paginate']/span/span[contains(@class,'fg-button')]["+i+"]@class").contains("ui-state-disabled");
+				return getAttribute("//div[@id='datatableAjax_paginate']/span/a[contains(@class,'fg-button')]["+i+"]@class").contains("ui-state-disabled");
 			}
 		}.wait("Page " + i + " should be disabled", JQueryTestConstants.TIMEOUT);
 	}
@@ -155,9 +155,9 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return getXpathCount("//div[@id='datatableAjax_paginate']/span/span[contains(@class,'fg-button')]").equals(i);
+				return getXpathCount("//div[@id='datatableAjax_paginate']/span/a[contains(@class,'fg-button')]").equals(i);
 			}
-		}.wait("We should have "+i+" pages", JQueryTestConstants.TIMEOUT);
+		}.wait("We should have "+i+" pages, instead we have " + getXpathCount("//div[@id='datatableAjax_paginate']/span/span[contains(@class,'fg-button')]"), JQueryTestConstants.TIMEOUT);
 	}
 	
 	

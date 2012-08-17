@@ -46,7 +46,7 @@ import org.got5.tapestry5.jquery.internal.TableInformation;
 					  "context:dataTables/css/demo_table.css",
 					  "context:dataTables/ColVis/media/css/ColVis.css", 
 					  "context:dataTables/ColReorder/media/css/ColReorder.css", 
-					  "context:dataTables/TableTools/css/TableTools.css"})
+					  "context:dataTables/TableTools/media/css/TableTools.css"})
 public class DataTablesAjax
 {
 	@SessionState
@@ -127,7 +127,7 @@ public class DataTablesAjax
 		JSONObject json = new JSONObject("bJQueryUI", "true", "bStateSave", "true", "sDom", "TC<\"clear\">Rlfrtip");
 		
 		JSONObject dataTable = new JSONObject();
-		dataTable.put("sSwfPath", as.getContextAsset("dataTables/TableTools/swf/copy_cvs_xls_pdf.swf", null).toClientURL());
+		dataTable.put("sSwfPath", as.getContextAsset("dataTables/TableTools/media/swf/copy_csv_xls_pdf.swf", null).toClientURL());
 		
 		json.put("oTableTools", dataTable);
 		
@@ -149,8 +149,8 @@ public class DataTablesAjax
 	public void addJsFile(){
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColVis/media/js/ColVis.js", null));
 		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColReorder/media/js/ColReorder.js", null));
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/ZeroClipboard.js", null));
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/js/TableTools.js", null));
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/ZeroClipboard.js", null));
+		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/TableTools.js", null));
 		js.importJavaScriptLibrary(as.getContextAsset("js/demo.js", null));
 	}
 	
