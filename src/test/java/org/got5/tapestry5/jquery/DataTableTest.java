@@ -102,11 +102,11 @@ public class DataTableTest extends SeleniumTestCase{
 		open("/DataTables");
 
 		checkDisable(1);
-		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][2]");
+		click("//div[@id='datatable_paginate']/span/a[contains(@class,'fg-button')][2]");
 		checkDisable(2);
-		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][3]");
+		click("//div[@id='datatable_paginate']/span/a[contains(@class,'fg-button')][3]");
 		checkDisable(3);
-		click("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')][1]");
+		click("//div[@id='datatable_paginate']/span/a[contains(@class,'fg-button')][1]");
 		
 	}
 	@Test
@@ -168,7 +168,7 @@ public class DataTableTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')]["+i+"]@class").contains("ui-state-disabled");
+				return getAttribute("//div[@id='datatable_paginate']/span/a[contains(@class,'fg-button')]["+i+"]@class").contains("ui-state-disabled");
 			}
 		}.wait("Page " + i + " should be disabled", JQueryTestConstants.TIMEOUT);
 	}
@@ -178,7 +178,7 @@ public class DataTableTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return getXpathCount("//div[@id='datatable_paginate']/span/span[contains(@class,'fg-button')]").equals(i);
+				return getXpathCount("//div[@id='datatable_paginate']/span/a[contains(@class,'fg-button')]").equals(i);
 			}
 		}.wait("We should have "+i+" pages", JQueryTestConstants.TIMEOUT);
 	}
