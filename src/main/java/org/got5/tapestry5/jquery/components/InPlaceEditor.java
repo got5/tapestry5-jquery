@@ -34,6 +34,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
 /**
@@ -79,6 +80,9 @@ public class InPlaceEditor implements ClientElement
 	@Parameter(required = false)
 	private List<?> context;
 
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject options;
+	
 	@Inject
 	private ComponentResources resources;
 
@@ -125,9 +129,11 @@ public class InPlaceEditor implements ClientElement
 		opts.put("cancel", messages.get("cancelbutton"));
 		opts.put("submit", messages.get("savebutton"));
 		opts.put("tooltip", messages.get("tooltip"));
+		
+		JQueryUtils.merge(opts, options);
+		
 		spec.put("options", opts);
 
-		
 		javascriptSupport.addInitializerCall("editable", spec);
 	}
 
