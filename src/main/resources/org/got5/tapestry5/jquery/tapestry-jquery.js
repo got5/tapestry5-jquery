@@ -40,7 +40,7 @@
 						},
 						onDomLoadedCallback : function() {
 
-							$('input[type="submit"],input[type="image"]')
+							$('input[type="submit"],input[type="image"],button[type="submit"]')
 									.each(
 											function() {
 
@@ -510,8 +510,12 @@
 												'input[type="hidden"][name="t:formdata"]')
 										.each(
 												function() {
-													hasNoFormData = ($(this)
-															.attr('value') == '');
+													//In case of  form fragment, on second submit, input can be empty
+													if(hasNoFormData) {
+														hasNoFormData = ($(this)
+																.attr('value') == '');
+													}
+													
 												});
 
 								/**
