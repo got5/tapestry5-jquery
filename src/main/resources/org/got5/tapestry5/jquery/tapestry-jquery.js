@@ -967,7 +967,9 @@
 	                        	 }
 	                         };
 	                     });
-	            	}
+	                } else {
+	                    callbacks[i + 1].call(this);
+	                }
 	            });
 	            callbacks.push(callback);
 	            callbacks[0].call(this);
