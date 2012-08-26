@@ -936,6 +936,11 @@
 	                return;
 	            }
 
+	            // Make a copy of the scripts array so we can shift() scripts
+	            // without changing the original array
+	            var localScripts = scripts.slice(); 
+	            var context = this;
+
 	            var virtualScripts = $('html').data(Tapestry.VIRTUAL_SCRIPTS);
 	            if (!virtualScripts) {
 	                virtualScripts = [];
@@ -945,32 +950,47 @@
 	                    virtualScripts.push($.tapestry.utils.rebuildURL(path));
 	                });
 	            }
-	            
-	            var callbacks = [];
-	            $.each(scripts, function(i, scriptURL){
-	       		 var assetURL = $.tapestry.utils.rebuildURL(scriptURL);
-	             if ($.inArray(assetURL, virtualScripts) === -1) {
-	            	 callbacks.push(function(){
-	                         var script   = document.createElement("script");
-	                         script.type  = "text/javascript";
-	                         script.src   = assetURL;
-	                         document.getElementsByTagName('head')[0].appendChild(script);
-	                         virtualScripts.push(assetURL);
-	                         if(i == callbacks.length - 2)
-	                        	 $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
-	                         var completed = false;
-	                         script.onload = script.onreadystatechange = function () {
-	                        	 if (!completed && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
-	                        		 completed = true;
-	                        		 script.onload = script.onreadystatechange = null;
-	                        		 callbacks[i + 1].call(this);
-	                        	 }
-	                         };
-	                     });
-	            	}
-	            });
-	            callbacks.push(callback);
-	            callbacks[0].call(this);
+
+	            function lastCallback(){
+	                // Save VIRTUAL_SCRIPTS data
+	                $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
+
+	                // Call original callback with the original context
+	                callback.call(context);
+	            }
+
+	            function callNextFunction() {
+	                var nextScript = localScripts.shift();
+	                if(nextScript) {
+	                    doNextScript(nextScript);
+	                } else {
+	                    lastCallback();
+	                }
+	            }
+
+	            function doNextScript(scriptURL) {
+	                var addURL = $.tapestry.utils.rebuildURL(scriptURL);
+	                if ($.inArray(addURL, virtualScripts) === -1) {
+	                    var scriptElement   = document.createElement("script");
+	                    scriptElement.type  = "text/javascript";
+	                    scriptElement.src   = addURL;
+	                    document.getElementsByTagName('head')[0].appendChild(scriptElement);
+	                    virtualScripts.push(addURL);
+	                    var completed = false;
+	                    scriptElement.onload = scriptElement.onreadystatechange = function () {
+	                    	if (!completed && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+	                    		completed = true;
+	                    		scriptElement.onload = scriptElement.onreadystatechange = null;
+	                    		callNextFunction();
+	                    	}
+	                    };
+	                } else {
+	                    callNextFunction();
+	                }
+	            }
+
+	            // We kick off the whole chain here
+	            callNextFunction();
 	        },
 
 			addStylesheets : function(stylesheets) {
