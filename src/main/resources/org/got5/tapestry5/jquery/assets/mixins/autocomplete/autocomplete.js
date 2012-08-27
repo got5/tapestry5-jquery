@@ -24,7 +24,7 @@
 	                        dataType: "json", 
 	                        type:"POST"
 	                    };
-	                    $.ajax(ajaxRequest);
+	                    this.xhr = $.ajax(ajaxRequest);
 	                }
 	        };
 	        if (specs.delay >= 0) 
