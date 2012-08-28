@@ -54,7 +54,10 @@ public class Slider  {
      */
     @Parameter(required = true, principal = true)
     private Object value;
-    
+
+    @Parameter
+    private Object[] context;
+
     /**
      * The slider parameters (please refer to jquery-ui documentation)
      */
@@ -88,14 +91,14 @@ public class Slider  {
     private String clientId;
     private String getClientId(){
     	if(clientId==null)
-    		clientId = resources.getId();
+	    this.clientId = jsSupport.allocateClientId(this.resources);
     	return clientId;
     }
     
     @SetupRender
     void startDiv(MarkupWriter writer)
     {
-        writer.element("div", "id", getClientId());
+        writer.element("div", "id", getSliderId());
     }
     @AfterRender
     void afterRender(MarkupWriter writer)
@@ -112,7 +115,7 @@ public class Slider  {
     	specs.put("sliderId", getSliderId());
     	specs.put("displayTextField", displayTextField);
     	if(resources.isBound("zone")){
-    		Link link = resources.createEventLink(EventConstants.ACTION);
+    		Link link = resources.createEventLink(EventConstants.ACTION, context);
     		specs.put("url", link.toAbsoluteURI());
     		specs.put("zoneId", zone);
     	}
