@@ -7,4 +7,5 @@ public interface IDataSource {
     public Celebrity getCelebrityById(long id);
     public void addCelebrity(Celebrity c);
     public List<Celebrity> getRange(int indexFrom, int indexTo);
+    public void filter(String value);
 }

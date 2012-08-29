@@ -16,21 +16,28 @@
 
 package org.got5.tapestry5.jquery.components;
 
+import java.io.IOException;
+
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.internal.services.AjaxPartialResponseRenderer;
+import org.apache.tapestry5.internal.services.PageRenderQueue;
+import org.apache.tapestry5.internal.services.ajax.AjaxFormUpdateController;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.DataTableConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
@@ -54,34 +61,66 @@ public class DataTable extends AbstractJQueryTable {
 
 	@Inject
 	private TranslatorSource ts;
-
+	
 	@Environmental
 	private JavaScriptSupport support;
 
 	@Inject
 	private Request request;
-
+	
 	@Inject
 	private Messages messages;
-
+	
+	@Inject
+	private Environment environment;
+	
+	@Inject
+	private PageRenderQueue pageRenderQueue;
+	
+	@Inject
+	private AjaxFormUpdateController ajaxFormUpdateController;
+	
+	@Inject
+	private AjaxPartialResponseRenderer partialRenderer;
+	
 	/**
 	 * The default Implementation of the DataTableModel Interface
 	 */
-	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer, ts);
+	private DataTableModel reponse = new DefaultDataTableModel(
+			typeCoercer,
+			ts, 
+			environment,
+			pageRenderQueue,
+			ajaxFormUpdateController,
+			partialRenderer);
 
 	/**
 	 * Event method in order to get the datas to display.
+	 * @throws IOException 
 	 */
 	@OnEvent(value = JQueryEventConstants.DATA)
-	JSONObject onData() {
+	JSONObject onData() throws IOException {
+		/**
+		 * If ajax mode, we filter on server-side, otherwise, we filter from the available data already loaded (see DefaultDataTableModel#filterData)
+		 */
+		if(getMode()){
+			/**
+		     * Give a chance to the developer to update the GridDataSource to filter data server-side
+		     * */
+			resources.triggerEvent(JQueryEventConstants.FILTER_DATA, null, null);
+			/**
+		     * Give a chance to the developer to sort the GridDataSource server-side
+		     * */
+			resources.triggerEvent(JQueryEventConstants.SORT_DATA, null, null);
+		}
+        
 		return getDataTModel().sendResponse(request, getSource(), getDataModel(),
-				getSortModel(), getOverrides());
+				getSortModel(), getOverrides(), getMode());
 	}
 
-
-	@Override
-    public DataTableModel getDefaultDataTableModel(){return reponse;}
-
+	
+	public DataTableModel getDefaultDataTableModel(){return reponse;}	
+	
 
 
 	/**
@@ -91,7 +130,7 @@ public class DataTable extends AbstractJQueryTable {
 	void setJS() {
 
 		JSONObject setup = new JSONObject();
-
+		
 		setup.put("id", getClientId());
 
 		JSONObject dataTableParams = new JSONObject();
@@ -103,25 +142,29 @@ public class DataTable extends AbstractJQueryTable {
 		}
 
 		dataTableParams.put("sPaginationType", "full_numbers");
-
+		
 		dataTableParams.put("iDisplayLength", getRowsPerPage());
-
+		
 		dataTableParams.put("aLengthMenu", new JSONLiteral("[[" + getRowsPerPage()
 				+ "," + (getRowsPerPage() * 2) + "," + (getRowsPerPage() * 4) + "],["
 				+ getRowsPerPage() + "," + (getRowsPerPage() * 2) + ","
 				+ (getRowsPerPage() * 4) + "]]"));
-
-
+		
+		
 		//We set the bSortable parameters for each column. Cf : http://www.datatables.net/usage/columns
-		JSONArray sortableConfs = new JSONArray();
+		//We set also the mDataProp parameters to handle ColReorder plugin. Cf : http://datatables.net/release-datatables/extras/ColReorder/server_side.html
+		JSONArray columnConfs = new JSONArray();
 		for(String propertyName : getPropertyNames()){
-			sortableConfs.put(new JSONObject(String.format("{'bSortable': %s}", getModel().get(propertyName).isSortable())));
+			JSONObject confs = new JSONObject();
+			confs.put("mDataProp", propertyName);
+			confs.put("bSortable", getModel().get(propertyName).isSortable());
+			columnConfs.put(confs);
+			
+			
 		}
-
-		dataTableParams.put("aoColumns", sortableConfs);
-
-
-
+		
+		dataTableParams.put("aoColumns", columnConfs);	
+				
 		JSONObject language = new JSONObject();
         language.put("sProcessing", messages.get("datatable.sProcessing"));
         language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
@@ -135,10 +178,10 @@ public class DataTable extends AbstractJQueryTable {
         language.put("sSearch", messages.get("datatable.sSearch"));
         language.put("sUrl", messages.get("datatable.sUrl"));
         dataTableParams.put("oLanguage", language);
-
+        
         JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
-
+		
 		support.addInitializerCall("dataTable", setup);
 	}
 

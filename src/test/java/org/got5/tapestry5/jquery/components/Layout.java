@@ -17,10 +17,12 @@
 package org.got5.tapestry5.jquery.components;
 
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 
 @Import(stylesheet ={ "context:css/layout/style.css"})
 public class Layout
@@ -28,6 +30,11 @@ public class Layout
     @Property
     private String title;
 
+    @Inject
+    @Symbol(SymbolConstants.TAPESTRY_VERSION)
+    @Property
+    private String tapestryVersion;
+    
     @Inject
     private ComponentResources resources;
 

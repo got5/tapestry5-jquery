@@ -10,7 +10,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 // Specific to top-level build, not set for subprojects:
-  version = "3.3.1-SNAPSHOT"
+  version = "3.3.2-SNAPSHOT"
   group = "org.got5"
 
 configurations {

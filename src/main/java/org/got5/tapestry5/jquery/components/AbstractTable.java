@@ -20,7 +20,6 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.grid.ColumnSort;
-import org.apache.tapestry5.grid.GridConstants;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
@@ -176,7 +175,9 @@ public class AbstractTable implements ClientElement {
 	
 	private String clientId;
 	
-	
+	@Property
+	private Integer index;
+
 	@Property
 	private String cellModel;
 	
@@ -187,7 +188,9 @@ public class AbstractTable implements ClientElement {
 	private Request request;
 	
 	public String getClientId() {
-		return (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
+		if(InternalUtils.isBlank(clientId))
+			clientId = (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
+		return clientId;
 	}
 
 	public int getRowsPerPage() {
@@ -372,11 +375,8 @@ public class AbstractTable implements ClientElement {
 	@Parameter(cache = false)
 	private String rowClass;
 	
-	@Property
-	private Integer index;
-
 	/**
-	 * In order get the value of a specific cell
+	 * In order to get the css of a specific row
 	 */
 	public String getRowClass()
     {
@@ -391,6 +391,9 @@ public class AbstractTable implements ClientElement {
        return TapestryInternalUtils.toClassAttributeValue(classes);
     }
 	
+	/**
+	 * In order to get the value of a specific cell
+	 */
 	public Object getCellValue() {
 		
 		rowIndex = index;
@@ -421,7 +424,7 @@ public class AbstractTable implements ClientElement {
             }
             else
             {
-            	val = val != null ? val.toString() : "";
+            	val = val.toString();
             }
         }
             

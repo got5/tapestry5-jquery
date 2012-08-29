@@ -929,50 +929,8 @@
 			 * @param callback
 			 *            invoked after scripts are loaded
 			 */
-			addScripts : function(scripts, callback) {
-
-				if (scripts) {
-
-					$
-							.each(
-									scripts,
-									function(i, s) {
-
-										var assetURL = $.tapestry.utils
-												.rebuildURL(s);
-
-										var virtualScripts = $('html').data(
-												Tapestry.VIRTUAL_SCRIPTS);
-
-										if (!virtualScripts) {
-
-											virtualScripts = [];
-											$('script[src]')
-													.each(
-															function(i, script) {
-																path = $(script)
-																		.attr(
-																				'src');
-																virtualScripts
-																		.push($.tapestry.utils
-																				.rebuildURL(path));
-															});
-										}
-										if ($.inArray(assetURL, virtualScripts) === -1) {
-											$('head')
-													.append(
-															'<script src="'
-																	+ assetURL
-																	+ '" type="text/javascript" />');
-											virtualScripts.push(assetURL);
-										}
-										$('html').data(
-												Tapestry.VIRTUAL_SCRIPTS,
-												virtualScripts);
-									});
-				}
-				callback.call(this);
-				/*if (!scripts) {
+			addScripts: function(scripts, callback) {
+	            if (!scripts) {
 	                // TODO : re-implement scriptLoadMonitor
 	                callback.call(this);
 	                return;
@@ -990,9 +948,9 @@
 	            
 	            var callbacks = [];
 	            $.each(scripts, function(i, scriptURL){
-	            	callbacks.push(function(){
-	            		 var assetURL = $.tapestry.utils.rebuildURL(scriptURL);
-	                     if ($.inArray(assetURL, virtualScripts) === -1) {
+	       		 var assetURL = $.tapestry.utils.rebuildURL(scriptURL);
+	             if ($.inArray(assetURL, virtualScripts) === -1) {
+	            	 callbacks.push(function(){
 	                         var script   = document.createElement("script");
 	                         script.type  = "text/javascript";
 	                         script.src   = assetURL;
@@ -1008,12 +966,12 @@
 	                        		 callbacks[i + 1].call(this);
 	                        	 }
 	                         };
-	                     }
-	            	});
+	                     });
+	            	}
 	            });
 	            callbacks.push(callback);
-	            callbacks[0].call(this);*/
-			},
+	            callbacks[0].call(this);
+	        },
 
 			addStylesheets : function(stylesheets) {
 				if (stylesheets) {
@@ -1027,15 +985,15 @@
 
 						if ($.inArray(assetURL, loaded) === -1) {
 
-							stylesheet = '<link href="' + assetURL
-									+ '" type="text/css" rel="stylesheet"';
+							var style = document.createElement("link");
+							style.setAttribute("type", "text/css");
+							style.setAttribute("rel", "stylesheet");
+							style.setAttribute("href", assetURL);
+							if (s.media) {
+								style.setAttribute("media", s.media);
+							}
 
-							if (s.media)
-								stylesheet += ' media="' + s.media + '" ';
-
-							stylesheet += '/>';
-
-							$('head').append(stylesheet);
+							$('head')[0].appendChild(style);
 						}
 					});
 				}
