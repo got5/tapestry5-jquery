@@ -37,6 +37,13 @@ T5.extend(T5.spi, function() {
     	//TODO
     }
 
+
+
+	//Avoid crashing IE7 if prototype is not included meaning Element is not defined (in chrome and Firefox, Element is a native object)
+	if(! Element) {
+		var Element = {};
+	}
+
     return {
         observe : observe,
         find : undefined,

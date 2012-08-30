@@ -40,7 +40,7 @@
 						},
 						onDomLoadedCallback : function() {
 
-							$('input[type="submit"],input[type="image"]')
+							$('input[type="submit"],input[type="image"],button[type="submit"]')
 									.each(
 											function() {
 
@@ -100,7 +100,7 @@
 														.data("observingFocusChange")) {
 													element
 															.focus(function() {
-																if (element != Tapestry.currentFocusField) {
+																if (element[0] != Tapestry.currentFocusField) {
 																	$(document)
 																			.trigger(
 																					Tapestry.FOCUS_CHANGE_EVENT);
@@ -114,7 +114,6 @@
 																	true);
 												}
 											});
-
 						},
 						/** Formats and displays an error message on the console. */
 						error : function(message, substitutions) {
@@ -197,7 +196,8 @@
 
 				/** Make the given field the active field (focus on the field). */
 				activate : function(id) {
-					$("#" + id).focus();
+					//IE 7 raises an error if you try to focus on an invisible field
+					$("#" + id).filter(":visible").focus();
 				},
 
 				/**
@@ -510,8 +510,12 @@
 												'input[type="hidden"][name="t:formdata"]')
 										.each(
 												function() {
-													hasNoFormData = ($(this)
-															.attr('value') == '');
+													//In case of  form fragment, on second submit, input can be empty
+													if(hasNoFormData) {
+														hasNoFormData = ($(this)
+																.attr('value') == '');
+													}
+													
 												});
 
 								/**
@@ -684,7 +688,8 @@
 
 						that.applyContentUpdate(data.content);
 
-					} else if (data.zones) {
+					} 
+					if (data.zones) {
 
 						// perform multi zone update
 						$.each(data.zones, function(zoneId, content) {
@@ -950,20 +955,21 @@
 	            $.each(scripts, function(i, scriptURL){
 	       		 var assetURL = $.tapestry.utils.rebuildURL(scriptURL);
 	             if ($.inArray(assetURL, virtualScripts) === -1) {
+	            	 var callbackIndex = callbacks.length;
 	            	 callbacks.push(function(){
 	                         var script   = document.createElement("script");
 	                         script.type  = "text/javascript";
 	                         script.src   = assetURL;
 	                         document.getElementsByTagName('head')[0].appendChild(script);
 	                         virtualScripts.push(assetURL);
-	                         if(i == callbacks.length - 2)
+	                         if(callbackIndex == callbacks.length - 2)
 	                        	 $('html').data(Tapestry.VIRTUAL_SCRIPTS, virtualScripts);
 	                         var completed = false;
 	                         script.onload = script.onreadystatechange = function () {
 	                        	 if (!completed && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
 	                        		 completed = true;
 	                        		 script.onload = script.onreadystatechange = null;
-	                        		 callbacks[i + 1].call(this);
+	                        		 callbacks[callbackIndex + 1].call(this);
 	                        	 }
 	                         };
 	                     });
