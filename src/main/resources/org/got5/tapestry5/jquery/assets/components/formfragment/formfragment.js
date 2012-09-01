@@ -10,15 +10,17 @@
 		_create: function() {
 			this.element.addClass( "tapestry-formfragment" )
 
-			this.hidden = $("#" + this.element.id + ":hidden");
+			this.hidden =  this.element.find("input[type='hidden']");
 
 			var form = $(this.hidden).closest('form');
+			
+			var that = this;
 
 			form.bind(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function(){
 				// On a submission, if the fragment is not visible, then wipe out its
 				// form submission data, so that no processing or validation occurs on the server.
-				if (this.element.is(":visible") != undefined)
-					this.hidden.get(0).value = "";
+				if (that.element && ! that.element.is(":visible"))
+					that.hidden.get(0).value = "";
 			});
 		},
 
