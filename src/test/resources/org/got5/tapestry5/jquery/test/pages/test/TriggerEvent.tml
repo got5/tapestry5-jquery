@@ -1,0 +1,41 @@
+<html t:type="layout" 
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+	  xmlns:p="tapestry:parameter">
+		<!-- first example -->
+	
+		<t:any t:mixins="jquery/Delegate" 
+			Delegate.eventType="eventGo"
+			Delegate.element="body"
+			Delegate.selector="a" 
+			Delegate.zone="myZone" 
+			Delegate.event="eventAfterReceiveEventGo">
+		</t:any>
+	
+		<t:zone t:id="buttonZone" id="buttonZone">
+			<a t:type="actionlink" t:id="launchEvent" id="launchEvent" href="#" t:zone="buttonZone" t:mixins="jquery/Trigger" 
+				Trigger.trigger="prop:trigger" 
+				Trigger.event="eventGo"
+				Trigger.params="prop:params">
+				Launch event 1
+			</a>
+		</t:zone>
+		
+		<!-- second example -->
+		
+		<t:any t:mixins="jquery/Delegate" 
+			Delegate.eventType="click"  
+			Delegate.element="#myBody"
+			Delegate.selector="span" 
+			Delegate.zone="myZone" 
+			Delegate.event="eventAfterReceiveEventGo">
+		</t:any>
+		
+		<span>
+			Launch event 2
+		</span>
+
+		<t:zone t:id="myZone" id="myZone">
+			<p>An event ${number}</p>
+		</t:zone>
+	
+</html>
