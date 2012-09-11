@@ -5,7 +5,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
  	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
  	
  	<t:block id="example">
-    	 <t:grid source="users" row="user" model="myModel" t:inplace="true" 
+ 	     <t:grid source="users" row="user" model="myModel" t:inplace="true" 
     	 			rowIndex="currentIndex" rowsPerPage="10">
 	        <p:lastnameCell>
                             <div id="inPlaceEditor" t:type="jquery/inPlaceEditor" value="user.lastName" t:context="${currentIndex}" size="20" t:options="optionsJSON"/>
@@ -15,7 +15,6 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xs
 	        		t:context="${currentIndex}" >Detail</t:jquery.dialogajaxlink>
 			</p:actionCell>
 	    </t:grid>
-	    
 	    <t:jquery.dialog t:clientId="myDialog" t:params="dialogParam">
 	    	Detail Dialog
 			<t:zone t:id="detailZone">

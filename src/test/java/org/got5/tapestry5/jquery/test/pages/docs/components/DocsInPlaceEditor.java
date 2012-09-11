@@ -132,6 +132,7 @@ void actionFromEditor(Long id, String value)
 @InjectComponent
 private Zone updateZone;
 
+
 /**
  * <p>
  * JSON parameter used to configure InPlaceEditor callback
@@ -144,18 +145,18 @@ public JSONObject getOptionsJSON()
 	String listenerURI = _componentResources.createEventLink("refresh", context).toAbsoluteURI(false);
     String zoneID = updateZone.getClientId();
     params.put("tooltip", "Cliquer pour �diter");
-	params.put("callback", new JSONLiteral("function(value, settings)" +
-						   "{" +
-						   " var zoneElement = $('#"+zoneID+"');" +
-						   " zoneElement.tapestryZone('update',{url : '"+listenerURI+"',params : {id:"+currentIndex+"} });" +
-						   "}"));
+    params.put("submit", "<br/><button type='submit' class='validateButton' />");
+	params.put("cancel", "<button type='submit' class='cancelButton' />");
+	params.put("tooltip", "Cliquer pour éditer");
+    params.put("callback", " var zoneElement = $('#"+zoneID+"');" +
+						   " zoneElement.tapestryZone('update',{url : '"+listenerURI+"',params : {id:"+currentIndex+"} });");
 return params;
 }
 
 @OnEvent(value = "refresh")
 public Object refresh(Long id) {
 		user = (User)users.get(id.intValue());
-		return updateZone.getBody();
+		return new MultiZoneUpdate("updateZone", updateZone.getBody());
 	
 }
 
