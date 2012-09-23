@@ -114,7 +114,7 @@
 	     */
 	    function removeChildren(element) {
 	        purgeChildren(element);
-	        element.innerHTML = '';
+	        element.children().remove();
 	    }
 	
 	    /**
