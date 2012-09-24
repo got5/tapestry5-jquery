@@ -120,8 +120,7 @@ public class ShowSource {
 		 * Init the Default parameter for the jQuery plugin
 		 */
 		defaultSpecs = new JSONObject();
-		System.out.println("########### " +  path.substring(path.lastIndexOf("/") + 1));
-		
+				
 		defaultSpecs.put("showMsg", path.substring(path.lastIndexOf("/") + 1) + " - " + message.get("ShowSource-showMsg"));
 			
 		defaultSpecs.put("hideMsg", path.substring(path.lastIndexOf("/") + 1) + " - " + message.get("ShowSource-hideMsg"));
