@@ -9,12 +9,12 @@ import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
-import org.got5.tapestry5.jquery.components.AjaxUpload;
+import org.got5.tapestry5.jquery.components.InPlaceEditor;
 
 /**
- * Resource stack for {@link AjaxUpload}.
+ * Resource stack for {@link InPlaceEditor}.
  *
- * @author criedel
+ * @author Emmanuel DEMEY
  */
 public class InPlaceEditorStack implements JavaScriptStack
 {
