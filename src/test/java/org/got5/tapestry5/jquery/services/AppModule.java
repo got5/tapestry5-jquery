@@ -15,10 +15,6 @@
 //
 package org.got5.tapestry5.jquery.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -29,9 +25,6 @@ import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
-import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.javascript.JavaScriptStack;
-import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.data.IDataSource;
@@ -56,7 +49,7 @@ public class AppModule
     	
     	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
     	
-    	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
+    	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$j");
     	
     	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui-1.8.19.custom.css");
     }

@@ -30,6 +30,8 @@ public class AjaxUploadStack implements JavaScriptStack
     public AjaxUploadStack(
             @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
             final boolean minified,
+            @Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
+            final boolean prototype,
             final AssetSource assetSource)
     {
 
@@ -43,7 +45,8 @@ public class AjaxUploadStack implements JavaScriptStack
 
         final String path = String.format("${assets.path}/components/upload/jquery.fileuploader%s.js", minified ? ".min" : "");
 
-        javaScriptStack = F.flow(path, "${assets.path}/components/upload/upload.js").map(pathToAsset).toList();
+        javaScriptStack = F.flow(path, String.format("${assets.path}/components/upload/upload%s.js", prototype ? "-jquery" : ""))
+        		.map(pathToAsset).toList();
 
         
         
