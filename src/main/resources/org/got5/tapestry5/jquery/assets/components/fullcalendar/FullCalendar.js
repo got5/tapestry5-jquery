@@ -17,14 +17,13 @@
 						}
 					});
 				},
-				dayClick: function(eventdate, eventallday) {
-					var epochdate = eventdate.getTime()/1000.0;
+				dayClick: function(date, allday, jsEvent, view) {
+					var epochdate = date.getTime()/1000.0;
 					$.ajax({
 						url: specs.dayclickurl,
-						data: {date: epochdate, allDay: eventallday},
+						data: {date: epochdate, allDay: allday, view: view.name},
 						dataType: "json",
 						success: function(data) {
-							alert(data);
 							$(window.location).attr("href", data.redirectURL);
 						}
 					});
