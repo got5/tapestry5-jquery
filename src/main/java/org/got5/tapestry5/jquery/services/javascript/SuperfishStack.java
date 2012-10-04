@@ -9,7 +9,7 @@ import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
-import org.got5.tapestry5.jquery.components.InPlaceEditor;
+import org.got5.tapestry5.jquery.components.Superfish;
 
 /**
  * Resource stack for {@link Superfish}.
