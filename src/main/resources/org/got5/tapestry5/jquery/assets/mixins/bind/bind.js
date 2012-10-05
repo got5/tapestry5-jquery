@@ -51,7 +51,10 @@
 					if ( zoneId ) {
 						zoneElement.tapestryZone("update",{url : u.url});
 					} else {
-						$.ajax({url: u.url});
+						$.ajax({
+							type: "POST",
+							url: u.url
+						});
 					}
 				}
 			});
