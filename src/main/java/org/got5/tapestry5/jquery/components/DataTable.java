@@ -46,6 +46,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 /**
  * @since 2.1.1
  * 
+ * For more informations about how to translate the DataTable plug-in, please visit the
+ * official documentation website {@link http://datatables.net/plug-ins/i18n}
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
