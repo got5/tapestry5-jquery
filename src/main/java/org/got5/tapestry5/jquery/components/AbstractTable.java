@@ -34,6 +34,7 @@ import org.apache.tapestry5.services.BeanModelSource;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.internal.TableInformation;
 
 /**
  * @tapestrydoc
@@ -148,6 +149,12 @@ public class AbstractTable implements ClientElement {
 	 */
 	@Parameter
 	private boolean inPlace;
+	
+	/**
+	 * Parameter used to define some parameters of a HTML table : caption, summary, css class
+	 */
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private TableInformation tableInformation;
 	
 	/**
 	 * The model parameter after modification due to the add, include, exclude
@@ -478,4 +485,7 @@ public class AbstractTable implements ClientElement {
 		return cell;
 	}
 
+	public TableInformation getTableInformation() {
+		return tableInformation;
+	}
 }

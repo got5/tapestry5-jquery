@@ -6,13 +6,18 @@
         <parameter name="tapestry.browser-start-command" value="*firefox" />
 		
 		<packages>
-    		<package name="org.got5.tapestry5.jquery"></package>
+    		<package name="org.got5.tapestry5.jquery">
+    			<exclude name="org.got5.tapestry5.jquery.unit"></exclude>
+    		</package>
     	</packages>
         
     </test>
-    <test name="JQuery Unit Tests"  enabled="true">
+    <!-- test name="JQuery Unit Tests"  enabled="true">
+    	
     	<packages>
-    		<package name="org.got5.tapestry5.jquery.unit"></package>
+    		<package name="org.got5.tapestry5.jquery.unit">
+    			<exclude name="org.got5.tapestry5.jquery.unit.spock"></exclude>
+    		</package>
     	</packages>
-    </test>
+    </test-->
 </suite>
