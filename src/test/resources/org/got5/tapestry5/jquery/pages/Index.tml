@@ -1,0 +1,42 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+ 
+    <ul class="k-links-list">
+		
+		<li><a t:type="pagelink" t:page="AjaxFormLoop">AjaxFormLoop</a></li>
+		<li><a t:type="pagelink" t:page="Bind">Bind</a></li>
+		<li><a t:type="pagelink" t:page="button">Button</a></li>
+		<li><a t:type="pagelink" t:page="calendar">Calendar</a></li>
+		<li><a t:type="pagelink" t:page="carouselpage">Carouselpage</a></li>
+		<li><a t:type="pagelink" t:page="Checkbox">Checkbox</a></li>
+		<li><a t:type="pagelink" t:page="customdatepicker">Customdatepicker</a></li>
+		<li><a t:type="pagelink" t:page="DataTables">DataTables</a></li>
+		<li><a t:type="pagelink" t:page="DataTablesAjax">DataTables (Ajax)</a></li>
+		<li><a t:type="pagelink" t:page="draggable">Draggable</a></li>
+		<li><a t:type="pagelink" t:page="Form">Form</a></li>
+		<li><a t:type="pagelink" t:page="formfragment">Form Fragment</a></li>
+		<li><a t:type="pagelink" t:page="galleryPage">Gallery</a></li>
+		<li><a t:type="pagelink" t:page="GMap">GMap</a></li>
+		<li><a t:type="pagelink" t:page="DocsInPlaceEditor">InPlaceEditor</a></li>
+		<li><a t:type="pagelink" t:page="jgrowl">jGrowl</a></li>
+		<li><a t:type="pagelink" t:page="jqueryaccordion">jQuery Accordion</a></li>
+		<li><a t:type="pagelink" t:page="jqueryautocomplete">jQuery Autocomplete</a></li>
+		<li><a t:type="pagelink" t:page="jquerydialog">jQuery Dialog</a></li>
+		<li><a t:type="pagelink" t:page="jquerylinksubmit">jQuery Linksubmit</a></li>
+		<li><a t:type="pagelink" t:page="jquerypalette">jQuery Palette</a></li>
+		<li><a t:type="pagelink" t:page="jquerytabs">jQuery Tabs</a></li>
+		<li><a t:type="pagelink" t:page="mask">Mask</a></li>
+		<li><a t:type="pagelink" t:page="Raty">Raty</a></li>
+		<li><a t:type="pagelink" t:page="reveal">Reveal</a></li>
+		<li><a t:type="pagelink" t:page="Selector">Selector</a></li>
+		<li><a t:type="pagelink" t:page="Slider">Slider</a></li>
+		<li><a t:type="pagelink" t:page="Sortable">Sortable</a></li>
+		<li><a t:type="pagelink" t:page="SuperFish">SuperFish</a></li>
+		<li><a t:type="pagelink" t:page="Tooltip">Tooltip</a></li>
+		<li><a t:type="pagelink" t:page="Tree">Tree</a></li>
+		<li><a t:type="pagelink" t:page="validation">Validation</a></li>
+		<li><a t:type="pagelink" t:page="zone">Zone</a></li>
+		<li><a t:type="pagelink" t:page="ZoneRefresh">ZoneRefresh</a></li>
+		<li><a t:type="pagelink" t:page="ZoneUpdater">ZoneUpdater</a></li>
+	</ul>
+
+</html>
