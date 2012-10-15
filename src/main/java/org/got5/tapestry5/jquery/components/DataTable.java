@@ -164,24 +164,37 @@ public class DataTable extends AbstractJQueryTable {
 		
 		dataTableParams.put("aoColumns", columnConfs);	
 				
-		JSONObject language = new JSONObject();
-        language.put("sProcessing", messages.get("datatable.sProcessing"));
-        language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
-        language.put("sZeroRecords", messages.get("datatable.sZeroRecords"));
-        language.put("sEmptyTable", messages.get("datatable.sEmptyTable"));
-        language.put("sLoadingRecords", messages.get("datatable.sLoadingRecords"));
-        language.put("sInfo", messages.get("datatable.sInfo"));
-        language.put("sInfoEmpty", messages.get("datatable.sInfoEmpty"));
-        language.put("sInfoFiltered", messages.get("datatable.sInfoFiltered"));
-        language.put("sInfoPostFix", messages.get("datatable.sInfoPostFix"));
-        language.put("sSearch", messages.get("datatable.sSearch"));
-        language.put("sUrl", messages.get("datatable.sUrl"));
-        dataTableParams.put("oLanguage", language);
+		dataTableParams.put("oLanguage", setI18NMessages());
         
         JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 		
 		support.addInitializerCall("dataTable", setup);
 	}
+	
+	private JSONObject setI18NMessages() {
+		JSONObject language = new JSONObject();
+		language.put("sProcessing", messages.get("datatable.sProcessing"));
+		language.put("sSearch", messages.get("datatable.sSearch"));
+		language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
+		language.put("sInfo", messages.get("datatable.sInfo"));
+		language.put("sInfoEmpty", messages.get("datatable.sInfoEmpty"));
+		language.put("sInfoFiltered", messages.get("datatable.sInfoFiltered"));
+		language.put("sInfoPostFix", messages.get("datatable.sInfoPostFix"));
+		language.put("sLoadingRecords", messages.get("datatable.sLoadingRecords"));
+		language.put("sZeroRecords", messages.get("datatable.sZeroRecords"));
+		language.put("sEmptyTable", messages.get("datatable.sEmptyTable"));
+		language.put("oPaginate", new JSONObject(
+				"sFirst", messages.get("datatable.oPaginate.sFirst"), 
+				"sPrevious", messages.get("datatable.oPaginate.sPrevious"), 
+				"sNext", messages.get("datatable.oPaginate.sNext"), 
+				"sLast", messages.get("datatable.oPaginate.sLast")));
+		language.put("oAria", new JSONObject(
+				"sSortAscending", messages.get("datatable.oAria.sSortAscending"),
+				"sSortDescending", messages.get("datatable.oAria.sSortDescending")));
+
+		return language;
+	}
+
 
 }
