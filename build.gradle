@@ -10,7 +10,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 // Specific to top-level build, not set for subprojects:
-  version = "3.3.3-SNAPSHOT"
+  version = "3.3.3"
   group = "org.got5"
 
 configurations {
@@ -35,7 +35,7 @@ configurations {
 Project projectDef = project;
 
 
-def tapestryVersion = "5.3.5"
+def tapestryVersion = "5.3.6"
 def servletapi = "2.5"
 def spock = "0.6-groovy-1.8"
 
