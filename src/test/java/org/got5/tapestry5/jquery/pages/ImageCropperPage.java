@@ -30,7 +30,7 @@ public class ImageCropperPage{
 	
 	@Property
 	@Persist
-	private int x, y, x2, y2, w, h;
+	private String x, y, x2, y2, w, h;
 	
 	@Component
 	private Zone myImageCropped;
@@ -40,12 +40,12 @@ public class ImageCropperPage{
 
 	@OnEvent(value=EventConstants.SELECTED, component="myImageCropper")
 	public Object returnZoneRange(){
-		x= Integer.parseInt(request.getParameter("x"));
-		y= Integer.parseInt(request.getParameter("y"));	
-		x2= Integer.parseInt(request.getParameter("x2"));
-		y2= Integer.parseInt(request.getParameter("y2"));
-		w= Integer.parseInt(request.getParameter("w"));
-		h= Integer.parseInt(request.getParameter("h"));
+		x= request.getParameter("x");
+		y= request.getParameter("y");	
+		x2= request.getParameter("x2");
+		y2= request.getParameter("y2");
+		w= request.getParameter("w");
+		h= request.getParameter("h");
 		return myImageCropped.getBody();
 	}
 	

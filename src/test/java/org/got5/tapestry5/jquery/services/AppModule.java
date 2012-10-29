@@ -49,8 +49,6 @@ public class AppModule
     	
     	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
     	
-    	configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
-    	
     	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui-1.8.19.custom.css");
     }
     
@@ -83,5 +81,5 @@ public class AppModule
 	public void addEffectsFile(Configuration<String> configuration){
 		configuration.add(EffectsConstants.SHAKE);
 	}
-
+	
 }

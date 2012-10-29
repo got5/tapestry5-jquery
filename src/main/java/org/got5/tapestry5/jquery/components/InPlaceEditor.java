@@ -32,9 +32,12 @@ import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.javascript.JavaScriptStackSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
+import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
@@ -47,8 +50,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  */
 @Events(InPlaceEditor.SAVE_EVENT)
 @SupportsInformalParameters
-@Import(library = {"${assets.path}/components/jeditable/jquery.jeditable.js",
-				   "${assets.path}/components/jeditable/jeditable.js"})
+@Import(stack = InPlaceEditorStack.STACK_ID)
 public class InPlaceEditor implements ClientElement
 {
 	public final static String SAVE_EVENT = "save";
@@ -93,6 +95,12 @@ public class InPlaceEditor implements ClientElement
 	@Inject
 	private Request request;
 
+	@Inject
+	private JavaScriptStackSource stacks;
+	
+	@Inject
+	private AssetSource as;
+	
 	private String assignedClientId;
 
 	private Object[] contextArray;
@@ -101,6 +109,8 @@ public class InPlaceEditor implements ClientElement
 	{
 		assignedClientId = javascriptSupport.allocateClientId(clientId);
 		contextArray = context == null ? new Object[0] : context.toArray();
+		
+		
 	}
 
 	void beginRender(MarkupWriter writer)
@@ -115,6 +125,7 @@ public class InPlaceEditor implements ClientElement
 
 	void afterRender(MarkupWriter writer)
 	{
+		
 		Link link = resources.createEventLink(EventConstants.ACTION, contextArray);
 		JSONObject spec = new JSONObject();
 

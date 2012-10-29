@@ -212,23 +212,25 @@ public class DefaultDataTableModel implements DataTableModel {
 
 		String sortingCols = request.getParameter(DataTableConstants.SORTING_COLS);
 
-		int nbSortingCols = Integer.parseInt(sortingCols);
-
-		String sord = request.getParameter(DataTableConstants.SORT_DIR+"0");
-
-		String sidx = request.getParameter(DataTableConstants.SORT_COL+"0");
-
-		if(nbSortingCols>0)
-		{
-			List<String> names = model.getPropertyNames();
-
-			int indexProperty = Integer.parseInt(sidx);
-
-			String propName = names.get(indexProperty);
-
-			ColumnSort colSort =sortModel.getColumnSort(propName);
-
-			sortModel.updateSort(propName);
+		if(InternalUtils.isNonBlank(sortingCols)){
+			int nbSortingCols = Integer.parseInt(sortingCols);
+	
+			String sord = request.getParameter(DataTableConstants.SORT_DIR+"0");
+	
+			String sidx = request.getParameter(DataTableConstants.SORT_COL+"0");
+	
+			if(nbSortingCols>0)
+			{
+				List<String> names = model.getPropertyNames();
+	
+				int indexProperty = Integer.parseInt(sidx);
+	
+				String propName = names.get(indexProperty);
+	
+				ColumnSort colSort =sortModel.getColumnSort(propName);
+	
+				sortModel.updateSort(propName);
+			}
 		}
 
 	}
