@@ -9,10 +9,12 @@
 					$("#" + specs.textFieldId).val(u.value);
 				}, 
 				change:function(e,u){
-					if(specs.url) 
+					if(specs.url) {
+						var sep = (specs.url.indexOf("?") >= 0) ? "&" : "?";
 						$("#" + specs.zoneId).tapestryZone("update", {
-							url: specs.url+"?slider="+u.value
+							url: specs.url + sep + "slider="+u.value
 						});
+					}
 				}
 			};
 	        $("#" + specs.sliderId).slider(specs.params).slider("option", options);
