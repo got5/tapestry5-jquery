@@ -1,7 +1,8 @@
 (function( $ ) {
 $.extend(Tapestry.Initializer, {
     rangeSlider: function(specs) {
-		if(!specs.displayTextField) {
+    
+    	if(!specs.displayTextField) {
 			$("#" + specs.idMinField).css("display", "none");
 			$("#" + specs.idMaxField).css("display", "none");
 		}
@@ -11,10 +12,12 @@ $.extend(Tapestry.Initializer, {
 				$("#" + specs.idMaxField).val(u.values[1]);
 			}, 
 			change:function(e,u){
-				if(specs.url) 
+				if(specs.url) {
+					var sep = (specs.url.indexOf("?") >= 0) ? "&" : "?";
 					$("#" + specs.zoneId).tapestryZone("update", {
-						url: specs.url+"?min="+u.values[0]+"&max="+u.values[1]
+						url: specs.url + sep + "min="+u.values[0]+"&max="+u.values[1]
 					});
+				}
 			}
 		};
         $("#" + specs.sliderId).slider(specs.params).slider("option", options);	
