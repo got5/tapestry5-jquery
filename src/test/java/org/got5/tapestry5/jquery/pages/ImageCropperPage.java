@@ -21,8 +21,11 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 
 
@@ -30,22 +33,42 @@ public class ImageCropperPage{
 	
 	@Property
 	@Persist
-	private String x, y, x2, y2, w, h;
+	private float x, y, x2, y2, w, h;
 	
 	@Component
 	private Zone myImageCropped;
 	
 	@Inject
 	private Request request;
+	
+	@SetupRender
+	private void setup() {
+	    if(x==0) {
+	        x=22.5f;
+	        y=272.4f;
+	        x2=305.16666f;
+	        y2=378.4f;
+	    }
+	}
+
+	public JSONObject getOptions(){
+		
+		JSONObject json = new JSONObject("aspectRatio", "2.777");
+		Object[] initSize = {Float.valueOf(x),Float.valueOf(y),Float.valueOf(x2),Float.valueOf(y2)};
+		JSONArray initSizetab = new JSONArray(initSize);
+		json.put("setSelect", initSizetab);	
+						
+		return json;
+	}
 
 	@OnEvent(value=EventConstants.SELECTED, component="myImageCropper")
 	public Object returnZoneRange(){
-		x= request.getParameter("x");
-		y= request.getParameter("y");	
-		x2= request.getParameter("x2");
-		y2= request.getParameter("y2");
-		w= request.getParameter("w");
-		h= request.getParameter("h");
+		x= Float.parseFloat(request.getParameter("x"));
+		y= Float.parseFloat(request.getParameter("y"));	
+		x2= Float.parseFloat(request.getParameter("x2"));
+		y2= Float.parseFloat(request.getParameter("y2"));
+		w= Float.parseFloat(request.getParameter("w"));
+		h= Float.parseFloat(request.getParameter("h"));
 		return myImageCropped.getBody();
 	}
 	

@@ -34,6 +34,7 @@ import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
 * @since 3.3.1
@@ -74,6 +75,16 @@ public class ImageCropper implements ClientElement{
     @Parameter(defaultPrefix=BindingConstants.LITERAL)
     private String zone;
 	
+    /**
+	 * JSON options for the jcrop component
+	 * awaited options are 
+	 * - aspectRatio to define the ratio
+	 * - setSelect array of value for x,y,x2,y2
+	 */
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject options;
+
+    
 	@Inject
 	private AssetSource assetSource;
 
@@ -108,6 +119,9 @@ public class ImageCropper implements ClientElement{
     		jso.put("url", link.toAbsoluteURI());
     		jso.put("zoneId", zone);
     	}
+		
+		JQueryUtils.merge(jso, options);
+		
 		_support.addInitializerCall("imageCropper", jso);
 	}
 
