@@ -46,6 +46,7 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
+import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
@@ -136,6 +137,7 @@ public class JQueryModule
       binder.bind(BindingFactory.class,SelectorBindingFactory.class).withId("SelectorBindingFactory");
       binder.bind(RenderTracker.class, RenderTrackerImpl.class);
       binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class).scope(ScopeConstants.PERTHREAD);
+      binder.bind(JavaScriptFilesConfiguration.class, JavaScriptFilesConfigurationImpl.class);
     }
 
 
@@ -148,6 +150,23 @@ public class JQueryModule
     	configuration.add(EffectsConstants.HIGHLIGHT);
     	configuration.add(EffectsConstants.SHOW);
     }
+    
+    @Contribute(JavaScriptFilesConfiguration.class)
+    public void addJavaScriptFilesRules(MappedConfiguration<String, String> configuration){
+
+    	configuration.add("t5-prototype.js", "${tapestry.jquery.path}/t5-jquery.js");
+    	configuration.add("tapestry.js", "${tapestry.jquery.path}/tapestry-jquery.js");
+    	configuration.add("t5-console.js", "${tapestry.jquery.path}/t5-console-jquery.js");
+    	configuration.add("t5-dom.js", "${tapestry.jquery.path}/t5-dom-jquery.js");
+    	configuration.add("t5-alerts.js", "${tapestry.jquery.path}/t5-alerts-jquery.js");
+    	configuration.add("t5-ajax.js", "${tapestry.jquery.path}/t5-ajax-jquery.js");
+    	configuration.add("tree.js", "${tapestry.jquery.path}/t5-tree-jquery.js");
+    	configuration.add("prototype.js", "");
+    	configuration.add("scriptaculous.js", "");
+    	configuration.add("effects.js", "");
+    	configuration.add("exceptiondisplay.js", "");
+    }
+    
 
     @Contribute(ComponentClassTransformWorker2.class)
     @Primary
