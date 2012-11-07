@@ -2,6 +2,7 @@
 
 	$.widget( "ui.formFragment", {
 		options: {
+			alwaysSubmit: false,
 			hide: true,
 			showFunc : "blind",
 			hideFunc : "blind"
@@ -19,7 +20,7 @@
 			form.bind(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function(){
 				// On a submission, if the fragment is not visible, then wipe out its
 				// form submission data, so that no processing or validation occurs on the server.
-				if (that.element && ! that.element.is(":visible"))
+				if (!that.options.alwaysSubmit && that.element && ! that.element.is(":visible"))
 					that.hidden.get(0).value = "";
 			});
 		},
@@ -72,7 +73,7 @@
 T5.extendInitializers(function(){
 	
 	function init(spec) {
-		$("#" + spec.element ).formFragment();
+		$("#" + spec.element ).formFragment(spec);
 	}
 	
 	function linkTriggerToFormFragment(spec) {
