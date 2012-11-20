@@ -23,117 +23,129 @@ import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-
 /**
- *@since 2.1.1
+ * @since 2.1.1
  *
- *@tapestrydoc
+ * @tapestrydoc
  */
 @SupportsInformalParameters
 public class CarouselItem implements ClientElement {
-	 
-	
-	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
-	private String clientId;
-	
-	@Property
-	@Parameter(value="75", defaultPrefix=BindingConstants.LITERAL)
-	private int width;
-	
-	@Property
-	@Parameter(value="75", defaultPrefix=BindingConstants.LITERAL)
-	private int height;
-	
-	@Property
-	@Parameter(required=true, defaultPrefix=BindingConstants.PROP)
-	private String imageSource;
-	
-	@Property
-	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String page;
-	
-	@Property
-	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String event;
-	
-	@Property
-	@Parameter(allowNull=true,defaultPrefix=BindingConstants.PROP)
-	private Object context;
-	
+
+    @Property
+    @Parameter(value = "75", defaultPrefix = BindingConstants.LITERAL)
+    private int width;
+
+    @Property
+    @Parameter(value = "75", defaultPrefix = BindingConstants.LITERAL)
+    private int height;
+
+    @Property
+    @Parameter(required = true, defaultPrefix = BindingConstants.PROP)
+    private String imageSource;
+
+    @Property
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
+    private String page;
+
+    @Property
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
+    private String event;
+
+    @Property
+    @Parameter(allowNull = true, defaultPrefix = BindingConstants.PROP)
+    private Object context;
+
 	@Property
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String zone;
-	
-	
+
 	@Inject
 	private ComponentResources componentResources;
-	
+
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
-	
+
 	@Inject
 	private ClientBehaviorSupport clientSupport;
-	
+
 	@Inject
 	private PageRenderLinkSource pageRenderLink;
-	
-	public boolean isPagelink(){
-		return StringUtils.isNotEmpty(page);
+
+    private String clientId;
+
+	private boolean isPageLink;
+
+	private boolean isEventLink;
+
+	private Link url;
+
+	void setupRender() {
+
+	    this.clientId = javaScriptSupport.allocateClientId(componentResources);
+
+	    this.isPageLink = StringUtils.isNotEmpty(page);
+	    this.isEventLink = StringUtils.isNotEmpty(event);
+
+        this.url = null;
+
+	    if (isPageLink) {
+
+            if (context != null) {
+                url = pageRenderLink.createPageRenderLinkWithContext(page, context);
+            } else {
+                url = pageRenderLink.createPageRenderLinkWithContext(page);
+            }
+
+	    } else if (isEventLink) {
+
+            if (context != null) {
+                url = componentResources.createEventLink(event, context);
+            } else {
+                url = componentResources.createEventLink(event);
+            }
+	    }
 	}
-	
-	public boolean isEventlink(){
-		return StringUtils.isNotEmpty(event);
+
+	void beginRender(MarkupWriter w) {
+
+	    w.element("li");
+
+        if (isPageLink) {
+
+            w.element("a", "href", url.toURI());
+
+        } else if (isEventLink) {
+
+            w.element("a", "href", url.toURI(), "id", clientId);
+
+            if (zone != null) {
+                clientSupport.linkZone(clientId, zone, url);
+            }
+        }
+
+        w.element("img", "src", imageSource, "height", height + "px", "width", width + "px");
+        componentResources.renderInformalParameters(w);
+        w.end();
 	}
-	
-	@SetupRender
-	public boolean init(MarkupWriter w){
-		w.element("li");
-		
-		if(isPagelink()){
-			Link url=null;
-			if(context!=null){
-				url=pageRenderLink.createPageRenderLinkWithContext(page, context);
-			}else{
-				url=pageRenderLink.createPageRenderLinkWithContext(page);
-			}
-			w.element("a","href",url.toURI());
-		}else if(isEventlink()){
-			String linkId = javaScriptSupport.allocateClientId(componentResources);
-			Link url = null;
-			if(context!=null){
-				url=componentResources.createEventLink(event, context);
-			}else{
-				url=componentResources.createEventLink(event);
-			}
-			w.element("a","href",url.toURI(),"id",linkId);
-			if(zone!=null){
-				clientSupport.linkZone(linkId, zone, url);
-			}
-		}
-		
-		w.element("img","src",imageSource,"height",height+"px","width",width+"px");
-		componentResources.renderInformalParameters(w);
-		w.end();
-		
-		if(isPagelink() || isEventlink()){
-			w.end();
-		}
-		
-		w.end();
-		return false;
-		
-	}
-	
-	public String getClientId(){
+
+	void afterRender(MarkupWriter writer) {
+
+        if (isPageLink || isEventLink) {
+            writer.end();
+        }
+
+	    writer.end();
+    }
+
+    public String getClientId() {
+
         return this.clientId;
     }
-	
-	
+
 }
