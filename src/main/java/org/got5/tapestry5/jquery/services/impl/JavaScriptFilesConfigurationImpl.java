@@ -20,10 +20,9 @@ public class JavaScriptFilesConfigurationImpl implements
 	}
 
 	public Asset getAsset(Asset original) {
-		for(String key : javaScriptFilesConfiguration.keySet()){
-			if(original.getResource().getFile().endsWith(key)){
-				return InternalUtils.isBlank(javaScriptFilesConfiguration.get(key)) ? null : this.as.getExpandedAsset(javaScriptFilesConfiguration.get(key));
-			}
+		if(javaScriptFilesConfiguration.containsKey(original.getResource().getFile())) {
+			String assetPath = javaScriptFilesConfiguration.get(original.getResource().getFile());
+			return InternalUtils.isBlank(assetPath) ? null : this.as.getExpandedAsset(assetPath);
 		}
 		return original;
 	}
