@@ -310,7 +310,7 @@ public class DefaultDataTableModel implements DataTableModel {
 
 					PropertyConduit conduit = model.get(name).getConduit();
 
-					Object val = conduit.get(obj);
+					Object val = (conduit.get(obj) != null) ? conduit.get(obj) : "";
 
 					if (!String.class.equals(model.get(name).getClass())
 							&& !Number.class.isAssignableFrom(model.get(name).getClass()))

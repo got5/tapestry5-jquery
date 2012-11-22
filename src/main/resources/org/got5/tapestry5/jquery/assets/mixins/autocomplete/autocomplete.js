@@ -18,18 +18,21 @@
 						params[specs.paramName] = request.term;
 						
 						var ajaxRequest = {
+						 	type:"POST",
 	                    	url:specs.url,
-	                        success: function(data){
+	                    	dataType: "json",
+            				success: function(data){
 	                            response(eval(data));
 	                        }, 
-	                        data:"data="+$.toJSON( params ), 
-	                        dataType: "json", 
-	                        type:"POST"
+	                        data:{
+	                        	"data" : $.toJSON( params )
+	                        } 
 	                    };
 
 	                    $.ajax(ajaxRequest).done(function () { element.trigger('autocompletedone'); });
 	                }
 	        };
+	        
 	        if (specs.delay >= 0) 
 	        	conf.delay = specs.delay;
 	            

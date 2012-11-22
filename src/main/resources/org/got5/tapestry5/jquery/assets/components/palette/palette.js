@@ -170,7 +170,7 @@ $.widget( "ui.palette", {
             return o.value;
         });
 
-        this.hidden[0].value = "[" + values + "]";
+        this.hidden[0].value =  $.toJSON(values);
     },
 
     moveUpClicked: function() {

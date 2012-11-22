@@ -17,6 +17,7 @@
 		<li><a t:type="pagelink" t:page="galleryPage">Gallery</a></li>
 		<li><a t:type="pagelink" t:page="GMap">GMap</a></li>
 		<li><a t:type="pagelink" t:page="DocsInPlaceEditor">InPlaceEditor</a></li>
+		<li><a t:type="pagelink" t:page="ImageCropperPage">ImageCropper</a></li>
 		<li><a t:type="pagelink" t:page="jgrowl">jGrowl</a></li>
 		<li><a t:type="pagelink" t:page="jqueryaccordion">jQuery Accordion</a></li>
 		<li><a t:type="pagelink" t:page="jqueryautocomplete">jQuery Autocomplete</a></li>
