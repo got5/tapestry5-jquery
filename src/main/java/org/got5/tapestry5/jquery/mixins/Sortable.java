@@ -51,7 +51,7 @@ public class Sortable {
 		if(options == null) options = new JSONObject();
 		JSONObject opt = new JSONObject();
 		opt.put("id", clientElement.getClientId());
-		opt.put("url" , resources.createEventLink("sortable", null).toAbsoluteURI());
+		opt.put("url" , resources.createEventLink("sortable", (Object[]) null).toAbsoluteURI());
 		opt.put("params", options);
 		javaScriptSupport.addInitializerCall("sortable", opt);
 	}
