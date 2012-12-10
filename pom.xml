@@ -208,6 +208,7 @@
 	
 	<build>
 		<finalName>tapestry-jquery</finalName>
+		<sourceDirectory>${sourceDirectory}</sourceDirectory>
         	<resources>
                   <resource>
                       <directory>src/test/conf</directory>
@@ -471,6 +472,7 @@
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
 		<tapestry-release-version>5.3.6</tapestry-release-version>
-	    <browserStartCommand>*firefox</browserStartCommand>
+                <browserStartCommand>*firefox</browserStartCommand>
+                <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
 </project>

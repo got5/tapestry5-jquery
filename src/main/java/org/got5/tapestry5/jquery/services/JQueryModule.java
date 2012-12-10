@@ -57,6 +57,7 @@ import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 import org.got5.tapestry5.jquery.services.javascript.widgets.Slider;
 import org.got5.tapestry5.jquery.services.js.JSModule;
@@ -87,6 +88,7 @@ public class JQueryModule
         configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
         configuration.addInstance(DataTableStack.STACK_ID, DataTableStack.class);
         configuration.addInstance(InPlaceEditorStack.STACK_ID, InPlaceEditorStack.class);
+        configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -96,7 +98,7 @@ public class JQueryModule
 
     @Contribute(SymbolProvider.class)
     @FactoryDefaults
-    public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
+    public static void contributeFactoryDefaults(MappedConfiguration<String, Object> configuration)
     {
         configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
         configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
@@ -110,12 +112,14 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.19.custom.css");
 
         configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
-        configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "true");
+        configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
         configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
 
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
         configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
         configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS, SymbolConstants.PRODUCTION_MODE_VALUE);
+        
+        configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
 
     }
 
