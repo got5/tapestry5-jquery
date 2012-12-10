@@ -118,6 +118,8 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.ASSETS_PATH, "classpath:org/got5/tapestry5/jquery/assets");
         configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
         configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS, SymbolConstants.PRODUCTION_MODE_VALUE);
+        
+        configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, "false");
 
     }
 

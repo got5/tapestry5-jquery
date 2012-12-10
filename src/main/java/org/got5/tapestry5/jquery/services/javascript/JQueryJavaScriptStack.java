@@ -34,7 +34,6 @@ import org.got5.tapestry5.jquery.services.EffectsParam;
 import org.got5.tapestry5.jquery.services.JavaScriptFilesConfiguration;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
-
 /**
  * Replacement for {@link CoreJavaScriptStack}.
  * 
@@ -44,9 +43,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 	private final boolean minified;
 
-	private String jQueryAlias;
-
 	private final boolean suppressPrototype;
+
+	private final boolean mouseWheel;
+
+	private String jQueryAlias;
 
 	private final List<Asset> jQueryJsStack;
 
@@ -57,7 +58,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 	private EffectsParam effectsParam;
 
 	private JavaScriptFilesConfiguration jsConf;
-	
+
 	public JQueryJavaScriptStack(
 			@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
 
@@ -65,26 +66,30 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) final boolean suppressPrototype,
 
+			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) final boolean mouseWheel,
+
 			final AssetSource assetSource,
 
 			final JavaScriptStackSource jsStackSrc,
 
 			final SymbolSource symbolSource,
 
-			final EffectsParam effectsParam, 
-			
+			final EffectsParam effectsParam,
+
 			final JavaScriptFilesConfiguration jsConf)
 
 	{
 
 		this.minified = minified;
 		this.suppressPrototype = suppressPrototype;
+		this.mouseWheel = mouseWheel;
+
 		this.assetSource = assetSource;
 		this.jQueryAlias = jQueryAlias;
 		this.jsStackSource = jsStackSrc;
 		this.effectsParam = effectsParam;
 		this.jsConf = jsConf;
-		
+
 		final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
 			public Asset map(String path) {
 				if (minified) {
@@ -169,6 +174,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 					.getExpandedAsset("${tapestry.jquery.path}/jquery-noconflict.js"));
 		}
 
+		if (mouseWheel)
+			ret.add(this.assetSource
+					.getExpandedAsset("${tapestry.jquery.path}/jquery_widgets/jquery.mousewheel.js"));
 		return ret;
 
 	}
