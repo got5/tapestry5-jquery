@@ -44,6 +44,7 @@ import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
@@ -62,6 +63,7 @@ public class JQueryModule
     		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
     	}
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
+    	configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration,
