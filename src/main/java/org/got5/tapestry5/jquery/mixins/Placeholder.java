@@ -1,5 +1,6 @@
 package org.got5.tapestry5.jquery.mixins;
 
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.MixinAfter;
@@ -25,7 +26,7 @@ public class Placeholder extends Widget {
 	/**
 	 * The format you want to use for your input.
 	 */
-	@Parameter(allowNull = false, required = true)
+	@Parameter(allowNull = false, required = true, defaultPrefix = BindingConstants.LITERAL)
 	private String text;
 
 	void beginRender(MarkupWriter writer) {
