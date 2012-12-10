@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 2.6.1-SNAPSHOT
+﻿# Tapestry 5 jQuery integration Module - 2.6.8-SNAPSHOT
 
 ## List Of Contributors
 - Robin KOMIWES as robink
@@ -18,6 +18,7 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
+- 2.6.8-SNAPSHOT : add Components ImageCropper
 - 2.6.2-SNAPSHOT : more work on client side validation
 - 2.6.1 : add Components : InPlaceEditor,Draggable
 		  add Mixins : ZoneRefresh,ZoneDroppable 
