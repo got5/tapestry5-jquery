@@ -63,5 +63,11 @@ public class JQuerySymbolConstants {
      * Indicates the jQuery Alias we want to use : $, jQuery, ...
      */
 	public static final String JQUERY_ALIAS = "jquery.alias";
+
+	/**
+	 * Indicates if your application should manage the mousewheel event, from the 
+	 * the jQuery Mouse Wheel Plugin (http://brandonaaron.net/code/mousewheel/demos)
+	 */
+	public static final String ADD_MOUSEWHEEL_EVENT = "jquery.mousewheel";
     
 }

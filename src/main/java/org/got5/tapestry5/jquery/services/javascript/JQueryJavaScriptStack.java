@@ -60,6 +60,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     private EffectsParam effectsParam;
 
+	private final boolean mousewheel;
+
 
 
     public JQueryJavaScriptStack(ClientInfrastructure clientInfrastructure,
@@ -77,7 +79,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
     							 final SymbolSource symbolSource, 
     							 
-    							 final EffectsParam effectsParam)
+    							 final EffectsParam effectsParam, 
+    							 
+    							 @Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT)
+    							final boolean mousewheel)
     {
     	this.clientInfrastructure = clientInfrastructure;
         this.productionMode = productionMode;
@@ -86,6 +91,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
         this.jQueryAlias = jQueryAlias;
         this.symbolSource = symbolSource;
         this.effectsParam = effectsParam;
+        this.mousewheel = mousewheel;
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
@@ -166,6 +172,10 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
     		ret.add(tapestryJqueryJs);
     	}	
  		
+    	if(mousewheel)
+    		ret.add(this.assetSource.getExpandedAsset("${tapestry.jquery.path}/jquery_widgets/jquery.mousewheel.js"));
+    	
+    	
  		return ret;
         
     }
