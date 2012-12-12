@@ -11,12 +11,12 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.services.javascript.DDSlickStack;
 
 /**
  * 
  */
-@Import(library = {"classpath:org/got5/tapestry5/jquery/assets/components/ddslick/jquery.ddslick.min.js",
-		"classpath:org/got5/tapestry5/jquery/assets/components/ddslick/DdSlickComponent.js" }, stylesheet = {"classpath:org/got5/tapestry5/jquery/assets/components/ddslick/DdSlickComponent.css" })
+@Import(stack = DDSlickStack.STACK_ID)
 public class DdSlick implements ClientElement {
 
 	// parameters

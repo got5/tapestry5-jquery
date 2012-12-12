@@ -50,6 +50,7 @@ import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.services.javascript.DDSlickStack;
 import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
@@ -89,6 +90,7 @@ public class JQueryModule
         configuration.addInstance(DataTableStack.STACK_ID, DataTableStack.class);
         configuration.addInstance(InPlaceEditorStack.STACK_ID, InPlaceEditorStack.class);
         configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
+        configuration.addInstance(DDSlickStack.STACK_ID, DDSlickStack.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
