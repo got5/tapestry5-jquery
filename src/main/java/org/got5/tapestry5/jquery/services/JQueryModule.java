@@ -42,6 +42,7 @@ import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
+import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
 import org.got5.tapestry5.jquery.services.javascript.JScrollPaneStack;
@@ -66,6 +67,7 @@ public class JQueryModule
     	configuration.addInstance(AjaxUploadStack.STACK_ID, AjaxUploadStack.class);
     	configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
     	configuration.addInstance(JScrollPaneStack.STACK_ID, JScrollPaneStack.class);
+    	configuration.addInstance(GalleryStack.STACK_ID, GalleryStack.class);
     }
 
     public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration,
