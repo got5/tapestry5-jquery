@@ -11,6 +11,7 @@ import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
+import org.got5.tapestry5.jquery.components.Gallery;
 
 /**
  * Stack for the {@link Gallery} component.
@@ -18,16 +19,16 @@ import org.got5.tapestry5.jquery.JQuerySymbolConstants;
  * @author criedel
  * @since 2.6.1
  */
-public class GalleryStack implements JavaScriptStack
+public class JScollPaneStack implements JavaScriptStack
 {
 
-    public static final String STACK_ID = "GalleryStack";
+    public static final String STACK_ID = "JScollPaneStack";
 
     private final List<Asset> javaScriptStack;
 
     private final List<StylesheetLink> cssStack;
 
-    public GalleryStack(@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
+    public JScollPaneStack(@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
                         final AssetSource assetSource)
     {
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()

@@ -58,6 +58,8 @@ import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.JScollPaneStack;
+import org.got5.tapestry5.jquery.services.javascript.JScrollPaneStack;
 import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 import org.got5.tapestry5.jquery.services.javascript.widgets.Slider;
@@ -91,6 +93,7 @@ public class JQueryModule
         configuration.addInstance(InPlaceEditorStack.STACK_ID, InPlaceEditorStack.class);
         configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
         configuration.addInstance(DDSlickStack.STACK_ID, DDSlickStack.class);
+        configuration.addInstance(JScrollPaneStack.STACK_ID, JScrollPaneStack.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
