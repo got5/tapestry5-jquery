@@ -89,7 +89,7 @@ public class DocsInPlaceEditor
 	    return users;
 	}
 	
-	@OnEvent(component = "inPlaceEditor", value = InPlaceEditor.SAVE_EVENT)
+	@OnEvent(component = "inPlaceEditorExample", value = InPlaceEditor.SAVE_EVENT)
 	void actionFromEditor(Long id, String value)
 	{
 		User user = (User)users.get(id.intValue());
