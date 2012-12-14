@@ -26,7 +26,7 @@
 	                        	"data" : $.toJSON( params )
 	                        } 
 	                    };
-	                    $.ajax(ajaxRequest);
+	                    this.xhr = $.ajax(ajaxRequest);
 	                }
 	        };
 	        
