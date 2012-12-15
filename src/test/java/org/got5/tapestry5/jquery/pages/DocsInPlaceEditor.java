@@ -53,9 +53,11 @@ public class DocsInPlaceEditor
 	    
 	@Inject
 	private Request request;
-	
+
 	void setupRender() {
-		users = createUsers(50);
+		if (users == null) {
+			users = createUsers(50);
+		}
 	}
 	
 	public BeanModel getMyModel(){
