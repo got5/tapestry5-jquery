@@ -31,7 +31,6 @@ import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
-import org.apache.tapestry5.internal.URLEventContext;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -157,12 +156,10 @@ public class InPlaceEditor implements ClientElement
 	{
 		String valueText = request.getParameter("value");
 
-		String[] context = Arrays.copyOf(eventContext.toStrings(), eventContext.getCount() + 1);
-		context[context.length - 1] = valueText;
+		contextArray = Arrays.copyOf(eventContext.toStrings(), eventContext.getCount() + 1);
+		contextArray[contextArray.length - 1] = valueText;
 
-		URLEventContext saveEventContext = new URLEventContext(valueEncoder, context);
-
-		resources.triggerContextEvent(SAVE_EVENT, saveEventContext, null);
+		resources.triggerEvent(SAVE_EVENT, contextArray, null);
 
 		if (valueText == null || valueText.length() == 0)
 			valueText = messages.get("empty");
