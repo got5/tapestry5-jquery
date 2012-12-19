@@ -1,0 +1,11 @@
+<t:container xmlns:t='http://tapestry.apache.org/schema/tapestry_5_3.xsd'>
+
+    <t:delegate to='block:nextPageBlock'/>
+
+    <t:block t:id='nextPageBlock'>
+        <t:loop t:id='loop' t:source='nextPage' value='row'>
+            <t:body/>
+        </t:loop>
+    </t:block>
+
+</t:container>

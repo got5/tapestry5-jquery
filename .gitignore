@@ -20,3 +20,7 @@ maven-eclipse.xml
 .gradle/
 .idea/
 build
+*.iml
+*.ipr
+*.iws
+out/
