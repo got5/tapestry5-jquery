@@ -37,6 +37,11 @@ public class AppModule
 	@ApplicationDefaults
     public static void contributeApplicationDefaults(MappedConfiguration<String, Object> configuration)
     {
+    	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
+    	
+    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
+    	
+    	
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de,ru,ua");
     	
     	configuration.add(SymbolConstants.PRODUCTION_MODE, false);
@@ -47,9 +52,10 @@ public class AppModule
         
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, false);
     	
-    	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
+    	configuration.add(SymbolConstants.ASSET_URL_FULL_QUALIFIED, true);
     	
-    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
+    	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "/assets");
+    	
     }
     
 	@Contribute(WidgetParams.class)

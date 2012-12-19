@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.3.5-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery Library</name>
 	<description>Tapestry Components Library</description>
@@ -471,7 +471,7 @@
 	
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-		<tapestry-release-version>5.3.6</tapestry-release-version>
+		<tapestry-release-version>5.4-SNAPSHOT</tapestry-release-version>
                 <browserStartCommand>*firefox</browserStartCommand>
                 <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>

@@ -21,10 +21,12 @@ import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.internal.InternalConstants;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 
-@Import(stylesheet ={ "context:css/layout/style.css"})
+//@Import(stylesheet ={ "context:css/layout/style.css"})
+@Import(stack=InternalConstants.CORE_STACK_NAME)
 public class Layout
 {
     @Property

@@ -15,10 +15,10 @@
 				</li>
 			
 		</ul>
-
+<t:actionLink>link</t:actionLink>
 		<div id="top">
 
-			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+			<h1><!-- img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /--></h1>
 
 			<div>Welcome to Tapestry 5 jQuery !</div>
 			

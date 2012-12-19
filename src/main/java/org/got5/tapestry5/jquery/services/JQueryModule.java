@@ -17,8 +17,6 @@
 package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.internal.InternalConstants;
-import org.apache.tapestry5.internal.services.javascript.CoreJavaScriptStack;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.MethodAdviceReceiver;
@@ -58,7 +56,6 @@ import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
-import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
 import org.got5.tapestry5.jquery.services.javascript.JScrollPaneStack;
 import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
@@ -72,13 +69,13 @@ public class JQueryModule
     		@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
             boolean suppressPrototype)
     {
-    	configuration.addInstance(JQuerySymbolConstants.PROTOTYPE_STACK, CoreJavaScriptStack.class);
-    	configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
+    	//configuration.addInstance(JQuerySymbolConstants.PROTOTYPE_STACK, CoreJavaScriptStack.class);
+    	//configuration.overrideInstance(InternalConstants.CORE_STACK_NAME, JQueryJavaScriptStack.class);
     	if(suppressPrototype)
     	{
-    		configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
-    		configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
-    		configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
+    		//configuration.overrideInstance("core-datefield", JQueryDateFieldStack.class);
+    		//configuration.addInstance(FormSupportStack.STACK_ID, FormSupportStack.class);
+    		//configuration.addInstance(FormFragmentSupportStack.STACK_ID, FormFragmentSupportStack.class);
     	}
 
         

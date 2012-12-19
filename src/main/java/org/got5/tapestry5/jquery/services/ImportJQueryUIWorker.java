@@ -89,7 +89,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 					
 					String path = (annotation!=null && InternalUtils.isNonBlank(annotation.theme())) ? annotation.theme() : themePath;
 					
-					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
+					//javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
 					
 					invocation.proceed();
 					
