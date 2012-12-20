@@ -21,3 +21,6 @@ maven-eclipse.xml
 .idea/
 build
 *.iml
+*.ipr
+*.iws
+out/
