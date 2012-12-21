@@ -56,7 +56,7 @@ public class ZoneUpdater {
 
   void afterRender() {
 
-    String url = resources.createEventLink(event, context).toAbsoluteURI();
+    String url = resources.createEventLink(event, context).toURI();
     String elementId = element.getClientId();
     JSONObject spec = new JSONObject();
     spec.put("url", url);
