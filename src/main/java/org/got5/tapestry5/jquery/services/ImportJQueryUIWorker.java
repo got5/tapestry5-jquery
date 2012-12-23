@@ -105,11 +105,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
     {
         public String map(String name)
         {
-        	final StringBuilder relativePath = new StringBuilder()
-                .append(minified ? "/minified/" : "/")
-                .append(name)
-                .append(minified ? ".min.js" : ".js");
-            return jqueryUIBase + relativePath.toString();
+        	return jqueryUIBase + String.format("/%s.js", name);
         }
     };
 

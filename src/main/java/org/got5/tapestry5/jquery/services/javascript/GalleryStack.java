@@ -14,60 +14,53 @@ import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
 /**
  * Stack for the {@link Gallery} component.
- *
+ * 
  * @author criedel
  * @since 2.6.1
  */
-public class GalleryStack implements JavaScriptStack
-{
+public class GalleryStack implements JavaScriptStack {
 
-    public static final String STACK_ID = "GalleryStack";
+	public static final String STACK_ID = "GalleryStack";
 
-    private final List<Asset> javaScriptStack;
+	private final List<Asset> javaScriptStack;
 
-    private final List<StylesheetLink> cssStack;
+	private final List<StylesheetLink> cssStack;
 
-    public GalleryStack(@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
-                        final AssetSource assetSource)
-    {
-        final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
-        {
-            public Asset map(String path)
-            {
-                return assetSource.getExpandedAsset(path);
-            }
-        };
+	public GalleryStack(
+			@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
+			final AssetSource assetSource) {
+		final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
+			public Asset map(String path) {
+				return assetSource.getExpandedAsset(path);
+			}
+		};
 
-        final String prettyPhoto = String.format("${assets.path}/components/gallery/jquery.colorbox%s.js", minified ? ".min" : "");
-        final String galleryJS = String.format("${assets.path}/components/gallery/gallery.js");
+		javaScriptStack = F
+				.flow("${assets.path}/components/gallery/jquery.colorbox.js",
+						"${assets.path}/components/gallery/gallery.js")
+				.map(pathToAsset).toList();
 
-        javaScriptStack = F.flow(prettyPhoto, galleryJS).map(pathToAsset).toList();
+		cssStack = Collections.emptyList();
+	}
 
-        cssStack = Collections.emptyList();
-    }
+	public String getInitialization() {
 
-    public String getInitialization()
-    {
+		return null;
+	}
 
-        return null;
-    }
+	public List<Asset> getJavaScriptLibraries() {
 
-    public List<Asset> getJavaScriptLibraries()
-    {
+		return javaScriptStack;
+	}
 
-        return javaScriptStack;
-    }
+	public List<StylesheetLink> getStylesheets() {
 
-    public List<StylesheetLink> getStylesheets()
-    {
+		return cssStack;
+	}
 
-        return cssStack;
-    }
+	public List<String> getStacks() {
 
-    public List<String> getStacks()
-    {
-
-        return Collections.emptyList();
-    }
+		return Collections.emptyList();
+	}
 
 }

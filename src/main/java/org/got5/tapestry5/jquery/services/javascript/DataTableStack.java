@@ -16,58 +16,52 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * Resource stack for {@link DataTable}.
- *
+ * 
  * @author criedel
  */
-public class DataTableStack implements JavaScriptStack
-{
-    public static final String STACK_ID = "DataTableStack";
+public class DataTableStack implements JavaScriptStack {
+	public static final String STACK_ID = "DataTableStack";
 
-    private final List<Asset> javaScriptStack;
+	private final List<Asset> javaScriptStack;
 
-    private final List<StylesheetLink> cssStack;
+	private final List<StylesheetLink> cssStack;
 
-    public DataTableStack(
-            @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
-            final boolean minified,
-            final AssetSource assetSource)
-    {
+	public DataTableStack(
+			@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
+			final AssetSource assetSource) {
 
-        final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
-        {
-            public Asset map(String path)
-            {
-                return assetSource.getExpandedAsset(path);
-            }
-        };
+		final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>() {
+			public Asset map(String path) {
+				return assetSource.getExpandedAsset(path);
+			}
+		};
 
-        final String path = String.format("${assets.path}/components/datatables/jquery.dataTables%s.js", minified ? ".min" : "");
+		javaScriptStack = F
+				.flow("${assets.path}/components/datatables/jquery.dataTables.js",
+						"${assets.path}/components/datatables/dataTables.js")
+				.map(pathToAsset).toList();
 
-        javaScriptStack = F.flow(path, "${assets.path}/components/datatables/dataTables.js").map(pathToAsset).toList();
+		final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(
+				pathToAsset, JQueryUtils.assetToStylesheetLink);
+		cssStack = F
+				.flow("${assets.path}/components/datatables/tango/skin.css")
+				.map(pathToStylesheetLink).toList();
+	}
 
+	public String getInitialization() {
+		return null;
+	}
 
-        final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, JQueryUtils.assetToStylesheetLink);
-        cssStack = F.flow("${assets.path}/components/datatables/tango/skin.css").map(pathToStylesheetLink).toList();
-    }
+	public List<Asset> getJavaScriptLibraries() {
+		return javaScriptStack;
+	}
 
-    public String getInitialization()
-    {
-        return null;
-    }
+	public List<StylesheetLink> getStylesheets() {
+		return cssStack;
+	}
 
-    public List<Asset> getJavaScriptLibraries()
-    {
-        return javaScriptStack;
-    }
-
-    public List<StylesheetLink> getStylesheets()
-    {
-        return cssStack;
-    }
-
-    public List<String> getStacks()
-    {
-        return Collections.emptyList();
-    }
+	public List<String> getStacks() {
+		return Collections.emptyList();
+	}
 
 }

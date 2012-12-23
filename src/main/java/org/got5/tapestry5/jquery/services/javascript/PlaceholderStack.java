@@ -28,11 +28,7 @@ public class PlaceholderStack implements JavaScriptStack {
 			}
 		};
 
-		final String path = String
-				.format("${assets.path}/mixins/placeholder/jquery.placeholder%s.js",
-						productionMode ? ".min" : "");
-
-		javaScriptStack = F.flow(path).map(pathToAsset).toList();
+		javaScriptStack = F.flow("${assets.path}/mixins/placeholder/jquery.placeholder%s.js").map(pathToAsset).toList();
 	}
 
 	public List<String> getStacks() {
