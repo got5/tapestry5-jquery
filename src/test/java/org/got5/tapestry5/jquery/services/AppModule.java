@@ -54,7 +54,7 @@ public class AppModule
     	
     	configuration.add(SymbolConstants.ASSET_URL_FULL_QUALIFIED, true);
     	
-    	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "/assets");
+    	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "assets");
     	
     }
     

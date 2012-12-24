@@ -34,7 +34,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final String themePath;
     
-    private final boolean minified;
 
     public ImportJQueryUIWorker(AssetSource assetSource,
 
@@ -42,9 +41,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
             
             @Symbol(JQuerySymbolConstants.JQUERY_UI_PATH)
             String jqueryUIBase,
-
-            @Symbol(JQuerySymbolConstants.USE_MINIFIED_JS)
-            boolean minified, 
             
     		@Symbol(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME)
     		String themePath)
@@ -53,7 +49,6 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
         this.javaScriptSupport = javaScriptSupport;
                 
         this.jqueryUIBase = jqueryUIBase;
-        this.minified = minified;
         this.themePath = themePath;
     }
     
@@ -89,7 +84,7 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 					
 					String path = (annotation!=null && InternalUtils.isNonBlank(annotation.theme())) ? annotation.theme() : themePath;
 					
-					//javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
+					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
 					
 					invocation.proceed();
 					

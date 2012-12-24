@@ -9,7 +9,7 @@
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.	
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
@@ -28,7 +28,6 @@ import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 
 
 
@@ -40,7 +39,6 @@ import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
  * 
  * @tapestrydoc
  */
-@Import(stack=SuperfishStack.STACK_ID)
 @SupportsInformalParameters
 public class Superfish{
 	 
@@ -139,7 +137,9 @@ public class Superfish{
 		
 		jso.put("supersubsParams", supersubsParams);
 		
-		javaScriptSupport.addInitializerCall("superfish", jso);
+		//javaScriptSupport.addInitializerCall("superfish", jso);
+		//javaScriptSupport.importStack(SuperfishStack.STACK_ID);
+		javaScriptSupport.require("tjq/superfish/mySuperfish").with(jso);
 		
 	}
 

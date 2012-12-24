@@ -13,14 +13,14 @@ import org.got5.tapestry5.jquery.components.Superfish;
 
 /**
  * Resource stack for {@link Superfish}.
- *
+ * 
  * @author Emmanuel DEMEY
  */
 public class SuperfishStack implements JavaScriptStack {
 
 	public static final String STACK_ID = "SuperfishStack";
 
-	private final List<Asset> javaScriptStack;
+	//private final List<Asset> javaScriptStack;
 
 	public SuperfishStack(final AssetSource assetSource) {
 		super();
@@ -31,14 +31,13 @@ public class SuperfishStack implements JavaScriptStack {
 			}
 		};
 
-		javaScriptStack = F
-				.flow("${assets.path}/components/superfish/js/hoverIntent.js",
-						"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
-						"${assets.path}/components/superfish/js/superfish.js",
-						"${assets.path}/components/superfish/js/supersubs.js",
-						"${assets.path}/components/superfish/js/mySuperfish.js")
-				.map(pathToAsset).toList();
-		
+//		javaScriptStack = F
+//				.flow("${assets.path}/components/superfish/js/hoverIntent.js",
+//						"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
+//						"${assets.path}/components/superfish/js/superfish.js",
+//						"${assets.path}/components/superfish/js/supersubs.js")
+//						.map(pathToAsset).toList();
+
 	}
 
 	public List<String> getStacks() {
@@ -46,7 +45,7 @@ public class SuperfishStack implements JavaScriptStack {
 	}
 
 	public List<Asset> getJavaScriptLibraries() {
-		return javaScriptStack;
+		return Collections.emptyList();
 	}
 
 	public List<StylesheetLink> getStylesheets() {

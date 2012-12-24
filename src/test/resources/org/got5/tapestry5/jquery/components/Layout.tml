@@ -4,50 +4,42 @@
 	<title>Tapestry 5 jQuery</title>
 </head>
 <body id="homepage">
-	<div class="wrapper bs">
-		<ul class="nav">
-				<li>
-					<a href="https://github.com/got5/tapestry5-jquery">Download</a>
-					
-				</li>
-				<li class="last">
-					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
-				</li>
-			
-		</ul>
-<t:actionLink>link</t:actionLink>
-		<div id="top">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Tapestry5-jQuery</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="http://tapestry5-jquery.com/">Site Web</a>
+              </li>
+              <li class="active">
+                <a t:type="pagelink" t:page="Index">Tests</a>
+              </li>
+              <li class="">
+                <a href="https://github.com/got5/tapestry5-jquery">Download</a>
+              </li>
+              <li class="">
+                <a href="http://twitter.com/#!/GOTapestry5">Twitter</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+	<header>
+	
+	</header>
+    <div class="container">
+    	<t:body />
+    </div>
+     <footer class="footer">
 
-			<h1><!-- img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /--></h1>
-
-			<div>Welcome to Tapestry 5 jQuery !</div>
-			
-			<div id="aside">
-			Tapestry 5 jQuery provides jQueryComponents and can fully replace Prototype and Scriptaculous with jQuery
-			</div>
-			
-			
-			<div class="clearer"></div>
-
-		</div>
-		
-		<div id="bar">
-			<strong>Tapestry jQuery ${message:tapestry-jquery-version} For Tapestry ${tapestryVersion}</strong>
-		</div>
-		
-		
-		<div id="content">
-			
-			<t:body />
-			<div class="clearer"></div>			
-
-		</div>		
-		
-		<div class="clearer"></div>
-
-		<div id="footer">Created with <a href="http://tapestry.apache.org/">Apache Tapestry 5</a>, 
-		Get the source code of Tapestry jQuery at <a href="https://github.com/got5">Github</a></div>
-
-	</div>
-</body>
+    </footer>
+	</body>
 </html>

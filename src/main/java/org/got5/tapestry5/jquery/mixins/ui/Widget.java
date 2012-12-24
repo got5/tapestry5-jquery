@@ -50,35 +50,13 @@ public class Widget {
 	private JavaScriptSupport javaScriptSupport;
 	
 	@Inject
-	@Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
-	private String jqueryAlias;
-	
-	@Inject
 	private WidgetParams widgetParams;
-	
-	@Inject
-	private JSSupport jsSupport;
-	
-	@SuppressWarnings("unused")
-    @Inject
-	private Logger logger;
 	
 	String widgetName() {
 		if ( widgetName != null ) {
 			return widgetName;
 		}
 		return this.getClass().getSimpleName().toLowerCase(); 
-	}
-	
-	void afterRender() {
-		String init = null;
-		if ( script != null ) {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),script);
-			jsSupport.addScript(init);
-		} else {
-			init = String.format("%s('#%s').%s(%s);", jqueryAlias, clientElement.getClientId(),widgetName(),overrideParams());
-			javaScriptSupport.addScript(init);
-		}		
 	}
 	
 	private JSONObject overrideParams(){
