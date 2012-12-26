@@ -3,7 +3,26 @@ package org.got5.tapestry5.jquery;
 import org.got5.tapestry5.jquery.components.AjaxUpload;
 
 public class JQuerySymbolConstants {
+	
+	public static final String JQUERY_VERSION = "jquery.version";
+	
+	public static final String JQUERY_UI_VERSION = "jquery.ui.version";
 
+	public static final String JQUERY_JSON_VERSION = "jquery.json.version";
+	
+	public static final String ASSETS_PATH = "assets.path";
+	
+	public static final String ASSETS_ROOT = "jquery.assets.root";
+	
+	/**
+	 * Base path for jQuery UI. Must include a "minified" directory that
+	 * contains the .min-files for production mode.
+	 */
+	public static final String JQUERY_UI_PATH = "jquery.ui.path";
+	
+	
+	
+	////////////////////////////////MIGRATION TO 5.4
 	/**
 	 * The base path of the replaced version for tapestry.js. Also the
 	 * resources-base for {@link AjaxUpload}.
@@ -22,18 +41,9 @@ public class JQuerySymbolConstants {
 	 */
 	public static final String JQUERY_CORE_PATH = "jquery.core.path";
 
-	/**
-	 * The jQuery version number. Must match the normal jQuery file name
-	 * pattern: <code>jquery-${jquery.version}.js</code> or
-	 * <code>jquery-${jquery.version}.min.js</code>
-	 */
-	public static final String JQUERY_VERSION = "jquery.version";
+	
 
-	/**
-	 * Base path for jQuery UI. Must include a "minified" directory that
-	 * contains the .min-files for production mode.
-	 */
-	public static final String JQUERY_UI_PATH = "jquery.ui.path";
+	
 
 	/**
 	 * Path to the theme-css file for jQuery UI.
@@ -53,10 +63,7 @@ public class JQuerySymbolConstants {
 	 */
 	public static final String SUPPRESS_PROTOTYPE = "suppress.prototype";
 
-	/**
-	 * Indicates that we want to drop out prototype and use only jquery
-	 */
-	public static final String ASSETS_PATH = "assets.path";
+	
 
 	/**
 	 * Indicates the jQuery Alias we want to use : $, jQuery, ...
@@ -82,4 +89,6 @@ public class JQuerySymbolConstants {
 	 */
 
 	public static final String ADD_MOUSEWHEEL_EVENT = "jquery.mousewheel";
+
+	
 }

@@ -19,12 +19,10 @@ package org.got5.tapestry5.jquery.mixins;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.annotations.Environmental;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -34,8 +32,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core", "jquery.ui.button" })
-@Import(library = { "${assets.path}/mixins/button/button.js" })
 public class Button
 {
     /**
@@ -70,9 +66,7 @@ public class Button
      */
 	void afterRender()
     {
-        String id = element.getClientId();
-
-        JSONObject data = new JSONObject("id", id, "type", type);
+        JSONObject data = new JSONObject("id", element.getClientId(), "type", type);
         
         JSONObject defaults = new JSONObject("type", type);
         
@@ -82,7 +76,7 @@ public class Button
         JQueryUtils.merge(defaults, params);
         data.put("params", defaults);
 
-        javaScriptSupport.addInitializerCall("button", data);
+        javaScriptSupport.require("tjq/ui").invoke("button").with(data);
     }
 
 }

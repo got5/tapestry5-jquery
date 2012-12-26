@@ -1,7 +1,21 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:form>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Autocomplete</h1>
+			</div>
+			<t:form>
     	Try "abcdq" : 
-        <t:textfield t:value="foo" t:id="foo" t:mixins="jquery/Autocomplete" t:minChars="0"/>
-        <t:submit t:id="submit"/>
-    </t:form>
+        <t:textfield t:value="foo" t:id="foo" t:mixins="autocomplete"
+					t:minChars="0" />
+				<t:submit t:id="submit" />
+			</t:form>
+		</section>
+	</div>
+</div>
 </html>

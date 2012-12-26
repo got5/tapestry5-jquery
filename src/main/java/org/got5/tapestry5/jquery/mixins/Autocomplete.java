@@ -67,8 +67,6 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  *
  * @tapestrydoc
  */
-@ImportJQueryUI({"jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" })
-@Import(library = { "${assets.path}/mixins/autocomplete/autocomplete.js" })
 @Events(EventConstants.PROVIDE_COMPLETIONS)
 public class Autocomplete
 {
@@ -131,13 +129,9 @@ public class Autocomplete
      */
     void afterRender(MarkupWriter writer)
     {
-        String id = field.getClientId();
-
-        Link link = resources.createEventLink(EVENT_NAME);
-
         JSONObject config = new JSONObject();
-        config.put("id", id);
-        config.put("url", link.toAbsoluteURI());
+        config.put("id", field.getClientId());
+        config.put("url", resources.createEventLink(EVENT_NAME).toAbsoluteURI());
         config.put("paramName", PARAM_NAME);
 
         if (resources.isBound("minChars"))
@@ -159,7 +153,7 @@ public class Autocomplete
         // Let subclasses do more.
         configure(config);
 
-        javaScriptSupport.addInitializerCall("autocomplete", config);
+        javaScriptSupport.require("tjq/ui").invoke("autocomplete").with(config);
     }
 
     Object onAutocomplete()

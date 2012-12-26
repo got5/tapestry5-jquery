@@ -1,11 +1,23 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:form>
-        <t:textfield t:value="foo" t:id="foo" />
-        <t:submit t:mixins="jquery/button" />
-		<input t:type="submit" t:id="AnotherSubmit" value="Another Submit Button" t:mixins="jquery/button"/>
-				
-		
-    </t:form>
-    
-    
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Button</h1>
+			</div>
+			<t:form>
+				<t:textfield t:value="foo" t:id="foo" />
+				<t:submit t:mixins="jquery/button" />
+				<input t:type="submit" t:id="AnotherSubmit"
+					value="Another Submit Button" t:mixins="jquery/button" />
+
+
+			</t:form>
+		</section>
+	</div>
+</div>
 </html>

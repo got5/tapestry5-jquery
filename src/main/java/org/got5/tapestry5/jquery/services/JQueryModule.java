@@ -34,6 +34,8 @@ import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
+import org.apache.tapestry5.plastic.MethodAdvice;
+import org.apache.tapestry5.plastic.MethodInvocation;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.ClasspathProvider;
@@ -54,7 +56,6 @@ import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
 public class JQueryModule {
-
 
 	public static void contributeJavaScriptStackSource(
 			MappedConfiguration<String, JavaScriptStack> configuration,
@@ -107,29 +108,35 @@ public class JQueryModule {
 	@FactoryDefaults
 	public static void contributeFactoryDefaults(
 			MappedConfiguration<String, Object> configuration) {
+
+		configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.8.2");
+		configuration.add(JQuerySymbolConstants.JQUERY_UI_VERSION, "1.9.2");
+		configuration.add(JQuerySymbolConstants.JQUERY_JSON_VERSION, "2.4");
+
+		configuration.add(JQuerySymbolConstants.ASSETS_ROOT,
+				"classpath:/META-INF/assets");
+		configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH,
+				"${jquery.assets.root}/ui_1_9_2");
+		configuration.add(JQuerySymbolConstants.ASSETS_PATH,
+				"${jquery.assets.root}/org/got5/tapestry5/jquery/assets");
+
+		configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME,
+				"${jquery.ui.path}/themes/smoothness/jquery-ui.css");
+
+		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
 				"classpath:org/got5/tapestry5/jquery");
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH,
 				"classpath:org/got5/tapestry5/tapestry.js");
-
 		configuration
 				.add(JQuerySymbolConstants.JQUERY_CORE_PATH,
 						"classpath:org/got5/tapestry5/jquery/jquery_core/jquery-1.7.2.js");
-		configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.7.2");
-
-		configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH,
-				"classpath:/META-INF/assets/ui_1_9_2");
-		configuration
-				.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME,
-						"classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui.css");
 
 		configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH,
 				"classpath:org/got5/tapestry5/jquery/validate/1_7");
 		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
 		configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
 
-		configuration.add(JQuerySymbolConstants.ASSETS_PATH,
-				"classpath:org/got5/tapestry5/jquery/assets");
 		configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
 		configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS,
 				SymbolConstants.PRODUCTION_MODE_VALUE);
@@ -203,20 +210,20 @@ public class JQueryModule {
 			OrderedConfiguration<ComponentClassTransformWorker2> configuration,
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype) {
 
-//		if (suppressPrototype) {
-//			configuration.addInstance("FormFragmentResourcesInclusionWorker",
-//					FormFragmentResourcesInclusionWorker.class,
-//					"after:RenderPhase");
-//			configuration.addInstance("FormResourcesInclusionWorker",
-//					FormResourcesInclusionWorker.class, "after:RenderPhase");
-//		}
+		// if (suppressPrototype) {
+		// configuration.addInstance("FormFragmentResourcesInclusionWorker",
+		// FormFragmentResourcesInclusionWorker.class,
+		// "after:RenderPhase");
+		// configuration.addInstance("FormResourcesInclusionWorker",
+		// FormResourcesInclusionWorker.class, "after:RenderPhase");
+		// }
 		configuration.addInstance("RenderTrackerMixinWorker",
 				RenderTrackerMixinWorker.class);
 
 		// note: the ordering must ensure that the worker gets added after the
 		// RenderPhase-Worker!
-		configuration.addInstance("DateFieldWorker", DateFieldWorker.class,
-				"after:RenderPhase");
+		// configuration.addInstance("DateFieldWorker", DateFieldWorker.class,
+		// "after:RenderPhase");
 		configuration.addInstance("ImportJQueryUIWorker",
 				ImportJQueryUIWorker.class, "before:Import",
 				"after:RenderPhase");
@@ -238,44 +245,62 @@ public class JQueryModule {
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean prototype)
 			throws SecurityException, NoSuchMethodException {
 
-		// MethodAdvice advise = new MethodAdvice() {
-		//
-		// public void advise(MethodInvocation invocation) {
-		//
-		// Resource res = (Resource) invocation.getParameter(0);
-		// if(res.getPath().contains("ProgressiveDisplay.js")){
-		// invocation.setParameter(0,
-		// source.getExpandedAsset("${tapestry.jquery.path}/assets/components/progressiveDisplay/progressiveDisplay-jquery.js").getResource());
-		// }
-		// else if(res.getPath().contains("exceptiondisplay.js")){
-		// invocation.setParameter(0,
-		// source.getExpandedAsset("${tapestry.jquery.path}/exceptiondisplay-jquery.js").getResource());
-		// }
-		// else if(res.getPath().contains("tapestry-beanvalidator.js")){
-		// invocation.setParameter(0,
-		// source.getExpandedAsset("${tapestry.jquery.path}/tapestry-beanvalidator-jquery.js").getResource());
-		// }
-		// invocation.proceed();
-		// }
-		// };
-		//
-		// if(prototype)
-		// receiver.adviseMethod(receiver.getInterface().getMethod("createAsset",
-		// Resource.class),advise);
+		MethodAdvice advise = new MethodAdvice() {
+
+			public void advise(MethodInvocation invocation) {
+
+				// Resource res = (Resource) invocation.getParameter(0);
+				// System.out.println("############# " + res.getPath());
+				// if (res.getPath().contains("dom.js")) {
+				// invocation
+				// .setParameter(
+				// 0,
+				// source.getExpandedAsset(
+				// "classpath:/META-INF/modules/dom-jquery.js")
+				// .getResource());
+				// }
+				// } else if (res.getPath().contains("exceptiondisplay.js")) {
+				// invocation
+				// .setParameter(
+				// 0,
+				// source.getExpandedAsset(
+				// "${tapestry.jquery.path}/exceptiondisplay-jquery.js")
+				// .getResource());
+				// } else if
+				// (res.getPath().contains("tapestry-beanvalidator.js")) {
+				// invocation
+				// .setParameter(
+				// 0,
+				// source.getExpandedAsset(
+				// "${tapestry.jquery.path}/tapestry-beanvalidator-jquery.js")
+				// .getResource());
+				// }
+				invocation.proceed();
+			}
+		};
+		System.out.println("######## PROTOTYPE " + prototype);
+		if (prototype)
+			receiver.adviseMethod(
+					receiver.getInterface().getMethod("createAsset",
+							Resource.class), advise);
 	}
-	
+
 	@Contribute(ModuleManager.class)
-    public static void setupjQueryUIShims(MappedConfiguration<String, Object> configuration,
-    		@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui
-    )
-    {
-		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(jqueryui).dependsOn("jquery"));
-		
-}
-	
+	public static void setupjQueryUIShims(
+			MappedConfiguration<String, Object> configuration,
+			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
+			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson) {
+		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
+				jqueryui).dependsOn("jquery"));
+		configuration.add("vendor/jqueryjson",
+				new JavaScriptModuleConfiguration(jqueryjson)
+						.dependsOn("jquery"));
+
+	}
+
 	@Contribute(ModuleManager.class)
-    public static void setupComponentsShims(MappedConfiguration<String, Object> configuration)
-    {
-		
-    }
+	public static void setupComponentsShims(
+			MappedConfiguration<String, Object> configuration) {
+
+	}
 }

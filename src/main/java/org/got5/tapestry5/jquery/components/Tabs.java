@@ -47,10 +47,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = { "jquery.ui.core",
-                          "jquery.ui.widget",
-                          "jquery.ui.tabs" })
-@Import(library =         "${assets.path}/components/tabs/tabs.js")
 public class Tabs extends AbstractExtendableComponent
 {
 	/**
@@ -141,7 +137,7 @@ public class Tabs extends AbstractExtendableComponent
 
         data.put("params", defaults);
 
-        javaScriptSupport.addInitializerCall(getInitMethod(), data);
+        javaScriptSupport.require("tjq/ui").invoke("tabs").with(data);
     }
 
     public String getClientZoneId(){

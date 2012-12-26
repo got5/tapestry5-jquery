@@ -24,7 +24,6 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeginRender;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -33,7 +32,6 @@ import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
@@ -44,10 +42,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI( value = { "jquery.ui.core",
-                           "jquery.ui.widget",
-                           "jquery.ui.accordion" })
-@Import(library =          "${assets.path}/components/accordion/accordion.js")
 public class Accordion extends AbstractExtendableComponent
 {
 	
@@ -129,8 +123,7 @@ public class Accordion extends AbstractExtendableComponent
         JQueryUtils.merge(defaults, params);
         data.put("params", defaults);
 
-
-        javaScriptSupport.addInitializerCall(getInitMethod(), data);
+        javaScriptSupport.require("tjq/ui").invoke("accordion").with(data);
 
     }
 

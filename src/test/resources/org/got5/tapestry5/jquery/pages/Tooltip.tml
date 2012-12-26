@@ -1,10 +1,20 @@
 <html t:type="layout" 
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
 	  xmlns:p="tapestry:parameter">
-    
-   	<a t:type="actionLink" 
-    	   t:page="Index" 
-    	   t:mixins="jquery/tooltip" 
-    	   title="a small tooltip">Lien vers l'Index</a>
-    
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+	            <h1>Tooltip mixin</h1>
+	        </div>
+		    <p>      
+		   	<a t:type="actionLink" 
+		    	   t:page="Index" 
+		    	   t:mixins="jquery/tooltip" 
+		    	   title="a small tooltip">Lien vers l'Index</a>
+		    </p>
+		</section>
+	</div>
+</div>
 </html>

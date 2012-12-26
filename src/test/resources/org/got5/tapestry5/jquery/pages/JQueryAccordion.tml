@@ -1,39 +1,51 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-   
-   <t:jquery.accordion  t:panels="block1,block2,block3,blockTest" t:activeElementId="1">
-		
-		<p:block1>
-			<h3>Element 1</h3>
-			<hr/>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Accordion</h1>
+			</div>
+			<t:jquery.accordion t:panels="block1,block2,block3,blockTest"
+				t:activeElementId="1">
+
+				<p:block1>
+					<h3>Element 1</h3>
+					<hr />
 	
 			content from block 1
 		</p:block1>
-		
-		<p:block2>
-			<h3>Element 2</h3>
-			<hr/>	
+
+				<p:block2>
+					<h3>Element 2</h3>
+					<hr />	
 			
 			content from block 2
 		</p:block2>
-		
-		<p:block3>
-			<h3>Element 3</h3>
-			<hr/>
+
+				<p:block3>
+					<h3>Element 3</h3>
+					<hr />
 	
 			content from block 3
 		</p:block3>
-		
-		<p:blockTest>
-			<h3>Element 4</h3>
-			<hr/>
+
+				<p:blockTest>
+					<h3>Element 4</h3>
+					<hr />
 			
 			content from block 4
 			<t:form>
-				<t:datefield value="sysDate"/>
-				<input type="submit"/>
-			</t:form>
-		</p:blockTest>
-		
-	</t:jquery.accordion>
+						<!-- >t:datefield value="sysDate" /-->
+						<input type="submit" />
+					</t:form>
+				</p:blockTest>
 
+			</t:jquery.accordion>
+		</section>
+	</div>
+</div>
 </html>

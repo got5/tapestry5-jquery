@@ -30,7 +30,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.entities.Person;
 import org.got5.tapestry5.jquery.entities.Phone;
 
-@Import(library="context:js/demo.js")
+//@Import(library="context:js/demo.js")
 public class AjaxFormLoop
 {
 	
@@ -102,9 +102,9 @@ public class AjaxFormLoop
 	}
 
     public void afterRender(){
-    	js.addInitializerCall(InitializationPriority.LATE, 
-    								"ajaxFormLoopCallback", 
-    								new JSONArray());
+//    	js.addInitializerCall(InitializationPriority.LATE, 
+//    								"ajaxFormLoopCallback", 
+//    								new JSONArray());
     }
     
 }

@@ -176,7 +176,7 @@ public class ModuleManagerImpl implements ModuleManager
     }
 
     public Resource findResourceForModule(String moduleName)
-    {
+    {System.out.println("############ MODULE " + moduleName);
         Resource resource = cache.get(moduleName);
 
         if (resource == null)

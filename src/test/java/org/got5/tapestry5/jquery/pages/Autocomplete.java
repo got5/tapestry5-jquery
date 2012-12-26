@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.json.JSONObject;
 
 public class Autocomplete
 {
@@ -32,8 +31,6 @@ public class Autocomplete
     public List<String> autoComplete(Object[] obj)
     {
     	String start = (String) obj[0];
-    	
-    	JSONObject json = (JSONObject) obj[1];
     	
     	List<String> strings = new ArrayList<String>();
         
