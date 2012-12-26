@@ -37,7 +37,7 @@ import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
- * @see <a href="http://jqueryui.com/demos/accordion/">http://jqueryui.com/demos/accordion/</a>
+ * @see <a href="http://jqueryui.com/accordion/">jQuery UI Official Documentation</a>
  * 
  * @tapestrydoc
  */

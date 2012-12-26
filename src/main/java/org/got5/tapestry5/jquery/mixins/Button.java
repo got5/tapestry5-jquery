@@ -28,7 +28,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 /**
  * The Button mixin improve the form of traditional elements like button, submit, reset ...
  * 
- * @see <a href="http://jqueryui.com/demos/button/">http://jqueryui.com/demos/button/</a>
+ * @see <a href="http://jqueryui.com/button/">jQuery UI Official Documentation</a>
  * 
  * @tapestrydoc
  */

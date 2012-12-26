@@ -16,7 +16,7 @@ import org.got5.tapestry5.jquery.JQueryEventConstants;
 /**
  * Sortable mixin, most of the time used with a UL HTML tag
  * @since 3.2.0
- * @see <a href="http://jqueryui.com/demos/sortable/">http://jqueryui.com/demos/sortable/</a>
+ * @see <a href="http://jqueryui.com/sortable/">jQuery UI Official Documentation</a>
  * @author Emmanuel DEMEY
  * 
  * @tapestrydoc

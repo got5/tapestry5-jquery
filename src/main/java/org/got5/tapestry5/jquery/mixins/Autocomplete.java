@@ -65,6 +65,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * }
  * </pre>
  *
+ * @see <a href="http://jqueryui.com/autocomplete/">jQuery UI Official Documentation</a>
  * @tapestrydoc
  */
 @Events(EventConstants.PROVIDE_COMPLETIONS)

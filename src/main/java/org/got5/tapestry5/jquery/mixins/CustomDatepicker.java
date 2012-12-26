@@ -19,7 +19,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * This mixin allows you to override the default configuration parameters of the Datepicker
  * 
  * @since 2.1.1
- * @see <a href="http://jqueryui.com/demos/datepicker">http://jqueryui.com/demos/datepicker</a>
+ * @see <a href="http://jqueryui.com/datepicker/">jQuery UI Official Documentation</a>
  * 
  * @tapestrydoc
  */

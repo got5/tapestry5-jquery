@@ -38,7 +38,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * These 2 fields are hidden by default.
  * 
  * @since 2.1.1
- * @see <a hred="http://jqueryui.com/demos/slider/">http://jqueryui.com/demos/slider/</a>
+ * @see <a href="http://jqueryui.com/slider/">jQuery UI Official Documentation</a>
  * 
  * @tapestrydoc
  */
