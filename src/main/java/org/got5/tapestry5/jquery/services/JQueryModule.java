@@ -118,7 +118,7 @@ public class JQueryModule {
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH,
 				"${jquery.assets.root}/ui_1_9_2");
 		configuration.add(JQuerySymbolConstants.ASSETS_PATH,
-				"${jquery.assets.root}/org/got5/tapestry5/jquery/assets");
+				"${jquery.assets.root}/lib");
 
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME,
 				"${jquery.ui.path}/themes/smoothness/jquery-ui.css");
