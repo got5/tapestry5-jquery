@@ -6,120 +6,135 @@
 <div class="row">
 	<div class="span12">
 		<section id="list" style="padding-top: 30px;">
-		<div class="page-header">
-            <h1>Available Pages</h1>
-          </div>
-		<ul class="nav nav-list bs-docs-sidenav">
-			<li><a t:type="pagelink" t:page="AjaxFormLoop"><i
-					class="icon-chevron-right"></i> AjaxFormLoop</a></li>
-			<li><a t:type="pagelink" t:page="Bind"><i
-					class="icon-chevron-right"></i> Bind</a></li>
-			
-			<li><a t:type="pagelink" t:page="button"><i
-					class="icon-chevron-right"></i> Button</a></li>
-					
-			<li><a t:type="pagelink" t:page="calendar"><i
-					class="icon-chevron-right"></i> Calendar</a></li>
-					
-			<li><a t:type="pagelink" t:page="carouselpage"><i
-					class="icon-chevron-right"></i> Carouselpage</a></li>
-					
-			<li><a t:type="pagelink" t:page="Checkbox"><i
-					class="icon-chevron-right"></i> Checkbox</a></li>
-					
-			<li><a t:type="pagelink" t:page="customdatepicker"><i
-					class="icon-chevron-right"></i> Customdatepicker</a></li>
-					
-			<li><a t:type="pagelink" t:page="DataTables"><i
-					class="icon-chevron-right"></i> DataTables</a></li>
-			
-			<li><a t:type="pagelink" t:page="DataTablesAjax"><i
-					class="icon-chevron-right"></i> DataTables(Ajax)</a></li>
-			
-			<li><a t:type="pagelink" t:page="draggable"><i
-					class="icon-chevron-right"></i> Draggable</a></li>
-			
-			<li><a t:type="pagelink" t:page="Form"><i
-					class="icon-chevron-right"></i> Form</a></li>
-			
-			<li><a t:type="pagelink" t:page="Form"><i
-					class="icon-chevron-right"></i> Form</a></li>
-			
-			<li><a t:type="pagelink" t:page="formfragment"><i
-					class="icon-chevron-right"></i> Form Fragment</a></li>
-					
-			<li><a t:type="pagelink" t:page="galleryPage"><i
-					class="icon-chevron-right"></i> Gallery</a></li>
-					
-			<li><a t:type="pagelink" t:page="GMap"><i
-					class="icon-chevron-right"></i> GMap</a></li>
-					
-			<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
-					class="icon-chevron-right"></i> InPlaceEditor</a></li>
-			
-			<li><a t:type="pagelink" t:page="ImageCropperPage"><i
-					class="icon-chevron-right"></i> ImageCropper</a></li>
-					
-			<li><a t:type="pagelink" t:page="jgrowl"><i
-					class="icon-chevron-right"></i> jGrowl</a></li>
-					
-			<li><a t:type="pagelink" t:page="jqueryaccordion"><i
-					class="icon-chevron-right"></i> jQuery Accordion</a></li>
-					
-			<li><a t:type="pagelink" t:page="jqueryautocomplete"><i
-					class="icon-chevron-right"></i> jQuery Autocomplete</a></li>
-					
-			<li><a t:type="pagelink" t:page="jquerydialog"><i
-					class="icon-chevron-right"></i> jQuery Dialog</a></li>
-					
-			<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
-					class="icon-chevron-right"></i> jQuery Linksubmit</a></li>
-			
-			<li><a t:type="pagelink" t:page="jquerypalette"><i
-					class="icon-chevron-right"></i> jQuery Palette</a></li>
-					
-			<li><a t:type="pagelink" t:page="jquerytabs"><i
-					class="icon-chevron-right"></i> jQuery Tabs</a></li>
-					
-			<li><a t:type="pagelink" t:page="mask"><i
-					class="icon-chevron-right"></i> Mask</a></li>
-					
-			<li><a t:type="pagelink" t:page="Raty"><i
-					class="icon-chevron-right"></i> Raty</a></li>
-					
-			<li><a t:type="pagelink" t:page="reveal"><i
-					class="icon-chevron-right"></i> Reveal</a></li>
-			
-			<li><a t:type="pagelink" t:page="Selector"><i
-					class="icon-chevron-right"></i> Selector</a></li>
-					
-			<li><a t:type="pagelink" t:page="Slider"><i
-					class="icon-chevron-right"></i> Slider</a></li>
-					
-			<li><a t:type="pagelink" t:page="Sortable"><i
-					class="icon-chevron-right"></i> Sortable</a></li>
-					
-			<li><a t:type="pagelink" t:page="SuperFish"><i
-					class="icon-chevron-right"></i> SuperFish</a></li>
-					
-			<li><a t:type="pagelink" t:page="Tooltip"><i
-					class="icon-chevron-right"></i> Tooltip</a></li>
-			
-			<li><a t:type="pagelink" t:page="Tree"><i
-					class="icon-chevron-right"></i> Tree</a></li>
-					
-			<li><a t:type="pagelink" t:page="validation"><i
-					class="icon-chevron-right"></i> Validation</a></li>
-					
-			<li><a t:type="pagelink" t:page="zone"><i
-					class="icon-chevron-right"></i> Zone</a></li>
-					
-			<li><a t:type="pagelink" t:page="ZoneRefresh"><i
-					class="icon-chevron-right"></i> ZoneRefresh</a></li>
-					
-			<li><a t:type="pagelink" t:page="ZoneUpdater"><i
-					class="icon-chevron-right"></i> ZoneUpdater</a></li>
-		</ul>
+			<div class="page-header">
+				<h1>Tapestry Components</h1>
+			</div>
+			<div class="page-header">
+				<h1>jQuery UI Integration</h1>
+			</div>
+			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="jqueryaccordion"><i
+						class="icon-chevron-right"></i> Accordion</a></li>
+				<li><a t:type="pagelink" t:page="jqueryautocomplete"><i
+						class="icon-chevron-right"></i> Autocomplete</a></li>
+				<li><a t:type="pagelink" t:page="button"><i
+						class="icon-chevron-right"></i> Button</a></li>
+				<li><a t:type="pagelink" t:page="Sortable"><i
+						class="icon-chevron-right"></i> Sortable</a></li>
+				<li><a t:type="pagelink" t:page="jquerytabs"><i
+						class="icon-chevron-right"></i> Tabs</a></li>
+				<li><a t:type="pagelink" t:page="Tooltip"><i
+						class="icon-chevron-right"></i> Tooltip</a></li>
+			</ul>
+			<div class="page-header">
+				<h1>jQuery Widgets</h1>
+			</div>
+			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="Checkbox"><i
+						class="icon-chevron-right"></i> Checkbox</a></li>
+				<li><a t:type="pagelink" t:page="SuperFish"><i
+						class="icon-chevron-right"></i> SuperFish</a></li>
+			</ul>
+			<div class="page-header">
+				<h1>Others</h1>
+			</div>
+			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="AjaxFormLoop"><i
+						class="icon-chevron-right"></i> AjaxFormLoop</a></li>
+				<li><a t:type="pagelink" t:page="Bind"><i
+						class="icon-chevron-right"></i> Bind</a></li>
+
+				<li><a t:type="pagelink" t:page="calendar"><i
+						class="icon-chevron-right"></i> Calendar</a></li>
+
+				<li><a t:type="pagelink" t:page="carouselpage"><i
+						class="icon-chevron-right"></i> Carouselpage</a></li>
+
+				<li><a t:type="pagelink" t:page="customdatepicker"><i
+						class="icon-chevron-right"></i> Customdatepicker</a></li>
+
+				<li><a t:type="pagelink" t:page="DataTables"><i
+						class="icon-chevron-right"></i> DataTables</a></li>
+
+				<li><a t:type="pagelink" t:page="DataTablesAjax"><i
+						class="icon-chevron-right"></i> DataTables(Ajax)</a></li>
+
+				<li><a t:type="pagelink" t:page="draggable"><i
+						class="icon-chevron-right"></i> Draggable</a></li>
+
+				<li><a t:type="pagelink" t:page="Form"><i
+						class="icon-chevron-right"></i> Form</a></li>
+
+				<li><a t:type="pagelink" t:page="Form"><i
+						class="icon-chevron-right"></i> Form</a></li>
+
+				<li><a t:type="pagelink" t:page="formfragment"><i
+						class="icon-chevron-right"></i> Form Fragment</a></li>
+
+				<li><a t:type="pagelink" t:page="galleryPage"><i
+						class="icon-chevron-right"></i> Gallery</a></li>
+
+				<li><a t:type="pagelink" t:page="GMap"><i
+						class="icon-chevron-right"></i> GMap</a></li>
+
+				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
+						class="icon-chevron-right"></i> InPlaceEditor</a></li>
+
+				<li><a t:type="pagelink" t:page="ImageCropperPage"><i
+						class="icon-chevron-right"></i> ImageCropper</a></li>
+
+				<li><a t:type="pagelink" t:page="jgrowl"><i
+						class="icon-chevron-right"></i> jGrowl</a></li>
+
+
+
+				<li><a t:type="pagelink" t:page="jquerydialog"><i
+						class="icon-chevron-right"></i> jQuery Dialog</a></li>
+
+				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
+						class="icon-chevron-right"></i> jQuery Linksubmit</a></li>
+
+				<li><a t:type="pagelink" t:page="jquerypalette"><i
+						class="icon-chevron-right"></i> jQuery Palette</a></li>
+
+
+
+				<li><a t:type="pagelink" t:page="mask"><i
+						class="icon-chevron-right"></i> Mask</a></li>
+
+				<li><a t:type="pagelink" t:page="Raty"><i
+						class="icon-chevron-right"></i> Raty</a></li>
+
+				<li><a t:type="pagelink" t:page="reveal"><i
+						class="icon-chevron-right"></i> Reveal</a></li>
+
+				<li><a t:type="pagelink" t:page="Selector"><i
+						class="icon-chevron-right"></i> Selector</a></li>
+
+				<li><a t:type="pagelink" t:page="Slider"><i
+						class="icon-chevron-right"></i> Slider</a></li>
+
+
+
+
+
+
+
+				<li><a t:type="pagelink" t:page="Tree"><i
+						class="icon-chevron-right"></i> Tree</a></li>
+
+				<li><a t:type="pagelink" t:page="validation"><i
+						class="icon-chevron-right"></i> Validation</a></li>
+
+				<li><a t:type="pagelink" t:page="zone"><i
+						class="icon-chevron-right"></i> Zone</a></li>
+
+				<li><a t:type="pagelink" t:page="ZoneRefresh"><i
+						class="icon-chevron-right"></i> ZoneRefresh</a></li>
+
+				<li><a t:type="pagelink" t:page="ZoneUpdater"><i
+						class="icon-chevron-right"></i> ZoneUpdater</a></li>
+			</ul>
 		</section>
 	</div>
 </div>
