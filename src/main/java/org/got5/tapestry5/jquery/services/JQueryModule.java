@@ -122,7 +122,9 @@ public class JQueryModule {
 
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME,
 				"${jquery.ui.path}/themes/smoothness/jquery-ui.css");
-
+		
+		configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
+		
 		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
 				"classpath:org/got5/tapestry5/jquery");
@@ -140,8 +142,6 @@ public class JQueryModule {
 		configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
 		configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS,
 				SymbolConstants.PRODUCTION_MODE_VALUE);
-
-		configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
 
 	}
 
@@ -278,24 +278,30 @@ public class JQueryModule {
 				invocation.proceed();
 			}
 		};
-		System.out.println("######## PROTOTYPE " + prototype);
-		if (prototype)
-			receiver.adviseMethod(
-					receiver.getInterface().getMethod("createAsset",
-							Resource.class), advise);
+		
+//		if (prototype)
+//			receiver.adviseMethod(
+//					receiver.getInterface().getMethod("createAsset",
+//							Resource.class), advise);
 	}
 
 	@Contribute(ModuleManager.class)
 	public static void setupjQueryUIShims(
-			MappedConfiguration<String, Object> configuration,
+			MappedConfiguration<String, Object> configuration, 
+			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
 			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
-			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson) {
+			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
+			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
+		
 		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
 				jqueryui).dependsOn("jquery"));
+		
 		configuration.add("vendor/jqueryjson",
 				new JavaScriptModuleConfiguration(jqueryjson)
 						.dependsOn("jquery"));
-
+		
+		if(mouseWheelIncluded)
+			configuration.add("vendor/jquerymousewheel", new JavaScriptModuleConfiguration(jquerymousewheel).dependsOn("jquery"));
 	}
 
 	@Contribute(ModuleManager.class)

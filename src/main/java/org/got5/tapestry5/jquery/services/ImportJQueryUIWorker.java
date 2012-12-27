@@ -34,7 +34,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 
     private final String themePath;
     
-
+    private final Boolean mouseWheelIncluded;
+    
     public ImportJQueryUIWorker(AssetSource assetSource,
 
             JavaScriptSupport javaScriptSupport, Request request, 
@@ -43,13 +44,15 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
             String jqueryUIBase,
             
     		@Symbol(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME)
-    		String themePath)
+    		String themePath, 
+    		@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded)
     {
         this.assetSource = assetSource;
         this.javaScriptSupport = javaScriptSupport;
                 
         this.jqueryUIBase = jqueryUIBase;
         this.themePath = themePath;
+        this.mouseWheelIncluded = mouseWheelIncluded;
     }
     
 	public void transform(PlasticClass plasticClass,
@@ -86,6 +89,8 @@ public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 					
 					javaScriptSupport.importStylesheet(assetSource.getExpandedAsset(path));
 					
+					if(mouseWheelIncluded)
+						javaScriptSupport.require("vendor/jquerymousewheel");
 					invocation.proceed();
 					
 				}
