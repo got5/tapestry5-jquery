@@ -1,5 +1,5 @@
 
-define(["_", "core/utils", "prototype"], function(_, utils) {
+define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
   var $, ElementWrapper, EventWrapper, ajaxRequest, animate, bodyWrapper, convertContent, exports, fireNativeEvent, onevent, parseSelectorToElements, wrapElement;
   $ = window.$;
   fireNativeEvent = function(element, eventName) {
@@ -76,28 +76,30 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
     if (handler == null) {
       throw new Error("No event handler was provided.");
     }
-    wrapped = function(prototypeEvent) {
+    wrapped = function(jqueryEvent, memo) {
+    	console.log("wrapped");
       var elementWrapper, eventWrapper, result;
-      elementWrapper = new ElementWrapper(prototypeEvent.findElement());
-      eventWrapper = new EventWrapper(prototypeEvent);
+      elementWrapper = new ElementWrapper(jqueryEvent.target);
+      eventWrapper = new EventWrapper(jqueryEvent);
+      if(memo) eventWrapper["memo"] = memo;
       result = handler.call(elementWrapper, eventWrapper, eventWrapper.memo);
       if (result === false) {
-        prototypeEvent.stop();
+    	  jqueryEvent.stop();
       }
     };
-    for (_i = 0, _len = elements.length; _i < _len; _i++) {
-      element = elements[_i];
-      for (_j = 0, _len1 = eventNames.length; _j < _len1; _j++) {
-        eventName = eventNames[_j];
-        Event.on(element, eventName, match, wrapped);
-        //jQuery("#"+element).on(eventName, wrapped);
-      }
-    }
+    
+    elements.each(function(e){
+    	eventNames.each(function(event){
+        	e.on(event, match, wrapped);
+    	});
+    	
+    });
+    
   };
   ElementWrapper = (function() {
 
     function ElementWrapper(element) {
-      this.element = element;
+      this.element = jQuery(element);
     }
 
     ElementWrapper.prototype.hide = function() {
@@ -120,13 +122,13 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
       if (_.isObject(name)) {
         for (name in name) {
           value = name[name];
-          this.element.writeAttribute(name, value);
+          this.element.attr(name, value);
         }
         return this;
       }
-      current = this.element.readAttribute(name);
+      current = this.element.attr(name);
       if (arguments.length > 1) {
-        this.element.writeAttribute(name, value);
+        this.element.attr(name, value);
       }
       return current;
     };
@@ -151,7 +153,8 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
     };
 
     ElementWrapper.prototype.update = function(content) {
-      this.element.update(content && convertContent(content));
+      this.element.html(content && convertContent(content));
+    	
       return this;
     };
 
@@ -266,7 +269,7 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
         throw new Error("Event memo may be null or an object, but not a simple type.");
       }
       if ((eventName.indexOf(':')) > 0) {
-        event = this.element.fire(eventName, memo);
+        event = this.element.trigger(eventName, memo);
         return !event.defaultPrevented;
       }
       if (memo) {
@@ -277,9 +280,9 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.value = function(newValue) {
       var current;
-      current = this.element.getValue();
+      current = this.element.val();
       if (arguments.length > 0) {
-        this.element.setValue(newValue);
+        this.element.val(newValue);
       }
       return current;
     };
@@ -357,7 +360,7 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
   };
   exports = wrapElement = function(element) {
     if (_.isString(element)) {
-      element = $(element);
+      element = jQuery("#"+element);
       if (!element) {
         return null;
       }
@@ -384,7 +387,7 @@ define(["_", "core/utils", "prototype"], function(_, utils) {
       onevent(elements, utils.split(events), match, handler);
     },
     onDocument: function(events, match, handler) {
-      return exports.on(document, events, match, handler);
+      return exports.on(jQuery(document), events, match, handler);
     },
     body: function() {
       return bodyWrapper != null ? bodyWrapper : bodyWrapper = wrapElement(document.body);

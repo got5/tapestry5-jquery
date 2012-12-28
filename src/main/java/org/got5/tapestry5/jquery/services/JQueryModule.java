@@ -291,7 +291,8 @@ public class JQueryModule {
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
 			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
 			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
-			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
+			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel			
+		) {
 		
 		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
 				jqueryui).dependsOn("jquery"));
@@ -306,7 +307,10 @@ public class JQueryModule {
 
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
-			MappedConfiguration<String, Object> configuration) {
-
+			MappedConfiguration<String, Object> configuration, 
+			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick) {
+		
+		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
+		
 	}
 }
