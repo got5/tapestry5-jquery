@@ -1,0 +1,6 @@
+<t:container xml:space="default"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<div id="${prop:id}" class="flexslider">
+		<t:body />
+	</div>
+</t:container>

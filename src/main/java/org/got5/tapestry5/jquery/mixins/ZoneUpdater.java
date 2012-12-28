@@ -1,12 +1,9 @@
-/**
- * A simple mixin for attaching javascript that updates a zone on any client-side event.
- * Based on http://tinybits.blogspot.com/2010/03/new-and-better-zoneupdater.html
- */
 package org.got5.tapestry5.jquery.mixins;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
@@ -15,55 +12,67 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * A simple mixin for attaching javascript that updates a zone on any client-side event.
+ * Based on http://tinybits.blogspot.com/2010/03/new-and-better-zoneupdater.html
+ */
 @Import(library = "${assets.path}/mixins/zoneupdater/zoneupdater.js")
 public class ZoneUpdater {
 
-  @Inject
-  private ComponentResources resources;
+	/**
+	 * The event to listen for on the client. If not specified, zone update can
+	 * only be triggered manually through calling updateZone on the JS object.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	private String clientEvent;
 
-  @Environmental
-  private JavaScriptSupport jsSupport;
+	/**
+	 * The event to listen for in your component class
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, required = true)
+	private String event;
 
-  /**
-   * The event to listen for on the client. If not specified, zone update can only be triggered manually through calling updateZone on the JS object.
-   */
-  @Parameter(defaultPrefix = BindingConstants.LITERAL)
-  private String clientEvent;
+	/**
+	 * 
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "default")
+	private String prefix;
+	
+	/**
+	 * The context of the Ajax request
+	 */
+	@Parameter
+	private Object[] context;
 
-  /**
-   * The event to listen for in your component class
-   */
-  @Parameter(defaultPrefix = BindingConstants.LITERAL, required = true)
-  private String event;
+	/**
+	 * The zone to be updated by us.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, required = true)
+	private String zone;
 
-  @Parameter(defaultPrefix = BindingConstants.LITERAL, value = "default")
-  private String prefix;
+	/**
+	 * The element we attach ourselves to
+	 */
+	@InjectContainer
+	private ClientElement element;
 
-  /**
-   * The element we attach ourselves to
-   */
-  @InjectContainer
-  private ClientElement element;
+	@Inject
+	private ComponentResources resources;
 
-  @Parameter
-  private Object[] context;
+	@Environmental
+	private JavaScriptSupport jsSupport;
 
-  /**
-   * The zone to be updated by us.
-   */
-  @Parameter(defaultPrefix = BindingConstants.LITERAL, required = true)
-  private String zone;
+	@AfterRender
+	void initJavaScript() {
 
-  void afterRender() {
+		JSONObject spec = new JSONObject();
+		
+		spec.put("url", resources.createEventLink(event, context).toURI());
+		spec.put("elementId", element.getClientId());
+		spec.put("event", clientEvent);
+		spec.put("zone", zone);
 
-    String url = resources.createEventLink(event, context).toAbsoluteURI();
-    String elementId = element.getClientId();
-    JSONObject spec = new JSONObject();
-    spec.put("url", url);
-    spec.put("elementId", elementId);
-    spec.put("event", clientEvent);
-    spec.put("zone", zone);
-
-    jsSupport.addScript("%sZoneUpdater = new T5JQZoneUpdater(%s)", prefix, spec.toString());
-  }
+		jsSupport.addScript("%sZoneUpdater = new T5JQZoneUpdater(%s)", prefix,
+				spec.toString());
+	}
 }

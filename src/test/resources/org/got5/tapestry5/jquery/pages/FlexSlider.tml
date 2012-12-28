@@ -1,0 +1,88 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    
+    <h2>FlexSlider with "slides" class</h2>
+    <t:flexslider t:params="json">
+    	<ul class="slides">
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+          </ul>
+    		
+    </t:flexslider>
+    
+    <h2>FlexSlider without "slides" class</h2>
+    <t:flexslider>
+    		<ul>
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+            <li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_cheesecake_brownie.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_lemon.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_donut.jpg}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="${asset:context:img/kitchen_adventurer_caramel.jpg}" />
+  	    		</li>
+          </ul>
+    		
+    </t:flexslider>
+</html>

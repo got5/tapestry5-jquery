@@ -14,10 +14,22 @@ http://tapestry5-jquery.com/
 - Amaury WILLEMANT as awillemant
 - Barry BOOKS as trsvax
 - Pablo NUSSEMBAUM as bauna
-- Alexander OBLOVATNIY
+- Alexander OBLOVATNIY as oblalex
 - Stéfanie DUPREY as Nephtys
-- Michael Aspetsberger as maspetsberger
-- Dragan Sahpaski as dragansah
+- Michael ASPETSBERGER as maspetsberger
+- Dragan SAHPASKI as dragansah
+- Matias BLASI as mblasi
+- Jon-Carlos Rivera as imbcmdth
+- Nourredine KHADRI as adaptivui
+- Michael GENTRY as mrg
+- Mikhail NASYROV as mnasyrov
+- Dmitry GUSEV as dmitrygusev
+
+- jochenberger
+- ddelangle
+- Iceo
+- kaililleby
+
 
 ##Hosting
 Christophe Furmaniak 	

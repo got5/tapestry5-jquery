@@ -6,7 +6,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	    	 <t:grid source="users" row="user" model="myModel" t:inplace="true" 
 	    	 			rowIndex="currentIndex" rowsPerPage="10">
 		        <p:lastnameCell>
-	                            <div id="inPlaceEditor" t:type="jquery/inPlaceEditor" value="user.lastName" t:context="${currentIndex}" t:options="options"/>
+	                            <div t:id="inPlaceEditorExample" t:type="jquery/inPlaceEditor" value="user.lastName" t:context="${currentIndex}" t:options="options"/>
 	            </p:lastnameCell>
 		    </t:grid>
 

@@ -50,13 +50,16 @@ import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.services.javascript.DDSlickStack;
 import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
+import org.got5.tapestry5.jquery.services.javascript.FlexSliderStack;
 import org.got5.tapestry5.jquery.services.javascript.FormFragmentSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.FormSupportStack;
 import org.got5.tapestry5.jquery.services.javascript.GalleryStack;
 import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryDateFieldStack;
 import org.got5.tapestry5.jquery.services.javascript.JQueryJavaScriptStack;
+import org.got5.tapestry5.jquery.services.javascript.JScrollPaneStack;
 import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 import org.got5.tapestry5.jquery.services.javascript.widgets.Slider;
@@ -89,6 +92,9 @@ public class JQueryModule
         configuration.addInstance(DataTableStack.STACK_ID, DataTableStack.class);
         configuration.addInstance(InPlaceEditorStack.STACK_ID, InPlaceEditorStack.class);
         configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
+        configuration.addInstance(DDSlickStack.STACK_ID, DDSlickStack.class);
+        configuration.addInstance(JScrollPaneStack.STACK_ID, JScrollPaneStack.class);
+        configuration.addInstance(FlexSliderStack.STACK_ID, FlexSliderStack.class);
     }
 
     public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration)
@@ -108,8 +114,8 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.7.2");
 
 
-        configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8_19");
-        configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui-1.8.19.custom.css");
+        configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH, "classpath:org/got5/tapestry5/jquery/ui_1_8_24");
+        configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui.css");
 
         configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
         configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);

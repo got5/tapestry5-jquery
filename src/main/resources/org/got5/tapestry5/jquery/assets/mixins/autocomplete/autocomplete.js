@@ -29,7 +29,7 @@
 	                        } 
 	                    };
 
-	                    $.ajax(ajaxRequest).done(function () { element.trigger('autocompletedone'); });
+	                    this.xhr = $.ajax(ajaxRequest).done(function () { element.trigger('autocompletedone'); });
 	                }
 	        };
 	        

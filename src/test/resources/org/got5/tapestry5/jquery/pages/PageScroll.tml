@@ -1,0 +1,16 @@
+<html t:type='Layout'
+      xmlns:t='http://tapestry.apache.org/schema/tapestry_5_3.xsd'>
+
+    <ul>
+        <li t:type='PageScroll' row='value'
+            context='literal:2' pageNumber='pageNumber'
+            scroller='scroller' zone='zone'>
+            <li>Element#${value}</li>
+        </li>
+        <li class='zone' t:type='zone' t:id='zone'/>
+    </ul>
+
+    <div id='scroller'></div>
+
+
+</html>

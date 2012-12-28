@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    
+    <div id="${clientId}"></div>
+    
+
+</t:container>

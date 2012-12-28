@@ -1,0 +1,21 @@
+<t:layout
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+	
+	<head>
+	</head>
+	
+	<body>
+	
+		<t:zone t:id="myZone" id="myZone">
+	
+			<t:loop source="options" value="currentOptions" t:index="index">
+				<t:jquery.DdSlick t:params="currentOptions" t:event="onSelectedElement" t:zone="myZone"/>
+			</t:loop>
+
+			${value}
+		</t:zone>
+	
+	</body>
+	
+</t:layout>
