@@ -2,7 +2,10 @@ package org.got5.tapestry5.jquery.utils;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
+import org.apache.tapestry5.func.Predicate;
+import org.apache.tapestry5.func.Worker;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 
@@ -33,16 +36,24 @@ public class JQueryUtils {
 			return new StylesheetLink(input);
 		};
 	};
-
+	
+	//TODO Unit Test
 	public static JSONObject convertInformalParametersToJson(
-			ComponentResources resources, String prefix) {
-		JSONObject json = new JSONObject();
-		for (String parameter : resources.getInformalParameterNames()) {
-			if (parameter.startsWith(prefix)) {
-				json.put(parameter.substring(prefix.length()),
-						resources.getInformalParameter(parameter, String.class));
+			final ComponentResources resources, final String prefix) {
+		final JSONObject json = new JSONObject();
+		F.flow(resources.getInformalParameterNames()).filter(new Predicate<String>() {
+
+			public boolean accept(String param) {
+				return param.startsWith(prefix);
 			}
-		}
+		}).each(new Worker<String>() {
+
+			public void work(String params) {
+				json.put(params.substring(prefix.length()),
+						resources.getInformalParameter(params, String.class));
+			}
+		});
+		
 		return json;
 	}
 
