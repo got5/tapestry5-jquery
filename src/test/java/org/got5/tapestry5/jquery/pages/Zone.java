@@ -96,7 +96,7 @@ public class Zone
     void performMultiZoneUpdate() 
     {
         afterFormSubmit = true;
-        
+        count++;
         renderer.addRender("multiZone1", multiZone1.getBody()).addRender("multiZone2", multiZone2.getBody());
     }
     

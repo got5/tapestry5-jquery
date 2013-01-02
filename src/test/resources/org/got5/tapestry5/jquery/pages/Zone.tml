@@ -1,5 +1,15 @@
-<html t:type="layout" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <h3>Triggered by action link</h3>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Zone</h1>
+			</div>
+			<h3>Triggered by action link</h3>
     <p>
         <t:actionlink t:id="myActionLink" t:zone="myZone">
             Refresh
@@ -40,7 +50,7 @@
         <p>default zone content</p>
     </t:block>
     <t:block t:id="multiUpdateBlock">
-        <p>rendering block-${blockId} after multi zone update</p>
+        <p>rendering block-${blockId} after multi zone update ${count}</p>
     </t:block>
     
     <t:form t:id="ajaxForm">
@@ -55,6 +65,7 @@
         <input type="submit" />
 
         <t:errors/>
-    </t:form>
-    
+    </t:form>		</section>
+	</div>
+</div>
 </html>

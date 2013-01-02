@@ -77,14 +77,16 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
       throw new Error("No event handler was provided.");
     }
     wrapped = function(jqueryEvent, memo) {
-    	console.log("wrapped");
+      
       var elementWrapper, eventWrapper, result;
       elementWrapper = new ElementWrapper(jqueryEvent.target);
       eventWrapper = new EventWrapper(jqueryEvent);
       if(memo) eventWrapper["memo"] = memo;
+      
       result = handler.call(elementWrapper, eventWrapper, eventWrapper.memo);
       if (result === false) {
-    	  jqueryEvent.stop();
+    	  jqueryEvent.preventDefault();
+    	  jqueryEvent.stopPropagation();
       }
     };
     
@@ -99,7 +101,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
   ElementWrapper = (function() {
 
     function ElementWrapper(element) {
-      this.element = jQuery(element);
+      this.element = element;
     }
 
     ElementWrapper.prototype.hide = function() {
@@ -122,13 +124,13 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
       if (_.isObject(name)) {
         for (name in name) {
           value = name[name];
-          this.element.attr(name, value);
+          jQuery(this.element).attr(name, value);
         }
         return this;
       }
-      current = this.element.attr(name);
+      current = jQuery(this.element).attr(name);
       if (arguments.length > 1) {
-        this.element.attr(name, value);
+    	  jQuery(this.element).attr(name, value);
       }
       return current;
     };
@@ -148,12 +150,12 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
     };
 
     ElementWrapper.prototype.addClass = function(name) {
-      this.element.addClassName(name);
+    	jQuery(this.element).addClassName(name);
       return this;
     };
 
     ElementWrapper.prototype.update = function(content) {
-      this.element.html(content && convertContent(content));
+    	jQuery(this.element).html(content && convertContent(content));
     	
       return this;
     };
@@ -269,7 +271,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
         throw new Error("Event memo may be null or an object, but not a simple type.");
       }
       if ((eventName.indexOf(':')) > 0) {
-        event = this.element.trigger(eventName, memo);
+        event = jQuery(this.element).trigger(eventName, memo);
         return !event.defaultPrevented;
       }
       if (memo) {
@@ -280,9 +282,9 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.value = function(newValue) {
       var current;
-      current = this.element.val();
+      current = jQuery(this.element).val();
       if (arguments.length > 0) {
-        this.element.val(newValue);
+    	  jQuery(this.element).val(newValue);
       }
       return current;
     };
@@ -320,9 +322,9 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
       options = {};
     }
     finalOptions = {
-      method: options.method || "post",
+      type: options.method || "POST",
       contentType: options.contentType || "application/x-www-form-urlencoded",
-      parameters: options.parameters || {},
+      data: options.parameters || {},
       onException: function(ajaxRequest, exception) {
         if (options.onexception) {
           return options.onexception(exception);
@@ -330,9 +332,9 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
           throw exception;
         }
       },
-      onFailure: function(response) {
+      error: function(response, textStatus, errorThrown) {
         var message, text;
-        if (options.onfailure) {
+        if (!options.onfailure) {
           return options.onfailure(response);
         } else {
           message = "Request to " + url + " failed with status " + (response.getStatus());
@@ -348,21 +350,27 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
           }
         }
       },
-      onSuccess: function(response) {
-        if ((!response.getStatus()) || (!response.request.success())) {
-          finalOptions.onFailure(response);
+      success: function(data, textStatus, jqXHR) {
+        //if ((!textStatus.getStatus()) || (!textStatus.request.success())) {
+    	  var response = {};
+    	  response.responseJSON = data;
+    	  if ((!jqXHR.status)) {
+    		  finalOptions.onFailure(response);
           return;
         }
         return options.onsuccess && options.onsuccess(response);
       }
     };
-    return new Ajax.Request(url, finalOptions);
+    var ajax = jQuery.ajax(url, finalOptions);
+   
+    return ajax;
   };
   exports = wrapElement = function(element) {
     if (_.isString(element)) {
-      element = jQuery("#"+element);
+      element = jQuery("#"+element)[0];
       if (!element) {
-        return null;
+    	  element = jQuery(element)[0];
+    	  if(!element) return null;
       }
     } else {
       if (!element) {

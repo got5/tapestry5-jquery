@@ -21,8 +21,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @tapestrydoc
  */
-@Import(library = { "${assets.path}/mixins/mask/jquery-maskedinput.js",
-					 "${assets.path}/mixins/mask/mask.js" })
 public class Mask {
 
 	/**
@@ -45,11 +43,8 @@ public class Mask {
      * Mixin afterRender phrase occurs after the component itself. 
      * @param writer
      */
-    void afterRender(MarkupWriter writer)
-    {
+    void afterRender(MarkupWriter writer){
         	
-        String id = element.getClientId();
-
-        javaScriptSupport.addInitializerCall("mask", new JSONObject("id", id, "format", format));
+        javaScriptSupport.require("tjq/mask").with(new JSONObject("id", element.getClientId(), "format", format));
     }
 }

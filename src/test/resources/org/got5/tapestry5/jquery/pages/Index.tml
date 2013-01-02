@@ -9,6 +9,10 @@
 			<div class="page-header">
 				<h1>Tapestry Components</h1>
 			</div>
+			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="zone"><i
+						class="icon-chevron-right"></i> Zone</a></li>
+			</ul>
 			<div class="page-header">
 				<h1>jQuery UI Integration</h1>
 			</div>
@@ -32,6 +36,8 @@
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li><a t:type="pagelink" t:page="Checkbox"><i
 						class="icon-chevron-right"></i> Checkbox</a></li>
+				<li><a t:type="pagelink" t:page="TestddSlick"><i
+						class="icon-chevron-right"></i> DDSlick</a></li>
 				<li><a t:type="pagelink" t:page="SuperFish"><i
 						class="icon-chevron-right"></i> SuperFish</a></li>
 			</ul>
@@ -114,22 +120,13 @@
 				<li><a t:type="pagelink" t:page="Slider"><i
 						class="icon-chevron-right"></i> Slider</a></li>
 
-
-
-
-
-
-
 				<li><a t:type="pagelink" t:page="Tree"><i
 						class="icon-chevron-right"></i> Tree</a></li>
 
 				<li><a t:type="pagelink" t:page="validation"><i
 						class="icon-chevron-right"></i> Validation</a></li>
 
-				<li><a t:type="pagelink" t:page="zone"><i
-						class="icon-chevron-right"></i> Zone</a></li>
-
-				<li><a t:type="pagelink" t:page="ZoneRefresh"><i
+								<li><a t:type="pagelink" t:page="ZoneRefresh"><i
 						class="icon-chevron-right"></i> ZoneRefresh</a></li>
 
 				<li><a t:type="pagelink" t:page="ZoneUpdater"><i

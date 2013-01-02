@@ -308,9 +308,11 @@ public class JQueryModule {
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
 			MappedConfiguration<String, Object> configuration, 
-			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick) {
+			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick, 
+			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
+		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
 		
 	}
 }
