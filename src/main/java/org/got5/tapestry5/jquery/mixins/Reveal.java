@@ -21,8 +21,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *
  * @tapestrydoc
  */
-@Import(library = {"${assets.path}/mixins/reveal/jquery.reveal.js","${assets.path}/mixins/reveal/reveal.js"},
-		stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
+@Import(stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
 public class Reveal{
 
 	/**
@@ -99,7 +98,7 @@ public class Reveal{
 		parameters.put("closeonbackgroundclick", closeonbackgroundclick);
 		parameters.put("dismissmodalclass", dismissmodalclass);
 
-		javaScriptSupport.addInitializerCall("reveal", parameters);
+		javaScriptSupport.require("tjq/reveal").with(parameters);
 
 	}
 

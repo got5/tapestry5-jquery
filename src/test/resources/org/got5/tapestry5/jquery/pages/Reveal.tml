@@ -1,22 +1,35 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
- 
-    <a id="monLink"  name="monLink" t:selector="a[name='monLink']" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">link</a>
-  
-    <br />
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
 
-    <a id="monLink2"  name="monLink2" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">link 2</a>
 
-    <div id="myDiv">
-        Test
-    </div>
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Reveal</h1>
+			</div>
+			<a id="monLink" name="monLink" t:selector="a[name='monLink']"
+				t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal"
+				t:div="literal:myDiv" t:animation="fade">link</a> <br /> 
+			
+			<a id="monLink2" name="monLink2" t:type="pageLink" t:page="Reveal"
+				t:mixins="jquery/reveal" t:div="literal:myDiv" t:animation="fade">link
+				2</a>
 
-    <t:actionLink t:zone="zzzone" t:id="updateZone">update</t:actionLink>
-    <t:zone t:id="zzzone" id="zzzone">
-        <a id="myLink3"  name="myLink3" t:type="pageLink" t:page="Reveal" t:mixins="jquery/reveal" t:for="revealThis" t:animation="fade">link 3</a>
-    
-        <div t:type="jquery/revealElement" t:id="revealThis">
-            <p id="test2">I want to be revealed, dude.</p>
-        </div> 
-    </t:zone>
+			<div id="myDiv">Test</div>
 
+			<t:actionLink t:zone="zzzone" t:id="updateZone">update</t:actionLink>
+			<t:zone t:id="zzzone" id="zzzone">
+				<a id="myLink3" name="myLink3" t:type="pageLink" t:page="Reveal"
+					t:mixins="jquery/reveal" t:for="revealThis" t:animation="fade">link
+					3</a>
+
+				<div t:type="jquery/revealElement" t:id="revealThis">
+					<p id="test2">I want to be revealed, dude.</p>
+				</div>
+			</t:zone>
+		</section>
+	</div>
+</div>
 </html>
