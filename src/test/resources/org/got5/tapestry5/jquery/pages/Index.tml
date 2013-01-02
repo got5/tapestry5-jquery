@@ -12,7 +12,10 @@
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
 						class="icon-chevron-right"></i> Linksubmit</a></li>
-						
+				
+				<li><a t:type="pagelink" t:page="validation"><i
+						class="icon-chevron-right"></i> Validation</a></li>
+								
 				<li><a t:type="pagelink" t:page="zone"><i
 						class="icon-chevron-right"></i> Zone</a></li>
 			</ul>
@@ -128,8 +131,7 @@
 				<li><a t:type="pagelink" t:page="Tree"><i
 						class="icon-chevron-right"></i> Tree</a></li>
 
-				<li><a t:type="pagelink" t:page="validation"><i
-						class="icon-chevron-right"></i> Validation</a></li>
+				
 
 								<li><a t:type="pagelink" t:page="ZoneRefresh"><i
 						class="icon-chevron-right"></i> ZoneRefresh</a></li>
