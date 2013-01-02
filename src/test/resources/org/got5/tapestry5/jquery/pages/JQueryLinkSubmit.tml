@@ -1,9 +1,23 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:form t:id="form">
-		<t:textfield t:value="name" /><br />
-		<t:linkSubmit t:id="fred">submit </t:linkSubmit>
-		
-    </t:form>
-	
-	<div id="result">${name}</div>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Link Submit</h1>
+			</div>
+			<t:form t:id="form">
+				<t:textfield t:value="name" />
+				<br />
+				<t:linkSubmit t:id="fred">submit </t:linkSubmit>
+
+			</t:form>
+
+			<div id="result">${name}</div>
+		</section>
+	</div>
+</div>
 </html>

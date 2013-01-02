@@ -1,23 +1,35 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <h1>Link Submit Demo</h1>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
 
-  <p>Result: ${result}.</p>
 
-  <t:form>
-    <t:errors/>
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Link Submit</h1>
+			</div>
+			<p>Result: ${result}.</p>
 
-    <t:textfield t:id="name"/>
-    <br/>
-    <t:linksubmit t:id="fred" context="formContext" alt="f">Fred</t:linksubmit>
-    <br/>
-    <t:linksubmit t:id="barney" defer="true" event="neighbor" class="css" alt="b">Barney</t:linksubmit>
+			<t:form>
+				<t:errors />
 
-  </t:form>
+				<t:textfield t:id="name" />
+				<br />
+				<t:linksubmit t:id="fred" context="formContext" alt="f">Fred</t:linksubmit>
+				<br />
+				<t:linksubmit t:id="barney" defer="true" event="neighbor"
+					class="css" alt="b">Barney</t:linksubmit>
 
-  <dl>
-    <dt>Name</dt>
-    <dd id="name-value">${name}</dd>
-    <dt>Last Clicked</dt>
-    <dd id="last-clicked">${lastClicked}</dd>
-  </dl>
+			</t:form>
+
+			<dl>
+				<dt>Name</dt>
+				<dd id="name-value">${name}</dd>
+				<dt>Last Clicked</dt>
+				<dd id="last-clicked">${lastClicked}</dd>
+			</dl>
+		</section>
+	</div>
+</div>
 </html>

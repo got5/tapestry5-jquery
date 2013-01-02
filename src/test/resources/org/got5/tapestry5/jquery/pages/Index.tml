@@ -10,6 +10,9 @@
 				<h1>Tapestry Components</h1>
 			</div>
 			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
+						class="icon-chevron-right"></i> Linksubmit</a></li>
+						
 				<li><a t:type="pagelink" t:page="zone"><i
 						class="icon-chevron-right"></i> Zone</a></li>
 			</ul>
@@ -38,6 +41,8 @@
 						class="icon-chevron-right"></i> Checkbox</a></li>
 				<li><a t:type="pagelink" t:page="TestddSlick"><i
 						class="icon-chevron-right"></i> DDSlick</a></li>
+				<li><a t:type="pagelink" t:page="galleryPage"><i
+						class="icon-chevron-right"></i> Gallery</a></li>
 				<li><a t:type="pagelink" t:page="mask"><i
 						class="icon-chevron-right"></i> Mask</a></li>
 				<li><a t:type="pagelink" t:page="reveal"><i
@@ -81,8 +86,7 @@
 				<li><a t:type="pagelink" t:page="formfragment"><i
 						class="icon-chevron-right"></i> Form Fragment</a></li>
 
-				<li><a t:type="pagelink" t:page="galleryPage"><i
-						class="icon-chevron-right"></i> Gallery</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="GMap"><i
 						class="icon-chevron-right"></i> GMap</a></li>
@@ -101,8 +105,7 @@
 				<li><a t:type="pagelink" t:page="jquerydialog"><i
 						class="icon-chevron-right"></i> jQuery Dialog</a></li>
 
-				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
-						class="icon-chevron-right"></i> jQuery Linksubmit</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="jquerypalette"><i
 						class="icon-chevron-right"></i> jQuery Palette</a></li>

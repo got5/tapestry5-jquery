@@ -208,7 +208,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.findFirst = function(selector) {
       var match;
-      match = this.element.down(selector);
+      match = jQuery(this.element).find(selector)[0];
       if (match) {
         return new ElementWrapper(match);
       } else {
@@ -226,7 +226,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.findContainer = function(selector) {
       var container;
-      container = this.element.up(selector);
+      container = jQuery(this.element).parents(selector)[0];
       if (container) {
         return new ElementWrapper(container);
       } else {
@@ -236,7 +236,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.container = function() {
       var parentNode;
-      parentNode = this.element.parentNode;
+      parentNode = jQuery(this.element).parent()[0];
       if (!parentNode) {
         return null;
       }
@@ -244,7 +244,7 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
     };
 
     ElementWrapper.prototype.visible = function() {
-      return this.element.visible();
+      return jQuery(this.element).is(":visible");
     };
 
     ElementWrapper.prototype.deepVisible = function() {
@@ -291,9 +291,9 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
 
     ElementWrapper.prototype.meta = function(name, value) {
       var current;
-      current = this.element.retrieve(name);
+      current = jQuery(this.element).data(name);
       if (arguments.length > 1) {
-        this.element.store(name, value);
+        jQuery(this.element).data(name, value);
       }
       return current;
     };
@@ -302,7 +302,13 @@ define(["_", "core/utils", "jquery", "prototype"], function(_, utils) {
       exports.on(this.element, events, match, handler);
       return this;
     };
-
+    
+    //Added for jQuery Migration. Must be deleted maybe. manage submit method of the form.js 
+    ElementWrapper.prototype.submit = function() {
+        this.element.submit();
+        return this;
+    };
+    
     return ElementWrapper;
 
   })();
