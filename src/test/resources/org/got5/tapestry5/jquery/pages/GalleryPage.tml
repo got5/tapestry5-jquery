@@ -1,12 +1,25 @@
-<html t:type="layout" 
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
-      xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery">
-    
-    	<div class="gallery" t:type="jQuery/Gallery" t:selector="a[rel^=gal1]">
-        <h2>My random gallery</h2>
-        <a href="${asset:context:img/gallery1.jpg}" id="image1" rel="gal1" title="perth during the daytime."><img src="${asset:context:img/gallery1_s.jpg}" height="60" width="60"/></a>
-        <a href="${asset:context:img/gallery2.jpg}" id="image1" rel="gal1" title="perth during the daytime."><img src="${asset:context:img/gallery2_s.jpg}" height="60" width="60"/></a>
-    </div>
-    
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Button</h1>
+			</div>
+			<div class="gallery" t:type="jQuery/Gallery"
+				t:selector="a[rel^=gal1]">
+				<h2>My random gallery</h2>
+				<a href="${asset:context:img/gallery1.jpg}" id="image1" rel="gal1"
+					title="perth during the daytime."><img
+					src="${asset:context:img/gallery1_s.jpg}" height="60" width="60" /></a>
+				<a href="${asset:context:img/gallery2.jpg}" id="image1" rel="gal1"
+					title="perth during the daytime."><img
+					src="${asset:context:img/gallery2_s.jpg}" height="60" width="60" /></a>
+			</div>
+		</section>
+	</div>
+</div>
 </html>

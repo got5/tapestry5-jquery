@@ -310,11 +310,12 @@ public class JQueryModule {
 			MappedConfiguration<String, Object> configuration, 
 			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick, 
 			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask, 
-			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal) {
+			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal, 
+			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
 		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
 		configuration.add("vendor/reveal", new JavaScriptModuleConfiguration(reveal).dependsOn("jquery"));
-		
+		configuration.add("vendor/colorbox", new JavaScriptModuleConfiguration(colorbox).dependsOn("jquery"));
 	}
 }
