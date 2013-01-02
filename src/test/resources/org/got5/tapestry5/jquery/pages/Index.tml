@@ -38,6 +38,8 @@
 						class="icon-chevron-right"></i> Checkbox</a></li>
 				<li><a t:type="pagelink" t:page="TestddSlick"><i
 						class="icon-chevron-right"></i> DDSlick</a></li>
+				<li><a t:type="pagelink" t:page="mask"><i
+						class="icon-chevron-right"></i> Mask</a></li>
 				<li><a t:type="pagelink" t:page="SuperFish"><i
 						class="icon-chevron-right"></i> SuperFish</a></li>
 			</ul>
@@ -105,8 +107,7 @@
 
 
 
-				<li><a t:type="pagelink" t:page="mask"><i
-						class="icon-chevron-right"></i> Mask</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="Raty"><i
 						class="icon-chevron-right"></i> Raty</a></li>
