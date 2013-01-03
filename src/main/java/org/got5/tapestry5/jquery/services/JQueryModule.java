@@ -158,9 +158,6 @@ public class JQueryModule {
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype) {
 
 		// if (suppressPrototype) {
-		// configuration.addInstance("FormFragmentResourcesInclusionWorker",
-		// FormFragmentResourcesInclusionWorker.class,
-		// "after:RenderPhase");
 		// configuration.addInstance("FormResourcesInclusionWorker",
 		// FormResourcesInclusionWorker.class, "after:RenderPhase");
 		// }

@@ -10,6 +10,10 @@
 				<h1>Tapestry Components</h1>
 			</div>
 			<ul class="nav nav-list bs-docs-sidenav">
+				
+				<li><a t:type="pagelink" t:page="formfragment"><i
+						class="icon-chevron-right"></i> Form Fragment</a></li>
+						
 				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
 						class="icon-chevron-right"></i> Linksubmit</a></li>
 				
@@ -86,8 +90,7 @@
 				<li><a t:type="pagelink" t:page="Form"><i
 						class="icon-chevron-right"></i> Form</a></li>
 
-				<li><a t:type="pagelink" t:page="formfragment"><i
-						class="icon-chevron-right"></i> Form Fragment</a></li>
+				
 
 				
 
