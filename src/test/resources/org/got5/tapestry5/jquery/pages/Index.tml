@@ -35,6 +35,8 @@
 						class="icon-chevron-right"></i> Button</a></li>
 				<li><a t:type="pagelink" t:page="Sortable"><i
 						class="icon-chevron-right"></i> Sortable</a></li>
+				<li><a t:type="pagelink" t:page="Slider"><i
+						class="icon-chevron-right"></i> Slider</a></li>
 				<li><a t:type="pagelink" t:page="jquerytabs"><i
 						class="icon-chevron-right"></i> Tabs</a></li>
 				<li><a t:type="pagelink" t:page="Tooltip"><i
@@ -128,8 +130,7 @@
 				<li><a t:type="pagelink" t:page="Selector"><i
 						class="icon-chevron-right"></i> Selector</a></li>
 
-				<li><a t:type="pagelink" t:page="Slider"><i
-						class="icon-chevron-right"></i> Slider</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="Tree"><i
 						class="icon-chevron-right"></i> Tree</a></li>
