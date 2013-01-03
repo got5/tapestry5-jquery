@@ -1,4 +1,4 @@
-define(["core/dom", "core/zone", "core/events", "core/ajax", "vendor/ddslick"], function(dom, zone, events, ajax) {
+define(["t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "vendor/ddslick"], function(dom, zone, events, ajax) {
 	init = function(spec) {
 		jQuery('#'+spec.elementId).ddslick({
 			data: spec.ddData,
