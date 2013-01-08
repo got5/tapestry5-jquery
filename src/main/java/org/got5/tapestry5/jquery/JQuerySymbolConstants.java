@@ -82,4 +82,6 @@ public class JQuerySymbolConstants {
 	 */
 
 	public static final String ADD_MOUSEWHEEL_EVENT = "jquery.mousewheel";
+
+	public static final String INCLUDE_DATEPICKER_I18N = "jquery.include_datepicker";
 }

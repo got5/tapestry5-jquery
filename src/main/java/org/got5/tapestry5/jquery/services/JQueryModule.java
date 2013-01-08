@@ -126,6 +126,7 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.USE_MINIFIED_JS, SymbolConstants.PRODUCTION_MODE_VALUE);
         
         configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
+        configuration.add(JQuerySymbolConstants.INCLUDE_DATEPICKER_I18N, false);
 
     }
 
