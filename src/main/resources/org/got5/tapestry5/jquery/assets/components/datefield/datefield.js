@@ -3,16 +3,25 @@
 	T5.extendInitializers(function(){
 		
 		function init(specs) {
-			$("#" + specs.field).datepicker({
+			var params = $.extend({
                 gotoCurrent: true,
                 showOn: "button",
                 buttonImageOnly: false,
-                disabled: $("#" + specs.field).attr("disabled")
-            });
+                disabled: $("#" + specs.field).attr("disabled"), 
+                defaultDate: $("#" + specs.field).val() 
+            }, $("#" + specs.field).data('cutomDatepicker'));
+            
+			$("#" + specs.field).datepicker(params);
+		}
+		
+		function customDatepicker(spec){
+			$(spec.selector).data('cutomDatepicker',spec.params);
+		
 		}
 		
 		return {
-			dateField : init
+			dateField : init, 
+			customDatepicker : customDatepicker
 		}
 	});
 	
