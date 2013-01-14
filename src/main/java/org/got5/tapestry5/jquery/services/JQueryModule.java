@@ -39,6 +39,7 @@ import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.compatibility.Compatibility;
 import org.apache.tapestry5.services.compatibility.Trait;
 import org.apache.tapestry5.services.javascript.JavaScriptModuleConfiguration;
+import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.ModuleManager;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
@@ -52,6 +53,11 @@ import org.got5.tapestry5.jquery.services.js.JSModule;
 @SubModule(JSModule.class)
 public class JQueryModule {
 
+	public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration)
+    {
+    
+    }
+	
 	public static void contributeComponentClassResolver(
 			Configuration<LibraryMapping> configuration) {
 		configuration.add(new LibraryMapping("jquery",
@@ -208,11 +214,17 @@ public class JQueryModule {
 			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick, 
 			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask, 
 			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal, 
-			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox) {
+			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox, 
+			@Inject @Path("${assets.path}/mixins/placeholder/jquery.placeholder.js") Resource placeholder, 
+			@Inject @Path("${assets.path}/mixins/jscrollpane/jquery.jscrollpane.min.js") Resource jscrollpane, 
+			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
 		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
 		configuration.add("vendor/reveal", new JavaScriptModuleConfiguration(reveal).dependsOn("jquery"));
 		configuration.add("vendor/colorbox", new JavaScriptModuleConfiguration(colorbox).dependsOn("jquery"));
+		configuration.add("vendor/placeholder", new JavaScriptModuleConfiguration(placeholder).dependsOn("jquery"));
+		configuration.add("vendor/jscrollpane", new JavaScriptModuleConfiguration(jscrollpane).dependsOn("jquery"));
+		configuration.add("vendor/flexslider", new JavaScriptModuleConfiguration(flexslider).dependsOn("jquery"));
 	}
 }

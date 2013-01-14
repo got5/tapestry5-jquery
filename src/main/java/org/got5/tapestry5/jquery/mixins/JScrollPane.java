@@ -8,9 +8,8 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.services.javascript.JScrollPaneStack;
 
-@Import(stack = JScrollPaneStack.STACK_ID)
+@Import(stylesheet = "${assets.path}/mixins/jscrollpane/jquery.jscrollpane.css")
 public class JScrollPane {
 	/**
 	 * The JSON parameter for your widget
@@ -29,6 +28,6 @@ public class JScrollPane {
 		JSONObject opt = new JSONObject();
 		opt.put("id", clientElement.getClientId());
 		opt.put("params", options);
-		js.addInitializerCall("jscrollpane", opt);
+		js.require("tjq/jscrollpane").with(opt);
 	}
 }

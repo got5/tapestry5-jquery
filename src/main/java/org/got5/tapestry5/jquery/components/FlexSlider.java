@@ -13,9 +13,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.services.javascript.FlexSliderStack;
 
-@Import(stack = FlexSliderStack.STACK_ID)
+@Import(stylesheet = "${assets.path}/components/flexslider/flexslider.css")
 public class FlexSlider {
 	@Parameter
 	private JSONObject params;
@@ -59,8 +58,7 @@ public class FlexSlider {
 	    opt.put("id", id);
 	    opt.put("params", params);
 	    
-		
-		javaScriptSupport.addInitializerCall("flexslider", opt);
+		javaScriptSupport.require("tjq/flexslider").with(opt);
 	}
 
 	
