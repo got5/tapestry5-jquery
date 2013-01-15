@@ -26,7 +26,6 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.Messages;
@@ -37,7 +36,6 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptStackSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
-import org.got5.tapestry5.jquery.services.javascript.InPlaceEditorStack;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 
@@ -50,7 +48,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  */
 @Events(InPlaceEditor.SAVE_EVENT)
 @SupportsInformalParameters
-@Import(stack = InPlaceEditorStack.STACK_ID)
 public class InPlaceEditor implements ClientElement
 {
 	public final static String SAVE_EVENT = "save";
@@ -143,7 +140,7 @@ public class InPlaceEditor implements ClientElement
 		
 		spec.put("options", opts);
 
-		javascriptSupport.addInitializerCall("editable", spec);
+		javascriptSupport.require("tjq/inplaceeditor").with(spec);
 	}
 
 	StreamResponse onAction(String value) throws UnsupportedEncodingException

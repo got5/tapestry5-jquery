@@ -54,6 +54,10 @@
 						class="icon-chevron-right"></i> FlexSlider</a></li>
 				<li><a t:type="pagelink" t:page="galleryPage"><i
 						class="icon-chevron-right"></i> Gallery</a></li>
+				<li><a t:type="pagelink" t:page="ImageCropperPage"><i
+						class="icon-chevron-right"></i> ImageCropper</a></li>
+				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
+						class="icon-chevron-right"></i> InPlaceEditor</a></li>
 				<li><a t:type="pagelink" t:page="JScrollPane"><i
 						class="icon-chevron-right"></i> JScrollPane</a></li>
 				<li><a t:type="pagelink" t:page="mask"><i
@@ -105,11 +109,7 @@
 				<li><a t:type="pagelink" t:page="GMap"><i
 						class="icon-chevron-right"></i> GMap</a></li>
 
-				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
-						class="icon-chevron-right"></i> InPlaceEditor</a></li>
-
-				<li><a t:type="pagelink" t:page="ImageCropperPage"><i
-						class="icon-chevron-right"></i> ImageCropper</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="jgrowl"><i
 						class="icon-chevron-right"></i> jGrowl</a></li>

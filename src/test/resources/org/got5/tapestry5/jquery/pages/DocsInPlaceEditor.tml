@@ -1,13 +1,23 @@
-<html t:type="layout" 
-t:title="InPlaceEditor" 
-t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
- 	
- 
-	    	 <t:grid source="users" row="user" model="myModel" t:inplace="true" 
-	    	 			rowIndex="currentIndex" rowsPerPage="10">
-		        <p:lastnameCell>
-	                            <div id="inPlaceEditor" t:type="jquery/inPlaceEditor" value="user.lastName" t:context="${currentIndex}" t:options="options"/>
-	            </p:lastnameCell>
-		    </t:grid>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
 
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>InPlaceEditor</h1>
+			</div>
+			<t:grid source="users" row="user" model="myModel" t:inplace="true"
+				rowIndex="currentIndex" rowsPerPage="10">
+				<p:lastnameCell>
+					<div id="inPlaceEditor" t:type="jquery/inPlaceEditor"
+						value="user.lastName" t:context="${currentIndex}"
+						t:options="options" />
+				</p:lastnameCell>
+			</t:grid>
+		</section>
+	</div>
+</div>
 </html>

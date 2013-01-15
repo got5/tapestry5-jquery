@@ -42,8 +42,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 * 
 * @tapestrydoc
 */
-@Import(library = {"${assets.path}/components/jcrop/jquery.Jcrop.js",
-				   "${assets.path}/components/jcrop/imagecropper.js"},
+@Import(library = {"${assets.path}/components/jcrop/jquery.Jcrop.js"},
 	    stylesheet={"${assets.path}/components/jcrop/jquery.Jcrop.css"})
 
 @SupportsInformalParameters
@@ -88,7 +87,8 @@ public class ImageCropper implements ClientElement{
 	@Inject
 	private AssetSource assetSource;
 
-	
+	@Inject 
+	private ComponentResources cr;
 	
 	@BeginRender
 	void begin(MarkupWriter writer)
@@ -97,7 +97,10 @@ public class ImageCropper implements ClientElement{
 
 	    Asset image = assetSource.getAsset(null, _domain + ":" + _src, null);
 	    writer.element("img", "src", image.toClientURL(), "id", clientId);
-
+	    
+	    if(cr.isBound("zone")){
+	    	writer.attributes("data-update-zone", zone);
+	    }
 	    _resources.renderInformalParameters(writer);
     }
 
@@ -122,7 +125,8 @@ public class ImageCropper implements ClientElement{
 		
 		JQueryUtils.merge(jso, options);
 		
-		_support.addInitializerCall("imageCropper", jso);
+		_support.require("tjq/imagecropper").with(jso);
+		
 	}
 
 	public String getClientId() {

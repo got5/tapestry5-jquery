@@ -217,7 +217,9 @@ public class JQueryModule {
 			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox, 
 			@Inject @Path("${assets.path}/mixins/placeholder/jquery.placeholder.js") Resource placeholder, 
 			@Inject @Path("${assets.path}/mixins/jscrollpane/jquery.jscrollpane.min.js") Resource jscrollpane, 
-			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider) {
+			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider, 
+			@Inject @Path("${assets.path}/components/jcrop/jquery.Jcrop.js") Resource jcrop, 
+			@Inject @Path("${assets.path}/components/jeditable/jquery.jeditable.js") Resource jeditable) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
 		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
@@ -226,5 +228,7 @@ public class JQueryModule {
 		configuration.add("vendor/placeholder", new JavaScriptModuleConfiguration(placeholder).dependsOn("jquery"));
 		configuration.add("vendor/jscrollpane", new JavaScriptModuleConfiguration(jscrollpane).dependsOn("jquery"));
 		configuration.add("vendor/flexslider", new JavaScriptModuleConfiguration(flexslider).dependsOn("jquery"));
+		configuration.add("vendor/jcrop", new JavaScriptModuleConfiguration(jcrop).dependsOn("jquery"));
+		configuration.add("vendor/jeditable", new JavaScriptModuleConfiguration(jeditable).dependsOn("jquery"));
 	}
 }
