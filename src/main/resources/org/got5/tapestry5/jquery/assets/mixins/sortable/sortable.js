@@ -8,7 +8,7 @@
 
 			if(!specs.params.update)
 				specs.params.update=function(a,b){
-					ajaxRequest = {
+					var ajaxRequest = {
 	                        url: specs.url + sep + "list="+ $("#"+specs.id).sortable("toArray").toString()
 	                };
 	                $.ajax(ajaxRequest);
