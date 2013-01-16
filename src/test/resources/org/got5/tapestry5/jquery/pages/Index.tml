@@ -46,6 +46,8 @@
 				<h1>jQuery Widgets</h1>
 			</div>
 			<ul class="nav nav-list bs-docs-sidenav">
+				<li><a t:type="pagelink" t:page="AjaxUploadTest"><i
+						class="icon-chevron-right"></i> Ajax Upload</a></li>
 				<li><a t:type="pagelink" t:page="Checkbox"><i
 						class="icon-chevron-right"></i> Checkbox</a></li>
 				<li><a t:type="pagelink" t:page="TestddSlick"><i

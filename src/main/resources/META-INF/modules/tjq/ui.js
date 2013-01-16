@@ -92,7 +92,7 @@ define([ "vendor/jqueryui", "vendor/jqueryjson" ], function() {
 	};
 
 	dialog = function(spec) {
-		// TODO
+		 jQuery("#" + spec.id).dialog(spec.params);
 	};
 
 	menu = function(spec) {

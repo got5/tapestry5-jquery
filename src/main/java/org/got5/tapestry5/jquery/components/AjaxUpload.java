@@ -28,7 +28,6 @@ import org.got5.tapestry5.jquery.JQueryComponentConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.services.AjaxUploadDecoder;
-import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -46,7 +45,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @Events( { JQueryEventConstants.AJAX_UPLOAD, JQueryEventConstants.NON_XHR_UPLOAD } )
-@Import(stack = AjaxUploadStack.STACK_ID)
+@Import(stylesheet = "${assets.path}/components/upload/fileuploader.css")
 public class AjaxUpload extends AbstractExtendableComponent {
 
     /**
@@ -157,8 +156,7 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
         JQueryUtils.merge(parameter, params);
 
-        javaScriptSupport.addInitializerCall(getInitMethod(), parameter);
-
+        javaScriptSupport.require("tjq/upload").with(parameter);
     }
 
     /**

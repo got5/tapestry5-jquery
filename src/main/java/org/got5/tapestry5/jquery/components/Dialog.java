@@ -1,18 +1,17 @@
 package org.got5.tapestry5.jquery.components;
 
-import org.apache.tapestry5.annotations.SupportsInformalParameters;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -26,7 +25,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = { "jquery.ui.mouse", "jquery.ui.draggable", "jquery.ui.resizable", "jquery.ui.dialog" })
 public class Dialog implements ClientElement
 {
     /**
@@ -86,18 +84,7 @@ public class Dialog implements ClientElement
 
         configure(data);
 
-        support.addInitializerCall(initMethod, data);
-    }
-
-    @AfterRender
-    protected void addJSResources()
-    {
-        String[] scripts = { "org/got5/tapestry5/jquery/assets/components/dialog/dialog.js" };
-
-        for (String path : scripts)
-        {
-            support.importJavaScriptLibrary(source.getClasspathAsset(path));
-        }
+        support.require("tjq/ui").invoke("dialog").with(data);
     }
 
     @AfterRender

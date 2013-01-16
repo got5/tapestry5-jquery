@@ -24,19 +24,14 @@
  * @param spec.showMessagesDialog
  *            The id of the error message dialog.
  */
-(function($) {
-
-	T5
-			.extendInitializers(function() {
-
-				function init(spec) {
-
-					var el = $('#' + spec.elementId);
+ define(["vendor/upload"], function() {
+	init = function(spec) {
+		var el = jQuery('#' + spec.elementId);
 
 					var options = {
 						showMessage : function(message) {
 
-							$('#' + spec.showMessagesDialog).text(message)
+							jQuery('#' + spec.showMessagesDialog).text(message)
 									.dialog('open');
 
 						},
@@ -94,13 +89,9 @@
 								+ '</li>'
 
 					};
-					$.extend(options, spec);
+					jQuery.extend(options, spec);
 					el.fileuploader(options);
-				}
-
-				return {
-					uploadable : init
-				}
-			});
-
-})(jQuery);
+	  };
+  	
+  	return exports = init;
+});
