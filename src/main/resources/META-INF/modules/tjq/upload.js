@@ -24,7 +24,7 @@
  * @param spec.showMessagesDialog
  *            The id of the error message dialog.
  */
- define(["vendor/upload"], function() {
+ define(["t5/core/dom", "t5/core/events", "t5/core/pageinit", "vendor/upload"], function(dom, events, pageinit) {
 	init = function(spec) {
 		var el = jQuery('#' + spec.elementId);
 
@@ -38,33 +38,11 @@
 
 						onComplete : function(id, fileName, responseJSON) {
 
-							if (responseJSON.zones) {
+							if (responseJSON._tapestry.content) {
 
-								// perform multi zone update
-
-								var zoneManager = Tapestry
-										.findZoneManagerForZone("uploadResult");
-								if (!zoneManager)
-									return;
-								zoneManager.processReply(responseJSON);
-
-							}
-
-							if (responseJSON.updateZone) {
-
-								var spec = {
-									url : responseJSON.updateZone.url,
-									params : responseJSON.updateZone.params
-								};
-
-								var zoneObject = Tapestry
-										.findZoneManagerForZone(responseJSON.updateZone.zoneId);
-
-								if (!zoneObject)
-									return;
-
-								zoneObject.updateFromURL(spec.url, spec.params);
-
+								pageinit.handlePartialPageRenderResponse({json: responseJSON}, function(response){
+									
+								});
 							}
 
 						},

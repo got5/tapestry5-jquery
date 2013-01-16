@@ -18,6 +18,7 @@
 			</j:ajaxUpload>
 
 			<t:zone t:id="uploadResult">
+				<button t:type="any" t:mixins="jquery/button">Button</button>
 				<div>
 					<h4>result</h4>
 
