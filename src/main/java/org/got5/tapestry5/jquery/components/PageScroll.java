@@ -149,7 +149,6 @@ public class PageScroll implements ClientElement {
         return result;
     }
 
-    @Override
     public String getClientId() {
         return assignedClientId;
     }

@@ -81,7 +81,13 @@ public class CustomDatepicker {
     	/*
     	 * We call the datepicker widget, in order to override the options
     	 */
-        javaScriptSupport.addScript(InitializationPriority.LATE,"%s('%s').datepicker('option',%s);", jQueryAlias, theSelector, defaultParamsObject);
-        
+        //javaScriptSupport.addScript(InitializationPriority.LATE,"%s('%s').datepicker('option',%s);", jQueryAlias, theSelector, 
+//    		defaultParamsObject);
+    	
+    	JSONObject json = new JSONObject();
+    	json.put("selector", theSelector);
+        json.put("params", defaultParamsObject);
+    	
+    	javaScriptSupport.addInitializerCall(InitializationPriority.EARLY, "customDatepicker", json);
     }
 }

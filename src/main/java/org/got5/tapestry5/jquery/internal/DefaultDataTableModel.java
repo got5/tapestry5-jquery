@@ -229,7 +229,8 @@ public class DefaultDataTableModel implements DataTableModel {
 	
 				ColumnSort colSort =sortModel.getColumnSort(propName);
 	
-				sortModel.updateSort(propName);
+				if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase()))) 
+					sortModel.updateSort(propName);
 			}
 		}
 
