@@ -49,9 +49,6 @@ public class DialogAjaxLink extends DialogLink
     @Inject
     private AssetSource source;
 
-    private static final String[] scripts =
-    { "org/got5/tapestry5/jquery/assets/components/dialogajaxlink/dialogajaxlink.js" };
-
     @Override
     @SetupRender
     void setJSInit()
@@ -74,17 +71,9 @@ public class DialogAjaxLink extends DialogLink
         params.put("dialogId", getDialog());
         params.put("url", link.toAbsoluteURI());
 
-        javaScriptSupport.addInitializerCall(getInitMethod(), params);
+        javaScriptSupport.require("tjq/dialogajaxlink").with(params);
     }
 
-    @Override
-    @AfterRender
-    protected void addJSResources()
-    {
-        for (String path : scripts)
-        {
-        	javaScriptSupport.importJavaScriptLibrary(source.getClasspathAsset(path));
-        }
-    }
+   
 
 }

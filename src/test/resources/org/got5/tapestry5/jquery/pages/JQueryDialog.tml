@@ -1,18 +1,33 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-    <t:jquery.dialog t:clientId="myDialog" t:params="options">
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Dialog</h1>
+			</div>
+			<t:jquery.dialog t:clientId="myDialog" t:params="options">
     	Dialog test!
 		<t:zone t:id="myZone">${count}
 		
 		<t:form>
-			Try "abcd" :<input t:type="TextField" type="text" t:id="goalName" t:value="goalName" t:mixins="jquery/Autocomplete"/>
-		</t:form>
-		</t:zone>
-		
-    </t:jquery.dialog>
-	
-	<h3>Dialog Link</h3>
-	<t:jquery.dialoglink t:dialog="myDialog" class="css">Open</t:jquery.dialoglink>
-	
-	<h3>Dialog Ajax Link</h3>
-	<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone" class="css2">Open</t:jquery.dialogajaxlink>
+			Try "abcd" :<input t:type="TextField" type="text" t:id="goalName"
+							t:value="goalName" t:mixins="jquery/Autocomplete" />
+					</t:form>
+				</t:zone>
+
+			</t:jquery.dialog>
+
+			<h3>Dialog Link</h3>
+			<t:jquery.dialoglink t:dialog="myDialog" class="css">Open</t:jquery.dialoglink>
+
+			<h3>Dialog Ajax Link</h3>
+			<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="myZone"
+				class="css2">Open</t:jquery.dialogajaxlink>
+		</section>
+	</div>
+</div>
 </html>

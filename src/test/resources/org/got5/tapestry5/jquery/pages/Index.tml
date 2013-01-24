@@ -55,6 +55,10 @@
 						class="icon-chevron-right"></i> Bind</a></li>
 				<li><a t:type="pagelink" t:page="Checkbox"><i
 						class="icon-chevron-right"></i> Checkbox</a></li>
+				<li><a t:type="pagelink" t:page="DataTables"><i
+						class="icon-chevron-right"></i> DataTables</a></li>
+				<li><a t:type="pagelink" t:page="DataTablesAjax"><i
+						class="icon-chevron-right"></i> DataTables(Ajax)</a></li>
 				<li><a t:type="pagelink" t:page="TestddSlick"><i
 						class="icon-chevron-right"></i> DDSlick</a></li>
 				<li><a t:type="pagelink" t:page="flexslider"><i
@@ -93,11 +97,7 @@
 				<li><a t:type="pagelink" t:page="customdatepicker"><i
 						class="icon-chevron-right"></i> Customdatepicker</a></li>
 
-				<li><a t:type="pagelink" t:page="DataTables"><i
-						class="icon-chevron-right"></i> DataTables</a></li>
-
-				<li><a t:type="pagelink" t:page="DataTablesAjax"><i
-						class="icon-chevron-right"></i> DataTables(Ajax)</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="draggable"><i
 						class="icon-chevron-right"></i> Draggable</a></li>

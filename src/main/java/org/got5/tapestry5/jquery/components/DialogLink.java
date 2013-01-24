@@ -42,8 +42,7 @@ public class DialogLink extends AbstractExtendableComponent
     @Inject
     private ComponentResources resources;
     
-    private static final String[] scripts =
-    { "org/got5/tapestry5/jquery/assets/components/dialoglink/dialoglink.js" };
+   
 
     @SetupRender
     void setJSInit()
@@ -68,17 +67,8 @@ public class DialogLink extends AbstractExtendableComponent
         params.put("triggerId", getClientId());
         params.put("dialogId", dialog);
         
-        javaScriptSupport.addInitializerCall(getInitMethod(), params);
-    }
-
-    @Override
-    @AfterRender
-    protected void addJSResources()
-    {
-        for (String path : scripts)
-        {
-            javaScriptSupport.importJavaScriptLibrary(source.getClasspathAsset(path));
-        }
+        javaScriptSupport.require("tjq/dialoglink").with(params);
+        
     }
 
     protected String getDialog()
