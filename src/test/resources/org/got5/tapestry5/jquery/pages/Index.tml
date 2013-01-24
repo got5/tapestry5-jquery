@@ -69,6 +69,8 @@
 						class="icon-chevron-right"></i> ImageCropper</a></li>
 				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
 						class="icon-chevron-right"></i> InPlaceEditor</a></li>
+				<li><a t:type="pagelink" t:page="jquerydialog"><i
+						class="icon-chevron-right"></i> jQuery Dialog</a></li>
 				<li><a t:type="pagelink" t:page="JScrollPane"><i
 						class="icon-chevron-right"></i> JScrollPane</a></li>
 				<li><a t:type="pagelink" t:page="mask"><i
@@ -122,8 +124,7 @@
 
 
 
-				<li><a t:type="pagelink" t:page="jquerydialog"><i
-						class="icon-chevron-right"></i> jQuery Dialog</a></li>
+				
 
 				
 
