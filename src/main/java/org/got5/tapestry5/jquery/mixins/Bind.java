@@ -21,7 +21,6 @@ import org.got5.tapestry5.jquery.EffectsConstants;
  * 
  * @tapestrydoc
  */
-@Import(library = { "${assets.path}/mixins/bind/bind.js" })
 public class Bind {
 
 	/**
@@ -201,21 +200,24 @@ public class Bind {
 		// spec.put("jcontext", new JSONLiteral(jcontext));
 		// }
 		spec.put("callback", callback);
-		javaScriptSupport.addInitializerCall("jqbind", spec);
-		if (doImports) {
-			if (zoneUpdate != null) {
-				String effect = findEffect(zoneUpdate);
-				if ( effect != null ) {
-					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
-				}
-			}
-			if (hideEffect != null) {
-				String effect = findEffect(hideEffect);
-				if ( effect != null ) {
-					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
-				}
-			}
-		}
+		
+		javaScriptSupport.require("tjq/bind").with(spec);
+//		if (doImports) {
+//			if (zoneUpdate != null) {
+//				String effect = findEffect(zoneUpdate);
+//				if ( effect != null ) {
+//					//javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
+//				}
+//			}
+//			if (hideEffect != null) {
+//				String effect = findEffect(hideEffect);
+//				if ( effect != null ) {
+//					javaScriptSupport.importJavaScriptLibrary(assetSource.getExpandedAsset(effect));
+//				}
+//			}
+//		}
+//		
+//		javaScriptSupport.require("tjq/bind").with(spec);
 	}
 	
 	private String findEffect(String effect) {

@@ -193,6 +193,7 @@ public class JQueryModule {
 			MappedConfiguration<String, Object> configuration, 
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
 			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
+			@Inject @Path("${jquery.ui.path}/ui/jquery.ui.effect.js") Resource jqueryuieffect,
 			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
 			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel			
 		) {
@@ -202,6 +203,10 @@ public class JQueryModule {
 		
 		configuration.add("vendor/jqueryjson",
 				new JavaScriptModuleConfiguration(jqueryjson)
+						.dependsOn("jquery"));
+		
+		configuration.add("vendor/jqueryuieffect",
+				new JavaScriptModuleConfiguration(jqueryuieffect)
 						.dependsOn("jquery"));
 		
 		if(mouseWheelIncluded)
