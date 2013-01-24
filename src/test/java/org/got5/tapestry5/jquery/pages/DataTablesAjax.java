@@ -147,10 +147,10 @@ public class DataTablesAjax
 	
 	@AfterRender
 	public void addJsFile(){
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColVis/media/js/ColVis.js", null));
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColReorder/media/js/ColReorder.js", null));
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/ZeroClipboard.js", null));
-		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/TableTools.js", null));
+//		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColVis/media/js/ColVis.js", null));
+//		js.importJavaScriptLibrary(as.getContextAsset("dataTables/ColReorder/media/js/ColReorder.js", null));
+//		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/ZeroClipboard.js", null));
+//		js.importJavaScriptLibrary(as.getContextAsset("dataTables/TableTools/media/js/TableTools.js", null));
 		js.importJavaScriptLibrary(as.getContextAsset("js/demo.js", null));
 	}
 	

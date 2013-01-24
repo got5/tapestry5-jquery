@@ -1,9 +1,16 @@
-<html t:type="layout" title="stetset Index"
-      t:sidebarTitle="Current Time"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      xmlns:p="tapestry:parameter">
-        <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
 
-   <t:tree t:model="model" t:selectionModel="selectModel"/>
-	
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Tree</h1>
+			</div>
+			<t:tree t:model="model" t:selectionModel="selectModel"/>
+		</section>
+	</div>
+</div>
 </html>

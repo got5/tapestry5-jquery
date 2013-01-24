@@ -40,7 +40,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
-import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
@@ -52,7 +51,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
-@Import(stack = DataTableStack.STACK_ID)
+@Import(stylesheet = "${assets.path}/components/datatables/tango/skin.css")
 public class DataTable extends AbstractJQueryTable {
 
 	@Inject
@@ -177,7 +176,7 @@ public class DataTable extends AbstractJQueryTable {
 		JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
-		support.addInitializerCall("dataTable", setup);
+		support.require("tjq/dataTables").with(setup);
 	}
 
 	private JSONObject setI18NMessages() {

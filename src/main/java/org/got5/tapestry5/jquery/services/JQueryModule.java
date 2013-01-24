@@ -225,7 +225,8 @@ public class JQueryModule {
 			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider, 
 			@Inject @Path("${assets.path}/components/jcrop/jquery.Jcrop.js") Resource jcrop, 
 			@Inject @Path("${assets.path}/components/jeditable/jquery.jeditable.js") Resource jeditable, 
-			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload) {
+			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload, 
+			@Inject @Path("${assets.path}/components/datatables/jquery.dataTables.js") Resource datatables) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
 		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
@@ -237,5 +238,6 @@ public class JQueryModule {
 		configuration.add("vendor/jcrop", new JavaScriptModuleConfiguration(jcrop).dependsOn("jquery"));
 		configuration.add("vendor/jeditable", new JavaScriptModuleConfiguration(jeditable).dependsOn("jquery"));
 		configuration.add("vendor/upload", new JavaScriptModuleConfiguration(upload).dependsOn("jquery"));
+		configuration.add("vendor/datatables", new JavaScriptModuleConfiguration(datatables).dependsOn("jquery"));
 	}
 }

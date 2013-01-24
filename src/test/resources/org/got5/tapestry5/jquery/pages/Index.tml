@@ -19,7 +19,10 @@
 				
 				<li><a t:type="pagelink" t:page="validation"><i
 						class="icon-chevron-right"></i> Validation</a></li>
-								
+				
+				<li><a t:type="pagelink" t:page="Tree"><i
+						class="icon-chevron-right"></i> Tree</a></li>				
+				
 				<li><a t:type="pagelink" t:page="zone"><i
 						class="icon-chevron-right"></i> Zone</a></li>
 			</ul>
@@ -48,6 +51,8 @@
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li><a t:type="pagelink" t:page="AjaxUploadTest"><i
 						class="icon-chevron-right"></i> Ajax Upload</a></li>
+				<li><a t:type="pagelink" t:page="Bind"><i
+						class="icon-chevron-right"></i> Bind</a></li>
 				<li><a t:type="pagelink" t:page="Checkbox"><i
 						class="icon-chevron-right"></i> Checkbox</a></li>
 				<li><a t:type="pagelink" t:page="TestddSlick"><i
@@ -77,8 +82,7 @@
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li><a t:type="pagelink" t:page="AjaxFormLoop"><i
 						class="icon-chevron-right"></i> AjaxFormLoop</a></li>
-				<li><a t:type="pagelink" t:page="Bind"><i
-						class="icon-chevron-right"></i> Bind</a></li>
+				
 
 				<li><a t:type="pagelink" t:page="calendar"><i
 						class="icon-chevron-right"></i> Calendar</a></li>
@@ -140,8 +144,7 @@
 
 				
 
-				<li><a t:type="pagelink" t:page="Tree"><i
-						class="icon-chevron-right"></i> Tree</a></li>
+				
 
 				
 

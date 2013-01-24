@@ -1,19 +1,32 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-  
-     <table t:type="jquery/datatable" t:source="celebritySource" rowsPerPage="5" 
-         exclude="id, biography, birthDateVerified"
-		reorder="link,firstName,lastName,occupation,dateOfBirth" t:options="options" t:mode="true" 
-		t:model="model" t:row="current" t:rowIndex="index" t:add="link" t:tableInformation="information"
-		t:id="datatableAjax" id="datatableAjax">
-		
-		<p:firstNameHeader>Prénom Header</p:firstNameHeader>
-		
-		<p:firstNameFooter>Prénom Footer</p:firstNameFooter>
-		
-		<p:firstNameCell>${current?.firstName}</p:firstNameCell>
-		
-		<p:linkCell>${current?.lastName}</p:linkCell>			
-		
-	</table> 
-     
- </html>
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>DataTable</h1>
+			</div>
+			<table t:type="jquery/datatable" t:source="celebritySource"
+				rowsPerPage="5" exclude="id, biography, birthDateVerified"
+				reorder="link,firstName,lastName,occupation,dateOfBirth"
+				t:options="options" t:mode="true" t:model="model" t:row="current"
+				t:rowIndex="index" t:add="link" t:tableInformation="information"
+				t:id="datatableAjax" id="datatableAjax">
+
+				<p:firstNameHeader>Prenom Header</p:firstNameHeader>
+
+				<p:firstNameFooter>Prenom Footer</p:firstNameFooter>
+
+				<p:firstNameCell>${current?.firstName}</p:firstNameCell>
+
+				<p:linkCell><t:ActionLink t:zone="zone" t:mixins="jquery/tooltip" title="tooltup">${current?.lastName}</t:ActionLink></p:linkCell>
+
+			</table>
+			<t:zone t:id="zone"></t:zone>
+		</section>
+	</div>
+</div>
+</html>
