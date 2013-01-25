@@ -97,8 +97,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @see Form
  * @see Select
  */
-@ImportJQueryUI(value = "jquery.ui.widget")
-@Import(library= "${assets.path}/components/palette/palette.js")
+@Import(stylesheet = "classpath:/META-INF/assets/core/Palette.css")
 public class Palette extends AbstractField
 {
     // These all started as anonymous inner classes, and were refactored out to here.
@@ -420,7 +419,7 @@ public class Palette extends AbstractField
         options.put("reorder", reorder);
         options.put("naturalOrder", naturalOrder);
 
-        javascriptSupport.addInitializerCall("palette", options);
+        javascriptSupport.require("tjq/palette").with(options);
 
         writer.element("input", "type", "hidden", "id", clientId + "-values", "name", getControlName() + "-values",
                 "value", selectedValues);

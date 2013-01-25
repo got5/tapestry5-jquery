@@ -271,16 +271,4 @@ $.widget( "ui.palette", {
 		this.updateButtons();
     }
 });
-
-T5.extendInitializers(function(){
-
-	function init(options) {
-		$("#" + options.id).palette(options);
-	}
-
-	return {
-		palette : init
-	}
-});
-
 })( jQuery );

@@ -20,7 +20,6 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.corelib.components.Zone;
@@ -39,7 +38,6 @@ import org.got5.tapestry5.jquery.JQueryEventConstants;
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.REFRESH)
-@Import(library = "${assets.path}/mixins/zonerefresh/zone.refresh.js")
 public class ZoneRefresh
 {
    /**
@@ -72,7 +70,7 @@ public class ZoneRefresh
       params.put("id", zone.getClientId());
       params.put("URL", createEventLink());
 
-      javaScriptSupport.addInitializerCall(InitializationPriority.LATE,"zoneRefresh", params);
+      javaScriptSupport.require("tjq/zone.refresh").with(params);
    }
 
    private Object createEventLink()
