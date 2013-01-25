@@ -17,20 +17,17 @@
 package org.got5.tapestry5.jquery.pages;
 
 import java.util.Date;
+import java.util.Random;
 
 import org.apache.tapestry5.ValueEncoder;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONArray;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.entities.Person;
 import org.got5.tapestry5.jquery.entities.Phone;
 
-//@Import(library="context:js/demo.js")
 public class AjaxFormLoop
 {
 	
@@ -63,14 +60,14 @@ public class AjaxFormLoop
 
             public String toClient(Phone value)
             {
-                return value.getNumber();
+                return String.valueOf(value.getId());
             }
 
             public Phone toValue(String clientValue)
             {
                 for (Phone currentPhone : person.getPhones())
-                {
-                    if (currentPhone.getNumber() != null && clientValue.equals(currentPhone.getNumber()))
+                {System.out.println("########### " + clientValue + " - " + currentPhone.getId());
+                    if (clientValue.equals(String.valueOf(currentPhone.getId())))
                         return currentPhone;
                 }
                 return null;
@@ -86,6 +83,7 @@ public class AjaxFormLoop
     public Object onAddRowFromPhones()
     {
         Phone phone = new Phone();
+        phone.setId(new Random().nextLong());
         phone.setNumber("");
         phone.setStartDate(new Date());
 
