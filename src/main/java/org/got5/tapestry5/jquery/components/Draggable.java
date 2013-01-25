@@ -21,13 +21,11 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
@@ -38,9 +36,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.draggable"})
-@Import(library = { "${assets.path}/components/draggable/draggable.js" })
-//@SupportsInformalParameters
 public class Draggable extends AbstractExtendableComponent {
 
 
@@ -88,7 +83,7 @@ public class Draggable extends AbstractExtendableComponent {
         JQueryUtils.merge(defaults, params);
         data.put("params", defaults);
        
-        javaScriptSupport.addInitializerCall("draggable", data);
+        javaScriptSupport.require("tjq/ui").invoke("draggable").with(data);
     }
 
 	

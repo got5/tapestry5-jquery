@@ -41,8 +41,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.droppable"})
-@Import(library = { "${assets.path}/mixins/zonedroppable/zonedroppable.js" })
 @SupportsInformalParameters
 public class ZoneDroppable {
 	
@@ -112,7 +110,7 @@ public class ZoneDroppable {
 		   data.put("id", zone.getClientId());
 		   data.put("BaseURL", createEventLink());
 
-		   javaScriptSupport.addInitializerCall(InitializationPriority.LATE,"zoneDroppable", data);
+		   javaScriptSupport.require("tjq/ui").invoke("droppable").priority(InitializationPriority.LATE).with(data);
 	   }
 
 	

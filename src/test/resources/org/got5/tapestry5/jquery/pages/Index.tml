@@ -39,6 +39,8 @@
 						class="icon-chevron-right"></i> Autocomplete</a></li>
 				<li><a t:type="pagelink" t:page="button"><i
 						class="icon-chevron-right"></i> Button</a></li>
+				<li><a t:type="pagelink" t:page="draggable"><i
+						class="icon-chevron-right"></i> Draggable</a></li>
 				<li><a t:type="pagelink" t:page="Sortable"><i
 						class="icon-chevron-right"></i> Sortable</a></li>
 				<li><a t:type="pagelink" t:page="Slider"><i
@@ -104,17 +106,6 @@
 
 				<li><a t:type="pagelink" t:page="customdatepicker"><i
 						class="icon-chevron-right"></i> Customdatepicker</a></li>
-
-				
-
-				<li><a t:type="pagelink" t:page="draggable"><i
-						class="icon-chevron-right"></i> Draggable</a></li>
-
-				
-
-			
-
-				
 
 				
 

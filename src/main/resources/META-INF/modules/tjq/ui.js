@@ -1,11 +1,27 @@
-define([ "vendor/jqueryui", "vendor/jqueryjson" ], function() {
+define([  "t5/core/dom", "t5/core/events", "vendor/jqueryui", "vendor/jqueryjson"], function(dom, events) {
 
 	draggable = function(spec) {
-		// TODO
+		jQuery( "#" + spec.id ).draggable(spec.params).data("contexte",spec.context);
 	};
 
 	droppable = function(spec) {
-		// TODO
+		jQuery( "#" + spec.id ).droppable(spec.params);
+    		jQuery( "#" + spec.id ).bind( "drop", function(event, ui) {
+    			 var contexte=jQuery(ui.draggable).data("contexte");
+    			 
+				 var parts = spec.BaseURL.split("?");
+				 parts[0] += "/" + encodeURIComponent(contexte);
+				 var urlWithContexte = parts.join("?");
+				
+				var z = dom.wrap(spec.id);
+						if(z){
+							z.trigger(events.zone.refresh, {
+								url: urlWithContexte 
+							
+							});
+				}	
+    			
+    		});
 	};
 
 	resizable = function(spec) {
