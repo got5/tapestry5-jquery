@@ -3238,7 +3238,17 @@ jQuery.event = {
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
 					jQuery.event.triggered = type;
-					elem[ type ]();
+					
+					
+				
+					try {
+						elem[ type ]();
+					} catch ( e ) {
+						// IE<9 dies on focus/blur to hidden element (#1486,#12518)
+						// only reproducible on winXP IE8 native, not IE9 in IE8 mode
+						// Try/Catch added by AWL	
+					}
+					
 					jQuery.event.triggered = undefined;
 
 					if ( old ) {
