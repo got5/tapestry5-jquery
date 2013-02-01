@@ -3,16 +3,18 @@
 	T5.extendInitializers(function(){
 		
 		function init(specs) {
-			var conf = {
+
+			var element = $("#" + specs.id), 
+			    conf = {
 					source: function(request, response){
-						
+
 						var params = {};
-						
-						var extra = $("#" + specs.id).data('extra');
+
+						var extra = element.data('extra');
 						if(extra) {
 							params["extra"] = extra;
 						}
-						
+
 						params[specs.paramName] = request.term;
 						
 						var ajaxRequest = {
@@ -26,7 +28,8 @@
 	                        	"data" : $.toJSON( params )
 	                        } 
 	                    };
-	                    this.xhr = $.ajax(ajaxRequest);
+
+	                    this.xhr = $.ajax(ajaxRequest).done(function () { element.trigger('autocompletedone'); });
 	                }
 	        };
 	        
@@ -39,8 +42,8 @@
 	        if (specs.options) {
 	            $.extend(conf, specs.options);
 	        }
-	        
-	        $("#" + specs.id).autocomplete(conf);
+   
+	        element.autocomplete(conf);
 	    }
 		
 		return {
