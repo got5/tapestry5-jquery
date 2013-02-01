@@ -15,6 +15,7 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 import org.got5.tapestry5.jquery.utils.TagLocation;
@@ -48,8 +49,6 @@ import org.got5.tapestry5.jquery.utils.TagLocation;
  */
 
 @MixinAfter
-@Import(library = {"${assets.path}/mixins/raty/jquery.raty.min.js",
-					"${assets.path}/mixins/raty/raty.js"})
 public class Raty {
 
 	@Parameter
@@ -61,16 +60,16 @@ public class Raty {
 	@Parameter
 	private Float ratyValue;
 	
-	@Parameter(value="../assets/mixins/raty/star-on.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${assets.path}/mixins/raty/star-on.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyStarOn;
 	
-	@Parameter(value="../assets/mixins/raty/star-off.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${assets.path}/mixins/raty/star-off.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyStarOff;
 	
-	@Parameter(value="../assets/mixins/raty/cancel-on.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${assets.path}/mixins/raty/cancel-on.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyCancelOn;
 	
-	@Parameter(value="../assets/mixins/raty/cancel-off.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${assets.path}/mixins/raty/cancel-off.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyCancelOff;
 	
 	@Parameter
@@ -96,12 +95,12 @@ public class Raty {
 		JSONObject params = new JSONObject();
 
 		//Addition of icons
-		params.put("path", "/");
+		params.put("path", "");
 		
-		params.put("starOn", ratyStarOn.toClientURL().substring(1));
-		params.put("starOff", ratyStarOff.toClientURL().substring(1));
-		params.put("cancelOn", ratyCancelOn.toClientURL().substring(1));
-		params.put("cancelOff", ratyCancelOff.toClientURL().substring(1));
+		params.put("starOn", ratyStarOn.toClientURL());
+		params.put("starOff", ratyStarOff.toClientURL());
+		params.put("cancelOn", ratyCancelOn.toClientURL());
+		params.put("cancelOff", ratyCancelOff.toClientURL());
 		
 		//Synchronisation to input/select; or setting in "ReadOnly"
 	    JSONObject defaultFunc = new JSONObject();
@@ -156,7 +155,7 @@ public class Raty {
 	    
 	    opt.put("params", params);
 	    
-		javaScriptSupport.addInitializerCall("raty", opt);
+		javaScriptSupport.require("tjq/raty").with(opt);
 
 	}
 }

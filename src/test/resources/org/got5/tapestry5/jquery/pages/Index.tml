@@ -84,6 +84,8 @@
 						class="icon-chevron-right"></i> Mask</a></li>
 				<li><a t:type="pagelink" t:page="placeholder"><i
 						class="icon-chevron-right"></i> Placeholder</a></li>
+				<li><a t:type="pagelink" t:page="Raty"><i
+						class="icon-chevron-right"></i> Raty</a></li>
 				<li><a t:type="pagelink" t:page="reveal"><i
 						class="icon-chevron-right"></i> Reveal</a></li>
 				<li><a t:type="pagelink" t:page="SuperFish"><i
@@ -128,8 +130,7 @@
 
 				
 
-				<li><a t:type="pagelink" t:page="Raty"><i
-						class="icon-chevron-right"></i> Raty</a></li>
+				
 
 				
 
