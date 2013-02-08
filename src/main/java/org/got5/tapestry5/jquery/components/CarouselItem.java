@@ -78,8 +78,8 @@ public class CarouselItem implements ClientElement {
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
 	
-	@Inject
-	private ClientBehaviorSupport clientSupport;
+//	@Inject
+//	private ClientBehaviorSupport clientSupport;
 	
 	@Inject
 	private PageRenderLinkSource pageRenderLink;
@@ -95,9 +95,9 @@ public class CarouselItem implements ClientElement {
 	@SetupRender
 	public boolean init(MarkupWriter w){
 		w.element("li");
-		
+		Link url = null;
 		if(isPagelink()){
-			Link url=null;
+			
 			if(context!=null){
 				url=pageRenderLink.createPageRenderLinkWithContext(page, context);
 			}else{
@@ -106,23 +106,29 @@ public class CarouselItem implements ClientElement {
 			w.element("a","href",url.toURI());
 		}else if(isEventlink()){
 			String linkId = javaScriptSupport.allocateClientId(componentResources);
-			Link url = null;
+			
 			if(context!=null){
 				url=componentResources.createEventLink(event, context);
 			}else{
 				url=componentResources.createEventLink(event);
 			}
-			w.element("a","href",url.toURI(),"id",linkId);
-			if(zone!=null){
-				clientSupport.linkZone(linkId, zone, url);
-			}
+			
+			if(zone==null) w.element("a","href",url.toURI(),"id",linkId);
+			
 		}
 		
 		w.element("img","src",imageSource,"height",height+"px","width",width+"px");
+		
+		if(isEventlink() && zone!=null){
+			//clientSupport.linkZone(linkId, zone, url);
+			w.attributes("data-update-zone", zone);
+			w.attributes("data-update-zone-url", url);
+		}
+		
 		componentResources.renderInformalParameters(w);
 		w.end();
 		
-		if(isPagelink() || isEventlink()){
+		if(isPagelink() || (isEventlink() && zone == null)){
 			w.end();
 		}
 		

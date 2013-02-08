@@ -33,6 +33,9 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
+import org.apache.tapestry5.ioc.services.ThreadLocale;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -125,6 +128,7 @@ public class JQueryModule {
 	public static void contributeClasspathAssetAliasManager(
 			MappedConfiguration<String, String> configuration) {
 		configuration.add("tap-jquery", "org/got5/tapestry5");
+		configuration.add("tapestry-jquery", "META-INF/modules/tjq/vendor");
 	}
 
 	public static void contributeBindingSource(
@@ -215,7 +219,9 @@ public class JQueryModule {
 
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
-			MappedConfiguration<String, Object> configuration, 
+			MappedConfiguration<String, Object> configuration, ThreadLocale locale, TypeCoercer typeCoercer, 
+			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype,
+			@Symbol(JQuerySymbolConstants.JQUERY_UI_PATH) String jqueryUiPath,
 			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick, 
 			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask, 
 			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal, 
@@ -228,7 +234,8 @@ public class JQueryModule {
 			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload, 
 			@Inject @Path("${assets.path}/components/datatables/jquery.dataTables.js") Resource datatables, 
 			@Inject @Path("${assets.path}/components/palette/jquery.palette.js") Resource palette, 
-			@Inject @Path("${assets.path}/mixins/raty/jquery.raty.js") Resource raty) {
+			@Inject @Path("${assets.path}/mixins/raty/jquery.raty.js") Resource raty, 
+			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield) {
 		
 		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
 		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
@@ -243,5 +250,35 @@ public class JQueryModule {
 		configuration.add("vendor/datatables", new JavaScriptModuleConfiguration(datatables).dependsOn("jquery"));
 		configuration.add("vendor/palette", new JavaScriptModuleConfiguration(palette).dependsOn("vendor/jqueryui", "vendor/jqueryjson"));
 		configuration.add("vendor/raty", new JavaScriptModuleConfiguration(raty).dependsOn("jquery"));
+		
+		if(suppressPrototype) {
+			
+			String filewithoutCountry = String.format("jquery.ui.datepicker-%s", locale.getLocale().getLanguage());
+			String filewithcountry = String.format("%s-%s", filewithoutCountry, locale.getLocale().getCountry());
+			Boolean i18n = false;
+			Resource withCountryExtension = 
+					typeCoercer.coerce(String.format("%s/ui/i18n/%s.js", 
+							jqueryUiPath, filewithcountry), Resource.class);
+			
+	        if (withCountryExtension.exists()) {
+	        	configuration.add("vendor/jqueryui/i18n", new JavaScriptModuleConfiguration(withCountryExtension).dependsOn("vendor/jqueryui"));
+	        	i18n = true;
+	        }
+	        else {
+	        	final Resource withLanguageExtension = typeCoercer.coerce(
+	        			String.format("%s/ui/i18n/%s.js", jqueryUiPath, filewithoutCountry), Resource.class);
+	        	
+	        	if (withLanguageExtension.exists()) {
+	        		configuration.add("vendor/jqueryui/i18n", new JavaScriptModuleConfiguration(withLanguageExtension).dependsOn("vendor/jqueryui"));
+	        		i18n = true;
+	        	}
+	        }
+	        
+	        configuration.add("t5/core/datefield", new JavaScriptModuleConfiguration(datefield)
+	        	.dependsOn(i18n ? "vendor/jqueryui/i18n" : "vendor/jqueryui"));
+
+
+			
+		}
 	}
 }

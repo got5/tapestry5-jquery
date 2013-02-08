@@ -36,9 +36,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 * 
 * @tapestrydoc
 */
-@Import(library = {"${assets.path}/components/carousel/jquery.jcarousel.js","${assets.path}/components/carousel/carousel.js"},
-					stylesheet={"${assets.path}/components/carousel/tango/skin.css"})
-
+@Import(stylesheet={"classpath:/META-INF/modules/tjq/vendor/carousel/tango/skin.css"})
 @SupportsInformalParameters
 public class Carousel implements ClientElement {
 	 
@@ -72,7 +70,7 @@ public class Carousel implements ClientElement {
 		JSONObject jso = new JSONObject();
 		jso.put("id", clientId);
 		jso.put("params", params);
-		javaScriptSupport.addInitializerCall("carousel", jso);
+		javaScriptSupport.require("tjq/carousel").with(jso);
 	}
 	
 	public Block getCurrentParameterBlock(){

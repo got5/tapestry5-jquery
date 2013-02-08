@@ -10,7 +10,7 @@
 				<h1>DateField</h1>
 			</div>
 			<t:form>
-				<t:datefield t:value="date" />
+				<t:datefield t:value="date" t:format="MM/dd/yy"/>
 				<t:submit />
 			</t:form>
 			<p>Date value is : ${date}</p>
