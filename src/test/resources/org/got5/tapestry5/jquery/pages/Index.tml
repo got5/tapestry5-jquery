@@ -48,6 +48,8 @@
 						class="icon-chevron-right"></i> Custom Datepicker</a></li>
 				<li><a t:type="pagelink" t:page="draggable"><i
 						class="icon-chevron-right"></i> Draggable</a></li>
+						<li><a t:type="pagelink" t:page="JQuerySlider"><i
+						class="icon-chevron-right"></i> Slider</a></li>
 				<li><a t:type="pagelink" t:page="Sortable"><i
 						class="icon-chevron-right"></i> Sortable</a></li>
 				<li><a t:type="pagelink" t:page="jquerytabs"><i
