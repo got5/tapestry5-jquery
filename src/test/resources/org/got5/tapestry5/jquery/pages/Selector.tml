@@ -1,8 +1,18 @@
-<html t:type="layout" 
-	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
-	  xmlns:p="tapestry:parameter">
-    
-   		<t:any element="div" t:id="test" t:mixins="slider">${selector:test}</t:any>
-   
-    
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Selector</h1>
+			</div>
+			<a t:type="actionLink" t:id="divId">Link</a>
+			<div id="divId">${selector:divId}</div>
+	
+		</section>
+	</div>
+</div>
 </html>

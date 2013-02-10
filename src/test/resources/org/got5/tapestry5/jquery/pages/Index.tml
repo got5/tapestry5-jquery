@@ -20,6 +20,9 @@
 				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
 						class="icon-chevron-right"></i> Linksubmit</a></li>
 				
+				<li><a t:type="pagelink" t:page="progressiveDisplay"><i
+						class="icon-chevron-right"></i> Progressive Display</a></li>
+						
 				<li><a t:type="pagelink" t:page="validation"><i
 						class="icon-chevron-right"></i> Validation</a></li>
 				
@@ -47,8 +50,6 @@
 						class="icon-chevron-right"></i> Draggable</a></li>
 				<li><a t:type="pagelink" t:page="Sortable"><i
 						class="icon-chevron-right"></i> Sortable</a></li>
-				<li><a t:type="pagelink" t:page="Slider"><i
-						class="icon-chevron-right"></i> Slider</a></li>
 				<li><a t:type="pagelink" t:page="jquerytabs"><i
 						class="icon-chevron-right"></i> Tabs</a></li>
 				<li><a t:type="pagelink" t:page="Tooltip"><i
@@ -76,6 +77,8 @@
 						class="icon-chevron-right"></i> FlexSlider</a></li>
 				<li><a t:type="pagelink" t:page="galleryPage"><i
 						class="icon-chevron-right"></i> Gallery</a></li>
+				<li><a t:type="pagelink" t:page="GMap"><i
+						class="icon-chevron-right"></i> GMap</a></li>
 				<li><a t:type="pagelink" t:page="ImageCropperPage"><i
 						class="icon-chevron-right"></i> ImageCropper</a></li>
 				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
@@ -94,62 +97,23 @@
 						class="icon-chevron-right"></i> Raty</a></li>
 				<li><a t:type="pagelink" t:page="reveal"><i
 						class="icon-chevron-right"></i> Reveal</a></li>
+				<li><a t:type="pagelink" t:page="Selector"><i
+						class="icon-chevron-right"></i> Selector</a></li>
 				<li><a t:type="pagelink" t:page="SuperFish"><i
 						class="icon-chevron-right"></i> SuperFish</a></li>
 				<li><a t:type="pagelink" t:page="ZoneRefresh"><i
 						class="icon-chevron-right"></i> ZoneRefresh</a></li>
+				<li><a t:type="pagelink" t:page="ZoneUpdater"><i
+						class="icon-chevron-right"></i> ZoneUpdater</a></li>
 			</ul>
 			<div class="page-header">
 				<h1>Others</h1>
 			</div>
 			<ul class="nav nav-list bs-docs-sidenav">
-				
-				
-
-				
-
-				
-
-				
-
-				
-
-				<li><a t:type="pagelink" t:page="GMap"><i
-						class="icon-chevron-right"></i> GMap</a></li>
-
-				
-
 				<li><a t:type="pagelink" t:page="jgrowl"><i
 						class="icon-chevron-right"></i> jGrowl</a></li>
-
-
-
 				
-
 				
-
-				
-
-
-				
-
-				
-
-				
-
-				<li><a t:type="pagelink" t:page="Selector"><i
-						class="icon-chevron-right"></i> Selector</a></li>
-
-				
-
-				
-
-				
-
-								
-
-				<li><a t:type="pagelink" t:page="ZoneUpdater"><i
-						class="icon-chevron-right"></i> ZoneUpdater</a></li>
 			</ul>
 		</section>
 	</div>

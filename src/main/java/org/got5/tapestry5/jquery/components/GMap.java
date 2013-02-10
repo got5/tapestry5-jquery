@@ -29,7 +29,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *		</ul>
  * </p>
  */
-@Import(stylesheet="classpath:org/got5/tapestry5/jquery/assets/components/gmap/gmap.css")
+@Import(stylesheet="classpath:/META-INF/modules/tjq/vendor/gmap/gmap.css")
 public class GMap implements ClientElement {
 	
 	@Parameter
@@ -38,14 +38,6 @@ public class GMap implements ClientElement {
 	
 	@Property
 	private String id;
-	
-	@Inject
-	@Path("classpath:org/got5/tapestry5/jquery/assets/components/gmap/gmap3.js")
-	private Asset gmap3;
-	
-	@Inject
-	@Path("classpath:org/got5/tapestry5/jquery/assets/components/gmap/GMap.js")
-	private Asset gmap;
 	
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
@@ -66,10 +58,8 @@ public class GMap implements ClientElement {
 	    opt.put("id", id);
 	    opt.put("params", parameters);
 	    
-		javaScriptSupport.importJavaScriptLibrary("http://maps.google.com/maps/api/js?sensor=false");
-		javaScriptSupport.importJavaScriptLibrary(gmap3);
-		javaScriptSupport.importJavaScriptLibrary(gmap);
-		javaScriptSupport.addInitializerCall("gmap", opt);
+	    //javaScriptSupport.importJavaScriptLibrary("http://maps.google.com/maps/api/js?sensor=false");
+		javaScriptSupport.require("tjq/gmap").with(opt);
 	}
 
 	public String getClientId() {

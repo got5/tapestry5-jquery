@@ -1,7 +1,19 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-   
-<t:progressiveDisplay />
-	<t:block id="testBlock">
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>Progessive Display</h1>
+			</div>
+			<t:progressiveDisplay />
+			<t:block id="testBlock">
 		this is progressive display !
 	</t:block>
+		</section>
+	</div>
+</div>
 </html>
