@@ -1,18 +1,19 @@
 package org.got5.tapestry5.jquery.components;
 
-import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.alerts.Alert;
 import org.apache.tapestry5.alerts.AlertStorage;
-import org.apache.tapestry5.annotations.Environmental;
+import org.apache.tapestry5.annotations.HeartbeatDeferred;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.RequestParameter;
 import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.corelib.base.BaseClientElement;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.javascript.InitializationPriority;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.apache.tapestry5.services.compatibility.DeprecationWarning;
 
 /**
  * The JGrowl component has the same behavior as the Errors component. It will
@@ -21,7 +22,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * @tapestrydoc
  */
 @Import(stylesheet = { "${assets.path}/components/jgrowl/jquery.jgrowl.css" })
-public class JGrowl {
+public class JGrowl extends BaseClientElement{
 
 	/**
 	 * The JSON-type parameter for the jQuery plugin. This component will extend
@@ -30,53 +31,74 @@ public class JGrowl {
 	@Parameter
 	private JSONObject params;
 
-	@Inject
-	private ComponentResources resources;
+	 /**
+     * Allows the button used to dismiss all alerts to be customized (and localized).
+     *
+     * @deprecated Deprecated in Tapestry 5.4; override the {@code core-dismiss-label} message key in
+     *             your application's message catalog. This parameter is now ignored.
+     */
+    @Parameter(value = "message:core-dismiss-label", defaultPrefix = BindingConstants.LITERAL)
+    private String dismissText;
 
-	@Environmental
-	private JavaScriptSupport javaScriptSupport;
+    @SessionState(create = false)
+    private AlertStorage storage;
 
-	@SessionState(create = false)
-	private AlertStorage storage;
+    @Inject
+    private DeprecationWarning deprecationWarning;
 
-	boolean beginRender(MarkupWriter writer) {
-		JSONObject spec = new JSONObject();
+    void onPageLoaded()
+    {
+        deprecationWarning.ignoredComponentParameters(resources, "dismissText");
+    }
 
-		spec.put("dismissURL", resources.createEventLink("dismiss").toURI());
+    boolean beginRender(MarkupWriter writer)
+    {
+        
+    	Link dismissLink = resources.createEventLink("dismiss");
 
-		spec.put("jgrowl", params);
+        storeElement(writer.element("div",
+                "data-container-type", "alerts",
+                "data-dismiss-url", dismissLink));
 
-		javaScriptSupport.require("tjq/jgrowl/jGrowl_init")
-				.invoke("jGrowlAlertManager")
-				.priority(InitializationPriority.EARLY).with(spec);
+        resources.renderInformalParameters(writer);
+        writer.end();
 
-		if (storage != null) {
-			JSONObject json = new JSONObject();
+    	addAlertsFromStorage();
 
-			for (Alert alert : storage.getAlerts()) {
-				javaScriptSupport.require("tjq/jgrowl/jGrowl_init").invoke("addjGrowlAlert").with(alert.toJSON());
-			}
+        return false;
+    }
 
-			storage.dismissNonPersistent();
-		}
+    Object onDismiss(@RequestParameter(value = "id", allowBlank = true) Long alertId)
+    {
+        // If the alert was created inside an Ajax request and AlertStorage did not previously
+        // exist, it can be null when the dismiss event comes up from the client.
+        if (storage != null)
+        {
+            if (alertId != null)
+            {
+                storage.dismiss(alertId);
+            } else
+            {
+                storage.dismissAll();
+            }
+        }
 
-		return false;
-	}
+        return new JSONObject();
+    }
 
-	Object onDismiss(
-			@RequestParameter(value = "id", allowBlank = true) Long alertId) {
-		// If the alert was created inside an Ajax request and AlertStorage did
-		// not previously
-		// exist, it can be null when the dismiss event comes up from the
-		// client.
-		if (storage != null) {
-			if (alertId != null) {
-				storage.dismiss(alertId);
-			} else {
-				storage.dismissAll();
-			}
-		}
+    @HeartbeatDeferred
+    void addAlertsFromStorage()
+    {
+        if (storage == null)
+        {
+            return;
+        }
 
-		return new JSONObject();
-	}
+        for (Alert alert : storage.getAlerts())
+        {
+            javaScriptSupport.require("tjq/jgrowl").with(alert.toJSON());
+        }
+
+        storage.dismissNonPersistent();
+    }
 }

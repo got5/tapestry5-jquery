@@ -3,10 +3,10 @@ package org.got5.tapestry5.jquery.pages;
 import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.alerts.Duration;
 import org.apache.tapestry5.alerts.Severity;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.InjectService;
 
 public class JGrowl {
-	@Inject
+	@InjectService(value="jgrowl")
 	private AlertManager manager;
 	
 	

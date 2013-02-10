@@ -17,6 +17,7 @@
 package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -35,7 +36,6 @@ import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
-import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -48,6 +48,7 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
+import org.got5.tapestry5.jquery.services.impl.JGrowlManagerImpl;
 import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
@@ -89,6 +90,8 @@ public class JQueryModule {
 		configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
 		
 		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
+		
+		
 		
 		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
@@ -148,6 +151,7 @@ public class JQueryModule {
 				.scope(ScopeConstants.PERTHREAD);
 		binder.bind(JavaScriptFilesConfiguration.class,
 				JavaScriptFilesConfigurationImpl.class);
+		binder.bind(AlertManager.class, JGrowlManagerImpl.class).withId("jgrowl");
 	}
 
 	/**
@@ -251,7 +255,7 @@ public class JQueryModule {
 		configuration.add("vendor/palette", new JavaScriptModuleConfiguration(palette).dependsOn("vendor/jqueryui", "vendor/jqueryjson"));
 		configuration.add("vendor/raty", new JavaScriptModuleConfiguration(raty).dependsOn("jquery"));
 		
-		if(suppressPrototype) {
+		if(suppressPrototype) {	
 			
 			String filewithoutCountry = String.format("jquery.ui.datepicker-%s", locale.getLocale().getLanguage());
 			String filewithcountry = String.format("%s-%s", filewithoutCountry, locale.getLocale().getCountry());

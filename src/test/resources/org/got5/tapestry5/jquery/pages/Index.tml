@@ -85,6 +85,8 @@
 						class="icon-chevron-right"></i> ImageCropper</a></li>
 				<li><a t:type="pagelink" t:page="DocsInPlaceEditor"><i
 						class="icon-chevron-right"></i> InPlaceEditor</a></li>
+				<li><a t:type="pagelink" t:page="jgrowl"><i
+						class="icon-chevron-right"></i> jGrowl</a></li>
 				<li><a t:type="pagelink" t:page="jquerydialog"><i
 						class="icon-chevron-right"></i> jQuery Dialog</a></li>
 				<li><a t:type="pagelink" t:page="jquerypalette"><i
@@ -107,15 +109,6 @@
 						class="icon-chevron-right"></i> ZoneRefresh</a></li>
 				<li><a t:type="pagelink" t:page="ZoneUpdater"><i
 						class="icon-chevron-right"></i> ZoneUpdater</a></li>
-			</ul>
-			<div class="page-header">
-				<h1>Others</h1>
-			</div>
-			<ul class="nav nav-list bs-docs-sidenav">
-				<li><a t:type="pagelink" t:page="jgrowl"><i
-						class="icon-chevron-right"></i> jGrowl</a></li>
-				
-				
 			</ul>
 		</section>
 	</div>
