@@ -1,10 +1,7 @@
 requirejs.config({
 	"shim" : {
 		"tjq/vendor/gmap/gmap3": ["async!http://maps.google.com/maps/api/js?sensor=false", "jquery"]
-	}, 
-	paths : {
-    	
-    }
+	}
 });
 
 define(["tjq/vendor/gmap/gmap3"], function() {

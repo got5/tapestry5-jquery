@@ -23,7 +23,6 @@ import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -31,7 +30,6 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
  * This component allows you create a slider in a form. A range slider is a slider that is mapped to a property value. 
@@ -44,8 +42,6 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
-@Import( library={ "${assets.path}/components/slider/slider.js" })
 public class Slider  {
 
     /**
@@ -119,7 +115,7 @@ public class Slider  {
     		specs.put("url", link.toAbsoluteURI());
     		specs.put("zoneId", zone);
     	}
-        jsSupport.addInitializerCall("slider", specs);
+        jsSupport.require("tjq/slider").with(specs);
     }
 
     public String getSliderId(){

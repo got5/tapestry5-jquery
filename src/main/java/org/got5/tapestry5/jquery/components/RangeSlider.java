@@ -23,7 +23,6 @@ import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -31,7 +30,6 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
  * This component allows you create a range slider in a form. A range slider is a slider that has a min and a max value. This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider. 
@@ -43,8 +41,6 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
-@Import( library={ "${assets.path}/components/rangeslider/range-slider.js" })
 public class RangeSlider  {
 
     /**
@@ -122,7 +118,7 @@ public class RangeSlider  {
     		specs.put("zoneId", zone);
     	}
     	
-        jsSupport.addInitializerCall("rangeSlider", specs);
+        jsSupport.require("tjq/rangeSlider").with(specs);
     }
 
     public String getSliderId(){
