@@ -196,7 +196,7 @@ $.widget( "ui.palette", {
 			    } catch (e){
 				    //select.remove(..) throws exception in ie9, when select contains optgroup
 				    //see http://social.msdn.microsoft.com/Forums/is/iewebdevelopment/thread/2ab12546-7bb4-41b6-8d36-442cc0ecb153
-				    from.removeChild(from.childNodes[i]);
+				    $(from).find("option[value='"+option.value+"']").remove();
 				}
 				i--;
                 movers.push(option);
