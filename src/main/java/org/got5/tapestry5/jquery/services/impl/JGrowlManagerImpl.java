@@ -1,7 +1,6 @@
 package org.got5.tapestry5.jquery.services.impl;
 
 import org.apache.tapestry5.alerts.Alert;
-import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.alerts.AlertStorage;
 import org.apache.tapestry5.alerts.Duration;
 import org.apache.tapestry5.alerts.Severity;
@@ -12,8 +11,9 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.apache.tapestry5.services.ajax.JavaScriptCallback;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.services.JGrowlManager;
 
-public class JGrowlManagerImpl implements AlertManager
+public class JGrowlManagerImpl implements JGrowlManager
 {
  private final ApplicationStateManager asm;
 
@@ -32,27 +32,42 @@ public class JGrowlManagerImpl implements AlertManager
      needAlertStorageCleanup = perThreadManager.createValue();
  }
 
- public void success(String message)
+ /* (non-Javadoc)
+ * @see org.got5.tapestry5.jquery.services.impl.JGrowlManager#success(java.lang.String)
+ */
+public void success(String message)
  {
      alert(Duration.SINGLE, Severity.SUCCESS, message);
  }
  
- public void info(String message)
+ /* (non-Javadoc)
+ * @see org.got5.tapestry5.jquery.services.impl.JGrowlManager#info(java.lang.String)
+ */
+public void info(String message)
  {
      alert(Duration.SINGLE, Severity.INFO, message);
  }
 
- public void warn(String message)
+ /* (non-Javadoc)
+ * @see org.got5.tapestry5.jquery.services.impl.JGrowlManager#warn(java.lang.String)
+ */
+public void warn(String message)
  {
      alert(Duration.SINGLE, Severity.WARN, message);
  }
 
- public void error(String message)
+ /* (non-Javadoc)
+ * @see org.got5.tapestry5.jquery.services.impl.JGrowlManager#error(java.lang.String)
+ */
+public void error(String message)
  {
      alert(Duration.SINGLE, Severity.ERROR, message);
  }
 
- public void alert(Duration duration, Severity severity, String message)
+ /* (non-Javadoc)
+ * @see org.got5.tapestry5.jquery.services.impl.JGrowlManager#alert(org.apache.tapestry5.alerts.Duration, org.apache.tapestry5.alerts.Severity, java.lang.String)
+ */
+public void alert(Duration duration, Severity severity, String message)
  {
      final Alert alert = new Alert(duration, severity, message);
 

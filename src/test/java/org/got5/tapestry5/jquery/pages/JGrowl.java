@@ -1,13 +1,13 @@
 package org.got5.tapestry5.jquery.pages;
 
-import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.alerts.Duration;
 import org.apache.tapestry5.alerts.Severity;
-import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.got5.tapestry5.jquery.services.JGrowlManager;
 
 public class JGrowl {
-	@InjectService(value="jgrowl")
-	private AlertManager manager;
+	@Inject
+	private JGrowlManager manager;
 	
 	
 	void onActionFromTransient(){

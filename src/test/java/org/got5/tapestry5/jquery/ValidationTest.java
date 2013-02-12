@@ -34,7 +34,7 @@ public class ValidationTest extends SeleniumTestCase{
 		   @Override
 	       public boolean until(){
 			   
-			   return !(validationVisible ^ getAttribute("//label[@for='"+fieldId+"']@class").contains("t-error"));
+			   return !(validationVisible ^ isVisible("//p[contains(@data-error-block-for, '"+fieldId+"')]"));
 		   }
 	   }.wait("The Element " + fieldId + " not found", 5000l);
         

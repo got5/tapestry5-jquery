@@ -4,9 +4,11 @@
     
         <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
         <parameter name="tapestry.browser-start-command" value="*firefox" />
-		<classes>
-			<class name="org.got5.tapestry5.jquery.JScrollPaneTest"></class>
-		</classes>
+        
+        <classes>
+        	<class name="org.got5.tapestry5.jquery.ValidationTest"></class>
+        </classes>
+        
 		<!-- <packages>
     		<package name="org.got5.tapestry5.jquery">
     			<exclude name="org.got5.tapestry5.jquery.unit"></exclude>

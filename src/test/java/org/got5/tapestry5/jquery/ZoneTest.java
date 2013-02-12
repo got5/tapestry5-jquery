@@ -49,7 +49,7 @@ public class ZoneTest extends SeleniumTestCase{
 	        			getText("identifier=myZone2").contains("I am a Component inside the block which is visible after the zone update"));
 	    }
 
-	    @Test
+	    @Test(dependsOnMethods="testZone")
 	    public void testFormMultiZoneUpdate() 
 	    {
 	        open("/zone");
@@ -68,7 +68,7 @@ public class ZoneTest extends SeleniumTestCase{
 	            }
 	        }.wait("element not found", 5000l);
 
-	        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update");
-	        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update");
+	        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update 1");
+	        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update 1");
 	    }
 }

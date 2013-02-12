@@ -16,7 +16,7 @@ public class TreeTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return !isElementPresent("//div[@id='content']/div[@class='t-tree-container']/ul/li[1]/ul");
+				return !isElementPresent("///div[@class='t-tree-container']/ul/li[1]/ul");
 			}
 		}.wait("The child none should be invisible", JQueryTestConstants.TIMEOUT);
 		
@@ -26,7 +26,7 @@ public class TreeTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[@class='t-tree-container']/ul/li[1]/ul");
+				return isElementPresent("//div[@class='t-tree-container']/ul/li[@class='t-last']/ul");
 				
 			}
 		}.wait("The child none should be visible", JQueryTestConstants.TIMEOUT);

@@ -12,55 +12,40 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
     	
     	open("/AjaxFormLoop");
     	
-    	click("//a[@id='addrowlink']");
+    	click("//a[@data-afl-trigger='add']");
     	
     	new Wait()
         {
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(1);
             }
         }.wait("We should have just one row.", JQueryTestConstants.TIMEOUT);
         
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return getAttribute("//div[@id='testCallback']@class").equalsIgnoreCase("added");
-            }
-        }.wait("The Added event has not been triggered.", JQueryTestConstants.TIMEOUT);
         
-        click("//a[@id='addrowlink']");
+        click("//a[@data-afl-trigger='add']");
     	
     	new Wait()
         {
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(2);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(2);
             }
-        }.wait("A New row should be present.", JQueryTestConstants.TIMEOUT);
+        }.wait("A New row should be present." + getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']"), JQueryTestConstants.TIMEOUT);
         
-        click("//a[contains(@id,'removerowlink_')][1]");
+        click("//a[@data-afl-behavior='remove'][1]");
     	
     	new Wait()
         {
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[contains(@id,'rowInjector_')]").equals(1);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(1);
             }
         }.wait("The first row should be deleted.", JQueryTestConstants.TIMEOUT);
     	
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return getAttribute("//div[@id='testCallback']@class").equalsIgnoreCase("removed");
-            }
-        }.wait("The Removed event has not been triggered.", JQueryTestConstants.TIMEOUT);
+
     }
 }

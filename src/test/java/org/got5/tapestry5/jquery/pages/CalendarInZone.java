@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -19,6 +20,7 @@ public class CalendarInZone {
 	private Zone zone;
 	
 	@Property
+	@Persist
 	private boolean showContents;
 	
 	@Inject

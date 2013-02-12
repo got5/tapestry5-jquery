@@ -11,14 +11,14 @@ public class BindTest extends SeleniumTestCase{
     public void testBind(){
 		open("/Bind");
 		
-		assertSourcePresent("jqbind","eventType","\"click\",");       
+		assertSourcePresent("tjq/bind","eventType","\"click\",");       
 	}
 	
 	@Test
 	public void testEvent() {
 		open("/Bind");
     
-		click("//div[@id='clickHere']");
+		click("//section/a");
         
         new Wait()
         {

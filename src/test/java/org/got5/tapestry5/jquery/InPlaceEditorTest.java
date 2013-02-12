@@ -12,27 +12,27 @@ public class InPlaceEditorTest extends SeleniumTestCase{
 		
 		open("/DocsInPlaceEditor");
 		
-		click("//table[@class='t-data-grid']/tbody/tr[@class='t-first']/td[@class='lastName']/span");
+		click("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span");
 		
 		new Wait()
         {
             @Override
             public boolean until()
             {
-                return isElementPresent("//table[@class='t-data-grid']/tbody/tr[@class='t-first']/td[@class='lastName']/span/form");
+                return isElementPresent("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form");
             }
         }.wait("The input is not visible", JQueryTestConstants.TIMEOUT);
         
-        type("//table[@class='t-data-grid']/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/input", "François");
+        type("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/input", "François");
         
-        click("//table[@class='t-data-grid']/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/button[@type='submit']");
+        click("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/button[@type='submit']");
         
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("//table[@class='t-data-grid']/tbody/tr[@class='t-first']/td[@class='lastName']/span").contains("François");
+                return getText("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span").contains("François");
             }
         }.wait("The value has not been updated", JQueryTestConstants.TIMEOUT);
 	}

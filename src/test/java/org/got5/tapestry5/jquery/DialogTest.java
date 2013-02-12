@@ -60,7 +60,7 @@ public class DialogTest extends SeleniumTestCase {
 		
 		final Number top = getElementPositionTop("//div[contains(@class, 'ui-dialog-titlebar')]");
 		
-		dragAndDropToObject("//div[contains(@class, 'ui-dialog-titlebar')]", "//div[@id='top']");
+		dragAndDropToObject("//div[contains(@class, 'ui-dialog-titlebar')]", "//div[contains(@class, 'navbar')]");
 		
 		new Wait()
         {

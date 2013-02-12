@@ -15,7 +15,7 @@ public class TooltipTest extends SeleniumTestCase{
     {
     	open("/Tooltip");
     	
-    	mouseOver("//div[@id='content']/a");
+    	mouseOver("//section/p/a");
     	
     	
         new Wait()
@@ -23,18 +23,18 @@ public class TooltipTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("false");
+                return isElementPresent("//div[@role='tooltip']");
             }
         }.wait("The tooltip is not visible", JQueryTestConstants.TIMEOUT);
     	
-    	mouseOut("//div[@id='content']/a");
+    	mouseOut("//section/p/a");
     	
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getAttribute("//div[@id='ui-tooltip-0']@aria-hidden").equals("true");
+                return !isElementPresent("//div[@role='tooltip']");
             }
         }.wait("The tooltip is visible!", JQueryTestConstants.TIMEOUT);
         

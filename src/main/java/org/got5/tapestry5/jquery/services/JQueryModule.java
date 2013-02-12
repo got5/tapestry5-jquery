@@ -151,7 +151,7 @@ public class JQueryModule {
 				.scope(ScopeConstants.PERTHREAD);
 		binder.bind(JavaScriptFilesConfiguration.class,
 				JavaScriptFilesConfigurationImpl.class);
-		binder.bind(AlertManager.class, JGrowlManagerImpl.class).withId("jgrowl");
+		binder.bind(JGrowlManager.class, JGrowlManagerImpl.class);
 	}
 
 	/**

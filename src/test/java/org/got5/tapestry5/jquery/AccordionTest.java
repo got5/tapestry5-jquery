@@ -11,27 +11,37 @@ public class AccordionTest extends SeleniumTestCase{
     public void testAccordion()
     {
         open("/jqueryaccordion");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//h3[contains(@class, 'ui-accordion-header-active')]");
+            }
+        }.wait("The jQuery UI Accordion has not been initialized", JQueryTestConstants.TIMEOUT);
+        
         // active tab must be second
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 2");
+                return getText("//h3[contains(@class, 'ui-accordion-header-active')]").contains("Element2");
             }
-        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        }.wait("The second panel should be selected " + getText("//h3[contains(@class, 'ui-accordion-header-active')]"), JQueryTestConstants.TIMEOUT);
        
           //click on first tab
-        click("xpath=/html/body/div/div/div/h3/a");
+        click("xpath=/html/body/div/div/div/section/div/h3/a");
 
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 1");
+                return getText("//h3[contains(@class, 'ui-accordion-header-active')]").contains("Element1");
             }
-        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        }.wait("The first panel should be selected", JQueryTestConstants.TIMEOUT);
 
        
     }
@@ -46,7 +56,7 @@ public class AccordionTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getText("//div[@id='accordion']/h3[4]/a").equals("Block Test");
+                return getText("//div[@id='accordion']/h3[4]/a").contains("Block Test");
             }
         }.wait("The fourth accordion does not have the right default value.", JQueryTestConstants.TIMEOUT);
 	}
@@ -55,27 +65,37 @@ public class AccordionTest extends SeleniumTestCase{
     public void testAccordionOld()
     {
         open("/jqueryaccordionOld");
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//h3[contains(@class, 'ui-accordion-header-active')]");
+            }
+        }.wait("The jQuery UI Accordion has not been initialized", JQueryTestConstants.TIMEOUT);
+        
         // active tab must be second
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 2");
+                return getText("//h3[contains(@class, 'ui-accordion-header-active')]").contains("Element2");
             }
-        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        }.wait("The second panel should be selected", JQueryTestConstants.TIMEOUT);
        
           //click on first tab
-        click("xpath=/html/body/div/div/div/h3/a");
+        click("xpath=/html/body/div/div/div/section/div/h3/a");
 
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("css=html body div.wrapper div#content div#accordion.ui-accordion div.ui-accordion-content-active h3").equals("Element 1");
+                return getText("//h3[contains(@class, 'ui-accordion-header-active')]").contains("Element1");
             }
-        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        }.wait("The first panel should be selected", JQueryTestConstants.TIMEOUT);
 
        
     }

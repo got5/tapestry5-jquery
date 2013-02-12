@@ -13,9 +13,9 @@
    		 		${message}
    		 	</t:zone>
 
-			<div t:id="clickHere" t:type="any" t:mixins="jquery/bind"
+			<a t:id="clickHere" t:type="any" t:mixins="jquery/bind"
 				t:eventType="click" t:event="click" t:zone="${clickzone.clientid}">click
-				test</div>
+				test</a>
 		</section>
 	</div>
 </div>

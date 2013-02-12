@@ -12,10 +12,18 @@ public class TabsTest extends SeleniumTestCase{
     {
         open("/jquerytabs");
         // active tab must be second
-        assertEquals(getText("css=div#tabs-zone.t-zone h3"), "Panel 2");
-
+        
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return getText("css=div#tabs-zone.t-zone h3").equals("Panel 2");
+            }
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        
         //click on first tab
-        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_0");
+        click("a#ui-id-1");
 
         new Wait()
         {
@@ -27,7 +35,7 @@ public class TabsTest extends SeleniumTestCase{
         }.wait("element not found!", JQueryTestConstants.TIMEOUT);
 
         //click on third tab
-        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_0_1");
+        click("a#ui-id-2");
 
         new Wait()
         {
@@ -39,7 +47,7 @@ public class TabsTest extends SeleniumTestCase{
         }.wait("element not found!", JQueryTestConstants.TIMEOUT);
 
         //click on last tab
-        click("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_0_2");
+        click("a#ui-id-3");
 
         new Wait()
         {
@@ -61,7 +69,7 @@ public class TabsTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getText("css=div.wrapper div#content div#tabs.ui-tabs ul.ui-tabs-nav li.ui-state-default a#eventlink_0_2").contains("Block Test");
+                return getText("a#ui-id-4").contains("Block Test");
             }
         }.wait("The fourth label has not its default value", JQueryTestConstants.TIMEOUT);
         

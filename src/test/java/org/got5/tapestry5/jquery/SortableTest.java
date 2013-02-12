@@ -25,7 +25,7 @@ public class SortableTest extends SeleniumTestCase{
 	        }
 	    }.wait("The default order is wrong!", JQueryTestConstants.TIMEOUT);
 	    
-	    dragAndDropToObject("//ul[@id='any']/li[5]", "//ul[@class='nav']");
+	    dragAndDropToObject("//ul[@id='any']/li[5]", "//header");
 	    
 	    new Wait()
 	    {
@@ -40,7 +40,7 @@ public class SortableTest extends SeleniumTestCase{
 	        }
 	    }.wait("The second order is wrong!", JQueryTestConstants.TIMEOUT);
 	    
-	    dragAndDropToObject("//ul[@id='any']/li[3]", "//div[@id='footer']");
+	    dragAndDropToObject("//ul[@id='any']/li[3]", "//footer");
 	    
 	    new Wait()
 	    {

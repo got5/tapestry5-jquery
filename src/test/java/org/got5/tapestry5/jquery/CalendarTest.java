@@ -12,6 +12,15 @@ public class CalendarTest extends SeleniumTestCase{
         open("/calendar");
         waitForPageToLoad();
 
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//button[@class='ui-datepicker-trigger']");
+            }
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        
         click("//button[@class='ui-datepicker-trigger']");
 
         new Wait()
@@ -21,7 +30,7 @@ public class CalendarTest extends SeleniumTestCase{
             {
                 return isElementPresent("identifier=ui-datepicker-div") && isVisible("identifier=ui-datepicker-div");
             }
-        }.wait("element not found!");
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
 
         assertEquals(true, isVisible("identifier=ui-datepicker-div"));
     }
@@ -38,7 +47,16 @@ public class CalendarTest extends SeleniumTestCase{
 		
         open("/" + locale + "/calendarinzone");
 		
-		click("//a[@id='link']");
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//button[@class='ui-datepicker-trigger']");
+            }
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        
+		click("//a[@data-update-zone='zone']");
 		
 		new Wait()
         {
@@ -80,6 +98,15 @@ public class CalendarTest extends SeleniumTestCase{
 
         assertEquals(false, isEditable("identifier=datefield"));
 
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//button[@class='ui-datepicker-trigger']");
+            }
+        }.wait("element not found!", JQueryTestConstants.TIMEOUT);
+        
         click("//button[@class='ui-datepicker-trigger']");
 
         assertEquals(false, isVisible("identifier=ui-datepicker-div"));

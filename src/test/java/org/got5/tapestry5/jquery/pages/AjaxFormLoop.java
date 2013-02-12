@@ -99,10 +99,5 @@ public class AjaxFormLoop
     	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
 	}
 
-    public void afterRender(){
-//    	js.addInitializerCall(InitializationPriority.LATE, 
-//    								"ajaxFormLoopCallback", 
-//    								new JSONArray());
-    }
     
 }

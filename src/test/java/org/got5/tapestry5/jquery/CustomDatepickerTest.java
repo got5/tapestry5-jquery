@@ -25,32 +25,38 @@ public class CustomDatepickerTest extends SeleniumTestCase {
 
 	@Test
 	public void testCustomDatepicker() {
-		
+
 		open("/customdatepicker");
-		
+
+		new Wait() {
+			@Override
+			public boolean until() {
+				return isElementPresent("//button[@class='ui-datepicker-trigger']");
+			}
+		}.wait("element not found!");
+
 		click("//button[@class='ui-datepicker-trigger']");
-		
-		new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return (getAttribute("//div[@id='ui-datepicker-div']@style")!=null);
-            }
-        }.wait("Your calendar should be visible.", JQueryTestConstants.TIMEOUT);
-        
-        click("//button[@class='ui-datepicker-trigger']");
-        
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return getAttribute("//div[@id='ui-datepicker-div']@style").contains("DISPLAY: none;") || 
-                	getAttribute("//div[@id='ui-datepicker-div']@style").contains("display: none;");
-            }
-        }.wait("Your calendar should not be visible.", JQueryTestConstants.TIMEOUT);
-        
-        
-	}	
+
+		new Wait() {
+			@Override
+			public boolean until() {
+				return (getAttribute("//div[@id='ui-datepicker-div']@style") != null);
+			}
+		}.wait("Your calendar should be visible.", JQueryTestConstants.TIMEOUT);
+
+		click("//button[@class='ui-datepicker-trigger']");
+
+		new Wait() {
+			@Override
+			public boolean until() {
+				return getAttribute("//div[@id='ui-datepicker-div']@style")
+						.contains("DISPLAY: none;")
+						|| getAttribute("//div[@id='ui-datepicker-div']@style")
+								.contains("none");
+			}
+		}.wait("Your calendar should not be visible."
+				+ getAttribute("//div[@id='ui-datepicker-div']@style"),
+				JQueryTestConstants.TIMEOUT);
+
+	}
 }

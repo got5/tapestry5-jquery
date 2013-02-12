@@ -18,9 +18,9 @@ public class JGrowlTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[contains(@class, 'jgrowl-t-info')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-warn')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-error')]");
+				return isElementPresent("//div[contains(@class, 'jgrowl-info')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-warn')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-error')]");
 			}
 		}.wait("The jGrowl messages are missing.", JQueryTestConstants.TIMEOUT);
 		
@@ -28,9 +28,9 @@ public class JGrowlTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return !(isElementPresent("//div[contains(@class, 'jgrowl-t-info')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-warn')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-error')]"));
+				return !(isElementPresent("//div[contains(@class, 'jgrowl-info')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-warn')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-error')]"));
 			}
 		}.wait("The jGrowl messages are always displayed.", 20000l);
 		
@@ -47,9 +47,9 @@ public class JGrowlTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[contains(@class, 'jgrowl-t-info')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-warn')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-error')]");
+				return isElementPresent("//div[contains(@class, 'jgrowl-info')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-warn')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-error')]");
 			}
 		}.wait("The jGrowl messages are missing.", JQueryTestConstants.TIMEOUT);
 		
@@ -59,9 +59,9 @@ public class JGrowlTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[contains(@class, 'jgrowl-t-info')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-warn')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-t-error')]");
+				return isElementPresent("//div[contains(@class, 'jgrowl-info')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-warn')]") &&
+						isElementPresent("//div[contains(@class, 'jgrowl-error')]");
 			}
 		}.wait("The jGrowl messages should be visible after refreshing.", JQueryTestConstants.TIMEOUT);
 	}
