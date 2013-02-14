@@ -15,9 +15,11 @@ public class BindTest extends SeleniumTestCase{
 	}
 	
 	@Test
-	public void testEvent() {
+	public void testEvent() throws InterruptedException {
 		open("/Bind");
     
+		waitForPageInitialized();
+		
 		click("//section/a");
         
         new Wait()
