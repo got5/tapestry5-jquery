@@ -8,9 +8,10 @@ define(["t5/core/dom", "t5/core/console", "t5/core/messages", "t5/core/builder",
 function(dom, console, messages, builder, ajax, _) {
   var alert, dismissAll, dismissOne, exports, findInnerContainer, getURL, removeAlert, setupUI, severityToClass;
   severityToClass = {
-    success: "alert alert-success",
-    warn: "alert alert-warning",
-    error: "alert alert-error"
+    success: "success alert alert-success",
+    warn: "warn alert alert-warning",
+    error: "error alert alert-error",
+    info: "info alert alert-success",
   };
   getURL = function(container) {
     return container.attribute("data-dismiss-url");
