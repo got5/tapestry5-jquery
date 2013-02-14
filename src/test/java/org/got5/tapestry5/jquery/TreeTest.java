@@ -12,15 +12,17 @@ public class TreeTest extends SeleniumTestCase{
 		
 		open("/Tree");
 		
+		waitForPageInitialized();
+		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return !isElementPresent("///div[@class='t-tree-container']/ul/li[1]/ul");
+				return !isElementPresent("//div[@class='t-tree-container']/ul/li[@class='t-last']/ul");
 			}
-		}.wait("The child none should be invisible", JQueryTestConstants.TIMEOUT);
+		}.wait("The child none should not be invisible", JQueryTestConstants.TIMEOUT);
 		
-		click("//div[@class='t-tree-container']/ul/li[1]/span[@class='t-tree-icon']");
+		click("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/span[@class='t-tree-icon']");
 		
 		new Wait() {
 			
@@ -31,24 +33,25 @@ public class TreeTest extends SeleniumTestCase{
 			}
 		}.wait("The child none should be visible", JQueryTestConstants.TIMEOUT);
 		
-		click("//div[@class='t-tree-container']/ul/li[1]/ul/li[1]/span[2]");
+		click("//div[@class='t-tree-container']/ul/li[@class='t-last']/ul/li[contains(@class, 't-last')]/span[2]");
 		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@class='t-tree-container']/ul/li[1]/ul/li[1]/span[2]@class").contains("t-selected-leaf-node-label");
+				return getAttribute("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/ul/li[contains(@class, 't-last')]/span[contains(@class, 't-tree-label')]@class")
+						.contains("t-selected-leaf-node");
 			}
-		}.wait("The none should be selected", JQueryTestConstants.TIMEOUT);
+		}.wait("The none should be selected ", JQueryTestConstants.TIMEOUT);
 		
 		
-		click("//div[@class='t-tree-container']/ul/li[1]/span[@class='t-tree-icon t-tree-expanded']");
+		click("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/span[contains(@class, 't-tree-icon')]");
 		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@class='t-tree-container']/ul/li[1]/ul@style").contains("none;");
+				return getAttribute("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/ul@style").contains("none;");
 			}
 		}.wait("The child none should be invisible", JQueryTestConstants.TIMEOUT);
 	
