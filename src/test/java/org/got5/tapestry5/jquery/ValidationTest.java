@@ -29,14 +29,24 @@ public class ValidationTest extends SeleniumTestCase{
         type("//input[@type='text'][@id='"+fieldId+"']", value);
         click("//input[@type='submit']");
 
+		final String locator = "//p[contains(@data-error-block-for, '"+fieldId+"')]";
 	   new Wait()
 	   {
 		   @Override
 	       public boolean until(){
 			   
-			   return !(validationVisible ^ isVisible("//p[contains(@data-error-block-for, '"+fieldId+"')]"));
+			   return validationVisible ? blockShouldBeVisible(locator) : blockShouldNotBeVisible(locator);
+			  
 		   }
 	   }.wait("The Element " + fieldId + " not found", 5000l);
         
+    }
+    
+    private boolean blockShouldBeVisible(String locator){
+    	return isElementPresent(locator) && !getAttribute(locator + "@style").contains("none");
+    }
+    
+    private boolean blockShouldNotBeVisible(String locator){
+    	return !blockShouldBeVisible(locator);
     }
 }
