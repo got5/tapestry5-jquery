@@ -10,6 +10,16 @@ public class DraggableTest extends SeleniumTestCase{
 	@Test 
 	public void dragItem1(){
 		open("/draggable");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//div[@class='ui-droppable']");
+            }
+        }.wait("The Widget has not been initialized properly", JQueryTestConstants.TIMEOUT);
+        
 		dragAndDropToObject("//div[@id='draggableItem1']", "//div[@id='dropzone']");
 		testDroppableZone("contexteItem1");
 	}
@@ -17,6 +27,16 @@ public class DraggableTest extends SeleniumTestCase{
 	@Test 
 	public void dragItem2(){
 		open("/draggable");
+		
+		new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+                return isElementPresent("//div[@class='ui-droppable']");
+            }
+        }.wait("The Widget has not been initialized properly", JQueryTestConstants.TIMEOUT);
+        
 		dragAndDropToObject("//div[@id='draggableItem2']", "//div[@id='dropzone']");
 		testDroppableZone("contexteItem2");
 	}
