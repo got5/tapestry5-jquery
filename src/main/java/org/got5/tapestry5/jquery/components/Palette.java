@@ -470,7 +470,6 @@ public class Palette extends AbstractField
 
                 if (isSelected)
                 {
-                    selectedOptions.add(optionModel);
                     valueToOptionModel.put(value, optionModel);
                     return;
                 }
@@ -480,6 +479,9 @@ public class Palette extends AbstractField
         };
 
         model.visit(visitor);
+        //adding selectedOptions in ordering according to getSelected()
+		for (Object selected : getSelected())
+		    selectedOptions.add(valueToOptionModel.get(selected));
     }
 
     /**
