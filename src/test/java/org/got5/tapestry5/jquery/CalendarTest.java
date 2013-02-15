@@ -56,18 +56,9 @@ public class CalendarTest extends SeleniumTestCase{
             }
         }.wait("element not found!", JQueryTestConstants.TIMEOUT);
         
-		click("//a[@data-update-zone='zone']");
+		click("//section/a[@data-update-zone='zone']");
 		
 		new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return !getAttribute("//div[contains(@class,'t-zone')]@style").contains("none");
-            }
-        }.wait("zone fr not visible!", JQueryTestConstants.TIMEOUT);
-        
-        new Wait()
         {
             @Override
             public boolean until()

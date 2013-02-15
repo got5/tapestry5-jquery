@@ -1,4 +1,8 @@
-
+requirejs.config({
+	"shim" : {
+		"vendor/jqueryui/i18n": ["vendor/jqueryui"]
+	}
+});
 define(["t5/core/dom", "t5/core/events", "vendor/jqueryui"], function(dom, events) {
 
   scan = function(root) {

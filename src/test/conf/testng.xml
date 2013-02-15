@@ -6,7 +6,7 @@
         <parameter name="tapestry.browser-start-command" value="*firefox" />
         
         <classes>
-        	<class name="org.got5.tapestry5.jquery.TabsTest"></class>
+        	<class name="org.got5.tapestry5.jquery.CalendarTest"></class>
         </classes>
         
 		<!-- <packages>

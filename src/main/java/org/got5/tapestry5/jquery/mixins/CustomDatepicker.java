@@ -6,9 +6,13 @@ import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
@@ -58,6 +62,14 @@ public class CustomDatepicker {
 	@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
 	private Boolean supressPrototype;
 
+	@Inject
+	private PersistentLocale locale;
+	
+	@Inject 
+	private AssetSource as;
+	
+	@Inject
+	private TypeCoercer typeCoercer;
 	/**
 	 * Mixin afterRender phrase occurs after the component itself. We will
 	 * change the JSON option of the jQuery datepicker widget
@@ -77,7 +89,8 @@ public class CustomDatepicker {
 			 */
 			defaultParamsObject = widgetParams.paramsForWidget(this.getClass()
 					.getSimpleName().toLowerCase());
-
+			
+			defaultParamsObject.put("locale", getLocale());
 			/*
 			 * We will merge the default JSON Object with the params parameter
 			 */
@@ -90,9 +103,28 @@ public class CustomDatepicker {
 			/*
 			 * We call the datepicker widget, in order to override the options
 			 */
+			
+			
 			javaScriptSupport.require("tjq/customdatepicker")
 					.priority(InitializationPriority.EARLY)
 					.with(defaultParamsObject);
 		}
+	}
+
+	private String getLocale() {
+		final String prefix = String.format("classpath:/META-INF/modules/tjq/vendor/ui/i18n/jquery.ui.datepicker-%s", locale.get().getLanguage());
+        final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.get().getCountry()), Resource.class);
+
+        if (withCountryExtension.exists()) {
+        	return String.format("%s-%s", locale.get().getLanguage(), locale.get().getCountry());
+        }
+
+        final Resource withLanguageExtension = typeCoercer.coerce(String.format("%s.js", prefix), Resource.class);
+
+        if (withLanguageExtension.exists()) {
+
+        	return locale.get().getLanguage();
+        }
+        return "en-GB";
 	}
 }

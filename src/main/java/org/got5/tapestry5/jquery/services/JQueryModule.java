@@ -17,17 +17,19 @@
 package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.ScopeConstants;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Advise;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -36,13 +38,15 @@ import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
+import org.apache.tapestry5.plastic.MethodAdvice;
+import org.apache.tapestry5.plastic.MethodInvocation;
+import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.compatibility.Compatibility;
 import org.apache.tapestry5.services.compatibility.Trait;
 import org.apache.tapestry5.services.javascript.JavaScriptModuleConfiguration;
-import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.ModuleManager;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
@@ -57,11 +61,6 @@ import org.got5.tapestry5.jquery.services.js.JSModule;
 @SubModule(JSModule.class)
 public class JQueryModule {
 
-	public static void contributeJavaScriptStackSource(MappedConfiguration<String, JavaScriptStack> configuration)
-    {
-    
-    }
-	
 	public static void contributeComponentClassResolver(
 			Configuration<LibraryMapping> configuration) {
 		configuration.add(new LibraryMapping("jquery",
@@ -76,7 +75,7 @@ public class JQueryModule {
 		configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.8.2");
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_VERSION, "1.9.2");
 		configuration.add(JQuerySymbolConstants.JQUERY_JSON_VERSION, "2.4");
-		
+
 		configuration.add(JQuerySymbolConstants.ASSETS_ROOT,
 				"classpath:/META-INF/assets");
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH,
@@ -86,13 +85,11 @@ public class JQueryModule {
 
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME,
 				"${jquery.ui.path}/themes/smoothness/jquery-ui.css");
-		
+
 		configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
-		
+
 		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
-		
-		
-		
+
 		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
 				"classpath:org/got5/tapestry5/jquery");
@@ -104,7 +101,7 @@ public class JQueryModule {
 
 		configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH,
 				"classpath:org/got5/tapestry5/jquery/validate/1_7");
-		
+
 		configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "$");
 
 		configuration.add(JQuerySymbolConstants.PARAMETER_PREFIX, "tjq-");
@@ -112,22 +109,25 @@ public class JQueryModule {
 				SymbolConstants.PRODUCTION_MODE_VALUE);
 
 	}
-	
+
 	@Contribute(Compatibility.class)
-	public static void contributeCompatibility(MappedConfiguration<Trait, Object> configuration, 
-			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) Boolean prototype){
-		
-		if(prototype)
+	public static void contributeCompatibility(
+			MappedConfiguration<Trait, Object> configuration,
+			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) Boolean prototype) {
+
+		if (prototype)
 			configuration.add(Trait.SCRIPTACULOUS, false);
 	}
+
 	@Contribute(SymbolProvider.class)
 	@ApplicationDefaults
 	public static void contributeApplicationDefault(
 			MappedConfiguration<String, Object> configuration) {
 
-		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
+		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER,
+				"jquery");
 	}
-	
+
 	public static void contributeClasspathAssetAliasManager(
 			MappedConfiguration<String, String> configuration) {
 		configuration.add("tap-jquery", "org/got5/tapestry5");
@@ -198,91 +198,87 @@ public class JQueryModule {
 
 	@Contribute(ModuleManager.class)
 	public static void setupjQueryUIShims(
-			MappedConfiguration<String, Object> configuration, 
+			MappedConfiguration<String, Object> configuration,
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
 			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
 			@Inject @Path("${jquery.ui.path}/ui/jquery.ui.effect.js") Resource jqueryuieffect,
 			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
-			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel			
-		) {
-		
+			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
+
 		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
 				jqueryui).dependsOn("jquery"));
-		
+
 		configuration.add("vendor/jqueryjson",
 				new JavaScriptModuleConfiguration(jqueryjson)
 						.dependsOn("jquery"));
-		
+
 		configuration.add("vendor/jqueryuieffect",
 				new JavaScriptModuleConfiguration(jqueryuieffect)
 						.dependsOn("jquery"));
-		
-		if(mouseWheelIncluded)
-			configuration.add("vendor/jquerymousewheel", new JavaScriptModuleConfiguration(jquerymousewheel).dependsOn("jquery"));
+
+		if (mouseWheelIncluded)
+			configuration.add("vendor/jquerymousewheel",
+					new JavaScriptModuleConfiguration(jquerymousewheel)
+							.dependsOn("jquery"));
 	}
+
+
 
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
-			MappedConfiguration<String, Object> configuration, ThreadLocale locale, TypeCoercer typeCoercer, 
+			MappedConfiguration<String, Object> configuration,
+			ThreadLocale locale,
+			TypeCoercer typeCoercer,
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype,
 			@Symbol(JQuerySymbolConstants.JQUERY_UI_PATH) String jqueryUiPath,
-			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick, 
-			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask, 
-			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal, 
-			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox, 
-			@Inject @Path("${assets.path}/mixins/placeholder/jquery.placeholder.js") Resource placeholder, 
-			@Inject @Path("${assets.path}/mixins/jscrollpane/jquery.jscrollpane.min.js") Resource jscrollpane, 
-			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider, 
-			@Inject @Path("${assets.path}/components/jcrop/jquery.Jcrop.js") Resource jcrop, 
-			@Inject @Path("${assets.path}/components/jeditable/jquery.jeditable.js") Resource jeditable, 
-			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload, 
-			@Inject @Path("${assets.path}/components/datatables/jquery.dataTables.js") Resource datatables, 
-			@Inject @Path("${assets.path}/components/palette/jquery.palette.js") Resource palette, 
-			@Inject @Path("${assets.path}/mixins/raty/jquery.raty.js") Resource raty, 
+			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick,
+			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask,
+			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal,
+			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox,
+			@Inject @Path("${assets.path}/mixins/placeholder/jquery.placeholder.js") Resource placeholder,
+			@Inject @Path("${assets.path}/mixins/jscrollpane/jquery.jscrollpane.min.js") Resource jscrollpane,
+			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider,
+			@Inject @Path("${assets.path}/components/jcrop/jquery.Jcrop.js") Resource jcrop,
+			@Inject @Path("${assets.path}/components/jeditable/jquery.jeditable.js") Resource jeditable,
+			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload,
+			@Inject @Path("${assets.path}/components/datatables/jquery.dataTables.js") Resource datatables,
+			@Inject @Path("${assets.path}/components/palette/jquery.palette.js") Resource palette,
+			@Inject @Path("${assets.path}/mixins/raty/jquery.raty.js") Resource raty,
 			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield) {
-		
-		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(ddslick).dependsOn("jquery"));
-		configuration.add("vendor/mask", new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
-		configuration.add("vendor/reveal", new JavaScriptModuleConfiguration(reveal).dependsOn("jquery"));
-		configuration.add("vendor/colorbox", new JavaScriptModuleConfiguration(colorbox).dependsOn("jquery"));
-		configuration.add("vendor/placeholder", new JavaScriptModuleConfiguration(placeholder).dependsOn("jquery"));
-		configuration.add("vendor/jscrollpane", new JavaScriptModuleConfiguration(jscrollpane).dependsOn("jquery"));
-		configuration.add("vendor/flexslider", new JavaScriptModuleConfiguration(flexslider).dependsOn("jquery"));
-		configuration.add("vendor/jcrop", new JavaScriptModuleConfiguration(jcrop).dependsOn("jquery"));
-		configuration.add("vendor/jeditable", new JavaScriptModuleConfiguration(jeditable).dependsOn("jquery"));
-		configuration.add("vendor/upload", new JavaScriptModuleConfiguration(upload).dependsOn("jquery"));
-		configuration.add("vendor/datatables", new JavaScriptModuleConfiguration(datatables).dependsOn("jquery"));
-		configuration.add("vendor/palette", new JavaScriptModuleConfiguration(palette).dependsOn("vendor/jqueryui", "vendor/jqueryjson"));
-		configuration.add("vendor/raty", new JavaScriptModuleConfiguration(raty).dependsOn("jquery"));
-		
-		if(suppressPrototype) {	
-			
-			String filewithoutCountry = String.format("jquery.ui.datepicker-%s", locale.getLocale().getLanguage());
-			String filewithcountry = String.format("%s-%s", filewithoutCountry, locale.getLocale().getCountry());
-			Boolean i18n = false;
-			Resource withCountryExtension = 
-					typeCoercer.coerce(String.format("%s/ui/i18n/%s.js", 
-							jqueryUiPath, filewithcountry), Resource.class);
-			
-	        if (withCountryExtension.exists()) {
-	        	configuration.add("vendor/jqueryui/i18n", new JavaScriptModuleConfiguration(withCountryExtension).dependsOn("vendor/jqueryui"));
-	        	i18n = true;
-	        }
-	        else {
-	        	final Resource withLanguageExtension = typeCoercer.coerce(
-	        			String.format("%s/ui/i18n/%s.js", jqueryUiPath, filewithoutCountry), Resource.class);
-	        	
-	        	if (withLanguageExtension.exists()) {
-	        		configuration.add("vendor/jqueryui/i18n", new JavaScriptModuleConfiguration(withLanguageExtension).dependsOn("vendor/jqueryui"));
-	        		i18n = true;
-	        	}
-	        }
-	        
-	        configuration.add("t5/core/datefield", new JavaScriptModuleConfiguration(datefield)
-	        	.dependsOn(i18n ? "vendor/jqueryui/i18n" : "vendor/jqueryui"));
 
+		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(
+				ddslick).dependsOn("jquery"));
+		configuration.add("vendor/mask",
+				new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
+		configuration.add("vendor/reveal", new JavaScriptModuleConfiguration(
+				reveal).dependsOn("jquery"));
+		configuration.add("vendor/colorbox", new JavaScriptModuleConfiguration(
+				colorbox).dependsOn("jquery"));
+		configuration.add("vendor/placeholder",
+				new JavaScriptModuleConfiguration(placeholder)
+						.dependsOn("jquery"));
+		configuration.add("vendor/jscrollpane",
+				new JavaScriptModuleConfiguration(jscrollpane)
+						.dependsOn("jquery"));
+		configuration.add("vendor/flexslider",
+				new JavaScriptModuleConfiguration(flexslider)
+						.dependsOn("jquery"));
+		configuration.add("vendor/jcrop", new JavaScriptModuleConfiguration(
+				jcrop).dependsOn("jquery"));
+		configuration.add("vendor/jeditable",
+				new JavaScriptModuleConfiguration(jeditable)
+						.dependsOn("jquery"));
+		configuration.add("vendor/upload", new JavaScriptModuleConfiguration(
+				upload).dependsOn("jquery"));
+		configuration.add("vendor/datatables",
+				new JavaScriptModuleConfiguration(datatables)
+						.dependsOn("jquery"));
+		configuration.add("vendor/palette", new JavaScriptModuleConfiguration(
+				palette).dependsOn("vendor/jqueryui", "vendor/jqueryjson"));
+		configuration.add("vendor/raty",
+				new JavaScriptModuleConfiguration(raty).dependsOn("jquery"));
+		configuration.add("t5/core/datefield",
+				new JavaScriptModuleConfiguration(datefield));
 
-			
-		}
 	}
 }

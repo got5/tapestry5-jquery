@@ -10,12 +10,12 @@
 				<h1>DateField In Zone</h1>
 			</div>
 			<t:zone t:id="zone" t:visible="false">
-				<t:if test="showContents">
+				
 					<t:form t:zone="zone">
-						<t:datefield t:value="date" />
+						<t:datefield t:value="date" t:mixins="customdatepicker"/>
 						<t:submit />
 					</t:form>
-				</t:if>
+				
 			</t:zone>
 
 			<t:actionLink t:id="link" t:zone="zone">Link</t:actionLink>
