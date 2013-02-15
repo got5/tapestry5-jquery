@@ -32,13 +32,13 @@ public class SuperfishStack implements JavaScriptStack {
 		};
 
 		javaScriptStack = F
-				.flow("${assets.path}/components/superfish/js/hoverIntent.js",
+				.flow("${assets.path}/components/superfish/js/jquery.hoverIntent.js",
 						"${assets.path}/components/superfish/js/jquery.bgiframe.min.js",
 						"${assets.path}/components/superfish/js/superfish.js",
 						"${assets.path}/components/superfish/js/supersubs.js",
 						"${assets.path}/components/superfish/js/mySuperfish.js")
 				.map(pathToAsset).toList();
-		
+
 	}
 
 	public List<String> getStacks() {
