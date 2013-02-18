@@ -1,11 +1,15 @@
-(function($){
-    
-	T5.extendInitializers(function(){
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/showsource/jquery.snippet": ["jquery"]
+	}
+});
+
+define(["tjq/vendor/showsource/jquery.snippet"], function() {
+	init = function(specs) {
 		
-		function init(specs) {
-var snippet = $("#"+specs.id + " pre."+specs.lang);
+	    var snippet = jQuery("#"+specs.id + " pre."+specs.lang);
         	
-        	$(snippet).snippet(specs.lang,
+        	jQuery(snippet).snippet(specs.lang,
         	{
         		style:specs.style,
         		collapse:specs.collapse,
@@ -23,9 +27,9 @@ var snippet = $("#"+specs.id + " pre."+specs.lang);
 	        	
 	        	var flag=false;
 	        	
-	        	$(snippet).find("li").each(function(index){
+	        	jQuery(snippet).find("li").each(function(index){
 	        		
-	        		var o = $(this);
+	        		var o = jQuery(this);
 	        		
 	        		o.html(o.html().replace(/&nbsp;/gi,' '));
 	        		
@@ -51,7 +55,7 @@ var snippet = $("#"+specs.id + " pre."+specs.lang);
 	        		
 	        	});
 	        	
-	        	$(snippet).find("li").each(function(index){
+	        	jQuery(snippet).find("li").each(function(index){
 	        		
 	        		var o = $(this);
 	        		
@@ -59,15 +63,10 @@ var snippet = $("#"+specs.id + " pre."+specs.lang);
 	        	});
         	}
         	
-        	$(snippet).closest(".my-snippet-container").css("display", "block");
+        	jQuery(snippet).closest(".my-snippet-container").css("display", "block");
         	
         
-		}
-		
-		return {
-			source : init
-		}
-	});
-    
-    
-})(jQuery);
+	  };
+  	
+  	return exports = init;
+});

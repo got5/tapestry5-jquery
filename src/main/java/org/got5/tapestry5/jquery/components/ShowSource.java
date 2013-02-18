@@ -31,9 +31,7 @@ import org.slf4j.Logger;
  * 
  * @tapestrydoc
  */
-@Import(library = {"${assets.path}/components/showSource/jquery.snippet.js",
-				  "${assets.path}/components/showSource/my-snippet.js"}, 
-		stylesheet = { "${assets.path}/components/showSource/jquery.snippet.css"})
+@Import(stylesheet = { "classpath:/META-INF/modules/tjq/vendor/showsource/jquery.snippet.css"})
 public class ShowSource {
 	
 	/**
@@ -131,7 +129,7 @@ public class ShowSource {
 			
 		defaultSpecs.put("showNum", message.get("ShowSource-showNum"));
 		
-		defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("org/got5/tapestry5/jquery/assets/components/showSource/my-snippet.js").toClientURL());
+		defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("classpath:/META-INF/modules/tjq/vendor/showsource/ZeroClipboard.swf").toClientURL());
 		
 		return true;
 	}
@@ -236,7 +234,7 @@ public class ShowSource {
 		
 		JQueryUtils.merge(params, defaultSpecs);
 		
-		support.addInitializerCall("source", params);
+		support.require("tjq/source").with(params);
 		
 	}
 	
