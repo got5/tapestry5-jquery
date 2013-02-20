@@ -77,9 +77,9 @@ public class JQueryModule {
 		configuration.add(JQuerySymbolConstants.JQUERY_JSON_VERSION, "2.4");
 
 		configuration.add(JQuerySymbolConstants.ASSETS_ROOT,
-				"classpath:/META-INF/assets");
+				"classpath:/META-INF/modules/tjq");
 		configuration.add(JQuerySymbolConstants.JQUERY_UI_PATH,
-				"${jquery.assets.root}/ui_1_9_2");
+				"${jquery.assets.root}/vendor/ui");
 		configuration.add(JQuerySymbolConstants.ASSETS_PATH,
 				"${jquery.assets.root}/lib");
 
@@ -196,87 +196,36 @@ public class JQueryModule {
 				"after:IgnoredPaths");
 	}
 
-	@Contribute(ModuleManager.class)
-	public static void setupjQueryUIShims(
-			MappedConfiguration<String, Object> configuration,
-			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
-			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
-			@Inject @Path("${jquery.ui.path}/ui/jquery.ui.effect.js") Resource jqueryuieffect,
-			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
-			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
-
-		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
-				jqueryui).dependsOn("jquery"));
-
-		configuration.add("vendor/jqueryjson",
-				new JavaScriptModuleConfiguration(jqueryjson)
-						.dependsOn("jquery"));
-
-		configuration.add("vendor/jqueryuieffect",
-				new JavaScriptModuleConfiguration(jqueryuieffect)
-						.dependsOn("jquery"));
-
-		if (mouseWheelIncluded)
-			configuration.add("vendor/jquerymousewheel",
-					new JavaScriptModuleConfiguration(jquerymousewheel)
-							.dependsOn("jquery"));
-	}
+//	@Contribute(ModuleManager.class)
+//	public static void setupjQueryUIShims(
+//			MappedConfiguration<String, Object> configuration,
+//			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
+//			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
+//			@Inject @Path("${jquery.ui.path}/ui/jquery.ui.effect.js") Resource jqueryuieffect,
+//			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
+//			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
+//
+//		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
+//				jqueryui).dependsOn("jquery"));
+//
+//		configuration.add("vendor/jqueryjson",
+//				new JavaScriptModuleConfiguration(jqueryjson)
+//						.dependsOn("jquery"));
+//
+//		configuration.add("vendor/jqueryuieffect",
+//				new JavaScriptModuleConfiguration(jqueryuieffect)
+//						.dependsOn("jquery"));
+//
+//	}
 
 
 
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
 			MappedConfiguration<String, Object> configuration,
-			ThreadLocale locale,
-			TypeCoercer typeCoercer,
-			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) boolean suppressPrototype,
-			@Symbol(JQuerySymbolConstants.JQUERY_UI_PATH) String jqueryUiPath,
-			@Inject @Path("${assets.path}/components/ddslick/jquery.ddslick.min.js") Resource ddslick,
-			@Inject @Path("${assets.path}/mixins/mask/jquery-maskedinput.js") Resource mask,
-			@Inject @Path("${assets.path}/mixins/reveal/jquery.reveal.js") Resource reveal,
-			@Inject @Path("${assets.path}/components/gallery/jquery.colorbox.js") Resource colorbox,
-			@Inject @Path("${assets.path}/mixins/placeholder/jquery.placeholder.js") Resource placeholder,
-			@Inject @Path("${assets.path}/mixins/jscrollpane/jquery.jscrollpane.min.js") Resource jscrollpane,
-			@Inject @Path("${assets.path}/components/flexslider/jquery.flexslider.js") Resource flexslider,
-			@Inject @Path("${assets.path}/components/jcrop/jquery.Jcrop.js") Resource jcrop,
-			@Inject @Path("${assets.path}/components/jeditable/jquery.jeditable.js") Resource jeditable,
-			@Inject @Path("${assets.path}/components/upload/jquery.fileuploader.js") Resource upload,
-			@Inject @Path("${assets.path}/components/datatables/jquery.dataTables.js") Resource datatables,
-			@Inject @Path("${assets.path}/components/palette/jquery.palette.js") Resource palette,
-			@Inject @Path("${assets.path}/mixins/raty/jquery.raty.js") Resource raty,
 			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield) {
 
-		configuration.add("vendor/ddslick", new JavaScriptModuleConfiguration(
-				ddslick).dependsOn("jquery"));
-		configuration.add("vendor/mask",
-				new JavaScriptModuleConfiguration(mask).dependsOn("jquery"));
-		configuration.add("vendor/reveal", new JavaScriptModuleConfiguration(
-				reveal).dependsOn("jquery"));
-		configuration.add("vendor/colorbox", new JavaScriptModuleConfiguration(
-				colorbox).dependsOn("jquery"));
-		configuration.add("vendor/placeholder",
-				new JavaScriptModuleConfiguration(placeholder)
-						.dependsOn("jquery"));
-		configuration.add("vendor/jscrollpane",
-				new JavaScriptModuleConfiguration(jscrollpane)
-						.dependsOn("jquery"));
-		configuration.add("vendor/flexslider",
-				new JavaScriptModuleConfiguration(flexslider)
-						.dependsOn("jquery"));
-		configuration.add("vendor/jcrop", new JavaScriptModuleConfiguration(
-				jcrop).dependsOn("jquery"));
-		configuration.add("vendor/jeditable",
-				new JavaScriptModuleConfiguration(jeditable)
-						.dependsOn("jquery"));
-		configuration.add("vendor/upload", new JavaScriptModuleConfiguration(
-				upload).dependsOn("jquery"));
-		configuration.add("vendor/datatables",
-				new JavaScriptModuleConfiguration(datatables)
-						.dependsOn("jquery"));
-		configuration.add("vendor/palette", new JavaScriptModuleConfiguration(
-				palette).dependsOn("vendor/jqueryui", "vendor/jqueryjson"));
-		configuration.add("vendor/raty",
-				new JavaScriptModuleConfiguration(raty).dependsOn("jquery"));
+		
 		configuration.add("t5/core/datefield",
 				new JavaScriptModuleConfiguration(datefield));
 

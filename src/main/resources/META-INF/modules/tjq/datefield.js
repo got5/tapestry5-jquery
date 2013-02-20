@@ -1,9 +1,4 @@
-requirejs.config({
-	"shim" : {
-		"vendor/jqueryui/i18n": ["vendor/jqueryui"]
-	}
-});
-define(["t5/core/dom", "t5/core/events", "vendor/jqueryui"], function(dom, events) {
+define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], function(dom, events) {
 
   scan = function(root) {
     var container, _i, _len, _ref, _results, field;

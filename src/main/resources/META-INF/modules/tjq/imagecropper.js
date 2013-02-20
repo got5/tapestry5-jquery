@@ -1,4 +1,9 @@
-define(["t5/core/zone", "t5/core/dom", "t5/core/events", "vendor/jcrop"], function(z, dom, events) {
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/components/jcrop/jquery.Jcrop": ["jquery"]
+	}
+});
+define(["t5/core/zone", "t5/core/dom", "t5/core/events", "tjq/vendor/components/jcrop/jquery.Jcrop"], function(z, dom, events) {
 	init = function(spec) {
 	
 		var img = jQuery("#" + spec.id);

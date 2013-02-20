@@ -21,7 +21,7 @@ import org.apache.tapestry5.services.compatibility.DeprecationWarning;
  * 
  * @tapestrydoc
  */
-@Import(stylesheet = { "${assets.path}/components/jgrowl/jquery.jgrowl.css" })
+@Import(stylesheet = { "${jquery.assets.root}/vendor/components/jgrowl/jquery.jgrowl.css" })
 public class JGrowl extends BaseClientElement{
 
 	/**

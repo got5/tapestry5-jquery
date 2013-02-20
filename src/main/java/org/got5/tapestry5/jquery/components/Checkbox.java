@@ -14,7 +14,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * 
  * @tapestrydoc
  */
-@Import(stylesheet = {"${assets.path}/components/checkbox/jquery.ui.checkbox.css"})
+@Import(stylesheet = {"${jquery.assets.root}/vendor/components/checkbox/jquery.ui.checkbox.css"})
 public class Checkbox extends org.apache.tapestry5.corelib.components.Checkbox{
 	
 	@Environmental

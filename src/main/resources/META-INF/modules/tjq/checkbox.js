@@ -1,10 +1,10 @@
 requirejs.config({
 	"shim" : {
-		"tjq/ckbox/jquery.ui.checkbox": ["vendor/jqueryui"]
+		"tjq/vendor/components/ckbox/jquery.ui.checkbox": ["tjq/vendor/ui/jquery-ui.custom"]
 	}
 });
 
-define(["tjq/ckbox/jquery.ui.checkbox"], function() {
+define(["tjq/vendor/components/ckbox/jquery.ui.checkbox"], function() {
 	init = function(spec) {
 	    jQuery("#" + spec.id).checkbox();
 	  };

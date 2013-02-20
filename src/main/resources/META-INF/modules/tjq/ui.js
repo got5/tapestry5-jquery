@@ -1,4 +1,10 @@
-define([  "t5/core/dom", "t5/core/events", "vendor/jqueryui", "vendor/jqueryjson"], function(dom, events) {
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/ui/jquery-ui.custom": ["jquery"],
+		"tjq/vendor/jquery.json-2.4": ["jquery"], 
+	}
+});
+define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tjq/vendor/jquery.json-2.4"], function(dom, events) {
 
 	draggable = function(spec) {
 		jQuery( "#" + spec.id ).draggable(spec.params).data("contexte",spec.context);

@@ -86,15 +86,15 @@ public class Superfish{
 	private JavaScriptSupport javaScriptSupport;
 	
 	@Inject
-	@Path("${assets.path}/components/superfish/css/superfish-vertical.css")
+	@Path("${jquery.assets.root}/vendor/components/superfish/css/superfish-vertical.css")
 	private Asset verticalAsset;
 	
 	@Inject
-	@Path("${assets.path}/components/superfish/css/superfish-navbar.css")
+	@Path("${jquery.assets.root}/vendor/components/superfish/css/superfish-navbar.css")
 	private Asset navBarAsset;
 	
 	@Inject
-	@Path("${assets.path}/components/superfish/css/superfish.css")
+	@Path("${jquery.assets.root}/vendor/components/superfish/css/superfish.css")
 	private Asset mainAsset;
 	
 	@SetupRender
@@ -138,7 +138,7 @@ public class Superfish{
 		
 		//javaScriptSupport.addInitializerCall("superfish", jso);
 		//javaScriptSupport.importStack(SuperfishStack.STACK_ID);
-		javaScriptSupport.require("tjq/superfish/mySuperfish").with(jso);
+		javaScriptSupport.require("tjq/mySuperfish").with(jso);
 		
 	}
 

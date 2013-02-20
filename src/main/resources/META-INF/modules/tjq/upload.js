@@ -1,3 +1,8 @@
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/components/upload/jquery.fileuploader": ["jquery"]
+	}
+});
 /**
  * 
  * @param spec.action
@@ -24,7 +29,7 @@
  * @param spec.showMessagesDialog
  *            The id of the error message dialog.
  */
- define(["t5/core/dom", "t5/core/events", "t5/core/pageinit", "vendor/upload"], function(dom, events, pageinit) {
+ define(["t5/core/dom", "t5/core/events", "t5/core/pageinit", "tjq/vendor/components/upload/jquery.fileuploader"], function(dom, events, pageinit) {
 	init = function(spec) {
 		var el = jQuery('#' + spec.elementId);
 

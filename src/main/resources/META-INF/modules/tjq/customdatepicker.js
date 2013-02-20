@@ -1,6 +1,7 @@
 requirejs.config({
 	"shim" : {
-		"tjq/vendor/ui/i18n/jquery-ui-i18n": ["vendor/jqueryui"]
+		"tjq/vendor/ui/jquery-ui.custom": ["jquery"],
+		"tjq/vendor/ui/i18n/jquery-ui-i18n": ["tjq/vendor/ui/jquery-ui.custom"]
 	}
 });
 

@@ -1,4 +1,9 @@
-define(["t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "vendor/ddslick"], function(dom, zone, events, ajax) {
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/components/ddslick/jquery.ddslick.min": ["jquery"]
+	}
+});
+define(["t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "tjq/vendor/components/ddslick/jquery.ddslick.min"], function(dom, zone, events, ajax) {
 	init = function(spec) {
 		jQuery('#'+spec.elementId).ddslick({
 			data: spec.ddData,

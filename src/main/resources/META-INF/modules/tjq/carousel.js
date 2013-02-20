@@ -1,10 +1,10 @@
 requirejs.config({
 	"shim" : {
-		"tjq/vendor/carousel/jquery.jcarousel": ["jquery"]
+		"tjq/vendor/components/carousel/jquery.jcarousel": ["jquery"]
 	}
 });
 
-define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/carousel/jquery.jcarousel"], function(dom, z, events) {
+define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/components/carousel/jquery.jcarousel"], function(dom, z, events) {
 
 	dom.onDocument("click", "img[data-update-zone]", function() {
 	    var zone;

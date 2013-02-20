@@ -1,10 +1,10 @@
 requirejs.config({
 	"shim" : {
-		"tjq/jgrowl/jquery.jgrowl": ["jquery"]
+		"tjq/vendor/components/jgrowl/jquery.jgrowl": ["jquery"]
 	}
 });
 
-define(["t5/core/dom", "t5/core/console", "t5/core/messages", "t5/core/builder", "t5/core/ajax", "_", "tjq/jgrowl/jquery.jgrowl"], 
+define(["t5/core/dom", "t5/core/console", "t5/core/messages", "t5/core/builder", "t5/core/ajax", "_", "tjq/vendor/components/jgrowl/jquery.jgrowl"], 
 function(dom, console, messages, builder, ajax, _) {
   var alert, dismissAll, dismissOne, exports, findInnerContainer, getURL, removeAlert, setupUI, severityToClass;
   severityToClass = {

@@ -1,4 +1,9 @@
-define(["vendor/raty"], function() {
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/mixins/raty/jquery.raty": ["jquery"]
+	}
+});
+define(["tjq/vendor/mixins/raty/jquery.raty"], function() {
 	init = function(spec) {
 	    if(spec.location == "before")
 			{

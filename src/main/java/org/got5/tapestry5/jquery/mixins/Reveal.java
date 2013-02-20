@@ -21,7 +21,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *
  * @tapestrydoc
  */
-@Import(stylesheet={"${assets.path}/mixins/reveal/reveal.css"})
+@Import(stylesheet={"${jquery.assets.root}/vendor/mixins/reveal/reveal.css"})
 public class Reveal{
 
 	/**

@@ -60,16 +60,16 @@ public class Raty {
 	@Parameter
 	private Float ratyValue;
 	
-	@Parameter(value="${assets.path}/mixins/raty/star-on.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${jquery.assets.root}/vendor/mixins/raty/star-on.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyStarOn;
 	
-	@Parameter(value="${assets.path}/mixins/raty/star-off.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${jquery.assets.root}/vendor/mixins/raty/star-off.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyStarOff;
 	
-	@Parameter(value="${assets.path}/mixins/raty/cancel-on.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${jquery.assets.root}/vendor/mixins/raty/cancel-on.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyCancelOn;
 	
-	@Parameter(value="${assets.path}/mixins/raty/cancel-off.png", defaultPrefix=BindingConstants.ASSET)
+	@Parameter(value="${jquery.assets.root}/vendor/mixins/raty/cancel-off.png", defaultPrefix=BindingConstants.ASSET)
 	private Asset ratyCancelOff;
 	
 	@Parameter

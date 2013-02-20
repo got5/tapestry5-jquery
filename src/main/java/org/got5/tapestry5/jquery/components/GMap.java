@@ -29,7 +29,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *		</ul>
  * </p>
  */
-@Import(stylesheet="classpath:/META-INF/modules/tjq/vendor/gmap/gmap.css")
+@Import(stylesheet="${jquery.assets.root}/vendor/components/gmap/gmap.css")
 public class GMap implements ClientElement {
 	
 	@Parameter

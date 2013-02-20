@@ -1,4 +1,9 @@
-define(["vendor/reveal"], function() {
+requirejs.config({
+	"shim" : {
+		"tjq/vendor/mixins/reveal/jquery.reveal": ["jquery"]
+	}
+});
+define(["tjq/vendor/mixins/reveal/jquery.reveal"], function() {
 	init = function(spec) {
 		jQuery('#'+spec.div).addClass('reveal-modal');
 

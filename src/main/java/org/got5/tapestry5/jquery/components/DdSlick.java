@@ -16,7 +16,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 /**
  * 
  */
-@Import(stylesheet = "${assets.path}/components/ddslick/DdSlickComponent.css")
+@Import(stylesheet = "${jquery.assets.root}/vendor/components/ddslick/DdSlickComponent.css")
 @SupportsInformalParameters
 public class DdSlick implements ClientElement {
 

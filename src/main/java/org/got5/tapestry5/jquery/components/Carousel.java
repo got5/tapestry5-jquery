@@ -36,7 +36,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 * 
 * @tapestrydoc
 */
-@Import(stylesheet={"classpath:/META-INF/modules/tjq/vendor/carousel/tango/skin.css"})
+@Import(stylesheet={"${jquery.assets.root}/vendor/components/carousel/tango/skin.css"})
 @SupportsInformalParameters
 public class Carousel implements ClientElement {
 	 

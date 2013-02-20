@@ -14,7 +14,7 @@ import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@Import(stylesheet = "${assets.path}/components/flexslider/flexslider.css")
+@Import(stylesheet = "${jquery.assets.root}/vendor/components/flexslider/flexslider.css")
 public class FlexSlider {
 	@Parameter
 	private JSONObject params;

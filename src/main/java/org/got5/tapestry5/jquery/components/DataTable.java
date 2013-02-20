@@ -51,7 +51,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
-@Import(stylesheet = "${assets.path}/components/datatables/tango/skin.css")
+@Import(stylesheet = "${jquery.assets.root}/vendor/components/datatables/tango/skin.css")
 public class DataTable extends AbstractJQueryTable {
 
 	@Inject

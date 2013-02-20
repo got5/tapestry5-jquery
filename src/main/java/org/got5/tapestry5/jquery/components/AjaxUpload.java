@@ -45,7 +45,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @Events( { JQueryEventConstants.AJAX_UPLOAD, JQueryEventConstants.NON_XHR_UPLOAD } )
-@Import(stylesheet = "${assets.path}/components/upload/fileuploader.css")
+@Import(stylesheet = "${jquery.assets.root}/vendor/components/upload/fileuploader.css")
 public class AjaxUpload extends AbstractExtendableComponent {
 
     /**

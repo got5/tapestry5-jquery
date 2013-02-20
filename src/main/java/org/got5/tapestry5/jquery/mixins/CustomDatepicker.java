@@ -9,10 +9,10 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
@@ -63,7 +63,7 @@ public class CustomDatepicker {
 	private Boolean supressPrototype;
 
 	@Inject
-	private PersistentLocale locale;
+	private ThreadLocale locale;
 	
 	@Inject 
 	private AssetSource as;
@@ -112,18 +112,18 @@ public class CustomDatepicker {
 	}
 
 	private String getLocale() {
-		final String prefix = String.format("classpath:/META-INF/modules/tjq/vendor/ui/i18n/jquery.ui.datepicker-%s", locale.get().getLanguage());
-        final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.get().getCountry()), Resource.class);
+		final String prefix = String.format("classpath:/META-INF/modules/tjq/vendor/ui/i18n/jquery.ui.datepicker-%s", locale.getLocale().getLanguage());
+        final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.getLocale().getCountry()), Resource.class);
 
         if (withCountryExtension.exists()) {
-        	return String.format("%s-%s", locale.get().getLanguage(), locale.get().getCountry());
+        	return String.format("%s-%s", locale.getLocale().getLanguage(), locale.getLocale().getCountry());
         }
 
         final Resource withLanguageExtension = typeCoercer.coerce(String.format("%s.js", prefix), Resource.class);
 
         if (withLanguageExtension.exists()) {
 
-        	return locale.get().getLanguage();
+        	return locale.getLocale().getLanguage();
         }
         return "en-GB";
 	}
