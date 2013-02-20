@@ -12,6 +12,7 @@ public class SuperfishTest extends SeleniumTestCase{
     	
     	open("/SuperFish");
     	
+    	waitForPageInitialized();
     	new Wait()
         {
             @Override
@@ -21,7 +22,7 @@ public class SuperfishTest extends SeleniumTestCase{
             }
         }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), JQueryTestConstants.TIMEOUT);
         
-        click("//ul[@id='menu1']/li[1]/a");
+        click("//ul[@id='menu1']/li/a[@href='#a']");
     	
         new Wait()
         {

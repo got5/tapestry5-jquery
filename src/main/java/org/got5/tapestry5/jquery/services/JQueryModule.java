@@ -90,14 +90,16 @@ public class JQueryModule {
 
 		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
 
+		configuration
+		.add(JQuerySymbolConstants.JQUERY_CORE_PATH,
+				"${jquery.assets.root}/vendor/jquery.js");
+		
 		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
 				"classpath:org/got5/tapestry5/jquery");
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH,
 				"classpath:org/got5/tapestry5/tapestry.js");
-		configuration
-				.add(JQuerySymbolConstants.JQUERY_CORE_PATH,
-						"classpath:org/got5/tapestry5/jquery/jquery_core/jquery-1.7.2.js");
+		
 
 		configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH,
 				"classpath:org/got5/tapestry5/jquery/validate/1_7");
@@ -196,35 +198,14 @@ public class JQueryModule {
 				"after:IgnoredPaths");
 	}
 
-//	@Contribute(ModuleManager.class)
-//	public static void setupjQueryUIShims(
-//			MappedConfiguration<String, Object> configuration,
-//			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded,
-//			@Inject @Path("${jquery.ui.path}/ui/jquery-ui.custom.js") Resource jqueryui,
-//			@Inject @Path("${jquery.ui.path}/ui/jquery.ui.effect.js") Resource jqueryuieffect,
-//			@Inject @Path("${jquery.assets.root}/jquery.json-2.4.js") Resource jqueryjson,
-//			@Inject @Path("${jquery.ui.path}/external/jquery.mousewheel.js") Resource jquerymousewheel) {
-//
-//		configuration.add("vendor/jqueryui", new JavaScriptModuleConfiguration(
-//				jqueryui).dependsOn("jquery"));
-//
-//		configuration.add("vendor/jqueryjson",
-//				new JavaScriptModuleConfiguration(jqueryjson)
-//						.dependsOn("jquery"));
-//
-//		configuration.add("vendor/jqueryuieffect",
-//				new JavaScriptModuleConfiguration(jqueryuieffect)
-//						.dependsOn("jquery"));
-//
-//	}
-
-
-
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
 			MappedConfiguration<String, Object> configuration,
-			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield) {
+			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield, 
+			@Inject @Symbol(JQuerySymbolConstants.JQUERY_CORE_PATH) Resource jquery) {
 
+		configuration.override("jquery-library",
+				new JavaScriptModuleConfiguration(jquery));
 		
 		configuration.add("t5/core/datefield",
 				new JavaScriptModuleConfiguration(datefield));
