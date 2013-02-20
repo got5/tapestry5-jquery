@@ -22,7 +22,11 @@ import org.apache.tapestry5.services.transform.TransformationSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 
-
+/**
+ * 
+ * @deprecated
+ *
+ */
 public class ImportJQueryUIWorker implements ComponentClassTransformWorker2
 {
 	
