@@ -418,7 +418,7 @@
 							<taglet>org.apache.tapestry5.javadoc.TapestryDocTaglet</taglet>
 		          			<tagletArtifact>
 					            <groupId>org.apache.tapestry</groupId>                       
-					            <artifactId>tapestry-javadoc</artifactId>                       
+					            <artifactId>tapestry-javadoc</artifactId>
 					            <version>${tapestry-release-version}</version>                   
 		          			</tagletArtifact>
 		          		</configuration>
@@ -444,7 +444,13 @@
          	
 		</plugins>
 	</reporting>
+    <repositories>
+		<repository>
+			<id>5.4-slpha-repo</id>
+			<url>https://repository.apache.org/content/repositories/orgapachetapestry-096</url>
 
+		</repository>
+    	</repositories>
     <distributionManagement>
 		<repository>
 			<id>devlab722-repo</id>
