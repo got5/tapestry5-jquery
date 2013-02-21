@@ -34,117 +34,119 @@ import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 
 /**
  * The Component allows you to create a CSS drop-down menu
- * 
+ *
  * @since 2.1.1
  * @see <a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a>
- * 
+ *
  * @tapestrydoc
  */
 @Import(stack=SuperfishStack.STACK_ID)
 @SupportsInformalParameters
 public class Superfish{
-	 
+
 	/**
 	 * Id Client of your menu
 	 */
-	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
-	
+
 	/**
 	 * JSON Object for the Superfish Configuration
 	 */
 	@Parameter
 	private JSONObject params;
-	
+
 	/**
-	 * Boolean parameter : 
+	 * Boolean parameter :
 	 * 		true : your menu will be vertical
 	 * 		false : your menu will have the navbar stylesheet
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private boolean vertical;
-	
+
 	/**
 	 * CSS class for the menu. By default sf-menu
 	 */
 	@Parameter(value="sf-menu", defaultPrefix=BindingConstants.LITERAL)
 	private String classe;
-	
+
 	/**
 	 * Flag : Use the supersubs plugin
 	 */
 	@Parameter
 	private boolean supersubs;
-	
+
 	/**
 	 * JSON Object for the Supersubs configuration
 	 */
 	@Parameter
 	private JSONObject supersubsParams;
-	
+
 	@Inject
 	private ComponentResources componentResources;
-	
+
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
-	
+
 	@Inject
 	@Path("${assets.path}/components/superfish/css/superfish-vertical.css")
 	private Asset verticalAsset;
-	
+
 	@Inject
 	@Path("${assets.path}/components/superfish/css/superfish-navbar.css")
 	private Asset navBarAsset;
-	
+
 	@Inject
 	@Path("${assets.path}/components/superfish/css/superfish.css")
 	private Asset mainAsset;
-	
+
 	@SetupRender
 	public void init(MarkupWriter w){
-		
-		javaScriptSupport.importStylesheet(mainAsset);
-		
+
+	    this.clientId = javaScriptSupport.allocateClientId(componentResources);
+
+	    javaScriptSupport.importStylesheet(mainAsset);
+
 		String css = classe;
-		
+
 		if(componentResources.isBound("vertical"))
 		{
 			if(vertical) css += " sf-vertical";
 			else css += " sf-navbar";
-			
+
 			if(vertical) javaScriptSupport.importStylesheet(verticalAsset);
 			else javaScriptSupport.importStylesheet(navBarAsset);
 		}
-				
+
 		w.element("ul","id",getClientId(),"class",css);
-		
+
 		componentResources.renderInformalParameters(w);
-				
+
 	}
-	
-	
+
+
 	@AfterRender()
 	public void finish(MarkupWriter w){
 		w.end();
-		
+
 		JSONObject jso = new JSONObject();
-		
+
 		jso.put("id", getClientId());
-		
+
 		jso.put("classe", classe);
-		
+
 		jso.put("params", params);
-		
+
 		jso.put("supersubs", supersubs);
-		
+
 		jso.put("supersubsParams", supersubsParams);
-		
+
 		javaScriptSupport.addInitializerCall("superfish", jso);
-		
+
 	}
 
 	public String getClientId(){
         return this.clientId;
     }
-	
+
 }
