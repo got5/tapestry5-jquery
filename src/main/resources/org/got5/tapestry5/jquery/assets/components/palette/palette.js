@@ -259,7 +259,7 @@ $.widget( "ui.palette", {
 
     moveDownClicked: function () {
         var lastPos = 0;
-        for (var i = this.selected[0].options.length -1; i >= 0; i--)
+        for (var i = 0 ; i < this.selected[0].options.length; i++)
             if (this.selected[0].options[i].selected) lastPos = i;
         var before = this.selected[0].options[lastPos + 2];
         var movers = this.removeSelectedOptions(this.selected[0]);
