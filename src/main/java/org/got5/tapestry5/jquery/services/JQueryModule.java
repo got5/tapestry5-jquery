@@ -59,6 +59,7 @@ import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
+
 public class JQueryModule {
 
 	public static void contributeComponentClassResolver(
@@ -217,4 +218,5 @@ public class JQueryModule {
 					new JavaScriptModuleConfiguration(jquerymousewheel)
 							.dependsOn("jquery"));
 	}
+
 }

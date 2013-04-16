@@ -1,6 +1,6 @@
 /*
  * File:        TableTools.js
- * Version:     2.1.3
+ * Version:     2.1.4
  * Description: Tools and buttons for DataTables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
  * Language:    Javascript
@@ -323,18 +323,39 @@ TableTools.prototype = {
 	/**
 	 * Retreieve the settings object from an instance
 	 *  @returns {array} List of TR nodes which are currently selected
+	 *  @param {boolean} [filtered=false] Get only selected rows which are  
+	 *    available given the filtering applied to the table. By default
+	 *    this is false -  i.e. all rows, regardless of filtering are 
+	      selected.
 	 */
-	"fnGetSelected": function ()
+	"fnGetSelected": function ( filtered )
 	{
-		var out=[];
-		var data=this.s.dt.aoData;
-		var i, iLen;
+		var
+			out = [],
+			data = this.s.dt.aoData,
+			displayed = this.s.dt.aiDisplay,
+			i, iLen;
 
-		for ( i=0, iLen=data.length ; i<iLen ; i++ )
+		if ( filtered )
 		{
-			if ( data[i]._DTTT_selected )
+			// Only consider filtered rows
+			for ( i=0, iLen=displayed.length ; i<iLen ; i++ )
 			{
-				out.push( data[i].nTr );
+				if ( data[ displayed[i] ]._DTTT_selected )
+				{
+					out.push( data[ displayed[i] ].nTr );
+				}
+			}
+		}
+		else
+		{
+			// Use all rows
+			for ( i=0, iLen=data.length ; i<iLen ; i++ )
+			{
+				if ( data[i]._DTTT_selected )
+				{
+					out.push( data[i].nTr );
+				}
 			}
 		}
 
@@ -404,10 +425,7 @@ TableTools.prototype = {
 	{
 		var s = this._fnGetMasterSettings();
 
-		this._fnRowDeselect( (filtered === true) ?
-			s.dt.aiDisplay :
-			s.dt.aoData
-		);
+		this._fnRowDeselect( this.fnGetSelected(filtered) );
 	},
 
 	
@@ -1018,25 +1036,19 @@ TableTools.prototype = {
 				{
 				    return;
 				}
-				
-				/* User defined selection function */
-				if ( that.s.select.preRowSelect !== null && !that.s.select.preRowSelect.call(that, e) )
-				{
-					return;
-				}
 
 				if ( that.fnIsSelected( this ) )
 				{
-					that._fnRowDeselect( this );
+					that._fnRowDeselect( this, e );
 				}
 				else if ( that.s.select.type == "single" )
 				{
 					that.fnSelectNone();
-					that._fnRowSelect( this );
+					that._fnRowSelect( this, e );
 				}
 				else if ( that.s.select.type == "multi" )
 				{
-					that._fnRowSelect( this );
+					that._fnRowSelect( this, e );
 				}
 			} );
 
@@ -1056,27 +1068,48 @@ TableTools.prototype = {
 	 *  @param   {*} src Rows to select - see _fnSelectData for a description of valid inputs
 	 *  @private 
 	 */
-	"_fnRowSelect": function ( src )
+	"_fnRowSelect": function ( src, e )
 	{
-		var data = this._fnSelectData( src );
-		var firstTr = data.length===0 ? null : data[0].nTr;
+		var
+			that = this,
+			data = this._fnSelectData( src ),
+			firstTr = data.length===0 ? null : data[0].nTr,
+			anSelected = [],
+			i, len;
 
-		for ( var i=0, iLen=data.length ; i<iLen ; i++ )
+		// Get all the rows that will be selected
+		for ( i=0, len=data.length ; i<len ; i++ )
+		{
+			if ( data[i].nTr )
+			{
+				anSelected.push( data[i].nTr );
+			}
+		}
+		
+		// User defined pre-selection function
+		if ( this.s.select.preRowSelect !== null && !this.s.select.preRowSelect.call(this, e, anSelected, true) )
+		{
+			return;
+		}
+
+		// Mark them as selected
+		for ( i=0, len=data.length ; i<len ; i++ )
 		{
 			data[i]._DTTT_selected = true;
 
 			if ( data[i].nTr )
 			{
-				$(data[i].nTr).addClass( this.classes.select.row );
+				$(data[i].nTr).addClass( that.classes.select.row );
 			}
 		}
 
+		// Post-selection function
 		if ( this.s.select.postSelected !== null )
 		{
-			this.s.select.postSelected.call( this, firstTr );
+			this.s.select.postSelected.call( this, anSelected );
 		}
 
-		TableTools._fnEventDispatch( this, 'select', firstTr );
+		TableTools._fnEventDispatch( this, 'select', anSelected, true );
 	},
 
 	/**
@@ -1084,27 +1117,48 @@ TableTools.prototype = {
 	 *  @param   {*} src Rows to deselect - see _fnSelectData for a description of valid inputs
 	 *  @private 
 	 */
-	"_fnRowDeselect": function ( src )
+	"_fnRowDeselect": function ( src, e )
 	{
-		var data = this._fnSelectData( src );
-		var firstTr = data.length===0 ? null : data[0].nTr;
+		var
+			that = this,
+			data = this._fnSelectData( src ),
+			firstTr = data.length===0 ? null : data[0].nTr,
+			anDeselectedTrs = [],
+			i, len;
 
-		for ( var i=0, iLen=data.length ; i<iLen ; i++ )
+		// Get all the rows that will be deselected
+		for ( i=0, len=data.length ; i<len ; i++ )
 		{
-			if ( data[i].nTr && data[i]._DTTT_selected )
+			if ( data[i].nTr )
 			{
-				$(data[i].nTr).removeClass( this.classes.select.row );
+				anDeselectedTrs.push( data[i].nTr );
 			}
-
-			data[i]._DTTT_selected = false;
 		}
 
+		// User defined pre-selection function
+		if ( this.s.select.preRowSelect !== null && !this.s.select.preRowSelect.call(this, e, anDeselectedTrs, false) )
+		{
+			return;
+		}
+
+		// Mark them as deselected
+		for ( i=0, len=data.length ; i<len ; i++ )
+		{
+			data[i]._DTTT_selected = false;
+
+			if ( data[i].nTr )
+			{
+				$(data[i].nTr).removeClass( that.classes.select.row );
+			}
+		}
+
+		// Post-deselection function
 		if ( this.s.select.postDeselected !== null )
 		{
-			this.s.select.postDeselected.call( this, firstTr );
+			this.s.select.postDeselected.call( this, anDeselectedTrs );
 		}
 
-		TableTools._fnEventDispatch( this, 'select', firstTr );
+		TableTools._fnEventDispatch( this, 'select', anDeselectedTrs, false );
 	},
 	
 	/**
@@ -1633,36 +1687,24 @@ TableTools.prototype = {
 	 */
 	"_fnHtmlDecode": function ( sData )
 	{
-		if ( sData.indexOf('&') == -1 )
+		if ( sData.indexOf('&') === -1 )
 		{
 			return sData;
 		}
 		
-		var 
-			aData = this._fnChunkData( sData, 2048 ),
-			n = document.createElement('div'),
-			i, iLen, iIndex,
-			sReturn = "", sInner;
-		
-		/* nodeValue has a limit in browsers - so we chunk the data into smaller segments to build
-		 * up the string. Note that the 'trick' here is to remember than we might have split over
-		 * an HTML entity, so we backtrack a little to make sure this doesn't happen
-		 */
-		for ( i=0, iLen=aData.length ; i<iLen ; i++ )
-		{
-			/* Magic number 8 is because no entity is longer then strlen 8 in ISO 8859-1 */
-			iIndex = aData[i].lastIndexOf( '&' );
-			if ( iIndex != -1 && aData[i].length >= 8 && iIndex > aData[i].length - 8 )
+		var n = document.createElement('div');
+
+		return sData.replace( /&([^\s]*);/g, function( match, match2 ) {
+			if ( match.substr(1, 1) === '#' )
 			{
-				sInner = aData[i].substr( iIndex );
-				aData[i] = aData[i].substr( 0, iIndex );
+				return String.fromCharCode( Number(match2.substr(1)) );
 			}
-			
-			n.innerHTML = aData[i];
-			sReturn += n.childNodes[0].nodeValue;
-		}
-		
-		return sReturn;
+			else
+			{
+				n.innerHTML = match;
+				return n.childNodes[0].nodeValue;
+			}
+		} );
 	},
 	
 	
@@ -1703,6 +1745,12 @@ TableTools.prototype = {
 		if ( oSetDT.oScroll.sX !== "" || oSetDT.oScroll.sY !== "" )
 		{
 			this._fnPrintScrollStart( oSetDT );
+
+			// If the table redraws while in print view, the DataTables scrolling
+			// setup would hide the header, so we need to readd it on draw
+			$(this.s.dt.nTable).bind('draw.DTTT_Print', function () {
+				that._fnPrintScrollStart( oSetDT );
+			} );
 		}
 		
 		/* Remove the other DataTables feature nodes - but leave the table! and info div */
@@ -1778,6 +1826,8 @@ TableTools.prototype = {
 		/* Restore DataTables' scrolling */
 		if ( oSetDT.oScroll.sX !== "" || oSetDT.oScroll.sY !== "" )
 		{
+			$(this.s.dt.nTable).unbind('draw.DTTT_Print');
+
 			this._fnPrintScrollEnd();
 		}
 		
@@ -2044,18 +2094,19 @@ TableTools._fnEventListen = function ( that, type, fn )
  *  @param   {Object} that Scope of the listening function (i.e. 'this' in the caller)
  *  @param   {String} type Event type
  *  @param   {Node} node Element that the event occurred on (may be null)
+ *  @param   {boolean} [selected] Indicate if the node was selected (true) or deselected (false)
  *  @returns void
  *  @private
  *  @static
  */
-TableTools._fnEventDispatch = function ( that, type, node )
+TableTools._fnEventDispatch = function ( that, type, node, selected )
 {
 	var listeners = TableTools._aListeners;
 	for ( var i=0, iLen=listeners.length ; i<iLen ; i++ )
 	{
 		if ( that.dom.table == listeners[i].that.dom.table && listeners[i].type == type )
 		{
-			listeners[i].fn( node );
+			listeners[i].fn( node, selected );
 		}
 	}
 };
@@ -2383,7 +2434,7 @@ TableTools.prototype.CLASS = "TableTools";
  *  @type	  String
  *  @default   See code
  */
-TableTools.VERSION = "2.1.3";
+TableTools.VERSION = "2.1.4";
 TableTools.prototype.VERSION = TableTools.VERSION;
 
 

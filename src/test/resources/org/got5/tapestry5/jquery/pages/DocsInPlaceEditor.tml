@@ -2,7 +2,6 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns:p="tapestry:parameter">
 
-
 <div class="row">
 	<div class="span12">
 		<section id="list" style="padding-top: 30px;">

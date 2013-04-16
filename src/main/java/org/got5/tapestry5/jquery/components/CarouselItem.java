@@ -29,67 +29,65 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-
 /**
- *@since 2.1.1
+ * @since 2.1.1
  *
- *@tapestrydoc
+ * @tapestrydoc
  */
 @SupportsInformalParameters
 public class CarouselItem implements ClientElement {
-	 
-	
-	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
-	private String clientId;
-	
-	@Property
-	@Parameter(value="75", defaultPrefix=BindingConstants.LITERAL)
-	private int width;
-	
-	@Property
-	@Parameter(value="75", defaultPrefix=BindingConstants.LITERAL)
-	private int height;
-	
-	@Property
-	@Parameter(required=true, defaultPrefix=BindingConstants.PROP)
-	private String imageSource;
-	
-	@Property
-	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String page;
-	
-	@Property
-	@Parameter(defaultPrefix=BindingConstants.LITERAL)
-	private String event;
-	
-	@Property
-	@Parameter(allowNull=true,defaultPrefix=BindingConstants.PROP)
-	private Object context;
-	
+
+    @Property
+    @Parameter(value = "75", defaultPrefix = BindingConstants.LITERAL)
+    private int width;
+
+    @Property
+    @Parameter(value = "75", defaultPrefix = BindingConstants.LITERAL)
+    private int height;
+
+    @Property
+    @Parameter(required = true, defaultPrefix = BindingConstants.PROP)
+    private String imageSource;
+
+    @Property
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
+    private String page;
+
+    @Property
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
+    private String event;
+
+    @Property
+    @Parameter(allowNull = true, defaultPrefix = BindingConstants.PROP)
+    private Object context;
+
 	@Property
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String zone;
-	
-	
+
 	@Inject
 	private ComponentResources componentResources;
-	
+
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
-	
-//	@Inject
-//	private ClientBehaviorSupport clientSupport;
-	
+
 	@Inject
 	private PageRenderLinkSource pageRenderLink;
-	
+
+    private String clientId;
+
+	private boolean isPageLink;
+
+	private boolean isEventLink;
+
 	public boolean isPagelink(){
 		return StringUtils.isNotEmpty(page);
 	}
-	
+
 	public boolean isEventlink(){
 		return StringUtils.isNotEmpty(event);
 	}
+
 	
 	@SetupRender
 	public boolean init(MarkupWriter w){
@@ -134,11 +132,21 @@ public class CarouselItem implements ClientElement {
 		w.end();
 		return false;
 		
+
 	}
-	
-	public String getClientId(){
+
+	void afterRender(MarkupWriter writer) {
+
+        if (isPageLink || isEventLink) {
+            writer.end();
+        }
+
+	    writer.end();
+    }
+
+    public String getClientId() {
+
         return this.clientId;
     }
-	
-	
+
 }

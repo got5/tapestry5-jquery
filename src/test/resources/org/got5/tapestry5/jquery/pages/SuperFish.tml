@@ -8,8 +8,7 @@
 			<div class="page-header">
 				<h1>Superfish</h1>
 			</div>
-			<ul t:type="jquery/superfish" t:params="complexParams"
-				t:clientId="menu1">
+			<ul t:type="jquery/superfish" t:params="complexParams">
 				<li class="current"><a href="#a">menu item</a>
 					<ul>
 						<li><a href="#aa">menu item</a></li>

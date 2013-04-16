@@ -19,6 +19,7 @@ package org.got5.tapestry5.jquery.pages;
 import java.util.List;
 
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
@@ -31,6 +32,12 @@ import org.got5.tapestry5.jquery.data.CelebritySource;
 import org.got5.tapestry5.jquery.data.IDataSource;
 import org.got5.tapestry5.jquery.internal.TableInformation;
 
+@Import(stylesheet ={ "context:dataTables/css/demo_table_jui.css",
+		  "context:dataTables/css/demo_page.css",	
+		  "context:dataTables/css/demo_table.css",
+		  "context:dataTables/ColVis/media/css/ColVis.css", 
+		  "context:dataTables/ColReorder/media/css/ColReorder.css", 
+		  "context:dataTables/TableTools/media/css/TableTools.css"})
 public class DataTables
 {
 	@SessionState

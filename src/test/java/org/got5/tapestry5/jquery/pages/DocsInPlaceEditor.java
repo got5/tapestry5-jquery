@@ -53,9 +53,11 @@ public class DocsInPlaceEditor
 	    
 	@Inject
 	private Request request;
-	
+
 	void setupRender() {
-		users = createUsers(50);
+		if (users == null) {
+			users = createUsers(50);
+		}
 	}
 	
 	public BeanModel getMyModel(){
@@ -89,7 +91,7 @@ public class DocsInPlaceEditor
 	    return users;
 	}
 	
-	@OnEvent(component = "inPlaceEditor", value = InPlaceEditor.SAVE_EVENT)
+	@OnEvent(component = "inplaceeditor", value = InPlaceEditor.SAVE_EVENT)
 	void actionFromEditor(Long id, String value)
 	{
 		User user = (User)users.get(id.intValue());

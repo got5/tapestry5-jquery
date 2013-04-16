@@ -45,8 +45,14 @@ div.fw_footer {
 
 
 
-.type-param {
-	
+
+.type-attr .type-signature {
+	background-color: #ccc;
+	color: white;
+	border-radius: 3px;
+	display: inline-block;
+	padding: 0 3px;
+	font-size: 0.9em;
 }
 
 .type-attr {
@@ -63,7 +69,7 @@ div.fw_footer {
 }
 
 .type-param {
-	color: #FF9999;
+	color: #D32929;
 }
 
 .type-return {
@@ -115,10 +121,6 @@ div.doc_overview dd, div.doc_overview dt {
 
 
 
-.doc_details dt, .doc_details dd {
-	padding: 1em 10px;
-}
-
 .right_border div {
 	width: 20px;
 	padding: 2px 0.5em 2px 1em;
@@ -144,8 +146,8 @@ a:hover {
 }
 
 div.fw_content ul {
-	list-style-image: url('../images/arrow.jpg');
-	padding: 0.5em 0 0.5em 2em;
+	list-style-image: url('../images/arrow.png');
+	padding: 0 0 0 2em;
 }
 
 /*
@@ -186,6 +188,10 @@ h3 {
 
 h5 {
 	padding-top: 6px;
+	font-weight: bold;
+	font-size: 0.9em;
+	border-bottom: 1px solid #cad4e6;
+	margin-bottom: 1em;
 }
 
 div.doc_summary, div.doc_details {
@@ -207,6 +213,11 @@ div.extended {
 table.params {
 	margin-left: 30px;
 	width: 97%;
+}
+
+table.params th,
+table.params td {
+	padding: 3px;
 }
 
 tr.odd {
@@ -231,6 +242,18 @@ dd.odd td.number {
 	background-color: #F2F2F2;
 }
 
+p {
+	margin: 1em 0;
+}
+
+p:first-child {
+	margin-top: 0;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
 p.returns {
 	margin-left: 5%;
 }
@@ -247,11 +270,53 @@ div.page-info {
 }
 
 
+code {
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	padding: 2px 4px !important;
+	white-space: pre;
+	font-size: 0.9em;
+
+	color: #D14;
+	background-color: #F7F7F9;
+
+	border: 1px solid #E1E1E8;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 6px 10px;
+}
+
+pre>code {
+	background-color: transparent;
+	border: none;
+	color: #111;
+}
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+ol {
+	list-style-type: decimal;
+	list-style-position: outside;
+	padding-left: 30px;
+}
+
 
 
 div.fw_nav {
 	position: fixed;
-	top: 60px;
+	top: 25px;
 	right: 30px;
 	width: 250px;
 	border: 1px solid #A4B5D5;
@@ -278,6 +343,18 @@ div.fw_nav ul>li>div {
 
 div.nav_blocker {
 	float: right;
+}
+
+div.fw_nav td {
+	color: #999;
+}
+
+div.fw_nav li {
+	margin-bottom: 5px;
+}
+
+div.fw_nav li>a {
+	font-weight: bold;
 }
 
 
