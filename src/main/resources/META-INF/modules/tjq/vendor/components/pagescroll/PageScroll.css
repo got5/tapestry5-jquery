@@ -1,0 +1,4 @@
+div.scrollExtend-loading {
+    height: 20px;
+    background: url(loading-bars.gif) no-repeat left center;
+}

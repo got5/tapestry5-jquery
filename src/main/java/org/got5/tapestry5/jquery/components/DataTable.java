@@ -22,7 +22,6 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.internal.services.AjaxPartialResponseRenderer;
 import org.apache.tapestry5.internal.services.PageRenderQueue;
@@ -51,7 +50,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
-@Import(stylesheet = "${jquery.assets.root}/vendor/components/datatables/tango/skin.css")
 public class DataTable extends AbstractJQueryTable {
 
 	@Inject

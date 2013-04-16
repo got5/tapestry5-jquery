@@ -447,7 +447,7 @@
     <repositories>
 		<repository>
 			<id>5.4-slpha-repo</id>
-			<url>https://repository.apache.org/content/repositories/orgapachetapestry-096</url>
+			<url>https://repository.apache.org/content/repositories/orgapachetapestry-072/</url>
 
 		</repository>
     	</repositories>
@@ -475,7 +475,7 @@
 	
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-				<tapestry-release-version>5.4-alpha-2</tapestry-release-version>
+				<tapestry-release-version>5.4-alpha-3</tapestry-release-version>
                 <browserStartCommand>*firefox</browserStartCommand>
                 <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
