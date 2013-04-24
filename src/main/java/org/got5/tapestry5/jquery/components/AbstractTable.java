@@ -373,7 +373,6 @@ public class AbstractTable implements ClientElement {
 	}
 
 	@Parameter(required = false)
-	@Property(write = false)
 	private Object row;
 
 	@Parameter
@@ -479,6 +478,22 @@ public class AbstractTable implements ClientElement {
 
 			}
 		};
+	}
+
+	public Object getRow() {
+		return row;
+	}
+
+	public void setRow(Object row) {
+		this.row = row;
+	}
+
+	public Integer getRowIndex() {
+		return rowIndex;
+	}
+
+	public void setRowIndex(Integer rowIndex) {
+		this.rowIndex = rowIndex;
 	}
 
 	@Inject

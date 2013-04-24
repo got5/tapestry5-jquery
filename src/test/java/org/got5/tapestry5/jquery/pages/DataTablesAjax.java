@@ -26,6 +26,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.DataTableConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.data.Celebrity;
+import org.got5.tapestry5.jquery.data.CelebritySource;
+import org.got5.tapestry5.jquery.data.IDataSource;
 
 public class DataTablesAjax extends BaseDataTables
 {
@@ -34,11 +36,14 @@ public class DataTablesAjax extends BaseDataTables
 	 * For ajax mode, annotate your current item with @Environmental
 	 * The same for any iteration object used in propertyOverride block for ajax mode (index, ...)
 	 * */
-	@Environmental
+	@SessionState
+	private IDataSource dataSource;
+	private Celebrity celebrity;
+	private CelebritySource celebritySource;
+	
 	@Property
 	private Celebrity current;
-		
-	@Environmental
+
 	@Property
 	private int index;
 

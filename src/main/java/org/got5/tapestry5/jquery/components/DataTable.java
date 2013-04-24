@@ -32,18 +32,18 @@ import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
-import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
+import org.got5.tapestry5.jquery.internal.FakeInheritedBinding;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
+
 
 /**
  * @since 2.1.1
- * 
+ *
  *        For more informations about how to translate the DataTable plug-in,
  *        please visit the official documentation website {@link http
  *        ://datatables.net/plug-ins/i18n}
@@ -59,7 +59,7 @@ public class DataTable extends AbstractJQueryTable {
 	private TypeCoercer typeCoercer;
 
 	@Inject
-	private TranslatorSource ts;
+    protected TranslatorSource ts;
 
 	@Environmental
 	private JavaScriptSupport support;
@@ -69,9 +69,6 @@ public class DataTable extends AbstractJQueryTable {
 
 	@Inject
 	private Messages messages;
-
-	@Inject
-	private Environment environment;
 
 	@Inject
 	private PageRenderQueue pageRenderQueue;
@@ -85,13 +82,24 @@ public class DataTable extends AbstractJQueryTable {
 	/**
 	 * The default Implementation of the DataTableModel Interface
 	 */
-	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer, ts,
-			environment, pageRenderQueue, ajaxFormUpdateController,
-			partialRenderer);
+	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer, ts, pageRenderQueue,
+			ajaxFormUpdateController, partialRenderer,
+			new FakeInheritedBinding() {
+				public void set(Object value) {
+					setRow(value);
+				}
+			},
+			new FakeInheritedBinding() {
+				public void set(Object value) {
+					setRowIndex((Integer) value);
+				}
+			}
+	);
+
 
 	/**
 	 * Event method in order to get the datas to display.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@OnEvent(value = JQueryEventConstants.DATA)
@@ -171,7 +179,8 @@ public class DataTable extends AbstractJQueryTable {
 
 		dataTableParams.put("oLanguage", setI18NMessages());
 
-		JQueryUtils.merge(dataTableParams, getOptions());
+        JQueryUtils JQueryUtils;
+        JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
 		support.require("tjq/dataTables").with(setup);
@@ -190,14 +199,14 @@ public class DataTable extends AbstractJQueryTable {
 		language.put("sZeroRecords", messages.get("datatable.sZeroRecords"));
 		language.put("sEmptyTable", messages.get("datatable.sEmptyTable"));
 		language.put("oPaginate", new JSONObject(
-				"sFirst", messages.get("datatable.oPaginate.sFirst"), 
-				"sPrevious", messages.get("datatable.oPaginate.sPrevious"), 
-				"sNext", messages.get("datatable.oPaginate.sNext"), 
+				"sFirst", messages.get("datatable.oPaginate.sFirst"),
+				"sPrevious", messages.get("datatable.oPaginate.sPrevious"),
+				"sNext", messages.get("datatable.oPaginate.sNext"),
 				"sLast", messages.get("datatable.oPaginate.sLast")));
 		language.put("oAria", new JSONObject(
 				"sSortAscending", messages.get("datatable.oAria.sSortAscending"),
 				"sSortDescending", messages.get("datatable.oAria.sSortDescending")));
-		
+
 		return language;
 	}
 
