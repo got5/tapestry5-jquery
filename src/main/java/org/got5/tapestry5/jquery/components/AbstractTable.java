@@ -371,11 +371,11 @@ public class AbstractTable implements ClientElement {
 		
 		
 	}
-	
+
 	@Parameter(required = true)
     @Property(write = false)
     private Object row;
-	
+
 	@Parameter
     private int rowIndex;
 	
@@ -449,6 +449,12 @@ public class AbstractTable implements ClientElement {
 	 * Iterator for the look component in order to loop to each rows
 	 */
 	public Iterable<Integer> getLoopSource() {
+
+		// Issue #284 : call prepared() before calling getRowValue()
+		int startIndex = 0;
+		int endIndex = getSource().getAvailableRows() - 1;
+		getSource().prepare(startIndex, endIndex, sortModel.getSortConstraints());
+
 		return new Iterable<Integer>() {
 
 			public Iterator<Integer> iterator() {
@@ -458,12 +464,11 @@ public class AbstractTable implements ClientElement {
 					Integer i = new Integer(0);
 
 					public boolean hasNext() {
-						
 						return i < getSource().getAvailableRows();
 					}
 
 					public Integer next() {
-						row=getSource().getRowValue(i);
+						row = getSource().getRowValue(i);
 						return i++;
 					}
 
