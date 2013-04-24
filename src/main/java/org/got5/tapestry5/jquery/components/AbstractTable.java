@@ -372,13 +372,13 @@ public class AbstractTable implements ClientElement {
 		
 	}
 
-	@Parameter(required = true)
-    @Property(write = false)
-    private Object row;
+	@Parameter(required = false)
+	@Property(write = false)
+	private Object row;
 
 	@Parameter
-    private int rowIndex;
-	
+	private int rowIndex;
+
 	@Parameter(cache = false)
 	private String rowClass;
 	
@@ -480,7 +480,7 @@ public class AbstractTable implements ClientElement {
 			}
 		};
 	}
-	
+
 	@Inject
 	private Block cell;
 	
