@@ -18,29 +18,11 @@ package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.ioc.Configuration;
-import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.MethodAdviceReceiver;
-import org.apache.tapestry5.ioc.OrderedConfiguration;
-import org.apache.tapestry5.ioc.Resource;
-import org.apache.tapestry5.ioc.ScopeConstants;
-import org.apache.tapestry5.ioc.ServiceBinder;
-import org.apache.tapestry5.ioc.annotations.Advise;
-import org.apache.tapestry5.ioc.annotations.Contribute;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.InjectService;
-import org.apache.tapestry5.ioc.annotations.Match;
-import org.apache.tapestry5.ioc.annotations.Primary;
-import org.apache.tapestry5.ioc.annotations.SubModule;
-import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.*;
+import org.apache.tapestry5.ioc.annotations.*;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.ioc.services.ThreadLocale;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
-import org.apache.tapestry5.plastic.MethodAdvice;
-import org.apache.tapestry5.plastic.MethodInvocation;
-import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -51,15 +33,10 @@ import org.apache.tapestry5.services.javascript.ModuleManager;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
-import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
-import org.got5.tapestry5.jquery.services.impl.JGrowlManagerImpl;
-import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
-import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
-import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
+import org.got5.tapestry5.jquery.services.impl.*;
 import org.got5.tapestry5.jquery.services.js.JSModule;
 
 @SubModule(JSModule.class)
-
 public class JQueryModule {
 
 	public static void contributeComponentClassResolver(
@@ -218,5 +195,4 @@ public class JQueryModule {
 					new JavaScriptModuleConfiguration(jquerymousewheel)
 							.dependsOn("jquery"));
 	}
-
 }
