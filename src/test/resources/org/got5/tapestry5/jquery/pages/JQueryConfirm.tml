@@ -1,0 +1,26 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	
+	<t:pagelink t:id="pageLinkTest" page="index" message="Message de confirmation" t:mixins="jquery/Confirm">PageLink confirmation test</t:pagelink>
+	
+	<form t:type="form" t:id="loginForm">
+	
+		<t:label for="userName"/>:
+        <input t:type="TextField" t:id="userName" t:value="login"/>
+        <br/>
+        
+		<t:label for="password"/>:
+        <input t:type="PasswordField" t:id="password" t:value="password"/>
+        <br/>
+            
+    	<t:submit t:id="btnValid" value="Login" message="Valider les informations?" t:mixins="jquery/Confirm"/>
+    	
+	</form>
+	
+	<t:zone t:id="counterZone" id="counterZone">
+		<p>You have clicked the link <strong>${clickCount}</strong> times.</p>
+	</t:zone>
+	
+	<p>
+		<t:actionlink t:id="clicker" t:zone="counterZone" t:message="Test de zone" t:mixins="jquery/Confirm">increment the count</t:actionlink>
+	</p>
+</html>

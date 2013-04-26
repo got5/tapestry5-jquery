@@ -32,6 +32,7 @@ import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.plastic.MethodAdvice;
@@ -50,6 +51,8 @@ import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
 import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
 import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.javascript.AjaxUploadStack;
+import org.got5.tapestry5.jquery.services.javascript.ConfirmStack;
+import org.got5.tapestry5.jquery.services.javascript.ContextMenuStack;
 import org.got5.tapestry5.jquery.services.javascript.DDSlickStack;
 import org.got5.tapestry5.jquery.services.javascript.DataTableStack;
 import org.got5.tapestry5.jquery.services.javascript.FlexSliderStack;
@@ -64,6 +67,8 @@ import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
 import org.got5.tapestry5.jquery.services.javascript.SuperfishStack;
 import org.got5.tapestry5.jquery.services.javascript.widgets.Slider;
 import org.got5.tapestry5.jquery.services.js.JSModule;
+import org.got5.tapestry5.jquery.services.messages.MessageProvider;
+import org.got5.tapestry5.jquery.services.messages.MessageProviderImpl;
 
 @SubModule(JSModule.class)
 public class JQueryModule
@@ -94,6 +99,8 @@ public class JQueryModule
         configuration.addInstance(PlaceholderStack.STACK_ID, PlaceholderStack.class);
         configuration.addInstance(DDSlickStack.STACK_ID, DDSlickStack.class);
         configuration.addInstance(JScrollPaneStack.STACK_ID, JScrollPaneStack.class);
+		configuration.addInstance(ConfirmStack.STACK_ID, ConfirmStack.class);
+		configuration.addInstance(ContextMenuStack.STACK_ID, ContextMenuStack.class);
         configuration.addInstance(FlexSliderStack.STACK_ID, FlexSliderStack.class);
     }
 
@@ -151,6 +158,7 @@ public class JQueryModule
       binder.bind(RenderTracker.class, RenderTrackerImpl.class);
       binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class).scope(ScopeConstants.PERTHREAD);
       binder.bind(JavaScriptFilesConfiguration.class, JavaScriptFilesConfigurationImpl.class);
+	  binder.bind(MessageProvider.class, MessageProviderImpl.class);
     }
 
 
@@ -231,4 +239,11 @@ public class JQueryModule
 		if(prototype)
 			receiver.adviseMethod(receiver.getInterface().getMethod("createAsset", Resource.class),advise);
     }
+	
+	public static void contributeComponentMessagesSource (
+			@Value("/org/got5/tapestry5/JQueryCatalog.properties") Resource jQueryCatalog,
+			OrderedConfiguration<Resource> configuration) {
+		//Catalog used to store messages from mixins
+		configuration.add("JQueryCatalog", jQueryCatalog);
+	}
 }
