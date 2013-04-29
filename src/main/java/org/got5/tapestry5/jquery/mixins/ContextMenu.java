@@ -76,6 +76,14 @@ public class ContextMenu {
 	@Property
 	private int zIndex;
 	
+	/**
+     * The context for each link of the menu. This list of values will be converted into strings and included in
+     * the URI. The strings will be coerced back to whatever their values are and made available to event handler
+     * methods.
+     */
+    @Parameter
+    private Object[] context;
+	
 	// Injected services and components.
 	
 	@Inject
@@ -116,7 +124,7 @@ public class ContextMenu {
     		}
     		else {
     			//Menu entry.
-	    		link = resources.createEventLink(item.event);
+	    		link = resources.createEventLink(item.event, context);
 	    		
 	    		JSONObject jsonItem = new JSONObject();
 	    		jsonItem.put("name", item.label);
