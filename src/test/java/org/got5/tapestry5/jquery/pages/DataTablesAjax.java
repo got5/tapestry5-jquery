@@ -54,15 +54,9 @@ public class DataTablesAjax
 	private Celebrity celebrity;
 	private CelebritySource celebritySource;
 	
-	/**
-	 * For ajax mode, annotate your current item with @Environmental
-	 * The same for any iteration object used in propertyOverride block for ajax mode (index, ...)
-	 * */
-	@Environmental
 	@Property
 	private Celebrity current;
-		
-	@Environmental
+
 	@Property
 	private int index;
 		

@@ -6,11 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.tapestry5.Block;
-import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.PropertyConduit;
-import org.apache.tapestry5.PropertyOverrides;
-import org.apache.tapestry5.Translator;
+import org.apache.tapestry5.*;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.dom.Element;
 import org.apache.tapestry5.grid.ColumnSort;
@@ -54,8 +50,6 @@ public class DefaultDataTableModel implements DataTableModel {
 
 	private TranslatorSource translatorSource;
 
-	private Environment environment;
-
 	private PageRenderQueue pageRenderQueue;
 
 	private AjaxFormUpdateController ajaxFormUpdateController;
@@ -69,20 +63,24 @@ public class DefaultDataTableModel implements DataTableModel {
 	 * */
 	JSONArray rows;
 
+	private final FakeInheritedBinding rowParam;
+	private final FakeInheritedBinding rowIndexParam;
+
 	public DefaultDataTableModel(
 			TypeCoercer typeCoercer,
-			TranslatorSource translatorSource, 
-			Environment environment,
+			TranslatorSource translatorSource,
 			PageRenderQueue pageRenderQueue,
 			AjaxFormUpdateController ajaxFormUpdateController,
-			AjaxPartialResponseRenderer partialRenderer) {
+			AjaxPartialResponseRenderer partialRenderer,
+			FakeInheritedBinding row, FakeInheritedBinding rowIndex) {
 		super();
 		this.typeCoercer = typeCoercer;
 		this.translatorSource = translatorSource;
-		this.environment = environment;
 		this.pageRenderQueue = pageRenderQueue;
 		this.ajaxFormUpdateController = ajaxFormUpdateController;
 		this.partialRenderer = partialRenderer;
+		this.rowParam = row;
+		this.rowIndexParam = rowIndex;
 		response = new JSONObject();
 		rows = new JSONArray() ;
 	}
@@ -408,12 +406,12 @@ public class DefaultDataTableModel implements DataTableModel {
 
 								ajaxFormUpdateController.setupBeforePartialZoneRender(writer);
 								/**
-								 * Put the current item and the row index of the loop into the environment. 
-								 * This is to allow the block to use it when rendering itself
+								 * propagate the current item and the row index of the loop into the container
+								 * this is to allow the block to use it when rendering itself
 								 * */
-								environment.push(type, value);
-								environment.push(int.class, globalIndex);
-								
+								rowParam.set(value);
+								rowIndexParam.set(globalIndex);
+
 								queue.push(new RenderCommand()
 								{
 									public void render(MarkupWriter writer, RenderQueue queue)
@@ -423,11 +421,6 @@ public class DefaultDataTableModel implements DataTableModel {
 										// Need to do this Ajax Form-related cleanup here, before we extract the zone content.
 
 										ajaxFormUpdateController.cleanupAfterPartialZoneRender();
-										/**
-										 * remove the current item from the environment
-										 * */
-										environment.pop(type);
-										environment.pop(int.class);
 
 										String zoneUpdateContent = zoneContainer.getChildMarkup();
 
