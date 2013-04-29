@@ -127,12 +127,14 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 	}
 
 	public String getInitialization() {
-		if (!suppressPrototype && jQueryAlias.equals("$"))
+		if (!suppressPrototype && (jQueryAlias.equals("$") || jQueryAlias.equals("jQuery")))
+			
+			//If the alias='jQuery', we can have some problem with IE ! 
 			throw new RuntimeException(
 					"You are using an application based on Prototype"
 							+ " and jQuery. You should set in your AppModule the alias for the jQuery object to a different"
-							+ " value than '$'");
-
+							+ " value than '$' and 'jQuery'");
+	
 		return minified ? "var " + jQueryAlias + " = jQuery; Tapestry.JQUERY="
 				+ suppressPrototype + ";"
 				: "var "
