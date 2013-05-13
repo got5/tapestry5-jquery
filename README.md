@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.3.3
+# Tapestry 5 jQuery integration Module - 3.3.6
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
