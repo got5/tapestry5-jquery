@@ -38,10 +38,16 @@ public class JSLocatorSession implements JSLocator {
 	}
 
 	public String find(String path) {
-		Session session = request.getSession(true);	
-		String script = (String) session.getAttribute(path);
-		session.setAttribute(path, null);  
-		return script;
+		
+		Session session = request.getSession(false);
+		
+		if(session != null){
+			String script = (String) session.getAttribute(path);
+			session.setAttribute(path, null);  
+			return script;
+		}
+		
+		return null;
 	}
 	
 	private String createKey(String script) {
