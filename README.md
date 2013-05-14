@@ -24,7 +24,8 @@ http://tapestry5-jquery.com/
 - Michael GENTRY as mrg
 - Mikhail NASYROV as mnasyrov
 - Dmitry GUSEV as dmitrygusev
-
+- Laurent WROBLEWSKI as LWroblewski
+- Andreas Fink as fnk
 - jochenberger
 - ddelangle
 - Iceo
@@ -33,6 +34,7 @@ http://tapestry5-jquery.com/
 
 ##Hosting
 Christophe Furmaniak 	
+
 
 ##Questions? Ideas? Comments?
 http://groups.google.com/group/tapestry5-jquery
