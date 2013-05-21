@@ -1,7 +1,10 @@
 package org.got5.tapestry5.jquery.mixins;
 
+import java.text.SimpleDateFormat;
+
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.BindParameter;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
@@ -65,12 +68,18 @@ public class CustomDatepicker {
 
 	@Inject
 	private ThreadLocale locale;
-	
-	@Inject 
-	private AssetSource as;
-	
-	@Inject
-	private TypeCoercer typeCoercer;
+
+    @BindParameter
+    private Object format;
+
+    @Inject
+    private AssetSource as;
+
+    @Inject
+    private TypeCoercer typeCoercer;
+
+
+
 	/**
 	 * Mixin afterRender phrase occurs after the component itself. We will
 	 * change the JSON option of the jQuery datepicker widget
@@ -90,8 +99,8 @@ public class CustomDatepicker {
 			 */
 			defaultParamsObject = widgetParams.paramsForWidget(this.getClass()
 					.getSimpleName().toLowerCase());
-			
-			defaultParamsObject.put("locale", getLocale());
+
+            defaultParamsObject.put("dateFormat", toJQueryUIDateFormat());
 			/*
 			 * We will merge the default JSON Object with the params parameter
 			 */
@@ -104,11 +113,14 @@ public class CustomDatepicker {
 			/*
 			 * We call the datepicker widget, in order to override the options
 			 */
-			
-			
+
+            JSONObject json = new JSONObject();
+            json.put("selector", theSelector);
+            json.put("params", defaultParamsObject);
+
 			javaScriptSupport.require("tjq/customdatepicker")
 					.priority(InitializationPriority.EARLY)
-					.with(defaultParamsObject);
+					.with(json);
 		}
 	}
 
@@ -129,4 +141,62 @@ public class CustomDatepicker {
         return "en-GB";
 	}
 
+
+    /**
+     *
+     * ISSUE #294
+     */
+    private String toJQueryUIDateFormat() {
+
+        if (format == null) {
+            return null;
+        }
+        else if (format instanceof SimpleDateFormat) {
+            String pattern = ((SimpleDateFormat) format).toPattern();
+
+            // Year
+            if (pattern.contains("yyyy")) {
+                pattern = pattern.replaceAll("yyyy", "yy");
+            }
+            else {
+                pattern = pattern.replaceAll("yy", "y");
+            }
+
+            // Month
+            if (pattern.contains("MMMM")) {
+                pattern = pattern.replace("MMMM", "MM");
+            }
+            else if (pattern.contains("MMM")) {
+                pattern = pattern.replace("MMM", "M");
+            }
+            else if (pattern.contains("MM")) {
+                pattern = pattern.replace("MM", "mm");
+            }
+            else if (pattern.contains("M")) {
+                pattern = pattern.replace("M", "m");
+            }
+
+            // Day
+            if (pattern.contains("DD")) {
+                pattern = pattern.replace("DD", "oo");
+            }
+            else if (pattern.contains("D")) {
+                pattern = pattern.replace("D", "o");
+            }
+
+            // Day of month
+            if (pattern.contains("EEEE")) {
+                pattern = pattern.replace("EEEE", "DD");
+            }
+            else if (pattern.contains("EEE")) {
+                pattern = pattern.replace("EEE", "D");
+            }
+
+            return pattern;
+        }
+        else {
+            // Don't know how to extract the date pattern from this type of DateFormat.
+            throw new IllegalArgumentException("Type is " + format.getClass().getName());
+        }
+    }
 }
