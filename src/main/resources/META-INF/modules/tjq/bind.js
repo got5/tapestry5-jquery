@@ -26,9 +26,15 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "jquery
 
 				
 				var u = new Object();
-				u.url = url;		
-				u.context = contextMarker;					
+
+				u.url = url;
+				
+				//If the element using the bind mixin has a value, we automatically added to tue url
+				if(jQuery(this).val() !== "") u.url += ("/" + jQuery(this).val())
+					
+				u.context = contextMarker;		
 				u.element = jQuery(this);
+				
 				if ( history ) {
 					history(event,ui,u);
 				}
