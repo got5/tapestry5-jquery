@@ -1116,6 +1116,9 @@
 			 * Default function for handling Ajax-related failures.
 			 */
 			ajaxFailureHandler : function(response) {
+			
+				if(!response.getAllResponseHeaders()) return;
+				
 				var rawMessage = response
 						.getResponseHeader("X-Tapestry-ErrorMessage");
 
