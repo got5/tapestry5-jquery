@@ -11,6 +11,7 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -75,20 +76,23 @@ public class CustomDatepicker {
         /*
          * We will call the WidgetParams in order to get the default JSON object for the CustomDatepicker mixin
          */
-    	defaultParamsObject = widgetParams.paramsForWidget(this.getClass().getSimpleName().toLowerCase());
-    	defaultParamsObject.put("dateFormat", toJQueryUIDateFormat());
+        defaultParamsObject = new JSONObject();
+        
+        JSONObject temp = widgetParams.paramsForWidget(this.getClass().getSimpleName().toLowerCase()); 
+        if(temp != null){
+        	defaultParamsObject = temp;
+        }
+    	
+        defaultParamsObject.put("dateFormat", toJQueryUIDateFormat());
     	/*
     	 * We will merge the default JSON Object with the params parameter
     	 */
-    	if(defaultParamsObject!=null) JQueryUtils.merge(defaultParamsObject, params);
-    	else defaultParamsObject = params;
+    	JQueryUtils.merge(defaultParamsObject, params);
+    	
        
     	/*
     	 * We call the datepicker widget, in order to override the options
     	 */
-        //javaScriptSupport.addScript(InitializationPriority.LATE,"%s('%s').datepicker('option',%s);", jQueryAlias, theSelector, 
-//    		defaultParamsObject);
-    	
     	JSONObject json = new JSONObject();
     	json.put("selector", theSelector);
         json.put("params", defaultParamsObject);
