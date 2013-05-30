@@ -28,7 +28,7 @@
 	</ul>
 	
 	<t:if t:test="ajax">
-		<div t:type="zone" t:id="contentZone" id="${clientZoneId}">
+		<div t:type="zone" t:id="contentZone" id="${clientZoneId}" t:update="show">
 			<t:delegate to="ActiveBlock"/>
 		</div>
 		<p:else>
