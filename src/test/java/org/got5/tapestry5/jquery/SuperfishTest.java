@@ -17,31 +17,31 @@ public class SuperfishTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return isElementPresent("//ul[@id='menu1'][contains(@class,'sf-menu')]");
+                return isElementPresent("//ul[@id='superfish'][contains(@class,'sf-menu')]");
             }
-        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='menu1']@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='superfish']@class"), JQueryTestConstants.TIMEOUT);
         
-        click("//ul[@id='menu1']/li[1]/a");
+        click("//ul[@id='superfish']/li[1]/a");
     	
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+                return getAttribute("//ul[@id='superfish']/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='superfish'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
         
-        click("//ul[@id='menu1']/li[2]/a");
+        click("//ul[@id='superfish']/li[2]/a");
         
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return !getAttribute("//ul[@id='menu1']/li[1]@class").contains("sfHover");
+                return !getAttribute("//ul[@id='superfish']/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='menu1'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='superfish'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
     }
 	
 }

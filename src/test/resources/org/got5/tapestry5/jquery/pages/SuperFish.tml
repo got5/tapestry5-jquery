@@ -1,7 +1,7 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter" xmlns:j="tapestry-library:jquery">
 	
 	
-	<ul t:type="jquery/superfish" t:params="complexParams" t:clientId="menu1">
+	<ul t:type="jquery/superfish" t:params="complexParams">
 		<li class="current"> 
 						<a href="#a">menu item</a> 
 						<ul> 
