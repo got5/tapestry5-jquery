@@ -7,9 +7,9 @@ import com.thoughtworks.selenium.Wait;
 
 public class ShowSourceTest extends SeleniumTestCase{
 	@Test
-    public void testRevealMixin(){
+    public void testShowSource(){
     	
-    	open("/docs/core/grid");
+    	open("/ShowSource");
     	
     	 new Wait()
          {
