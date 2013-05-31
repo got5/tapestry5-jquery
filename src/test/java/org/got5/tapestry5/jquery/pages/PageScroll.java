@@ -13,7 +13,7 @@ public class PageScroll {
     @Property
     private int pageNumber;
 
-    private static final int PAGE_SIZE = 2;
+    private static final int PAGE_SIZE = 100;
 
     @OnEvent("nextPage")
     List<Integer> moreValues(int multiplyBy) throws InterruptedException {

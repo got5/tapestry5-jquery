@@ -12,16 +12,16 @@ public class PageScrollTest extends SeleniumTestCase {
         assertTextPresent("Element#0");
         assertTextPresent("Element#2");
 
-        assertFalse(isTextPresent("Element#4"));
-        assertFalse(isTextPresent("Element#6"));
+        assertFalse(isTextPresent("Element#300"));
+        assertFalse(isTextPresent("Element#302"));
 
         this.runScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight," +
             "document.body.scrollHeight,document.documentElement.clientHeight));");
 
         sleep(1500);
 
-        assertTrue(isTextPresent("Element#4"));
-        assertTrue(isTextPresent("Element#6"));
+        assertTrue(isTextPresent("Element#300"));
+        assertTrue(isTextPresent("Element#302"));
     }
 
 }
