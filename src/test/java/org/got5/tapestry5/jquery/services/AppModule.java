@@ -54,6 +54,7 @@ public class AppModule
     	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "assets");
     	configuration.add("demo-src-dir", "");
     	
+    	//configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
     }
     
 	@Contribute(WidgetParams.class)

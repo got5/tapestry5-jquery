@@ -1,0 +1,36 @@
+<html t:type="layout" 
+t:title="InPlaceEditor" 
+t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+ 	
+<t:jquery.tabs  t:tabs="example" t:activePanelId="0" t:ajax="false">
+ 	
+ 	<p:example>	
+ <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true" 
+  	 	t:rowIndex="currentIndex" t:rowsPerPage="10">
+       
+       <p:actionCell>
+       	<t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone" 
+       		t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
+	</p:actionCell>
+</t:grid>
+   
+<t:jquery.dialog t:clientId="myDialog" t:params="dialogParam">
+	Detail Dialog
+	<t:zone t:id="detailZone">
+	<div>
+		<t:if t:test="user">
+			<t:beandisplay object="user" t:exclude="uuid"/>
+		</t:if>
+	</div>
+	<br/></t:zone>
+</t:jquery.dialog> 
+    	
+    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="26" t:path="resources/org/got5/tapestry5/jquery/pages/core/DocsGrid.tml"></div>
+    	
+    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="18" t:endLine="37" t:path="java/org/got5/tapestry5/jquery/pages/core/DocsGrid.java"></div>
+
+		</p:example>
+
+ 	</t:jquery.tabs>
+
+</html>

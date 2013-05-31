@@ -37,6 +37,7 @@ import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
+import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
 import org.got5.tapestry5.jquery.internal.FakeInheritedBinding;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
@@ -45,8 +46,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @since 2.1.1
  *
  *        For more informations about how to translate the DataTable plug-in,
- *        please visit the official documentation website {@link http
- *        ://datatables.net/plug-ins/i18n}
+ *        please visit the official documentation website
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
@@ -180,7 +180,7 @@ public class DataTable extends AbstractJQueryTable {
 		dataTableParams.put("oLanguage", setI18NMessages());
 
         JQueryUtils JQueryUtils;
-        JQueryUtils.merge(dataTableParams, getOptions());
+        org.got5.tapestry5.jquery.utils.JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
 		support.require("tjq/dataTables").with(setup);
