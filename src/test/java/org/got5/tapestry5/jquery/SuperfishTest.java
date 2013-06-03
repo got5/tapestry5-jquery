@@ -5,7 +5,13 @@ import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class SuperfishTest extends SeleniumTestCase{
+public class SuperfishTest extends SeleniumTestCase {
+
+    private static final String SUPERFISH_MENU_SELECTOR = "//ul[@id='superfish']";
+
+    private static final String SUPERFISH_MENU_FIRST_ITEM_SELECTOR = SUPERFISH_MENU_SELECTOR + "/li[1]/a";
+
+    private static final String SUPERFISH_MENU_THIRD_ITEM_SELECTOR = SUPERFISH_MENU_SELECTOR + "/li[3]/a";
 
 	@Test
     public void testSuperfishComponent(){
@@ -17,31 +23,31 @@ public class SuperfishTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return isElementPresent("//ul[@id='superfish'][contains(@class,'sf-menu')]");
+                return isElementPresent(SUPERFISH_MENU_SELECTOR + "[contains(@class,'sf-menu')]");
             }
-        }.wait("The ul element should have the sf-menu class : " + getAttribute("//ul[@id='superfish']@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should have the sf-menu class : " + getAttribute(SUPERFISH_MENU_SELECTOR + "@class"), JQueryTestConstants.TIMEOUT);
 
-        click("//ul[@id='superfish']/li[1]/a");
+        click(SUPERFISH_MENU_FIRST_ITEM_SELECTOR);
 
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getAttribute("//ul[@id='superfish']/li[1]@class").contains("sfHover");
+                return getAttribute(SUPERFISH_MENU_SELECTOR + "/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should have the sfHover class : " + getAttribute("//ul[@id='superfish'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should have the sfHover class : " + getAttribute(SUPERFISH_MENU_SELECTOR + "[contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
 
-        mouseOver("//ul[@id='superfish']/li[2]/a");
+        click(SUPERFISH_MENU_THIRD_ITEM_SELECTOR);
 
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return !getAttribute("//ul[@id='superfish']/li[1]@class").contains("sfHover");
+                return !getAttribute(SUPERFISH_MENU_SELECTOR + "/li[1]@class").contains("sfHover");
             }
-        }.wait("The ul element should not have the sfHover class : " + getAttribute("//ul[@id='superfish'][contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
+        }.wait("The ul element should not have the sfHover class : " + getAttribute(SUPERFISH_MENU_SELECTOR + "[contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
     }
 
 }
