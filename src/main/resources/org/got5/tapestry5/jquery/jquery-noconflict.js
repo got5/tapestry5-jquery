@@ -28,7 +28,7 @@
 	            element: spec
 	        };
 	    }
-	    jQuery('#' + spec.element).tapestryZone();
+	    $('#' + spec.element).tapestryZone();
 	    new Tapestry.ZoneManager(spec);
 	    }
 	});
