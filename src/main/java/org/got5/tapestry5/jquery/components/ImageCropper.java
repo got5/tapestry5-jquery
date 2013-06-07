@@ -56,13 +56,23 @@ public class ImageCropper implements ClientElement{
 
 	/**
 	 * The image asset to render.
+	 * @deprecated Please use directly the asset parameter
 	 */
-	@Parameter(required = true, defaultPrefix = "literal")
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String _src;
-
-	@Parameter(required = false, defaultPrefix = "literal", value = "context")
+	
+	/**
+	 * @deprecated Please use directly the asset parameter
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "context")
 	private String _domain;
 
+	/**
+	 * The image asset to render.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.ASSET)
+    private Asset asset;
+	
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
 	
@@ -94,8 +104,12 @@ public class ImageCropper implements ClientElement{
 	void begin(MarkupWriter writer)
 	{
 	    String clientId = _support.allocateClientId(_resources.getId());
-
-	    Asset image = assetSource.getAsset(null, _domain + ":" + _src, null);
+	    
+	    Asset image = asset;
+	    if(!_resources.isBound("asset"))
+	    	image = assetSource.getAsset(null, _domain + ":" + _src, null);
+	    
+	    
 	    writer.element("img", "src", image.toClientURL(), "id", clientId);
 	    
 	    if(cr.isBound("zone")){
