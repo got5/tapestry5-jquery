@@ -6,7 +6,6 @@
 	        var addAlertPublisher = T5.pubsub.createPublisher(T5.events.ADD_ALERT, document);
 	
 	        function alertManager(spec) {
-	        	
 	        	$.extend($.jGrowl.defaults, spec.jgrowl);
 	        	
 	            T5.sub(T5.events.ADD_ALERT, null, function(alertSpec) {
@@ -22,7 +21,7 @@
 			                    	$.tapestry.utils.ajaxRequest({url:spec.dismissURL, type: "POST", data: {id: alertSpec.id}});
 			                    }
 		            		}, 
-		            		life : T5.alerts.TRANSIENT_DELAY, 
+		            		life : (spec.jgrowl && spec.jgrowl.life) ? spec.jgrowl.life : T5.alerts.TRANSIENT_DELAY,
 		            		sticky : sticky, 
 		            		theme : "jgrowl-" + alertSpec['class']
 	            	};
