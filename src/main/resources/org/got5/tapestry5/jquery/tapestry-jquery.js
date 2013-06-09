@@ -816,7 +816,7 @@
 		trigger : function() {
 		
 			var that = this, el = $("#" + this.options.element);
-			console.log(el.hasClass("preforming"));
+			
 			if(!el.hasClass("preforming")){
 				el.addClass("preforming");
 				
