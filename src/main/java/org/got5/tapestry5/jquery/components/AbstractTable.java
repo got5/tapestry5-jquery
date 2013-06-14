@@ -402,7 +402,6 @@ public class AbstractTable implements ClientElement {
 	 */
 	public Object getCellValue() {
 		
-		rowIndex = index;
 		
 		Object obj = getSource().getRowValue(index);
 
@@ -500,6 +499,7 @@ public class AbstractTable implements ClientElement {
 	private Block cell;
 	
 	public Block getCellBlock(){
+		rowIndex = index;
 		Block override = overrides.getOverrideBlock(getDataModel().get(cellModel).getPropertyName()+"Cell");
 		if(override != null) return override;
 		return cell;
