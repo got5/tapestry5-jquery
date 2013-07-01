@@ -11,7 +11,7 @@
 	        		
 	        		<tr t:type="loop" t:source="loopSource" t:value="index" class="${rowClass}">
 	        		
-	        			<t:loop t:source="propertyNames" t:value="cellModel">
+	        			<t:loop t:source="propertyNames" t:value="cellModel" t:index="columnIndex">
 							<td>	        			
 	        					<t:delegate t:to="cellBlock" />
 	        				</td>
