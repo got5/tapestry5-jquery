@@ -3,7 +3,7 @@
     <t:if t:test="mode">
     	<thead>
     		<tr>
-		        <th t:type="Loop" source="columnNames" value="columnName" formstate="none">
+		        <th t:type="Loop" source="columnNames" value="columnName" formstate="none" t:index="index">
 		            <t:delegate to="blockForColumn"/>
 		            <t:block id="standardHeader">
 		               ${columnModel.label}
@@ -14,7 +14,7 @@
     	<t:parameter name="else">
     		<tfoot>
     			<tr>
-			        <th t:type="Loop" source="columnNames" value="columnName" formstate="none">
+			        <th t:type="Loop" source="columnNames" value="columnName" formstate="none" t:index="index"> 
 			            <t:delegate to="blockForColumn"/>
 			            <t:block id="standardFooter">
 			               ${columnModel.label}

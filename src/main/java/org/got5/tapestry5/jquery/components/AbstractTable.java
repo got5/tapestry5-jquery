@@ -153,6 +153,20 @@ public class AbstractTable implements ClientElement {
 	/**
 	 * Parameter used to define some parameters of a HTML table : caption, summary, css class
 	 */
+
+	@Parameter(required = false)
+	private Object row;
+	
+	@Parameter
+	private int rowIndex;
+	
+	@Parameter(cache = false)
+	private String rowClass;
+	
+	@Property
+	@Parameter(cache=false)
+	private int columnIndex;
+	
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private TableInformation tableInformation;
 	
@@ -372,15 +386,6 @@ public class AbstractTable implements ClientElement {
 		
 	}
 
-	@Parameter(required = false)
-	private Object row;
-
-	@Parameter
-	private int rowIndex;
-
-	@Parameter(cache = false)
-	private String rowClass;
-	
 	/**
 	 * In order to get the css of a specific row
 	 */
