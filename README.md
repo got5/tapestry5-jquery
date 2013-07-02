@@ -1,4 +1,4 @@
-﻿# Tapestry 5 jQuery integration Module - 2.6.8-SNAPSHOT
+﻿# Tapestry 5 jQuery integration Module - 2.6.9
 
 ## List Of Contributors
 - Robin KOMIWES as robink
