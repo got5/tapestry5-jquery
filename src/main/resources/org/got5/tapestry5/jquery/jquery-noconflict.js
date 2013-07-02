@@ -23,7 +23,7 @@
 
 	$.extend(Tapestry.Initializer, {
 		zone: function(spec) {
-		if (!jQuery.isPlainObject(spec)) {
+		if (!$.isPlainObject(spec)) {
 	        spec = {
 	            element: spec
 	        };
