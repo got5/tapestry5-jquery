@@ -39,14 +39,14 @@ public class GridColumns {
      */
     @Parameter("this")
     private PropertyOverrides overrides;
-
+    
     /**
      * If not null, then each link is output as a link to update the specified zone.
      */
     @Parameter
     private String zone;
 
-    @Parameter 
+   @Parameter 
     private Boolean mode;
     
     @Inject
@@ -61,7 +61,7 @@ public class GridColumns {
     /**
      * Optional output parameter that stores the current column index.
      */
-    @Parameter
+    @Parameter(cache=false)
     @Property
     private int index;
 

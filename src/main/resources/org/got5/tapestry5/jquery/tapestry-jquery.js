@@ -814,35 +814,46 @@
 		},
 
 		trigger : function() {
+		
 			var that = this, el = $("#" + this.options.element);
-
-			var successHandler = function(data) {
-				$(data).log("data");
-				$.tapestry.utils.loadScriptsInReply(data, function() {
-					// Clone the FormInjector element (usually a div)
-					// to create the new element, that gets inserted
-					// before or after the FormInjector's element.
-
-					var newElement = el.clone(false);
-					newElement.attr("id", data.elementId);
-					newElement.html(data.content);
-
-					newElement = that.options.below ? el.after(newElement) : el
-							.before(newElement);
-
-					newElement.effect(that.options.show);
-
-					newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED);
+			
+			if(!el.hasClass("preforming")){
+				el.addClass("preforming");
+				
+				var successHandler = function(data) {
+					$(data).log("data");
+					$.tapestry.utils.loadScriptsInReply(data, function() {
+						// Clone the FormInjector element (usually a div)
+						// to create the new element, that gets inserted
+						// before or after the FormInjector's element.
+	
+						var newElement = el.clone(false);
+						newElement.attr("id", data.elementId);
+						newElement.html(data.content);
+	
+						newElement = that.options.below ? el.after(newElement) : el
+								.before(newElement);
+	
+						newElement.effect(that.options.show);
+	
+						newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED);
+						
+						el.removeClass("preforming");
+					});
+	
+				};
+	
+				$(this.options).log("this.options.url" + this.options.url)
+				
+			
+				$.tapestry.utils.ajaxRequest({
+					type : "POST",
+					url : this.options.url,
+					success : successHandler
 				});
-
-			};
-
-			$(this.options).log("this.options.url" + this.options.url)
-			$.tapestry.utils.ajaxRequest({
-				type : "POST",
-				url : this.options.url,
-				success : successHandler
-			});
+				
+			}
+			
 		}
 	});
 

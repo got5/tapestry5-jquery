@@ -23,12 +23,12 @@
 
 	$.extend(Tapestry.Initializer, {
 		zone: function(spec) {
-		if (!jQuery.isPlainObject(spec)) {
+		if (!$.isPlainObject(spec)) {
 	        spec = {
 	            element: spec
 	        };
 	    }
-	    jQuery('#' + spec.element).tapestryZone();
+	    $('#' + spec.element).tapestryZone();
 	    new Tapestry.ZoneManager(spec);
 	    }
 	});

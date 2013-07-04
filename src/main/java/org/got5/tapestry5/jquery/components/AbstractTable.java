@@ -153,6 +153,20 @@ public class AbstractTable implements ClientElement {
 	/**
 	 * Parameter used to define some parameters of a HTML table : caption, summary, css class
 	 */
+
+	@Parameter(required = false)
+	private Object row;
+	
+	@Parameter
+	private int rowIndex;
+	
+	@Parameter(cache = false)
+	private String rowClass;
+	
+	@Property
+	@Parameter(cache=false)
+	private int columnIndex;
+	
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private TableInformation tableInformation;
 	
@@ -372,15 +386,6 @@ public class AbstractTable implements ClientElement {
 		
 	}
 
-	@Parameter(required = false)
-	private Object row;
-
-	@Parameter
-	private int rowIndex;
-
-	@Parameter(cache = false)
-	private String rowClass;
-	
 	/**
 	 * In order to get the css of a specific row
 	 */
@@ -402,7 +407,6 @@ public class AbstractTable implements ClientElement {
 	 */
 	public Object getCellValue() {
 		
-		rowIndex = index;
 		
 		Object obj = getSource().getRowValue(index);
 
@@ -500,6 +504,7 @@ public class AbstractTable implements ClientElement {
 	private Block cell;
 	
 	public Block getCellBlock(){
+		rowIndex = index;
 		Block override = overrides.getOverrideBlock(getDataModel().get(cellModel).getPropertyName()+"Cell");
 		if(override != null) return override;
 		return cell;
