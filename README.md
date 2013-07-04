@@ -30,6 +30,7 @@ http://tapestry5-jquery.com/
 - ddelangle
 - Iceo
 - kaililleby
+- daveyx
 
 
 ##Hosting
