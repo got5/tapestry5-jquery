@@ -1,9 +1,12 @@
 package org.got5.tapestry5.jquery.components;
 
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
@@ -92,6 +95,9 @@ public class AjaxUpload extends AbstractExtendableComponent {
     @Parameter
     private JSONObject params;
 
+    @Parameter
+    private Object[] context;
+    
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
@@ -142,7 +148,7 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
         final JSONObject parameter = new JSONObject()
                 .put("elementId", getClientId())
-                .put("action", resources.createEventLink("upload").toURI())
+                .put("action", resources.createEventLink("upload", context).toURI())
                 .put("showMessagesDialog", uploadErrorMesages.getClientId())
                 .put("messages", uploadMessages)
                 .put("multiple", multiple)
@@ -197,9 +203,9 @@ public class AjaxUpload extends AbstractExtendableComponent {
     }
 
     @OnEvent(value = "upload")
-    Object onUpload() {
+    Object onUpload(EventContext ctx) {
 
-        // The parameter 'qqfile' is specified in jquery.fileuploader.js
+
         UploadedFile uploaded = getUploadedFile();
 
         if (uploaded != null && StringUtils.isEmpty(uploaded.getFileName())) {
@@ -220,13 +226,13 @@ public class AjaxUpload extends AbstractExtendableComponent {
         final boolean success = uploaded != null;
 
         if ( ! ajaxDecoder.isAjaxUploadRequest(request)) {
-
-            this.resources.triggerEvent(JQueryEventConstants.NON_XHR_UPLOAD, new Object[]{ uploaded }, callback);
+        	
+            this.resources.triggerEvent(JQueryEventConstants.NON_XHR_UPLOAD, ArrayUtils.addAll(new Object[]{ uploaded}, ctx.toStrings()), callback);
 
             return processNonXHRResult(success, holder.get());
         }
 
-        this.resources.triggerEvent(JQueryEventConstants.AJAX_UPLOAD, new Object[]{ uploaded }, callback);
+        this.resources.triggerEvent(JQueryEventConstants.AJAX_UPLOAD, ArrayUtils.addAll(new Object[]{uploaded}, ctx.toStrings()), callback);
         return processXHRResult(success, holder.get());
     }
 
