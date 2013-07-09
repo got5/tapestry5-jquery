@@ -205,11 +205,7 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
     @OnEvent(value = "upload")
     Object onUpload(EventContext ctx) {
-    	System.out.println("UPLOAd");
-    	System.out.println(ctx);
-    	System.out.println(ctx.getCount());
-    	System.out.println(ctx.get(String.class, 0));
-        // The parameter 'qqfile' is specified in jquery.fileuploader.js
+    	// The parameter 'qqfile' is specified in jquery.fileuploader.js
         UploadedFile uploaded = getUploadedFile();
 
         if (uploaded != null && StringUtils.isEmpty(uploaded.getFileName())) {
@@ -235,7 +231,6 @@ public class AjaxUpload extends AbstractExtendableComponent {
 
             return processNonXHRResult(success, holder.get());
         }
-        System.out.println(ctx);
         this.resources.triggerEvent(JQueryEventConstants.AJAX_UPLOAD, ArrayUtils.addAll(new Object[]{ uploaded}, ctx.toStrings()), callback);
         return processXHRResult(success, holder.get());
     }
