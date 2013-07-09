@@ -142,7 +142,8 @@ public class AjaxUpload extends AbstractExtendableComponent {
                 .put("uploadLabel", messages.get("upload-label"))
                 .put("dropAreaLabel", messages.get("dropArea-label"))
                 .put("cancelLabel", messages.get("cancel-label"))
-                .put("failedLabel", messages.get("failed-label"));
+                .put("failedLabel", messages.get("failed-label"))
+                .put("multipleError", messages.get("multipleError"));
 
         final long sizeLimit = calculateSizeLimit();
 
