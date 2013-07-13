@@ -8,37 +8,6 @@ import com.thoughtworks.selenium.Wait;
 public class DataTableAjaxSimpleTest extends SeleniumTestCase {
 
     @Test
-    public void testHeaderOverride() {
-        this.open("/DataTablesAjaxSimple");
-
-        new Wait() {
-
-            @Override
-            public boolean until() {
-                return DataTableAjaxSimpleTest.this.getText("//table[@id='datatableAjax']/thead/tr/th[2]/div[@class='DataTables_sort_wrapper']")
-                                                   .contains("Header");
-            }
-        }.wait("The Header is wrong : "
-                   + this.getText("//table[@id='datatableAjax']/thead/tr/th[2]/div[@class='DataTables_sort_wrapper']"),
-               JQueryTestConstants.TIMEOUT);
-    }
-
-    @Test
-    public void testFooterOverride() {
-        this.open("/DataTablesAjaxSimple");
-
-        new Wait() {
-
-            @Override
-            public boolean until() {
-                return DataTableAjaxSimpleTest.this.getText("//table[@id='datatableAjax']/tfoot/tr/th[2]")
-                                                   .contains("Footer");
-            }
-        }.wait("The Footer is wrong : " + this.getText("//table[@id='datatableAjax']/tfoot/tr/th[2]"),
-               JQueryTestConstants.TIMEOUT);
-    }
-
-    @Test
     public void testNumberRows5() {
         this.open("/DataTablesAjaxSimple");
 

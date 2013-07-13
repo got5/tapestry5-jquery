@@ -39,9 +39,6 @@ public class DataTablesAjaxSimple {
     @Property
     private Celebrity   current;
 
-    @Property
-    private int         index;
-
     public List<Celebrity> getAllCelebrities() {
         System.out.println("Getting all celebrities...");
         return this.dataSource.getAllCelebrities();
@@ -57,17 +54,6 @@ public class DataTablesAjaxSimple {
 
     public JSONObject getOptions() {
 
-        return new JSONObject("bJQueryUI", "true"/*, "sDom", "TC<\"clear\">Rlfrtip"*/);
+        return new JSONObject("bJQueryUI", "true", "sDom", "TC<\"clear\">Rlfrtip");
     }
-
-    /**
-     * Event handler method called when datatable's search field is used
-     * Gives a chance to the user to filter data in lazy-loading mode (mode=true)
-     * */
-    //    @OnEvent(value = JQueryEventConstants.FILTER_DATA, component = "datatableAjax")
-    //    public void filterData() {
-    //        String val = this.request.getParameter(DataTableConstants.SEARCH);
-    //        this.dataSource.filter(val);
-    //    }
-
 }
