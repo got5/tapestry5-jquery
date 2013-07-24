@@ -20,8 +20,8 @@
 			form.bind(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function(){
 				// On a submission, if the fragment is not visible, then wipe out its
 				// form submission data, so that no processing or validation occurs on the server.
-				if (!that.options.alwaysSubmit && that.element && ! that.element.is(":visible"))
-					that.hidden.get(0).value = "";
+				if (!that.options.alwaysSubmit)
+					that.hidden.get(0).disabled = (that.element && !that.element.is(":visible"));
 			});
 		},
 
