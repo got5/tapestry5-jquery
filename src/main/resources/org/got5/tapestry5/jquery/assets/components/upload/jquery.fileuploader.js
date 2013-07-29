@@ -308,7 +308,11 @@ qq.FileUploaderBasic = function(o){
             sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
             minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
             emptyError: "{file} is empty, please select files again without it.",
-            onLeave: "The files are being uploaded, if you leave now the upload will be cancelled."
+            onLeave: "The files are being uploaded, if you leave now the upload will be cancelled.",
+	
+	
+			//https://github.com/got5/tapestry5-jquery/issues/306            
+            multipleError: "You can upload only one file."
         },
         showMessage: function(message){
             alert(message);
@@ -599,8 +603,17 @@ qq.extend(qq.FileUploader.prototype, {
                 qq.removeClass(dropArea, self._classes.dropActive);
             },
             onDrop: function(e){
-                dropArea.style.display = 'none';
+            	
+            	dropArea.style.display = 'none';
                 qq.removeClass(dropArea, self._classes.dropActive);
+                
+                //https://github.com/got5/tapestry5-jquery/issues/306         
+            	if(!self._options.multiple && e.dataTransfer.files.length > 1){
+            		e.stopPropagation();
+            		self._options.showMessage(self._options.messages.multipleError);
+            		return false;
+            	}
+                
                 self._uploadFileList(e.dataTransfer.files);
             }
         });

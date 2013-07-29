@@ -460,7 +460,7 @@
 								form.formEventManager("skipValidation");
 								form.formEventManager("setSubmittingElement",
 										clientId);
-								form.submit();
+								
 							});
 				}
 			});
