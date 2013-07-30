@@ -34,6 +34,7 @@ import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
@@ -51,7 +52,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  */
 @Events(JQueryEventConstants.DATA)
 public class DataTable extends AbstractJQueryTable {
-
+	
 	@Inject
 	private ComponentResources resources;
 
@@ -183,7 +184,9 @@ public class DataTable extends AbstractJQueryTable {
         org.got5.tapestry5.jquery.utils.JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
-		support.require("tjq/dataTables").with(setup);
+
+		support.require("tjq/dataTables").priority(InitializationPriority.EARLY).with(setup);
+
 	}
 
 	private JSONObject setI18NMessages() {
