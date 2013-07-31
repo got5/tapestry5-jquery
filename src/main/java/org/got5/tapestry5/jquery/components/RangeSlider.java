@@ -49,6 +49,9 @@ public class RangeSlider  {
     @Parameter(required = true)
     private Object min;
     
+    @Parameter
+    private Object[] context;
+    
     /**
      * The value to be read and updated, the max slider value. This value is passed to the second textfield.
      */
@@ -89,7 +92,7 @@ public class RangeSlider  {
     private String clientId;
     private String getClientId(){
     	if(clientId==null)
-    		clientId = resources.getId();
+    		clientId = jsSupport.allocateClientId(this.resources);
     	return clientId;
     }
     @SetupRender
@@ -113,7 +116,7 @@ public class RangeSlider  {
     	specs.put("idMinField", minField.getClientId());
     	specs.put("idMaxField", maxField.getClientId());
     	if(resources.isBound("zone")){
-    		Link link = resources.createEventLink(EventConstants.ACTION);
+    		Link link = resources.createEventLink(EventConstants.ACTION, context);
     		specs.put("url", link.toAbsoluteURI());
     		specs.put("zoneId", zone);
     	}
