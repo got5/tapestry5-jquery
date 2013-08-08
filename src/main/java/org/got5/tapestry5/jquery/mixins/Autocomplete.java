@@ -132,7 +132,7 @@ public class Autocomplete
     {
         JSONObject config = new JSONObject();
         config.put("id", field.getClientId());
-        config.put("url", resources.createEventLink(EVENT_NAME).toAbsoluteURI());
+        config.put("url", resources.createEventLink(EVENT_NAME).toURI());
         config.put("paramName", PARAM_NAME);
 
         if (resources.isBound("minChars"))
