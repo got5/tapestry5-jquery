@@ -69,7 +69,7 @@ public class DialogAjaxLink extends DialogLink
         params.put("element", getClientId());
         params.put("zoneId", zone);
         params.put("dialogId", getDialog());
-        params.put("url", link.toAbsoluteURI());
+        params.put("url", link.toURI());
 
         javaScriptSupport.require("tjq/dialogajaxlink").with(params);
     }
