@@ -137,7 +137,7 @@ public class Autocomplete
 
         JSONObject config = new JSONObject();
         config.put("id", id);
-        config.put("url", link.toAbsoluteURI());
+        config.put("url", link.toURI());
         config.put("paramName", PARAM_NAME);
 
         if (resources.isBound("minChars"))
