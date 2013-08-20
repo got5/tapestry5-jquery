@@ -1154,27 +1154,17 @@
 			},
 
 			/**
-			 * Processes a typical Ajax request for a URL. In the simple case, a
-			 * success handler is provided (as options). In a more complex case,
-			 * an options object is provided, with keys as per Ajax.Request. The
-			 * onSuccess key will be overwritten, and defaults for onException
-			 * and onFailure will be provided. The handler should take up-to two
-			 * parameters: the XMLHttpRequest object itself, and the JSON
-			 * Response (from the X-JSON response header, usually null).
+			 * Processes a typical jQuery Ajax request. 
+			 * The parameter of this method have the syntax as the 
+			 * jQuery $.ajax method.
 			 * 
-			 * @param url
-			 *            of Ajax request
 			 * @param options
 			 *            either a success handler
 			 * @return the Ajax.Request object
 			 */
 			ajaxRequest : function(options) {
 
-				if ($.isFunction(options)) {
-					return $.tapestry.utils.ajaxRequest(url, {
-						success : options
-					});
-				}
+				
 				var successHandler = options.success;
 
 				var finalOptions = {

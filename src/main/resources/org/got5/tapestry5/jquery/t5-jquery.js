@@ -21,6 +21,10 @@
 T5.extend(T5.spi, function() {
 
     function observe(element, eventName, listener) {
+    	if (element.substring(0, 1) !== "#") {
+    		throw "The element parameter should start by a '#'";
+    	}
+    	
     	$(element).bind(eventName, listener);
     	
     	element = null;
