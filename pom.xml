@@ -202,7 +202,29 @@
 	      <artifactId>spock-core</artifactId>
 	      <version>${spock-version}</version>
 	      <scope>test</scope>
-	    </dependency>    
+	    </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium-version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 	
 	
@@ -467,12 +489,22 @@
                 <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>
             </properties>
         </profile>
+        <profile>
+            <id>linux-test</id>
+            <activation>
+                <os><name>Linux</name></os>
+            </activation>
+            <properties>
+                <browserStartCommand>*firefox</browserStartCommand>
+            </properties>
+        </profile>
 	</profiles>
-	
+
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
+        <selenium-version>2.35.0</selenium-version>
 		<tapestry-release-version>5.3.7</tapestry-release-version>
-                <browserStartCommand>*googlechrome</browserStartCommand>
-                <sourceDirectory>src/main/java</sourceDirectory>
+        <browserStartCommand>*googlechrome</browserStartCommand>
+        <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
 </project>
