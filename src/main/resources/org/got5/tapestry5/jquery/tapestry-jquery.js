@@ -26,6 +26,7 @@
 									$().log(
 											"No Tapestry.Initializer function for : "
 													+ functionName);
+									return;
 								}
 
 								$.each(params, function(i, paramList) {
