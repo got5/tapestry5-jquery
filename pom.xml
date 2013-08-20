@@ -492,7 +492,7 @@
         <profile>
             <id>linux-test</id>
             <activation>
-                <os><family>linux</family></os>
+                <os><name>Linux</name></os>
             </activation>
             <properties>
                 <browserStartCommand>*firefox</browserStartCommand>
