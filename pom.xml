@@ -489,22 +489,13 @@
                 <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>
             </properties>
         </profile>
-        <profile>
-            <id>linux-test</id>
-            <activation>
-                <os><name>Linux</name></os>
-            </activation>
-            <properties>
-                <browserStartCommand>*firefox</browserStartCommand>
-            </properties>
-        </profile>
 	</profiles>
 
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
         <selenium-version>2.35.0</selenium-version>
 		<tapestry-release-version>5.3.7</tapestry-release-version>
-        <browserStartCommand>*googlechrome</browserStartCommand>
+        <browserStartCommand>*firefox</browserStartCommand>
         <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
 </project>
