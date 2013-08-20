@@ -3,12 +3,8 @@
    <test name="JQuery Integration Tests"  enabled="true">
     
         <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
-        <parameter name="tapestry.browser-start-command" value="*firefox" />
-        
-      	<!-- <classes>
-        	<class name="org.got5.tapestry5.jquery.SuperfishTest"></class>
-        </classes> -->
-        
+        <parameter name="tapestry.browser-start-command" value="${browserStartCommand}" />
+		
 		<packages>
     		<package name="org.got5.tapestry5.jquery">
     			<exclude name="org.got5.tapestry5.jquery.unit"></exclude>

@@ -485,6 +485,15 @@
                 <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>
             </properties>
         </profile>
+        <profile>
+            <id>linux-test</id>
+            <activation>
+                <os><name>Linux</name></os>
+            </activation>
+            <properties>
+                <browserStartCommand>*firefox</browserStartCommand>
+            </properties>
+        </profile>
 	</profiles>
 
 	<properties>
@@ -492,9 +501,7 @@
         <tapestry-release-version>5.4-alpha-22</tapestry-release-version>
 
         <selenium-version>2.35.0</selenium-version>
-
-        <browserStartCommand>*firefox</browserStartCommand>
-
+        <browserStartCommand>*googlechrome</browserStartCommand>
         <sourceDirectory>src/main/java</sourceDirectory>
 
 	</properties>
