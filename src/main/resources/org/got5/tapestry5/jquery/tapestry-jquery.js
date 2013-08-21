@@ -9,8 +9,20 @@
 						 */
 						VIRTUAL_SCRIPTS : 'tapestry.virtualScripts',
 
+						pageLoaded : false,
+
 						waitForPage : function() {
-							return;
+
+						    if (Tapestry.pageLoaded) {
+						        
+						        return true;
+						    }
+						    
+						    $(document).ready(function () {
+						        Tapestry.pageLoaded = true;
+						    });
+						    
+							return Tapestry.pageLoaded;
 						},
 
 						onDOMLoaded : function(callback) {
@@ -39,7 +51,7 @@
 							});
 						},
 						onDomLoadedCallback : function() {
-
+					        
 							$('input[type="submit"],input[type="image"],button[type="submit"]')
 									.each(
 											function() {
