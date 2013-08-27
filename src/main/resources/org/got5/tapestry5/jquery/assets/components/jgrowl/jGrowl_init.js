@@ -2,7 +2,7 @@
 	T5.extendInitializers(function() {
 	
         var on = T5.dom.observe;
-        var DISMISS_ALERTS = "tapestry:dismiss-all";
+        var DISMISS_ALERTS = 'tapestry:dismiss-all';
         var addAlertPublisher = T5.pubsub.createPublisher(T5.events.ADD_ALERT, document);
 	
         function alertManager(spec) {
@@ -18,19 +18,19 @@
             	var params = {
             			close : function(){
 	            			if (alertSpec.id) {
-		                    	$.tapestry.utils.ajaxRequest({url:spec.dismissURL, type: "POST", data: {id: alertSpec.id}});
+		                    	$.tapestry.utils.ajaxRequest({url:spec.dismissURL, type: 'POST', data: {id: alertSpec.id}});
 		                    }
 	            		}, 
 	            		life : (spec.jgrowl && spec.jgrowl.life) ? spec.jgrowl.life : T5.alerts.TRANSIENT_DELAY,
 	            		sticky : sticky, 
-	            		theme : "jgrowl-" + alertSpec['class']
+	            		theme : 'jgrowl-' + alertSpec['class']
             	};
             	
             	$.jGrowl(alertSpec.message, params);
             	
-            	$("div#jGrowl div.jGrowl-closer").live("click", function(){
+            	$('body').delegate('div#jGrowl div.jGrowl-closer', 'click', function() {
             		var ajaxRequest = {
-                        	type:"POST",
+                        	type:'POST',
                             url: spec.dismissURL
                     };
                     
