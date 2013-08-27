@@ -662,19 +662,19 @@
 	 * @param {Object}
 	 *            options
 	 */
-	$.widget("ui.tapestryZone", {
+	$.widget('ui.tapestryZone', {
 		options : {
-			show : "highlight",
-			update : "highlight",
-			opt : ""
+			show : 'highlight',
+			update : 'highlight',
+			opt : ''
 		},
 
 		_create : function() {
-			this.element.addClass("tapestry-zone");
+			this.element.addClass('tapestry-zone');
 		},
 
 		destroy : function() {
-			this.element.removeClass("tapestry-zone");
+			this.element.removeClass('tapestry-zone');
 
 			$.Widget.prototype.destroy.apply(this, arguments);
 		},
@@ -690,30 +690,29 @@
 		update : function(specs) {
 
 			var that = this, zoneIdInfo = {
-				't:zoneid' : this.element.attr("id")
+				't:zoneid' : this.element.attr('id')
 			};
 			var ajaxRequest = {
 				url : specs.url,
-				type : "POST",
+				type : 'POST',
 				success : function(data) {
 					if (data.content) {
 
 						that.applyContentUpdate(data.content);
+					}
 
-					} 
 					if (data.zones) {
 
 						// perform multi zone update
 						$.each(data.zones, function(zoneId, content) {
 
-							if (zoneId === "" || !$('#' + zoneId).length) {
+							if (zoneId === '' || !$('#' + zoneId).length) {
 
 								that.applyContentUpdate(content);
 
 							} else {
 
-								$('#' + zoneId).tapestryZone(
-										"applyContentUpdate", content);
+								$('#' + zoneId).tapestryZone('applyContentUpdate', content);
 							}
 						});
 
@@ -754,17 +753,26 @@
 
 			if (content === null) {
 				$().log(
-						"WARN: content is undefined. Aborting update for zone: "
-								+ this.element.attr("id"));
+						'WARN: content is undefined. Aborting update for zone: '
+								+ this.element.attr('id'));
 				return;
 			}
 
 			var el = this.element;
-			var effect = el.is(":visible") ? this.options.update
+			var effect = el.is(':visible') ? this.options.update
 					: this.options.show;
 
-			el.html(content).effect(effect, this.options.opt.options,
-					this.options.opt.speed, this.options.opt.callback);
+			el.html(content);
+
+			if (effect === 'show') {
+
+			    el.show();
+
+			} else {
+
+			    el.effect(effect, this.options.opt.options, this.options.opt.speed, this.options.opt.callback)
+			}
+			
 			el.trigger(Tapestry.ZONE_UPDATED_EVENT);
 		}
 
