@@ -41,6 +41,12 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
+- 3.4.0 : Upgrade libs
+            jQuery 1.10.2
+            jQueryUI 1.10.3
+            jcarousel 0.2.9
+            superfish 1.7.4
+            
 - 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 - 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
 - 3.3.1 : add GMap component
