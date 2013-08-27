@@ -827,39 +827,39 @@
 
 		trigger : function() {
 		
-			var that = this, el = $("#" + this.options.element);
+			var that = this, el = $('#' + this.options.element);
 			
-			if(!el.hasClass("preforming")){
-				el.addClass("preforming");
-				
+			if (!el.hasClass('preforming')) {
+				el.addClass('preforming');
+
 				var successHandler = function(data) {
-					$(data).log("data");
+					$(data).log('data');
 					$.tapestry.utils.loadScriptsInReply(data, function() {
 						// Clone the FormInjector element (usually a div)
 						// to create the new element, that gets inserted
 						// before or after the FormInjector's element.
-	
+
 						var newElement = el.clone(false);
-						newElement.attr("id", data.elementId);
+						newElement.attr('id', data.elementId);
 						newElement.html(data.content);
-	
-						newElement = that.options.below ? el.after(newElement) : el
-								.before(newElement);
-	
+						newElement.removeClass('preforming');
+
+						newElement = that.options.below ? 
+						        el.after(newElement) : el.before(newElement);
+
 						newElement.effect(that.options.show);
 	
-						newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED);
+						window.setTimeout(function () { newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED); }, 25);
 						
-						el.removeClass("preforming");
+						el.removeClass('preforming');
 					});
 	
 				};
-	
-				$(this.options).log("this.options.url" + this.options.url)
-				
-			
+
+				$(this.options).log('this.options.url' + this.options.url)
+
 				$.tapestry.utils.ajaxRequest({
-					type : "POST",
+					type : 'POST',
 					url : this.options.url,
 					success : successHandler
 				});
