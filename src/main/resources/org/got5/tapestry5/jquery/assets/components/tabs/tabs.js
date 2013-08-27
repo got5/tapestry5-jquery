@@ -16,7 +16,7 @@
 		
 		return {
 			tabs : init
-		}
+		};
 	});
 	
 }) ( jQuery );

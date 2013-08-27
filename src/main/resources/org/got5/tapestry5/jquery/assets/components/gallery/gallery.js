@@ -8,7 +8,7 @@
 		
 		return {
 			gallery : init
-		}
+		};
 	});
 	
 }) ( jQuery );

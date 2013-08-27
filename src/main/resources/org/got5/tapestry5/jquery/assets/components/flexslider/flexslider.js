@@ -8,7 +8,7 @@
 		
 		return {
 			flexslider : init
-		}
+		};
 	});
 	
 }) ( jQuery );

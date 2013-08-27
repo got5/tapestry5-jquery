@@ -28,7 +28,7 @@
 		
 		return {
 			slider : init
-		}
+		};
 	});
 	
 }) ( jQuery );

@@ -78,6 +78,6 @@
 
 		return {
 			confirm : init
-		}
+		};
 	});
 })(jQuery);
