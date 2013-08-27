@@ -48,7 +48,8 @@ http://groups.google.com/group/tapestry5-jquery
             jcarousel 0.2.9
             superfish 1.7.4
             Colorbox 1.4.27
-            
+            Masked Input plugin for jQuery 1.3.1
+
 - 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 - 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
 - 3.3.1 : add GMap component
