@@ -13,12 +13,12 @@
 
 	   <div t:type='zone'  t:id="dropzone" t:mixins='jquery/zonedroppable'>
 	   		Last zone Update:${now} <br/>
-	   		Last Drop:${data}
+	   		Last Drop: ${data}
 	   </div>
 	
 	   <style type="text/css">
 	   	.ui-draggable { width: 75px; height: 25px; background: silver; padding: 10px; margin-bottom:20px;}
-	   	.ui-droppable { background: gray; color: white; padding: 10px; margin-bottom:20px;}
+	   	.ui-droppable { background: gray; color: white; padding: 10px; margin-bottom:20px; height: 100px; }
 	 	</style>
     	
     	<br />
