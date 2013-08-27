@@ -32,40 +32,40 @@ import org.got5.tapestry5.jquery.data.MockDataSource;
 
 @SubModule(value = JQueryModule.class)
 public class AppModule
-{	
+{
 	@Contribute(SymbolProvider.class)
 	@ApplicationDefaults
     public static void contributeApplicationDefaults(MappedConfiguration<String, Object> configuration)
     {
     	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de,ru,ua");
-    	
+
     	configuration.add(SymbolConstants.PRODUCTION_MODE, false);
-    	
+
     	configuration.add(SymbolConstants.COMBINE_SCRIPTS, false);
-    	
+
     	configuration.add(SymbolConstants.COMPRESS_WHITESPACE, false);
-        
+
     	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, false);
-    	
+
     	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
-    	
+
     	configuration.add("demo-src-dir", "");
-    	
-    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
+
+    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui-1.10.3.css");
     }
-    
+
 	@Contribute(WidgetParams.class)
 	public void addWidgetParams(MappedConfiguration<String, JSONObject> configuration){
 		configuration.add("slider", new JSONObject().put("min", 5));
-	    configuration.add("customdatepicker", 
+	    configuration.add("customdatepicker",
 	    		new JSONObject("prevText","Previous Month"));
 	}
-    
+
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)
     {
         configuration.add("demo-jquery", "static/css");
     }
-    
+
     public void contributeApplicationStateManager(
 			MappedConfiguration<Class, ApplicationStateContribution> configuration) {
 
@@ -83,5 +83,5 @@ public class AppModule
 	public void addEffectsFile(Configuration<String> configuration){
 		configuration.add(EffectsConstants.SHAKE);
 	}
-	
+
 }
