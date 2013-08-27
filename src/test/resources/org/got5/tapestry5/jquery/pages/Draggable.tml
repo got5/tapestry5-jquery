@@ -18,10 +18,11 @@
     		Drag Item 2 
    		</t:jquery.Draggable>
 
-			<div t:type='zone' t:id="dropzone" t:mixins='jquery/zonedroppable'>
-				Last zone Update:${now} <br /> Last Drop:${data}
-			</div>
 
+            <div t:type='zone'  t:id="dropzone" t:mixins='jquery/zonedroppable'>
+                Last zone Update:${now} <br/>
+                Last Drop: ${data}
+            </div>
 			<style type="text/css">
 .ui-draggable {
 	width: 75px;
@@ -43,4 +44,5 @@
 		</section>
 	</div>
 </div>
+
 </html>
