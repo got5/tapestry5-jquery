@@ -6,8 +6,15 @@ requirejs.config({
 
 define(["tjq/vendor/components/gmap/gmap3"], function() {
 	init = function(spec) {
-		
-	    jQuery("#" + spec.id).gmap3(spec.params);
+
+        if (isEmpty(specs.params)) {
+
+            jQuery('#' + specs.id).gmap3();
+
+        }  else {
+
+            jQuery('#' + specs.id).gmap3(specs.params);
+        }
 	  };
   	
   	return exports = init;
