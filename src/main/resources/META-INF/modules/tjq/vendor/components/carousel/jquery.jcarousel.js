@@ -177,7 +177,7 @@
 
         this.funcNext   = function() { self.next(); return false; };
         this.funcPrev   = function() { self.prev(); return false; };
-        this.funcResize = function() { 
+        this.funcResize = function() {
             if (self.resizeTimer) {
                 clearTimeout(self.resizeTimer);
             }
@@ -191,8 +191,7 @@
             this.options.initCallback(this, 'init');
         }
 
-        //if (!windowLoaded && $.browser.safari) {
-        if (false) {
+        if (!windowLoaded && $jc.isSafari()) {
             this.buttons(false, false);
             $(window).bind('load.jcarousel', function() { self.setup(); });
         } else {
@@ -204,7 +203,7 @@
     var $jc = $.jcarousel;
 
     $jc.fn = $jc.prototype = {
-        jcarousel: '0.2.8'
+        jcarousel: '0.2.9'
     };
 
     $jc.fn.extend = $jc.extend = $.extend;
@@ -625,7 +624,7 @@
                 j++;
             }
 
-             // Remove out-of-range placeholders
+            // Remove out-of-range placeholders
             for (var x = 0; x < cache.length; x++) {
                 cache[x].remove();
             }
@@ -1017,6 +1016,14 @@
 
         windowLoaded: function() {
             windowLoaded = true;
+        },
+
+        isSafari: function() {
+            var ua = navigator.userAgent.toLowerCase(),
+                match = /(chrome)[ \/]([\w.]+)/.exec(ua) || /(webkit)[ \/]([\w.]+)/.exec(ua) || [],
+                browser = match[1] || "";
+
+            return browser === 'webkit';
         }
     });
 
