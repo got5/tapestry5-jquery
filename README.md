@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.3.6
+# Tapestry 5 jQuery integration Module - 3.3.7
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -41,6 +41,8 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
+- 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
+- 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
 - 3.3.1 : add GMap component
 - 3.3.0 : Update to Tapestry 5.3.3
 - 3.2.0 : Update to Tapestry 5.3.2
@@ -66,7 +68,7 @@ http://groups.google.com/group/tapestry5-jquery
 
 This module provides jQuery integration for Tapestry 5 and completely drop out Prototype, Scriptaculous and the base tapestry.js script. 
 
-It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
+It also relies on [jQuery](http://jquery.com) 1.8.2 and [jQuery UI](http://jqueryui.com/) 1.8.24
 
 Exclusive jQuery components : 
 
@@ -147,7 +149,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>3.0.0</version>
+			<version>3.3.7</version>
 		</dependency>
 		...
 	</dependencies>
