@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Tapestry 5 jQuery integration Module - 3.3.3
+=======
+# Tapestry 5 jQuery integration Module
+>>>>>>> 8625980... updated changelog
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -42,43 +46,47 @@ http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
 
-- 3.4.0 : Upgrade libs
-            jQuery 1.10.2
-            jQueryUI 1.10.3
-            jcarousel 0.2.9
-            superfish 1.7.4
-            Colorbox 1.4.27
-            Masked Input plugin for jQuery 1.3.1
-            FlexSlider 2.2.0
+* 3.4.0 (unreleased) : Upgrade libs
+	* jQuery 1.10.2
+	* jQueryUI 1.10.3
+    * jcarousel 0.2.9
+    * superfish 1.7.4
+    * Colorbox 1.4.27
+    * Masked Input plugin for jQuery 1.3.1
+    * FlexSlider 2.2.0
 
-- 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
-- 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
-- 3.3.1 : add GMap component
-- 3.3.0 : Update to Tapestry 5.3.3
-- 3.2.0 : Update to Tapestry 5.3.2
-- 3.1.0 : Update to Tapestry 5.3.1
-- 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
-          add Components : Gallery
-- 2.6.6 : handle datatable's ajax mode for server-side pagination
-- 2.6.2 : more work on client side validation
-- 2.6.1 : improve Validation Mecanism and DataTable Component
-		  add Components : InPlaceEditor, Draggable
-		  add Mixins : ZoneRefresh, ZoneDroppable 
-- 2.6.0 : switch to Tapestry 5.2.6
-		  add Mixins : CustomZone, Widget
-		  Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
-- 2.1.1 : add Components : Carousel, Checkbox, RangeSlide, Slider, Superfish 
-		  add Mixins     : CustomDatepicker, Mask, Reveal, Tooltip	
-- 2.1.0 : switch to Tapestry 5.2.5
-		  add (Tabs, Accordion, AjaxUpload, Button)	
-- 1.1-SNAPSHOT : exclusive jQuery components
-- 1.0-SNAPSHOT : initial releases  !
+* 3.3.7 (stable) : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
+* 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
+* 3.3.1 : add GMap component
+* 3.3.0 : Update to Tapestry 5.3.3
+* 3.2.0 : Update to Tapestry 5.3.2
+* 3.1.0 : Update to Tapestry 5.3.1
+* 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
+	* add Components : Gallery
+* 2.6.6 : handle datatable's ajax mode for server-side pagination
+* 2.6.2 : more work on client side validation
+* 2.6.1 : 
+	* improve Validation Mecanism and DataTable Component
+	* add Components : InPlaceEditor, Draggable
+	* add Mixins : ZoneRefresh, ZoneDroppable 
+* 2.6.0 : 
+	* switch to Tapestry 5.2.6
+	* add Mixins : CustomZone, Widget
+	* Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
+* 2.1.1 :  
+	* added Components: Carousel, Checkbox, RangeSlide, Slider, Superfish 
+	* added Mixins: CustomDatepicker, Mask, Reveal, Tooltip	
+* 2.1.0 : switch to Tapestry 5.2.5
+	* add (Tabs, Accordion, AjaxUpload, Button)	
+* 1.1-SNAPSHOT : exclusive jQuery components
+* 1.0-SNAPSHOT : initial releases  !
 
 ## Features
 
-This module provides jQuery integration for Tapestry 5 and completely drop out Prototype, Scriptaculous and the base tapestry.js script. 
+This module provides jQuery integration for Tapestry 5 and completely drops out Prototype, Scriptaculous and the base tapestry.js script. 
 
-It also relies on [jQuery](http://jquery.com) 1.5 and [jQuery UI](http://jqueryui.com/) 1.8.
+It also relies on [jQuery](http://jquery.com) 1.10.2 and [jQuery UI](http://jqueryui.com/) 1.10.3.
+
 
 Exclusive jQuery components : 
 
