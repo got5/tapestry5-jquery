@@ -18,7 +18,7 @@
 		
 		return {
 			imageCropper : init
-		}
+		};
 	});
 	
 }) ( jQuery );

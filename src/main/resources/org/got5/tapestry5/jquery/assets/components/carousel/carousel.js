@@ -35,7 +35,7 @@ T5.extendInitializers(function(){
 	
 	return {
 		carousel : init
-	}
+	};
 });	
 
 }) ( jQuery );

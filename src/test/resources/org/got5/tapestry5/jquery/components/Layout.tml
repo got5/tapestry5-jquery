@@ -18,7 +18,7 @@
 
 		<div id="top">
 
-			<h1><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></h1>
+			<h1><a t:type="pageLink" t:page="index"><img src="${context:/css/layout/tapestry_s.png}" alt="Tapestry" id="tapestry" /></a></h1>
 
 			<div>Welcome to Tapestry 5 jQuery !</div>
 			

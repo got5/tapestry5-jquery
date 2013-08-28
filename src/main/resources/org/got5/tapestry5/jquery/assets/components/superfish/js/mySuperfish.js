@@ -13,7 +13,7 @@
 		
 		return {
 			superfish : init
-		}
+		};
 	});
 	
 }) ( jQuery );

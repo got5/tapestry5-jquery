@@ -8,7 +8,7 @@
 		
 		return {
 			mask : init
-		}
+		};
 	});
 	
 }) ( jQuery );

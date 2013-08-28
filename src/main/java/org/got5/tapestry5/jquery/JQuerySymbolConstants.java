@@ -33,7 +33,12 @@ public class JQuerySymbolConstants {
 	 * Base path for jQuery UI. Must include a "minified" directory that
 	 * contains the .min-files for production mode.
 	 */
-	public static final String JQUERY_UI_PATH = "jquery.ui.path";
+    public static final String JQUERY_UI_PATH = "jquery.ui.path";
+
+    /**
+     * Should be part of the {@link #JQUERY_UI_PATH}.
+     */
+    public static final String JQUERY_UI_VERSION = "jquery.ui.version";
 
 	/**
 	 * Path to the theme-css file for jQuery UI.
@@ -42,7 +47,7 @@ public class JQuerySymbolConstants {
 
 	/**
 	 * Base path for jQuery validation plugin.
-	 * 
+	 *
 	 * @see <a href="http://docs.jquery.com/Plugins/Validation">jQuery
 	 *      Validation mecanism</a>
 	 */
@@ -73,10 +78,10 @@ public class JQuerySymbolConstants {
 	public static final String USE_MINIFIED_JS = "use.minified.js";
 
 	/**
-	 * 
+	 *
 	 * Indicates if your application should manage the mousewheel event, from
 	 * the
-	 * 
+	 *
 	 * the jQuery Mouse Wheel Plugin
 	 * (http://brandonaaron.net/code/mousewheel/demos)
 	 */

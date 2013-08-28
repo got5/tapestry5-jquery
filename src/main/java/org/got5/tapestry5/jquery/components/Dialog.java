@@ -1,13 +1,13 @@
 package org.got5.tapestry5.jquery.components;
 
-import org.apache.tapestry5.annotations.SupportsInformalParameters;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
@@ -16,17 +16,17 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
- * There are a few components you can use to create a dialog in your pages. 
+ * There are a few components you can use to create a dialog in your pages.
  *  - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
  * 	- DialogLink, clicking a DialogLink will make the associated Dialog to open.
  *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
  *
  * @see <a href="http://jqueryui.com/demos/dialog/">http://jqueryui.com/demos/dialog/</a>
- * 
+ *
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = { "jquery.ui.mouse", "jquery.ui.draggable", "jquery.ui.resizable", "jquery.ui.dialog" })
+@ImportJQueryUI(value = { "jquery.ui.mouse", "jquery.ui.draggable", "jquery.ui.resizable", "jquery.ui.button", "jquery.ui.dialog" })
 public class Dialog implements ClientElement
 {
     /**
@@ -52,7 +52,7 @@ public class Dialog implements ClientElement
 
     @Inject
     private JavaScriptSupport support;
-    
+
     @Inject
     private ComponentResources resources;
 

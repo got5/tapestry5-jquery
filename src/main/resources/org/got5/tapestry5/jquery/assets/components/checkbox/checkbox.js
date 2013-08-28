@@ -8,7 +8,7 @@
 		
 		return {
 			checkbox : init
-		}
+		};
 	});
 	
 }) ( jQuery );
