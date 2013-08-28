@@ -31,7 +31,7 @@
 		
 		return {
 			rangeSlider : init
-		}
+		};
 	});
 	
 }) ( jQuery );

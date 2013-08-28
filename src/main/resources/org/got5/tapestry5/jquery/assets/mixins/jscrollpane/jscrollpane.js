@@ -8,7 +8,7 @@
 		
 		return {
 			jscrollpane : init
-		}
+		};
 	});
 	
 }) ( jQuery );

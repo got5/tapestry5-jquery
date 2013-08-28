@@ -66,7 +66,7 @@ var snippet = $("#"+specs.id + " pre."+specs.lang);
 		
 		return {
 			source : init
-		}
+		};
 	});
     
     

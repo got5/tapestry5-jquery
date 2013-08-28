@@ -48,7 +48,7 @@
 		
 		return {
 			autocomplete : init
-		}
+		};
 	});
 	
 }) ( jQuery );
