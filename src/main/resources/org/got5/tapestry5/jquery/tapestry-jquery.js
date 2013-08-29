@@ -751,9 +751,9 @@
 			var effect = el.is(":visible") ? this.options.update
 					: this.options.show;
 
-			el.html(content).effect(effect, this.options.opt.options,
-					this.options.opt.speed, this.options.opt.callback);
-			el.trigger(Tapestry.ZONE_UPDATED_EVENT);
+			el.html(content)
+		      .effect(effect, this.options.opt.options, this.options.opt.speed, this.options.opt.callback)
+			  .trigger(Tapestry.ZONE_UPDATED_EVENT);
 		}
 
 	});

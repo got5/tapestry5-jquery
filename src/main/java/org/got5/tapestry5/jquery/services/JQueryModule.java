@@ -101,6 +101,7 @@ public class JQueryModule {
 			configuration.add(Trait.SCRIPTACULOUS, false);
 	}
 
+
 	@Contribute(SymbolProvider.class)
 	@ApplicationDefaults
 	public static void contributeApplicationDefault(
