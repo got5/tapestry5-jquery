@@ -34,4 +34,6 @@ public class EffectsConstants {
 
 	 public static final String TRANSFER = "${jquery.ui.path}/jquery.ui.effect-transfer.js";
 
+	 public static final String SHOW = "${tapestry.jquery.path}/jquery.effects.show.js";
+
 }

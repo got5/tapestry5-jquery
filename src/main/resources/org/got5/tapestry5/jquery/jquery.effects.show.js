@@ -1,6 +1,6 @@
 (function( $, undefined ) {
 
-$.effects.show = function(o) {
+$.effects.effect.show = function(o) {
 
 	return $(this).show();
 
