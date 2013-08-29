@@ -106,7 +106,7 @@
 	        return {
 	            alertManager : alertManager,
 	            addAlert : addAlertPublisher
-	        }
+	        };
 	    }
 	
 	)
