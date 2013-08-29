@@ -65,7 +65,7 @@
 	    		
 	    		// Chrome doesn't automatically output a trace with the error message.
 	            // FireFox does.
-	    		if (! $.browser.safari && console.trace) {
+	    		if (! /Safari/.test(navigator.userAgent) && console.trace) {
 	                console.trace();
 	            }
 	    	}

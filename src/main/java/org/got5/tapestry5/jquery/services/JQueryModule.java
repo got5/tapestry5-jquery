@@ -187,6 +187,7 @@ public class JQueryModule
     @Contribute(EffectsParam.class)
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
+    	configuration.add(EffectsConstants.SHOW);
     }
 
     @Contribute(JavaScriptFilesConfiguration.class)
