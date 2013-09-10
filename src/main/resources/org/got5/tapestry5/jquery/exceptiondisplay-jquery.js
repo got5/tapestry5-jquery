@@ -27,4 +27,4 @@ Tapestry.stackFrameToggle = function(id)
         });
         
     });
-}
+};
