@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,30 +30,29 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.entities.Person;
 import org.got5.tapestry5.jquery.entities.Phone;
 
-@Import(library="context:js/demo.js")
-public class AjaxFormLoop
-{
-	
+@Import(library = "context:js/demo.js")
+public class AjaxFormLoop {
+
     @Property
     @Persist
     private Person person;
 
     @Property
     private Phone phone;
-    
+
     @Property
     private Boolean deleted;
-    
+
     @Inject
     private JavaScriptSupport js;
-    
+
     @OnEvent("activate")
     void init()
     {
         if (person == null)
             person = new Person();
-        
-        
+
+
     }
 
     public ValueEncoder<Phone> getPhoneEncoder()
@@ -91,20 +90,20 @@ public class AjaxFormLoop
 
         person.getPhones().add(phone);
         phone.setPerson(person);
-    
+
         return phone;
     }
-    
-    void onRemoveRowFromPhones(Phone phoneToDelete) 
+
+    void onRemoveRowFromPhones(Phone phoneToDelete)
     {
     	person.getPhones().remove(phoneToDelete);
     	// If the phone is new, remove them from the list. Else, flag them to be deleted from the database.
 	}
 
     public void afterRender(){
-    	js.addInitializerCall(InitializationPriority.LATE, 
-    								"ajaxFormLoopCallback", 
+    	js.addInitializerCall(InitializationPriority.LATE,
+    								"ajaxFormLoopCallback",
     								new JSONArray());
     }
-    
+
 }

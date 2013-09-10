@@ -22,7 +22,7 @@
 		return {
 			dateField : init, 
 			customDatepicker : customDatepicker
-		}
+		};
 	});
 	
 	$.extend(Tapestry, {

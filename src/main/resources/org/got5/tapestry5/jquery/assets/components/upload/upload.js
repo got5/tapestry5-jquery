@@ -100,7 +100,7 @@
 
 				return {
 					uploadable : init
-				}
+				};
 			});
 
 })(jQuery);

@@ -101,7 +101,7 @@ T5.extendInitializers(function(){
 	return {
 		formFragment : init, 
 		linkTriggerToFormFragment : linkTriggerToFormFragment
-	}
+	};
 });
 
 })( jQuery );

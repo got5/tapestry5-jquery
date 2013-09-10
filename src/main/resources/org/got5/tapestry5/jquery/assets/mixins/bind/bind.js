@@ -1,9 +1,9 @@
 (function( $ ) {
 
-	T5.extendInitializers(function(){
-		
+	T5.extendInitializers(function() {
+
 		function init(specs) {
-			var el = $('#'+specs.elementId);
+			var el = $('#' + specs.elementId);
 			var url = specs.url;
 			var zoneId = specs.zoneId;
 			var hide = specs.hide;
@@ -19,30 +19,37 @@
 			var preventDefault = specs.preventDefault;
 			var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
 
-			$(el).bind( specs.eventType, function(event,ui) {
+			$(el).bind( specs.eventType, function(event, ui) {
+
+			    var u = {
+			            url : url,
+			            element : $(this)
+			        },
+                    value = u.element.val();
+
 				if ( preventDefault ) {
 					event.preventDefault();
 				}
 				
 				if ( title ) {
-					document.title=title;
+					document.title = title;
 				}			
+
 				if ( hide ) {
 					$('#' + hide).hide(hideEffect,options,hideTime);
 				}
+
 				if ( zoneUpdate ) {
-					zoneElement.tapestryZone('option','update',zoneUpdate);
+					zoneElement.tapestryZone('option', 'update', zoneUpdate);
 				}
-				
-				var u = new Object();
-				u.url = url;
-				
+
 				//If the element using the bind mixin has a value, we automatically added to tue url
-				if($(this).val() !== "") u.url += ("/" + $(this).val()) 	
-					
+				if (value) {
+				    u.url += ('/' + value); 	
+				}
+
 				u.context = contextMarker;		
-				u.element = $(this);
-				
+
 				if ( history ) {
 					history(event,ui,u);
 				}
@@ -54,20 +61,20 @@
 				if ( u.url ) {
 					
 					if ( zoneId ) {
-						zoneElement.tapestryZone("update",{url : u.url});
+						zoneElement.tapestryZone('update', { url : u.url });
 					} else {
 						$.ajax({
-							type: "POST",
+							type: 'POST',
 							url: u.url
 						});
 					}
 				}
 			});
 		}
-		
+
 		return {
 			jqbind : init
-		}
+		};
 	});
 	
 }) ( jQuery );

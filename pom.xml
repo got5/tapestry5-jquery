@@ -2,25 +2,31 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>3.3.8-SNAPSHOT</version>
+	<version>3.4.0-SNAPSHOT</version>
+
 	<packaging>jar</packaging>
+
 	<name>Tapestry 5 JQuery Library</name>
 	<description>Tapestry Components Library</description>
 	<url>https://github.com/got5/tapestry5-jquery</url>
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
-     <licenses>
-		<license>
+    
+    <licenses>
+        <license>
 			<name>Apache Software License 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
-		</license>
+        </license>
 	</licenses>
+
 	<organization>
 		<name>GOT5</name>
 		<url>https://github.com/got5</url>
@@ -154,8 +160,6 @@
 		<url>http://ci.dev.kalaari.net/hudson/</url>
 	</ciManagement>
 	
-	
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
@@ -202,7 +206,29 @@
 	      <artifactId>spock-core</artifactId>
 	      <version>${spock-version}</version>
 	      <scope>test</scope>
-	    </dependency>    
+	    </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium-version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 	
 	
@@ -225,7 +251,7 @@
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.6</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
@@ -233,7 +259,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
@@ -467,12 +493,22 @@
                 <browserStartCommand>*googlechrome /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</browserStartCommand>
             </properties>
         </profile>
+        <profile>
+            <id>linux-test</id>
+            <activation>
+                <os><name>Linux</name></os>
+            </activation>
+            <properties>
+                <browserStartCommand>*firefox</browserStartCommand>
+            </properties>
+        </profile>
 	</profiles>
-	
+
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
+        <selenium-version>2.35.0</selenium-version>
 		<tapestry-release-version>5.3.7</tapestry-release-version>
-                <browserStartCommand>*googlechrome</browserStartCommand>
-                <sourceDirectory>src/main/java</sourceDirectory>
+        <browserStartCommand>*googlechrome</browserStartCommand>
+        <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
 </project>

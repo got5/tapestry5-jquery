@@ -36,7 +36,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * Replacement for {@link CoreJavaScriptStack}.
- * 
+ *
  * @author criedel, GOT5
  */
 public class JQueryJavaScriptStack implements JavaScriptStack {
@@ -47,7 +47,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 	private final boolean mouseWheel;
 
-	private String jQueryAlias;
+	private final String jQueryAlias;
 
 	private final List<Asset> jQueryJsStack;
 
@@ -55,9 +55,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 	private final JavaScriptStackSource jsStackSource;
 
-	private EffectsParam effectsParam;
+	private final EffectsParam effectsParam;
 
-	private JavaScriptFilesConfiguration jsConf;
+	private final JavaScriptFilesConfiguration jsConf;
 
 	public JQueryJavaScriptStack(
 			@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
@@ -119,7 +119,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 						"${jquery.ui.path}/jquery.ui.core.js",
 						"${jquery.ui.path}/jquery.ui.position.js",
 						"${jquery.ui.path}/jquery.ui.widget.js",
-						"${jquery.ui.path}/jquery.effects.core.js",
+						"${jquery.ui.path}/jquery.ui.effect.js",
 						"${tapestry.jquery.path}/jquery.json-2.2.js")
 				.concat(F.flow(this.effectsParam.getEffectsToLoad()))
 				.map(pathToAsset).toList();
@@ -128,13 +128,13 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 	public String getInitialization() {
 		if (!suppressPrototype && (jQueryAlias.equals("$") || jQueryAlias.equals("jQuery")))
-			
-			//If the alias='jQuery', we can have some problem with IE ! 
+
+			//If the alias='jQuery', we can have some problem with IE !
 			throw new RuntimeException(
 					"You are using an application based on Prototype"
 							+ " and jQuery. You should set in your AppModule the alias for the jQuery object to a different"
 							+ " value than '$' and 'jQuery'");
-	
+
 		return minified ? "var " + jQueryAlias + " = jQuery; Tapestry.JQUERY="
 				+ suppressPrototype + ";"
 				: "var "

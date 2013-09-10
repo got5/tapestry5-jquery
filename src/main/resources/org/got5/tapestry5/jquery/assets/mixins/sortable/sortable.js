@@ -19,7 +19,7 @@
 		
 		return {
 			sortable : init
-		}
+		};
 	});
 	
 }) ( jQuery );

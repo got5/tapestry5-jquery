@@ -11,7 +11,7 @@
 		
 		return {
 			button : init
-		}
+		};
 	});
 	
 }) ( jQuery );

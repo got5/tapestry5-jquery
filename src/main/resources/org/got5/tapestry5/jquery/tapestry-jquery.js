@@ -9,8 +9,20 @@
 						 */
 						VIRTUAL_SCRIPTS : 'tapestry.virtualScripts',
 
+						pageLoaded : false,
+
 						waitForPage : function() {
-							return;
+
+						    if (Tapestry.pageLoaded) {
+						        
+						        return true;
+						    }
+						    
+						    $(document).ready(function () {
+						        Tapestry.pageLoaded = true;
+						    });
+						    
+							return Tapestry.pageLoaded;
 						},
 
 						onDOMLoaded : function(callback) {
@@ -26,6 +38,7 @@
 									$().log(
 											"No Tapestry.Initializer function for : "
 													+ functionName);
+									return;
 								}
 
 								$.each(params, function(i, paramList) {
@@ -39,7 +52,7 @@
 							});
 						},
 						onDomLoadedCallback : function() {
-
+					        
 							$('input[type="submit"],input[type="image"],button[type="submit"]')
 									.each(
 											function() {
@@ -650,19 +663,19 @@
 	 * @param {Object}
 	 *            options
 	 */
-	$.widget("ui.tapestryZone", {
+	$.widget('ui.tapestryZone', {
 		options : {
-			show : "highlight",
-			update : "highlight",
-			opt : ""
+			show : 'highlight',
+			update : 'highlight',
+			opt : ''
 		},
 
 		_create : function() {
-			this.element.addClass("tapestry-zone");
+			this.element.addClass('tapestry-zone');
 		},
 
 		destroy : function() {
-			this.element.removeClass("tapestry-zone");
+			this.element.removeClass('tapestry-zone');
 
 			$.Widget.prototype.destroy.apply(this, arguments);
 		},
@@ -678,30 +691,29 @@
 		update : function(specs) {
 
 			var that = this, zoneIdInfo = {
-				't:zoneid' : this.element.attr("id")
+				't:zoneid' : this.element.attr('id')
 			};
 			var ajaxRequest = {
 				url : specs.url,
-				type : "POST",
+				type : 'POST',
 				success : function(data) {
 					if (data.content) {
 
 						that.applyContentUpdate(data.content);
+					}
 
-					} 
 					if (data.zones) {
 
 						// perform multi zone update
 						$.each(data.zones, function(zoneId, content) {
 
-							if (zoneId === "" || !$('#' + zoneId).length) {
+							if (zoneId === '' || !$('#' + zoneId).length) {
 
 								that.applyContentUpdate(content);
 
 							} else {
 
-								$('#' + zoneId).tapestryZone(
-										"applyContentUpdate", content);
+								$('#' + zoneId).tapestryZone('applyContentUpdate', content);
 							}
 						});
 
@@ -742,18 +754,18 @@
 
 			if (content === null) {
 				$().log(
-						"WARN: content is undefined. Aborting update for zone: "
-								+ this.element.attr("id"));
+						'WARN: content is undefined. Aborting update for zone: '
+								+ this.element.attr('id'));
 				return;
 			}
 
 			var el = this.element;
-			var effect = el.is(":visible") ? this.options.update
+			var effect = el.is(':visible') ? this.options.update
 					: this.options.show;
 
-			el.html(content).effect(effect, this.options.opt.options,
-					this.options.opt.speed, this.options.opt.callback);
-			el.trigger(Tapestry.ZONE_UPDATED_EVENT);
+			el.html(content)
+		      .effect(effect, this.options.opt.options, this.options.opt.speed, this.options.opt.callback)
+			  .trigger(Tapestry.ZONE_UPDATED_EVENT);
 		}
 
 	});
@@ -815,39 +827,39 @@
 
 		trigger : function() {
 		
-			var that = this, el = $("#" + this.options.element);
+			var that = this, el = $('#' + this.options.element);
 			
-			if(!el.hasClass("preforming")){
-				el.addClass("preforming");
-				
+			if (!el.hasClass('preforming')) {
+				el.addClass('preforming');
+
 				var successHandler = function(data) {
-					$(data).log("data");
+					$(data).log('data');
 					$.tapestry.utils.loadScriptsInReply(data, function() {
 						// Clone the FormInjector element (usually a div)
 						// to create the new element, that gets inserted
 						// before or after the FormInjector's element.
-	
+
 						var newElement = el.clone(false);
-						newElement.attr("id", data.elementId);
+						newElement.attr('id', data.elementId);
 						newElement.html(data.content);
-	
-						newElement = that.options.below ? el.after(newElement) : el
-								.before(newElement);
-	
+						newElement.removeClass('preforming');
+
+						newElement = that.options.below ? 
+						        el.after(newElement) : el.before(newElement);
+
 						newElement.effect(that.options.show);
 	
-						newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED);
+						window.setTimeout(function () { newElement.trigger(Tapestry.AJAXFORMLOOP_ROW_ADDED); }, 25);
 						
-						el.removeClass("preforming");
+						el.removeClass('preforming');
 					});
 	
 				};
-	
-				$(this.options).log("this.options.url" + this.options.url)
-				
-			
+
+				$(this.options).log('this.options.url' + this.options.url)
+
 				$.tapestry.utils.ajaxRequest({
-					type : "POST",
+					type : 'POST',
 					url : this.options.url,
 					success : successHandler
 				});

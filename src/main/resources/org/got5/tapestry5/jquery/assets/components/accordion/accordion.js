@@ -8,7 +8,7 @@
 		
 		return {
 			accordion : init
-		}
+		};
 	});
 	
 }) ( jQuery );
