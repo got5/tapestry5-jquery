@@ -12,6 +12,7 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
+import org.apache.tapestry5.annotations.CleanupRender;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
