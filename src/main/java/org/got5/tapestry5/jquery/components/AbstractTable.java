@@ -208,6 +208,12 @@ public class AbstractTable implements ClientElement {
 	@Inject
 	private Request request;
 	
+	@CleanupRender
+	private void cleanupClientId()
+	{
+		clientId="";
+	}
+	
 	public String getClientId() {
 		if(InternalUtils.isBlank(clientId))
 			clientId = (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
