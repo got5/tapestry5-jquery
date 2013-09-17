@@ -16,18 +16,17 @@
 package org.got5.tapestry5.jquery.components;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.ClientElement;
-import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.Link;
-import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.*;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.TapestryException;
 import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+
+import java.util.ArrayList;
 
 /**
  * @since 2.1.1
@@ -46,7 +45,7 @@ public class CarouselItem implements ClientElement {
     private int height;
 
     @Property
-    @Parameter(required = true, defaultPrefix = BindingConstants.PROP)
+    @Parameter(defaultPrefix = BindingConstants.PROP)
     private String imageSource;
 
     @Property
@@ -65,7 +64,10 @@ public class CarouselItem implements ClientElement {
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String zone;
 
-	@Inject
+    @Parameter("this")
+    private PropertyOverrides overrides;
+
+    @Inject
 	private ComponentResources componentResources;
 
 	@Inject
@@ -85,12 +87,20 @@ public class CarouselItem implements ClientElement {
 
 	private Link url;
 
+    private Block override;
 	void setupRender() {
+
+
+        override = overrides.getOverrideBlock("item");
+
+        if(override == null && !componentResources.isBound("imageSource")){
+            throw new TapestryException("The imageSource parameter is not bound! ", this, null);
+        }
 
 	    this.clientId = javaScriptSupport.allocateClientId(componentResources);
 
 	    this.isPageLink = StringUtils.isNotEmpty(page);
-	    this.isEventLink = StringUtils.isNotEmpty(event);
+  	    this.isEventLink = StringUtils.isNotEmpty(event);
 
         this.url = null;
 
@@ -112,26 +122,31 @@ public class CarouselItem implements ClientElement {
 	    }
 	}
 
-	void beginRender(MarkupWriter w) {
+    Renderable defaultBlock = new Renderable() {
+        public void render(MarkupWriter writer) {
+            if (isPageLink) {
+
+                writer.element("a", "href", url.toURI());
+
+            } else if (isEventLink) {
+
+                writer.element("a", "href", url.toURI(), "id", clientId);
+
+                if (zone != null) {
+                    clientSupport.linkZone(clientId, zone, url);
+                }
+            }
+
+            writer.element("img", "src", imageSource, "height", height + "px", "width", width + "px");
+            componentResources.renderInformalParameters(writer);
+            writer.end();
+        }
+    };
+	Object beginRender(MarkupWriter w) {
 
 	    w.element("li");
 
-        if (isPageLink) {
-
-            w.element("a", "href", url.toURI());
-
-        } else if (isEventLink) {
-
-            w.element("a", "href", url.toURI(), "id", clientId);
-
-            if (zone != null) {
-                clientSupport.linkZone(clientId, zone, url);
-            }
-        }
-
-        w.element("img", "src", imageSource, "height", height + "px", "width", width + "px");
-        componentResources.renderInformalParameters(w);
-        w.end();
+        return override != null ? override : defaultBlock;
 	}
 
 	void afterRender(MarkupWriter writer) {
