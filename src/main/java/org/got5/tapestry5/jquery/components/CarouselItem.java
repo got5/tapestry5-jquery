@@ -16,18 +16,17 @@
 package org.got5.tapestry5.jquery.components;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.ClientElement;
-import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.Link;
-import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.*;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.TapestryException;
+import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+
+import java.util.ArrayList;
 
 /**
  * @since 2.1.1
@@ -46,7 +45,7 @@ public class CarouselItem implements ClientElement {
     private int height;
 
     @Property
-    @Parameter(required = true, defaultPrefix = BindingConstants.PROP)
+    @Parameter(defaultPrefix = BindingConstants.PROP)
     private String imageSource;
 
     @Property
@@ -65,8 +64,11 @@ public class CarouselItem implements ClientElement {
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String zone;
 
-	@Inject
-	private ComponentResources componentResources;
+    @Parameter("this")
+    private PropertyOverrides overrides;
+
+    @Inject
+	private org.apache.tapestry5.ComponentResources componentResources;
 
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
@@ -80,59 +82,83 @@ public class CarouselItem implements ClientElement {
 
 	private boolean isEventLink;
 
+    private Link url;
+
+    private Block override;
+
+    @Inject
+    private ClientBehaviorSupport clientSupport;
+
 	public boolean isPagelink(){
 		return StringUtils.isNotEmpty(page);
 	}
 
 	public boolean isEventlink(){
-		return StringUtils.isNotEmpty(event);
+        StringUtils StringUtils;
+        return StringUtils.isNotEmpty(event);
 	}
 
 	
-	@SetupRender
-	public boolean init(MarkupWriter w){
-		w.element("li");
-		Link url = null;
-		if(isPagelink()){
-			
-			if(context!=null){
-				url=pageRenderLink.createPageRenderLinkWithContext(page, context);
-			}else{
-				url=pageRenderLink.createPageRenderLinkWithContext(page);
-			}
-			w.element("a","href",url.toURI());
-		}else if(isEventlink()){
-			String linkId = javaScriptSupport.allocateClientId(componentResources);
-			
-			if(context!=null){
-				url=componentResources.createEventLink(event, context);
-			}else{
-				url=componentResources.createEventLink(event);
-			}
-			
-			if(zone==null) w.element("a","href",url.toURI(),"id",linkId);
-			
-		}
-		
-		w.element("img","src",imageSource,"height",height+"px","width",width+"px");
-		
-		if(isEventlink() && zone!=null){
-			//clientSupport.linkZone(linkId, zone, url);
-			w.attributes("data-update-zone", zone);
-			w.attributes("data-update-zone-url", url);
-		}
-		
-		componentResources.renderInformalParameters(w);
-		w.end();
-		
-		if(isPagelink() || (isEventlink() && zone == null)){
-			w.end();
-		}
-		
-		w.end();
-		return false;
-		
 
+	void setupRender() {
+
+
+        override = overrides.getOverrideBlock("item");
+
+        if(override == null && !componentResources.isBound("imageSource")){
+            throw new TapestryException("The imageSource parameter is not bound! ", this, null);
+        }
+
+	    this.clientId = javaScriptSupport.allocateClientId(componentResources);
+
+	    this.isPageLink = StringUtils.isNotEmpty(page);
+  	    this.isEventLink = StringUtils.isNotEmpty(event);
+
+        this.url = null;
+
+	    if (isPageLink) {
+
+            if (context != null) {
+                url = pageRenderLink.createPageRenderLinkWithContext(page, context);
+            } else {
+                url = pageRenderLink.createPageRenderLinkWithContext(page);
+            }
+
+	    } else if (isEventLink) {
+
+            if (context != null) {
+                url = componentResources.createEventLink(event, context);
+            } else {
+                url = componentResources.createEventLink(event);
+            }
+	    }
+	}
+
+    Renderable defaultBlock = new Renderable() {
+        public void render(MarkupWriter writer) {
+            if (isPageLink) {
+
+                writer.element("a", "href", url.toURI());
+
+            } else if (isEventLink) {
+
+                writer.element("a", "href", url.toURI(), "id", clientId);
+
+                if (zone != null) {
+                    clientSupport.linkZone(clientId, zone, url);
+                }
+            }
+
+            writer.element("img", "src", imageSource, "height", height + "px", "width", width + "px");
+            componentResources.renderInformalParameters(writer);
+            writer.end();
+        }
+    };
+	Object beginRender(MarkupWriter w) {
+
+	    w.element("li");
+
+        return override != null ? override : defaultBlock;
 	}
 
 	void afterRender(MarkupWriter writer) {
