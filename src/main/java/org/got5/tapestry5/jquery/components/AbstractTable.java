@@ -12,11 +12,7 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
-import org.apache.tapestry5.annotations.CleanupRender;
-import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
@@ -208,15 +204,16 @@ public class AbstractTable implements ClientElement {
 
 	@Inject
 	private Request request;
-	
-	@CleanupRender
-	private void cleanupClientId()
-	{
-		clientId="";
-	}
-	
+
+    @SetupRender
+    void resetLocalVariables()
+    {
+        clientId = null;
+		dataModel = null;
+    }
+
 	public String getClientId() {
-		if(InternalUtils.isBlank(clientId))
+        if(InternalUtils.isBlank(clientId))
 			clientId = (InternalUtils.isNonBlank(resources.getInformalParameter("id", String.class))) ? resources.getInformalParameter("id", String.class) : javaScriptSupport.allocateClientId(resources);
 		return clientId;
 	}
@@ -242,7 +239,7 @@ public class AbstractTable implements ClientElement {
 	}
 
 	public BeanModel getDataModel() {
-		if (dataModel == null) {
+        if (dataModel == null) {
 			dataModel = getModel();
 
 			BeanModelUtils.modify(dataModel, add, include, exclude, reorder);
