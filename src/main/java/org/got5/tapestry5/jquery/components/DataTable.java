@@ -83,24 +83,8 @@ public class DataTable extends AbstractJQueryTable {
 	@Inject
 	private AjaxPartialResponseRenderer partialRenderer;
 
-	/**
-	 * The default Implementation of the DataTableModel Interface
-	 */
-	private DataTableModel reponse = new DefaultDataTableModel(typeCoercer, ts, pageRenderQueue,
-			ajaxFormUpdateController, partialRenderer,
-			new FakeInheritedBinding() {
-				public void set(Object value) {
-					setRow(value);
-				}
-			},
-			new FakeInheritedBinding() {
-				public void set(Object value) {
-					setRowIndex((Integer) value);
-				}
-			}
-	);
-
-
+	
+	
 	/**
 	 * Event method in order to get the datas to display.
 	 *
@@ -130,8 +114,23 @@ public class DataTable extends AbstractJQueryTable {
 				getDataModel(), getSortModel(), getOverrides(), getMode());
 	}
 
+	/**
+	 * The default Implementation of the DataTableModel Interface
+	 */
 	public DataTableModel getDefaultDataTableModel() {
-		return reponse;
+		return new DefaultDataTableModel(typeCoercer, ts, pageRenderQueue,
+			ajaxFormUpdateController, partialRenderer,
+			new FakeInheritedBinding() {
+				public void set(Object value) {
+					setRow(value);
+				}
+			},
+			new FakeInheritedBinding() {
+				public void set(Object value) {
+					setRowIndex((Integer) value);
+				}
+			}
+	);
 	}
 
 	/**
