@@ -13,7 +13,7 @@
     text-align:center;
     background: url(move_up.png) no-repeat scroll 10px 10px transparent;    
 }
-.qq-upload-button input {height: 100%; width: 100%}
+.qq-upload-button input { height: 100%; width: 100%; }
 .qq-upload-button-hover, a:hover.qq-upload-button {cursor:pointer; color: #fff; background: url(move_up.png) no-repeat scroll 10px 10px #D9E4FF; }
 .qq-upload-button-focus {outline:1px dotted black;}
 
