@@ -206,9 +206,10 @@ public class AbstractTable implements ClientElement {
 	private Request request;
 
     @SetupRender
-    void resetClientId()
+    void resetLocalVariables()
     {
         clientId = null;
+		dataModel = null;
     }
 
 	public String getClientId() {
