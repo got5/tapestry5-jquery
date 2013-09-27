@@ -11,9 +11,7 @@ public class TreeTest extends SeleniumTestCase{
 	public void testTreeComponent(){
 		
 		open("/Tree");
-		
-		waitForPageInitialized();
-		
+
 		new Wait() {
 			
 			@Override

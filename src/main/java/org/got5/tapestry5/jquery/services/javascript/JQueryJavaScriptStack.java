@@ -198,7 +198,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 		return ret;
 	}
 
-	public List<String> getStacks() {
+    public List<String> getModules() {
+        return Collections.emptyList();
+    }
+
+    public List<String> getStacks() {
 		return Collections.emptyList();
 	}
 

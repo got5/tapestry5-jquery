@@ -134,7 +134,7 @@ public class JQueryModule {
 	public static void contributeClasspathAssetAliasManager(
 			MappedConfiguration<String, String> configuration) {
 		configuration.add("tap-jquery", "org/got5/tapestry5");
-		configuration.add("tapestry-jquery", "META-INF/modules/tjq/vendor");
+		configuration.add("tapestry-jquery", "META-INF/modules/tjq");
 	}
 
 	public static void contributeBindingSource(

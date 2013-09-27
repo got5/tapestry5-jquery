@@ -59,6 +59,10 @@ public class FormSupportStack implements JavaScriptStack {
         return stylesheetStack;
     }
 
+    public List<String> getModules() {
+        return Collections.emptyList();
+    }
+
     public String getInitialization() {
 
         return null;

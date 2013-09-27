@@ -12,8 +12,7 @@ public class SuperfishTest extends SeleniumTestCase{
     	
     	open("/SuperFish");
     	
-    	waitForPageInitialized();
-    	
+
     	new Wait()
         {
             @Override

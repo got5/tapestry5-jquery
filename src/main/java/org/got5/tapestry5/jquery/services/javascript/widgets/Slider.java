@@ -57,6 +57,10 @@ public class Slider implements JavaScriptStack
         return Collections.emptyList();
     }
 
+    public List<String> getModules() {
+        return Collections.emptyList();
+    }
+
     public List<String> getStacks()
     {
         return Collections.emptyList();
