@@ -429,14 +429,6 @@
 	<reporting>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.tapestry</groupId>
-				<artifactId>tapestry-component-report</artifactId>
-				<version>${tapestry-release-version}</version>
-				<configuration>
-					<rootPackage>org.got5.tapestry5.jquery</rootPackage>
-				</configuration>
-			</plugin>
-			<plugin>
             	<groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.5</version>
@@ -447,7 +439,7 @@
     <repositories>
 		<repository>
 			<id>5.4-slpha-repo</id>
-			<url>https://repository.apache.org/content/repositories/orgapachetapestry-072/</url>
+			<url>https://repository.apache.org/content/repositories/orgapachetapestry-056/</url>
 
 		</repository>
     	</repositories>
@@ -475,7 +467,7 @@
 	
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-				<tapestry-release-version>5.4-alpha-3</tapestry-release-version>
+				<tapestry-release-version>5.4-alpha-22</tapestry-release-version>
                 <browserStartCommand>*firefox</browserStartCommand>
                 <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
