@@ -76,6 +76,7 @@ public class JQueryDialog
     }
     
     public JSONObject getOptions(){
-    	return new JSONObject("draggable", "true");
+    	JSONObject json = new JSONObject("draggable", "true");
+        return json;
     }
 }
