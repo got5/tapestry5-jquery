@@ -24,7 +24,7 @@ define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], func
     }
     return _results;
   };
-  scan(dom.body());
+  scan(dom.body);
   dom.onDocument(events.zone.didUpdate, function() {
     return scan(this);
   });
