@@ -4,8 +4,8 @@ requirejs.config({
 	}
 });
 
-define(["t5/core/dom", "t5/core/console", "t5/core/messages", "t5/core/builder", "t5/core/ajax", "_", "tjq/vendor/components/jgrowl/jquery.jgrowl"], 
-function(dom, console, messages, builder, ajax, _) {
+define(["t5/core/dom", "t5/core/console", "t5/core/messages", "t5/core/ajax", "underscore", "tjq/vendor/components/jgrowl/jquery.jgrowl"],
+function(dom, console, messages, ajax, _) {
   var alert, dismissAll, dismissOne, exports, findInnerContainer, getURL, removeAlert, setupUI, severityToClass;
   severityToClass = {
     success: "success alert alert-success",
@@ -22,7 +22,7 @@ function(dom, console, messages, builder, ajax, _) {
     console.debug("dismiss single");
     
     return ajax(getURL(findInnerContainer()), {
-      parameters: {
+        data: {
         id: id
       },
       success: function() {
@@ -33,7 +33,7 @@ function(dom, console, messages, builder, ajax, _) {
   
   findInnerContainer = function() {
     var outer;
-    outer = dom.body().findFirst("[data-container-type=alerts]");
+    outer = dom.body.findFirst("[data-container-type=alerts]");
     if (!outer) {
       console.error("Unable to locate alert container element to present an alert.");
       return null;
@@ -45,7 +45,7 @@ function(dom, console, messages, builder, ajax, _) {
     var className, container, content, element;
    
     className = "jgrowl-" + (severityToClass[data.severity] || "alert");
-    content = data.markup ? data.message : dom.escapeHTML(data.message);
+    content = data.markup ? data.message : _.escape(data.message);
     
 	var params = {
 			close : function(){
