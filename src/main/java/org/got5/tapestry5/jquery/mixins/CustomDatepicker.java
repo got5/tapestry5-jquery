@@ -26,7 +26,8 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/datepicker/">jQuery UI Official
  *      Documentation</a>
- * 
+ *
+ * @author Emmanuel DEMEY
  * @tapestrydoc
  */
 public class CustomDatepicker {

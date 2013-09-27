@@ -12,6 +12,7 @@ define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], func
       
       container.findFirst("button").remove();
       field = container.findFirst("input").$
+
       params = jQuery.extend({
                 gotoCurrent: true,
                 showOn: "button",
