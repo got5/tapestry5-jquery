@@ -59,7 +59,7 @@ public class GMap implements ClientElement {
 	    opt.put("params", parameters);
 	    
 	    //javaScriptSupport.importJavaScriptLibrary("http://maps.google.com/maps/api/js?sensor=false");
-		javaScriptSupport.require("tjq/gmap").with(opt);
+		javaScriptSupport.require("tjq/GMap").with(opt);
 	}
 
 	public String getClientId() {
