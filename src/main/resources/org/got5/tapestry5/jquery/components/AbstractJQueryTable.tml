@@ -5,7 +5,7 @@
         <tbody>
         	<t:if t:test="mode">
         	
-        		<tr><td>Loading data from server</td></tr>
+        		<tr><td colspan="${propertyNames.size()}">Loading data from server</td></tr>
         		
         		<t:parameter name="else">
 	        		
