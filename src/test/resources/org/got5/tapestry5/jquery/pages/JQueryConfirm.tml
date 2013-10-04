@@ -1,5 +1,13 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
-	
+
+
+
+    <br />
+    <br /><br />
+    <br />
+    <br />
+    <br />
+
 	<t:pagelink t:id="pageLinkTest" page="index" message="Message de confirmation" t:mixins="jquery/Confirm">PageLink confirmation test</t:pagelink>
 	
 	<form t:type="form" t:id="loginForm">
