@@ -97,17 +97,18 @@ public class CustomDatepicker {
 			 * We will call the WidgetParams in order to get the default JSON
 			 * object for the CustomDatepicker mixin
 			 */
-			defaultParamsObject = widgetParams.paramsForWidget(this.getClass()
-					.getSimpleName().toLowerCase());
+            defaultParamsObject = new JSONObject();
+
+            JSONObject temp = widgetParams.paramsForWidget(this.getClass().getSimpleName().toLowerCase());
+            if(temp != null){
+                defaultParamsObject = temp;
+            }
 
             defaultParamsObject.put("dateFormat", toJQueryUIDateFormat());
 			/*
 			 * We will merge the default JSON Object with the params parameter
 			 */
-			if (defaultParamsObject != null)
-				JQueryUtils.merge(defaultParamsObject, params);
-			else
-				defaultParamsObject = params;
+            JQueryUtils.merge(defaultParamsObject, params);
 
 			defaultParamsObject.put("selector", theSelector);
 			/*
