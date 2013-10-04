@@ -55,7 +55,7 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-u
                 var href = element.$.prop("href");
                 if (href != undefined) {
                     var urlSuffix = href.substring(href.lastIndexOf('.') + 1);
-                    if (urlSuffix == element.$.prop("id")) {
+                    if (element.attribute("data-update-zone")) {
                         //ActionLink
                         var z = dom.wrap(element.attribute("data-update-zone"));
                         if(z){
