@@ -35,6 +35,8 @@ import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.impl.*;
 import org.got5.tapestry5.jquery.services.js.JSModule;
+import org.got5.tapestry5.jquery.services.messages.MessageProvider;
+import org.got5.tapestry5.jquery.services.messages.MessageProviderImpl;
 
 @SubModule(JSModule.class)
 public class JQueryModule {
@@ -131,6 +133,7 @@ public class JQueryModule {
 				.scope(ScopeConstants.PERTHREAD);
 		binder.bind(JavaScriptFilesConfiguration.class,
 				JavaScriptFilesConfigurationImpl.class);
+        binder.bind(MessageProvider.class, MessageProviderImpl.class);
 		binder.bind(JGrowlManager.class, JGrowlManagerImpl.class);
 	}
 
@@ -195,4 +198,12 @@ public class JQueryModule {
 					new JavaScriptModuleConfiguration(jquerymousewheel)
 							.dependsOn("jquery"));
 	}
+
+    public static void contributeComponentMessagesSource (
+        @Value("/org/got5/tapestry5/JQueryCatalog.properties") Resource jQueryCatalog,
+        OrderedConfiguration<Resource> configuration) {
+
+        //Catalog used to store messages from mixins
+        configuration.add("JQueryCatalog", jQueryCatalog);
+    }
 }

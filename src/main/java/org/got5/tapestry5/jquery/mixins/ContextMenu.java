@@ -15,16 +15,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.data.ContextMenuItem;
-import org.got5.tapestry5.jquery.services.javascript.ContextMenuStack;
 
 /**
  * Context Menu component.
  * 
  */
-@ImportJQueryUI(value = { "jquery.ui.position" })
-@Import(stack = ContextMenuStack.STACK_ID)
+@Import(stylesheet = "${jquery.assets.root}/vendor/mixins/contextmenu/jquery.contextMenu.css")
 public class ContextMenu {
 	
 	// Component parameters
@@ -130,6 +127,6 @@ public class ContextMenu {
     	config.put("items", jsonItems);
     	config.put("keys", keys);
     	
-    	javaScriptSupport.addInitializerCall("contextmenu", config);
+        javaScriptSupport.require("tjq/contextmenu").with(config);
     }
 }
