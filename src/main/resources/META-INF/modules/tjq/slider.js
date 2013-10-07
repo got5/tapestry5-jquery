@@ -6,22 +6,28 @@ requirejs.config({
 define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], 
 function(dom, zone, events) {
 	init = function(specs) {
+        var el = jQuery("#" + specs.sliderId);
+
 		if(!specs.displayTextField) jQuery("#" + specs.textFieldId).css("display", "none");
 			var options={
-				slide:function(e,u){
+                value: jQuery("#" + specs.textFieldId).val(),
+                slide:function(e,u){
 					jQuery("#" + specs.textFieldId).val(u.value);
 				}, 
 				change:function(e,u){
 					if(specs.url) {
+
+                        var zoneElement = specs.zoneId === '^' ? $(el).closest('.t-zone').attr("id") : specs.zoneId;
+
 						var sep = (specs.url.indexOf("?") >= 0) ? "&" : "?";
-						var z = dom.wrap(specs.zoneId); 
+						var z = dom.wrap(zoneElement);
 						z.trigger(events.zone.refresh, {
 							url: specs.url + sep + "slider="+u.value
 						});
 					}
 				}
 			};
-	        jQuery("#" + specs.sliderId).slider(specs.params).slider("option", options);
+            el.slider(specs.params).slider("option", options);
 	  };
   	
   	return exports = init;
