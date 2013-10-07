@@ -26,8 +26,6 @@ import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-import java.util.ArrayList;
-
 /**
  * @since 2.1.1
  *

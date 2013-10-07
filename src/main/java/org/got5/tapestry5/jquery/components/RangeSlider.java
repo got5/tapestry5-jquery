@@ -79,7 +79,14 @@ public class RangeSlider  {
     private boolean displayTextField;
     
     private JSONObject specs;
-    
+
+    /**
+    * Optionally disables the textfields.
+    */
+        @Parameter(value = "false")
+        @Property(write = false)
+        private boolean disableTextfields;
+
     @Inject
     private ComponentResources resources;
 
