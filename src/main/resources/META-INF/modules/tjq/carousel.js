@@ -6,12 +6,12 @@ requirejs.config({
 
 define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/components/carousel/jquery.jcarousel"], function(dom, z, events) {
 
-	dom.onDocument("click", "img[data-update-zone]", function() {
+	dom.onDocument("click", "a[data-update-zone]", function() {
 	    var zone;
 	    zone = z.findZone(this);
 	    if (zone) {
 	      zone.trigger(events.zone.refresh, {
-	        url: this.attribute("data-update-zone-url")
+	        url: this.attribute("href")
 	      });
 	    }
 	    return false;

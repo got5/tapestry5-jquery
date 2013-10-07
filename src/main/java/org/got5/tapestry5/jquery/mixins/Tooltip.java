@@ -10,6 +10,8 @@ import org.apache.tapestry5.annotations.MixinAfter;
 import org.apache.tapestry5.dom.Element;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.mixins.ui.Widget;
 
 /**
@@ -26,13 +28,16 @@ import org.got5.tapestry5.jquery.mixins.ui.Widget;
  * @tapestrydoc
  */
 @MixinAfter
-public class Tooltip extends Widget {
+public class Tooltip extends Widget  {
 
     @InjectContainer
 	private ClientElement el;
 
     @Inject
     private ComponentResources cr;
+
+    @Inject
+    private JavaScriptSupport javaScriptSupport;
 
     private Element element;
 
@@ -50,5 +55,12 @@ public class Tooltip extends Widget {
             element.attribute("title", cr.getContainerResources().
                     getContainerMessages().get(String.format("%s-title",el.getClientId())));
         }
+
+        JSONObject json = new JSONObject();
+        json.put("id", el.getClientId());
+        json.put("options", overrideParams());
+        javaScriptSupport.require("tjq/ui").invoke("tooltip").with(json);
+
     }
 }
+

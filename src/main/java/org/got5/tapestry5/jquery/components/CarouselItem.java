@@ -142,9 +142,7 @@ public class CarouselItem implements ClientElement {
 
                 writer.element("a", "href", url.toURI(), "id", clientId);
 
-                if (zone != null) {
-                    clientSupport.linkZone(clientId, zone, url);
-                }
+                if (zone != null) writer.attributes("data-update-zone", zone);
             }
 
             writer.element("img", "src", imageSource, "height", height + "px", "width", width + "px");

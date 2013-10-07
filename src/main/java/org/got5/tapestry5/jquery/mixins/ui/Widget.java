@@ -59,7 +59,7 @@ public class Widget {
 		return this.getClass().getSimpleName().toLowerCase(); 
 	}
 	
-	private JSONObject overrideParams(){
+	protected JSONObject overrideParams(){
 		if ( options == null ) {
 			options = new JSONObject();
 		}
