@@ -93,7 +93,7 @@ public class CarouselItem implements ClientElement {
 
 	public boolean isEventlink(){
         StringUtils StringUtils;
-        return StringUtils.isNotEmpty(event);
+        return org.apache.commons.lang3.StringUtils.isNotEmpty(event);
 	}
 
 	

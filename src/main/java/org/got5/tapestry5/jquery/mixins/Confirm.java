@@ -117,13 +117,8 @@ public class Confirm
     	config.put("isResizable", isResizable);
     	config.put("isDraggable", isDraggable);
     	config.put("height", height);
-<<<<<<< HEAD
-    	
         javaScriptSupport.require("tjq/confirm").with(config);
-=======
 
-    	javaScriptSupport.addInitializerCall("confirm", config);
->>>>>>> 768a32a... #262: fixed confirm and dialog tests by adding jquery.ui.menu as a dependency of the Autocomplete mixin
     }
 
 }
