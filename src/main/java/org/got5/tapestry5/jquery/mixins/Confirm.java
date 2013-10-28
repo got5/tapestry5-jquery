@@ -9,6 +9,7 @@ import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.ImportJQueryUI;
 import org.got5.tapestry5.jquery.services.javascript.ConfirmStack;
@@ -117,7 +118,7 @@ public class Confirm
     	config.put("isResizable", isResizable);
     	config.put("isDraggable", isDraggable);
     	config.put("height", height);
-        javaScriptSupport.require("tjq/confirm").with(config);
+        javaScriptSupport.require("tjq/confirm").priority(InitializationPriority.EARLY).with(config);
 
     }
 

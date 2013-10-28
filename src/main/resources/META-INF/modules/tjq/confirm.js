@@ -30,18 +30,18 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-u
             });
         }
 
-        jQuery("#" + specs.id).click(function(event) {
-            if (specs.useDefaultConfir) {
+        jQuery('#' + specs.id).bind("click", function(event) {
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            if (specs.useDefaultConfirm) {
                 //Default javascript confirmation box.
-                return confirm(specs.message);
+                if(confirm(specs.message)){
+                    trigger(jQuery('#' + specs.id));
+                }
             } else {
-                //JQuery confirmation box : we stop the event propagation before displaying the box.
-                //Otherwise the redirection will occur while confirmation box is displayed.
-
-                event.preventDefault();
-                event.stopImmediatePropagation();
-
-                dialogBox.dialog("open");
+                dialogBox.dialog('open');
             }
         });
 
