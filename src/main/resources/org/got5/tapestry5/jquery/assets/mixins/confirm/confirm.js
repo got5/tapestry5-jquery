@@ -60,7 +60,7 @@
 				var href = element.prop('href');
 				if (href != undefined) {
 					var urlSuffix = href.substring(href.lastIndexOf('.') + 1);
-					if (urlSuffix != null && urlSuffix.toLowerCase().indexOf(element.prop('id').toLowerCase()) == 0) {
+					if (urlSuffix != null && element.prop('id').toLowerCase().indexOf(urlSuffix.toLowerCase()) == 0) {
 						//ActionLink
 						element.trigger(Tapestry.TRIGGER_ZONE_UPDATE_EVENT);
 					} else {
