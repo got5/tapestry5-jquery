@@ -21,7 +21,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * <p>
  * 		To use it, call the component as the following:
  * 		<br/>
- * 		"&lt;div t:type="kawwa2/GMap" t:parameter="&lt;&lt;1&gt;&gt;" /&gt;"
+ * 		"&lt;div t:type="jquery/GMap" t:parameter="&lt;&lt;1&gt;&gt;" /&gt;"
  *		<br/><br/>
  *		The fields can be filled with:
  *		<ul>
