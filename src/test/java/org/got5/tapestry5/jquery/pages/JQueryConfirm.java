@@ -42,7 +42,7 @@ public class JQueryConfirm
     @Component
     private Zone counterZone;
     
-    @OnEvent(value=EventConstants.ACTION, component="clicker")
+    @OnEvent(value=EventConstants.ACTION)
     Object onActionFromClicker()
     {
       clickCount++;
