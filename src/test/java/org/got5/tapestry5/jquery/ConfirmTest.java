@@ -58,7 +58,7 @@ public class ConfirmTest extends SeleniumTestCase {
             @Override
             public boolean until()
             {
-                return (isElementPresent(confirmLocator));
+                return (isVisible(confirmLocator));
             }
         }.wait("Confirm popup should be visible after clicking on : " + triggerLocator, JQueryTestConstants.TIMEOUT);
         
@@ -77,7 +77,7 @@ public class ConfirmTest extends SeleniumTestCase {
             @Override
             public boolean until()
             {
-                return (!isElementPresent(confirmLocator));
+                return (!isVisible(confirmLocator));
             }
         }.wait("Confirm popup should be removed after clicking on OK button.", JQueryTestConstants.TIMEOUT);
     }

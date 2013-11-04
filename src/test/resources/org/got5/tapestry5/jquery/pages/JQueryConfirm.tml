@@ -26,9 +26,20 @@
 	
 	<t:zone t:id="counterZone" id="counterZone">
 		<p>You have clicked the link <strong>${clickCount}</strong> times.</p>
+        <p>
+            <t:eventlink t:id="clicker" t:zone="^" t:event="action" t:message="Test de zone" t:mixins="jquery/Confirm">increment the count</t:eventlink>
+        </p>
+        <p>
+            <t:eventlink t:id="clicker2" t:zone="^" t:event="action" t:message="Test de zone" t:mixins="jquery/Confirm" t:useDefaultConfirm="true">increment the count</t:eventlink>
+        </p>
+        <p>
+            <t:actionlink t:id="clicker3" t:zone="^" t:message="Test de zone" t:mixins="jquery/Confirm">increment the count</t:actionlink>
+        </p>
+        <p>
+            <t:actionlink t:id="clicker4" t:zone="^" t:message="Test de zone" t:mixins="jquery/Confirm" t:useDefaultConfirm="true">increment the count</t:actionlink>
+        </p>
+
 	</t:zone>
 	
-	<p>
-		<t:actionlink t:id="clicker" t:zone="counterZone" t:message="Test de zone" t:mixins="jquery/Confirm">increment the count</t:actionlink>
-	</p>
+
 </html>
