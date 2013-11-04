@@ -38,7 +38,7 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-u
             if (specs.useDefaultConfirm) {
                 //Default javascript confirmation box.
                 if(confirm(specs.message)){
-                    trigger(jQuery('#' + specs.id));
+                    trigger(dom(specs.id));
                 }
             } else {
                 dialogBox.dialog('open');
@@ -54,10 +54,9 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-u
             case "A":
                 var href = element.$.prop("href");
                 if (href != undefined) {
-                    var urlSuffix = href.substring(href.lastIndexOf('.') + 1);
                     if (element.attribute("data-update-zone")) {
                         //ActionLink
-                        var z = dom.wrap(element.attribute("data-update-zone"));
+                        var z = zone.findZone(element);
                         if(z){
                             z.trigger(events.zone.refresh, {
                                 url: element.$.prop("href")
