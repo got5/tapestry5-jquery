@@ -25,7 +25,7 @@
 			            url : url,
 			            element : $(this)
 			        },
-                    value = u.element.val();
+                value = u.element.val();
 
 				if ( preventDefault ) {
 					event.preventDefault();
@@ -45,11 +45,16 @@
 
 				//If the element using the bind mixin has a value, we automatically added to tue url
 				if (value) {
-				    u.url += ('/' + value); 	
+					var indexOf = u.url.indexOf('?');                    
+				    if (indexOf != -1){
+				        var q = u.url.substring(indexOf);
+				        var start = u.url.substring(0, indexOf);
+				        u.url = start + "/" + value + q;
+				    }else{
+				        u.url += "/" + value;
+				    }
 				}
-
 				u.context = contextMarker;		
-
 				if ( history ) {
 					history(event,ui,u);
 				}
