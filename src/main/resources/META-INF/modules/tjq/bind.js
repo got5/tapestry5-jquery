@@ -30,7 +30,17 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "jquery
 				u.url = url;
 				
 				//If the element using the bind mixin has a value, we automatically added to tue url
-				if(jQuery(this).val() !== "") u.url += ("/" + jQuery(this).val())
+                var value = jQuery(this).val();
+				if(value){
+                    var indexOf = u.url.indexOf('?');
+                    if (indexOf != -1){
+                        var q = u.url.substring(indexOf);
+                        var start = u.url.substring(0, indexOf);
+                        u.url = start + "/" + value + q;
+                    }else{
+                        u. u.url += "/" + value;
+                    }
+                }
 					
 				u.context = contextMarker;		
 				u.element = jQuery(this);
