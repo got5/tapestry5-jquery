@@ -3,11 +3,25 @@
 	T5.extendInitializers(function() {
 
 		function init(specs) {
-		    var snippet = $('#' + specs.id);
+		    var snippet = $('#' + specs.id),
+		        snippetContainer = snippet.parent(),
+		        editor = CodeMirror.fromTextArea(document.getElementById(specs.id), specs.options),
+		        show = snippetContainer.parent().find('.show'),
+		        hide = snippetContainer.parent().find('.hide');
+            
+            hide.hide();
+            snippetContainer.hide();
 
-            var editor = CodeMirror.fromTextArea(document.getElementById(specs.id), { 
-                lineNumbers: true,
-                firstLineNumber: specs.beginLine !== 0 ? specs.beginLine : 1 
+            show.on('click', {}, function () {
+                show.hide();
+                hide.show();
+                snippetContainer.show();
+            });
+
+            hide.on('click', {}, function () {
+                hide.hide();
+                show.show();
+                snippetContainer.hide();
             });
 		}
 
