@@ -1,0 +1,11 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+    <t:form>
+        <input type="text" name="name" t:type="textfield" t:value="name" t:mixins="jquery/placeholder" t:text="e.g. John Doe"></input><br />
+        <input type="email" name="email" t:type="textfield" t:value="email" t:mixins="jquery/placeholder" t:text="e.g. address@example.ext"></input><br />
+        <input type="url" name="url" t:type="textfield" t:value="url" t:mixins="jquery/placeholder" t:text="e.g. http://mathiasbynens.be/"></input><br />
+        <input type="tel" name="tel" t:type="textfield" t:value="tel" t:mixins="jquery/placeholder" t:text="e.g. +32 472 77 69 88"></input><br />
+        <input type="password" name="password" t:type="passwordfield" t:value="password" t:mixins="jquery/placeholder" t:text="e.g. h4x0rpr00fz"></input><br />
+        <input type="search" name="search" t:type="textfield" t:value="search" t:mixins="jquery/placeholder" t:text="Search this site…"></input><br />
+        <textarea name="message" t:type="textarea" t:value="message" t:mixins="jquery/placeholder" t:text="Your message goes here"></textarea>
+    </t:form>
+</html>
