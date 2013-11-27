@@ -1,7 +1,8 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-<div id="${clientId}" class="my-snippet-container" style="display: none;">
-	<pre class="${language}">
+<div class="my-snippet-container">
+    <p>${filename}</p>
+	<textarea id="${clientId}" class="${language}" style="display: none;">
 		${srcContent}
-	</pre>
+	</textarea>
 </div>
 </t:container>
