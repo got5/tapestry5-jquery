@@ -30,7 +30,8 @@
 	            var constructed = false;
 	            var list = null;
 	
-	            T5.sub(DISMISS_ALERTS, null, function() {
+	            T5.sub(DISMISS_ALERTS, null, function(event) {
+	                event.preventDefault();
 	                if (constructed) {
 	                    visible = false;
 	                    $("#"+spec.id).hide();
