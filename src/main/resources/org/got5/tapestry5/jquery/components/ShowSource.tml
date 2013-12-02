@@ -1,7 +1,13 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-<div id="${clientId}" class="my-snippet-container" style="display: none;">
-	<pre class="${language}">
-		${srcContent}
-	</pre>
+
+<div>
+    <a class="show ui-button">${filename} - ${message:ShowSource-showMsg}</a>
+    <a class="hide ui-button">${filename} - ${message:ShowSource-hideMsg}</a>
+    <div class="my-snippet-container">
+    	<textarea id="${clientId}">
+    		${srcContent}
+    	</textarea>
+    </div>
 </div>
+
 </t:container>

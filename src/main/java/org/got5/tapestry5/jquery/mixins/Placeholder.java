@@ -13,11 +13,10 @@ import org.got5.tapestry5.jquery.services.javascript.PlaceholderStack;
  * The HTML5 placeholder attribute is awesome, unfortunately only supported by
  * some browsers. This plugin replicates the placeholder behavior for
  * unsupported browsers.
- * 
+ *
  * @since 2.6.1
- * @see <a
- *      href="http://webcloud.se/code/jQuery-Placeholder/">http://webcloud.se/code/jQuery-Placeholder/</a>
- * 
+ * @see <a href="https://github.com/mathiasbynens/jquery-placeholder">https://github.com/mathiasbynens/jquery-placeholder</a>
+ *
  * @tapestrydoc
  */
 @Import(stack = PlaceholderStack.STACK_ID)

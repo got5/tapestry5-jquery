@@ -5,6 +5,7 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 <t:jquery.tabs  t:tabs="example" t:activePanelId="0" t:ajax="false">
  	
  	<p:example>	
+        <div style="display: none;">
  <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true" 
   	 	t:rowIndex="currentIndex" t:rowsPerPage="10">
        
@@ -24,10 +25,11 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	</div>
 	<br/></t:zone>
 </t:jquery.dialog> 
+</div>
     	
-    	<div t:type="jquery/showSource" t:ext="html" t:beginLine="8" t:endLine="26" t:path="resources/org/got5/tapestry5/jquery/pages/core/DocsGrid.tml"></div>
-    	
-    	<div t:type="jquery/showSource" t:ext="java" t:beginLine="18" t:endLine="37" t:path="java/org/got5/tapestry5/jquery/pages/core/DocsGrid.java"></div>
+    	<div t:type="jquery/showSource" t:ext="text/html" t:beginLine="18" t:endLine="27" t:path="resources/org/got5/tapestry5/jquery/pages/ShowSource.tml"></div>
+    	<br />
+    	<div t:type="jquery/showSource" t:ext="javascript" t:path="java/org/got5/tapestry5/jquery/pages/ShowSource.java"></div>
 
 		</p:example>
 
