@@ -19,8 +19,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * unsupported browsers.
  * 
  * @since 2.6.1
- * @see <a
- *      href="http://webcloud.se/code/jQuery-Placeholder/">http://webcloud.se/code/jQuery-Placeholder/</a>
+ * @see  @see <a href="https://github.com/mathiasbynens/jquery-placeholder">https://github.com/mathiasbynens/jquery-placeholder</a>
  * 
  * @tapestrydoc
  */

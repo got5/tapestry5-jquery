@@ -55,6 +55,8 @@ http://groups.google.com/group/tapestry5-jquery
     * Masked Input plugin for jQuery 1.3.1
     * FlexSlider 2.2.0
     * Jcrop 0.9.12
+    * Replaced jquery.placeholder.js with https://github.com/mathiasbynens/jquery-placeholder
+    * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
 * 3.3.7 (stable) : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 * 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
