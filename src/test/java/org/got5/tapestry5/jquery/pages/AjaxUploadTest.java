@@ -12,6 +12,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
+import org.apache.tapestry5.upload.internal.services.UploadedFileItem;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 
@@ -43,6 +44,8 @@ public class AjaxUploadTest {
         this.uploadedFiles.add(uploadedFile);
         
         renderer.addRender("uploadResult", uploadResult.getBody());
+
+        ((UploadedFileItem) uploadedFile).cleanup();
     }
 
     void onUploadException(FileUploadException ex) {
