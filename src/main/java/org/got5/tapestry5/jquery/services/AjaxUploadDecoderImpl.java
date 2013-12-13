@@ -43,6 +43,20 @@ public class AjaxUploadDecoderImpl implements AjaxUploadDecoder {
             TapestryInternalUtils.copy(request.getInputStream(), item.getOutputStream());
         } catch (IOException e) {
             throw new RuntimeException("Could not copy request's input stream to file", e);
+        } finally {
+
+            try {
+                item.getOutputStream().close();
+            } catch (IOException e) {
+                throw new RuntimeException("Could not close the item's output stream!!!", e);
+
+            }
+            try {
+                request.getInputStream().close();
+            } catch (IOException e) {
+                throw new RuntimeException("Could not close the Input stream!!!", e);
+
+            }
         }
 
         uploadedFile = new UploadedFileItem(item);
