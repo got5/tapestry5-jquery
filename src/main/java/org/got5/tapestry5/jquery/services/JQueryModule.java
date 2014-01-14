@@ -183,14 +183,10 @@ public class JQueryModule {
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(
 			MappedConfiguration<String, Object> configuration,
-			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield, 
-			@Inject @Symbol(JQuerySymbolConstants.JQUERY_CORE_PATH) Resource jquery, 
+			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield,
 			@Inject @Path("${jquery.assets.root}/vendor/jquery.mousewheel.js") Resource jquerymousewheel, 
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded) {
 
-		configuration.override("jquery-library",
-				new JavaScriptModuleConfiguration(jquery));
-		
 		configuration.add("t5/core/datefield",
 				new JavaScriptModuleConfiguration(datefield));
 		
