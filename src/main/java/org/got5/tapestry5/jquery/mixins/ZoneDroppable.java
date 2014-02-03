@@ -78,7 +78,7 @@ public class ZoneDroppable {
 	   private Object createEventLink()
 	   {
 	      Link link = resources.createEventLink("zoneDrop");
-	      return link.toAbsoluteURI();
+	      return link.toURI();
 	   }
 	   
 	   Object onZoneDrop(Object[] context)
