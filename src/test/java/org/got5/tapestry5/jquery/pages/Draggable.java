@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (GO Tapestry 5)
+// Copyright 2010-2014 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,14 @@ package org.got5.tapestry5.jquery.pages;
 
 import java.util.Date;
 
-import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ComponentEventLinkEncoder;
+import org.apache.tapestry5.services.ComponentEventRequestParameters;
+import org.apache.tapestry5.services.Request;
 
 
 public class Draggable
@@ -30,14 +34,31 @@ public class Draggable
 	@Property
 	private String data;
 	
-	@Component
-	private Zone dropzone; 
+		
+	@Inject 
+	ComponentResources resources;
 	
+	
+	@Inject
+	private ComponentEventLinkEncoder linkEncoder;
+	
+	@Inject
+	private Request request;
+	
+		
 	public Object onDrop(String contexte)
-	 {
+	{
+		 // When you can't use @Component for each zone 
+		 // get zone from the ComponentEventRequestParameter information  
+		 ComponentEventRequestParameters parameters = linkEncoder.decodeComponentEventRequest(request);
+		 String cptId = parameters.getNestedComponentId();
+		 Zone toRefresh = (Zone)resources.getEmbeddedComponent(cptId);
 		 data = contexte;
-		 return dropzone.getBody();		 
-	 }
+		 return toRefresh.getBody();		 
+	}
+	
+	
+	
 	 public Date getNow()
 	 {
 		 return new Date();
