@@ -8,6 +8,7 @@ import org.apache.tapestry5.func.F;
 import org.apache.tapestry5.func.Mapper;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.javascript.JavaScriptAggregationStrategy;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
@@ -67,5 +68,9 @@ public class FormSupportStack implements JavaScriptStack {
 
         return null;
     }
+
+	public JavaScriptAggregationStrategy getJavaScriptAggregationStrategy() {
+		return org.apache.tapestry5.services.javascript.JavaScriptAggregationStrategy.COMBINE_AND_MINIMIZE;
+	}
 
 }

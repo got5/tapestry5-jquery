@@ -440,7 +440,7 @@ public class Palette extends AbstractField
         availableOptions = CollectionFactory.newList();
         selectedOptions = CollectionFactory.newList();
         naturalOrder = CollectionFactory.newList();
-        renderer = new SelectModelRenderer(writer, encoder);
+        renderer = new SelectModelRenderer(writer, encoder, compactJSON);
 
         @SuppressWarnings("rawtypes")
 		final Set selectedSet = newSet(getSelected());

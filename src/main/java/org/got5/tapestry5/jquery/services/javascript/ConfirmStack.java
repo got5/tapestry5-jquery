@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.javascript.JavaScriptAggregationStrategy;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StylesheetLink;
 
@@ -47,5 +48,9 @@ public class ConfirmStack implements JavaScriptStack
     {
         this.assetSource = assetSource;
     }
+
+	public JavaScriptAggregationStrategy getJavaScriptAggregationStrategy() {
+		return org.apache.tapestry5.services.javascript.JavaScriptAggregationStrategy.COMBINE_AND_MINIMIZE;
+	}
 
 }
