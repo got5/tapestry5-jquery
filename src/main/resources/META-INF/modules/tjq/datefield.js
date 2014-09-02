@@ -1,3 +1,4 @@
+(function() {
 define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], function(dom, events) {
 
   scan = function(root) {
@@ -8,7 +9,7 @@ define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], func
     
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       container = _ref[_i];
-      container.attribute("data-component-type", null);
+      container.attr("data-component-type", null);
       
       container.findFirst("button").remove();
       field = container.findFirst("input").$
@@ -31,3 +32,4 @@ define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], func
   });
   return null;
 });
+}).call(this);
