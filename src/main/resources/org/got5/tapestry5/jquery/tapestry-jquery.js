@@ -1147,7 +1147,10 @@
 
 				var message = unescape(rawMessage);
 
-				Tapestry.error(Tapestry.Messages.communicationFailed + message);
+				// equivalent of the prototype escapeHTML() function
+				message = $('<div/>').text(message).html();
+        
+        Tapestry.error(Tapestry.Messages.communicationFailed + message);
 
 				var JSONresponse = {
 					status : response.status
