@@ -135,6 +135,7 @@ public class JQueryModule
         configuration.add(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT, false);
         configuration.add(JQuerySymbolConstants.INCLUDE_DATEPICKER_I18N, true);
 
+        configuration.add(JQuerySymbolConstants.EXCLUDE_CORE_JS_STACK, false);
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)

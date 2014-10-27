@@ -46,6 +46,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 	private final boolean suppressPrototype;
 
 	private final boolean mouseWheel;
+	
+	private final boolean excludeJsCore;
 
 	private String jQueryAlias;
 
@@ -67,6 +69,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) final boolean suppressPrototype,
 
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) final boolean mouseWheel,
+			
+			@Symbol(JQuerySymbolConstants.EXCLUDE_CORE_JS_STACK) final boolean excludeJsCore,
 
 			final AssetSource assetSource,
 
@@ -83,6 +87,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 		this.minified = minified;
 		this.suppressPrototype = suppressPrototype;
 		this.mouseWheel = mouseWheel;
+		this.excludeJsCore= excludeJsCore;
 
 		this.assetSource = assetSource;
 		this.jQueryAlias = jQueryAlias;
@@ -151,7 +156,13 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 	}
 
 	public List<Asset> getJavaScriptLibraries() {
+		
+		
 		List<Asset> ret = new ArrayList<Asset>();
+		
+		if (this.excludeJsCore){
+			return ret;
+		}
 
 		if (suppressPrototype) {
 			ret.add(this.assetSource.getExpandedAsset("${tapestry.js.path}"));
