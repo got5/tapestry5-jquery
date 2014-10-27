@@ -18,6 +18,7 @@ package org.got5.tapestry5.jquery.services;
 
 import static org.got5.tapestry5.jquery.JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT;
 import static org.got5.tapestry5.jquery.JQuerySymbolConstants.ASSETS_PATH;
+import static org.got5.tapestry5.jquery.JQuerySymbolConstants.EXCLUDE_CORE_JS_STACK;
 import static org.got5.tapestry5.jquery.JQuerySymbolConstants.INCLUDE_DATEPICKER_I18N;
 import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_ALIAS;
 import static org.got5.tapestry5.jquery.JQuerySymbolConstants.JQUERY_CORE_PATH;
@@ -153,6 +154,7 @@ public class JQueryModule
         configuration.add(ADD_MOUSEWHEEL_EVENT, false);
         configuration.add(INCLUDE_DATEPICKER_I18N, true);
 
+        configuration.add(EXCLUDE_CORE_JS_STACK, false);
     }
 
     public static void contributeClasspathAssetAliasManager(MappedConfiguration<String, String> configuration)

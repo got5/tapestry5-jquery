@@ -89,4 +89,11 @@ public class JQuerySymbolConstants {
 	public static final String ADD_MOUSEWHEEL_EVENT = "jquery.mousewheel";
 
 	public static final String INCLUDE_DATEPICKER_I18N = "jquery.include_datepicker";
+	
+	/**
+	 * Indicates that we want to excude the core stack, could be needed
+	 * in case we are working with portlets, to not include stacks twice
+	 * when 2 wars are used for example
+	 */
+	public static final String EXCLUDE_CORE_JS_STACK="exclude.core.stack";
 }
