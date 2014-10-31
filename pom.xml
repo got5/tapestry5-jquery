@@ -467,18 +467,10 @@
 			<properties>
 				<release-id>devlab722-repo</release-id>
 				<snapshot-id>devlab722-snapshot-repo</snapshot-id>
+				<kazan-public-releases-repo-url>http://nexus.devlab722.net/nexus/content/repositories/releases</kazan-public-releases-repo-url>
+				<kazan-public-snapshots-repo-url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</kazan-public-snapshots-repo-url> 				
 			</properties>
         </profile>
-	    <profile>
-			<id>kazan-package</id>
-			<activation> 
-				<activeByDefault>false</activeByDefault> 
-			</activation> 
-			<properties>
-				<release-id>kazan-release-repo</release-id>
-				<snapshot-id>kazan-snapshot-repo</snapshot-id>
-			</properties>
-        </profile>        
         <profile>
             <id>mac-os-test</id>
             <activation>
@@ -495,7 +487,5 @@
 		<tapestry-release-version>5.3.7</tapestry-release-version>
                 <browserStartCommand>*googlechrome</browserStartCommand>
                 <sourceDirectory>src/main/java</sourceDirectory>
-		<kazan-public-releases-repo-url>http://nexus.devlab722.net/nexus/content/repositories/releases</kazan-public-releases-repo-url>
-		<kazan-public-snapshots-repo-url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</kazan-public-snapshots-repo-url> 
 	</properties>
 </project>
