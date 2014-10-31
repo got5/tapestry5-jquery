@@ -449,15 +449,28 @@
 
     <distributionManagement>
 		<repository>
-			<id>devlab722-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
+			<id>${release-id}</id>
+			<url>${kazan-public-releases-repo-url}</url>
 		</repository>
 		<snapshotRepository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
+			<id>${snapshot-id}</id>
+			<url>${kazan-public-snapshots-repo-url}</url>
 		</snapshotRepository>
 	</distributionManagement>
+
 	<profiles>
+	    <profile>
+			<id>opensource</id>
+			<activation> 
+				<activeByDefault>true</activeByDefault> 
+			</activation> 
+			<properties>
+				<kazan-public-releases-repo-url>http://nexus.devlab722.net/nexus/content/repositories/releases</kazan-public-releases-repo-url>
+				<kazan-public-snapshots-repo-url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</kazan-public-snapshots-repo-url> 
+				<release-id>devlab722-repo</release-id>
+				<snapshot-id>devlab722-snapshot-repo</snapshot-id>
+			</properties>
+        </profile>
         <profile>
             <id>mac-os-test</id>
             <activation>
