@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Tapestry 5 jQuery integration Module - 3.3.3
-=======
-# Tapestry 5 jQuery integration Module
->>>>>>> 8625980... updated changelog
+# Tapestry 5 jQuery integration Module - 4.0.1-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -45,6 +41,9 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
+* 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22
+* 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
+
 
 * 3.4.0 (unreleased) : Upgrade libs
 	* jQuery 1.10.2

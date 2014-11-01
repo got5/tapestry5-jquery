@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>4.0.0-SNAPSHOT</version>
+	<version>4.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery Library</name>
 	<description>Tapestry Components Library</description>
@@ -223,6 +223,12 @@
             <version>${selenium-version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 	
@@ -462,9 +468,28 @@
 		<repository>
 			<id>5.4-beta-repo</id>
 			<url>https://repository.apache.org/content/groups/staging</url>
-
 		</repository>
-    	</repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Repository</name>
+			<layout>default</layout>
+			<url>http://central.maven.org/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven</id>
+            <url>http://central.maven.org/maven2/</url>
+        </pluginRepository>
+        <pluginRepository>
+        <id>spring-maven-release</id>
+        <name>Spring Maven Release Repository</name>
+        <url>http://maven.springframework.org/release</url>
+    </pluginRepository>
+    </pluginRepositories>
     <distributionManagement>
 		<repository>
 			<id>devlab722-repo</id>
@@ -498,7 +523,7 @@
 
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-        <tapestry-release-version>5.4-beta-16</tapestry-release-version>
+        <tapestry-release-version>5.4-beta-22</tapestry-release-version>
         <selenium-version>2.35.0</selenium-version>
         <browserStartCommand>*googlechrome</browserStartCommand>
         <sourceDirectory>src/main/java</sourceDirectory>
