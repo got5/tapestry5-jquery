@@ -36,6 +36,11 @@ public class CarouselTest extends SeleniumTestCase {
 		waitForPageToLoad();
 		//Content test
 		assertEquals(getText("css=#zoneContainer span"), "Click on the big white flower of the complex carousel:", "The page does not seem to be fully loaded");
+		//test of an eventlink inside a carousel
+		assertTrue("".equals(getText("id=flowerZone")),"The zone is not empty before the ajax call");
+		click("//*[@id='carouselitem_0']/img");
+		assertEquals(getText("id=flowerZone"),"You just clicked on the big white flower !", "The eventlink did not work, the zone did not load correctly");
+		
 		//Carousel control test
 		final int initPosition = (Integer) getElementPositionLeft("css=.jcarousel-list");
 		click("css=.jcarousel-next");
@@ -48,10 +53,7 @@ public class CarouselTest extends SeleniumTestCase {
             	return Math.abs(initPosition - newPosition)==255;
             }
         }.wait("The carousel did not slide correctly", JQueryTestConstants.TIMEOUT);
-		//test of an eventlink inside a carousel
-		assertTrue("".equals(getText("id=flowerZone")),"The zone is not empty before the ajax call");
-		click("//img[@data-update-zone='flowerZone']");
-		assertEquals(getText("id=flowerZone"),"You just clicked on the big white flower !", "The eventlink did not work, the zone did not load correctly");
+		
 		
 	}
 }
