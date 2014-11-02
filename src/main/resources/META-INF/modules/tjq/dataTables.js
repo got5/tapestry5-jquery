@@ -1,7 +1,7 @@
 requirejs.config({
 	"shim" : {
 		"tjq/vendor/components/datatables/jquery.dataTables": ["jquery"],
-		"tjq/vendor/jquery.json-2.4": ["jquery"], 
+		"tjq/vendor/jquery.json-2.4": ["jquery"]
 	}
 });
 define(["t5/core/pageinit", "tjq/vendor/components/datatables/jquery.dataTables", "tjq/vendor/jquery.json-2.4"], function(pageinit) {

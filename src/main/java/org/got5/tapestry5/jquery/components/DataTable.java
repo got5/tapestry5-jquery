@@ -114,8 +114,7 @@ public class DataTable extends AbstractJQueryTable {
 			 * Give a chance to the developer to update the GridDataSource to
 			 * filter data server-side
 			 * */
-			resources
-					.triggerEvent(JQueryEventConstants.FILTER_DATA, null, null);
+			resources.triggerEvent(JQueryEventConstants.FILTER_DATA, null, null);
 			/**
 			 * Give a chance to the developer to sort the GridDataSource
 			 * server-side

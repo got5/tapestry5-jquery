@@ -452,20 +452,27 @@ public class DefaultDataTableModel implements DataTableModel {
 
                                         String zoneUpdateContent = zoneContainer.getChildMarkup();
 
+                                        if(rows.length()<=rowIndex)
+                                        {
+                                            for(int i=0;i<rowIndex+1;i++)
+                                                rows.put(new JSONObject() );
+                                        }
+
                                         if(! (override instanceof Block)){
                                             /**
                                              * Must check JSONArray's length because partialRenderer.renderPartialPageMarkup() is done twice (see AjaxComponentEventRequestHandler)!
                                              * */
-                                            if(rows.length()>rowIndex){
-                                                //rows.getJSONArray(rowIndex).put(columnIndex,override);
+
+                                            if(rows.length()>rowIndex)
+                                            {
                                                 rows.getJSONObject(rowIndex).put(columnName,override);
                                             }
                                         }else{
                                             /**
                                              * Must check JSONArray's length because partialRenderer.renderPartialPageMarkup() is done twice (see AjaxComponentEventRequestHandler)!
                                              * */
-                                            if(rows.length()>rowIndex){
-                                                //rows.getJSONArray(rowIndex).put(columnIndex,zoneUpdateContent);
+                                            if(rows.length()>rowIndex)
+                                            {
                                                 rows.getJSONObject(rowIndex).put(columnName,zoneUpdateContent);
                                             }
                                         }
