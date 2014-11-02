@@ -17,7 +17,7 @@
 				<li><a t:type="pagelink" t:page="formfragment"><i
 						class="icon-chevron-right"></i> Form Fragment</a></li>
 						
-				<li><a t:type="pagelink" t:page="jquerylinksubmit"><i
+				<li><a t:type="pagelink" t:page="ext/jquerylinksubmit"><i
 						class="icon-chevron-right"></i> Linksubmit</a></li>
 				
 				<li><a t:type="pagelink" t:page="progressiveDisplay"><i
@@ -38,7 +38,7 @@
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li><a t:type="pagelink" t:page="jqueryaccordion"><i
 						class="icon-chevron-right"></i> Accordion</a></li>
-				<li><a t:type="pagelink" t:page="jqueryautocomplete"><i
+				<li><a t:type="pagelink" t:page="ext/jqueryautocomplete"><i
 						class="icon-chevron-right"></i> Autocomplete</a></li>
 				<li><a t:type="pagelink" t:page="button"><i
 						class="icon-chevron-right"></i> Button</a></li>
@@ -89,7 +89,7 @@
 						class="icon-chevron-right"></i> jGrowl</a></li>
 				<li><a t:type="pagelink" t:page="jquerydialog"><i
 						class="icon-chevron-right"></i> jQuery Dialog</a></li>
-				<li><a t:type="pagelink" t:page="jquerypalette"><i
+				<li><a t:type="pagelink" t:page="ext/jquerypalette"><i
 						class="icon-chevron-right"></i> jQuery Palette</a></li>
 				<li><a t:type="pagelink" t:page="JScrollPane"><i
 						class="icon-chevron-right"></i> JScrollPane</a></li>
