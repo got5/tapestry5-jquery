@@ -8,7 +8,7 @@ public class LinksubmitTest extends SeleniumTestCase{
 	@Test
     public void testLinkSubmit()
     {
-        open("/jquerylinksubmit");
+        open("/ext/jquerylinksubmit");
         waitForPageToLoad();
 
         String field = "identifier=textfield";
