@@ -8,7 +8,7 @@ public class PaletteTest extends SeleniumTestCase{
 	@Test
     public void testPalette()
     {
-        open("/jquerypalette");
+        open("/ext/jquerypalette");
         waitForPageToLoad();
 
         final String avail = "identifier=handling-avail";
