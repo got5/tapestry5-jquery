@@ -20,7 +20,7 @@ function(dom, zone, events) {
                     }
 
                     var element = dom.wrap(specs.scroller);
-	   				element.attribute("data-update-zone", specs.zoneId); 
+	   				element.attr("data-update-zone", specs.zoneId); 
 	   				var activeZone = zone.findZone(element);
 					
                     var self = this;
