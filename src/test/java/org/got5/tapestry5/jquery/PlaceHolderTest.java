@@ -14,7 +14,8 @@ public class PlaceHolderTest extends SeleniumTestCase{
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//input[@id='textfield']@placeholder").equalsIgnoreCase("PlaceHolder");
+				return getAttribute("//input[@id=\"textfield\"]@placeholder").equalsIgnoreCase("e.g. John Doe");
+
 			}
 		}.wait("The input should have a placeholder", JQueryTestConstants.TIMEOUT);
 	}
