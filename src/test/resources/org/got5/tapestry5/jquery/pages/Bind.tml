@@ -1,5 +1,5 @@
 <html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
 	xmlns:p="tapestry:parameter">
 
 
@@ -14,7 +14,7 @@
    		 	</t:zone>
 
 			<a t:id="clickHere" t:type="any" t:mixins="jquery/bind"
-				t:eventType="click" t:event="click" t:zone="${clickzone.clientid}">click
+               bind.eventType="click" bind.event="click" bind.zone="${clickzone.clientid}">click
 				test</a>
 		</section>
 	</div>

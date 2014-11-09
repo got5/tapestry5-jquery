@@ -10,14 +10,16 @@ public class BindTest extends SeleniumTestCase{
 	@Test
     public void testBind(){
 		open("/Bind");
-		
+        waitForPageToLoad();
+
 		assertSourcePresent("tjq/bind","eventType","\"click\",");       
 	}
 	
 	@Test
 	public void testEvent() throws InterruptedException {
 		open("/Bind");
-    
+
+        waitForPageToLoad();
 		click("//section/a");
         
         new Wait()
