@@ -20,36 +20,36 @@ public class TreeTest extends SeleniumTestCase{
 			}
 		}.wait("The child none should not be invisible", JQueryTestConstants.TIMEOUT);
 		
-		click("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/span[@class='t-tree-icon']");
+		click("//div[@class='tree-container']/ul/li[contains(@class, 'last')]/span[@class='tree-icon']");
 		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[@class='t-tree-container']/ul/li[@class='t-last']/ul");
+				return isElementPresent("//div[@class='tree-container']/ul/li[@class='last']/ul");
 				
 			}
 		}.wait("The child none should be visible", JQueryTestConstants.TIMEOUT);
 		
-		click("//div[@class='t-tree-container']/ul/li[@class='t-last']/ul/li[contains(@class, 't-last')]/span[2]");
+		click("//div[@class='tree-container']/ul/li[@class='last']/ul/li[contains(@class, 'last')]/span[2]");
 		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/ul/li[contains(@class, 't-last')]/span[contains(@class, 't-tree-label')]@class")
-						.contains("t-selected-leaf-node");
+				return getAttribute("//div[@class='tree-container']/ul/li[contains(@class, 'last')]/ul/li[contains(@class, 'last')]/span[contains(@class, 'tree-label')]@class")
+						.contains("selected-leaf-node");
 			}
 		}.wait("The none should be selected ", JQueryTestConstants.TIMEOUT);
 		
 		
-		click("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/span[contains(@class, 't-tree-icon')]");
+		click("//div[@class='tree-container']/ul/li[contains(@class, 'last')]/span[contains(@class, 'tree-icon')]");
 		
 		new Wait() {
 			
 			@Override
 			public boolean until() {
-				return getAttribute("//div[@class='t-tree-container']/ul/li[contains(@class, 't-last')]/ul@style").contains("none;");
+				return getAttribute("//div[@class='tree-container']/ul/li[contains(@class, 'last')]/ul@style").contains("none;");
 			}
 		}.wait("The child none should be invisible", JQueryTestConstants.TIMEOUT);
 	
