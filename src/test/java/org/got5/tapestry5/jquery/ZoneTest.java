@@ -69,6 +69,6 @@ public class ZoneTest extends SeleniumTestCase{
 	        }.wait("element not found", 5000l);
 
 	        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update 2");
-	        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update 1");
+	        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update 2");
 	    }
 }
