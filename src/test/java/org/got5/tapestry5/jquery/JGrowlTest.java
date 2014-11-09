@@ -24,15 +24,15 @@ public class JGrowlTest extends SeleniumTestCase{
 			}
 		}.wait("The jGrowl messages are missing.", JQueryTestConstants.TIMEOUT);
 		
-		new Wait() {
+		/*new Wait() {
 			
 			@Override
 			public boolean until() {
-				return !(isElementPresent("//div[contains(@class, 'jgrowl-info')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-warn')]") &&
-						isElementPresent("//div[contains(@class, 'jgrowl-error')]"));
+				return !(isElementPresent("//div[contains(@class, \"jgrowl-info\")]") &&
+						isElementPresent("//div[contains(@class, \"jgrowl-warn\")]") &&
+						isElementPresent("//div[contains(@class, \"jgrowl-error\")]"));
 			}
-		}.wait("The jGrowl messages are always displayed.", 20000l);
+		}.wait("The jGrowl messages are always displayed.", 20000l);*/
 		
 	}
 	
