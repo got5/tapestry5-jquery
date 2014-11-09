@@ -1,5 +1,7 @@
 (function() {
-define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], function(dom, events) {
+	 locale = (document.documentElement.getAttribute("data-locale")) || "en";	
+	 var datepickerLocal= "tjq/vendor/ui/i18n/jquery.ui.datepicker-"+locale;
+define(["t5/core/dom", "t5/core/events","tjq/vendor/ui/jquery.ui.datepicker", "tjq/vendor/ui/jquery-ui.custom",datepickerLocal], function(dom, events) {
 
   scan = function(root) {
     var container, _i, _len, _ref, _results, field;
@@ -14,6 +16,7 @@ define(["t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"], func
       container.findFirst("button").remove();
       field = container.findFirst("input").$
 
+      //jQuery.datepicker.setDefaults(jQuery.datepicker.regional[locale]);
       params = jQuery.extend({
                 gotoCurrent: true,
                 showOn: "button",
