@@ -10,7 +10,7 @@ public class AutocompleteTest extends SeleniumTestCase{
 	@Test
     public void testAutoComplete()
     {
-        open("/jqueryautocomplete");
+        open("/ext/jqueryautocomplete");
         waitForPageToLoad();
 
         focus("identifier=foo");
