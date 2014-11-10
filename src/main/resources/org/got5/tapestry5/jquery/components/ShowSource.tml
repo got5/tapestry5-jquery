@@ -1,4 +1,4 @@
-<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
 
     <div>
         <a class="show ui-button">${filename} - ${message:ShowSource-showMsg}</a>
