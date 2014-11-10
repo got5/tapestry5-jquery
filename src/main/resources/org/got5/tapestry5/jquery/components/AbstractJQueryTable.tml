@@ -1,4 +1,4 @@
-<div xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<div xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
     <table id="${clientId}" width="100%" class="${tableInformation?.tableCSS}" summary="${tableInformation?.tableSummary}">
     	<t:if t:test="tableInformation?.tableCaption"><caption>${tableInformation.tableCaption}</caption></t:if>
         <thead t:id="headers"/>
@@ -7,7 +7,7 @@
         	
         		<tr><td colspan="${propertyNames.size()}">Loading data from server</td></tr>
         		
-        		<t:parameter name="else">
+        		<p:else>
 	        		
 	        		<tr t:type="loop" t:source="loopSource" t:value="index" class="${rowClass}">
 	        		
@@ -22,7 +22,7 @@
 	        		</tr>
 	        		
 	        			
-        		</t:parameter>
+        		</p:else>
         	
         	</t:if>
         </tbody>
