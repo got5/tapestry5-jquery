@@ -1,4 +1,4 @@
-<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
     
     <t:if t:test="mode">
     	<thead>
@@ -11,7 +11,7 @@
 		        </th>
 		    </tr>
     	</thead>
-    	<t:parameter name="else">
+    	<p:else>
     		<tfoot>
     			<tr>
 			        <th t:type="Loop" source="columnNames" value="columnName" formstate="none" t:index="index"> 
@@ -22,6 +22,6 @@
 			        </th>
 			    </tr>
     		</tfoot>
-    	</t:parameter>
+    	</p:else>
     </t:if>
 </t:container>
