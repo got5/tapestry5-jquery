@@ -1,5 +1,5 @@
 <html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
 	xmlns:p="tapestry:parameter">
 
 
@@ -9,7 +9,7 @@
 			<div class="page-header">
 				<h1>ZoneRefresh</h1>
 			</div>
-			<t:zone t:id="clickZone" t:mixins="jquery/ZoneRefresh" t:period="2">
+			<t:zone t:id="clickZone" t:mixins="jquery/ZoneRefresh" ZoneRefresh.period="2">
    		 		${i}
    			</t:zone>
 			<p>
