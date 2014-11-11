@@ -11,28 +11,28 @@ public class InPlaceEditorTest extends SeleniumTestCase{
 	public void testInPlaceEditor(){
 		
 		open("/DocsInPlaceEditor");
-		
-		click("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span");
+
+        click("//*[@id=\"inplaceeditor\"]");
 		
 		new Wait()
         {
             @Override
             public boolean until()
             {
-                return isElementPresent("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form");
+                return isElementPresent("//*[@id=\"inplaceeditor\"]/form");
             }
         }.wait("The input is not visible", JQueryTestConstants.TIMEOUT);
         
-        type("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/input", "François");
+        type("//*[@id=\"inplaceeditor\"]/form/input", "François");
         
-        click("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span/form/button[@type='submit']");
-        
+        click("//*[@id=\"inplaceeditor\"]/form/button[@type='submit']");
+
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return getText("//table/tbody/tr[@class='t-first']/td[@class='lastName']/span").contains("François");
+                return getText("//*[@id=\"inplaceeditor\"]").contains("François");
             }
         }.wait("The value has not been updated", JQueryTestConstants.TIMEOUT);
 	}
