@@ -1,5 +1,5 @@
 <html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
 	xmlns:p="tapestry:parameter">
 
 
@@ -15,13 +15,13 @@
 					<p>
 						<t:label t:for="monTextField">Phone Number : </t:label>
 						<t:textField t:id="monTextField" t:value="value"
-							t:mixins="jquery/mask" t:format="literal:99-99-99-99-99" />
+							t:mixins="jquery/mask" mask.format="literal:99-99-99-99-99" />
 						(t:format="literal:99-99-99-99-99")
 					</p>
 					<p>
 						<t:label t:for="monTextField2">Birth Date : </t:label>
 						<t:textField t:id="monTextField2" t:value="value"
-							t:mixins="jquery/mask" t:format="literal:99/99/9999" />
+							t:mixins="jquery/mask" mask.format="literal:99/99/9999" />
 						(t:format="literal:99/99/9999")
 					</p>
 				</fieldset>
