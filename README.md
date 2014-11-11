@@ -41,7 +41,7 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-* 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22
+* 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
 
