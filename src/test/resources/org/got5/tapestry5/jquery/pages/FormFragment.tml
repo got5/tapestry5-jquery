@@ -1,5 +1,5 @@
 <html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
 	xmlns:p="tapestry:parameter">
 
 
@@ -16,7 +16,7 @@
 					<h2>Billing Address</h2>
 					<t:beaneditor t:id="billingAddress" />
 					<t:checkbox t:id="separateShipTo" t:mixins="triggerfragment"
-						fragment="seperateShippingAddress" />
+                                triggerFragment.fragment="seperateShippingAddress" />
 					<t:label for="separateShipTo">
             Separate Ship To?
         </t:label>
@@ -30,7 +30,7 @@
 
 					<t:radiogroup value="codeVisible">
 						<t:radio t:id="on" label="On" value="true"
-							t:mixins="triggerfragment" fragment="codeFragment" />
+							t:mixins="triggerfragment" triggerFragment.fragment="codeFragment" />
 						<t:label for="on">Enter code</t:label>
 						<t:radio t:id="off" label="Off" value="false" />
 						<t:label for="off">No code</t:label>
