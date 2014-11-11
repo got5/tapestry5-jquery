@@ -1,4 +1,4 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
 
     <br />
     <br />
@@ -6,7 +6,7 @@
     <br />
     <br />
     <br />
-	<div t:type="any" t:items="contextMenuItems" t:mixins="jquery/ContextMenu" t:id="testContextMenu">
+	<div t:type="any" t:mixins="jquery/ContextMenu" ContextMenu.items="contextMenuItems" t:id="testContextMenu">
 		
 		<a t:type="actionLink" class="linkContextMenu" t:id="linkContextMenu" t:clientid="linkContextMenu">Test ContextMenu</a>
 		
