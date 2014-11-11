@@ -1,5 +1,5 @@
 <html t:type="layout"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
 	xmlns:p="tapestry:parameter">
 
 
@@ -14,13 +14,12 @@
 				<t:label for="criteriaValue">Raty : </t:label>
 				<input type="text" class="ratingCriteriaValue" t:type="select"
 					t:value="value" t:id="criteriaValue" t:model="model"
-					t:mixins="jquery/raty" t:ratyRates="prop:model" t:ratyValue="value" />
+					t:mixins="jquery/raty" raty.ratyRates="prop:model" raty.ratyValue="value" />
 
 				<t:submit />
 			</t:form>
 
-			<t:any t:mixins="jquery/raty" t:ratyRates="prop:model"
-				t:ratyValue="literal:1" />
+			<t:any t:mixins="jquery/raty" raty.ratyRates="prop:model" raty.ratyValue="literal:1" />
 		</section>
 	</div>
 </div>
