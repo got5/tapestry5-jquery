@@ -1,6 +1,6 @@
 <html t:type="layout"
       t:title="InPlaceEditor"
-      t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+      t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
 
 <t:jquery.tabs  t:tabs="example" t:activePanelId="0" t:ajax="false">
 
