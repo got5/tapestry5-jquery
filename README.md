@@ -1,94 +1,15 @@
-# Tapestry 5 jQuery integration Module - 4.0.1-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 4.0.1-SNAPSHOT for Tapestry 5.4-beta-22
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
 
-## List Of Contributors
-- Robin KOMIWES as robink
-- Andreas ANDREOU as andyhot
-- Christian RIEDEL as criedel
-- François FACON as got5     
-- Tom van DIJK as trolando
-- Emmanuel DEMEY as Gillespie59
-- Clément USTER as cluster
-- Amaury WILLEMANT as awillemant
-- Barry BOOKS as trsvax
-- Pablo NUSSEMBAUM as bauna
-- Alexander OBLOVATNIY as oblalex
-- Stéfanie DUPREY as Nephtys
-- Michael ASPETSBERGER as maspetsberger
-- Dragan SAHPASKI as dragansah
-- Matias BLASI as mblasi
-- Jon-Carlos Rivera as imbcmdth
-- Nourredine KHADRI as adaptivui
-- Michael GENTRY as mrg
-- Mikhail NASYROV as mnasyrov
-- Dmitry GUSEV as dmitrygusev
-- Laurent WROBLEWSKI as LWroblewski
-- Andreas Fink as fnk
-- jochenberger
-- ddelangle
-- Iceo
-- kaililleby
-- daveyx
-
-
-##Hosting
-Christophe Furmaniak 	
-
-
-##Questions? Ideas? Comments?
-http://groups.google.com/group/tapestry5-jquery
-
-## Changelog
-* 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
-* 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
-
-
-* 3.4.0 (unreleased) : Upgrade libs
-	* jQuery 1.10.2
-	* jQueryUI 1.10.3
-    * jcarousel 0.2.9
-    * superfish 1.7.4
-    * Colorbox 1.4.27
-    * Masked Input plugin for jQuery 1.3.1
-    * FlexSlider 2.2.0
-    * Jcrop 0.9.12
-    * Replaced jquery.placeholder.js with https://github.com/mathiasbynens/jquery-placeholder
-    * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
-
-* 3.3.7 (stable) : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
-* 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
-* 3.3.1 : add GMap component
-* 3.3.0 : Update to Tapestry 5.3.3
-* 3.2.0 : Update to Tapestry 5.3.2
-* 3.1.0 : Update to Tapestry 5.3.1
-* 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
-	* add Components : Gallery
-* 2.6.6 : handle datatable's ajax mode for server-side pagination
-* 2.6.2 : more work on client side validation
-* 2.6.1 : 
-	* improve Validation Mecanism and DataTable Component
-	* add Components : InPlaceEditor, Draggable
-	* add Mixins : ZoneRefresh, ZoneDroppable 
-* 2.6.0 : 
-	* switch to Tapestry 5.2.6
-	* add Mixins : CustomZone, Widget
-	* Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
-* 2.1.1 :  
-	* added Components: Carousel, Checkbox, RangeSlide, Slider, Superfish 
-	* added Mixins: CustomDatepicker, Mask, Reveal, Tooltip	
-* 2.1.0 : switch to Tapestry 5.2.5
-	* add (Tabs, Accordion, AjaxUpload, Button)	
-* 1.1-SNAPSHOT : exclusive jQuery components
-* 1.0-SNAPSHOT : initial releases  !
-
 ## Features
 
-This module provides jQuery integration for Tapestry 5 and completely drops out Prototype, Scriptaculous and the base tapestry.js script. 
+for version < 4.0.0  
+This module provides jQuery integration for Tapestry 5 and allow you to work with or to replace the tapestry.js file based on prototype. 
 
-It also relies on [jQuery](http://jquery.com) 1.10.2 and [jQuery UI](http://jqueryui.com/) 1.10.3.
-
+for version >= 4.0.0 
+This Tapestry provides a collections of jQuery components that play well with Tapestry 5.4 or higher.
 
 Exclusive jQuery components : 
 
@@ -143,33 +64,31 @@ Exclusive jQuery Binding Prefixes :
 
 Theses components were originally present in Tapestry 5 Core and can still be used as it :
 
-- **Zone**
-- **Form Validation** 
-	- based on: [http://docs.jquery.com/Plugins/Validation](http://docs.jquery.com/Plugins/Validation)
-- **AjaxFormLoop**
-- **FormFragment**
-- **TriggerFragment**
-- **Grid (in place mode)**
 - **DateField**
     - based on: [http://jqueryui.com/demos/datepicker/](http://jqueryui.com/demos/datepicker/)
-
-Due to some extensibility issues of Core components, theses are originals components need to be used using the "jquery" namespace
-
-- **Autocomplete**
-	- based on: [http://jqueryui.com/demos/autocomplete/](http://jqueryui.com/demos/autocomplete/)
 - **Palette**
 - **ProgressiveDisplay**
 
-## Maven dependency
 
-To use this plugin, add the following dependency in your `pom.xml`.
+##Questions? Ideas? Comments?
+All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery/issues) for that.
+
+## More Informations & contacts
+
+* The [wiki](https://github.com/got5/tapestry5-jquery/wiki)
+* Twitter: [http://twitter.com/GOTapestry5](http://twitter.com/GOTapestry5)
+
+
+## How to use it
+
+Just  add the following dependency in your `pom.xml`.
 
 	<dependencies>
 		...
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>3.0.0</version>
+			<version>4.0.1-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>
@@ -195,17 +114,6 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		</repository>
 		...
 	</repositories>
-	
-
-
-## More Informations & contacts
-
-* The [wiki](https://github.com/got5/tapestry5-jquery/wiki)
-* Twitter: [http://twitter.com/GOTapestry5](http://twitter.com/GOTapestry5)
-
-## How to use it
-
-Just add tapestry5-jquery to your classpath (see Maven dependency snippet below)!
 
 Then use components like you would normally do. For Autocomplete and Palette use "jquery" namespace:
  
@@ -245,11 +153,83 @@ By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option 
 Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
+## Changelog
+* 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
+* 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
-## Important notice
+* 3.4.0 (unreleased) : Upgrade libs
+	* jQuery 1.10.2
+	* jQueryUI 1.10.3
+    * jcarousel 0.2.9
+    * superfish 1.7.4
+    * Colorbox 1.4.27
+    * Masked Input plugin for jQuery 1.3.1
+    * FlexSlider 2.2.0
+    * Jcrop 0.9.12
+    * Replaced jquery.placeholder.js with https://github.com/mathiasbynens/jquery-placeholder
+    * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
-All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery/issues) for that.
+* 3.3.8 : add EXCLUDE_CORE_JS_STACK symbol needed when more than one war is deployed in a portlet container.
+* 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
+* 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
+* 3.3.1 : add GMap component
+* 3.3.0 : Update to Tapestry 5.3.3
+* 3.2.0 : Update to Tapestry 5.3.2
+* 3.1.0 : Update to Tapestry 5.3.1
+* 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
+	* add Components : Gallery
+
+* 2.6.6 : handle datatable's ajax mode for server-side pagination
+* 2.6.2 : more work on client side validation
+* 2.6.1 : 
+	* improve Validation Mecanism and DataTable Component
+	* add Components : InPlaceEditor, Draggable
+	* add Mixins : ZoneRefresh, ZoneDroppable 
+* 2.6.0 : 
+	* switch to Tapestry 5.2.6
+	* add Mixins : CustomZone, Widget
+	* Other Mecanisms : EffectsParam, WidgetParams, Selector Binding
+* 2.1.1 :  
+	* added Components: Carousel, Checkbox, RangeSlide, Slider, Superfish 
+	* added Mixins: CustomDatepicker, Mask, Reveal, Tooltip	
+* 2.1.0 : switch to Tapestry 5.2.5
+	* add (Tabs, Accordion, AjaxUpload, Button)	
+
+* 1.1-SNAPSHOT : exclusive jQuery components
+* 1.0-SNAPSHOT : initial releases  !
 
 ## License
 
 This project is distributed under Apache 2 License. See LICENSE.txt for more information. 
+
+## List Of Contributors
+- Robin KOMIWES as robink
+- Andreas ANDREOU as andyhot
+- Christian RIEDEL as criedel
+- François FACON as got5     
+- Tom van DIJK as trolando
+- Emmanuel DEMEY as Gillespie59
+- Clément USTER as cluster
+- Amaury WILLEMANT as awillemant
+- Barry BOOKS as trsvax
+- Pablo NUSSEMBAUM as bauna
+- Alexander OBLOVATNIY as oblalex
+- Stéfanie DUPREY as Nephtys
+- Michael ASPETSBERGER as maspetsberger
+- Dragan SAHPASKI as dragansah
+- Matias BLASI as mblasi
+- Jon-Carlos Rivera as imbcmdth
+- Nourredine KHADRI as adaptivui
+- Michael GENTRY as mrg
+- Mikhail NASYROV as mnasyrov
+- Dmitry GUSEV as dmitrygusev
+- Laurent WROBLEWSKI as LWroblewski
+- Andreas Fink as fnk
+- jochenberger
+- ddelangle
+- Iceo
+- kaililleby
+- daveyx
+
+##Hosting
+Christophe Furmaniak 	
