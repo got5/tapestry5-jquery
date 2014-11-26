@@ -41,7 +41,7 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-* 3.4.0 (unreleased) : Upgrade libs
+* 3.4.0 (stable) : Upgrade libs
 	* jQuery 1.10.2
 	* jQueryUI 1.10.3
     * jcarousel 0.2.9
@@ -53,7 +53,7 @@ http://groups.google.com/group/tapestry5-jquery
     * Replaced jquery.placeholder.js with https://github.com/mathiasbynens/jquery-placeholder
     * [breaking change] Replaced jquery.snippet.js with codemirror: http://codemirror.net
 
-* 3.3.7 (stable) : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
+* 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 * 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
 * 3.3.1 : add GMap component
 * 3.3.0 : Update to Tapestry 5.3.3
@@ -164,7 +164,7 @@ To use this plugin, add the following dependency in your `pom.xml`.
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>3.3.7</version>
+			<version>3.4.0</version>
 		</dependency>
 		...
 	</dependencies>
