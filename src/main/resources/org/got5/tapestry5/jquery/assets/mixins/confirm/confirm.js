@@ -31,6 +31,15 @@
             }
 
             $('#' + specs.id).bind("click", function(event) {
+                
+                var element = $(this);
+
+                if (element.data('confirmed')) {
+
+                    element.data('confirmed', false);
+                    // perform regular click event
+                    return true;
+                }
 
                 event.preventDefault();
                 event.stopImmediatePropagation();
@@ -44,38 +53,16 @@
                     dialogBox.dialog('open');
                 }
             });
-
 		}
 		
 		/**
-		 * Trigger url redirection or firm submission from element.
+		 * Sets a ‘confirmed’ flag and triggers the actual click event. 
 		 * 
 		 * @param HTML element
 		 */
 		function trigger(element) {
-			var tagName = element.prop('tagName');
-			switch (tagName) {
-			//Simple link (pagelink, actionlink, etc...)
-			case 'A':
-				var href = element.prop('href');
-				if (href != undefined) {
-					var urlSuffix = href.substring(href.lastIndexOf('.') + 1);
-					if (urlSuffix != null &&
-                        (element.prop('id').toLowerCase().indexOf(urlSuffix.toLowerCase()) == 0 || href.indexOf(':') > 0)) {
-						//ActionLink
-						element.trigger(Tapestry.TRIGGER_ZONE_UPDATE_EVENT);
-					} else {
-						window.location.href = href;
-					}
-				}
-				break;
-			//submit button.
-			case 'INPUT':
-				element.parents('form').submit();
-				break;
-			default:
-				break;
-			}
+            element.data('confirmed', true);
+            element[0].click();
 		}
 
 		return {
