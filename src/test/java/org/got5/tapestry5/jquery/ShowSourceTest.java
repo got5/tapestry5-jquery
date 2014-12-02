@@ -8,9 +8,9 @@ import com.thoughtworks.selenium.Wait;
 public class ShowSourceTest extends SeleniumTestCase{
 	@Test
     public void testShowSource(){
-    	
+
     	open("/ShowSource");
-    	
+
     	 new Wait()
          {
              @Override
@@ -19,44 +19,54 @@ public class ShowSourceTest extends SeleniumTestCase{
                  return getXpathCount("//div[@class='my-snippet-container']").equals(2);
              }
          }.wait("We should have 2 showSource", JQueryTestConstants.TIMEOUT);
-         
+
          new Wait()
          {
              @Override
              public boolean until()
              {
-                 return isElementPresent("//pre[contains(@class,'sh_html')]");
+                 return isElementPresent("//div[@id='tml']//div[starts-with(@class,'CodeMirror')]")
+                         && isElementPresent("//div[@id='tml']/div[@class='my-snippet-container']");
              }
          }.wait("We should have 1 tml snippet", JQueryTestConstants.TIMEOUT);
-         
+
          new Wait()
          {
              @Override
              public boolean until()
              {
-            	 return isElementPresent("//pre[contains(@class,'sh_java')]");
+                 return isElementPresent("//div[@id='java']//div[starts-with(@class,'CodeMirror')]")
+                         && isElementPresent("//div[@id='java']/div[@class='my-snippet-container']");
              }
          }.wait("We should have 1 java snippet", JQueryTestConstants.TIMEOUT);
-         
-        
+
+         assertFalse(isVisible("//div[@id='java']//a[contains(@class, 'hide')]"), "The hide button should not be visible by default.");
+         assertFalse(isVisible("//div[@id='java']/div[@class='my-snippet-container']"), "The java snippet should not be visible by default.");
+
+         click("//div[@id='java']//a[contains(@class, 'show')]");
+
          new Wait()
          {
              @Override
              public boolean until()
              {
-                 return getAttribute("//div[@class='sh_ide-anjuta snippet-wrap']@style").contains("none");
+                 return !isVisible("//div[@id='java']//a[contains(@class, 'show')]")
+                         && isVisible("//div[@id='java']//a[contains(@class, 'hide')]")
+                         && isVisible("//div[@id='java']/div[@class='my-snippet-container']");
              }
-         }.wait("The showSource should not be visible by default", JQueryTestConstants.TIMEOUT);
-         
-         click("//a[contains(@class,'snippet-toggle')]");
-         
+         }.wait("The show button should not be visible; hide button and snippet should have been visible.", JQueryTestConstants.TIMEOUT);
+
+         click("//div[@id='java']//a[contains(@class, 'hide')]");
+
          new Wait()
          {
              @Override
              public boolean until()
              {
-                 return getAttribute("//div[@class='sh_ide-anjuta snippet-wrap']@style").contains("block");
+                 return isVisible("//div[@id='java']//a[contains(@class, 'show')]")
+                         && !isVisible("//div[@id='java']//a[contains(@class, 'hide')]")
+                         && !isVisible("//div[@id='java']/div[@class='my-snippet-container']");
              }
-         }.wait("The showSource should not be visible by default", JQueryTestConstants.TIMEOUT);
+         }.wait("The hide button and java snippet should not be visible after clicking on the hide button", JQueryTestConstants.TIMEOUT);
 	}
 }

@@ -27,9 +27,9 @@ t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 </t:jquery.dialog> 
 </div>
     	
-    	<div t:type="jquery/showSource" t:ext="text/html" t:beginLine="18" t:endLine="27" t:path="resources/org/got5/tapestry5/jquery/pages/ShowSource.tml"></div>
+    	<div t:type="jquery/showSource" t:id="tml" t:ext="text/html" t:beginLine="18" t:endLine="27" t:path="resources/org/got5/tapestry5/jquery/pages/ShowSource.tml"></div>
     	<br />
-    	<div t:type="jquery/showSource" t:ext="javascript" t:path="java/org/got5/tapestry5/jquery/pages/ShowSource.java"></div>
+    	<div t:type="jquery/showSource" t:id="java" t:ext="javascript" t:path="java/org/got5/tapestry5/jquery/pages/ShowSource.java"></div>
 
 		</p:example>
 
