@@ -41,7 +41,8 @@ Christophe Furmaniak
 http://groups.google.com/group/tapestry5-jquery
 
 ## Changelog
-* 3.4.0 (stable) : Upgrade libs
+* 3.4.1 (stable) : #342, #336
+* 3.4.0 : Upgrade libs
 	* jQuery 1.10.2
 	* jQueryUI 1.10.3
     * jcarousel 0.2.9
