@@ -13,8 +13,11 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
@@ -39,6 +42,7 @@ import org.slf4j.Logger;
 		stylesheet = {
             "${assets.path}/components/showSource/codemirror.css"
         })
+@SupportsInformalParameters
 public class ShowSource {
 
     /**
@@ -97,7 +101,13 @@ public class ShowSource {
 	private ComponentResources componentResources;
 
 	@Inject
+	private JavaScriptSupport javaScriptSupport;
+
+	@Inject
 	private Messages message;
+
+	@Property
+	private String snippetId;
 
     boolean setupRender() {
 
@@ -117,6 +127,8 @@ public class ShowSource {
 				return false;
 			}
 		}
+
+        snippetId = javaScriptSupport.allocateClientId(new StringBuilder("snippet_").append(getClientId()).toString());
 
 		/**
 		 * Init the Default parameter for the jQuery plugin
@@ -197,11 +209,19 @@ public class ShowSource {
         return builder.toString();
     }
 
-    public void afterRender() {
+    void beginRender(final MarkupWriter writer) {
+
+        writer.element(componentResources.getElementName("div"), "id", getClientId());
+        componentResources.renderInformalParameters(writer);
+    }
+
+    public void afterRender(final MarkupWriter writer) {
+
+        writer.end();
 
         final JSONObject params = new JSONObject();
 
-        params.put("id", getClientId());
+        params.put("id", snippetId);
         params.put("lang", getLanguage());
         params.put("beginLine", beginLine);
 
