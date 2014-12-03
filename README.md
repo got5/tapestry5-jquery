@@ -83,6 +83,8 @@ All kind of feedback is very welcome. Please use [Github issues system](http://g
 
 Just  add the following dependency in your `pom.xml`.
 
+For Tapestry 5.4 users:
+
 	<dependencies>
 		...
 		<dependency>
@@ -92,6 +94,18 @@ Just  add the following dependency in your `pom.xml`.
 		</dependency>
 		...
 	</dependencies>
+
+For Tapestry 5.3 users:  
+
+    <dependencies>
+        ...
+        <dependency>
+            <groupId>org.got5</groupId>
+            <artifactId>tapestry5-jquery</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        ...
+    </dependencies>
 	
 	<repositories>
 		...
@@ -157,7 +171,8 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
-* 3.4.0 (unreleased) : Upgrade libs
+* 3.4.1 (stable) : #342, #336
+* 3.4.0 : Upgrade libs
 	* jQuery 1.10.2
 	* jQueryUI 1.10.3
     * jcarousel 0.2.9
