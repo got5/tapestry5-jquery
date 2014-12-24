@@ -18,9 +18,19 @@ package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.ioc.*;
-import org.apache.tapestry5.ioc.annotations.*;
-import org.apache.tapestry5.ioc.services.ApplicationDefaults;
+import org.apache.tapestry5.ioc.Configuration;
+import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.Resource;
+import org.apache.tapestry5.ioc.ScopeConstants;
+import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Primary;
+import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.BindingFactory;
@@ -33,7 +43,11 @@ import org.apache.tapestry5.services.javascript.ModuleManager;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
-import org.got5.tapestry5.jquery.services.impl.*;
+import org.got5.tapestry5.jquery.services.impl.EffectsParamImpl;
+import org.got5.tapestry5.jquery.services.impl.JGrowlManagerImpl;
+import org.got5.tapestry5.jquery.services.impl.JavaScriptFilesConfigurationImpl;
+import org.got5.tapestry5.jquery.services.impl.RenderTrackerImpl;
+import org.got5.tapestry5.jquery.services.impl.WidgetParamsImpl;
 import org.got5.tapestry5.jquery.services.js.JSModule;
 import org.got5.tapestry5.jquery.services.messages.MessageProvider;
 import org.got5.tapestry5.jquery.services.messages.MessageProviderImpl;
@@ -70,16 +84,14 @@ public class JQueryModule {
 
 		configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
 
-		configuration
-		.add(JQuerySymbolConstants.JQUERY_CORE_PATH,
+		configuration.add(JQuerySymbolConstants.JQUERY_CORE_PATH,
 				"${jquery.assets.root}/vendor/jquery.js");
-		
+
 		// MIGRATION TO 5.4
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JQUERY_PATH,
 				"classpath:org/got5/tapestry5/jquery");
 		configuration.add(JQuerySymbolConstants.TAPESTRY_JS_PATH,
 				"classpath:org/got5/tapestry5/tapestry.js");
-		
 
 		configuration.add(JQuerySymbolConstants.JQUERY_VALIDATE_PATH,
 				"classpath:org/got5/tapestry5/jquery/validate/1_7");
@@ -99,16 +111,6 @@ public class JQueryModule {
 
 		if (prototype)
 			configuration.add(Trait.SCRIPTACULOUS, false);
-	}
-
-
-	@Contribute(SymbolProvider.class)
-	@ApplicationDefaults
-	public static void contributeApplicationDefault(
-			MappedConfiguration<String, Object> configuration) {
-
-		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER,
-				"jquery");
 	}
 
 	public static void contributeClasspathAssetAliasManager(
@@ -134,7 +136,7 @@ public class JQueryModule {
 				.scope(ScopeConstants.PERTHREAD);
 		binder.bind(JavaScriptFilesConfiguration.class,
 				JavaScriptFilesConfigurationImpl.class);
-        binder.bind(MessageProvider.class, MessageProviderImpl.class);
+		binder.bind(MessageProvider.class, MessageProviderImpl.class);
 		binder.bind(JGrowlManager.class, JGrowlManagerImpl.class);
 	}
 
@@ -184,23 +186,23 @@ public class JQueryModule {
 	public static void setupComponentsShims(
 			MappedConfiguration<String, Object> configuration,
 			@Inject @Path("/META-INF/modules/tjq/datefield.js") Resource datefield,
-			@Inject @Path("${jquery.assets.root}/vendor/jquery.mousewheel.js") Resource jquerymousewheel, 
+			@Inject @Path("${jquery.assets.root}/vendor/jquery.mousewheel.js") Resource jquerymousewheel,
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) boolean mouseWheelIncluded) {
 
 		configuration.add("t5/core/datefield",
 				new JavaScriptModuleConfiguration(datefield));
-		
+
 		if (mouseWheelIncluded)
 			configuration.add("vendor/jquerymousewheel",
 					new JavaScriptModuleConfiguration(jquerymousewheel)
 							.dependsOn("jquery"));
 	}
 
-    public static void contributeComponentMessagesSource (
-        @Value("/org/got5/tapestry5/JQueryCatalog.properties") Resource jQueryCatalog,
-        OrderedConfiguration<Resource> configuration) {
+	public static void contributeComponentMessagesSource(
+			@Value("/org/got5/tapestry5/JQueryCatalog.properties") Resource jQueryCatalog,
+			OrderedConfiguration<Resource> configuration) {
 
-        //Catalog used to store messages from mixins
-        configuration.add("JQueryCatalog", jQueryCatalog);
-    }
+		// Catalog used to store messages from mixins
+		configuration.add("JQueryCatalog", jQueryCatalog);
+	}
 }
