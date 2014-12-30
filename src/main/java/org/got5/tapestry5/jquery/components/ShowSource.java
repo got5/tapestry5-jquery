@@ -25,213 +25,218 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 import org.slf4j.Logger;
 
-
 /**
  * Component for displaying a code source
+ * 
  * @since 2.1.1
- *
+ * 
  * @tapestrydoc
  */
-@Import(stylesheet = {
-                "${jquery.assets.root}/vendor/components/showsource/codemirror.css"
-        })
+@Import(stylesheet = { "${jquery.assets.root}/vendor/components/showsource/codemirror.css" })
 public class ShowSource {
 
-    /**
-     * Code Source path
-     */
-    @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private String path;
+	/**
+	 * Code Source path
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	private String path;
 
-    /**
-     * Specs for the JQuery Plugin
-     */
-    @Parameter(defaultPrefix = BindingConstants.PROP)
-    private JSONObject specs;
+	/**
+	 * Specs for the JQuery Plugin
+	 */
+	@Parameter(defaultPrefix = BindingConstants.PROP)
+	private JSONObject specs;
 
-    /**
-     * The ClientId of the ShowSource component
-     */
-    @Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
-    private String clientId;
+	/**
+	 * The ClientId of the ShowSource component
+	 */
+	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
+	private String clientId;
 
-    /**
-     * The language you want to use for your snippet. If not bound, we will use
-     * the extension of the file.
-     */
-    @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private String ext;
+	/**
+	 * The language you want to use for your snippet. If not bound, we will use
+	 * the extension of the file.
+	 */
+	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	private String ext;
 
-    /**
-     * Where to Start ? By default line 0.
-     */
-    @Parameter(value = "0")
-    private Integer beginLine;
+	/**
+	 * Where to Start ? By default line 0.
+	 */
+	@Parameter(value = "0")
+	private Integer beginLine;
 
-    /**
-     * Where to finish ?
-     */
-    @Parameter
-    private Integer endLine;
+	/**
+	 * Where to finish ?
+	 */
+	@Parameter
+	private Integer endLine;
 
-    private JSONObject defaultSpecs;
+	private JSONObject defaultSpecs;
 
-    @Inject
-    private AssetSource assetSource;
+	@Inject
+	private AssetSource assetSource;
 
-    @Inject
-    private Logger logger;
+	@Inject
+	private Logger logger;
 
-    @Inject
-    private JavaScriptSupport support;
+	@Inject
+	private JavaScriptSupport support;
 
-    @Inject
-    @Symbol("demo-src-dir")
-    private String srcDir;
+	@Inject
+	@Symbol("demo-src-dir")
+	private String srcDir;
 
-    @Inject
-    private ComponentResources componentResources;
+	@Inject
+	private ComponentResources componentResources;
 
-    @Inject
-    private Messages message;
+	@Inject
+	private Messages message;
 
-    boolean setupRender() {
+	boolean setupRender() {
 
-        if (!componentResources.isBound("path")) {
+		if (!componentResources.isBound("path")) {
 
-            logger.warn("You have to specify a path for the showSource component");
+			logger.warn("You have to specify a path for the showSource component");
 
-            return false;
-        }
+			return false;
+		}
 
-        if (componentResources.isBound("endLine")) {
+		if (componentResources.isBound("endLine")) {
 
-            if (endLine < beginLine) {
+			if (endLine < beginLine) {
 
-                logger.warn("The endLine parameter has to be greater than beginLine");
+				logger.warn("The endLine parameter has to be greater than beginLine");
 
-                return false;
-            }
-        }
+				return false;
+			}
+		}
 
-        /**
-         * Init the Default parameter for the jQuery plugin
-         */
-        defaultSpecs = new JSONObject();
-        if (beginLine > 0) {
+		/**
+		 * Init the Default parameter for the jQuery plugin
+		 */
+		defaultSpecs = new JSONObject();
+		if (beginLine > 0) {
 
-            defaultSpecs.put("firstLineNumber", beginLine);
-        }
-        defaultSpecs.put("readOnly", true);
-        defaultSpecs.put("lineNumbers", true);
-        defaultSpecs.put("clipboard", assetSource.getUnlocalizedAsset("org/got5/tapestry5/jquery/assets/components/showSource/my-snippet.js").toClientURL());
+			defaultSpecs.put("firstLineNumber", beginLine);
+		}
+		defaultSpecs.put("readOnly", true);
+		defaultSpecs.put("lineNumbers", true);
+		// defaultSpecs.put("clipboard",
+		defaultSpecs.put(
+				"clipboard",
+				assetSource.getUnlocalizedAsset(
+						"META-INF/modules/tjq/source.js").toClientURL());
 
-        return true;
-    }
+		return true;
+	}
 
-    public String getSrcContent() {
+	public String getSrcContent() {
 
-        final StringBuilder builder = new StringBuilder();
+		final StringBuilder builder = new StringBuilder();
 
-        InputStream is = null;
+		InputStream is = null;
 
-        File file = null;
+		File file = null;
 
-        final String rootSrc = InternalUtils.isBlank(srcDir) ? String.format("%s%s", System.getProperty("user.dir"), "/src/test/") : srcDir;
-        final String pathFile = String.format("%s%s%s", rootSrc, File.separator, path);
+		final String rootSrc = InternalUtils.isBlank(srcDir) ? String.format(
+				"%s%s", System.getProperty("user.dir"), "/src/test/") : srcDir;
+		final String pathFile = String.format("%s%s%s", rootSrc,
+				File.separator, path);
 
-        logger.info("The ShowSource Component displays the file : {}", pathFile);
+		logger.info("The ShowSource Component displays the file : {}", pathFile);
 
-        file = new File(pathFile);
+		file = new File(pathFile);
 
-        try
-        {
-            is = new FileInputStream(file);
-        }
-        catch (FileNotFoundException fnfEx)
-        {
-            logger.error("Error file not found.");
-        }
+		try {
+			is = new FileInputStream(file);
+		} catch (FileNotFoundException fnfEx) {
+			logger.error("Error file not found.");
+		}
 
-        if (is != null) {
+		if (is != null) {
 
-            try {
+			try {
 
-                final BufferedReader buffReader = new BufferedReader(new InputStreamReader(is));
-                String line = buffReader.readLine();
+				final BufferedReader buffReader = new BufferedReader(
+						new InputStreamReader(is));
+				String line = buffReader.readLine();
 
-                int numLine = 1;
-                while (line != null) {
+				int numLine = 1;
+				while (line != null) {
 
-                    if (numLine >= beginLine) {
+					if (numLine >= beginLine) {
 
-                        if (componentResources.isBound("endLine") && numLine > endLine) {
+						if (componentResources.isBound("endLine")
+								&& numLine > endLine) {
 
-                            break;
-                        }
+							break;
+						}
 
-                        builder.append(new String(new byte[] { Character.LINE_SEPARATOR }))
-                                .append(line);
-                    }
+						builder.append(
+								new String(
+										new byte[] { Character.LINE_SEPARATOR }))
+								.append(line);
+					}
 
-                    numLine++;
-                    line = buffReader.readLine();
-                }
+					numLine++;
+					line = buffReader.readLine();
+				}
 
-                buffReader.close();
+				buffReader.close();
 
-            } catch (IOException ioEx) {
+			} catch (IOException ioEx) {
 
-                builder.append(ioEx.getMessage());
+				builder.append(ioEx.getMessage());
 
-            } finally {
+			} finally {
 
-                IOUtils.closeQuietly(is);
-            }
-        }
+				IOUtils.closeQuietly(is);
+			}
+		}
 
-        return builder.toString();
-    }
+		return builder.toString();
+	}
 
-    public void afterRender() {
+	public void afterRender() {
 
-        final JSONObject params = new JSONObject();
+		final JSONObject params = new JSONObject();
 
-        params.put("id", getClientId());
-        params.put("lang", getLanguage());
-        params.put("beginLine", beginLine);
+		params.put("id", getClientId());
+		params.put("lang", getLanguage());
+		params.put("beginLine", beginLine);
 
-        JQueryUtils.merge(defaultSpecs, specs);
-        params.put("options", defaultSpecs);
+		JQueryUtils.merge(defaultSpecs, specs);
+		params.put("options", defaultSpecs);
 
-        support.require("tjq/source").with(params);
-    }
+		support.require("tjq/source").with(params);
+	}
 
-    public String getLanguage() {
+	public String getLanguage() {
 
-        if (componentResources.isBound("ext")) {
+		if (componentResources.isBound("ext")) {
 
-            return ext;
-        }
+			return ext;
+		}
 
-        final Map<String, String> langs = new HashMap<String, String>();
-        langs.put("js", "javascript");
-        langs.put("java", "javascript");
-        langs.put("tml", "html");
-        langs.put("html", "html");
+		final Map<String, String> langs = new HashMap<String, String>();
+		langs.put("js", "javascript");
+		langs.put("java", "javascript");
+		langs.put("tml", "html");
+		langs.put("html", "html");
 
-        final String extension = path.substring((path.lastIndexOf('.') + 1));
+		final String extension = path.substring((path.lastIndexOf('.') + 1));
 
-        return langs.get(extension);
-    }
+		return langs.get(extension);
+	}
 
-    public String getClientId() {
+	public String getClientId() {
 
-        return clientId;
-    }
+		return clientId;
+	}
 
-    public String getFilename() {
+	public String getFilename() {
 
-        return path.substring(path.lastIndexOf("/") + 1);
-    }
+		return path.substring(path.lastIndexOf("/") + 1);
+	}
 }
