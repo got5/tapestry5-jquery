@@ -22,36 +22,36 @@ import org.testng.annotations.Test;
 import com.thoughtworks.selenium.Wait;
 
 public class ConfirmTest extends SeleniumTestCase {
-	
+
 	private final String confirmLocator = "//div[@id='dialogConfirmationJQuery']";
-	
+
 	private final String confirmOkLocator = "//div[@class='ui-dialog-buttonset']/button[1]";
-	
+
 	@Test
     public void testDialog()
     {
         open("/jqueryconfirm");
-        
+
         //PageLink Confirmation test.
         checkDialogStateAfterClick("//a[@id='pageLinkTest']");
-        
+
         //Did we quit the JQueryConfirm Page?
         final String baseUrl = getBaseURL();
         assertTrue(baseUrl.indexOf("/jqueryconfirm") == -1);
-        
+
         //open("/jqueryconfirm");
-        
+
         //Zone update confirmation
         //checkDialogStateAfterClick("//a[@id='clicker']");
-        
+
         //Form submit confirmation
         //checkDialogStateAfterClick("//input[@id='btnValid']");
     }
-	
+
 	private void checkDialogStateAfterClick(final String triggerLocator)
     {
         click(triggerLocator);
-        
+
         //Checks if the confirm popup is displayed.
         new Wait()
         {
@@ -61,23 +61,23 @@ public class ConfirmTest extends SeleniumTestCase {
                 return (isElementPresent(confirmLocator));
             }
         }.wait("Confirm popup should be visible after clicking on : " + triggerLocator, JQueryTestConstants.TIMEOUT);
-        
+
         //Confirm dialog popup closed by pressing Enter key.
         checkDialogStateAfterClickOK();
     }
-	
+
 	private void checkDialogStateAfterClickOK()
     {
 		//Press OK button.
         click(confirmOkLocator);
-        
+
         //Checks if the popup has been removed.
         new Wait()
         {
             @Override
             public boolean until()
             {
-                return (!isElementPresent(confirmLocator));
+                return !isElementPresent(confirmLocator) || !isVisible(confirmLocator);
             }
         }.wait("Confirm popup should be removed after clicking on OK button.", JQueryTestConstants.TIMEOUT);
     }

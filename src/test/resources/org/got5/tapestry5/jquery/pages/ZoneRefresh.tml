@@ -3,7 +3,7 @@
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
       
-        <t:zone t:id="clickZone" t:mixins="jquery/ZoneRefresh" t:period="2">
+        <t:zone t:id="clickZone" id="clickZone" t:mixins="jquery/ZoneRefresh" t:period="2">
    		 	${i}
    		</t:zone>
     	<p>
