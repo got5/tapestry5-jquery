@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.3.9-SNASPSHOT
+# Tapestry 5 jQuery integration Module - 3.3.9
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -167,10 +167,11 @@ By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option 
 Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
-## Changelog
+# Changelog related to Tapestry 5.4.x branch
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
+# Changelog related to Tapestry 5.3.x with jQuery 1.10.2
 * 3.4.1 (stable) : #342, #336
 * 3.4.0 : Upgrade libs
 	* jQuery 1.10.2
@@ -184,7 +185,8 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
     * Replaced jquery.placeholder.js with https://github.com/mathiasbynens/jquery-placeholder
     * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
-* 3.3.9 : Update to Tapestry 5.3.8 (Java 1.8)
+# Changelog related to Tapestry 5.3.x with jQuery 1.7.2
+* 3.3.9 (Stable): Update to Tapestry 5.3.8 (Java 1.8) #342, #336
 * 3.3.8 : add EXCLUDE_CORE_JS_STACK symbol needed when more than one war is deployed in a portlet container.
 * 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 * 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
@@ -195,6 +197,9 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 3.0.0 : Switch to Tapestry 5.3 (new JavaScript Layer)
 	* add Components : Gallery
 
+# Changelog related to Tapestry 5.2.x with jQuery 1.6.4
+* 2.6.9 : last release for Tapestry 5.2.6
+* 2.6.8 : add Components ImageCropper
 * 2.6.6 : handle datatable's ajax mode for server-side pagination
 * 2.6.2 : more work on client side validation
 * 2.6.1 : 
