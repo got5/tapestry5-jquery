@@ -43,7 +43,7 @@ requirejs.config({
 
 						onComplete : function(id, fileName, responseJSON) {
 
-							if (responseJSON._tapestry.content) {
+							if (responseJSON._tapestry && responseJSON._tapestry.content) {
 
 								pageinit.handlePartialPageRenderResponse({json: responseJSON}, function(response){
 									
