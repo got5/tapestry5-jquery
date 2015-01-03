@@ -5,7 +5,7 @@ requirejs.config({
 	}
 });
 define(["t5/core/pageinit", "tjq/vendor/components/datatables/jquery.dataTables", "tjq/vendor/jquery.json-2.4"], function(pageinit) {
-	init = function(spec) {
+	return function(spec) {
 		jQuery.extend(spec.params,{
     			/**
     			 * For ajax mode, need to call Tapestry.loadScriptsInReply in a callback to take into account
@@ -33,6 +33,4 @@ define(["t5/core/pageinit", "tjq/vendor/components/datatables/jquery.dataTables"
     		
 			 jQuery("#" + spec.id).dataTable(spec.params);
 	  };
-  	
-  	return exports = init;
 });

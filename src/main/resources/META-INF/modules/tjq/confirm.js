@@ -1,6 +1,5 @@
-define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom"],
-    function(dom,zone,events) {
-    init = function(specs) {
+define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom" ], function(dom, zone, events) {
+    var init = function(specs) {
 
         //JQuery dialog box configuration, if used.
         if (!specs.useDefaultConfirm) {
@@ -78,5 +77,5 @@ define(["t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-u
         }
     }
 
-    return exports = init;
+    return init;
 });

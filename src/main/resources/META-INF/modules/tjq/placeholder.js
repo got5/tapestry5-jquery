@@ -1,12 +1,10 @@
 requirejs.config({
-	"shim" : {
-		"tjq/vendor/mixins/placeholder/jquery.placeholder": ["jquery"]
-	}
+    "shim" : {
+        "tjq/vendor/mixins/placeholder/jquery.placeholder" : [ "jquery" ]
+    }
 });
-define(["tjq/vendor/mixins/placeholder/jquery.placeholder"], function() {
-	init = function(spec) {
-	    jQuery("#" + spec.id).placeholder();
-	  };
-  	
-  	return exports = init;
+define([ "tjq/vendor/mixins/placeholder/jquery.placeholder" ], function() {
+    return function(spec) {
+        jQuery("#" + spec.id).placeholder();
+    };
 });

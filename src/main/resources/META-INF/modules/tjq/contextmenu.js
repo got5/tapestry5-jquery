@@ -4,16 +4,18 @@ requirejs.config({
     }
 });
 define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], function(ajax) {
-    init = function(specs) {
+    return function(specs) {
 
-        if (specs.id == undefined || specs.keys == undefined || specs.items == undefined || specs.items == null) {
+        var items, nbKeys, key, index;
+        
+        if (!specs.id || !specs.keys || !specs.items || !specs.items) {
             return;
         }
 
-        var items = {};
-        var nbKeys = specs.keys.length;
-        for (var index = 0; index < nbKeys; index++) {
-            var key = specs.keys[index];
+        items = {};
+        nbKeys = specs.keys.length;
+        for (index = 0; index < nbKeys; index++) {
+            key = specs.keys[index];
             items[key] = specs.items[key];
         }
 
@@ -21,9 +23,8 @@ define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], fun
             selector: '#' + specs.id,
             callback: function(key, options) {
                 ajax(items[key].url, {
-                    methpd: "POST"
+                    method: "POST"
                 })
-
             },
             items: items,
             trigger: specs.trigger,
@@ -31,8 +32,5 @@ define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], fun
             autoHide: specs.autoHide,
             zIndex: specs.zIndex
         });
-
     };
-
-    return exports = init;
 });
