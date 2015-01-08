@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.got5</groupId>
 	<artifactId>tapestry5-jquery</artifactId>
-	<version>4.0.1-SNAPSHOT</version>
+	<version>4.0.1-beta-26</version>
 	<packaging>jar</packaging>
 	<name>Tapestry 5 JQuery Library</name>
 	<description>Tapestry Components Library</description>
@@ -35,120 +35,7 @@
 	    <developerConnection>scm:git:git@github.com:got5/tapestry5-jquery.git</developerConnection>
 	    <url>git@github.com:got5/tapestry5-jquery.git</url>
   	</scm>
-  	<developers>
-  		<developer>
-      		<id>robink</id>
-      		<name>Robin KOMIWES</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>andyhot</id>
-      		<name>Andreas ANDREOU</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+2</timezone>
-   		</developer>
-   		<developer>
-      		<id>criedel</id>
-      		<name>Christian RIEDEL</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>got5</id>
-      		<name>François FACON</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>trolando</id>
-      		<name>Tom van DIJK</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
- 		<developer>
-      		<id>Gillespie59</id>
-      		<name>Emmanuel DEMEY</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-		<developer>
-      		<id>cluster</id>
-      		<name>Clément USTER</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>awillemant</id>
-      		<name>Amaury WILLEMANT</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>trsvax</id>
-      		<name>Barry BOOKS</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone></timezone>
-   		</developer>
-   		<developer>
-      		<id>bauna</id>
-      		<name>Pablo NUSSEMBAUM</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone></timezone>
-   		</developer>
-   		<developer>
-      		<id></id>
-      		<name>Alexander OBLOVATNIY</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone></timezone>
-   		</developer>
-   		<developer>
-      		<id>Nephtys</id>
-      		<name>Stéfanie DUPREY</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>maspetsberger</id>
-      		<name>Michael Aspetsberger</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-   		<developer>
-      		<id>dragansah</id>
-      		<name>Dragan Sahpaski</name>
-      		<roles>
-        		<role>Developer</role>
-      		</roles>
-      		<timezone>+1</timezone>
-   		</developer>
-  	</developers>
+  	
 	<ciManagement>
 		<system>Hudson</system>
 		<url>http://ci.dev.kalaari.net/hudson/</url>
@@ -466,7 +353,7 @@
 	</reporting>
     <repositories>
 		<repository>
-			<id>5.4-beta-repo</id>
+			<id>Apache Staging</id>
 			<url>https://repository.apache.org/content/groups/staging</url>
 		</repository>
 		<repository>
@@ -523,9 +410,124 @@
 
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-        <tapestry-release-version>5.4-beta-22</tapestry-release-version>
+        <tapestry-release-version>5.4-beta-26</tapestry-release-version>
         <selenium-version>2.35.0</selenium-version>
         <browserStartCommand>*googlechrome</browserStartCommand>
         <sourceDirectory>src/main/java</sourceDirectory>
 	</properties>
+	
+	<developers>
+  		<developer>
+      		<id>robink</id>
+      		<name>Robin KOMIWES</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>andyhot</id>
+      		<name>Andreas ANDREOU</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+2</timezone>
+   		</developer>
+   		<developer>
+      		<id>criedel</id>
+      		<name>Christian RIEDEL</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>got5</id>
+      		<name>François FACON</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>trolando</id>
+      		<name>Tom van DIJK</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+ 		<developer>
+      		<id>Gillespie59</id>
+      		<name>Emmanuel DEMEY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+		<developer>
+      		<id>cluster</id>
+      		<name>Clément USTER</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>awillemant</id>
+      		<name>Amaury WILLEMANT</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>trsvax</id>
+      		<name>Barry BOOKS</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id>bauna</id>
+      		<name>Pablo NUSSEMBAUM</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id></id>
+      		<name>Alexander OBLOVATNIY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone></timezone>
+   		</developer>
+   		<developer>
+      		<id>Nephtys</id>
+      		<name>Stéfanie DUPREY</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>maspetsberger</id>
+      		<name>Michael Aspetsberger</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+   		<developer>
+      		<id>dragansah</id>
+      		<name>Dragan Sahpaski</name>
+      		<roles>
+        		<role>Developer</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+  	</developers>
 </project>

@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 4.0.1-SNAPSHOT for Tapestry 5.4-beta-22
+# Tapestry 5 jQuery integration Module - 4.0.1-beta-26 for Tapestry 5.4-beta-26
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -168,6 +168,7 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
+* 4.0.1-beta-26 : Update to Tapestry 5.4-beta-26 
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
