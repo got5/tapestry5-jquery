@@ -3,7 +3,6 @@ package org.got5.tapestry5.jquery.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
@@ -14,9 +13,9 @@ import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
 import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.got5.tapestry5.jquery.DataTableConstants;
@@ -28,7 +27,6 @@ import org.got5.tapestry5.jquery.pages.DataTables;
  */
 public class SampleDataTableModel implements DataTableModel {
 
-	private TypeCoercer typeCoercer;
 	
 	private Request request;
 	
@@ -40,14 +38,13 @@ public class SampleDataTableModel implements DataTableModel {
 	
 	private TranslatorSource translatorSource;
 	
-	private ComponentResources cr;
+	
+	private PageRenderLinkSource prls;
 	 
 	private JSONObject response = new JSONObject();
-	public SampleDataTableModel(TypeCoercer typeCoercer,TranslatorSource translatorSource, ComponentResources cr) {
+	public SampleDataTableModel(TranslatorSource translatorSource) {
 		super();
-		this.typeCoercer = typeCoercer;
 		this.translatorSource = translatorSource;
-		this.cr = cr;
 	}
 
 
@@ -202,7 +199,7 @@ public class SampleDataTableModel implements DataTableModel {
 	                    
 	                }
 			 	if(name.equalsIgnoreCase("lastName")){
-			 		val = "<a href=\""+cr.createPageLink(DataTables.class, false, val)+"\">"+val+"</a>";
+			 		val = "<a href=\""+prls.createPageRenderLinkWithContext(DataTables.class, val)+"\">"+val+"</a>";
 			 	}
 			 	
 			 	cell.put(val);
