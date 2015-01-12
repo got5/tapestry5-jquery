@@ -6,11 +6,11 @@ requirejs.config({
 });
 define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tjq/vendor/jquery.json-2.4"], function(dom, events) {
 
-	draggable = function(spec) {
+	var draggable = function(spec) {
 		jQuery( "#" + spec.id ).draggable(spec.params).data("contexte",spec.context);
 	};
 
-	droppable = function(spec) {
+	var droppable = function(spec) {
 		jQuery( "#" + spec.id ).droppable(spec.params);
     		jQuery( "#" + spec.id ).bind( "drop", function(event, ui) {
     			 var contexte=jQuery(ui.draggable).data("contexte");
@@ -30,15 +30,15 @@ define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tj
     		});
 	};
 
-	resizable = function(spec) {
+	var resizable = function(spec) {
 		// TODO
 	};
 
-	selectable = function(spec) {
+	var selectable = function(spec) {
 		// TODO
 	};
 
-	sortable = function(spec) {
+	var sortable = function(spec) {
 		var sep = (spec.url.indexOf("?") >= 0) ? "&" : "?";
 
 		if(!spec.params.update)
@@ -52,11 +52,11 @@ define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tj
 		jQuery("#"+spec.id).disableSelection();
 	};
 
-	accordion = function(spec) {
+	var accordion = function(spec) {
 		jQuery("#" + spec.id).accordion(spec.params);
 	};
 
-	autocomplete = function(spec) {
+	var autocomplete = function(spec) {
 		var conf = {
 				source: function(request, response){
 					
@@ -97,14 +97,14 @@ define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tj
         jQuery("#" + spec.id).autocomplete(conf);
 	};
 
-	button = function(spec) {
+	var button = function(spec) {
 		if (spec.type == "buttonset")
 			jQuery("#" + spec.id).buttonset(spec.params);
 		else
 			jQuery("#" + spec.id).button(spec.params);
 	};
 
-	datepicker = function(spec) {
+	var datepicker = function(spec) {
 		jQuery("#" + spec.field).datepicker({
             gotoCurrent: true,
             showOn: "button",
@@ -113,27 +113,27 @@ define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tj
         });
 	};
 
-	dialog = function(spec) {
+	var dialog = function(spec) {
 		 jQuery("#" + spec.id).dialog(spec.params);
 	};
 
-	menu = function(spec) {
+	var menu = function(spec) {
 		// TODO
 	};
 
-	progressbar = function(spec) {
+	var progressbar = function(spec) {
 		// TODO
 	};
 
-	slider = function(spec) {
+	var slider = function(spec) {
 		// TODO
 	};
 
-	spinner = function(spec) {
+	var spinner = function(spec) {
 		// TODO
 	};
 
-	tabs = function(spec) {
+	var tabs = function(spec) {
 		var p = spec.params;
 		if (!p.ajaxOptions)
 			p.ajaxOptions = {};
@@ -148,11 +148,11 @@ define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom", "tj
 		jQuery("#" + spec.id).tabs(p);
 	};
 
-	tooltip = function(spec) {
+	var tooltip = function(spec) {
 		jQuery("#" + spec.id).tooltip(spec.options);
 	};
 
-	return exports = {
+	return {
 		// Interactions
 		draggable : draggable,
 		droppable : droppable,

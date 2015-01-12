@@ -1,11 +1,11 @@
 requirejs.config({
-	"shim" : {
-		"tjq/vendor/components/showsource/jquery.snippet": ["jquery"]
-	}
+    "shim" : {
+        "tjq/vendor/components/showsource/jquery.snippet" : [ "jquery" ]
+    }
 });
 
-define(["tjq/vendor/components/showsource/codemirror"], function() {
-	init = function(specs) {
+define([ "tjq/vendor/components/showsource/codemirror" ], function init() {
+    return function(specs) {
 
         var snippet = jQuery('#' + specs.id),
             snippetContainer = snippet.parent(),
@@ -16,20 +16,16 @@ define(["tjq/vendor/components/showsource/codemirror"], function() {
         hide.hide();
         snippetContainer.hide();
 
-        show.on('click', {}, function () {
+        show.on('click', {}, function() {
             show.hide();
             hide.show();
             snippetContainer.show();
         });
 
-        hide.on('click', {}, function () {
+        hide.on('click', {}, function() {
             hide.hide();
             show.show();
             snippetContainer.hide();
         });
-        	
-        
-	};
-  	
-  	return exports = init;
+    };
 });

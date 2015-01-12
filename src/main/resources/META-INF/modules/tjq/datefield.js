@@ -16,7 +16,7 @@
 	 
 define(["t5/core/dom", "t5/core/events","datepickerLocal","tjq/vendor/ui/jquery-ui.custom","tjq/vendor/ui/jquery.ui.datepicker"], function(dom, events) {
 
-  scan = function(root) {
+  var scan = function(root) {
     var container, _i, _len, _ref, _results, field;
     _ref = root.find("[data-component-type='core/DateField']");
     _results = [];
