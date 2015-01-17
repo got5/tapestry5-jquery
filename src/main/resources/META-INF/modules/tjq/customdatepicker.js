@@ -13,7 +13,7 @@
         }
     });
 	 
-    define(["t5/core/dom", "t5/core/events","tjq/vendor/ui/jquery.ui.datepicker", "tjq/vendor/ui/jquery-ui.custom","datepickerLocal"], function() {
+    define(["datepickerLocal"], function() {
         return function(spec) {
 
             jQuery.datepicker.setDefaults(jQuery.datepicker.regional[spec.locale]);
