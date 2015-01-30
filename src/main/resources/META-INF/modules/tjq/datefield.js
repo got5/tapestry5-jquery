@@ -14,7 +14,7 @@
 				}
 	 });
 	 
-define(["t5/core/dom", "t5/core/events","datepickerLocal","tjq/vendor/ui/jquery-ui.custom","tjq/vendor/ui/jquery.ui.datepicker"], function(dom, events) {
+define(["t5/core/dom", "t5/core/events","datepickerLocal"], function(dom, events) {
 
   var scan = function(root) {
     var container, _i, _len, _ref, _results, field;
@@ -29,7 +29,7 @@ define(["t5/core/dom", "t5/core/events","datepickerLocal","tjq/vendor/ui/jquery-
       container.findFirst("button").remove();
       field = jQuery(container.findFirst("input").element);
 
-      //jQuery.datepicker.setDefaults(jQuery.datepicker.regional[locale]);
+
       params = jQuery.extend({
                 gotoCurrent: true,
                 showOn: "button",
