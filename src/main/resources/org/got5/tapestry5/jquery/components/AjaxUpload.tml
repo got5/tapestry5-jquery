@@ -1,8 +1,0 @@
-<div class="t-upload" xml:space="default" 
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
-      xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery">
-    
-    <div id="${clientId}"></div>
-    <j:dialog t:id="uploadErrorMesages" class="messages"></j:dialog>
-</div>

@@ -132,8 +132,6 @@ public class JQueryModule {
 		binder.bind(BindingFactory.class, SelectorBindingFactory.class).withId(
 				"SelectorBindingFactory");
 		binder.bind(RenderTracker.class, RenderTrackerImpl.class);
-		binder.bind(AjaxUploadDecoder.class, AjaxUploadDecoderImpl.class)
-				.scope(ScopeConstants.PERTHREAD);
 		binder.bind(JavaScriptFilesConfiguration.class,
 				JavaScriptFilesConfigurationImpl.class);
 		binder.bind(MessageProvider.class, MessageProviderImpl.class);
@@ -173,14 +171,6 @@ public class JQueryModule {
 				"after:RenderPhase");
 	}
 
-	public static void contributeHttpServletRequestHandler(
-			final OrderedConfiguration<HttpServletRequestFilter> configuration,
-			final AjaxUploadDecoder ajaxUploadDecoder) {
-
-		configuration.add("AjaxUploadFilter",
-				new AjaxUploadServletRequestFilter(ajaxUploadDecoder),
-				"after:IgnoredPaths");
-	}
 
 	@Contribute(ModuleManager.class)
 	public static void setupComponentsShims(

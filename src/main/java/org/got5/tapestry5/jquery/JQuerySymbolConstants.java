@@ -1,6 +1,5 @@
 package org.got5.tapestry5.jquery;
 
-import org.got5.tapestry5.jquery.components.AjaxUpload;
 
 public class JQuerySymbolConstants {
 	
