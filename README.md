@@ -49,8 +49,6 @@ Exclusive jQuery Mixins :
 	- Based on [http://jqueryui.com/demos/effect/](http://jqueryui.com/demos/effect/)
 - **Mask** 
 	- based on [http://digitalbush.com/projects/masked-input-plugin/](http://digitalbush.com/projects/masked-input-plugin/)
-- **Reveal**
-	- Based on [http://www.zurb.com/playground/reveal-modal-plugin](http://www.zurb.com/playground/reveal-modal-plugin)	
 - **Slider**
 	- Based on [http://jqueryui.com/demos/slider](http://jqueryui.com/demos/slider)
 - **Tooltip** 
@@ -69,6 +67,10 @@ Theses components were originally present in Tapestry 5 Core and can still be us
 - **Palette**
 - **ProgressiveDisplay**
 
+Theses components were originally present in Tapestry 5 jQuery 
+
+- **Reveal** is now part of [tapestry5-foundation](https://github.com/got5/tapestry5-foundation)	
+	
 
 ##Questions? Ideas? Comments?
 All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery/issues) for that.
