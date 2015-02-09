@@ -15,8 +15,6 @@ Exclusive jQuery components :
 
 - **Accordion** 
 	- based on [http://jqueryui.com/demos/accordion/](http://jqueryui.com/demos/accordion/)	
-- **AjaxUpload** 
-	- based on [https://github.com/valums/file-uploader](https://github.com/valums/file-uploader)	
 - **Carousel**
 	- Based on [http://sorgalla.com/jcarousel/](http://sorgalla.com/jcarousel/)
 - **CheckBox**
@@ -70,6 +68,9 @@ Theses components were originally present in Tapestry 5 Core and can still be us
 Theses components were originally present in Tapestry 5 jQuery 
 
 - **Reveal** is now part of [tapestry5-foundation](https://github.com/got5/tapestry5-foundation)	
+
+- **AjaxUpload** is now part of [tapestry5-jquery-upload](https://github.com/got5/tapestry5-jquery-upload)	
+	
 	
 
 ##Questions? Ideas? Comments?
