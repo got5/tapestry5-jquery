@@ -9,6 +9,7 @@
                     autoOpen : false,
                     resizable : specs.isResizable,
                     height : specs.height,
+                    width : specs.width,
                     resize : 'auto',
                     title : specs.title,
                     modal : specs.isModal,
