@@ -54,6 +54,12 @@ public class Confirm
 	private int height;
 
 	/**
+	 * Confirmation box width.
+	 */
+	@Parameter(value = "250", defaultPrefix = BindingConstants.LITERAL)
+	private int width;
+	
+	/**
 	 * If this parameter is set to <i>true</i>, the user can't interact with the application while the
 	 * confirmation box is displayed.
 	 */
@@ -120,6 +126,7 @@ public class Confirm
     	config.put("isResizable", isResizable);
     	config.put("isDraggable", isDraggable);
     	config.put("height", height);
+    	config.put("width", width);
 
     	javaScriptSupport.addInitializerCall(InitializationPriority.EARLY,"confirm", config);
     }
