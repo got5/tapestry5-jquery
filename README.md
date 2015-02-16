@@ -172,6 +172,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
+* 3.4.3-SNAPSHOT #353, #352 
 * 3.4.2 (Stable): Update to Tapestry 5.3.8 (Java 1.8)
 * 3.4.1 : #342, #336
 * 3.4.0 : Upgrade libs
