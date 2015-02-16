@@ -31,6 +31,10 @@
             <t:actionlink t:id="clicker4" t:zone="^" t:message="Test de zone" t:mixins="jquery/Confirm" t:useDefaultConfirm="true">increment the count</t:actionlink>
         </p>
 
+		<p>
+            <t:actionlink t:id="clicker5" t:zone="^" t:message="prop:LoremIpsum" t:mixins="jquery/Confirm" t:params="prop:Params">increment the count</t:actionlink>
+        </p>
+
 	</t:zone>
 	
 
