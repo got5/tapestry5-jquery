@@ -54,10 +54,10 @@ public class Confirm
 	private int height;
 
 	/**
-	 * Confirmation box height.
+	 * Confirmation box width.
 	 */
 	@Parameter(value = "250", defaultPrefix = BindingConstants.LITERAL)
-	private int widht;
+	private int width;
 	
 	/**
 	 * If this parameter is set to <i>true</i>, the user can't interact with the application while the
