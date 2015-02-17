@@ -7,6 +7,7 @@ define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-
                 autoOpen : false,
                 resizable : specs.isResizable,
                 height : specs.height,
+                width : specs.width,
                 resize : 'auto',
                 title : specs.title,
                 modal : specs.isModal,
