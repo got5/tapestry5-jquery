@@ -938,13 +938,12 @@
 							throw Tapestry.Messages.notAnInteger;
 
 						ch = ".";
-					} else if (ch < "0" || ch > "9")
-						throw Tapestry.Messages.invalidCharacter;
-
-					canonical += ch;
-				}
-				;
-
+					 } else if (ch < "0" || ch > "9") {
+                         throw Tapestry.Messages.invalidCharacter;
+					 } else {
+						 canonical += ch;
+					 }
+				};
 				return Number(canonical);
 			},
 
