@@ -176,7 +176,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
-* 3.4.3-SNAPSHOT #353, #352 
+* 3.4.3-SNAPSHOT #353, #352, #350 
 * 3.4.2 (Stable): Update to Tapestry 5.3.8 (Java 1.8)
 * 3.4.1 : #342, #336
 * 3.4.0 : Upgrade libs
@@ -192,7 +192,8 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
     * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.7.2
-* 3.3.9 (Stable): Update to Tapestry 5.3.8 (Java 1.8) #342, #336
+* 3.3.10 : backport #311
+* 3.3.9 : Update to Tapestry 5.3.8 (Java 1.8) #342, #336
 * 3.3.8 : add EXCLUDE_CORE_JS_STACK symbol needed when more than one war is deployed in a portlet container.
 * 3.3.7 : #304, #303, #302, #301, #299, #298, #297, #296, #295, #294, #291, #223
 * 3.3.6 : #290, #287, #286, #285, #284, #283, #278, #274, #273, #272, #271, #270, #268, #260
