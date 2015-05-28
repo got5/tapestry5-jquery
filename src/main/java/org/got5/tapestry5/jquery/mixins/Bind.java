@@ -82,6 +82,12 @@ public class Bind {
 	private String callback;
 
 	/**
+	 * If true the event data sent with the trigger is POSTed in the component event request.
+	 */
+	@Parameter(value="true")
+	private Boolean postData;
+	
+	/**
 	 * The context used to construct the event link.
 	 */
 	@Parameter
@@ -180,6 +186,7 @@ public class Bind {
 			spec.put("url", createLink(event(), contextMarker).toAbsoluteURI());
 			spec.put("contextMarker", contextMarker);
 		}
+		spec.put("postData", postData);
 		spec.put("preventDefault", preventDefault);
 		spec.put("hide", hide);
 		spec.put("hideEffect", hideEffect);
