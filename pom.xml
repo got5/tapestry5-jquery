@@ -312,29 +312,6 @@
          				 </instrumentation>
 					   </configuration>
                     </plugin>
-                    <!-- 
-                    <plugin>
-				        <groupId>org.apache.maven.plugins</groupId>
-				        <artifactId>maven-javadoc-plugin</artifactId>
-				        <version>2.8.1</version>
-				        <executions>
-				        	<execution>
-				        		<id>generate-javadoc</id>
-				        		<goals><goal>jar</goal></goals>
-				        	</execution>
-				        </executions>
-				        
-				        <configuration>
-				        	<stylesheetfile>${basedir}/src/site/javadoc.css</stylesheetfile>
-							<taglet>org.apache.tapestry5.javadoc.TapestryDocTaglet</taglet>
-		          			<tagletArtifact>
-					            <groupId>org.apache.tapestry</groupId>                       
-					            <artifactId>tapestry-javadoc</artifactId>
-					            <version>${tapestry-release-version}</version>                   
-		          			</tagletArtifact>
-		          		</configuration>
-		      		</plugin>
-		      		 -->
 			</plugins>
 	</build>
 	<reporting>
