@@ -5,6 +5,7 @@
 		function init(specs) {
 			var el = $('#' + specs.elementId);
 			var url = specs.url;
+			var postData = specs.postData;
 			var zoneId = specs.zoneId;
 			var hide = specs.hide;
 			var hideEffect = specs.hideEffect;
@@ -18,7 +19,6 @@
 			var contextMarker = specs.contextMarker;
 			var preventDefault = specs.preventDefault;
 			var zoneElement = zoneId === '^' ? $(el).closest('.t-zone') : $("#" + zoneId);
-
 			$(el).bind( specs.eventType, function(event, ui) {
 
 			    var u = {
@@ -64,10 +64,28 @@
 					callback(event,ui,u);
 				}
 				if ( u.url ) {
-					
 					if ( zoneId ) {
-						zoneElement.tapestryZone('update', { url : u.url });
+						var zoneUpdateParams = {
+								url : u.url
+						};
+						if (postData) {
+							var eventData = {
+									params : event.data
+							};
+							$.extend(zoneUpdateParams, eventData);
+						}
+						zoneElement.tapestryZone('update', zoneUpdateParams);
 					} else {
+						var ajaxParams = {
+								type: 'POST',
+								url: u.url
+							};
+						if (postData) {
+							var eventData = {
+									data : event.data
+							};
+							$.extend(ajaxParams,eventData);
+						}
 						$.ajax({
 							type: 'POST',
 							url: u.url
