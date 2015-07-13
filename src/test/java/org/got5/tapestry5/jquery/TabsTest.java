@@ -11,7 +11,7 @@ public class TabsTest extends SeleniumTestCase{
     public void testTabs()
     {
         open("/jquerytabs");
-        
+        waitForPageToLoad();
         new Wait()
         {
             @Override
@@ -45,8 +45,8 @@ public class TabsTest extends SeleniumTestCase{
         }.wait("The first panel should be visible", JQueryTestConstants.TIMEOUT);
 
         //click on third tab
-        click("//a[@id='ui-id-3']");
-
+        click("//*[@id='ui-id-5']");
+      
         new Wait()
         {
             @Override
@@ -57,7 +57,8 @@ public class TabsTest extends SeleniumTestCase{
         }.wait("The third panel should be visible", JQueryTestConstants.TIMEOUT);
 
         //click on last tab
-        click("//a[@id='ui-id-4']");
+        click("//*[@id='ui-id-7']");
+      
 
         new Wait()
         {
@@ -73,7 +74,7 @@ public class TabsTest extends SeleniumTestCase{
 	public void testDefaultLabelForTab(){
 		
 		open("/jquerytabs");
-		
+		waitForPageToLoad();
 		new Wait()
         {
             @Override
@@ -88,7 +89,7 @@ public class TabsTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getText("//a[@id='ui-id-4']").contains("Block Test");
+                return getText("//a[@id='ui-id-7']").contains("Block Test");
             }
         }.wait("The fourth label has not its default value", JQueryTestConstants.TIMEOUT);
         
