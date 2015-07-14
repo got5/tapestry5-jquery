@@ -58,7 +58,6 @@ define([ "t5/core/dom",
             close : function() {
                 dismissOne(data.id);
             },
-            life : exports.TRAINSIENT_DURATION,
             sticky : !data.transient,
             theme : className
         };
