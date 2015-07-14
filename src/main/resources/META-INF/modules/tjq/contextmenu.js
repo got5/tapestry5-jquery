@@ -1,6 +1,6 @@
 requirejs.config({
     "shim" : {
-        "tjq/vendor/mixins/contextmenu/jquery.contextMenu": ["tjq/vendor/ui/jquery-ui.custom"]
+        "tjq/vendor/mixins/contextmenu/jquery.contextMenu": ["tjq/vendor/ui/custom"]
     }
 });
 define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], function(ajax) {
