@@ -30,11 +30,11 @@ define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "jquery" ], function i
             window.clearInterval(timer);
         });
 
-        z.on('stopRefresh', function() {
+        jQuery("#"+params.id).on('stopRefresh', function() {
             window.clearInterval(timer);
         });
 
-        z.on('startRefresh', function() {
+        jQuery("#"+params.id).on('startRefresh', function() {
             timer = window.setInterval(keepUpdatingZone, timeout);
         });
     };
