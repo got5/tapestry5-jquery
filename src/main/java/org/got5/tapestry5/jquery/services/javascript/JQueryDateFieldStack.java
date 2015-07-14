@@ -134,7 +134,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
         final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
 
-        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s/jquery.ui.datepicker.js", jQueryUIPath)));
+        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s/datepicker.js", jQueryUIPath)));
 
 
         final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
@@ -151,7 +151,7 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
     private Asset getLocaleAsset(Locale locale, String jQueryUIPath) {
 
-        final String prefix = String.format("%s/i18n/jquery.ui.datepicker-%s", jQueryUIPath, locale.getLanguage());
+        final String prefix = String.format("%s/i18n/datepicker-%s", jQueryUIPath, locale.getLanguage());
         final Resource withCountryExtension = typeCoercer.coerce(String.format("%s-%s.js", prefix, locale.getCountry()), Resource.class);
 
         if (withCountryExtension.exists()) {
