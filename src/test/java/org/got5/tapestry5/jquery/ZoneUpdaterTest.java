@@ -14,17 +14,19 @@ public class ZoneUpdaterTest extends SeleniumTestCase {
 		open("/ZoneUpdater");
 		waitForPageToLoad();
 		assertTrue(isElementPresent("//div[@id='nameZone'][contains(text(), 'Humpty Dumpty')]"));
+		click("//input[@type='text'][@id='firstName']");
 		focus("//input[@type='text'][@id='firstName']");
 		type("//input[@type='text'][@id='firstName']", "Hempster");
-		keyUp("//input[@type='text'][@id='firstName']", Keys.CONTROL.toString());
+		keyPress("//input[@type='text'][@id='firstName']", Keys.TAB.toString());
+		click("//input[@type='text'][@id='lastName']");
 		focus("//input[@type='text'][@id='lastName']");
 		type("//input[@type='text'][@id='lastName']", "Dempster");
-		keyUp("//input[@type='text'][@id='lastName']", Keys.CONTROL.toString());
+		keyPress("//input[@type='text'][@id='lastName']", Keys.TAB.toString());
 		new Wait() {
 			@Override
 			public boolean until() {
-				return isElementPresent("//div[@id='nameZone'][contains(text(), 'Hempster Dempster')]");
-			}
-		}.wait("The tooltip is not visible", JQueryTestConstants.TIMEOUT);
+				return getText("//*[@id='nameZone']").contains("Hempster Dempster");
+				}
+		}.wait("The Zone is not updated", JQueryTestConstants.TIMEOUT);
 	}
 }
