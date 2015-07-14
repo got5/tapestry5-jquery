@@ -10,6 +10,7 @@ public class ButtonTest extends SeleniumTestCase{
     public void testButtonMixin(){
     	
     	open("/button");
+    	waitForPageToLoad();
     	
     	new Wait()
          {
