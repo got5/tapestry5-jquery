@@ -1,9 +1,9 @@
 requirejs.config({
     "shim" : {
-        "tjq/vendor/ui/jquery-ui.custom" : [ "jquery" ]
+        "tjq/vendor/ui/custom" : [ "jquery" ]
     }
 });
-define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/jquery-ui.custom" ], function(dom, zone, events) {
+define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/ui/custom" ], function(dom, zone, events) {
     return function(specs) {
 
         var el = jQuery("#" + specs.sliderId);
