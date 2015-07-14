@@ -16,8 +16,9 @@ public class TooltipTest extends SeleniumTestCase{
     public void testToolTip()
     {
     	open("/Tooltip");
+    	waitForPageToLoad();
     	
-    	mouseOver("//section/p/a");
+    	mouseOver("//*[@id='actionlink']");
     	
         new Wait()
         {
@@ -28,7 +29,7 @@ public class TooltipTest extends SeleniumTestCase{
             }
         }.wait("The tooltip is not visible", JQueryTestConstants.TIMEOUT);
     	
-    	mouseOut("//section/p/a");
+    	mouseOut("//*[@id='actionlink']");
     	
         new Wait()
         {
