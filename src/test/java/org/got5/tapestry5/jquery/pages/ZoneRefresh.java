@@ -25,7 +25,7 @@ public class ZoneRefresh {
 	 * Add handlers method to the links, in order to stop/start refreshing the zone.
 	 */
 	public void afterRender(){
-		js.addScript("jQuery(\"#stop\").bind(\"click\", function(){jQuery(\"#clickZone\").trigger(\"stopRefresh\");});");
-		js.addScript("jQuery(\"#start\").bind(\"click\", function(){jQuery(\"#clickZone\").trigger(\"startRefresh\");});");
+		js.addScript("jQuery('#stop').bind('click',function(){jQuery('#clickZone').trigger('stopRefresh');});");
+		js.addScript("jQuery('#start').bind('click', function(){jQuery('#clickZone').trigger('startRefresh');});");
 	}
 }
