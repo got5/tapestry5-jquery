@@ -11,10 +11,10 @@
 			</div>
 			<form t:type="form">
 				First Name: <input t:type="TextField" t:id="firstName" t:mixins="jquery/zoneUpdater"
-                    zoneUpdater.clientEvent="keyup" zoneUpdater.event="firstNameChanged" zoneUpdater.zone="nameZone" />
+                    zoneUpdater.clientEvent="keyup change" zoneUpdater.event="firstNameChanged" zoneUpdater.zone="nameZone" />
                 <br />
                 Last Name: <input t:type="TextField" t:id="lastName" t:mixins="jquery/zoneUpdater"
-                    zoneUpdater.clientEvent="keyup" zoneUpdater.event="lastNameChanged" zoneUpdater.zone="nameZone" />
+                    zoneUpdater.clientEvent="keyup change" zoneUpdater.event="lastNameChanged" zoneUpdater.zone="nameZone" />
                 <br />
 				<br />
 
