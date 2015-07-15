@@ -19,9 +19,9 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(1);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(2);
             }
-        }.wait("We should have just one row.", JQueryTestConstants.TIMEOUT);
+        }.wait("We should have just one row.", 1000);
         
         
         click("//a[@data-afl-trigger='add']");
@@ -31,7 +31,7 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(2);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(3);
             }
         }.wait("A New row should be present." + getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']"), JQueryTestConstants.TIMEOUT);
         
@@ -42,9 +42,9 @@ public class AjaxFormLoopTest extends SeleniumTestCase{
             @Override
             public boolean until()
             {
-                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(1);
+                return getXpathCount("//div[@data-container-type='core/ajaxformloop-fragment']").equals(2);
             }
-        }.wait("The first row should be deleted.", JQueryTestConstants.TIMEOUT);
+        }.wait("The first row should be deleted.", 1000);
     	
 
     }
