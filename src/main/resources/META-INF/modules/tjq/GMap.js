@@ -1,13 +1,13 @@
 requirejs.config({
     "shim" : {
-        "tjq/vendor/components/gmap/gmap3" : [ "async!http://maps.google.com/maps/api/js?sensor=false", "jquery" ]
+        "tjq/vendor/components/gmap/gmap3" : [ "async!http://maps.google.com/maps/api/js?sensor=false", "jquery", "underscore" ]
     }
 });
 
 define([ "tjq/vendor/components/gmap/gmap3" ], function() {
-    return function(spec) {
+    return function(specs) {
 
-        if (isEmpty(specs.params)) {
+        if (_.isEmpty(specs.params)) {
 
             jQuery('#' + specs.id).gmap3();
 
