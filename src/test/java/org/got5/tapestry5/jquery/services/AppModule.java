@@ -25,6 +25,8 @@ import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
+import org.apache.tapestry5.services.compatibility.Compatibility;
+import org.apache.tapestry5.services.compatibility.Trait;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.data.IDataSource;
@@ -53,6 +55,10 @@ public class AppModule
     	
     	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "assets");
     	configuration.add("demo-src-dir", "");
+    	
+    	configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
+    	
+    	configuration.add(SymbolConstants.HMAC_PASSPHRASE, "testing, testing, 1... 2... 3...");
     	
     	//configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
     }
@@ -85,6 +91,11 @@ public class AppModule
 	@Contribute(EffectsParam.class)
 	public void addEffectsFile(Configuration<String> configuration){
 		configuration.add(EffectsConstants.SHAKE);
+	}
+	
+	@Contribute(Compatibility.class)
+	public static void disableBackwardsCompatibleFeatures(MappedConfiguration<Trait, Boolean> configuration){
+	        configuration.add(Trait.INITIALIZERS, false);
 	}
 	
 }
