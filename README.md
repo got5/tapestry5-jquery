@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 4.0-beta-29
+# Tapestry 5 jQuery integration Module - 4.0-beta-35-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -93,10 +93,31 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0.1-SNAPSHOT</version>
+			<version>4.0-beta-35-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>
+
+<repositories>
+		...
+		<repository>
+          		<id>central</id>
+          		<url>https://repo1.maven.org/maven2</url>
+          		<releases>
+            			<enabled>true</enabled>
+          		</releases>
+        	</repository>
+
+		<repository>
+			<id>oss—sonatype-snapshot-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots
+			</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		...
+	</repositories>
 
 For Tapestry 5.3 users:  
 
@@ -171,7 +192,8 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
-* 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362
+* 4.0-beta-35 : Update to Tapestry 5.4-beta-35 
+* 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central 
 * 4.0.1-beta-26 : Update to Tapestry 5.4-beta-26 , #353, #352
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
