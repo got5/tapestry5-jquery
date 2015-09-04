@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.4.2
+# Tapestry 5 jQuery integration Module - 3.4.3-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -90,10 +90,31 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0.1-SNAPSHOT</version>
+			<version>4.0-beta-35-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>
+
+<repositories>
+		...
+		<repository>
+          		<id>central</id>
+          		<url>https://repo1.maven.org/maven2</url>
+          		<releases>
+            			<enabled>true</enabled>
+          		</releases>
+        	</repository>
+
+		<repository>
+			<id>oss—sonatype-snapshot-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots
+			</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		...
+	</repositories>
 
 For Tapestry 5.3 users:  
 
@@ -110,17 +131,16 @@ For Tapestry 5.3 users:
 	<repositories>
 		...
 		<repository>
-			<id>devlab722-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/releases
-			</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+          		<id>central</id>
+          		<url>https://repo1.maven.org/maven2</url>
+          		<releases>
+            			<enabled>true</enabled>
+          		</releases>
+        	</repository>
 
 		<repository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
+			<id>oss—sonatype-snapshot-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots
 			</url>
 			<releases>
 				<enabled>false</enabled>
@@ -168,13 +188,16 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
+* 4.0-beta-35 : Update to Tapestry 5.4-beta-35
+* 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central
 * 4.0.1-beta-26 : Update to Tapestry 5.4-beta-26 , #353, #352
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
+
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
 * 3.4.3-SNAPSHOT: #353, #352, #350 
-* 3.4.2 : Update to Tapestry 5.3.8 (Java 1.8)
+* 3.4.2 : (stable): Update to Tapestry 5.3.8 (Java 1.8) deployment to Maven Central
 * 3.4.1 : #342, #336
 * 3.4.0 : Upgrade libs, #311
 	* jQuery 1.10.2
@@ -189,6 +212,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
     * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.7.2
+* 3.3.11 : (stable) backport  #263 deployment to Maven Central
 * 3.3.10 : backport #311
 * 3.3.9 : Update to Tapestry 5.3.8 (Java 1.8) #342, #336
 * 3.3.8 : add EXCLUDE_CORE_JS_STACK symbol needed when more than one war is deployed in a portlet container.
