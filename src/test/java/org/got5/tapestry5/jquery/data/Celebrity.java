@@ -25,6 +25,15 @@ public class Celebrity {
         this.occupation = occupation;
     }
     
+    public Celebrity(long id,String firstName, String lastName, 
+			Date dateOfBirth, Occupation occupation) {
+    			this.id = id;
+    			this.firstName = firstName;
+    			this.lastName = lastName;
+    			this.dateOfBirth = dateOfBirth;
+    			this.occupation = occupation;
+    }
+    
    
     public String getFirstName() {
         return firstName;
