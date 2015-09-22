@@ -81,6 +81,12 @@ public class ContextMenu {
     @Parameter
     private Object[] context;
 	
+	/**
+	 * The zone to update when a context menu item is chosen.
+	 */
+	@Parameter(defaultPrefix=BindingConstants.LITERAL)
+	private String zone;
+
 	// Injected services and components.
 	
 	@Inject
@@ -134,6 +140,9 @@ public class ContextMenu {
     	}
     	config.put("items", jsonItems);
     	config.put("keys", keys);
+	if(resources.isBound("zone")){
+		config.put("zone", zone);
+	}
     	
         javaScriptSupport.require("tjq/contextmenu").with(config);
     }

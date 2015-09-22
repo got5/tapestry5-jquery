@@ -18,11 +18,10 @@
 			$.contextMenu({
 		        selector: '#' + specs.id, 
 		        callback: function(key, options) {
-		            var ajaxRequest = {
-						 	type:"POST",
+	                var $zone = $('#' + specs.zone);
+	                $zone.tapestryZone('update', {
 	                    	url:items[key].url
-	                    };
-	                    $.ajax(ajaxRequest);
+	                });
 		        },
 		        items: items,
 		        trigger: specs.trigger,
