@@ -1,4 +1,6 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layout" 
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" 
+      xmlns:p="tapestry:parameter">
 
     <br />
     <br />
@@ -11,5 +13,13 @@
 		<a t:type="actionLink" class="linkContextMenu" t:id="linkContextMenu" t:clientid="linkContextMenu">Test ContextMenu</a>
 		
 	</div>
-	
+    <br />
+    <br />
+    <br />
+	<div t:type="any" t:mixins="jquery/ContextMenu" ContextMenu.items="counterMenuItems" t:id="testContextMenu2" ContextMenu.zone="contextMenuZone">
+		<a t:type="actionLink" class="linkContextMenuZone" t:id="linkContextMenuZone" t:clientid="linkContextMenuZone">Test ContextMenu with Zone Update</a>
+	</div>
+    <t:zone t:id="contextMenuZone" id="contextMenuZone">
+      The value of the counter is ${count}.
+    </t:zone>
 </html>

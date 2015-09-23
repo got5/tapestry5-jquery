@@ -3,7 +3,7 @@ requirejs.config({
         "tjq/vendor/mixins/contextmenu/jquery.contextMenu": ["tjq/vendor/ui/custom"]
     }
 });
-define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], function(ajax) {
+define(["t5/core/dom", "t5/core/events", "t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], function(dom, events, ajax ) {
     return function(specs) {
 
         var items, nbKeys, key, index;
@@ -21,10 +21,20 @@ define(["t5/core/ajax", "tjq/vendor/mixins/contextmenu/jquery.contextMenu"], fun
 
         jQuery.contextMenu({
             selector: '#' + specs.id,
-            callback: function(key, options) {
-                ajax(items[key].url, {
-                    method: "POST"
-                })
+		        callback: function(key, options) {
+		            var zoneId = specs.zone;
+	                if ( zoneId ) {
+                      var z = dom.wrap(zoneId);
+                      if (z) {
+                        z.trigger(events.zone.refresh, {
+                            url : items[key].url
+                        });
+                      }
+                    } else {
+                      $.ajax({
+                        type: "POST",
+                        url: items[key].url});
+                    }
             },
             items: items,
             trigger: specs.trigger,
