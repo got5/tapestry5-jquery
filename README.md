@@ -276,12 +276,13 @@ This project is distributed under Apache 2 License. See LICENSE.txt for more inf
 - Dmitry GUSEV as dmitrygusev
 - Laurent WROBLEWSKI as LWroblewski
 - Andreas Fink as fnk
-- jochenberger
-- ddelangle
+- Jochen Berger as jochenberger
+- Denis Delangle as ddelangle
 - Iceo
 - kaililleby
 - daveyx
-- danowar2k as  Daniel Poggenpohl
+- Daniel Poggenpohl as danowar2k
+- Robin Garner as robingarner
 
 ##Hosting
 Christophe Furmaniak 	
