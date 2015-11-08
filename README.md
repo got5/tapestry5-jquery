@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
 # Tapestry 5 jQuery integration Module - 4.0-beta-35-SNAPSHOT
 
 ## Demo and documentation
