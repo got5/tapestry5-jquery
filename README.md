@@ -192,7 +192,11 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
-* 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1
+* 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1 & Upgrade libs
+	* raty from v2.5.2 (2010) to v2.7.0 (2015)
+	* placeholder from v2.0.7 (2013) to v2.1.3 (2015)
+	* masked input from v1.3.1 (2013) to v1.4.1 (2015)
+	* jsrcollpane from v2.0.0beta12 (2012) to v2.0.22 (2015)
 * 4.0-beta-35-SNAPSHOT : Update to Tapestry 5.4-beta-35 & Upgrade libs
 	* superfish from v1.7.4 (2013) to v1.7.6 (2015)
 * 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central 
