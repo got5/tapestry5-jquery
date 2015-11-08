@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 4.0-beta-35-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 4.0-rc-1-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -94,7 +94,7 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0-beta-35-SNAPSHOT</version>
+			<version>4.0-rc-1-SNAPSHOT</version>
 		</dependency>
 		...
 	</dependencies>
@@ -192,7 +192,8 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
-* 4.0-beta-35 : Update to Tapestry 5.4-beta-35 & Upgrade libs
+* 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1
+* 4.0-beta-35-SNAPSHOT : Update to Tapestry 5.4-beta-35 & Upgrade libs
 	* superfish from v1.7.4 (2013) to v1.7.6 (2015)
 * 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central 
 * 4.0.1-beta-26 : Update to Tapestry 5.4-beta-26 , #353, #352
