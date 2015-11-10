@@ -99,7 +99,10 @@ public class DocsInPlaceEditor
 		System.err.println("User #" + id + " changed to '" + value + "'");
 	}
 	public JSONObject getOptions(){
-		return new JSONObject("width", "500");
+		JSONObject opt = new JSONObject("width", "100");
+		opt.put("height","30");
+		opt.put("style","inherit");
+		return opt;
 		
 	}
 }
