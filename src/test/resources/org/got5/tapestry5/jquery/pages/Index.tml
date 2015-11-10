@@ -105,6 +105,10 @@
 						class="icon-chevron-right"></i> ZoneRefresh</a></li>
 				<li><a t:type="pagelink" t:page="ZoneUpdater"><i
 						class="icon-chevron-right"></i> ZoneUpdater</a></li>
+				<li><a t:type="pagelink" t:page="JQueryContextMenu"><i
+						class="icon-chevron-right"></i> ContextMenu</a></li>
+				
+						
 			</ul>
 		</section>
 	</div>
