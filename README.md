@@ -193,6 +193,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 
 # Changelog related to Tapestry 5.4.x branch
 * 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1 & Upgrade libs
+	* FlexSlider from v2.2.0 to v2.5.0 
 	* jeditable from v1.7.1 to v1.7.3 
 	* contextMenu from ???  to v1.9.2 (2015)
 	* raty from v2.5.2 (2010) to v2.7.0 (2015)
