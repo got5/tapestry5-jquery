@@ -293,4 +293,5 @@ This project is distributed under Apache 2 License. See LICENSE.txt for more inf
 - Robin Garner as robingarner
 
 ##Hosting
-Christophe Furmaniak 	
+As http://nexus.devlab722.net/nexus/content/repositories/releases will stop at the end November 2015, 
+so grab the Latest releases for 5.4 and 5.3 from Maven Central.   	
