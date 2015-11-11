@@ -4,11 +4,23 @@ jdk:
   - oraclejdk8
   - openjdk6
 
-before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-  - "export DISPLAY=:99.0"
+env:
+  global:
+    - REMOTE_URL=http://got5:d8885037-2ec0-405b-b26d-906c6212e70e@ondemand.saucelabs.com:80/wd/hub
 
-script: mvn verify
 
-sudo: false
+matrix:
+    # latest version of firefox
+    - BROWSER=firefox VERSION=35
+    # oldest firefox that is supported by the current firefox driver
+    - BROWSER=firefox VERSION=23
 
+
+addons:
+  sauce_connect:
+    username: "got5"
+    access_key:
+      secure: "d8885037-2ec0-405b-b26d-906c6212e70e"
+
+
+script: mvn verify -Dtest.remoteUrl=$REMOTE_URL -Dtest.browser="$BROWSER" -Dtest.browserVersion=$VERSION
