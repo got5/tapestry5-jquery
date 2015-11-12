@@ -23,4 +23,5 @@ addons:
       secure: "d8885037-2ec0-405b-b26d-906c6212e70e"
 
 
+script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 # script: mvn verify -Dtest.remoteUrl=$REMOTE_URL -Dtest.browser="$BROWSER" -Dtest.browserVersion=$VERSION
