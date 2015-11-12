@@ -22,6 +22,8 @@ Exclusive jQuery components :
 	- Based on [http://access.aol.com/csun2011](http://access.aol.com/csun2011)
 - **Dialog** with **DialogLink** and **DialogAjaxLink**
 	- based on [http://jqueryui.com/demos/dialog/](http://jqueryui.com/demos/dialog/)
+- **FlexSlider** 
+	- based on [https://github.com/woothemes/FlexSlider](https://github.com/woothemes/FlexSlider)	
 - **InPlaceEditor** 
 	- based on [http://www.appelsiini.net/projects/jeditable](http://www.appelsiini.net/projects/jeditable)
 - **RangeSlider** 
@@ -34,6 +36,7 @@ Exclusive jQuery components :
 	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
 - **Gallery** 
     - based on [http://colorpowered.com/colorbox/](http://colorpowered.com/colorbox/)
+    
     
 		
 Exclusive jQuery Mixins :
