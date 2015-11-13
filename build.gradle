@@ -1,17 +1,20 @@
 description = "Tapestry 5 Jquery Project"
 import org.gradle.api.Project
 
+apply plugin: 'base'
 apply plugin: 'java'
-apply plugin: "groovy" // mostly for testing
-apply plugin: "maven"
-apply plugin: "project-report"
+apply plugin: 'groovy' // mostly for testing
+apply plugin: 'maven'
+apply plugin: 'project-report'
 
 apply plugin: 'war'
 apply plugin: 'jetty'
 
 // Specific to top-level build, not set for subprojects:
-  version = "4.0-rc-1-SNAPSHOT"
-  group = "org.got5"
+ def jdkVersion = System.properties['java.version']
+ def specifyMaxPermSize = jdkVersion ==~ /1\.[67].+/
+ def version = "4.0-rc-1-SNAPSHOT"
+ def group = "org.got5"
 
 configurations {
    provided
@@ -48,7 +51,7 @@ project.ext.versions = [
         hibernate: "4.3.6.Final",
         slf4j: "1.7.13",
         geb: "0.10.0",
-        selenium: "2.46.0"
+        selenium: "2.45.0"
 ]
 
 
@@ -67,7 +70,7 @@ dependencies {
     compile "commons-io:commons-io:2.4"
     compile "org.apache.commons:commons-lang3:3.1"
 
-	providedCompile "javax.servlet:servlet-api:2.5"
+	testCompile "javax.servlet:servlet-api:2.5"
 
 	testCompile "org.apache.tapestry:tapestry-test:${versions.tapestryVersion}"
 
@@ -76,12 +79,13 @@ dependencies {
 	testRuntime "org.slf4j:slf4j-api:1.6.1"
     testRuntime "org.slf4j:slf4j-log4j12:1.6.1"
 
-    testRuntime "org.testng:testng:6.5.2"
+    testCompile "org.testng:testng:${versions.testng}", { transitive = false }
     testRuntime "org.seleniumhq.selenium:selenium-java:${versions.selenium}"
     testRuntime "org.seleniumhq.selenium:selenium-server:${versions.selenium}"
+    testRuntime "org.apache.commons:commons-exec:1.3"
     testRuntime "org.eclipse.jetty:jetty-server:${versions.jetty}"
-
-	
+    testRuntime "org.eclipse.jetty:jetty-util:${versions.jetty}"
+    
 	
 }
 
@@ -92,11 +96,20 @@ jettyRun {
 	webXml = new File("$projectDef.projectDir/src/test/webapp/WEB-INF/web.xml")
 	webAppSourceDirectory = new File("$projectDef.projectDir/src/test/webapp")
 	
-	
 }
 
-// Not sure why this is necessary:
 compileTestGroovy.dependsOn compileTestJava
+
+compileTestGroovy {
+        configure(groovyOptions.forkOptions) {
+            memoryMaximumSize = '1g'
+            jvmArgs = ['-Xms512m', '-Xmx1g']
+            if (specifyMaxPermSize){
+              jvmArgs << '-XX:MaxPermSize=512m'
+            }
+        }
+    }
+
 
 test {
 		useJUnit()
@@ -107,17 +120,25 @@ test {
         getLogging().setLevel(LogLevel.INFO)
 }
 
+   
 task testng(type: Test) { 
      useTestNG() 
      options.suites("src/test/conf/testng.xml")
-     maxHeapSize = "400M"
-     systemProperties["tapestry.service-reloading-enabled"] = "false"
-     jvmArgs("-XX:MaxPermSize=512m")
+     if (specifyMaxPermSize){
+          maxHeapSize "400M"
+          jvmArgs("-XX:MaxPermSize=200m")
+        }else{
+          maxHeapSize "600M"
+        }
+
+        // Turn off live service reloading
+        systemProperties["tapestry.service-reloading-enabled"] = "false"
+        jvmArgs("-Dfile.encoding=UTF-8")
+
+        environment.LANG = 'en_US.UTF-8'
      logging.captureStandardOutput LogLevel.INFO
      getLogging().setLevel(LogLevel.INFO)
 } 
-
-check.dependsOn testng
 
 jar {	
 
