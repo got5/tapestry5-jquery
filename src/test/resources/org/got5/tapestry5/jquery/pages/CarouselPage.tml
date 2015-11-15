@@ -43,6 +43,15 @@
 		</section>
 	</div>
 </div>
+
+
+
+<style type="text/css">
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+    width: 330px;
+    padding: 20px 40px;
+}
+</style>
 </html>
 
   
