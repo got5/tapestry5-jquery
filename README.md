@@ -36,6 +36,8 @@ Exclusive jQuery components :
 	- based on [http://jqueryui.com/demos/tabs/](http://jqueryui.com/demos/tabs/)	
 - **Gallery** 
     - based on [http://colorpowered.com/colorbox/](http://colorpowered.com/colorbox/)
+- **Jcrop** 
+    - based on [http://github.com/tapmodo/Jcrop](http://github.com/tapmodo/Jcrop)
     
     
 		
