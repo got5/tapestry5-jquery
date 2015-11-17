@@ -6,11 +6,11 @@ http://tapestry5-jquery.com/
 
 ## Features
 
-for version < 4.0.0  
-This module provides jQuery integration for Tapestry 5 and allow you to work with or to replace the tapestry.js file based on prototype. 
-
 for version >= 4.0.0 
 This Tapestry provides a collections of jQuery components that play well with Tapestry 5.4 or higher.
+
+for version < 4.0.0  
+This module provides jQuery integration for Tapestry 5 and allow you to work with or to replace the tapestry.js file based on prototype. 
 
 Exclusive jQuery components : 
 
@@ -198,6 +198,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 
 # Changelog related to Tapestry 5.4.x branch
 * 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1 & Upgrade libs
+	* Jcrop from v0.9.12 to  v2.0.2
 	* Colorbox from v1.4.27 (16/072013) to  v1.6.3 (27/07/2015)
 	* FlexSlider from v2.2.0 to v2.5.0 
 	* jeditable from v1.7.1 to v1.7.3 
