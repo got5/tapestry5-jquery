@@ -24,21 +24,21 @@
                 Last Drop: ${data}
             </div>
 			<style type="text/css">
-.ui-draggable {
-	width: 75px;
-	height: 25px;
-	background: silver;
-	padding: 10px;
-	margin-bottom: 20px;
-}
-
-.ui-droppable {
-	background: gray;
-	color: white;
-	padding: 10px;
-	margin-bottom: 20px;
-}
-</style>
+			.ui-draggable {
+				width: 75px;
+				height: 65px;
+				background: silver;
+				padding: 10px;
+				margin-bottom: 20px;
+			}
+			
+			.ui-droppable {
+				background: gray;
+				color: white;
+				padding: 10px;
+				margin-bottom: 20px;
+			}
+			</style>
 
 			<br />
 		</section>
