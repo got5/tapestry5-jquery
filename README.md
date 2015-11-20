@@ -1,15 +1,23 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 4.0-rc-1-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 4.0-rc-1
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
 
+##Hosting
+http://nexus.devlab722.net/nexus/content/repositories/releases will stop at the end November 2015, 
+So please not that the Latest releases for 5.4 and 5.3 are now available at [Maven Central](https://repo1.maven.org/maven2/org/got5/tapestry5-jquery/).   	
+
 ## Features
 
 for version >= 4.0.0 
-This Tapestry provides a collections of jQuery components that play well with Tapestry 5.4 or higher.
+Since version 5.4, Tapestry supports jQuery and Prototype. So you don't need any more our Tapestry-jquery.js to use integrate your favorite jQuery plugin.     
+Tapestry5-jquery module is now focusing on :
+	- overriding some core component like Datefield 
+	- providing a collections of jQuery components that play well with Tapestry 5.4 or higher.
 
-for version < 4.0.0  
+for version < 4.0.0
+  
 This module provides jQuery integration for Tapestry 5 and allow you to work with or to replace the tapestry.js file based on prototype. 
 
 Exclusive jQuery components : 
@@ -64,7 +72,7 @@ Exclusive jQuery Binding Prefixes :
     - selector:id returns #clientId allows finding typos at java runtime instead of at javascript runtime
 
 
-Theses components were originally present in Tapestry 5 Core and can still be used as it :
+Theses following components are proposing an alternative implementation of some Tapestry 5 component :
 
 - **DateField**
     - based on: [http://jqueryui.com/demos/datepicker/](http://jqueryui.com/demos/datepicker/)
@@ -99,7 +107,7 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0-rc-1-SNAPSHOT</version>
+			<version>4.0-rc-1</version>
 		</dependency>
 		...
 	</dependencies>
@@ -179,25 +187,8 @@ Or add jquery to the tapestry-library namespace:
 
 	</html>
 
-## You still need to have PrototypeJS and the components originally included in tapestry ?
-
-Tapestry5-jquery project allows you to choose whether to include or not Prototype (and original tapestry components).
-jQuery will be added to the javascript stack in every case.
-In your AppModule, contributeApplicationDefaults method, you can add `configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");`
-
-## Note about jQuery
-
-In traditional jQuery development, we are used to manipulate the `$` alias to select the elements we want to play with.
-jQuery allows us to change this default alias (for compatibility with other js frameworks also using the `$` alias : like PrototypeJS, included in Tapestry, for example).
-The tapestry5-jquery project has an option permitting you to customize this alias : in your AppModule, contributeApplicationDefaults method, you can add `configuration.add(JQuerySymbolConstants.JQUERY_ALIAS, "yourOwnAlias");`.
-The default jquery alias is `$`.
-
-By the way, if you've set the `JQuerySymbolConstants.SUPPRESS_PROTOTYPE` option to false, you may not use `$` to refer to jQuery, because `$` actually refers to Prototype.
-Thus, you may want to change jQuery's alias in that particular case.
-However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
-
 # Changelog related to Tapestry 5.4.x branch
-* 4.0-rc-1-SNAPSHOT : Update to Tapestry 5.4-rc-1 & Upgrade libs
+* 4.0-rc-1 : Update to Tapestry 5.4-rc-1 & Upgrade libs
 	* Jcrop from v0.9.12 to  v2.0.2
 	* Colorbox from v1.4.27 (16/072013) to  v1.6.3 (27/07/2015)
 	* FlexSlider from v2.2.0 to v2.5.0 
@@ -301,6 +292,3 @@ This project is distributed under Apache 2 License. See LICENSE.txt for more inf
 - Daniel Poggenpohl as danowar2k
 - Robin Garner as robingarner
 
-##Hosting
-As http://nexus.devlab722.net/nexus/content/repositories/releases will stop at the end November 2015, 
-so grab the Latest releases for 5.4 and 5.3 from Maven Central.   	

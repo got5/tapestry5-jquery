@@ -13,7 +13,7 @@ apply plugin: 'jetty'
 // Specific to top-level build, not set for subprojects:
  def jdkVersion = System.properties['java.version']
  def specifyMaxPermSize = jdkVersion ==~ /1\.[67].+/
- def version = "4.0-rc-1-SNAPSHOT"
+ def version = "4.0-rc-1"
  def group = "org.got5"
 
 configurations {
