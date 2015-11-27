@@ -6,7 +6,7 @@ http://tapestry5-jquery.com/
 
 ##Hosting
 http://nexus.devlab722.net/nexus/content/repositories/releases will stop at the end November 2015, 
-So please not that the Latest releases for 5.4 and 5.3 are now available at [Maven Central](https://repo1.maven.org/maven2/org/got5/tapestry5-jquery/).   	
+So please note that the latest releases for 5.4 and 5.3 are now available at [Maven Central](https://repo1.maven.org/maven2/org/got5/tapestry5-jquery/).   	
 
 ## Features
 
