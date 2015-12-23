@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 4.0-rc-1
+# Tapestry 5 jQuery integration Module - 4.0.0
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -107,7 +107,7 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0-rc-1</version>
+			<version>4.0.0</version>
 		</dependency>
 		...
 	</dependencies>
@@ -188,6 +188,7 @@ Or add jquery to the tapestry-library namespace:
 	</html>
 
 # Changelog related to Tapestry 5.4.x branch
+* 4.0.0 : Update to Tapestry 5.4.0
 * 4.0-rc-1 : Update to Tapestry 5.4-rc-1 & Upgrade libs
 	* Jcrop from v0.9.12 to  v2.0.2
 	* Colorbox from v1.4.27 (16/072013) to  v1.6.3 (27/07/2015)
