@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery integration Module - 3.3.11
+# Tapestry 5 jQuery integration Module - 3.3.12
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -212,6 +212,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
     * [breaking change] Replaced codemirror.js with codemirror: http://codemirror.net
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.7.2
+* 3.3.12 : [#372](https://github.com/got5/tapestry5-jquery/issues/372)
 * 3.3.11 : (stable) backport  #263 deployment to Maven Central
 * 3.3.10 : backport #311
 * 3.3.9 : Update to Tapestry 5.3.8 (Java 1.8) #342, #336
