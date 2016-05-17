@@ -11,20 +11,20 @@
             var dialog = $('#' + dialogId),
                 zone   = $("#" + zoneId);    
 
-            $("#" + element).click(function(e) {
 
-                e.preventDefault();
-                zone.tapestryZone("update", {
-                    url: url,
-                    callback: function() {
-                        dialog.dialog('open');
-                    }
-                });
-
-                return false;
-            });
-        }
-
+			var onOpen = function(event, ui) {
+				$("#" + zoneId).tapestryZone("update", {
+					url: url
+				});
+			};
+			
+			$("#" + element).click(function(e) {
+				$('#' + dialogId).one("dialogopen", onOpen);
+				$('#' + dialogId).dialog('open');
+				return false;
+			});
+		}
+		
         return {
             dialogAjaxLink : init
         };
