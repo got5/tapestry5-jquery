@@ -37,7 +37,7 @@ define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "t5/core/ajax", "jquer
                     var start = u.url.substring(0, indexOf);
                     u.url = start + "/" + value + q;
                 } else {
-                    u.u.url += "/" + value;
+                    u.url += "/" + value;
                 }
             }
 
