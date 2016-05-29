@@ -127,7 +127,7 @@ public class DataTablesAjaxWithConfirm
 		json.put("oTableTools", dataTable);
 		
 		//These parameters are not a DataTable. They are used to get more information about a row
-		json.put("ajaxUrl", resources.createEventLink("extraInfo", null).toURI());
+		json.put("ajaxUrl", resources.createEventLink("extraInfo").toURI());
 		json.put("openImg", as.getContextAsset("img/details_open.png", null).toClientURL());
 		json.put("closeImg", as.getContextAsset("img/details_close.png", null).toClientURL());
 		
