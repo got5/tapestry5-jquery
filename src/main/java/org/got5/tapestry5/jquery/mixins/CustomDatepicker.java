@@ -120,7 +120,7 @@ public class CustomDatepicker {
             json.put("params", defaultParamsObject);
 
 			javaScriptSupport.require("tjq/customdatepicker")
-					.priority(InitializationPriority.EARLY)
+					.priority(InitializationPriority.LATE)
 					.with(json);
 		}
 	}
