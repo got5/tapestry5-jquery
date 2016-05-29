@@ -1,0 +1,23 @@
+<html t:type="layout"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+	xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+	<div class="span12">
+		<section id="list" style="padding-top: 30px;">
+			<div class="page-header">
+				<h1>CustomDatePicker with Zone</h1>
+			</div>
+			<t:zone t:id="zone" id="zone">
+
+			<form t:type="form" t:id="idFormZone">
+		    	<t:label t:for="someDateField">The other Date : </t:label>
+		      	<t:datefield t:id="someDateField" t:value="someDate" t:mixins="jquery/CustomDatepicker" customdatepicker.params="nextParams"/>
+		    </form>
+		    </t:zone>
+		    <t:eventlink t:async="true" t:event="rerender">Rerender</t:eventlink>
+		</section>
+	</div>
+</div>
+</html>

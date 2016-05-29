@@ -9,8 +9,8 @@ public class CustomDatepicker {
 	private String value;
 	
 	public JSONObject getParams(){
-		JSONObject json =  new JSONObject("prevText", "Previous Month ",
-							  "nextText", "Next Month");
+		JSONObject json =  new JSONObject("prevText", "See Previous Month ",
+							  "nextText", "See Next Month");
         return json;
 	}
 }
