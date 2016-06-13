@@ -43,7 +43,16 @@ public class CustomDatepickerTest extends SeleniumTestCase {
 				return (getAttribute("//div[@id='ui-datepicker-div']@style") != null);
 			}
 		}.wait("Your calendar should be visible.", JQueryTestConstants.TIMEOUT);
-
+		
+		//check Previous button message 
+		new Wait() {
+	            @Override
+	            public boolean until()
+	            {
+	                return getText("//div[@id='ui-datepicker-div']/div/a[1]/span").equals("See Previous Month");
+	            }
+		}.wait("prevText should be modified", JQueryTestConstants.TIMEOUT);
+		
 		click("//button[@class='ui-datepicker-trigger']");
 
 		new Wait() {
