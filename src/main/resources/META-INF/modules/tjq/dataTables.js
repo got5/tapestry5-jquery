@@ -11,7 +11,7 @@ define(["t5/core/pageinit", "tjq/vendor/components/datatables/jquery.dataTables"
     			 * For ajax mode, need to call Tapestry.loadScriptsInReply in a callback to take into account
     			 * propertyOverrides rendered in server-side
     			 * */
-    			fnDrawCallback: function( oSettings ) {
+    			drawCallback: function( oSettings ) {
     				if(oSettings.jqXHR){
     					json = {
     						json: jQuery.evalJSON(oSettings.jqXHR.responseText)
@@ -31,6 +31,6 @@ define(["t5/core/pageinit", "tjq/vendor/components/datatables/jquery.dataTables"
         	      }
     		});
     		
-			 jQuery("#" + spec.id).dataTable(spec.params);
+			 jQuery("#" + spec.id).DataTable(spec.params);
 	  };
 });
