@@ -36,6 +36,7 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.DataTableConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
@@ -144,18 +145,18 @@ public class DataTable extends AbstractJQueryTable {
 		JSONObject dataTableParams = new JSONObject();
 
 		if (getMode()) {
-			dataTableParams.put("sAjaxSource", resources
+			dataTableParams.put("ajax", resources
 					.createEventLink("data").toAbsoluteURI());
-			dataTableParams.put("bServerSide", "true");
-			dataTableParams.put("bProcessing", "true");
+			dataTableParams.put("serverSide", "true");
+			dataTableParams.put("processing", "true");
 		}
 
-		dataTableParams.put("sPaginationType", "full_numbers");
+		dataTableParams.put("pagingType", "full_numbers");
 
-		dataTableParams.put("iDisplayLength", getRowsPerPage());
+		dataTableParams.put("pageLength", getRowsPerPage());
 
 		dataTableParams
-				.put("aLengthMenu", new JSONLiteral("[[" + getRowsPerPage()
+				.put("lengthMenu", new JSONLiteral("[[" + getRowsPerPage()
 						+ "," + (getRowsPerPage() * 2) + ","
 						+ (getRowsPerPage() * 4) + "],[" + getRowsPerPage()
 						+ "," + (getRowsPerPage() * 2) + ","
@@ -169,15 +170,15 @@ public class DataTable extends AbstractJQueryTable {
 		JSONArray columnConfs = new JSONArray();
 		for (String propertyName : getPropertyNames()) {
 			JSONObject confs = new JSONObject();
-			confs.put("mDataProp", propertyName);
-			confs.put("bSortable", getModel().get(propertyName).isSortable());
+			confs.put("data", propertyName);
+			confs.put("orderable", getModel().get(propertyName).isSortable());
 			columnConfs.put(confs);
 
 		}
 
-		dataTableParams.put("aoColumns", columnConfs);
+		dataTableParams.put("columns", columnConfs);
 
-		dataTableParams.put("oLanguage", setI18NMessages());
+		dataTableParams.put("language", setI18NMessages());
 
         JQueryUtils JQueryUtils;
         org.got5.tapestry5.jquery.utils.JQueryUtils.merge(dataTableParams, getOptions());
@@ -190,24 +191,24 @@ public class DataTable extends AbstractJQueryTable {
 
 	private JSONObject setI18NMessages() {
 		JSONObject language = new JSONObject();
-		language.put("sProcessing", messages.get("datatable.sProcessing"));
-		language.put("sSearch", messages.get("datatable.sSearch"));
-		language.put("sLengthMenu", messages.get("datatable.sLengthMenu"));
-		language.put("sInfo", messages.get("datatable.sInfo"));
-		language.put("sInfoEmpty", messages.get("datatable.sInfoEmpty"));
-		language.put("sInfoFiltered", messages.get("datatable.sInfoFiltered"));
-		language.put("sInfoPostFix", messages.get("datatable.sInfoPostFix"));
-		language.put("sLoadingRecords", messages.get("datatable.sLoadingRecords"));
-		language.put("sZeroRecords", messages.get("datatable.sZeroRecords"));
-		language.put("sEmptyTable", messages.get("datatable.sEmptyTable"));
-		language.put("oPaginate", new JSONObject(
-				"sFirst", messages.get("datatable.oPaginate.sFirst"),
-				"sPrevious", messages.get("datatable.oPaginate.sPrevious"),
-				"sNext", messages.get("datatable.oPaginate.sNext"),
-				"sLast", messages.get("datatable.oPaginate.sLast")));
-		language.put("oAria", new JSONObject(
-				"sSortAscending", messages.get("datatable.oAria.sSortAscending"),
-				"sSortDescending", messages.get("datatable.oAria.sSortDescending")));
+		language.put("processing", messages.get("datatable.sProcessing"));
+		language.put("search", messages.get("datatable.sSearch"));
+		language.put("lengthMenu", messages.get("datatable.sLengthMenu"));
+		language.put("info", messages.get("datatable.sInfo"));
+		language.put("infoEmpty", messages.get("datatable.sInfoEmpty"));
+		language.put("infoFiltered", messages.get("datatable.sInfoFiltered"));
+		language.put("infoPostFix", messages.get("datatable.sInfoPostFix"));
+		language.put("loadingRecords", messages.get("datatable.sLoadingRecords"));
+		language.put("zeroRecords", messages.get("datatable.sZeroRecords"));
+		language.put("emptyTable", messages.get("datatable.sEmptyTable"));
+		language.put("paginate", new JSONObject(
+				"first", messages.get("datatable.oPaginate.sFirst"),
+				"previous", messages.get("datatable.oPaginate.sPrevious"),
+				"next", messages.get("datatable.oPaginate.sNext"),
+				"last", messages.get("datatable.oPaginate.sLast")));
+		language.put("aria", new JSONObject(
+				"sortAscending", messages.get("datatable.oAria.sSortAscending"),
+				"sortDescending", messages.get("datatable.oAria.sSortDescending")));
 
 		return language;
 	}
