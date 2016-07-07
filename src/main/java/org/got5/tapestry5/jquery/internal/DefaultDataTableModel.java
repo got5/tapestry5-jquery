@@ -210,7 +210,7 @@ public class DefaultDataTableModel implements DataTableModel {
                     String val = (String) conduit.get(source.getRowValue(index));
 
 
-                    if(val.contains(request.getParameter(DataTableConstants.SEARCH)))
+                    if(val.contains(request.getParameter(DataTableConstants.SEARCH_VALUE)))
                         flag = true;
                 }
                 catch (Exception e){
@@ -231,34 +231,29 @@ public class DefaultDataTableModel implements DataTableModel {
     }
 
     /**
-     * This method will set all the Sorting stuffs, thanks to sSortDir and iSortCol DataTable parameters, coming from the request
+     * This method will set all the Sorting stuffs, thanks to DataTable parameters, coming from the request.
+     * see https://datatables.net/manual/server-side for more details 
      */
     public void prepareResponse(GridDataSource source){
 
-        String sortingCols = request.getParameter(DataTableConstants.SORTING_COLS);
 
-        if(InternalUtils.isNonBlank(sortingCols)){
-            int nbSortingCols = Integer.parseInt(sortingCols);
+    	String sord = request.getParameter(DataTableConstants.ORDER_DIR);
+    	String sidx = request.getParameter(DataTableConstants.ORDER_IDX);
 
-            String sord = request.getParameter(DataTableConstants.SORT_DIR+"0");
+    	if(InternalUtils.isNonBlank(sidx))
+        {
+    		List<String> names = model.getPropertyNames();
 
-            String sidx = request.getParameter(DataTableConstants.SORT_COL+"0");
+            int indexProperty = Integer.parseInt(sidx);
 
-            if(nbSortingCols>0)
-            {
-                List<String> names = model.getPropertyNames();
+            String propName = names.get(indexProperty);
 
-                int indexProperty = Integer.parseInt(sidx);
+            ColumnSort colSort =sortModel.getColumnSort(propName);
 
-                String propName = names.get(indexProperty);
-
-                ColumnSort colSort =sortModel.getColumnSort(propName);
-
-                if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase()))) 
+            if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase()))) 
                     sortModel.updateSort(propName);
-            }
         }
-
+     
     }
 
     /**
@@ -266,30 +261,29 @@ public class DefaultDataTableModel implements DataTableModel {
      * @throws IOException 
      */
     public JSONObject getResponse(GridDataSource source) throws IOException{
-        final String sEcho = request.getParameter(DataTableConstants.ECHO);
+        final String draw = request.getParameter(DataTableConstants.DRAW);
         final int records = source.getAvailableRows();
 
         if (records == 0){
-            response.put("sEcho", sEcho);
-            response.put("iTotalDisplayRecords", records);
-            response.put("iTotalRecords", records);
-            response.put("aaData", rows);
+            response.put(DataTableConstants.DRAW, draw);
+            response.put(DataTableConstants.RECORDS_FILTERED, records);
+            response.put(DataTableConstants.RECORDS_TOTAL, records);
+            response.put(DataTableConstants.DATA, rows);
             return response;
         }
 
-        String displayStart = request.getParameter(DataTableConstants.DISPLAY_START);
-        int startIndex=Integer.parseInt(displayStart);
+        int startIndex=0;
+        String displayStart = request.getParameter(DataTableConstants.START);
+        if(displayStart != null) startIndex=Integer.parseInt(displayStart);
 
-        String displayLength = request.getParameter(DataTableConstants.DISPLAY_LENGTH);
-
-        int rowsPerPage=Integer.parseInt(displayLength);
+        int rowsPerPage=records;
+        String displayLength = request.getParameter(DataTableConstants.LENGTH);
+        if(displayLength!=null) rowsPerPage=Integer.parseInt(displayLength);
 
         int endIndex= startIndex + rowsPerPage -1;
         if(endIndex>records-1) endIndex= records-1;
 
-
         source.prepare(startIndex,endIndex,sortModel.getSortConstraints() );
-
 
         /**
          * Add a filter to initialize the data to be sent to the client
@@ -299,10 +293,10 @@ public class DefaultDataTableModel implements DataTableModel {
 
                     public void renderMarkup(MarkupWriter writer, JSONObject reply, PartialMarkupRenderer renderer)
                     {
-                        reply.put("aaData", rows);
-                        reply.put("sEcho", sEcho);
-                        reply.put("iTotalDisplayRecords", records);
-                        reply.put("iTotalRecords", records);
+                        reply.put(DataTableConstants.DATA, rows);
+                        reply.put(DataTableConstants.DRAW, draw);
+                        reply.put(DataTableConstants.RECORDS_TOTAL, records);
+                        reply.put(DataTableConstants.RECORDS_FILTERED, records);
 
                         renderer.renderMarkup(writer, reply);
                     }
@@ -394,8 +388,8 @@ public class DefaultDataTableModel implements DataTableModel {
          * Filter available data in a normal mode.
          * For ajax mode, we give the opportunity to the developer to filter data on server-side 
          */
-        if(!mode){
-            if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH))) s = filterData(source);
+        if(mode){
+            if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH_VALUE))) s = filterData(source);
         }
 
         prepareResponse(s);
