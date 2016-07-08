@@ -38,10 +38,9 @@ public class DataTableAjaxTest extends SeleniumTestCase{
 		open("/DataTablesAjax");
 		
 		new Wait() {
-			
 			@Override
 			public boolean until() {
-				return !getAttribute("//table[@id='datatableAjax']/thead/tr/th[1]/div[@class='DataTables_sort_wrapper']/span@class").contains("ui-icon");
+				return !getAttribute("//table[@id='datatableAjax']/thead/tr/th[2]/div[@class='DataTables_sort_wrapper']/span@class").contains("ui-icon");
 			}
 		}.wait("The Column should not be sortable.", JQueryTestConstants.TIMEOUT);
 	}
