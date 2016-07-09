@@ -16,7 +16,6 @@
 
 package org.got5.tapestry5.jquery.pages;
 
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -89,7 +88,7 @@ public class DataTablesAjax extends BaseDataTables
 	 * */
 	@OnEvent(value= JQueryEventConstants.FILTER_DATA, component="datatableAjax")
 	public void filterData(){
-		String val = request.getParameter(DataTableConstants.SEARCH); 
+		String val = request.getParameter(DataTableConstants.SEARCH_VALUE); 
 		getDataSource().filter(val);
 	}
 	
