@@ -116,26 +116,22 @@ public class SampleDataTableModel implements DataTableModel {
 	 */
 	public void prepareResponse(GridDataSource source){
 		
-		String sortingCols = request.getParameter(DataTableConstants.SORTING_COLS);
-	    
-		int nbSortingCols = Integer.parseInt(sortingCols);
-	    
-		String sord = request.getParameter(DataTableConstants.SORT_DIR+"0");
-	    
-		String sidx = request.getParameter(DataTableConstants.SORT_COL+"0");
-	     
-	    if(nbSortingCols>0)
-	    {
-	    	List<String> names = model.getPropertyNames();
-	    	
-	    	int indexProperty = Integer.parseInt(sidx);
-	    	
-	    	String propName = names.get(indexProperty);
-	    	 
-	    	ColumnSort colSort =sortModel.getColumnSort(propName);
-	    	 
-	    	sortModel.updateSort(propName);
-	    }
+		String sord = request.getParameter(DataTableConstants.ORDER_DIR);
+    	String sidx = request.getParameter(DataTableConstants.ORDER_IDX);
+
+    	if(InternalUtils.isNonBlank(sidx))
+        {
+    		List<String> names = model.getPropertyNames();
+
+            int indexProperty = Integer.parseInt(sidx);
+
+            String propName = names.get(indexProperty);
+
+            ColumnSort colSort =sortModel.getColumnSort(propName);
+
+            if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase()))) 
+                    sortModel.updateSort(propName);
+        }
 	     
 	}
 	
@@ -144,7 +140,7 @@ public class SampleDataTableModel implements DataTableModel {
 	 */
 	public JSONObject getResponse(GridDataSource source){
 		
-		response.put("sEcho", request.getParameter(DataTableConstants.ECHO));
+		response.put(DataTableConstants.DRAW, request.getParameter(DataTableConstants.DRAW));
 		
 		int records = source.getAvailableRows();
 	    
@@ -152,10 +148,10 @@ public class SampleDataTableModel implements DataTableModel {
 	    
 		response.put("iTotalRecords", records);
 	    
-	    String displayStart = request.getParameter(DataTableConstants.DISPLAY_START);
+	    String displayStart = request.getParameter(DataTableConstants.START);
 	     int startIndex=Integer.parseInt(displayStart);
 	     
-	     String displayLength = request.getParameter(DataTableConstants.DISPLAY_LENGTH);
+	     String displayLength = request.getParameter(DataTableConstants.LENGTH);
 	     
 	     int rowsPerPage=Integer.parseInt(displayLength);
 	     
@@ -226,8 +222,8 @@ public class SampleDataTableModel implements DataTableModel {
 		
 		GridDataSource s = source;
 		
-		if(!mode){
-			if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH))) s = filterData(source);
+		if(mode){
+			if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH_VALUE))) s = filterData(source);
 		}
 		
 		prepareResponse(s);
