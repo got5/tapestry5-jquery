@@ -1,8 +1,6 @@
 (function($) {
 
-	$
-			.extend(
-					Tapestry,
+	$.extend(Tapestry,
 					{
 						/**
 						 * Key for storing virtualScripts data in the DOM
@@ -478,8 +476,7 @@
 				}
 			});
 
-	$
-			.widget(
+	$.widget(
 					"ui.formEventManager",
 					{
 						options : {
