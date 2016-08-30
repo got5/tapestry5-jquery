@@ -1,4 +1,5 @@
-# Tapestry 5 jQuery integration Module - 3.4.3-SNAPSHOT
+[![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
+# Tapestry 5 jQuery integration Module - 3.5.0-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -90,7 +91,7 @@ For Tapestry 5.4 users:
 		<dependency>
 			<groupId>org.got5</groupId>
 			<artifactId>tapestry5-jquery</artifactId>
-			<version>4.0-beta-35-SNAPSHOT</version>
+			<version>4.1.1</version>
 		</dependency>
 		...
 	</dependencies>
@@ -123,7 +124,7 @@ For Tapestry 5.3 users:
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.4.2</version>
+            <version>3.5.0</version>
         </dependency>
         ...
     </dependencies>
@@ -188,12 +189,28 @@ Thus, you may want to change jQuery's alias in that particular case.
 However, if you didn't change it, jQuery's alias will automatically be set to `$j`. 
 
 # Changelog related to Tapestry 5.4.x branch
-* 4.0-beta-35 : Update to Tapestry 5.4-beta-35
-* 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central
+* 4.1.1 : #372, #373, #375
+* 4.1.0 : Update to Tapestry 5.4.1
+* 4.0.0 : Update to Tapestry 5.4.0
+* 4.0-rc-1 : Update to Tapestry 5.4-rc-1 & Upgrade libs
+	* Jcrop from v0.9.12 to  v2.0.2
+	* Colorbox from v1.4.27 (16/072013) to  v1.6.3 (27/07/2015)
+	* FlexSlider from v2.2.0 to v2.5.0 
+	* jeditable from v1.7.1 to v1.7.3 
+	* contextMenu from ???  to v1.9.2 (2015)
+	* raty from v2.5.2 (2010) to v2.7.0 (2015)
+	* placeholder from v2.0.7 (2013) to v2.1.3 (2015)
+	* masked input from v1.3.1 (2013) to v1.4.1 (2015)
+	* jsrcollpane from v2.0.0beta12 (2012) to v2.0.22 (2015)
+* 4.0-beta-35-SNAPSHOT : Update to Tapestry 5.4-beta-35 & Upgrade libs
+	* superfish from v1.7.4 (2013) to v1.7.6 (2015)
+* 4.0-beta-29 : Update to Tapestry 5.4-beta-29 & jQuery UI 1.11.3,#362, deployment to Maven Central 
 * 4.0.1-beta-26 : Update to Tapestry 5.4-beta-26 , #353, #352
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
+# Changelog related to Tapestry 5.3.x with jQuery 1.12.1
+* 3.5.0-SNAPSHOT:  
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
 * 3.4.3-SNAPSHOT: #353, #352, #350 
@@ -282,5 +299,3 @@ This project is distributed under Apache 2 License. See LICENSE.txt for more inf
 - danowar2k as  Daniel Poggenpohl
 - rfrovarp
 
-##Hosting
-Christophe Furmaniak 	
