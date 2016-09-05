@@ -134,14 +134,15 @@ public class JQueryModule
         configuration.add(TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
         configuration.add(TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
 
-        configuration.add(JQUERY_VERSION, JQueryVersion.CORE_1_10_2);
+        configuration.add(JQUERY_VERSION, JQueryVersion.CORE_1_12_4);
         configuration.add(JQUERY_CORE_PATH,
             String.format("classpath:org/got5/tapestry5/jquery/jquery_core/jquery-${%s}.js", JQUERY_VERSION));
 
-        configuration.add(JQUERY_UI_VERSION, JQueryVersion.UI_1_10_3);
+        configuration.add(JQUERY_UI_VERSION, JQueryVersion.UI_1_12_1);
         configuration.add(JQUERY_UI_PATH,
                 String.format("classpath:org/got5/tapestry5/jquery/ui_${%s}", JQUERY_UI_VERSION));
-        configuration.add(JQUERY_UI_DEFAULT_THEME, "classpath:org/got5/tapestry5/jquery/themes/ui-lightness/jquery-ui.css");
+        configuration.add(JQUERY_UI_DEFAULT_THEME, 
+        		 String.format("classpath:org/got5/tapestry5/jquery/themes/{%s}/ui-lightness/jquery-ui.css", JQUERY_VERSION));
 
         configuration.add(JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
         configuration.add(SUPPRESS_PROTOTYPE, true);
@@ -189,7 +190,6 @@ public class JQueryModule
     @Contribute(EffectsParam.class)
     public void addEffectsFile(Configuration<String> configuration){
     	configuration.add(EffectsConstants.HIGHLIGHT);
-    	configuration.add(EffectsConstants.SHOW);
     }
 
     @Contribute(JavaScriptFilesConfiguration.class)
