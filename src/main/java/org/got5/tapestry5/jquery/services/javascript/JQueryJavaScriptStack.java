@@ -121,10 +121,11 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 		jQueryJsStack = F
 				.flow("${jquery.core.path}",
-						"${jquery.ui.path}/jquery.ui.core.js",
-						"${jquery.ui.path}/jquery.ui.position.js",
-						"${jquery.ui.path}/jquery.ui.widget.js",
-						"${jquery.ui.path}/jquery.ui.effect.js",
+						//"${jquery.ui.path}/core.js",
+						"${jquery.ui.path}/version.js",
+						"${jquery.ui.path}/position.js",
+						"${jquery.ui.path}/widget.js",
+						"${jquery.ui.path}/effect.js",
 						"${tapestry.jquery.path}/jquery.json-2.2.js")
 				.concat(F.flow(this.effectsParam.getEffectsToLoad()))
 				.map(pathToAsset).toList();
