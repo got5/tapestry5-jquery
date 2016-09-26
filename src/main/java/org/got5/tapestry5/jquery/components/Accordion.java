@@ -44,9 +44,11 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI( value = { "jquery.ui.core",
-                           "jquery.ui.widget",
-                           "jquery.ui.accordion" })
+@ImportJQueryUI( value = { "version",
+						   "keycode",
+						   "unique-id",
+						   "widget",
+                           "widgets/accordion" })
 @Import(library =          "${assets.path}/components/accordion/accordion.js")
 public class Accordion extends AbstractExtendableComponent
 {
