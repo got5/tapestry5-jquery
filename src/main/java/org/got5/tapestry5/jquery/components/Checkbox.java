@@ -15,7 +15,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core" })
+@ImportJQueryUI({ "widget", "core" })
 @Import(library = { "${assets.path}/components/checkbox/jquery.ui.checkbox.js",
 					"${assets.path}/components/checkbox/checkbox.js"}, 
 		stylesheet = {"${assets.path}/components/checkbox/jquery.ui.checkbox.css"})
