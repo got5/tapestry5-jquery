@@ -44,7 +44,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
+@ImportJQueryUI(value = {"widget", "widgets/mouse", "widgets/slider"})
 @Import( library={ "${assets.path}/components/rangeslider/range-slider.js" })
 public class RangeSlider  {
 
