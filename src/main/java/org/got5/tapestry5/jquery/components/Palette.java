@@ -97,7 +97,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @see Form
  * @see Select
  */
-@ImportJQueryUI(value = "jquery.ui.widget")
+@ImportJQueryUI(value = "widget")
 @Import(library= "${assets.path}/components/palette/palette.js")
 public class Palette extends AbstractField
 {
