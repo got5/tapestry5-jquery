@@ -38,7 +38,15 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.draggable"})
+@ImportJQueryUI(value = {"widget", 
+						 "data",
+						 "plugin",
+						 "safe-active-element",
+						 "safe-blur",
+						 "scroll-parent",
+						 "version",
+						 "widgets/mouse",
+						 "widgets/draggable"})
 @Import(library = { "${assets.path}/components/draggable/draggable.js" })
 //@SupportsInformalParameters
 public class Draggable extends AbstractExtendableComponent {
