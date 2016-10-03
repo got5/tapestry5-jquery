@@ -44,7 +44,12 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * @tapestrydoc
  */
 @SupportsInformalParameters
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.slider"})
+@ImportJQueryUI(value = {"ie",
+						"version",
+						"keycode",
+						"widget", 
+						"widgets/mouse", 
+						"widgets/slider"})
 @Import( library={ "${assets.path}/components/slider/slider.js" })
 public class Slider  {
 
