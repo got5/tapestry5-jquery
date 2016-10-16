@@ -6,6 +6,7 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -25,6 +26,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * @tapestrydoc
  */
 @SupportsInformalParameters
+@Import(library = "${assets.path}/components/dialogajaxlink/dialogajaxlink.js")
 public class DialogAjaxLink extends DialogLink
 {
 
@@ -78,7 +80,6 @@ public class DialogAjaxLink extends DialogLink
     }
 
     @Override
-    @AfterRender
     protected void addJSResources()
     {
         for (String path : scripts)
