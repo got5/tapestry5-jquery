@@ -23,7 +23,7 @@ import org.got5.tapestry5.jquery.services.javascript.ContextMenuStack;
  * Context Menu component.
  * 
  */
-@ImportJQueryUI(value = { "jquery.ui.position" })
+@ImportJQueryUI(value = { "position" })
 @Import(stack = ContextMenuStack.STACK_ID)
 public class ContextMenu {
 	
