@@ -66,8 +66,8 @@ public class JQueryModule {
 	public static void contributeFactoryDefaults(
 			MappedConfiguration<String, Object> configuration) {
 
-		configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.8.2");
-		configuration.add(JQuerySymbolConstants.JQUERY_UI_VERSION, "1.9.2");
+		configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.12.2");
+		configuration.add(JQuerySymbolConstants.JQUERY_UI_VERSION, "1.12.1");
 		configuration.add(JQuerySymbolConstants.JQUERY_JSON_VERSION, "2.4");
 
 		configuration.add(JQuerySymbolConstants.ASSETS_ROOT,
@@ -146,7 +146,6 @@ public class JQueryModule {
 	@Contribute(EffectsParam.class)
 	public void addEffectsFile(Configuration<String> configuration) {
 		configuration.add(EffectsConstants.HIGHLIGHT);
-		configuration.add(EffectsConstants.SHOW);
 	}
 
 	@Contribute(ComponentClassTransformWorker2.class)
