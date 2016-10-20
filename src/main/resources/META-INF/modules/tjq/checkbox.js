@@ -1,6 +1,6 @@
 requirejs.config({
     "shim" : {
-        "tjq/vendor/components/ckbox/jquery.ui.checkbox" : [ "tjq/vendor/ui/custom" ]
+        "tjq/vendor/components/ckbox/jquery.ui.checkbox" : [ "tjq/vendor/ui/jquery-ui" ]
     }
 });
 
