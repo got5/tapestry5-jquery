@@ -6,10 +6,10 @@
 		 		},
 			shim : {
 				"tjq/vendor/ui/datepicker": ["jquery"],
-				"tjq/vendor/ui/custom": ["tjq/vendor/ui/datepicker"],
+				"tjq/vendor/ui/jquery-ui": ["tjq/vendor/ui/widgets/datepicker"],
 				"datepickerLocal": 
 					{
-						deps: ["tjq/vendor/ui/custom","tjq/vendor/ui/datepicker"]
+						deps: ["tjq/vendor/ui/jquery-ui","tjq/vendor/ui/widgets/datepicker"]
 					}
 				}
 	 });
