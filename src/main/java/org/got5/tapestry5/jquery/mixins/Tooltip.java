@@ -27,7 +27,7 @@ import org.got5.tapestry5.jquery.mixins.ui.Widget;
  *
  * @tapestrydoc
  */
-@ImportJQueryUI({ "jquery.ui.widget", "jquery.ui.core" })
+@ImportJQueryUI({ "widget", "core" })
 @Import(library = { "${assets.path}/mixins/tooltip/jquery.ui.tooltip.js" }, 
 		stylesheet = { "${assets.path}/mixins/tooltip/jquery.ui.tooltip.css" })
 @MixinAfter
