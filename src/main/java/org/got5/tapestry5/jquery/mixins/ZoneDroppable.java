@@ -41,7 +41,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * 
  * @tapestrydoc
  */
-@ImportJQueryUI(value = {"jquery.ui.widget", "jquery.ui.mouse", "jquery.ui.droppable"})
+@ImportJQueryUI(value = {"widget", "widgets/mouse", "widgets/droppable"})
 @Import(library = { "${assets.path}/mixins/zonedroppable/zonedroppable.js" })
 @SupportsInformalParameters
 public class ZoneDroppable {
