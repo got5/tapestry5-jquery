@@ -1,10 +1,10 @@
 requirejs.config({
 	"shim" : {
-		"tjq/vendor/ui/custom": ["jquery"],
+		"tjq/vendor/ui/jquery-ui": ["jquery"],
 		"tjq/vendor/jquery.json-2.4": ["jquery"], 
 	}
 });
-define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/custom", "tjq/vendor/jquery.json-2.4"], function(dom, events) {
+define([  "t5/core/dom", "t5/core/events", "tjq/vendor/ui/jquery-ui", "tjq/vendor/jquery.json-2.4"], function(dom, events) {
 
 	var draggable = function(spec) {
 		jQuery( "#" + spec.id ).draggable(spec.params).data("contexte",spec.context);
