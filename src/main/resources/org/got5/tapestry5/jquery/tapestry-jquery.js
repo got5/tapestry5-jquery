@@ -202,8 +202,7 @@
 
 	Tapestry.Initializer = T5.initializers;
 
-	T5
-			.extendInitializers({
+	T5.extendInitializers({
 
 				/** Make the given field the active field (focus on the field). */
 				activate : function(id) {
@@ -664,7 +663,8 @@
 		options : {
 			show : 'highlight',
 			update : 'highlight',
-			opt : ''
+			opt : '',
+			
 		},
 
 		_create : function() {
@@ -761,7 +761,7 @@
 					: this.options.show;
 
 			el.html(content)
-		      .effect(effect, this.options.opt.options, this.options.opt.speed, this.options.opt.callback)
+		      .show(effect, this.options.opt.options, this.options.opt.speed, this.options.opt.callback)
 			  .trigger(Tapestry.ZONE_UPDATED_EVENT);
 		}
 
