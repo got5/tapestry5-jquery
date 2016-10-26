@@ -10,7 +10,7 @@ public class SliderTest extends SeleniumTestCase {
     {
 		open("/Slider");
 		
-		assertAttribute("//div[@id='any']@class","ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all");
+		assertAttribute("//div[@id='any']@class","ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content");
 		
         
     }
