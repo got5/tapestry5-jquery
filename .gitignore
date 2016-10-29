@@ -24,3 +24,5 @@ build
 *.ipr
 *.iws
 out/
+gulp/node_modules/
+gulp/js/
