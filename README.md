@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 3.5.0-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 3.5.0
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -209,8 +209,8 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
-# Changelog related to Tapestry 5.3.x with jQuery 1.12.1
-* 3.5.0-SNAPSHOT:  
+# Changelog related to Tapestry 5.3.x with jQuery 1.12.4 
+* 3.5.0: #380 Update to support jQuery 1.12.4 & jQuery UI 1.12.1   
 
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
 * 3.4.3-SNAPSHOT: #353, #352, #350 
