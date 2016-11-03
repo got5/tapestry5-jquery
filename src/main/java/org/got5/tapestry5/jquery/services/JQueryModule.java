@@ -134,7 +134,7 @@ public class JQueryModule
         configuration.add(TAPESTRY_JQUERY_PATH, "classpath:org/got5/tapestry5/jquery");
         configuration.add(TAPESTRY_JS_PATH, "classpath:org/got5/tapestry5/tapestry.js");
 
-        configuration.add(JQUERY_VERSION, JQueryVersion.CORE_1_12_4);
+        configuration.add(JQUERY_VERSION, JQueryVersion.CORE_1_12_2);
         configuration.add(JQUERY_CORE_PATH,
             String.format("classpath:org/got5/tapestry5/jquery/jquery_core/jquery-${%s}.js", JQUERY_VERSION));
 
