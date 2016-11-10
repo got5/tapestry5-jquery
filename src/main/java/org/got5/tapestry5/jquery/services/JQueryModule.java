@@ -142,7 +142,7 @@ public class JQueryModule
         configuration.add(JQUERY_UI_PATH,
                 String.format("classpath:org/got5/tapestry5/jquery/ui_${%s}", JQUERY_UI_VERSION));
         configuration.add(JQUERY_UI_DEFAULT_THEME, 
-        		 String.format("classpath:org/got5/tapestry5/jquery/themes/${%s}/ui-lightness/jquery-ui.css", JQUERY_VERSION));
+        		 String.format("classpath:org/got5/tapestry5/jquery/themes/${%s}/ui-lightness/jquery-ui.css", JQUERY_UI_VERSION));
 
         configuration.add(JQUERY_VALIDATE_PATH, "classpath:org/got5/tapestry5/jquery/validate/1_7");
         configuration.add(SUPPRESS_PROTOTYPE, true);
