@@ -140,7 +140,7 @@ For Tapestry 5.3 users:
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.4.2</version>
+            <version>3.5.2</version>
         </dependency>
         ...
     </dependencies>
@@ -208,6 +208,11 @@ Or add jquery to the tapestry-library namespace:
 * 4.0.1-SNAPSHOT : Update to Tapestry 5.4-beta-22, #339
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
+# Changelog related to Tapestry 5.3.8 with jQuery 1.12.2 
+* 3.5.2: Fix "Unable to locate asset" issue on ImportJQueryUIWorker  
+* 3.5.1: #383 Reverse jQuery version to 1.12.2 to avoid jQuery issue 2432  
+* 3.5.0: #380 Update to support jQuery 1.12.4 & jQuery UI 1.12.1  
+
 # Changelog related to Tapestry 5.3.x with jQuery 1.10.2
 * 3.4.3-SNAPSHOT #353, #352, #350 
 * 3.4.2 (stable): Update to Tapestry 5.3.8 (Java 1.8) deployment to Maven Central
@@ -265,33 +270,5 @@ Or add jquery to the tapestry-library namespace:
 This project is distributed under Apache 2 License. See LICENSE.txt for more information. 
 
 ## List Of Contributors
-- Robin KOMIWES as robink
-- Andreas ANDREOU as andyhot
-- Christian RIEDEL as criedel
-- François FACON as got5     
-- Tom van DIJK as trolando
-- Emmanuel DEMEY as Gillespie59
-- Clément USTER as cluster
-- Amaury WILLEMANT as awillemant
-- Barry BOOKS as trsvax
-- Pablo NUSSEMBAUM as bauna
-- Alexander OBLOVATNIY as oblalex
-- Stéfanie DUPREY as Nephtys
-- Michael ASPETSBERGER as maspetsberger
-- Dragan SAHPASKI as dragansah
-- Matias BLASI as mblasi
-- Jon-Carlos Rivera as imbcmdth
-- Nourredine KHADRI as adaptivui
-- Michael GENTRY as mrg
-- Mikhail NASYROV as mnasyrov
-- Dmitry GUSEV as dmitrygusev
-- Laurent WROBLEWSKI as LWroblewski
-- Andreas Fink as fnk
-- Jochen Berger as jochenberger
-- Denis Delangle as ddelangle
-- Iceo
-- kaililleby
-- daveyx
-- Daniel Poggenpohl as danowar2k
-- Robin Garner as robingarner
+* Contributors: [https://github.com/got5/tapestry5-jquery/graphs/contributors](https://github.com/got5/tapestry5-jquery/graphs/contributors)
 
