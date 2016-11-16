@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 4.1.1
+# Tapestry 5 jQuery integration Module - 4.1.2-SNAPSHOT
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -188,6 +188,7 @@ Or add jquery to the tapestry-library namespace:
 	</html>
 
 # Changelog related to Tapestry 5.4.x branch
+* 4.1.2: #383, #380 Update to support jQuery 1.12.4 & jQuery UI 1.12.2
 * 4.1.1 : #372, #373, #375
 * 4.1.0 : Update to Tapestry 5.4.1
 * 4.0.0 : Update to Tapestry 5.4.0
