@@ -9,7 +9,7 @@
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.	
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
@@ -35,7 +35,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  *
  * @since 2.1.1
  * @see <a href="http://users.tpg.com.au/j_birch/plugins/superfish/">http://users.tpg.com.au/j_birch/plugins/superfish/</a>
- *
  * @tapestrydoc
  */
 @SupportsInformalParameters
@@ -137,9 +136,9 @@ public class Superfish{
 		jso.put("supersubs", supersubs);
 
 		jso.put("supersubsParams", supersubsParams);
-		
+
 		javaScriptSupport.require("tjq/mySuperfish").with(jso);
-		
+
 
 	}
 

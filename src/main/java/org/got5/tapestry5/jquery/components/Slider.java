@@ -32,13 +32,12 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
- * This component allows you create a slider in a form. A range slider is a slider that is mapped to a property value. 
- * This components actually creates a Tapestry textfield component and enhanced its behaviour by adding a slider. 
+ * This component allows you create a slider in a form. A range slider is a slider that is mapped to a property value.
+ * This components actually creates a Tapestry textfield component and enhanced its behaviour by adding a slider.
  * This field is are hidden by default.
- * 
+ *
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/slider/">jQuery UI Official Documentation</a>
- * 
  * @tapestrydoc
  */
 @SupportsInformalParameters
@@ -59,38 +58,38 @@ public class Slider  {
      */
     @Parameter
     private JSONObject params;
-    
+
     /**
-     * The zone to update when changes occure on the slider. An "action" event is triggered on the server. 
+     * The zone to update when changes occure on the slider. An "action" event is triggered on the server.
      * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderZone").
      */
     @Parameter(defaultPrefix=BindingConstants.LITERAL)
     private String zone;
 
     private JSONObject specs;
-    
+
     @Inject
     private ComponentResources resources;
 
     @Inject
     private JavaScriptSupport jsSupport;
-    
+
     /**
      * A boolean indicating whether to display the textfield on the client (default is false).
      */
     @Parameter(value="false")
     private boolean displayTextField;
-    
+
     @Component
     private TextField textfieldSlider;
-    
+
     private String clientId;
     private String getClientId(){
     	if(clientId==null)
 	    this.clientId = jsSupport.allocateClientId(this.resources);
     	return clientId;
     }
-    
+
     @SetupRender
     void startDiv(MarkupWriter writer)
     {
@@ -102,7 +101,7 @@ public class Slider  {
     	resources.renderInformalParameters(writer);
     	writer.end();
     	specs = new JSONObject();
-    	
+
     	if (!resources.isBound("params"))
     		params=new JSONObject();
     	specs.put("params", params);
@@ -121,5 +120,5 @@ public class Slider  {
     public String getSliderId(){
     	return getClientId()+"-slider";
     }
-  
+
 }

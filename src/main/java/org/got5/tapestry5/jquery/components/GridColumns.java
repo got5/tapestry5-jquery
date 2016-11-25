@@ -18,7 +18,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 @SupportsInformalParameters
 public class GridColumns {
-	
+
 	/**
      * The object that provides access to bean and data models, which is typically the enclosing Grid component.
      */
@@ -39,22 +39,22 @@ public class GridColumns {
      */
     @Parameter("this")
     private PropertyOverrides overrides;
-    
+
     /**
      * If not null, then each link is output as a link to update the specified zone.
      */
     @Parameter
     private String zone;
 
-   @Parameter 
+   @Parameter
     private Boolean mode;
-    
+
     @Inject
     private Messages messages;
 
     @Inject
     private Block standardHeader;
-    
+
     @Inject
     private Block standardFooter;
 
@@ -108,7 +108,7 @@ public class GridColumns {
 
         return mode ? standardHeader : standardFooter;
     }
-    
+
     public Boolean getMode(){return mode;}
 }
 

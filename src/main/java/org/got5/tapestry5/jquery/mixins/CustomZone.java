@@ -22,11 +22,10 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * used by the Tapestry Zone component.
  *
  * @since 2.6.0
- * @see <a href="http://jqueryui.com/docs/effect/</a>
- * 
+ * @see <a href="https://jqueryui.com/docs/effect/">jQuery Effect</a>
+ *
  * @tapestrydoc
  */
-
 public class CustomZone {
 
 	/**

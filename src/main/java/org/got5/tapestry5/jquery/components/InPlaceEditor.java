@@ -46,7 +46,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  * a "just in place" edit component that dont must emmbedded in a form.
  *
  * @version $Id: InPlaceEditor.java jquery version of chenillekit component from homburgs $
- * 
  * @tapestrydoc
  */
 @Events(InPlaceEditor.SAVE_EVENT)
@@ -72,10 +71,10 @@ public class InPlaceEditor implements ClientElement
 	 */
 	@Parameter(required = true, principal = true)
 	private String value;
-	
+
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private JSONObject options;
-	
+
 	/**
 	 * The context for the link (optional parameter). This list of values will be converted into strings and included in
 	 * the URI.
@@ -97,7 +96,7 @@ public class InPlaceEditor implements ClientElement
 
 	@Inject
 	private JavaScriptStackSource stacks;
-	
+
 	@Inject
 	private AssetSource as;
 
@@ -112,8 +111,8 @@ public class InPlaceEditor implements ClientElement
 	{
 		assignedClientId = javascriptSupport.allocateClientId(clientId);
 		contextArray = context == null ? new Object[0] : context.toArray();
-		
-		
+
+
 	}
 
 	void beginRender(MarkupWriter writer)
@@ -128,7 +127,7 @@ public class InPlaceEditor implements ClientElement
 
 	void afterRender(MarkupWriter writer)
 	{
-		
+
 		Link link = resources.createEventLink(EventConstants.ACTION, contextArray);
 		JSONObject spec = new JSONObject();
 
@@ -141,9 +140,9 @@ public class InPlaceEditor implements ClientElement
 		opts.put("cancel", messages.get("cancelbutton"));
 		opts.put("submit", messages.get("savebutton"));
 		opts.put("tooltip", messages.get("tooltip"));
-		
+
 		JQueryUtils.merge(opts, options);
-		
+
 		spec.put("options", opts);
 
 		javascriptSupport.require("tjq/inplaceeditor").with(spec);
@@ -165,7 +164,7 @@ public class InPlaceEditor implements ClientElement
 	}
 
 	/**
-	 * Returns a unique id for the element. This value will be unique for any given rendering of a page. This value is
+	 * @return a unique id for the element. This value will be unique for any given rendering of a page. This value is
 	 * intended for use as the id attribute of the client-side element, and will be used with any DHTML/Ajax related
 	 * JavaScript.
 	 */

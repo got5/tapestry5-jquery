@@ -22,7 +22,6 @@ import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.Resource;
-import org.apache.tapestry5.ioc.ScopeConstants;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -34,7 +33,6 @@ import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.BindingFactory;
-import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.compatibility.Compatibility;
 import org.apache.tapestry5.services.compatibility.Trait;
@@ -138,13 +136,11 @@ public class JQueryModule {
 		binder.bind(JGrowlManager.class, JGrowlManagerImpl.class);
 	}
 
-	/**
-	 * By Default, we import the JavaScript file of the HighLight Effect.
-	 * 
-	 * @param configuration
-	 */
 	@Contribute(EffectsParam.class)
 	public void addEffectsFile(Configuration<String> configuration) {
+	    /*
+	     * By Default, we import the JavaScript file of the HighLight Effect.
+	     */
 		configuration.add(EffectsConstants.HIGHLIGHT);
 	}
 
@@ -163,8 +159,6 @@ public class JQueryModule {
 
 		// note: the ordering must ensure that the worker gets added after the
 		// RenderPhase-Worker!
-		// configuration.addInstance("DateFieldWorker", DateFieldWorker.class,
-		// "after:RenderPhase");
 		configuration.addInstance("ImportJQueryUIWorker",
 				ImportJQueryUIWorker.class, "before:Import",
 				"after:RenderPhase");

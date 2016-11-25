@@ -36,11 +36,8 @@ import org.got5.tapestry5.jquery.DataTableConstants;
 /**
  * A default DataTable model that handles ajax mode.
  * Used for lazy loading and server-side pagination
- * 
- * @tapestrydoc 
  */
 public class DefaultDataTableModel implements DataTableModel {
-
 
     public class CustomGridDataSource implements GridDataSource {
 
@@ -157,13 +154,13 @@ public class DefaultDataTableModel implements DataTableModel {
 
     private AjaxFormUpdateController ajaxFormUpdateController;
 
-    private AjaxPartialResponseRenderer partialRenderer; 
+    private AjaxPartialResponseRenderer partialRenderer;
 
     private JSONObject response;
 
     /**
      * The JSONArray object that stores the datatable rows rendered by ajax
-     * */
+     */
     JSONArray rows;
 
     private final FakeInheritedBinding rowParam;
@@ -188,12 +185,13 @@ public class DefaultDataTableModel implements DataTableModel {
         rows = new JSONArray() ;
     }
 
-
     /**
      * This method will filter all your data by using the search input from your datatable.
+     *
+     * @param source any grid data source
+     * @return a filtered data source
      */
     public GridDataSource filterData(GridDataSource source){
-
 
         final List<Object> datas = new ArrayList<Object>();
 
@@ -225,14 +223,15 @@ public class DefaultDataTableModel implements DataTableModel {
 
         }
 
-
         return new CustomGridDataSource(datas);
 
     }
 
     /**
      * This method will set all the Sorting stuffs, thanks to DataTable parameters, coming from the request.
-     * see https://datatables.net/manual/server-side for more details 
+     * see https://datatables.net/manual/server-side for more details
+     *
+     * @param source the grid data source
      */
     public void prepareResponse(GridDataSource source){
 
@@ -250,17 +249,20 @@ public class DefaultDataTableModel implements DataTableModel {
 
             ColumnSort colSort =sortModel.getColumnSort(propName);
 
-            if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase()))) 
+            if(!(InternalUtils.isNonBlank(colSort.name()) && colSort.name().startsWith(sord.toUpperCase())))
                     sortModel.updateSort(propName);
         }
-     
+
     }
 
     /**
      * Method returning the desired data
-     * @throws IOException 
+     *
+     * @param source the grid data source
+     * @return the source’s data transformed to a JSONObject
+     * @throws IOException in case something went wrong while rendering the response
      */
-    public JSONObject getResponse(GridDataSource source) throws IOException{
+    public JSONObject getResponse(GridDataSource source) throws IOException {
         final String draw = request.getParameter(DataTableConstants.DRAW);
         final int records = source.getAvailableRows();
 
@@ -285,9 +287,9 @@ public class DefaultDataTableModel implements DataTableModel {
 
         source.prepare(startIndex,endIndex,sortModel.getSortConstraints() );
 
-        /**
+        /*
          * Add a filter to initialize the data to be sent to the client
-         * */
+         */
         pageRenderQueue.addPartialMarkupRendererFilter(
                 new PartialMarkupRendererFilter() {
 
@@ -304,8 +306,7 @@ public class DefaultDataTableModel implements DataTableModel {
         );
 
         for(int index=startIndex;index<=endIndex;index++)
-        {    
-            //JSONArray cell = new JSONArray();
+        {
             JSONObject cell = new JSONObject();
 
             rows.put(cell);
@@ -319,13 +320,13 @@ public class DefaultDataTableModel implements DataTableModel {
             {
                 Block override = overrides.getOverrideBlock(name+"Cell");
 
-                /**
+                /*
                  * Is the property overridden as a block
-                 * */
+                 */
                 if (override != null){
-                    /**
+                    /*
                      * Render the block from server-side !
-                     * */
+                     */
                     addPartialMarkupRendererFilter(override,source.getRowType() , obj, name, rowIndex, columnIndex, index);
                 }else{
 
@@ -346,34 +347,36 @@ public class DefaultDataTableModel implements DataTableModel {
                             val = val.toString();
                         }
                     }
-                    /**
+                    /*
                      * Render the value from server-side !
-                     * */
+                     */
                     addPartialMarkupRendererFilter(val,source.getRowType() , obj, name, rowIndex, columnIndex, index);
                 }
                 columnIndex++;
-            }                
+            }
         }
 
 
-        /**
+        /*
          * Even if it will be done once again in AjaxComponentEventRequestHandler , we must call partialRenderer.renderPartialPageMarkup() here to "flush" the PartialMarkupRendererFilters that we've added into the JSONArray !
          * It would be great if we could tell the partialRenderer that the job have already been done ...
-         * */
+         */
         partialRenderer.renderPartialPageMarkup();
 
-        /**
+        /*
          * Re-initialize the JSONArray for the next ajax request
-         * */
+         */
         rows = new JSONArray();
 
         return new JSONObject();
     }
 
-    /**
-     * This is the method we have to implement for the DataTableModel interface. 
-     * This is called in the DataTable component, when the datas are loaded by ajax.
-     * @throws IOException 
+    /*
+     * This is the method we have to implement for the DataTableModel interface.
+     * This is called in the DataTable component, when the data is loaded by ajax.
+     *
+     * (non-Javadoc)
+     * @see org.got5.tapestry5.jquery.internal.DataTableModel#sendResponse(org.apache.tapestry5.services.Request, org.apache.tapestry5.grid.GridDataSource, org.apache.tapestry5.beaneditor.BeanModel, org.apache.tapestry5.grid.GridSortModel, org.apache.tapestry5.PropertyOverrides, boolean)
      */
     public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides, boolean mode) throws IOException {
 
@@ -384,9 +387,9 @@ public class DefaultDataTableModel implements DataTableModel {
 
         GridDataSource s = new CustomGridDataSource(source);
 
-        /**
+        /*
          * Filter available data in a normal mode.
-         * For ajax mode, we give the opportunity to the developer to filter data on server-side 
+         * For ajax mode, we give the opportunity to the developer to filter data on server-side
          */
         if(mode){
             if(InternalUtils.isNonBlank(request.getParameter(DataTableConstants.SEARCH_VALUE))) s = filterData(source);
@@ -404,10 +407,11 @@ public class DefaultDataTableModel implements DataTableModel {
      * @param override, the block or the value to render
      * @param type, the type of the object to put inside the environment service. Required to render an item inside a loop
      * @param value, the value of the object to put inside the environment service. Required to render an item inside a loop
+     * @param columnName the column’s name
      * @param rowIndex, the line number of the cell
-     * @param cellIndex, the column number of the cell
+     * @param columnIndex, the column number of the cell
      * @param globalIndex, the global index iteration
-     * */
+     */
     public void addPartialMarkupRendererFilter(final Object override, final Class type, final Object value, final String columnName, final int rowIndex, final int columnIndex, final int globalIndex) {
 
         final RenderCommand renderCommand = typeCoercer.coerce(override, RenderCommand.class);
@@ -416,7 +420,7 @@ public class DefaultDataTableModel implements DataTableModel {
                 new PartialMarkupRendererFilter() {
 
                     public void renderMarkup(MarkupWriter writer, final JSONObject reply, PartialMarkupRenderer renderer)
-                    {                     
+                    {
                         RenderCommand forZone = new RenderCommand()
                         {
                             public void render(MarkupWriter writer, RenderQueue queue)
@@ -427,10 +431,10 @@ public class DefaultDataTableModel implements DataTableModel {
                                 final Element zoneContainer = writer.element("ajax-partial");
 
                                 ajaxFormUpdateController.setupBeforePartialZoneRender(writer);
-                                /**
+                                /*
                                  * propagate the current item and the row index of the loop into the container
                                  * this is to allow the block to use it when rendering itself
-                                 * */
+                                 */
                                 rowParam.set(value);
                                 rowIndexParam.set(globalIndex);
 
@@ -453,18 +457,18 @@ public class DefaultDataTableModel implements DataTableModel {
                                         }
 
                                         if(! (override instanceof Block)){
-                                            /**
-                                             * Must check JSONArray's length because partialRenderer.renderPartialPageMarkup() is done twice (see AjaxComponentEventRequestHandler)!
-                                             * */
 
+                                            /*
+                                             * Must check JSONArray's length because partialRenderer.renderPartialPageMarkup() is done twice (see AjaxComponentEventRequestHandler)!
+                                             */
                                             if(rows.length()>rowIndex)
                                             {
                                                 rows.getJSONObject(rowIndex).put(columnName,override);
                                             }
                                         }else{
-                                            /**
+                                            /*
                                              * Must check JSONArray's length because partialRenderer.renderPartialPageMarkup() is done twice (see AjaxComponentEventRequestHandler)!
-                                             * */
+                                             */
                                             if(rows.length()>rowIndex)
                                             {
                                                 rows.getJSONObject(rowIndex).put(columnName,zoneUpdateContent);
@@ -487,5 +491,5 @@ public class DefaultDataTableModel implements DataTableModel {
                     }
                 }
         );
-    } 
+    }
 }

@@ -10,14 +10,11 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 
 /**
- * Interface used when your dataTable load the data by using ajax. You will have to implement 
- * the sendResponse. 
- * 
- * @tapestrydoc 
+ * Interface used when your dataTable load the data by using ajax. You will have
+ * to implement the sendResponse.
  */
 public interface DataTableModel {
-	
-	
-	public abstract JSONObject sendResponse(Request request,
-			GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides, boolean mode) throws IOException;
+
+    JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides, boolean mode)
+            throws IOException;
 }

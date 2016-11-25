@@ -3,7 +3,9 @@ package org.got5.tapestry5.jquery.components;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ClientElement;

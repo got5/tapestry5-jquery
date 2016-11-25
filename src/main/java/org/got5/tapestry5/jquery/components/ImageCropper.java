@@ -39,7 +39,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 /**
 * @since 3.3.1
 * @see <a href="http://deepliquid.com/content/Jcrop.html">jCrop</a>
-* 
 * @tapestrydoc
 */
 @Import(
@@ -47,7 +46,7 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 @SupportsInformalParameters
 public class ImageCropper implements ClientElement{
-	
+
 	@Environmental
     private JavaScriptSupport _support;
 
@@ -58,13 +57,15 @@ public class ImageCropper implements ClientElement{
 	 * The image asset to render.
 	 * @deprecated Please use directly the asset parameter
 	 */
-	@Parameter(defaultPrefix = BindingConstants.LITERAL)
+	@Deprecated
+    @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String _src;
-	
+
 	/**
 	 * @deprecated Please use directly the asset parameter
 	 */
-	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "context")
+	@Deprecated
+    @Parameter(defaultPrefix = BindingConstants.LITERAL, value = "context")
 	private String _domain;
 
 	/**
@@ -72,46 +73,46 @@ public class ImageCropper implements ClientElement{
 	 */
 	@Parameter(defaultPrefix = BindingConstants.ASSET)
     private Asset asset;
-	
+
 	@Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
 	private String clientId;
-	
+
 	/**
-     * The zone to update when onSelect event occured on the jcrop. 
-     * An "select" event is triggered on the server. 
+     * The zone to update when onSelect event occured on the jcrop.
+     * An "select" event is triggered on the server.
      * You can catch it on your page with @OnEvent(value=EventConstants.SELECTED, component="ImageCropper").
      */
     @Parameter(defaultPrefix=BindingConstants.LITERAL)
     private String zone;
-	
+
     /**
 	 * JSON options for the jcrop component
-	 * awaited options are 
+	 * awaited options are
 	 * - aspectRatio to define the ratio
 	 * - setSelect array of value for x,y,x2,y2
 	 */
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private JSONObject options;
 
-    
+
 	@Inject
 	private AssetSource assetSource;
 
-	@Inject 
+	@Inject
 	private ComponentResources cr;
-	
+
 	@BeginRender
 	void begin(MarkupWriter writer)
 	{
 	    String clientId = _support.allocateClientId(_resources.getId());
-	    
+
 	    Asset image = asset;
 	    if(!_resources.isBound("asset"))
 	    	image = assetSource.getAsset(null, _domain + ":" + _src, null);
-	    
-	    
+
+
 	    writer.element("img", "src", image.toClientURL(), "id", clientId);
-	    
+
 	    if(cr.isBound("zone")){
 	    	writer.attributes("data-update-zone", zone);
 	    }
@@ -136,11 +137,11 @@ public class ImageCropper implements ClientElement{
     		jso.put("url", link.toAbsoluteURI());
     		jso.put("zoneId", zone);
     	}
-		
+
 		JQueryUtils.merge(jso, options);
-		
+
 		_support.require("tjq/imagecropper").with(jso);
-		
+
 	}
 
 	public String getClientId() {

@@ -25,11 +25,9 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.ContentType;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Field;
-import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
@@ -40,23 +38,26 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ResponseRenderer;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.apache.tapestry5.util.TextStreamResponse;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
+ * <p>
  * A mixin for a text field that allows for autocompletion of text fields. This is based on Prototype's autocompleter
  * control.
- * <p/>
+ * </p>
+ * <p>
  * The mixin renders an (initially invisible) progress indicator after the field (it will also be after the error icon
  * most fields render). The progress indicator is made visible during the request to the server. The mixin then renders
  * a &lt;div&gt; that will be filled in on the client side with dynamically obtained selections.
- * <p/>
+ * </p>
+ * <p>
  * Multiple selection on the client is enabled by binding the tokens parameter (however, the mixin doesn't help split
  * multiple selections up on the server, that is still your code's responsibility).
- * <p/>
+ * </p>
+ * <p>
  * The container is responsible for providing an event handler for event "providecompletions". The context will be the
  * partial input string sent from the client. The return value should be an array or list of completions, in
  * presentation order. I.e.
- * <p/>
+ * </p>
  *
  * <pre>
  * String[] onProvideCompletionsFromMyField(String input)
@@ -66,6 +67,7 @@ import org.got5.tapestry5.jquery.ImportJQueryUI;
  * </pre>
  *
  * @see <a href="http://jqueryui.com/autocomplete/">jQuery UI Official Documentation</a>
+ *
  * @tapestrydoc
  */
 @Events(EventConstants.PROVIDE_COMPLETIONS)
@@ -165,15 +167,15 @@ public class Autocomplete
 
         String input = json.getString(PARAM_NAME);
 
-        final Holder<List> matchesHolder = Holder.create();
+        final Holder<List<?>> matchesHolder = Holder.create();
 
         // Default it to an empty list.
 
         matchesHolder.put(Collections.emptyList());
 
-        ComponentEventCallback<List> callback = new ComponentEventCallback<List>()
+        ComponentEventCallback<List<?>> callback = new ComponentEventCallback<List<?>>()
         {
-            public boolean handleResult(List result)
+            public boolean handleResult(List<?> result)
             {
                 matchesHolder.put(result);
 
@@ -201,9 +203,11 @@ public class Autocomplete
     /**
      * Transforms the matches into a JSONArray
      *
+     * @param matches the matched objects
+     *
      * @return JSONArray of available responses
      */
-    protected JSONArray generateResponseJSON(List matches)
+    protected JSONArray generateResponseJSON(final List<?> matches)
     {
         JSONArray array = new JSONArray();
         for (Object o : matches)

@@ -2,29 +2,28 @@ package org.got5.tapestry5.jquery;
 
 
 public class JQuerySymbolConstants {
-	
+
 	public static final String JQUERY_VERSION = "jquery.version";
-	
+
 	public static final String JQUERY_UI_VERSION = "jquery.ui.version";
 
 	public static final String JQUERY_JSON_VERSION = "jquery.json.version";
-	
+
 	public static final String ASSETS_PATH = "assets.path";
-	
+
 	public static final String ASSETS_ROOT = "jquery.assets.root";
-	
+
 	/**
 	 * Base path for jQuery UI. Must include a "minified" directory that
 	 * contains the .min-files for production mode.
 	 */
 	public static final String JQUERY_UI_PATH = "jquery.ui.path";
-	
-	
-	
+
+
+
 	////////////////////////////////MIGRATION TO 5.4
 	/**
-	 * The base path of the replaced version for tapestry.js. Also the
-	 * resources-base for {@link AjaxUpload}.
+	 * The base path of the replaced version for tapestry.js.
 	 */
 	public static final String TAPESTRY_JQUERY_PATH = "tapestry.jquery.path";
 
@@ -40,9 +39,9 @@ public class JQuerySymbolConstants {
 	 */
 	public static final String JQUERY_CORE_PATH = "jquery.core.path";
 
-	
 
-	
+
+
 
 	/**
 	 * Path to the theme-css file for jQuery UI.
@@ -51,7 +50,7 @@ public class JQuerySymbolConstants {
 
 	/**
 	 * Base path for jQuery validation plugin.
-	 * 
+	 *
 	 * @see <a href="http://docs.jquery.com/Plugins/Validation">jQuery
 	 *      Validation mecanism</a>
 	 */
@@ -62,7 +61,7 @@ public class JQuerySymbolConstants {
 	 */
 	public static final String SUPPRESS_PROTOTYPE = "suppress.prototype";
 
-	
+
 
 	/**
 	 * Indicates the jQuery Alias we want to use : $, jQuery, ...
@@ -79,10 +78,10 @@ public class JQuerySymbolConstants {
 	public static final String USE_MINIFIED_JS = "use.minified.js";
 
 	/**
-	 * 
+	 *
 	 * Indicates if your application should manage the mousewheel event, from
 	 * the
-	 * 
+	 *
 	 * the jQuery Mouse Wheel Plugin
 	 * (http://brandonaaron.net/code/mousewheel/demos)
 	 */

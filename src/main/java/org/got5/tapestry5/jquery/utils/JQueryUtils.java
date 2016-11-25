@@ -12,12 +12,12 @@ import org.apache.tapestry5.services.javascript.StylesheetLink;
 public class JQueryUtils {
 	/**
 	 * Merge obj1 with obj2. Obj2 has predominance.
-	 * 
-	 * @param obj1
-	 * @param obj2
+	 *
+	 * @param obj1 base object
+	 * @param obj2 merged into obj1
 	 * @return null if obj1 is null. Else return obj1 merged with obj2
 	 */
-	public final static JSONObject merge(JSONObject obj1, JSONObject obj2) {
+	public final static JSONObject merge(final JSONObject obj1, final JSONObject obj2) {
 		if (obj1 == null)
 			return null;
 
@@ -36,7 +36,7 @@ public class JQueryUtils {
 			return new StylesheetLink(input);
 		};
 	};
-	
+
 	//TODO Unit Test
 	public static JSONObject convertInformalParametersToJson(
 			final ComponentResources resources, final String prefix) {
@@ -53,7 +53,7 @@ public class JQueryUtils {
 						resources.getInformalParameter(params, String.class));
 			}
 		});
-		
+
 		return json;
 	}
 

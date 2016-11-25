@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.components;
+package org.got5.tapestry5.jquery.base;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
@@ -6,18 +6,15 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.got5.tapestry5.jquery.components.GridColumns;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
-import org.got5.tapestry5.jquery.internal.TableInformation;
 
-/**
- * @tapestrydoc
- */
 public abstract class AbstractJQueryTable extends AbstractTable {
 
 	/**
 	 * if false, all the datas will be loaded once. if true, a ajax request will
 	 * be sent each time is needed.
-	 * 
+	 *
 	 * @see DataTableModel
 	 */
 	@Parameter(value = "false", defaultPrefix = BindingConstants.LITERAL)
@@ -62,6 +59,8 @@ public abstract class AbstractJQueryTable extends AbstractTable {
 	/**
 	 * Get the DataTableModel. If the dataTableModel parameter is not bound, we
 	 * will use the default implementation
+	 *
+	 * @return the DataTableModel
 	 */
 	public DataTableModel getDataTModel() {
 		if (resources.isBound("dataTableModel")) {
@@ -72,5 +71,5 @@ public abstract class AbstractJQueryTable extends AbstractTable {
 
 	protected abstract DataTableModel getDefaultDataTableModel();
 
-	
+
 }
