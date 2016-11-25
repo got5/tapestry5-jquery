@@ -36,7 +36,7 @@ define(["t5/core/dom", "t5/core/events","datepickerLocal"], function(dom, events
                 buttonImageOnly: false,
                 disabled: field.attr("disabled"), 
                 defaultDate: field.val() 
-            }, field.data('cutomDatepicker'));
+            }, field.data('customDatepicker'));
       _results.push(
       		field.datepicker(params));
     }
