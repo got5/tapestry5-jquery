@@ -51,6 +51,8 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 	private final String jQueryAlias;
 
+	private final String jQueryUiVersion;
+	
 	private final List<Asset> jQueryJsStack;
 
 	private final AssetSource assetSource;
@@ -65,7 +67,9 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 			@Symbol(JQuerySymbolConstants.USE_MINIFIED_JS) final boolean minified,
 
 			@Symbol(JQuerySymbolConstants.JQUERY_ALIAS) final String jQueryAlias,
-
+			
+			@Symbol(JQuerySymbolConstants.JQUERY_UI_VERSION) final String jQueryUiVersion,
+			
 			@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE) final boolean suppressPrototype,
 
 			@Symbol(JQuerySymbolConstants.ADD_MOUSEWHEEL_EVENT) final boolean mouseWheel,
@@ -91,6 +95,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 		this.assetSource = assetSource;
 		this.jQueryAlias = jQueryAlias;
+		this.jQueryUiVersion = jQueryUiVersion;
 		this.jsStackSource = jsStackSrc;
 		this.effectsParam = effectsParam;
 		this.jsConf = jsConf;
@@ -106,8 +111,7 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 								pathMin.lastIndexOf(".js"), ".min").toString();
 					} else if (path.contains("${jquery.ui.path}")) {
 						path = new StringBuffer(pathMin)
-								.insert(pathMin.lastIndexOf(".js"), ".min")
-								.insert(pathMin.lastIndexOf('/'), "/minified")
+								.insert(pathMin.indexOf(jQueryUiVersion)+jQueryUiVersion.length(), "/minified")
 								.toString();
 					}
 				}
@@ -121,7 +125,6 @@ public class JQueryJavaScriptStack implements JavaScriptStack {
 
 		jQueryJsStack = F
 				.flow("${jquery.core.path}",
-						//"${jquery.ui.path}/core.js",
 						"${jquery.ui.path}/version.js",
 						"${jquery.ui.path}/position.js",
 						"${jquery.ui.path}/widget.js",

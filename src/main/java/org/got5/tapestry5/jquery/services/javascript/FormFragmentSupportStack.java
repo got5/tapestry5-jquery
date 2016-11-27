@@ -36,7 +36,7 @@ public class FormFragmentSupportStack implements JavaScriptStack {
         if (minified) {
 
             javaScriptStack = F.flow("${assets.path}/components/formfragment/formfragment.js",
-                                     "${jquery.ui.path}/minified/effects/effect-blind.min.js")
+                                     "${jquery.ui.path}/minified/effects/effect-blind.js")
                                .map(pathToAsset).toList();
         } else {
 

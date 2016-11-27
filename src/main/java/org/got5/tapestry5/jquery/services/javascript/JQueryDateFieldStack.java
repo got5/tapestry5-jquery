@@ -133,9 +133,8 @@ public class JQueryDateFieldStack implements JavaScriptStack
 
         final List<Asset> javaScriptStack = new ArrayList<Asset>();
 
-        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s/widgets/datepicker%s.js", jQueryUIPath, 
-        		(minified ? "/minified" : ""),
-        		(minified ? ".min" : ""))));
+        javaScriptStack.add(assetSource.getClasspathAsset(String.format("%s%s/widgets/datepicker.js", jQueryUIPath, 
+        		(minified ? "/minified" : ""))));
 
         final Asset datePickerI18nAsset = getLocaleAsset(threadLocale.getLocale(), jQueryUIPath);
 
