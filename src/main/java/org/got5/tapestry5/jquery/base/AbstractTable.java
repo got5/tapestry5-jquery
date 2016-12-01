@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.components;
+package org.got5.tapestry5.jquery.base;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -12,7 +12,11 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
-import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
@@ -33,9 +37,6 @@ import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.internal.TableInformation;
 
-/**
- * @tapestrydoc
- */
 @SupportsInformalParameters
 public class AbstractTable implements ClientElement {
 
@@ -94,7 +95,7 @@ public class AbstractTable implements ClientElement {
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String add;
-	
+
 	/**
 	 * Defines where block and label overrides are obtained from. By default,
 	 * the Grid component provides block overrides (from its block parameters).
@@ -137,7 +138,7 @@ public class AbstractTable implements ClientElement {
 	@SuppressWarnings("unused")
 	@Parameter
 	private Object value;
-	
+
 	/**
 	 * If true, then the Grid will be wrapped in an element that acts like a
 	 * {@link org.apache.tapestry5.corelib.components.Zone}; all the paging and
@@ -146,27 +147,27 @@ public class AbstractTable implements ClientElement {
 	 */
 	@Parameter
 	private boolean inPlace;
-	
+
 	/**
 	 * Parameter used to define some parameters of a HTML table : caption, summary, css class
 	 */
 
 	@Parameter(required = false)
 	private Object row;
-	
+
 	@Parameter
 	private int rowIndex;
-	
+
 	@Parameter(cache = false)
 	private String rowClass;
-	
+
 	@Property
 	@Parameter(cache=false)
 	private int columnIndex;
-	
+
 	@Parameter(defaultPrefix = BindingConstants.PROP)
 	private TableInformation tableInformation;
-	
+
 	/**
 	 * The model parameter after modification due to the add, include, exclude
 	 * and reorder parameters.
@@ -182,23 +183,23 @@ public class AbstractTable implements ClientElement {
 
 	@Inject
 	private BeanModelSource modelSource;
-	
-	@Inject 
+
+	@Inject
 	private TranslatorSource translatorSource;
 	@Persist
 	private Boolean sortAscending;
 
 	@Persist
 	private String sortColumnId;
-	
+
 	private String clientId;
-	
+
 	@Property
 	private Integer index;
 
 	@Property
 	private String cellModel;
-	
+
 	@Inject
 	private TypeCoercer typeCoercer;
 
@@ -250,7 +251,7 @@ public class AbstractTable implements ClientElement {
 	public GridDataSource getSource() {
 		return source;
 	}
-	
+
 	/**
 	 * Default implementation that only allows a single column to be the sort
 	 * column, and stores the sort information as persistent fields of the Grid
@@ -300,9 +301,9 @@ public class AbstractTable implements ClientElement {
 	GridSortModel defaultSortModel() {
 		return new DefaultGridSortModel();
 	}
-	
-	public PropertyOverrides getOverrides(){ 
-		return overrides; 
+
+	public PropertyOverrides getOverrides(){
+		return overrides;
 	}
 	/**
 	 * Returns a {@link org.apache.tapestry5.Binding} instance that attempts to
@@ -310,16 +311,18 @@ public class AbstractTable implements ClientElement {
 	 * {@link org.apache.tapestry5.grid.GridDataSource#getRowType()}. Subclasses
 	 * may override to provide a different mechanism. The returning binding is
 	 * variant (not invariant).
-	 * 
+	 *
 	 * @see BeanModelSource#createDisplayModel(Class,
 	 *      org.apache.tapestry5.ioc.Messages)
+	 *
+	 * @return {@link org.apache.tapestry5.Binding}
 	 */
 	protected Binding defaultModel() {
 		return new AbstractBinding() {
 			public Object get() {
 				// Get the default row type from the data source
 
-				GridDataSource gridDataSource = (GridDataSource) getSource();
+				GridDataSource gridDataSource = getSource();
 
 				Class rowType = gridDataSource.getRowType();
 
@@ -348,7 +351,7 @@ public class AbstractTable implements ClientElement {
 			}
 		};
 	}
-	
+
 	/**
 	 * A version of GridDataSource that caches the availableRows property. This
 	 * addresses TAPESTRY-2245.
@@ -385,12 +388,12 @@ public class AbstractTable implements ClientElement {
 		public Class getRowType() {
 			return delegate.getRowType();
 		}
-		
-		
 	}
 
 	/**
-	 * In order to get the css of a specific row
+	 * Returns the css class of a specific row
+	 *
+	 * @return the table row css class
 	 */
 	public String getRowClass()
     {
@@ -404,19 +407,20 @@ public class AbstractTable implements ClientElement {
 
        return TapestryInternalUtils.toClassAttributeValue(classes);
     }
-	
+
 	/**
-	 * In order to get the value of a specific cell
+	 * Returns the value of a specific cell
+	 *
+	 * @return the value of the current cell.
 	 */
 	public Object getCellValue() {
-		
-		
+
 		Object obj = getSource().getRowValue(index);
 
 		if (obj == null) { //rows can be null, as stated in getRowValue docs
 		    return "";
 		}
-		
+
 		PropertyConduit conduit = getDataModel().get(cellModel).getConduit();
 
 		Class type = conduit.getPropertyType();
@@ -426,7 +430,7 @@ public class AbstractTable implements ClientElement {
 		if (val == null) { //cells should be able to have null values
 		    return "";
 		}
-		
+
 		if (!String.class.equals(getDataModel().get(cellModel).getClass())
                 && !Number.class.isAssignableFrom(getDataModel().get(cellModel).getClass()))
         {
@@ -440,19 +444,22 @@ public class AbstractTable implements ClientElement {
             	val = val.toString();
             }
         }
-            
+
 		return val;
 	}
 
 	/**
-	 * source of the seconf loop component, in order to loop on each cells
+	 * @see BeanModel#getPropertyNames()
+	 * @return a list of all property names of the data model.
 	 */
 	public List<String> getPropertyNames() {
-		return (List<String>) getDataModel().getPropertyNames();
+		return getDataModel().getPropertyNames();
 	}
 
 	/**
-	 * Iterator for the look component in order to loop to each rows
+	 * Iterator for the loop component in order to loop to each row
+	 *
+	 * @return the iterator
 	 */
 	public Iterable<Integer> getLoopSource() {
 
@@ -505,7 +512,7 @@ public class AbstractTable implements ClientElement {
 
 	@Inject
 	private Block cell;
-	
+
 	public Block getCellBlock(){
 		rowIndex = index;
 		Block override = overrides.getOverrideBlock(getDataModel().get(cellModel).getPropertyName()+"Cell");

@@ -15,13 +15,12 @@ import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
- * There are a few components you can use to create a dialog in your pages. 
+ * There are a few components you can use to create a dialog in your pages.
  *  - Dialog, this is the base of your Dialog, just put the content of your dialog inside.
  * 	- DialogLink, clicking a DialogLink will make the associated Dialog to open.
  *	- DialogAjaxLink, clicking a DialogAjaxLink will open the associated Dialog and refresh the zone you've set inside the Dalog.
  *
  * @see <a href="http://jqueryui.com/dialog/">jQuery UI Official Documentation</a>
- * 
  * @tapestrydoc
  */
 @SupportsInformalParameters
@@ -42,9 +41,9 @@ public class DialogAjaxLink extends DialogLink
 
     @Inject
     private ComponentResources resources;
-    
+
     @Inject
-    private JavaScriptSupport javaScriptSupport;    
+    private JavaScriptSupport javaScriptSupport;
 
     @Inject
     private AssetSource source;
@@ -62,9 +61,9 @@ public class DialogAjaxLink extends DialogLink
     {
     	resources.renderInformalParameters(writer);
         writer.end();
-        
+
         Link link = resources.createEventLink(EventConstants.ACTION, context);
-        
+
         JSONObject params = new JSONObject();
         params.put("element", getClientId());
         params.put("zoneId", zone);
@@ -74,6 +73,6 @@ public class DialogAjaxLink extends DialogLink
         javaScriptSupport.require("tjq/dialogajaxlink").with(params);
     }
 
-   
+
 
 }

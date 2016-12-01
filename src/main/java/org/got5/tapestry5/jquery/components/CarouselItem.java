@@ -16,7 +16,13 @@
 package org.got5.tapestry5.jquery.components;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tapestry5.*;
+import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.Link;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.PropertyOverrides;
+import org.apache.tapestry5.Renderable;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
@@ -28,7 +34,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * @since 2.1.1
- *
  * @tapestrydoc
  */
 @SupportsInformalParameters
@@ -92,11 +97,8 @@ public class CarouselItem implements ClientElement {
 	}
 
 	public boolean isEventlink(){
-        StringUtils StringUtils;
-        return org.apache.commons.lang3.StringUtils.isNotEmpty(event);
+        return StringUtils.isNotEmpty(event);
 	}
-
-	
 
 	void setupRender() {
 

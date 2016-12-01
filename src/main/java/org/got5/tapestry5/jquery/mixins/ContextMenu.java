@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Context Menu component.
- *
+ * @tapestrydoc
  */
 @Import(stylesheet = "${jquery.assets.root}/vendor/mixins/contextmenu/jquery.contextMenu.css")
 public class ContextMenu {
@@ -42,7 +42,7 @@ public class ContextMenu {
 	 * Specifies the event to show the contextMenu.
 	 * Possible values: "right", "left", "hover", "none".
 	 *
-	 * @default right
+	 * default: right
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL, value="right")
 	@Property
@@ -52,7 +52,7 @@ public class ContextMenu {
 	 * Specifies the time in milliseconds to wait before showing the menu.
 	 * Only applies to trigger="hover".
 	 *
-	 * @default 200
+	 * default: 200
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL, value="200")
 	@Property
@@ -61,7 +61,7 @@ public class ContextMenu {
 	/**
 	 * Specifies if the menu must be hidden when the mouse pointer is moved out of the trigger and menu elements.
 	 *
-	 * @default false
+	 * default: false
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL, value="false")
 	@Property
@@ -71,7 +71,7 @@ public class ContextMenu {
 	 * Specifies the offset to add to the calculated zIndex of the trigger element.
 	 * Set to 0 to prevent zIndex manipulation.
 	 *
-	 * @default 1
+	 * default: 1
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL, value="1")
 	@Property

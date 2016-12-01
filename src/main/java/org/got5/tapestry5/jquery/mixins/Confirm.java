@@ -4,21 +4,19 @@ import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
-import org.got5.tapestry5.jquery.services.javascript.ConfirmStack;
 import org.got5.tapestry5.jquery.services.messages.MessageProvider;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * A mixin used to attach a JavaScript confirmation box to the onclick
  * event of any component that implements ClientElement.
+ * @tapestrydoc
  */
 public class Confirm
 {
@@ -91,16 +89,16 @@ public class Confirm
 	@Parameter(value = "false", defaultPrefix = BindingConstants.LITERAL)
 	private boolean useDefaultConfirm;
 
-	
+
 	/**
 	 * since 3.4.3
 	 * The Confirm parameters you want to override.
-	 * 
+	 *
 	 * This will be used only if seDefaultConfirm = false (defaultValue):
 	 */
 	@Parameter
 	private JSONObject params;
-	
+
 	//Injected services.
 
     @Inject
@@ -135,7 +133,7 @@ public class Confirm
     	config.put("isDraggable", isDraggable);
     	config.put("height", height);
     	config.put("width", width);
-    	
+
     	/*
     	 * We will merge the default JSON Object with the params parameter
     	 */
@@ -144,7 +142,7 @@ public class Confirm
     		JQueryUtils.merge(config, params);
     	}
 
-    	
+
         javaScriptSupport.require("tjq/confirm").priority(InitializationPriority.EARLY).with(config);
 
     }

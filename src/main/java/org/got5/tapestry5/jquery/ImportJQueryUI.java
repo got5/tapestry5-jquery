@@ -1,8 +1,6 @@
 package org.got5.tapestry5.jquery;
 
-import static org.apache.tapestry5.ioc.annotations.AnnotationUseContext.COMPONENT;
-import static org.apache.tapestry5.ioc.annotations.AnnotationUseContext.MIXIN;
-import static org.apache.tapestry5.ioc.annotations.AnnotationUseContext.PAGE;
+import static org.apache.tapestry5.ioc.annotations.AnnotationUseContext.*;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -27,9 +25,6 @@ public @interface ImportJQueryUI {
      * @see JQuerySymbolConstants#JQUERY_UI_PATH
      */
     String[] value() default {};
-    
-    /**
-     * 
-     */
+
     String theme() default "";
 }

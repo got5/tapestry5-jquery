@@ -32,35 +32,35 @@ public class Widget {
 	/*
 	 * JavaScript options to pass to the plugin during intialization.
 	 * May be a JSONObject or a String when you only have one plugin to insert
-	 * Or (if ou have several plugins -> thus several stack names), a HashMap<String,JSONObject) 
+	 * Or (if ou have several plugins -> thus several stack names), a HashMap<String,JSONObject)
 	 * where the key is the JavaScriptStack name and the JSONObject is the option to initialize this specific plugin.
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private Object options;
-	
+
 	/*
 	 * Client Id of the element
 	 */
     @Parameter(value = "prop:componentResources.id", defaultPrefix = BindingConstants.LITERAL)
     private String clientId;
-	
+
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
-	
+
     @Inject
     private ComponentResources resources;
-    
+
 	@Inject
 	@Symbol(JQuerySymbolConstants.JQUERY_ALIAS)
 	private String jqueryAlias;
-	
+
 	private String[] stacks;
-	
+
 	private HashMap<String, JSONObject> optionsMap;
-	
+
 	@SetupRender
 	public void addTheJSLibs(){
-		stacks = name.split(",");			
+		stacks = name.split(",");
 		if(resources.isBound("options")){
 			if(options!=""){
 				Class optionsType = resources.getBoundType("options");
@@ -79,13 +79,13 @@ public class Widget {
 		}
 		else optionsMap = new HashMap<String, JSONObject>();
 	}
-	
+
 	@BeginRender
     void startDiv(MarkupWriter writer)
     {
         writer.element("div", "id", clientId);
     }
-	
+
 	@AfterRender
 	void afterRender(MarkupWriter writer) {
 		resources.renderInformalParameters(writer);

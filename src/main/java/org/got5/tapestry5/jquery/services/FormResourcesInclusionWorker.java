@@ -33,9 +33,6 @@ public class FormResourcesInclusionWorker implements ComponentClassTransformWork
 {
     private final JavaScriptSupport javaScriptSupport;
 
-    /**
-     * @param javaScriptSupport
-     */
     public FormResourcesInclusionWorker(JavaScriptSupport javaScriptSupport)
     {
     	this.javaScriptSupport = javaScriptSupport;
@@ -46,16 +43,16 @@ public class FormResourcesInclusionWorker implements ComponentClassTransformWork
     	if (model.getComponentClassName().equals(Form.class.getName()))
         {
     		PlasticMethod setupRender = plasticClass.introduceMethod(TransformConstants.SETUP_RENDER_DESCRIPTION);
-    		
+
     		setupRender.addAdvice(new MethodAdvice() {
-				
+
 				public void advise(MethodInvocation invocation) {
 					javaScriptSupport.importStack(FormSupportStack.STACK_ID);
 
 	                invocation.proceed();
 				}
 			});
-    		
+
     		model.addRenderPhase(SetupRender.class);
         }
 	}

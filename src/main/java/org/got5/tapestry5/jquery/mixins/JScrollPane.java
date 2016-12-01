@@ -9,6 +9,9 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @tapestrydoc
+ */
 @Import(stylesheet = "${jquery.assets.root}/vendor/mixins/jscrollpane/jquery.jscrollpane.css")
 public class JScrollPane {
 	/**
@@ -16,13 +19,13 @@ public class JScrollPane {
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private JSONObject options;
-	
+
 	@InjectContainer
 	private ClientElement clientElement;
-	
-	@Inject 
+
+	@Inject
 	private JavaScriptSupport js;
-	
+
 	void afterRender() {
 		if(options == null) options = new JSONObject();
 		JSONObject opt = new JSONObject();

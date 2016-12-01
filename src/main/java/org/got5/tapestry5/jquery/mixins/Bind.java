@@ -7,7 +7,6 @@ import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -18,7 +17,7 @@ import org.got5.tapestry5.jquery.EffectsConstants;
 
 /**
  * @since 2.6.0
- * 
+ *
  * @tapestrydoc
  */
 public class Bind {
@@ -72,9 +71,9 @@ public class Bind {
 	private String zoneUpdate;
 
 	/**
-	 * Javascript anonymous function called by the event. The signature is function(event,ui,url) 
-	 * where event and ui are described by jQuery bind. 
-	 * The url parameter is structure representing the Tapestry event url and contains the url and 
+	 * Javascript anonymous function called by the event. The signature is function(event,ui,url)
+	 * where event and ui are described by jQuery bind.
+	 * The url parameter is structure representing the Tapestry event url and contains the url and
 	 * a function to add a context. See examples below.
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
@@ -91,16 +90,16 @@ public class Bind {
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String title;
-	
+
 	/**
-	 * Javascript anonymous function called by the event. Used to manage history on the browser. 
+	 * Javascript anonymous function called by the event. Used to manage history on the browser.
 	 * Signature is history(event,ui,url). The parameter types are identical to callback.
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String history;
 
 	/**
-	 * Name of the jQuery event. By subclassing bind you can create mixins named by the jQuery event type. 
+	 * Name of the jQuery event. By subclassing bind you can create mixins named by the jQuery event type.
 	 * This allows more than one event per element.
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
@@ -153,7 +152,7 @@ public class Bind {
 	String event() {
 		return event;
 	}
-	
+
 	Link createLink(String event, String marker) {
 		ComponentResources parent = resources.getContainerResources()
 				.getContainerResources();
@@ -200,7 +199,7 @@ public class Bind {
 		// spec.put("jcontext", new JSONLiteral(jcontext));
 		// }
 		spec.put("callback", callback);
-		
+
 		javaScriptSupport.require("tjq/bind").with(spec);
 //		if (doImports) {
 //			if (zoneUpdate != null) {
@@ -216,10 +215,10 @@ public class Bind {
 //				}
 //			}
 //		}
-//		
+//
 //		javaScriptSupport.require("tjq/bind").with(spec);
 	}
-	
+
 	private String findEffect(String effect) {
 		effect = effect.toUpperCase();
 		if ( effect.equals("BLIND")) {
@@ -260,5 +259,5 @@ public class Bind {
 		}
 		return null;
 	}
-	
+
 }

@@ -14,7 +14,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
- * 
+ * @tapestrydoc
  */
 @Import(stylesheet = "${jquery.assets.root}/vendor/components/ddslick/DdSlickComponent.css")
 @SupportsInformalParameters
@@ -44,13 +44,14 @@ public class DdSlick implements ClientElement {
 
 	@Inject
 	private ComponentResources resources;
-	
+
 	public String getZone(){return zone; }
+
 	@AfterRender
-	
-	public void setupRender(MarkupWriter writer){
+	public void setupRender(MarkupWriter writer) {
 		writer.element("div", "id", getClientId(), "data-update-zone", zone);
 	}
+
 	public void afterRender(MarkupWriter writer) {
 		resources.renderInformalParameters(writer);
 		writer.end();

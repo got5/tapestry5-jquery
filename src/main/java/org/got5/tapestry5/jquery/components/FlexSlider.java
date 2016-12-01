@@ -14,42 +14,45 @@ import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+/**
+ * @tapestrydoc
+ */
 @Import(stylesheet = "${jquery.assets.root}/vendor/components/flexslider/flexslider.css")
 public class FlexSlider {
 	@Parameter
 	private JSONObject params;
-	
+
 	@Property
 	private String id;
-	
+
 	@Inject
 	private JavaScriptSupport javaScriptSupport;
-	
+
 	@Inject
     private ComponentResources resources;
-	
+
 	@SetupRender
 	public void beginRender(MarkupWriter writer) {
 		id = javaScriptSupport.allocateClientId(resources);
 		writer.addListener(new MarkupWriterListener() {
-			
+
 			public void elementDidStart(Element element) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void elementDidEnd(Element element) {
 				if(element.getName().equalsIgnoreCase("ul") && hasSlidesClass(element))
 					element.addClassName("slides");
 			}
 
 			private boolean hasSlidesClass(Element element) {
-				return InternalUtils.isBlank(element.getAttribute("class")) || 
+				return InternalUtils.isBlank(element.getAttribute("class")) ||
 						(InternalUtils.isNonBlank(element.getAttribute("class")) && !element.getAttribute("class").contains("slides"));
 			}
 		});
 	}
-	
+
 	@AfterRender
 	public void afterRender() {
 
@@ -57,9 +60,9 @@ public class FlexSlider {
 	    JSONObject opt = new JSONObject();
 	    opt.put("id", id);
 	    opt.put("params", params);
-	    
+
 		javaScriptSupport.require("tjq/flexslider").with(opt);
 	}
 
-	
+
 }

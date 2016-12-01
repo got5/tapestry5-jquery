@@ -9,7 +9,7 @@ public interface FakeInheritedBinding {
 	/**
 	 * Updates the current value.
 	 *
-	 * @param value
+	 * @param value the current value
 	 */
 	void set(Object value);
 

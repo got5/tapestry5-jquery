@@ -30,10 +30,9 @@ import org.got5.tapestry5.jquery.base.AbstractExtendableComponent;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
- * The draggable component 
- * 
+ * The draggable component
+ *
  * @see <a href="http://jqueryui.com/draggable/">jQuery UI Official Documentation</a>
- * 
  * @tapestrydoc
  */
 public class Draggable extends AbstractExtendableComponent {
@@ -43,29 +42,29 @@ public class Draggable extends AbstractExtendableComponent {
     private JavaScriptSupport javaScriptSupport;
 
     /**
-     * If provided, this is the context for the target page 
+     * If provided, this is the context for the target page
      */
     @Parameter
     private String draggablecontext;
-    
+
 	/**
 	 * The Draggable parameters you want to override.
 	 */
 	@Parameter
     private JSONObject params;
-	
+
 
 	@Inject
 	private ComponentResources componentResources;
-	
-	
+
+
 	@SetupRender
 	public void init(MarkupWriter w){
 		w.element("div","id",getClientId());
 		componentResources.renderInformalParameters(w);
 		setDefaultMethod("draggable");
 	}
-	
+
     @AfterRender
 	void afterRender(MarkupWriter w)
     {
@@ -76,15 +75,15 @@ public class Draggable extends AbstractExtendableComponent {
         JSONObject defaults = new JSONObject().put("revert", Boolean.TRUE);
         defaults.put("cusor","move");//change the cursor
 
-        
+
         if (params == null)
             params = new JSONObject();
 
         JQueryUtils.merge(defaults, params);
         data.put("params", defaults);
-       
+
         javaScriptSupport.require("tjq/ui").invoke("draggable").with(data);
     }
 
-	
+
 }

@@ -36,8 +36,8 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.DataTableConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
+import org.got5.tapestry5.jquery.base.AbstractJQueryTable;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
 import org.got5.tapestry5.jquery.internal.FakeInheritedBinding;
@@ -47,13 +47,14 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 /**
  * @since 2.1.1
  *
- *        For more informations about how to translate the DataTable plug-in,
+ *        For more information about how to translate the DataTable plug-in,
  *        please visit the official documentation website
+ *
  * @tapestrydoc
  */
 @Events(JQueryEventConstants.DATA)
 public class DataTable extends AbstractJQueryTable {
-	
+
 	@Inject
 	private ComponentResources resources;
 
@@ -100,26 +101,26 @@ public class DataTable extends AbstractJQueryTable {
 
 
 	/**
-	 * Event method in order to get the datas to display.
+	 * Event method in order to get the data to display.
 	 *
-	 * @throws IOException
+	 * @throws IOException in case there was an error rendering during rendering
 	 */
 	@OnEvent(value = JQueryEventConstants.DATA)
 	JSONObject onData() throws IOException {
-		/**
+		/*
 		 * If ajax mode, we filter on server-side, otherwise, we filter from the
 		 * available data already loaded (see DefaultDataTableModel#filterData)
 		 */
 		if (getMode()) {
-			/**
+			/*
 			 * Give a chance to the developer to update the GridDataSource to
 			 * filter data server-side
-			 * */
+			 */
 			resources.triggerEvent(JQueryEventConstants.FILTER_DATA, null, null);
-			/**
+			/*
 			 * Give a chance to the developer to sort the GridDataSource
 			 * server-side
-			 * */
+			 */
 			resources.triggerEvent(JQueryEventConstants.SORT_DATA, null, null);
 		}
 
@@ -127,13 +128,14 @@ public class DataTable extends AbstractJQueryTable {
 				getDataModel(), getSortModel(), getOverrides(), getMode());
 	}
 
-	public DataTableModel getDefaultDataTableModel() {
+	@Override
+    public DataTableModel getDefaultDataTableModel() {
 		return reponse;
 	}
 
 	/**
 	 * This method will construct the JSON options and call the DataTable
-	 * contructor
+	 * constructor
 	 */
 	@AfterRender
 	void setJS() {
@@ -180,13 +182,10 @@ public class DataTable extends AbstractJQueryTable {
 
 		dataTableParams.put("language", setI18NMessages());
 
-        JQueryUtils JQueryUtils;
-        org.got5.tapestry5.jquery.utils.JQueryUtils.merge(dataTableParams, getOptions());
+        JQueryUtils.merge(dataTableParams, getOptions());
 		setup.put("params", dataTableParams);
 
-
 		support.require("tjq/dataTables").priority(InitializationPriority.EARLY).with(setup);
-
 	}
 
 	private JSONObject setI18NMessages() {

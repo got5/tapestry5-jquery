@@ -18,7 +18,6 @@ import org.apache.tapestry5.services.compatibility.DeprecationWarning;
 /**
  * The JGrowl component has the same behavior as the Errors component. It will
  * use the jGrowl jQuery plugin
- * 
  * @tapestrydoc
  */
 @Import(stylesheet = { "${jquery.assets.root}/vendor/components/jgrowl/jquery.jgrowl.css" })
@@ -37,6 +36,7 @@ public class JGrowl extends BaseClientElement{
      * @deprecated Deprecated in Tapestry 5.4; override the {@code core-dismiss-label} message key in
      *             your application's message catalog. This parameter is now ignored.
      */
+    @Deprecated
     @Parameter(value = "message:core-dismiss-label", defaultPrefix = BindingConstants.LITERAL)
     private String dismissText;
 
@@ -53,7 +53,7 @@ public class JGrowl extends BaseClientElement{
 
     boolean beginRender(MarkupWriter writer)
     {
-        
+
     	Link dismissLink = resources.createEventLink("dismiss");
 
         storeElement(writer.element("div",

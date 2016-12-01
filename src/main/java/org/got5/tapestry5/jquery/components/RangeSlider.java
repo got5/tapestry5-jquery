@@ -21,19 +21,23 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
- * This component allows you create a range slider in a form. A range slider is a slider that has a min and a max value. This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider. 
+ * This component allows you create a range slider in a form. A range slider is a slider that has a min and a max value. This components actually creates 2 Tapestry textfields components and enhanced their behaviour by adding a slider.
  * These 2 fields are hidden by default.
- * 
+ *
  * @since 2.1.1
  * @see <a href="http://jqueryui.com/slider/">jQuery UI Official Documentation</a>
- * 
  * @tapestrydoc
  */
 @SupportsInformalParameters
@@ -44,25 +48,25 @@ public class RangeSlider  {
      */
     @Parameter(required = true)
     private Object min;
-    
+
     @Parameter
     private Object[] context;
-    
+
     /**
      * The value to be read and updated, the max slider value. This value is passed to the second textfield.
      */
     @Parameter(required = true)
     private Object max;
-    
+
     /**
      * The slider parameters (please refer to jquery-ui documentation)
      */
     @Parameter
     private JSONObject params;
-    
+
     /**
-     * The zone to update when changes occure on the slider. 
-     * An "action" event is triggered on the server. 
+     * The zone to update when changes occure on the slider.
+     * An "action" event is triggered on the server.
      * You can catch it on your page with @OnEvent(value=EventConstants.ACTION, component="sliderRangeZone").
      */
     @Parameter(defaultPrefix=BindingConstants.LITERAL)
@@ -73,25 +77,25 @@ public class RangeSlider  {
      */
     @Parameter(value="false")
     private boolean displayTextField;
-    
+
     private JSONObject specs;
 
     /**
-    * Optionally disables the textfields.
-    */
-        @Parameter(value = "false")
-        @Property(write = false)
-        private boolean disableTextfields;
+     * Optionally disables the textfields.
+     */
+    @Parameter(value = "false")
+    @Property(write = false)
+    private boolean disableTextfields;
 
     @Inject
     private ComponentResources resources;
 
     @Inject
     private JavaScriptSupport jsSupport;
-    
+
     @Component
     private TextField maxField, minField;
-    
+
     private String clientId;
     private String getClientId(){
     	if(clientId==null)
@@ -109,7 +113,7 @@ public class RangeSlider  {
     	resources.renderInformalParameters(writer);
     	writer.end();
     	specs = new JSONObject();
-    	
+
     	if (!resources.isBound("params"))
     		params=new JSONObject();
     	params.put("range", true);
@@ -123,7 +127,7 @@ public class RangeSlider  {
     		specs.put("url", link.toAbsoluteURI());
     		specs.put("zoneId", zone);
     	}
-    	
+
         jsSupport.require("tjq/rangeSlider").with(specs);
     }
 

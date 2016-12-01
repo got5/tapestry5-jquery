@@ -14,8 +14,7 @@
 
 package org.got5.tapestry5.jquery.components;
 
-import static org.apache.tapestry5.ioc.internal.util.CollectionFactory.newList;
-import static org.apache.tapestry5.ioc.internal.util.CollectionFactory.newSet;
+import static org.apache.tapestry5.ioc.internal.util.CollectionFactory.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -56,46 +55,52 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 /**
+ * <p>
  * Multiple selection component. Generates a UI consisting of two &lt;select&gt; elements configured for multiple
  * selection; the one on the left is the list of "available" elements, the one on the right is "selected". Elements can
  * be moved between the lists by clicking a button, or double clicking an option (and eventually, via drag and drop).
- * <p/>
+ * </p>
+ * <p>
  * The items in the available list are kept ordered as per {@link SelectModel} order. When items are moved from the
  * selected list to the available list, they items are inserted back into their proper positions.
- * <p/>
+ * </p>
+ * <p>
  * The Palette may operate in normal or re-orderable mode, controlled by the reorder parameter.
- * <p/>
+ * </p>
+ * <p>
  * In normal mode, the items in the selected list are kept in the same "natural" order as the items in the available
  * list.
- * <p/>
+ * </p>
+ * <p>
  * In re-order mode, items moved to the selected list are simply added to the bottom of the list. In addition, two extra
  * buttons appear to move items up and down within the selected list.
- * <p/>
+ * </p>
+ * <p>
  * Much of the look and feel is driven by CSS, the default Tapestry CSS is used to set up the columns, etc. By default,
  * the &lt;select&gt; element's widths are 200px, and it is common to override this to a specific value:
- * <p/>
- * <p/>
+ * </p>
  * <pre>
  * &lt;style&gt;
  * DIV.t-palette SELECT { width: 300px; }
  * &lt;/style&gt;
  * </pre>
- * <p/>
+ * <p>
  * You'll want to ensure that both &lt;select&gt; in each column is the same width, otherwise the display will update
  * poorly as options are moved from one column to the other.
- * <p/>
+ * </p>
+ * <p>
  * Option groups within the {@link SelectModel} will be rendered, but are not supported by many browsers, and are not
  * fully handled on the client side.
- * <p/>
- * For an alternative component that can be used for similar purposes, see
- * {@link Checklist}.
+ * </p>
+ * <p>
+ * For an alternative component that can be used for similar purposes, see {@link Checklist}.
+ * </p>
  *
- * @tapestrydoc
  * @see Form
  * @see Select
+ * @tapestrydoc
  */
 @Import(stylesheet = "classpath:/META-INF/assets/core/Palette.css")
 public class Palette extends AbstractField

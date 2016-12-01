@@ -38,57 +38,58 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 /**
  * @see <a href="http://jqueryui.com/accordion/">jQuery UI Official Documentation</a>
- * 
  * @tapestrydoc
  */
 @SupportsInformalParameters
 public class Accordion extends AbstractExtendableComponent
 {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	@Parameter(defaultPrefix=BindingConstants.LITERAL)
 	private String panels;
-	
+
 	/**
 	 * The number of the accordion tab to activate when the page is displayed on the client.
 	 */
 	@Parameter(required=true)
 	private int activeElementId;
-	
+
 	/**
 	 * The slider parameters (please refer to jquery-ui documentation)
 	 */
 	@Parameter
     private JSONObject params;
-	
+
 	/**
-     * Defines where block and label overrides are obtained from. 
+     * Defines where block and label overrides are obtained from.
      */
     @Parameter(value = "this", allowNull = false)
     @Property(write = false)
     private PropertyOverrides overrides;
-    
+
     /**
      * @deprecated
      */
+    @Deprecated
     @Property
     @Parameter
     private ArrayList<JQueryAccordionData> listOfElements;
-    
+
     /**
      * @deprecated
      */
+    @Deprecated
     @Property
     private JQueryAccordionData currentElement;
-    
+
 	@Inject
 	private ComponentResources resources;
 
     @Inject
     private JavaScriptSupport javaScriptSupport;
-	
+
     @Property
 	private String panel;
 
@@ -97,14 +98,14 @@ public class Accordion extends AbstractExtendableComponent
     {
         setDefaultMethod("accordion");
     }
-	
+
 	@SetupRender
     void startDiv(MarkupWriter writer)
     {
         writer.element("div", "id", getClientId());
     }
 
-	
+
 	@AfterRender
     void afterRender(MarkupWriter writer)
 	{
@@ -133,18 +134,18 @@ public class Accordion extends AbstractExtendableComponent
 			return resources.getContainer().getComponentResources().getBlock(currentElement.getBlockName());
 		return overrides.getOverrideBlock(panel);
 	}
-	
+
 	public String[] getPanels()
-	{ 
+	{
 		return TapestryInternalUtils.splitAtCommas(panels);
 	}
-	
+
 	/**
 	 * First, Tapestry5-jQuery will look for the label in an associated
 	 * bundle, with the name of the panel as a key. If the message does not exist
 	 * Tapestry5-jQuery will provide a default value :  the name of the panel, with
 	 * capital letters and space.
-	 * 
+	 *
 	 * @return the label of a tab
 	 */
 	public String getPanelTitle()
@@ -153,10 +154,10 @@ public class Accordion extends AbstractExtendableComponent
 		{
 			return overrides.getOverrideMessages().get(panel);
 		}
-		
+
 		return TapestryInternalUtils.toUserPresentable(panel);
 	}
-	
+
 	public Boolean getJQueryAccordionData(){
 		return resources.isBound("listOfElements");
 	}

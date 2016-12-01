@@ -15,7 +15,6 @@ import org.got5.tapestry5.jquery.utils.JQueryUtils;
  *
  * @author criedel
  * @since 2.6.1
- * 
  * @tapestrydoc
  */
 public class Gallery extends AbstractExtendableComponent {
@@ -26,7 +25,7 @@ public class Gallery extends AbstractExtendableComponent {
     /**
      * A CSS selector that defines the desired elements for the gallery. The
      * following selector would include all links that have the rel-attribute
-     * set to 'gallery': <br />
+     * set to 'gallery': <br>
      * <code>
      *  t:selector="a[rel^=gallery]"
      * </code>
