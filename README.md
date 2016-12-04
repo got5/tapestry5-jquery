@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/got5/tapestry5-jquery.svg?branch=master)](https://travis-ci.org/got5/tapestry5-jquery)
-# Tapestry 5 jQuery integration Module - 3.5.3-SNAPSHOT
+# Tapestry 5 jQuery integration Module - 3.5.3
 
 ## Demo and documentation
 http://tapestry5-jquery.com/
@@ -124,7 +124,7 @@ For Tapestry 5.3 users:
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.5.3-SNAPSHOT</version>
+            <version>3.5.3</version>
         </dependency>
         ...
     </dependencies>
@@ -210,6 +210,7 @@ However, if you didn't change it, jQuery's alias will automatically be set to `$
 * 4.0.0-SNAPSHOT : Update to Tapestry 5.4-beta-2
 
 # Changelog related to Tapestry 5.3.8 with jQuery 1.12.2 
+* 3.5.3: #386 Unable to locate asset minified effect 
 * 3.5.2: Fix "Unable to locate asset" issue on ImportJQueryUIWorker  
 * 3.5.1: #383 Reverse jQuery version to 1.12.2 to avoid jQuery issue 2432  
 * 3.5.0: #380 Update to support jQuery 1.12.4 & jQuery UI 1.12.1   
