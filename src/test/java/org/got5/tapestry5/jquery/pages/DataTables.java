@@ -18,6 +18,7 @@ package org.got5.tapestry5.jquery.pages;
 
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.json.JSONObject;
+import org.got5.tapestry5.jquery.base.BaseDataTables;
 import org.got5.tapestry5.jquery.data.Celebrity;
 
 

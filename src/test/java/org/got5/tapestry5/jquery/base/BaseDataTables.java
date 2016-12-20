@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.pages;
+package org.got5.tapestry5.jquery.base;
 
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Import;

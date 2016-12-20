@@ -24,6 +24,7 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.DataTableConstants;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
+import org.got5.tapestry5.jquery.base.BaseDataTables;
 import org.got5.tapestry5.jquery.data.Celebrity;
 import org.got5.tapestry5.jquery.data.CelebritySource;
 import org.got5.tapestry5.jquery.data.IDataSource;

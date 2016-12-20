@@ -1,4 +1,4 @@
-package org.got5.tapestry5.jquery.base;
+package org.got5.tapestry5.jquery.components;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
@@ -6,7 +6,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.got5.tapestry5.jquery.components.GridColumns;
+import org.got5.tapestry5.jquery.base.AbstractTable;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 
 public abstract class AbstractJQueryTable extends AbstractTable {

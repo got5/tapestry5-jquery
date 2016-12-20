@@ -37,7 +37,6 @@ import org.apache.tapestry5.services.TranslatorSource;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
-import org.got5.tapestry5.jquery.base.AbstractJQueryTable;
 import org.got5.tapestry5.jquery.internal.DataTableModel;
 import org.got5.tapestry5.jquery.internal.DefaultDataTableModel;
 import org.got5.tapestry5.jquery.internal.FakeInheritedBinding;
