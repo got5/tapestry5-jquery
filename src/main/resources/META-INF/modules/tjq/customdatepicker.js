@@ -1,8 +1,9 @@
 (function() {
     var locale = (document.documentElement.getAttribute("data-locale")) || "en";	
+    var localeJS = locale.replace(/_/g, '-'); //converting local name from Java to JS  
     requirejs.config({
         paths: {
-            "datepickerLocal" : "tjq/vendor/ui/i18n/jquery.ui.datepicker-"+locale
+            "datepickerLocal" : "tjq/vendor/ui/i18n/jquery.ui.datepicker-"+localeJS
         },
         shim : {
             "tjq/vendor/ui/widgets/datepicker": ["jquery"],
@@ -15,9 +16,7 @@
 	 
     define(["datepickerLocal"], function() {
         return function(spec) {
-
-            jQuery.datepicker.setDefaults(jQuery.datepicker.regional[spec.locale]);
-            jQuery(spec.selector).datepicker("option", spec.params);
+        	jQuery(spec.selector).datepicker("option", spec.params);
         };
     });
 }).call(this);

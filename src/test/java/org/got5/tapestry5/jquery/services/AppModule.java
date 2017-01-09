@@ -41,7 +41,7 @@ public class AppModule
     {
     	configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, true);
 
-    	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de,ru,ua");
+    	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de,ru,ua,fr_CA,fr_CH");
 
     	configuration.add(SymbolConstants.PRODUCTION_MODE, false);
 
