@@ -4,7 +4,7 @@
 ## Demo and documentation
 http://tapestry5-jquery.com/
 
-##Hosting
+## Hosting
 http://nexus.devlab722.net/nexus/content/repositories/releases will stop at the end November 2015, 
 So please note that the latest releases for 5.4 and 5.3 are now available at [Maven Central](https://repo1.maven.org/maven2/org/got5/tapestry5-jquery/).   	
 
@@ -87,7 +87,7 @@ Theses components were originally present in Tapestry 5 jQuery
 	
 	
 
-##Questions? Ideas? Comments?
+## Questions? Ideas? Comments?
 All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery/issues) for that.
 
 ## More Informations & contacts
