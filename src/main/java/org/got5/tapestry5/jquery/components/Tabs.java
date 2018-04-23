@@ -128,7 +128,7 @@ public class Tabs extends AbstractExtendableComponent
 
         JSONObject defaults = new JSONObject();
         defaults.put("cache", false);
-        defaults.put("selected", activePanelId);
+        defaults.put("active", activePanelId);
 
         JQueryUtils.merge(defaults, params);
 
