@@ -33,11 +33,15 @@ import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.ioc.services.FactoryDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.BindingFactory;
+import org.apache.tapestry5.services.Core;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.compatibility.Compatibility;
 import org.apache.tapestry5.services.compatibility.Trait;
 import org.apache.tapestry5.services.javascript.JavaScriptModuleConfiguration;
+import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.ModuleManager;
+import org.apache.tapestry5.services.javascript.StackExtension;
+import org.apache.tapestry5.services.javascript.StackExtensionType;
 import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
 import org.got5.tapestry5.jquery.EffectsConstants;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
@@ -188,4 +192,33 @@ public class JQueryModule {
 		// Catalog used to store messages from mixins
 		configuration.add("JQueryCatalog", jQueryCatalog);
 	}
+	
+	
+	 
+	 // These are automatically bundles with the JqueryUI JavaScript stack; some applications may want to add a few
+	 // additional ones, such as tjq/vendor/ui/.
+	 private static final String[] bundledModules = new String[]{
+		        "widgets/accordion","widgets/autocomplete","widgets/button",
+		 		"widgets/checkboxradio","widgets/datepicker","widgets/dialog","widgets/draggable",
+		 		"widgets/droppable","widgets/menu","widgets/mouse","widgets/progressbar",
+		 		"widgets/resizable","widgets/selectable","widgets/selectmenu","widgets/slider",
+		 		"widgets/sortable","widgets/spinner","widgets/tabs","widgets/tooltip"
+		 		
+	  };
+
+	  @Contribute(JavaScriptStack.class)
+	  @Core
+	  public static void setupJqueryUIJavaScriptStack(OrderedConfiguration<StackExtension> configuration,
+	                                                Compatibility compatibility,
+	                                                @Symbol(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER)
+	                                                String provider)
+	    {
+	       
+	        for (String name : bundledModules)
+	        {
+	            String full = "tjq/vendor/ui/" + name;
+	            configuration.add(name, StackExtension.module(full));
+	        }
+
+	    }
 }
