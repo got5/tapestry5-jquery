@@ -5,14 +5,10 @@ import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
-import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
-import org.got5.tapestry5.jquery.services.js.JSSupport;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
-import org.slf4j.Logger;
 
 /**
  * Class used for creating a jQuery Widget
@@ -72,6 +68,17 @@ public class Widget {
 		}
 		 
 		return options;
+	}
+	
+	void afterRender() {
+
+		JSONObject data = new JSONObject();
+        data.put("id", clientElement.getClientId());
+        data.put("params", overrideParams());
+		if ( script != null ) {	data.put("script",script);	} 
+		javaScriptSupport.require("tjq/ui/"+widgetName().toLowerCase()).invoke(widgetName()).with(data);
+			
+			
 	}
 
 }
