@@ -27,7 +27,7 @@
             scroller='scroller' zone='zone'>
             <li>Element#${value}</li>
         </li>
-        <li class='zone' t:type='zone' t:id='zone'/>
+        <li class='zone' t:type='zone' t:id='zone0'/>
     </ul>
 
     <div id='scroller'></div>
