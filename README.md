@@ -35,7 +35,7 @@ Exclusive jQuery components :
 - **InPlaceEditor** 
 	- based on [http://www.appelsiini.net/projects/jeditable](http://www.appelsiini.net/projects/jeditable)
 - **PageScroller** 
-	- Infinite Scrolling Pagination. [Example on how to use it](/repo/blob/master/src/test/resources/org/got5/tapestry5/jquery/pages/PageScroll.tml) 
+	- Infinite Scrolling Pagination. [Example on how to use it](/src/test/resources/org/got5/tapestry5/jquery/pages/PageScroll.tml) 
 - **RangeSlider** 
 	- based on [http://jqueryui.com/demos/slider/#range](http://jqueryui.com/demos/slider/#range)
 - **Slider** 
