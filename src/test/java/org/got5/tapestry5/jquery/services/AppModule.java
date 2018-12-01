@@ -56,7 +56,7 @@ public class AppModule
     	configuration.add(SymbolConstants.ASSET_PATH_PREFIX, "assets");
     	configuration.add("demo-src-dir", "");
 
-    	//configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
+        configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
 
     	configuration.add(SymbolConstants.HMAC_PASSPHRASE, "testing, testing, 1... 2... 3...");
 
