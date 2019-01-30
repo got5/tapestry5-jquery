@@ -25,7 +25,6 @@ import org.apache.tapestry5.internal.services.ArrayEventContext;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 
@@ -107,9 +106,6 @@ public class PageScroll implements ClientElement {
     @Inject
     private TypeCoercer typeCoercer;
 
-    @Inject
-    private Request request;
-
     private EventContext eventContext;
 
     @BeginRender
@@ -124,6 +120,7 @@ public class PageScroll implements ClientElement {
             .put("scroller", scroller)
             .put("scrollURI", getScrollURI())
             .put("zoneId", zone)
+            .put("firstPageNumber", pageNumber)
             .put("params", params);
 
         javaScriptSupport.require("tjq/PageScroll").with(specs);

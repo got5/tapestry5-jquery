@@ -14,16 +14,24 @@ define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/components
                 activeZone;
 
             if (typeof (this.pageIndex) == "undefined") {
-                this.pageIndex = 0;
+                this.pageIndex = specs.firstPageNumber >= 0 ? specs.firstPageNumber : 0;
             }
 
             if (this.pageIndex === -1 || this.disable) {
                 return;
             }
 
+            var pageZoneId = specs.zoneId + pageIndex;
             element = dom.wrap(specs.scroller);
-            element.attr("data-update-zone", specs.zoneId);
+            element.attr("data-update-zone", pageZoneId);
             activeZone = zone.findZone(element);
+            
+            var newPageZone = dom.wrap(activeZone.$.clone());
+            var nextPageIndex = pageIndex + 1;
+            var nextPageZoneId = specs.zoneId + nextPageIndex;
+            newPageZone.attr("id", nextPageZoneId);
+            activeZone.insertAfter(newPageZone);
+            element.attr("data-update-zone", nextPageZoneId);
 
             this.disable = true;
             scroller.addClass("scrollExtend-loading");
