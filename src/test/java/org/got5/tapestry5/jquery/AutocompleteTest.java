@@ -1,11 +1,11 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import com.thoughtworks.selenium.Wait;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-import com.thoughtworks.selenium.Wait;
-
-public class AutocompleteTest extends SeleniumTestCase{
+public class AutocompleteTest extends SeleniumTestCase2{
 	
 	@Test
     public void testAutoComplete()
@@ -13,11 +13,9 @@ public class AutocompleteTest extends SeleniumTestCase{
         open("/ext/jqueryautocomplete");
         waitForPageToLoad();
 
-        focus("identifier=foo");
-        type("identifier=foo", "abcdeff");
-        keyDown("identifier=foo", "e");
-        keyUp("identifier=foo", "e");
-        fireEvent("identifier=foo", "keydown");
+        focus("id=foo");
+        type("id=foo", "abcdeff");
+        new Actions(webDriver).sendKeys("e").perform();
 
         new Wait()
         {

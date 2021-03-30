@@ -16,69 +16,63 @@
 
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.annotations.Test;
 
-import com.thoughtworks.selenium.Wait;
+public class ConfirmTest extends SeleniumTestCase2
+{
+    private final String confirmLocator = "//div[@id='dialogConfirmationJQuery']";
 
-public class ConfirmTest extends SeleniumTestCase {
-	
-	private final String confirmLocator = "//div[@id='dialogConfirmationJQuery']";
-	
-	private final String confirmOkLocator = "//div[@class='ui-dialog-buttonset']/button[1]";
-	
-	@Test
+    private final String confirmOkLocator = "//div[@class='ui-dialog-buttonset']/button[1]";
+
+    @Test
     public void testDialog()
     {
         open("/jqueryconfirm");
-        
+
         //PageLink Confirmation test.
         checkDialogStateAfterClick("//a[@id='pageLinkTest']");
-        
+
         //Did we quit the JQueryConfirm Page?
         final String baseUrl = getBaseURL();
-        assertTrue(baseUrl.indexOf("/jqueryconfirm") == -1);
-        
-        //open("/jqueryconfirm");
-        
+        assertEquals(-1, baseUrl.indexOf("/jqueryconfirm"));
+
+        open("/jqueryconfirm");
+
         //Zone update confirmation
-        //checkDialogStateAfterClick("//a[@id='clicker']");
-        
+        checkDialogStateAfterClick("//a[@id='clicker']");
+
         //Form submit confirmation
-        //checkDialogStateAfterClick("//input[@id='btnValid']");
+        checkDialogStateAfterClick("//input[@id='btnValid']");
     }
-	
-	private void checkDialogStateAfterClick(final String triggerLocator)
+
+    private void checkDialogStateAfterClick(final String triggerLocator)
     {
         click(triggerLocator);
-        
+
         //Checks if the confirm popup is displayed.
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return (isVisible(confirmLocator));
-            }
-        }.wait("Confirm popup should be visible after clicking on : " + triggerLocator, JQueryTestConstants.TIMEOUT);
-        
+        waitForCondition(
+                (ExpectedCondition<WebElement>) webDriver ->
+                        //  A page may contain more than one rendered confirmation popup,
+                        //  but they're likely hidden waiting for their trigger
+                        findFirstVisible(webDriver, convertLocator(confirmLocator)),
+                "Confirm popup should be visible after clicking on : " + triggerLocator);
+
         //Confirm dialog popup closed by pressing Enter key.
         checkDialogStateAfterClickOK();
     }
-	
-	private void checkDialogStateAfterClickOK()
+
+    private void checkDialogStateAfterClickOK()
     {
-		//Press OK button.
-        click(confirmOkLocator);
-        
+        //Press OK button.
+        clickAndWait(findFirstVisible(webDriver, convertLocator(confirmOkLocator)));
+
         //Checks if the popup has been removed.
-        new Wait()
-        {
-            @Override
-            public boolean until()
-            {
-                return (!isVisible(confirmLocator));
-            }
-        }.wait("Confirm popup should be removed after clicking on OK button.", JQueryTestConstants.TIMEOUT);
+        assertNotPresent(
+                convertLocator(confirmLocator),
+                WebElement::isDisplayed,
+                "Confirm popup should be removed after clicking on OK button.");
     }
 }

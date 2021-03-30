@@ -1,9 +1,11 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-public class ContextMenuTest extends SeleniumTestCase {
+public class ContextMenuTest extends SeleniumTestCase2 {
 	
 	@Test
 	public void testContextMenu() {
@@ -11,8 +13,9 @@ public class ContextMenuTest extends SeleniumTestCase {
 		open("/jquerycontextmenu");
 		
 		//We check if the context menu is displayed on right click...
-		mouseDownRight("//a[@class='linkContextMenu']");
-		mouseUpRight("//a[@class='linkContextMenu']");
+		WebElement element = webDriver.findElement(convertLocator("//a[@class='linkContextMenu']"));
+		new Actions(webDriver).contextClick(element);
+
 		assertTrue(isElementPresent("//ul[@class='context-menu-list context-menu-root']"));
 		
 		//... And if the menu entries are rendered.

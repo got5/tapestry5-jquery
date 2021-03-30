@@ -1,8 +1,5 @@
 package org.got5.tapestry5.jquery.pages;
 
-import java.util.Date;
-import java.util.Locale;
-
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -10,6 +7,9 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.PersistentLocale;
+
+import java.util.Date;
+import java.util.Locale;
 
 public class CalendarInZone {
 	

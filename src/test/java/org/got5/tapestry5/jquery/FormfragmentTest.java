@@ -1,11 +1,11 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class FormfragmentTest extends SeleniumTestCase{
+public class FormfragmentTest extends SeleniumTestCase2{
 	
 	@Test
     public void testFormFragment()
@@ -13,7 +13,7 @@ public class FormfragmentTest extends SeleniumTestCase{
         open("/formfragment");
         waitForPageToLoad();
 
-        String trigger = "identifier=separateShipTo";
+        String trigger = "id=separateShipTo";
         final String fragment = "//div[@id='seperateShippingAddress']";
 
         assertFalse(isVisible(fragment), fragment + " should not be visible");

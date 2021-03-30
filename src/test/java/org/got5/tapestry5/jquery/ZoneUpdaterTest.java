@@ -1,27 +1,35 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class ZoneUpdaterTest extends SeleniumTestCase {
+public class ZoneUpdaterTest extends SeleniumTestCase2 {
 
-	@Test(groups="whatevs")
+	@Test
 	public void testZoneUpdater(){
 
 		open("/ZoneUpdater");
-		waitForPageToLoad();
+
+		Actions actions = new Actions(webDriver);
+
 		assertTrue(isElementPresent("//div[@id='nameZone'][contains(text(), 'Humpty Dumpty')]"));
-		click("//input[@type='text'][@id='firstName']");
-		focus("//input[@type='text'][@id='firstName']");
-		type("//input[@type='text'][@id='firstName']", "Hempster");
-		keyPress("//input[@type='text'][@id='firstName']", Keys.TAB.toString());
-		click("//input[@type='text'][@id='lastName']");
-		focus("//input[@type='text'][@id='lastName']");
-		type("//input[@type='text'][@id='lastName']", "Dempster");
-		keyPress("//input[@type='text'][@id='lastName']", Keys.TAB.toString());
+
+		WebElement firstName = webDriver.findElement(convertLocator("//input[@type='text'][@id='firstName']"));
+		WebElement lastName = webDriver.findElement(convertLocator("//input[@type='text'][@id='lastName']"));
+
+		firstName.clear();
+		actions.sendKeys(firstName, "Hempster").perform();
+
+		waitForAjaxRequestsToComplete();
+
+		lastName.clear();
+		actions.sendKeys(lastName, "Dempster").perform();
+
 		new Wait() {
 			@Override
 			public boolean until() {

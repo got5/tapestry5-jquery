@@ -12,8 +12,13 @@
 
 .horizontal-only {
 	height: auto;
-	max-height: 200px;
+	max-width: 200px;
 }
+
+.both {
+	max-width: 200px;
+}
+
 </style>
 <div class="row">
 	<div class="span12">
@@ -108,7 +113,7 @@
 					viverra.</p>
 			</div>
 			<h2>Both</h2>
-			<div class="scroll-pane" t:type="any" t:mixins="JScrollPane">
+			<div class="scroll-pane both" t:type="any" t:mixins="JScrollPane">
 				<p style="width: 1000px">Lorem ipsum dolor sit amet, consectetur
 					adipiscing elit. Donec in ligula id sem tristique ultrices eget id
 					neque. Duis enim turpis, tempus at accumsan vitae, lobortis id
