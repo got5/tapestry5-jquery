@@ -1,11 +1,12 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class SuperfishTest extends SeleniumTestCase {
+public class SuperfishTest extends SeleniumTestCase2 {
 
     private static final String SUPERFISH_MENU_SELECTOR = "//ul[@id='superfish']";
 
@@ -13,12 +14,12 @@ public class SuperfishTest extends SeleniumTestCase {
 
     private static final String SUPERFISH_MENU_THIRD_ITEM_SELECTOR = SUPERFISH_MENU_SELECTOR + "/li[3]/a";
 
-	@Test
+    @Test
     public void testSuperfishComponent(){
 
-    	open("/SuperFish");
+        open("/SuperFish");
 
-    	new Wait()
+        new Wait()
         {
             @Override
             public boolean until()
@@ -28,7 +29,9 @@ public class SuperfishTest extends SeleniumTestCase {
 
         }.wait("The ul element should have the sf-menu class : " + getAttribute(SUPERFISH_MENU_SELECTOR + "@class"), JQueryTestConstants.TIMEOUT);
 
-        click(SUPERFISH_MENU_FIRST_ITEM_SELECTOR);
+        new Actions(webDriver).moveToElement(
+                webDriver.findElement(convertLocator(SUPERFISH_MENU_FIRST_ITEM_SELECTOR))
+        ).perform();
 
         new Wait()
         {
@@ -39,7 +42,9 @@ public class SuperfishTest extends SeleniumTestCase {
             }
         }.wait("The ul element should have the sfHover class : " + getAttribute(SUPERFISH_MENU_SELECTOR + "[contains(@class,'sf-menu')]/li[1]@class"), JQueryTestConstants.TIMEOUT);
 
-        click(SUPERFISH_MENU_THIRD_ITEM_SELECTOR);
+        new Actions(webDriver).moveToElement(
+                webDriver.findElement(convertLocator(SUPERFISH_MENU_THIRD_ITEM_SELECTOR))
+        ).perform();
 
         new Wait()
         {

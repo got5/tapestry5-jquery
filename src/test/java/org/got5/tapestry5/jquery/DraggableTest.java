@@ -1,12 +1,12 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
 
-public class DraggableTest extends SeleniumTestCase {
+public class DraggableTest extends SeleniumTestCase2 {
 
     @Test
     public void dragItem1() {

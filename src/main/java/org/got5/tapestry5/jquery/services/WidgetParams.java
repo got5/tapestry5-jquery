@@ -13,6 +13,6 @@ import org.apache.tapestry5.json.JSONObject;
 @UsesMappedConfiguration(value = JSONObject.class)
 public interface WidgetParams {
 
-	public abstract JSONObject paramsForWidget(String widget);
+	JSONObject paramsForWidget(String widget);
 
 }

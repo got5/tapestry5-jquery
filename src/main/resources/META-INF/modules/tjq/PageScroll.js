@@ -27,7 +27,7 @@ define([ "t5/core/dom", "t5/core/zone", "t5/core/events", "tjq/vendor/components
 
             this.disable = true;
             scroller.addClass("scrollExtend-loading");
-            if (activeZone.length != 0) {
+            if (activeZone.length !== 0) {
                 this.disable = true;
 
                 activeZone.trigger(events.zone.refresh, {

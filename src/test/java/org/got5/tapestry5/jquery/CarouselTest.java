@@ -16,13 +16,13 @@
 
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class CarouselTest extends SeleniumTestCase {
+public class CarouselTest extends SeleniumTestCase2 {
 
 	@BeforeMethod
 	public void adjustSpeed() {
@@ -33,17 +33,17 @@ public class CarouselTest extends SeleniumTestCase {
 	@Test
 	public void testCarousel() {
 		open("/carouselpage");
-		waitForPageToLoad();
+
 		//Content test
 		assertEquals(getText("css=#zoneContainer span"), "Click on the big white flower of the complex carousel:", "The page does not seem to be fully loaded");
 		//test of an eventlink inside a carousel
-		assertTrue("".equals(getText("id=flowerZone")),"The zone is not empty before the ajax call");
-		click("//*[@id='carouselitem_0']/img");
+		assertEquals(getText("id=flowerZone"), "", "The zone is not empty before the ajax call");
+		clickAndWait("//*[@id='carouselitem_0']/img");
 		assertEquals(getText("id=flowerZone"),"You just clicked on the big white flower !", "The eventlink did not work, the zone did not load correctly");
 		
 		//Carousel control test
 		final int initPosition = (Integer) getElementPositionLeft("css=.jcarousel-list");
-		click("css=.jcarousel-next");
+		clickAndWait("css=.jcarousel-next");
 		new Wait()
         {
             @Override
@@ -53,7 +53,5 @@ public class CarouselTest extends SeleniumTestCase {
             	return Math.abs(initPosition - newPosition)==255;
             }
         }.wait("The carousel did not slide correctly", JQueryTestConstants.TIMEOUT);
-		
-		
 	}
 }

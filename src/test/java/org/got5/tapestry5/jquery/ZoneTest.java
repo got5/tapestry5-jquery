@@ -1,18 +1,18 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class ZoneTest extends SeleniumTestCase{
+public class ZoneTest extends SeleniumTestCase2{
 	
 	 @Test
 	    public void testZone()
 	    {
 	        open("/zone");
 	        waitForPageToLoad();
-	        assertEquals(getText("identifier=myZone"), "Counting via AJAX : 0");
+	        assertEquals(getText("id=myZone"), "Counting via AJAX : 0");
 
 	        click("//a[@data-update-zone='myZone']");
 	        new Wait()
@@ -23,7 +23,7 @@ public class ZoneTest extends SeleniumTestCase{
 	                return isTextPresent("Counting via AJAX : 1");
 	            }
 	        }.wait("element not found", 5000l);
-	        assertEquals(getText("identifier=myZone"), "Counting via AJAX : 1");
+	        assertEquals(getText("id=myZone"), "Counting via AJAX : 1");
 	    }
 
 	    @Test
@@ -31,9 +31,9 @@ public class ZoneTest extends SeleniumTestCase{
 	    {
 	        open("/zone");
 	        waitForPageToLoad();
-	        assertEquals(getText("identifier=myZone2"), "Dummy value is :");
+	        assertEquals(getText("id=myZone2"), "Dummy value is :");
 
-	        type("identifier=textfield", "dummy");
+	        type("id=textfield", "dummy");
 	        click("//form[@id='myForm']/input[@type='submit']");
 
 	        new Wait()
@@ -45,8 +45,8 @@ public class ZoneTest extends SeleniumTestCase{
 	            }
 	        }.wait("element not found", 5000l);
 
-	        assertTrue(getText("identifier=myZone2").contains("Dummy value is : dummy") && 
-	        			getText("identifier=myZone2").contains("I am a Component inside the block which is visible after the zone update"));
+	        assertTrue(getText("id=myZone2").contains("Dummy value is : dummy") &&
+	        			getText("id=myZone2").contains("I am a Component inside the block which is visible after the zone update"));
 	    }
 
 	    @Test(dependsOnMethods="testZone")
@@ -54,10 +54,10 @@ public class ZoneTest extends SeleniumTestCase{
 	    {
 	        open("/zone");
 	        waitForPageToLoad();
-	        assertEquals(getText("identifier=multiZone1"), "default zone content");
-	        assertEquals(getText("identifier=multiZone2"), "default zone content");
+	        assertEquals(getText("id=multiZone1"), "default zone content");
+	        assertEquals(getText("id=multiZone2"), "default zone content");
 	        
-	        click("identifier=multiSubmit");
+	        click("id=multiSubmit");
 
 	        new Wait()
 	        {
@@ -68,7 +68,7 @@ public class ZoneTest extends SeleniumTestCase{
 	            }
 	        }.wait("element not found", 5000l);
 
-	        assertEquals(getText("identifier=multiZone1"), "rendering block-1 after multi zone update 2");
-	        assertEquals(getText("identifier=multiZone2"), "rendering block-2 after multi zone update 2");
+	        assertEquals(getText("id=multiZone1"), "rendering block-1 after multi zone update 2");
+	        assertEquals(getText("id=multiZone2"), "rendering block-2 after multi zone update 2");
 	    }
 }

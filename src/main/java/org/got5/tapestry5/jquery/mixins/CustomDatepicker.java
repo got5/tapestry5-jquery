@@ -64,7 +64,7 @@ public class CustomDatepicker {
 
 	@Inject
 	@Symbol(JQuerySymbolConstants.SUPPRESS_PROTOTYPE)
-	private Boolean supressPrototype;
+	private Boolean suppressPrototype;
 
 	@Inject
 	private ThreadLocale locale;
@@ -85,7 +85,7 @@ public class CustomDatepicker {
 	 * change the JSON option of the jQuery datepicker widget
 	 */
 	void afterRender() {
-		if (supressPrototype) {
+		if (suppressPrototype) {
 			/*
 			 * If the selector parameter is not bound, we will use the clientId
 			 * of the component using the mixin
@@ -101,7 +101,7 @@ public class CustomDatepicker {
 
             JSONObject temp = widgetParams.paramsForWidget(this.getClass().getSimpleName().toLowerCase());
             if(temp != null){
-                defaultParamsObject = temp;
+                defaultParamsObject = temp.copy();
             }
 
             defaultParamsObject.put("dateFormat", toJQueryUIDateFormat());

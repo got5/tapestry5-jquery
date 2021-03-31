@@ -8,7 +8,7 @@
     <br />
     <br />
 
-	<t:pagelink t:id="pageLinkTest" page="index" message="Message de confirmation" t:mixins="jquery/Confirm">PageLink confirmation test</t:pagelink>
+	<t:pagelink t:id="pageLinkTest" data-role="pageLinkTest" page="index" message="Message de confirmation" t:mixins="jquery/Confirm">PageLink confirmation test</t:pagelink>
 	
 	<form t:type="form" t:id="loginForm">
 	

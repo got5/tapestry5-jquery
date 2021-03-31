@@ -1,9 +1,9 @@
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
-public class PageScrollTest extends SeleniumTestCase {
+public class PageScrollTest extends SeleniumTestCase2 {
 
     @Test
     public void page_scroll_works(){

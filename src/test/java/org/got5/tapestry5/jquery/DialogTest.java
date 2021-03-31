@@ -16,18 +16,18 @@
 
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class DialogTest extends SeleniumTestCase {
+public class DialogTest extends SeleniumTestCase2 {
 
-	String dialogLink = "identifier=dialoglink";
-    String dialogAjaxLink = "identifier=dialogajaxlink";
-    final String dialog = "identifier=myDialog";
+	String dialogLink = "id=dialoglink";
+    String dialogAjaxLink = "id=dialogajaxlink";
+    final String dialog = "id=myDialog";
     String closeDialog = "css=span[class~=\"ui-icon-closethick\"]";
-    String zone = "identifier=myzone";
+    String zone = "id=myzone";
     
 	@Test
     public void testDialog()

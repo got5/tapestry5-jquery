@@ -16,12 +16,12 @@
 
 package org.got5.tapestry5.jquery;
 
-import org.apache.tapestry5.test.SeleniumTestCase;
+import org.got5.tapestry5.jquery.test.SeleniumTestCase2;
 import org.testng.annotations.Test;
 
 import com.thoughtworks.selenium.Wait;
 
-public class CustomDatepickerTest extends SeleniumTestCase {
+public class CustomDatepickerTest extends SeleniumTestCase2 {
 
 	@Test
 	public void testCustomDatepicker() {
