@@ -1,7 +1,8 @@
 package org.got5.tapestry5.jquery.internal;
 
-import org.apache.tapestry5.ioc.Messages;
-import org.apache.tapestry5.ioc.internal.util.MessagesImpl;
+
+import org.apache.tapestry5.commons.Messages;
+import org.apache.tapestry5.commons.internal.util.MessagesImpl;
 
 public final class TapestryJQueryExceptionMessages {
 	

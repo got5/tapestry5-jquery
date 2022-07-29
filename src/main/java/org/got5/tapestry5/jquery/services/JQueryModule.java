@@ -18,10 +18,10 @@ package org.got5.tapestry5.jquery.services;
 
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.ioc.Configuration;
-import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.OrderedConfiguration;
-import org.apache.tapestry5.ioc.Resource;
+import org.apache.tapestry5.commons.Configuration;
+import org.apache.tapestry5.commons.MappedConfiguration;
+import org.apache.tapestry5.commons.OrderedConfiguration;
+import org.apache.tapestry5.commons.Resource;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Inject;

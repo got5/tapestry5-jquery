@@ -1,7 +1,7 @@
 package org.got5.tapestry5.jquery.components;
 
 import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.Link;
+import org.apache.tapestry5.http.Link;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.alerts.Alert;
 import org.apache.tapestry5.alerts.AlertStorage;

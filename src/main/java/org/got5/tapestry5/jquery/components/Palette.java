@@ -14,7 +14,7 @@
 
 package org.got5.tapestry5.jquery.components;
 
-import static org.apache.tapestry5.ioc.internal.util.CollectionFactory.*;
+import static org.apache.tapestry5.commons.util.CollectionFactory.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -49,11 +49,11 @@ import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.internal.util.SelectModelRenderer;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
-import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
+import org.apache.tapestry5.commons.util.CollectionFactory;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.ComponentDefaultProvider;
-import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.http.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**

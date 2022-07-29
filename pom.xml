@@ -39,6 +39,11 @@
 		<url>http://ci.dev.kalaari.net/hudson/</url>
 	</ciManagement>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-version-migrator</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
         <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-core</artifactId>
@@ -145,11 +150,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+				<version>3.8.0</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-					<optimize>true</optimize>
+					<release>17</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -410,29 +413,29 @@
                 <value>true</value>
             </property>
         </activation>
-        <build>
-            <plugins>
-                <plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-gpg-plugin</artifactId>
-			      <version>1.5</version>
-			      <executions>
-			        <execution>
-			          <id>sign-artifacts</id>
-			          <phase>verify</phase>
-			          <goals>
-			            <goal>sign</goal>
-			          </goals>
-			        </execution>
-			      </executions>
-			 	</plugin>
-            </plugins>
-        </build>
+<!--        <build>-->
+<!--            <plugins>-->
+<!--                <plugin>-->
+<!--			      <groupId>org.apache.maven.plugins</groupId>-->
+<!--			      <artifactId>maven-gpg-plugin</artifactId>-->
+<!--			      <version>1.5</version>-->
+<!--			      <executions>-->
+<!--			        <execution>-->
+<!--			          <id>sign-artifacts</id>-->
+<!--			          <phase>verify</phase>-->
+<!--			          <goals>-->
+<!--			            <goal>sign</goal>-->
+<!--			          </goals>-->
+<!--			        </execution>-->
+<!--			      </executions>-->
+<!--			 	</plugin>-->
+<!--            </plugins>-->
+<!--        </build>-->
         </profile>
 	</profiles>
 	<properties>
 		<spock-version>0.6-groovy-1.8</spock-version>
-        <tapestry-release-version>5.4.1</tapestry-release-version>
+        <tapestry-release-version>5.8.2</tapestry-release-version>
         <selenium-version>2.35.0</selenium-version>
         <browserStartCommand>*googlechrome</browserStartCommand>
         <sourceDirectory>src/main/java</sourceDirectory>

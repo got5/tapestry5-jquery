@@ -23,9 +23,9 @@ import org.apache.tapestry5.annotations.RequestParameter;
 import org.apache.tapestry5.corelib.components.Loop;
 import org.apache.tapestry5.internal.services.ArrayEventContext;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
+import org.apache.tapestry5.commons.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.http.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 

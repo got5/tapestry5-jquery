@@ -1,19 +1,19 @@
 package org.got5.tapestry5.jquery.mixins;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.http.Link;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.EffectsConstants;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @since 2.6.0

@@ -1,37 +1,37 @@
 package org.got5.tapestry5.jquery.internal;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
-import org.apache.tapestry5.beaneditor.BeanModel;
+import org.apache.tapestry5.beanmodel.BeanModel;
+import org.apache.tapestry5.beanmodel.PropertyConduit;
+import org.apache.tapestry5.commons.services.TypeCoercer;
 import org.apache.tapestry5.dom.Element;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;
 import org.apache.tapestry5.grid.SortConstraint;
+import org.apache.tapestry5.http.services.Request;
 import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
 import org.apache.tapestry5.internal.services.AjaxPartialResponseRenderer;
 import org.apache.tapestry5.internal.services.PageRenderQueue;
 import org.apache.tapestry5.internal.services.ajax.AjaxFormUpdateController;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.runtime.RenderCommand;
 import org.apache.tapestry5.runtime.RenderQueue;
 import org.apache.tapestry5.services.PartialMarkupRenderer;
 import org.apache.tapestry5.services.PartialMarkupRendererFilter;
-import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.TranslatorSource;
 import org.got5.tapestry5.jquery.DataTableConstants;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * A default DataTable model that handles ajax mode.
@@ -259,7 +259,7 @@ public class DefaultDataTableModel implements DataTableModel {
      * Method returning the desired data
      *
      * @param source the grid data source
-     * @return the source’s data transformed to a JSONObject
+     * @return the source???s data transformed to a JSONObject
      * @throws IOException in case something went wrong while rendering the response
      */
     public JSONObject getResponse(GridDataSource source) throws IOException {
@@ -376,7 +376,7 @@ public class DefaultDataTableModel implements DataTableModel {
      * This is called in the DataTable component, when the data is loaded by ajax.
      *
      * (non-Javadoc)
-     * @see org.got5.tapestry5.jquery.internal.DataTableModel#sendResponse(org.apache.tapestry5.services.Request, org.apache.tapestry5.grid.GridDataSource, org.apache.tapestry5.beaneditor.BeanModel, org.apache.tapestry5.grid.GridSortModel, org.apache.tapestry5.PropertyOverrides, boolean)
+     * @see org.got5.tapestry5.jquery.internal.DataTableModel#sendResponse(org.apache.tapestry5.http.services.Request, org.apache.tapestry5.grid.GridDataSource, org.apache.tapestry5.beaneditor.BeanModel, org.apache.tapestry5.grid.GridSortModel, org.apache.tapestry5.PropertyOverrides, boolean)
      */
     public JSONObject sendResponse(Request request, GridDataSource source, BeanModel model, GridSortModel sortModel, PropertyOverrides overrides, boolean mode) throws IOException {
 
@@ -407,7 +407,7 @@ public class DefaultDataTableModel implements DataTableModel {
      * @param override, the block or the value to render
      * @param type, the type of the object to put inside the environment service. Required to render an item inside a loop
      * @param value, the value of the object to put inside the environment service. Required to render an item inside a loop
-     * @param columnName the column’s name
+     * @param columnName the column???s name
      * @param rowIndex, the line number of the cell
      * @param columnIndex, the column number of the cell
      * @param globalIndex, the global index iteration

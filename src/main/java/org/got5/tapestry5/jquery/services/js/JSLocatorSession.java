@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.Session;
+import org.apache.tapestry5.http.services.Request;
+import org.apache.tapestry5.http.services.Session;
 
 /*
  * Locator that just uses the session. Simple enough and should work anywhere.

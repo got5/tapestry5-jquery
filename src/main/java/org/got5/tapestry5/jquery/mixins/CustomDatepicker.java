@@ -1,19 +1,13 @@
 package org.got5.tapestry5.jquery.mixins;
 
-import java.text.SimpleDateFormat;
-
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.BindParameter;
-import org.apache.tapestry5.annotations.Environmental;
-import org.apache.tapestry5.annotations.InjectContainer;
-import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.ioc.Resource;
+import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.commons.Resource;
+import org.apache.tapestry5.commons.services.TypeCoercer;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.AssetSource;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
@@ -21,6 +15,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.services.WidgetParams;
 import org.got5.tapestry5.jquery.utils.JQueryUtils;
+
+import java.text.SimpleDateFormat;
 
 /**
  * This mixin allows you to override the default configuration parameters of the

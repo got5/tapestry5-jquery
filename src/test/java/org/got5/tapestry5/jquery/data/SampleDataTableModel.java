@@ -3,10 +3,10 @@ package org.got5.tapestry5.jquery.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry5.PropertyConduit;
+import org.apache.tapestry5.beanmodel.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.Translator;
-import org.apache.tapestry5.beaneditor.BeanModel;
+import org.apache.tapestry5.beanmodel.BeanModel;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.GridSortModel;

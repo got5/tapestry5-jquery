@@ -3,7 +3,7 @@ package org.got5.tapestry5.jquery.services;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.internal.bindings.AbstractBinding;
-import org.apache.tapestry5.ioc.Location;
+import org.apache.tapestry5.commons.Location;
 import org.apache.tapestry5.runtime.Component;
 /**
  * 

@@ -1,17 +1,17 @@
 package org.got5.tapestry5.jquery.services.js;
 
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.commons.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Dispatcher;
+import org.apache.tapestry5.http.services.Dispatcher;
 import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.MarkupRenderer;
 import org.apache.tapestry5.services.MarkupRendererFilter;
 import org.apache.tapestry5.services.PartialMarkupRenderer;
 import org.apache.tapestry5.services.PartialMarkupRendererFilter;
-import org.apache.tapestry5.services.RequestGlobals;
+import org.apache.tapestry5.http.services.RequestGlobals;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.slf4j.Logger;
 
